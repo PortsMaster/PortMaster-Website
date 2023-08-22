@@ -1,0 +1,27 @@
+{
+    "name": "bootscore/bootscore-child",
+    "description": "The official PortMaster web-site theme.",
+    "type": "wordpress-theme",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "The PortMaster Team"
+        }
+    ],
+    "readme": "README.md",
+    "homepage": "https://landing.portmaster.games",
+    "support": {
+      "issues": "https://github.com/portsmaster/bootscore/issues",
+      "forum": "https://github.com/orgs/bootscore/discussions",
+      "source": "https://github.com/bootscore/bootscore-child",
+      "docs": "https://bootscore.me/documentation/"
+    },
+    "minimum-stability": "stable",
+    "keywords": [
+      "wordpress",
+      "theme",
+      "bootscore",
+      "bootstrap",
+      "woocommerce"
+    ]
+}

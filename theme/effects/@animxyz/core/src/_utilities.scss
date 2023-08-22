@@ -1,0 +1,13 @@
+@use 'sass:list';
+@use 'sass:map';
+@use 'internal' as *;
+@use 'variables' as *;
+@use 'functions' as *;
+
+@mixin xyz-utilities () {
+  @include xyz-include-once('utilities') {
+    @each $name, $utility in $xyz-utilities-map {
+      @include xyz-make-utilities($name, $utility);
+    }
+  }
+}

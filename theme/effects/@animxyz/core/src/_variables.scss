@@ -1,0 +1,527 @@
+@use 'sass:list';
+@use 'sass:map';
+
+// MODES
+
+$xyz-modes: ['in', 'out', 'appear',]; // Appear must come last for specificity
+$xyz-modes-all: list.join('all', $xyz-modes);
+
+
+// LEVELS
+
+$xyz-index-levels: 20 !default;
+
+$xyz-ease-levels: (
+  'default': var(--xyz-ease-default),
+  'ease': ease,
+  'linear': linear,
+  'in': ease-in,
+  'in-back': cubic-bezier(0.600, -0.280, 0.735, 0.045),
+  'out': ease-out,
+  'out-back': cubic-bezier(0.175, 0.885, 0.320, 1.275),
+  'in-out': ease-in-out,
+  'in-out-back': cubic-bezier(0.680, -0.550, 0.265, 1.550),
+) !default;
+
+$xyz-duration-levels: (
+  'default': var(--xyz-duration-default),
+  '0': 0s,
+  '0.5': 0.05s,
+  '1': 0.1s,
+  '1.5': 0.15s,
+  '2': 0.2s,
+  '2.5': 0.25s,
+  '3': 0.3s,
+  '4': 0.4s,
+  '5': 0.5s,
+  '6': 0.6s,
+  '7': 0.7s,
+  '8': 0.8s,
+  '9': 0.9s,
+  '10': 1s,
+  '15': 1.5s,
+  '20': 2s,
+  '25': 2.5s,
+  '30': 3s,
+) !default;
+
+$xyz-delay-levels: (
+  'default': var(--xyz-delay-default),
+  '0': 0s,
+  '0.5': 0.05s,
+  '1': 0.1s,
+  '1.5': 0.15s,
+  '2': 0.2s,
+  '2.5': 0.25s,
+  '3': 0.3s,
+  '4': 0.4s,
+  '5': 0.5s,
+  '6': 0.6s,
+  '7': 0.7s,
+  '8': 0.8s,
+  '9': 0.9s,
+  '10': 1s,
+  '15': 1.5s,
+  '20': 2s,
+  '25': 2.5s,
+  '30': 3s,
+) !default;
+
+$xyz-stagger-levels: (
+  'default': var(--xyz-stagger-default),
+  '0': 0s,
+  '0.5': 0.05s,
+  '1': 0.1s,
+  '1.5': 0.15s,
+  '2': 0.2s,
+  '2.5': 0.25s,
+  '3': 0.3s,
+  '4': 0.4s,
+  '5': 0.5s,
+  '6': 0.6s,
+  '7': 0.7s,
+  '8': 0.8s,
+  '9': 0.9s,
+  '10': 1s,
+  '15': 1.5s,
+  '20': 2s,
+  '25': 2.5s,
+  '30': 3s,
+) !default;
+
+$xyz-iterate-levels: (
+  'default': var(--xyz-iterate-default),
+  '1': 1,
+  '2': 2,
+  '3': 3,
+  '4': 4,
+  '5': 5,
+  'infinite': infinite,
+) !default;
+
+$xyz-direction-levels: (
+  'default': var(--xyz-direction-default),
+  'normal': normal,
+  'reverse': reverse,
+  'alternate': alternate,
+  'alternate-reverse': alternate-reverse,
+) !default;
+
+$xyz-origin-levels: (
+  'default': var(--xyz-origin-default),
+  'center': center,
+  'top': top,
+  'bottom': bottom,
+  'left': left,
+  'right': right,
+  'top-left': top left,
+  'top-right': top right,
+  'bottom-left': bottom left,
+  'bottom-right': bottom right,
+) !default;
+
+$xyz-opacity-levels: (
+  'default': var(--xyz-opacity-default),
+  '0': 0,
+  '25%': 0.25,
+  '50%': 0.5,
+  '75%': 0.75,
+  '100%': 1,
+) !default;
+
+$xyz-perspective-levels: (
+  'default': var(--xyz-perspective-default),
+  '0': var(--xyz-perspective-none),
+  '1': 500px,
+  '2': 1000px,
+  '3': 1500px,
+  '4': 2000px,
+  '5': 2500px,
+) !default;
+
+$xyz-translate-levels: (
+  'default': var(--xyz-translate-default),
+  '0': 0px,
+  '1': 10px,
+  '2': 20px,
+  '3': 30px,
+  '4': 40px,
+  '5': 50px,
+  '25%': 25%,
+  '50%': 50%,
+  '75%': 75%,
+  '100%': 100%,
+) !default;
+
+$xyz-translate-z-levels: (
+  'default': var(--xyz-translate-z-default),
+  '0': 0px,
+  '1': 100px,
+  '2': 200px,
+  '3': 300px,
+  '4': 400px,
+  '5': 500px,
+) !default;
+
+$xyz-rotate-levels: (
+  'default': var(--xyz-rotate-default),
+  '0': 0deg,
+  '1': 10deg,
+  '2': 20deg,
+  '3': 30deg,
+  '4': 40deg,
+  '5': 50deg,
+  '25%': 0.25turn,
+  '50%': 0.50turn,
+  '75%': 0.75turn,
+  '100%': 1turn,
+) !default;
+
+$xyz-scale-levels: (
+  'default': var(--xyz-scale-default),
+  '0': 0,
+  '1': 0.025,
+  '2': 0.05,
+  '3': 0.075,
+  '4': 0.1,
+  '5': 0.125,
+  '25%': 0.25,
+  '50%': 0.5,
+  '75%': 0.75,
+  '100%': 1,
+) !default;
+
+$xyz-skew-levels: (
+  'default': var(--xyz-skew-default),
+  '0': 0deg,
+  '1': 10deg,
+  '2': 20deg,
+  '3': 30deg,
+  '4': 40deg,
+  '5': 50deg,
+) !default;
+
+
+// VARIABLES
+
+$xyz-variables-map: (
+  'keyframes': (
+    'type': 'keyframes',
+  ),
+  'ease': (
+    'type': 'ease',
+  ),
+  'duration': (
+    'type': 'duration',
+  ),
+  'delay': (
+    'type': 'delay',
+  ),
+  'stagger': (
+    'type': 'stagger',
+  ),
+  'stagger-rev': (
+    'type': 'stagger',
+  ),
+  'iterate': (
+    'type': 'iterate',
+  ),
+  'direction': (
+    'type': 'direction',
+  ),
+  'origin': (
+    'type': 'origin',
+  ),
+  'opacity': (
+    'type': 'opacity',
+  ),
+  'transform': (
+    'type': 'transform',
+  ),
+  'perspective': (
+    'type': 'perspective',
+  ),
+  'translate-x': (
+    'type': 'translate',
+    'axis': 'x',
+  ),
+  'translate-y': (
+    'type': 'translate',
+    'axis': 'y',
+  ),
+  'translate-z': (
+    'type': 'translate',
+    'axis': 'z',
+  ),
+  'rotate-x': (
+    'type': 'rotate',
+    'axis': 'x',
+  ),
+  'rotate-y': (
+    'type': 'rotate',
+    'axis': 'y',
+  ),
+  'rotate-z': (
+    'type': 'rotate',
+    'axis': 'z',
+  ),
+  'scale-x': (
+    'type': 'scale',
+    'axis': 'x',
+  ),
+  'scale-y': (
+    'type': 'scale',
+    'axis': 'y',
+  ),
+  'scale-z': (
+    'type': 'scale',
+    'axis': 'z',
+  ),
+  'skew-x': (
+    'type': 'skew',
+    'axis': 'x',
+  ),
+  'skew-y': (
+    'type': 'skew',
+    'axis': 'y',
+  ),
+);
+
+
+// DEFAULTS
+
+$xyz-defaults-map: (
+  'keyframes': none,
+  'ease': map.get($xyz-ease-levels, 'ease'),
+  'duration': map.get($xyz-duration-levels, '5'),
+  'delay': map.get($xyz-delay-levels, '0'),
+  'stagger': map.get($xyz-stagger-levels, '2.5'),
+  'iterate': map.get($xyz-iterate-levels, '1'),
+  'direction': map.get($xyz-direction-levels, 'normal'),
+  'out-direction': map.get($xyz-direction-levels, 'reverse'),
+  'origin': map.get($xyz-origin-levels, 'center'),
+  'opacity': map.get($xyz-opacity-levels, '100%'),
+  'perspective': map.get($xyz-perspective-levels, '0'),
+  'translate': map.get($xyz-translate-levels, '25%'),
+  'translate-z': map.get($xyz-translate-z-levels, '3'),
+  'rotate': map.get($xyz-rotate-levels, '25%'),
+  'scale': map.get($xyz-scale-levels, '50%'),
+  'skew': map.get($xyz-skew-levels, '3'),
+);
+
+
+// UTILITIES
+
+$xyz-utilities-map: (
+  'ease': (
+    'type': 'ease',
+    'vars': ['ease'],
+    'levels': $xyz-ease-levels,
+  ),
+  'duration': (
+    'type': 'duration',
+    'vars': ['duration'],
+    'levels': $xyz-duration-levels,
+  ),
+  'delay': (
+    'type': 'delay',
+    'vars': ['delay'],
+    'levels': $xyz-delay-levels,
+  ),
+  'stagger': (
+    'type': 'stagger',
+    'vars': ['stagger'],
+    'levels': $xyz-stagger-levels,
+  ),
+  'stagger-rev': (
+    'type': 'stagger',
+    'vars': ['stagger-rev'],
+    'levels': $xyz-stagger-levels,
+  ),
+  'iterate': (
+    'type': 'iterate',
+    'vars': ['iterate'],
+    'levels': $xyz-iterate-levels,
+  ),
+  'direction': (
+    'type': 'direction',
+    'vars': ['direction'],
+    'levels': $xyz-direction-levels,
+  ),
+  'origin': (
+    'type': 'origin',
+    'vars': ['origin'],
+    'levels': $xyz-origin-levels,
+  ),
+  'perspective': (
+    'type': 'perspective',
+    'vars': ['perspective'],
+    'levels': $xyz-perspective-levels,
+  ),
+  'fade': (
+    'type': 'opacity',
+    'vars': ['opacity'],
+    'levels': $xyz-opacity-levels,
+    'transformer': 'xyz-one-minus-val',
+  ),
+  'right': (
+    'type': 'translate',
+    'axis': 'x',
+    'vars': ['translate-x'],
+    'levels': $xyz-translate-levels,
+  ),
+  'left': (
+    'type': 'translate',
+    'axis': 'x',
+    'vars': ['translate-x'],
+    'levels': $xyz-translate-levels,
+    'transformer': 'xyz-negative-val',
+  ),
+  'down': (
+    'type': 'translate',
+    'axis': 'y',
+    'vars': ['translate-y'],
+    'levels': $xyz-translate-levels,
+  ),
+  'up': (
+    'type': 'translate',
+    'axis': 'y',
+    'vars': ['translate-y'],
+    'levels': $xyz-translate-levels,
+    'transformer': 'xyz-negative-val',
+  ),
+  'front': (
+    'type': 'translate',
+    'axis': 'z',
+    'vars': ['translate-z'],
+    'levels': $xyz-translate-z-levels,
+  ),
+  'back': (
+    'type': 'translate',
+    'axis': 'z',
+    'vars': ['translate-z'],
+    'levels': $xyz-translate-z-levels,
+    'transformer': 'xyz-negative-val',
+  ),
+  'flip-up': (
+    'type': 'rotate',
+    'axis': 'x',
+    'vars': ['rotate-x'],
+    'levels': $xyz-rotate-levels,
+  ),
+  'flip-down': (
+    'type': 'rotate',
+    'axis': 'x',
+    'vars': ['rotate-x'],
+    'levels': $xyz-rotate-levels,
+    'transformer': 'xyz-negative-val',
+  ),
+  'flip-right': (
+    'type': 'rotate',
+    'axis': 'y',
+    'vars': ['rotate-y'],
+    'levels': $xyz-rotate-levels,
+  ),
+  'flip-left': (
+    'type': 'rotate',
+    'axis': 'y',
+    'vars': ['rotate-y'],
+    'levels': $xyz-rotate-levels,
+    'transformer': 'xyz-negative-val',
+  ),
+  'rotate-right': (
+    'type': 'rotate',
+    'axis': 'z',
+    'vars': ['rotate-z'],
+    'levels': $xyz-rotate-levels,
+  ),
+  'rotate-left': (
+    'type': 'rotate',
+    'axis': 'z',
+    'vars': ['rotate-z'],
+    'levels': $xyz-rotate-levels,
+    'transformer': 'xyz-negative-val',
+  ),
+  'small': (
+    'type': 'scale',
+    'axis': 'xyz',
+    'vars': ['scale-x', 'scale-y', 'scale-z'],
+    'levels': $xyz-scale-levels,
+    'transformer': 'xyz-one-minus-val',
+  ),
+  'big': (
+    'type': 'scale',
+    'axis': 'xyz',
+    'vars': ['scale-x', 'scale-y', 'scale-z'],
+    'levels': $xyz-scale-levels,
+    'transformer': 'xyz-one-plus-val',
+  ),
+  'narrow': (
+    'type': 'scale',
+    'axis': 'x',
+    'vars': ['scale-x'],
+    'levels': $xyz-scale-levels,
+    'transformer': 'xyz-one-minus-val',
+  ),
+  'wide': (
+    'type': 'scale',
+    'axis': 'x',
+    'vars': ['scale-x'],
+    'levels': $xyz-scale-levels,
+    'transformer': 'xyz-one-plus-val',
+  ),
+  'short': (
+    'type': 'scale',
+    'axis': 'y',
+    'vars': ['scale-y'],
+    'levels': $xyz-scale-levels,
+    'transformer': 'xyz-one-minus-val',
+  ),
+  'tall': (
+    'type': 'scale',
+    'axis': 'y',
+    'vars': ['scale-y'],
+    'levels': $xyz-scale-levels,
+    'transformer': 'xyz-one-plus-val',
+  ),
+  'thin': (
+    'type': 'scale',
+    'axis': 'z',
+    'vars': ['scale-z'],
+    'levels': $xyz-scale-levels,
+    'transformer': 'xyz-one-minus-val',
+  ),
+  'thick': (
+    'type': 'scale',
+    'axis': 'z',
+    'vars': ['scale-z'],
+    'levels': $xyz-scale-levels,
+    'transformer': 'xyz-one-plus-val',
+  ),
+  'skew-left': (
+    'type': 'skew',
+    'axis': 'x',
+    'vars': ['skew-x'],
+    'levels': $xyz-skew-levels,
+  ),
+  'skew-right': (
+    'type': 'skew',
+    'axis': 'x',
+    'vars': ['skew-x'],
+    'levels': $xyz-skew-levels,
+    'transformer': 'xyz-negative-val',
+  ),
+  'skew-up': (
+    'type': 'skew',
+    'axis': 'y',
+    'vars': ['skew-y'],
+    'levels': $xyz-skew-levels,
+  ),
+  'skew-down': (
+    'type': 'skew',
+    'axis': 'y',
+    'vars': ['skew-y'],
+    'levels': $xyz-skew-levels,
+    'transformer': 'xyz-negative-val',
+  ),
+);
