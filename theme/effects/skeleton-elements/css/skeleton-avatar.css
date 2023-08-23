@@ -1,0 +1,13 @@
+.skeleton-avatar {
+  display: inline-block;
+}
+.skeleton-avatar svg {
+  max-width: 100%;
+  height: auto;
+}
+.skeleton-avatar rect {
+  fill: var(--skeleton-color);
+}
+.skeleton-avatar path {
+  fill: var(--skeleton-icon-color);
+}

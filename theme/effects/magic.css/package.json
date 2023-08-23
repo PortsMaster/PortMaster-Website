@@ -1,0 +1,38 @@
+{
+  "name": "magic.css",
+  "version": "1.4.8",
+  "description": "Magic CSS3 animations",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/miniMAC/magic.git"
+  },
+  "author": "Christian Pucci <minimac@minimamente.com> (https://www.minimamente.com/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/miniMAC/magic/issues"
+  },
+  "homepage": "https://github.com/miniMAC/magic#readme",
+  "devDependencies": {
+    "autoprefixer": "^10.3.7",
+    "cssnano": "^5.0.8",
+    "gulp": "^4.0.2",
+    "gulp-cssnano": "^1.1.0",
+    "gulp-postcss": "^9.0.1",
+    "gulp-rename": "^2.0.0",
+    "gulp-sass": "^5.1.0",
+    "np": "^7.6.2",
+    "postcss": "^8.3.9",
+    "sass": "^1.49.8"
+  },
+  "keywords": [
+    "css",
+    "css3",
+    "animation",
+    "animations",
+    "magic"
+  ]
+}

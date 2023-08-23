@@ -1,0 +1,211 @@
+@use 'sass:list';
+@use 'sass:map';
+@use 'sass:meta';
+@use 'sass:string';
+@use 'transformers' as *;
+@use 'variables' as *;
+
+// HELPERS
+
+@function xyz-str-split($string, $separator: ' ') {
+  $split-list: ();
+  $index : string.index($string, $separator);
+  @while $index != null {
+    $item: string.slice($string, 1, $index - 1);
+    $split-list: list.append($split-list, $item);
+    $string: string.slice($string, $index + 1);
+    $index : string.index($string, $separator);
+  }
+  $split-list: list.append($split-list, $string);
+
+  @return $split-list;
+}
+
+@function xyz-name($name, $mode: 'all') {
+  @if $mode == 'all' {
+    @return $name;
+  }
+  @return $mode + '-' + $name;
+}
+
+
+// VARIABLES
+
+@function xyz-default-var($name, $mode: 'all') {
+  // Make sure return variable cascades by mode
+  @if $mode == 'all' {
+    @return var(--xyz-#{$name}-default);
+  } @else {
+    @return var(--xyz-#{xyz-name($name, $mode)}-default, var(--xyz-#{$name}-default));
+  }
+}
+
+
+@function xyz-var($name, $mode: 'all', $fallback: 'default') {
+  // If fallback is default remap it to default variable
+  @if $fallback == 'default' {
+    $fallback: xyz-default-var($name, $mode);
+  }
+
+  // Make sure return variable cascades by mode
+  @if $mode == 'all' {
+    @return var(--xyz-#{$name}, #{$fallback});
+  } @else {
+    @return var(--xyz-#{xyz-name($name, $mode)}, var(--xyz-#{$name}, #{$fallback}));
+  }
+}
+
+@mixin xyz-set-all($val) {
+  // For every variable and mode set to val
+  @each $name, $variable in $xyz-variables-map {
+    $variable-modes: map.get($variable, 'modes');
+
+    @if ($variable-modes == null) {
+      $variable-modes: $xyz-modes-all;
+    }
+
+    @each $mode in $variable-modes {
+      --xyz-#{xyz-name($name, $mode)}: #{$val};
+    }
+  }
+}
+
+
+// UTILITIES
+
+@mixin xyz-utility($name, $mode: 'all', $level: 'default') {
+  $utility: map.get($xyz-utilities-map, $name);
+  $vars: map.get($utility, 'vars');
+  $levels: map.get($utility, 'levels');
+  $transformer: map.get($utility, 'transformer');
+
+  $val: map.get($levels, $level);
+
+  @if $val == null {
+    @error '#{$level} is not a valid level for the #{$name} utility.';
+  }
+
+  @if $transformer {
+    $transformer-func: meta.get-function($transformer);
+    $val: meta.call($transformer-func, $val);
+  }
+
+  @each $var in $vars {
+    --xyz-#{xyz-name($var, $mode)}: #{$val};
+  }
+}
+
+@mixin xyz-make-utilities($name, $utility) {
+  $utility-modes: map.get($utility, 'modes');
+  $levels: map.get($utility, 'levels');
+
+  @if ($utility-modes == null) {
+    $utility-modes: $xyz-modes-all;
+  }
+
+  @each $mode in $utility-modes {
+    @each $level in map.keys($levels) {
+      @if $level == 'default' {
+        [xyz~='#{xyz-name($name, $mode)}'] {
+          @include xyz-utility($name, $mode, $level);
+        }
+      } @else {
+        [xyz~='#{xyz-name($name, $mode)}-#{$level}'] {
+          @include xyz-utility($name, $mode, $level);
+        }
+      }
+    }
+  }
+}
+
+@mixin xyz-make-keyframes($name, $make-utilities: true) {
+  @each $mode in $xyz-modes {
+    @keyframes xyz-#{xyz-name($name, $mode)} {
+      @content($mode);
+    }
+  }
+
+  @if $make-utilities {
+    @each $mode in $xyz-modes {
+      [xyz~=#{$name}], [xyz~=#{xyz-name($name, $mode)}] {
+        --xyz-#{xyz-name('keyframes', $mode)}: xyz-#{xyz-name($name, $mode)};
+      }
+    }
+  }
+}
+
+@mixin xyz-apply($utilities) {
+  $utilities-list: xyz-str-split($utilities);
+
+  @each $utility in $utilities-list {
+    $utility-mode: null;
+    $utility-name: null;
+    $utility-level: null;
+
+    @each $name in map.keys($xyz-utilities-map) {
+      @if string.index($utility, $name) {
+        $utility-name: $name;
+      }
+    }
+
+    @if $utility-name == null {
+      @error '#{$utility} is not a valid xyz utility.';
+    }
+
+    $utility-level: string.slice($utility, string.index($utility, $utility-name) + string.length($utility-name) + 1);
+    @if string.length($utility-level) == 0 {
+      $utility-level: 'default';
+    }
+
+    @each $mode in $xyz-modes-all {
+      @if string.index($utility, $mode) {
+        $utility-mode: $mode;
+      }
+    }
+    @if $utility-mode == null {
+      $utility-mode: 'all';
+    }
+
+    @include xyz-utility($utility-name, $utility-level, $utility-mode);
+  }
+}
+
+
+// ANIMATIONS
+
+@mixin xyz-animation($mode) {
+  $keyframes: xyz-var('keyframes', $mode);
+  $ease: xyz-var('ease', $mode);
+  $duration: xyz-var('duration', $mode);
+  $delay: xyz-var('delay', $mode);
+  $stagger: xyz-var('stagger', $mode, 0s);
+  $stagger-rev: xyz-var('stagger-rev', $mode, 0s);
+  $iterate: xyz-var('iterate', $mode);
+  $direction: xyz-var('direction', $mode);
+  $origin: xyz-var('origin', $mode);
+
+  $index: var(--xyz-index, 0);
+  $index-rev: var(--xyz-index-rev, 0);
+
+  // TODO: remove these -calc variables when postcss-calc bug is fixed: https://github.com/postcss/postcss-calc/issues/77
+  --xyz-stagger-delay-calc: var(--xyz-nested-stagger-delay, 0s) + #{$stagger} * #{$index} + #{$stagger-rev} * #{$index-rev};
+  --xyz-total-delay-calc: var(--xyz-stagger-delay, 0s) + #{$delay};
+
+  --xyz-stagger-delay: calc(var(--xyz-stagger-delay-calc));
+  --xyz-total-delay: calc(var(--xyz-total-delay-calc));
+  transform-origin: #{$origin};
+  backface-visibility: visible;
+
+  // TODO: remove these -calc variables when postcss-calc bug is fixed: https://github.com/postcss/postcss-calc/issues/77
+  --xyz-delay-calc: var(--xyz-total-delay, 0s) + var(--xyz-start-offset, 0) * (var(--xyz-total-delay, 0s) + #{$duration}) * -1;
+
+  animation:
+    #{$duration}
+    #{$ease}
+    calc(var(--xyz-delay-calc))
+    #{$iterate}
+    #{$direction}
+    both;
+
+  animation-name: xyz-#{xyz-name('keyframes', $mode)}, #{$keyframes};
+}

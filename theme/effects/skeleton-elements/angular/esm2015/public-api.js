@@ -1,0 +1,10 @@
+/*
+ * Public API Surface of angular
+ */
+export * from './lib/skeleton-elements.module';
+export * from './lib/skeleton-block';
+export * from './lib/skeleton-avatar';
+export * from './lib/skeleton-text';
+export * from './lib/skeleton-image';
+export * from './lib/skeletonEffect';
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoicHVibGljLWFwaS5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIi4uLy4uLy4uL3NyYy9hbmd1bGFyL3B1YmxpYy1hcGkudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7O0dBRUc7QUFFSCxjQUFjLGdDQUFnQyxDQUFDO0FBQy9DLGNBQWMsc0JBQXNCLENBQUM7QUFDckMsY0FBYyx1QkFBdUIsQ0FBQztBQUN0QyxjQUFjLHFCQUFxQixDQUFDO0FBQ3BDLGNBQWMsc0JBQXNCLENBQUM7QUFDckMsY0FBYyxzQkFBc0IsQ0FBQyIsInNvdXJjZXNDb250ZW50IjpbIi8qXG4gKiBQdWJsaWMgQVBJIFN1cmZhY2Ugb2YgYW5ndWxhclxuICovXG5cbmV4cG9ydCAqIGZyb20gJy4vbGliL3NrZWxldG9uLWVsZW1lbnRzLm1vZHVsZSc7XG5leHBvcnQgKiBmcm9tICcuL2xpYi9za2VsZXRvbi1ibG9jayc7XG5leHBvcnQgKiBmcm9tICcuL2xpYi9za2VsZXRvbi1hdmF0YXInO1xuZXhwb3J0ICogZnJvbSAnLi9saWIvc2tlbGV0b24tdGV4dCc7XG5leHBvcnQgKiBmcm9tICcuL2xpYi9za2VsZXRvbi1pbWFnZSc7XG5leHBvcnQgKiBmcm9tICcuL2xpYi9za2VsZXRvbkVmZmVjdCc7XG4iXX0=

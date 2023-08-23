@@ -1,0 +1,14 @@
+@import "bscore_variables";     
+@import "bootstrap/bootstrap";  // Collecting Bootstrap source from parent-theme
+@import "bscore_style";         // Collecting bootScore source from parent-theme
+// Comment or delete following line if WooCommerce styles are not needed
+//@import "bscore_woocommerce";   // Collecting bootScore WooCommerce source from parent-theme
+
+
+@import "bscore_custom";
+
+
+@import "/wp-content/themes/bootscore-child-main/effects/magic-1.1.0/magic.css";
+@import "https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.css";
+@import "https://unpkg.com/aos@next/dist/aos.css";
+@import "https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css";
