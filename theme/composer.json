@@ -1,5 +1,5 @@
 {
-    "name": "bootscore/bootscore-child",
+    "name": "bootscore/portmaster",
     "description": "The official PortMaster web-site theme.",
     "type": "wordpress-theme",
     "license": "MIT",
@@ -9,7 +9,7 @@
         }
     ],
     "readme": "README.md",
-    "homepage": "https://landing.portmaster.games",
+    "homepage": "https://portmaster.games",
     "support": {
       "issues": "https://github.com/portsmaster/bootscore/issues",
       "forum": "https://github.com/orgs/bootscore/discussions",
@@ -21,7 +21,6 @@
       "wordpress",
       "theme",
       "bootscore",
-      "bootstrap",
-      "woocommerce"
+      "bootstrap"
     ]
 }
