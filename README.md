@@ -1,4 +1,4 @@
-# [PortMaster Website](https://landing.portmaster.games)
+# [PortMaster Website](https://portmaster.games)
 
 ## Content and Theme
 
@@ -19,4 +19,4 @@ The following resources should give you more information should you like to cont
 * [Wordpress Coding Standards](https://developer.wordpress.org/coding-standards/wordpress-coding-standards/)
 * [Inline Documentation Standards](https://developer.wordpress.org/coding-standards/inline-documentation-standards/)
 
-### Visit us at [portmaster.games](https://landing.portmaster.games)
+### Visit us at [portmaster.games](https://.games)
