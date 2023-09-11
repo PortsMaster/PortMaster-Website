@@ -170,7 +170,10 @@
   <main>
     <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark" aria-label="Fourth navbar example">
       <div class="container-fluid">
-        <a class="navbar-brand" href="index.html">Wiki</a>
+        <a class="navbar-brand">
+          <img height="35px"
+            src="https://landing.portmaster.games/wp-content/themes/bootscore-child-main/img/logo/logo.svg" />
+        </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample04"
           aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -183,15 +186,46 @@
             <li class="nav-item">
               <a class="nav-link active" aria-current="page" href="https://discord.gg/JxYBp9HTAY">Discord</a>
             </li>
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="faq.html">FAQ</a>
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="wiki.html">Wiki</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                aria-expanded="false">Portmaster</a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="installation.html">Installation</a></li>
+                <li><a class="dropdown-item" href="#">Runtimes</a></li>
+                <li><a class="dropdown-item" href="#">Supported Devices</a></li>
+                <li><a class="dropdown-item" href="#">Gptokeyb Documentation</a></li>
+                <li><a class="dropdown-item" href="#">Harbourmaster</a></li>
+              </ul>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                aria-expanded="false">Contribute</a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="porting.html">Porting</a></li>
+                <li><a class="dropdown-item" href="packaging.html">Packaging</a></li>
+                <li><a class="dropdown-item" href="#">Build Environments</a></li>
+                <li><a class="dropdown-item" href="#">Port Tools</a></li>
+                <li><a class="dropdown-item" href="port-json.html">Port JSON Generator</a></li>
+              </ul>
+            </li>
+            </li>
           </ul>
           <ul class="navbar-nav ">
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">Sort</a>
               <ul class="dropdown-menu">
                 <div class="dropdown-item">
-                  <li><label><input checked onchange="sortAZ()" id="sortAZ" class="form-check-input" type="checkbox" value='' /> A - Z</label></li>
-                  <li><label><input onchange="sortDownloaded()" id="sortDownloaded" class="form-check-input" type="checkbox" value='' /> Most Downloaded</label></li>
-                  <li><label><input onchange="sortNewest()" id="sortNewest" class="form-check-input" type="checkbox" value='' /> Most Recent</label></li>
+                  <li><label><input checked onchange="sortAZ()" id="sortAZ" class="form-check-input" type="checkbox"
+                        value='' /> A - Z</label></li>
+                  <li><label><input onchange="sortDownloaded()" id="sortDownloaded" class="form-check-input"
+                        type="checkbox" value='' /> Most Downloaded</label></li>
+                  <li><label><input onchange="sortNewest()" id="sortNewest" class="form-check-input" type="checkbox"
+                        value='' /> Most Recent</label></li>
                 </div>
               </ul>
             </li>
@@ -201,13 +235,15 @@
               <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">Filters</a>
               <ul class="dropdown-menu">
                 <div class="dropdown-item">
-                  <li><label><input onchange="filterCards()" id="ready-to-run" class="form-check-input" type="checkbox" value='' /> Ready to Run</label></li>
+                  <li><label><input onchange="filterCards()" id="ready-to-run" class="form-check-input" type="checkbox"
+                        value='' /> Ready to Run</label></li>
                 </div>
               </ul>
             </li>
           </ul>
           <form role="search" onkeydown="return event.key != 'Enter';">
-            <input id="search" oninput="filterCards()" class="form-control" type="search" placeholder="Search" aria-label="Search">
+            <input id="search" oninput="filterCards()" class="form-control" type="search" placeholder="Search"
+              aria-label="Search">
           </form>
         </div>
       </div>
