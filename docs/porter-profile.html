@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
+    <title>Porter Profile</title>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+    <!----  <style>
+        .mb-3 {
+            float: left;
+            width: 33%;
+        }
+    </style>
+-->
+</head>
+
+<body class="p-3 m-0 border-0 bd-example m-0 border-0">
+
+    <h1>
+        Porter Profile
+    </h1>
+    <br>
+    <select id="porters" class="form-select" aria-label="Default select example" onchange="selectPorter()">
+        <option selected>Add New Porter</option>
+    </select>
+    <br>
+
+    <form>
+        <div class="mb-3">
+            <label for="name" class="form-label">Name</label>
+            <input required type="text" class="form-control" id="name">
+        </div>
+        <div class="mb-3">
+            <label for="social" class="form-label">Social Media Link</label>
+            <input type="text" class="form-control" id="social">
+        </div>
+        <div class="mb-3">
+            <label for="support" class="form-label">Donation Link (Ko-fi, PayPal etc)</label>
+            <input type="text" class="form-control" id="support">
+        </div>
+        <div class="mb-3">
+            <label for="webpage" class="form-label">Personal Webpage or Github</label>
+            <input type="text" class="form-control" id="webpage">
+        </div>
+        <div class="mb-3">
+            <label for="image" class="form-label">Profile Image URL</label>
+            <input type="text" class="form-control" id="image">
+        </div>
+
+    </form>
+
+    <br>
+    <button onclick="updateProfile()" class="btn btn-primary">Update</button>
+    <br>
+    <button onclick="downloadJson()" class="btn btn-primary">Download Json</button>
+    <br>
+    <div id="json">
+
+    </div>
+    <script>
+        porters = null;
+        var selectElement = document.getElementById("porters");
+        var nameElement = document.getElementById("name");
+        var socialElement = document.getElementById("social");
+        var supportElement = document.getElementById("support");
+        var webpageElement = document.getElementById("webpage");
+        var imageElement = document.getElementById("image");
+
+        function selectPorter() {
+            var porter = document.getElementById("porters").value;
+            if (porter != "Add New Porter") {
+                nameElement.value = porters[porter].name;
+                socialElement.value = porters[porter].social
+                supportElement.value = porters[porter].support
+                webpageElement.value = porters[porter].webpage
+                imageElement.value = porters[porter].image
+                nameElement.readOnly = true;
+            }
+            else {
+                nameElement.value = "";
+                socialElement.value = "";
+                supportElement.value = "";
+                webpageElement.value = "";
+                imageElement.value = "";
+                nameElement.readOnly = false;
+            }
+        }
+
+        function downloadJson() {
+            var json = JSON.stringify(porters, null,2);
+            var file = new Blob([json], { type: "application/json" });
+            if (window.navigator.msSaveOrOpenBlob) // IE10+
+                window.navigator.msSaveOrOpenBlob(file, "porters.json");
+            else { // Others
+                var a = document.createElement("a"),
+                    url = URL.createObjectURL(file);
+                a.href = url;
+                a.download = "porters.json";
+                document.body.appendChild(a);
+                a.click();
+                setTimeout(function () {
+                    document.body.removeChild(a);
+                    window.URL.revokeObjectURL(url);
+                }, 0);
+            }
+        }
+
+        function updateProfile() {
+            var name = document.getElementById("name").value;
+            if (name != "") {
+                porters[name] = {};
+                porters[name].name = name;
+                porters[name].social = socialElement.value;
+                porters[name].support = supportElement.value;
+                porters[name].webpage = webpageElement.value;
+                porters[name].image = imageElement.value;
+                document.getElementById("json").textContent = JSON.stringify(porters);
+                for (var key of Object.keys(porters)) {
+                    var opt = document.createElement('option');
+                    opt.value = key;
+                    opt.innerHTML = key;
+                    selectElement.appendChild(opt);
+                };
+            }
+            else {
+                alert("Name is a required field");
+            }
+
+        }
+
+        async function loadPorters() {
+            try {
+                var response = await fetch('https://raw.githubusercontent.com/PortsMaster/PortMaster-Info/main/porters.json'); // Replace 'YOUR_JSON_URL_HERE' with the actual URL of your JSON data.
+                if (!response.ok) {
+                    throw new Error('Network response was not ok.');
+                }
+                porters = await response.json();
+            } catch (error) {
+                console.error('Error fetching JSON data:', error);
+            }
+
+
+            for (var key of Object.keys(porters)) {
+                var opt = document.createElement('option');
+                opt.value = key;
+                opt.innerHTML = key;
+                selectElement.appendChild(opt);
+            };
+        }
+
+        // Call the initial fetchDataAndDisplayCards function when the page is loaded
+        window.onload = function () {
+            loadPorters();
+
+        };
+    </script>
+</body>
+
+</html>
