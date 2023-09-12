@@ -50,7 +50,7 @@ function createCard(data) {
     div2.setAttribute("class","card shadow-sm");
 
     const image = document.createElement("img");
-    var source = "https://raw.githubusercontent.com/PortsMaster/PortMaster-Wiki/main/no.image.png";
+    var source = "https://raw.githubusercontent.com/PortsMaster/PortMaster-Website/main/no.image.png";
     if (data.attr.media.screenshot !== null) {
         source =   "https://raw.githubusercontent.com/christianhaitian/PortMaster/main/images/" +  data.attr.media.screenshot;
     }
@@ -202,7 +202,7 @@ function handleCardClick(name) {
 async function fetchDataAndDisplayCards() {
 
     try {
-        var response = await fetch('https://raw.githubusercontent.com/PortsMaster/PortMaster-Wiki/main/ports.json'); // Replace 'YOUR_JSON_URL_HERE' with the actual URL of your JSON data.
+        var response = await fetch('https://raw.githubusercontent.com/PortsMaster/PortMaster-Website/main/ports.json'); // Replace 'YOUR_JSON_URL_HERE' with the actual URL of your JSON data.
         if (!response.ok) {
             throw new Error('Network response was not ok.');
         }
