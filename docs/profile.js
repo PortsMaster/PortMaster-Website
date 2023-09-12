@@ -18,7 +18,7 @@ function createCard(data) {
     div2.setAttribute("class", "card shadow-sm");
 
     const image = document.createElement("img");
-    var source = "https://raw.githubusercontent.com/PortsMaster/PortMaster-Wiki/main/no.image.png";
+    var source = "https://raw.githubusercontent.com/PortsMaster/PortMaster-Website/main/no.image.png";
     if (data.attr.media.screenshot !== null) {
         source = "https://raw.githubusercontent.com/christianhaitian/PortMaster/main/images/" + data.attr.media.screenshot;
     }
@@ -139,7 +139,7 @@ function filterCards() {
     socialElement.setAttribute("href",portersData[searchQuery].social)
     webpageElement.setAttribute("href",portersData[searchQuery].webpage)
     supportElement.setAttribute("href",portersData[searchQuery].support)
-    coverElement.src = (portersData[searchQuery].image ? portersData[searchQuery].image : "https://raw.githubusercontent.com/PortsMaster/PortMaster-Wiki/main/default.jpg" );
+    coverElement.src = (portersData[searchQuery].image ? portersData[searchQuery].image : "https://raw.githubusercontent.com/PortsMaster/PortMaster-Website/main/default.jpg" );
     coverElement.setAttribute("width", "25%");
     coverElement.setAttribute("height", "25%");
 }
@@ -173,7 +173,7 @@ async function fetchDataAndDisplayCards() {
     }
 
     try {
-        const response = await fetch('https://raw.githubusercontent.com/PortsMaster/PortMaster-Wiki/main/ports.json'); // Replace 'YOUR_JSON_URL_HERE' with the actual URL of your JSON data.
+        const response = await fetch('https://raw.githubusercontent.com/PortsMaster/PortMaster-Website/main/ports.json'); // Replace 'YOUR_JSON_URL_HERE' with the actual URL of your JSON data.
         if (!response.ok) {
             throw new Error('Network response was not ok.');
         }
