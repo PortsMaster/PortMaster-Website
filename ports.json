@@ -456,6 +456,37 @@
         },
         {
             "version": 2,
+            "name": "banana.duck.zip",
+            "items": [],
+            "items_opt": null,
+            "attr": {
+                "title": "Banana Duck",
+                "desc": "Experience the sweet taste of pursuing bananas and avoiding all the evil vegetables and saw blades that are there for absolutely no reason. Also, you're a duck that can't swim and dies when it touches the water. Game files are already included and ready to go.",
+                "inst": "",
+                "genres": [
+                    "platformer"
+                ],
+                "porter": [
+                    "tabreturn"
+                ],
+                "image": {},
+                "rtr": false,
+                "runtime": null,
+                "reqs": [],
+                "media": {
+                    "screenshot": null,
+                    "cover": null,
+                    "thumbnail": null,
+                    "video": null
+                }
+            },
+            "download_url": "https://github.com/PortsMaster/PortMaster-Releases/releases/latest/download/Banana.Duck.zip",
+            "download_size": 7467328,
+            "date_added": "2023-09-12",
+            "date_updated": "2023-09-12"
+        },
+        {
+            "version": 2,
             "name": "beat2x.zip",
             "items": [
                 "beat2x/",
@@ -1557,8 +1588,39 @@
             },
             "download_url": "https://github.com/PortsMaster/PortMaster-Releases/releases/latest/download/Donut.Dodo.zip",
             "download_size": 3600,
-            "date_added": "2023-09-11",
-            "date_updated": "2023-09-11"
+            "date_added": "2023-09-12",
+            "date_updated": "2023-09-12"
+        },
+        {
+            "version": 2,
+            "name": "droid7.zip",
+            "items": [],
+            "items_opt": null,
+            "attr": {
+                "title": "DROID7",
+                "desc": "Jump your way up on a generated tower while a laser beam chases you from below. The higher you go, the faster it gets, and it isn't long before disappearing (and reappearing) platforms and spikes are introduced to make your life harder. You can purchase DROID7 at: https://juancolacelli.itch.io/droid7\\n\\nDownload the Windows version and extract it, and place the DROID7.pck file in the gamedata directory. This has been tested with Linux 64-bit, Dec 30 2022 release",
+                "inst": "",
+                "genres": [
+                    "platformer"
+                ],
+                "porter": [
+                    "tabreturn"
+                ],
+                "image": {},
+                "rtr": false,
+                "runtime": null,
+                "reqs": [],
+                "media": {
+                    "screenshot": "droid7.screenshot.png",
+                    "cover": null,
+                    "thumbnail": null,
+                    "video": null
+                }
+            },
+            "download_url": "https://github.com/PortsMaster/PortMaster-Releases/releases/latest/download/DROID7.zip",
+            "download_size": 3752,
+            "date_added": "2023-09-12",
+            "date_updated": "2023-09-12"
         },
         {
             "version": 2,
@@ -2002,8 +2064,8 @@
             },
             "download_url": "https://github.com/PortsMaster/PortMaster-Releases/releases/latest/download/Farmner.zip",
             "download_size": 148411440,
-            "date_added": "2023-09-11",
-            "date_updated": "2023-09-11"
+            "date_added": "2023-09-12",
+            "date_updated": "2023-09-12"
         },
         {
             "version": 2,
@@ -2209,8 +2271,8 @@
             },
             "download_url": "https://github.com/PortsMaster/PortMaster-Releases/releases/latest/download/freedroid.zip",
             "download_size": 245620140,
-            "date_added": "2023-09-11",
-            "date_updated": "2023-09-11"
+            "date_added": "2023-09-12",
+            "date_updated": "2023-09-12"
         },
         {
             "version": 2,
@@ -3307,8 +3369,8 @@
             },
             "download_url": "https://github.com/PortsMaster/PortMaster-Releases/releases/latest/download/Murtop.zip",
             "download_size": 3515,
-            "date_added": "2023-09-11",
-            "date_updated": "2023-09-11"
+            "date_added": "2023-09-12",
+            "date_updated": "2023-09-12"
         },
         {
             "version": 2,
@@ -4016,7 +4078,7 @@
                 "runtime": null,
                 "reqs": [],
                 "media": {
-                    "screenshot": null,
+                    "screenshot": "paused.screenshot.png",
                     "cover": null,
                     "thumbnail": null,
                     "video": null
@@ -4024,8 +4086,8 @@
             },
             "download_url": "https://github.com/PortsMaster/PortMaster-Releases/releases/latest/download/PAUSED.zip",
             "download_size": 9636235,
-            "date_added": "2023-09-11",
-            "date_updated": "2023-09-11"
+            "date_added": "2023-09-12",
+            "date_updated": "2023-09-12"
         },
         {
             "version": 2,
@@ -5651,7 +5713,7 @@
                     "other"
                 ],
                 "porter": [
-                    "Tekkenfede","Johnny on Flame"
+                    "Tekkenfede and Johnny on Flame"
                 ],
                 "image": {},
                 "rtr": false,
@@ -5665,7 +5727,7 @@
                 }
             },
             "download_url": "https://github.com/PortsMaster/PortMaster-Releases/releases/latest/download/TheCurseOfIssyos.zip",
-            "download_size": 11349009,
+            "download_size": 11349085,
             "date_added": "2023-09-06",
             "date_updated": "2023-09-06"
         },
@@ -5732,8 +5794,8 @@
             },
             "download_url": "https://github.com/PortsMaster/PortMaster-Releases/releases/latest/download/StarBoy.zip",
             "download_size": 3552,
-            "date_added": "2023-09-11",
-            "date_updated": "2023-09-11"
+            "date_added": "2023-09-12",
+            "date_updated": "2023-09-12"
         },
         {
             "version": 2,
@@ -6595,7 +6657,7 @@
     "utils": {
         "mono-6.12.0.122-aarch64.squashfs": {
             "name": "Mono 6.12.0.122",
-            "download_url": "https://github.com/PortsMaster/PortMaster-Releases/releases/download/2023-09-10_1432/mono-6.12.0.122-aarch64.squashfs",
+            "download_url": "https://github.com/PortsMaster/PortMaster-Releases/releases/download/2023-09-13_0000/mono-6.12.0.122-aarch64.squashfs",
             "download_size": 262057984
         },
         "frt_2.1.6.squashfs": {
