@@ -457,7 +457,10 @@
         {
             "version": 2,
             "name": "banana.duck.zip",
-            "items": [],
+            "items": [
+                "Banana Duck.sh",
+                "bananaduck/"
+            ],
             "items_opt": null,
             "attr": {
                 "title": "Banana Duck",
@@ -474,7 +477,7 @@
                 "runtime": null,
                 "reqs": [],
                 "media": {
-                    "screenshot": null,
+                    "screenshot": "banana.duck.screenshot.png",
                     "cover": null,
                     "thumbnail": null,
                     "video": null
@@ -1563,7 +1566,10 @@
         {
             "version": 2,
             "name": "donut.dodo.zip",
-            "items": [],
+            "items": [
+                "Donut Dodo.sh",
+                "donutdodo/"
+            ],
             "items_opt": null,
             "attr": {
                 "title": "Donut Dodo",
@@ -1580,7 +1586,7 @@
                 "runtime": null,
                 "reqs": [],
                 "media": {
-                    "screenshot": null,
+                    "screenshot": "donut.dodo.screenshot.png",
                     "cover": null,
                     "thumbnail": null,
                     "video": null
@@ -1588,13 +1594,16 @@
             },
             "download_url": "https://github.com/PortsMaster/PortMaster-Releases/releases/latest/download/Donut.Dodo.zip",
             "download_size": 3600,
-            "date_added": "2023-09-12",
-            "date_updated": "2023-09-12"
+            "date_added": "2023-09-10",
+            "date_updated": "2023-09-10"
         },
         {
             "version": 2,
             "name": "droid7.zip",
-            "items": [],
+            "items": [
+                "DROID7.sh",
+                "droid7/"
+            ],
             "items_opt": null,
             "attr": {
                 "title": "DROID7",
@@ -1619,8 +1628,8 @@
             },
             "download_url": "https://github.com/PortsMaster/PortMaster-Releases/releases/latest/download/DROID7.zip",
             "download_size": 3752,
-            "date_added": "2023-09-12",
-            "date_updated": "2023-09-12"
+            "date_added": "2023-09-11",
+            "date_updated": "2023-09-11"
         },
         {
             "version": 2,
@@ -2064,8 +2073,8 @@
             },
             "download_url": "https://github.com/PortsMaster/PortMaster-Releases/releases/latest/download/Farmner.zip",
             "download_size": 148411440,
-            "date_added": "2023-09-12",
-            "date_updated": "2023-09-12"
+            "date_added": "2023-09-14",
+            "date_updated": "2023-09-14"
         },
         {
             "version": 2,
@@ -2271,8 +2280,8 @@
             },
             "download_url": "https://github.com/PortsMaster/PortMaster-Releases/releases/latest/download/freedroid.zip",
             "download_size": 245620140,
-            "date_added": "2023-09-12",
-            "date_updated": "2023-09-12"
+            "date_added": "2023-09-14",
+            "date_updated": "2023-09-14"
         },
         {
             "version": 2,
@@ -2376,7 +2385,7 @@
             "download_url": "https://github.com/PortsMaster/PortMaster-Releases/releases/latest/download/GemRB.zip",
             "download_size": 34617329,
             "date_added": "2023-02-12",
-            "date_updated": "2023-02-12"
+            "date_updated": "2023-09-09"
         },
         {
             "version": 2,
@@ -3344,7 +3353,10 @@
         {
             "version": 2,
             "name": "murtop.zip",
-            "items": [],
+            "items": [
+                "Murtop.sh",
+                "murtop/"
+            ],
             "items_opt": null,
             "attr": {
                 "title": "Murtop",
@@ -3369,8 +3381,8 @@
             },
             "download_url": "https://github.com/PortsMaster/PortMaster-Releases/releases/latest/download/Murtop.zip",
             "download_size": 3515,
-            "date_added": "2023-09-12",
-            "date_updated": "2023-09-12"
+            "date_added": "2023-09-10",
+            "date_updated": "2023-09-10"
         },
         {
             "version": 2,
@@ -4061,7 +4073,10 @@
         {
             "version": 2,
             "name": "paused.zip",
-            "items": [],
+            "items": [
+                "PAUSED.sh",
+                "paused/"
+            ],
             "items_opt": null,
             "attr": {
                 "title": "Paused",
@@ -4086,8 +4101,8 @@
             },
             "download_url": "https://github.com/PortsMaster/PortMaster-Releases/releases/latest/download/PAUSED.zip",
             "download_size": 9636235,
-            "date_added": "2023-09-12",
-            "date_updated": "2023-09-12"
+            "date_added": "2023-09-10",
+            "date_updated": "2023-09-10"
         },
         {
             "version": 2,
@@ -4156,6 +4171,37 @@
             "download_size": 53250231,
             "date_added": "2023-06-09",
             "date_updated": "2023-06-22"
+        },
+        {
+            "version": 2,
+            "name": "pinball_disc_room.zip",
+            "items": [],
+            "items_opt": null,
+            "attr": {
+                "title": "Pinball Disc Room",
+                "desc": "How did you end up in this pinball of death. The blades teleport in. Dodge the discs to survive.",
+                "inst": "",
+                "genres": [
+                    "arcade"
+                ],
+                "porter": [
+                    "Cebion"
+                ],
+                "image": {},
+                "rtr": true,
+                "runtime": null,
+                "reqs": [],
+                "media": {
+                    "screenshot": "pinball_disc_room.screenshot.jpg",
+                    "cover": null,
+                    "thumbnail": null,
+                    "video": null
+                }
+            },
+            "download_url": "https://github.com/PortsMaster/PortMaster-Releases/releases/latest/download/pinball_disc_room.zip",
+            "download_size": 1310726,
+            "date_added": "2023-09-14",
+            "date_updated": "2023-09-14"
         },
         {
             "version": 2,
@@ -5493,6 +5539,40 @@
         },
         {
             "version": 2,
+            "name": "starboy.zip",
+            "items": [
+                "StarBoy.sh",
+                "starboy/"
+            ],
+            "items_opt": null,
+            "attr": {
+                "title": "Starboy",
+                "desc": "During its journey StarBoy crashed and got lost in an unknown planet, help him return back to its spaceship! You can purchase StarBoy at: https://mrkdji.itch.io/starboy. Download and extract it, and place the starboy_linux.pck file in the gamedata directory. This has been tested with starboy_linux.zip, version 1.0.3",
+                "inst": "",
+                "genres": [
+                    "platformer"
+                ],
+                "porter": [
+                    "tabreturn"
+                ],
+                "image": {},
+                "rtr": false,
+                "runtime": null,
+                "reqs": [],
+                "media": {
+                    "screenshot": "starboy.screenshot.png",
+                    "cover": null,
+                    "thumbnail": null,
+                    "video": null
+                }
+            },
+            "download_url": "https://github.com/PortsMaster/PortMaster-Releases/releases/latest/download/StarBoy.zip",
+            "download_size": 3552,
+            "date_added": "2023-09-10",
+            "date_updated": "2023-09-10"
+        },
+        {
+            "version": 2,
             "name": "starcatcher.zip",
             "items": [
                 "Starcatcher.sh",
@@ -5713,7 +5793,8 @@
                     "other"
                 ],
                 "porter": [
-                    "Tekkenfede and Johnny on Flame"
+                    "Tekkenfede",
+                    "Johnny on Flame"
                 ],
                 "image": {},
                 "rtr": false,
@@ -5729,7 +5810,7 @@
             "download_url": "https://github.com/PortsMaster/PortMaster-Releases/releases/latest/download/TheCurseOfIssyos.zip",
             "download_size": 11349085,
             "date_added": "2023-09-06",
-            "date_updated": "2023-09-06"
+            "date_updated": "2023-09-11"
         },
         {
             "version": 2,
@@ -5768,8 +5849,11 @@
         },
         {
             "version": 2,
-            "name": "starboy.zip",
-            "items": [],
+            "name": "thwack.zip",
+            "items": [
+                "Thwack.sh",
+                "thwack/"
+            ],
             "items_opt": null,
             "attr": {
                 "title": "Thwack",
@@ -5786,16 +5870,16 @@
                 "runtime": null,
                 "reqs": [],
                 "media": {
-                    "screenshot": "starboy.screenshot.png",
+                    "screenshot": "thwack.screenshot.png",
                     "cover": null,
                     "thumbnail": null,
                     "video": null
                 }
             },
-            "download_url": "https://github.com/PortsMaster/PortMaster-Releases/releases/latest/download/StarBoy.zip",
-            "download_size": 3552,
-            "date_added": "2023-09-12",
-            "date_updated": "2023-09-12"
+            "download_url": "https://github.com/PortsMaster/PortMaster-Releases/releases/latest/download/Thwack.zip",
+            "download_size": 7333989,
+            "date_added": "2023-09-10",
+            "date_updated": "2023-09-10"
         },
         {
             "version": 2,
@@ -6657,7 +6741,7 @@
     "utils": {
         "mono-6.12.0.122-aarch64.squashfs": {
             "name": "Mono 6.12.0.122",
-            "download_url": "https://github.com/PortsMaster/PortMaster-Releases/releases/download/2023-09-13_0000/mono-6.12.0.122-aarch64.squashfs",
+            "download_url": "https://github.com/PortsMaster/PortMaster-Releases/releases/download/2023-09-14_1933/mono-6.12.0.122-aarch64.squashfs",
             "download_size": 262057984
         },
         "frt_2.1.6.squashfs": {
