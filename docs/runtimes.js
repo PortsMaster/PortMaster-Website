@@ -6,7 +6,7 @@ function populateAssets(assets) {
             const assetLink = document.createElement('a');
             assetLink.setAttribute("class","list-group-item list-group-item-action")
             assetLink.textContent = asset.name;
-            assetLink.href = asset.url;
+            assetLink.href = asset.browser_download_url;
             assetsElement.appendChild(assetLink);
     });
 }
