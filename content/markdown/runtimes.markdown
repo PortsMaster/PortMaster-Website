@@ -1,6 +1,6 @@
 # Runtimes
  
+PortMaster runtimes are shared engines or frameworks required for someports to run. Sharing the runtimes between ports allows us to reduce the overall size of the port to save spacew of the device.
 
-The latest runtimes for PortMaster can be downloaded at:
-https://github.com/PortsMaster/PortMaster-Runtime/releases/tag/runtimes
+
 
