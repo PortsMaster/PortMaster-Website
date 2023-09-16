@@ -49,8 +49,8 @@ function populateRecentPorts() {
             source = "https://raw.githubusercontent.com/christianhaitian/PortMaster/main/images/" + jsonData[key].attr.media.screenshot;
         }
         image.src = source;
-        image.setAttribute("width", "100%");
-        image.setAttribute("height", "96");
+        image.setAttribute("width", "40%");
+        image.setAttribute("height", "40%");
 
 
         const divElement = document.createElement('div');
