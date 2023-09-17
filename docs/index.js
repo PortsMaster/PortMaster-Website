@@ -38,7 +38,7 @@ function populateRecentPorts() {
     for (var key of Object.keys(jsonData.slice(0, 5))) {
 
         const listItem = document.createElement('li');
-
+        
         const main = document.createElement('a');
         main.setAttribute("class", "d-flex flex-column flex-lg-row gap-3 align-items-start align-items-lg-center py-3 link-body-emphasis text-decoration-none border-top");
 
