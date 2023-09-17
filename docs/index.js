@@ -35,8 +35,7 @@ function populateRecentPorts() {
         if (Date.parse(a.date_updated) > Date.parse(b.date_updated))
             return -1
     });
-    jsonData = jsonData.slice(0, 5)
-    for (var key of Object.keys(jsonData)) {
+    for (var key of Object.keys(jsonData.slice(0, 5))) {
 
         const listItem = document.createElement('li');
         
