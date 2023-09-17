@@ -12,7 +12,7 @@ function populateArticles() {
         titleElement.textContent = article.title;
 
         const authorElement = document.createElement('p');
-        //authorElement.setAttribute("class","blog-post-meta");
+        authorElement.setAttribute("class","blog-post-meta");
         authorElement.textContent = article.author;
 
         const contentElement = document.createElement('p');
@@ -39,6 +39,7 @@ function populateRecentPorts() {
     for (var key of Object.keys(jsonData)) {
 
         const listItem = document.createElement('li');
+        listItem.setAttribute("class","d-flex flex-column flex-lg-row gap-3 align-items-start align-items-lg-center py-3 link-body-emphasis text-decoration-none border-top");
 
         const main = document.createElement('a');
         main.setAttribute("class", "d-flex flex-column flex-lg-row gap-3 align-items-start align-items-lg-center py-3 link-body-emphasis text-decoration-none border-top");
@@ -49,8 +50,9 @@ function populateRecentPorts() {
             source = "https://raw.githubusercontent.com/christianhaitian/PortMaster/main/images/" + jsonData[key].attr.media.screenshot;
         }
         image.src = source;
-        image.setAttribute("width", "40%");
+        image.setAttribute("width", "40%%");
         image.setAttribute("height", "40%");
+        image.setAttribute("class","bd-placeholder-img");
 
 
         const divElement = document.createElement('div');
