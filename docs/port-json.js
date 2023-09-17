@@ -99,7 +99,7 @@ function getFormValues() {
   portJson.attr.porter = Array.from(document.getElementById("porter").selectedOptions).map(o => o.value);
   portJson.attr.desc = document.getElementById("description").value;
   portJson.attr.inst = document.getElementById("instructions").value;
-  portJson.attr.runtime = document.getElementById("runtime").value;
+  portJson.attr.runtime = document.getElementById("runtime").value ? document.getElementById("runtime").value : null;
   //portJson.attr.reqs = Array.from(document.getElementById("requirements").selectedOptions).map(o => o.value);
   portJson.attr.rtr = document.getElementById("readytorun").checked;
   return portJson;

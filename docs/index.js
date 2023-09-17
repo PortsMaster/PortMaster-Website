@@ -35,11 +35,9 @@ function populateRecentPorts() {
         if (Date.parse(a.date_updated) > Date.parse(b.date_updated))
             return -1
     });
-    jsonData = jsonData.slice(0, 5)
-    for (var key of Object.keys(jsonData)) {
+    for (var key of Object.keys(jsonData.slice(0, 5))) {
 
         const listItem = document.createElement('li');
-        listItem.setAttribute("class","d-flex flex-column flex-lg-row gap-3 align-items-start align-items-lg-center py-3 link-body-emphasis text-decoration-none border-top");
 
         const main = document.createElement('a');
         main.setAttribute("class", "d-flex flex-column flex-lg-row gap-3 align-items-start align-items-lg-center py-3 link-body-emphasis text-decoration-none border-top");
