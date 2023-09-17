@@ -119,10 +119,6 @@
     }
 
     @media (min-width: 768px) {
-      .h-md-250 {
-        height: 250px;
-      }
-
       .bd-placeholder-img-lg {
         font-size: 3.5rem;
       }
@@ -136,13 +132,15 @@
     /*
  * Blog posts
  */
-    .blog-post {
-      margin-bottom: 4rem;
-    }
 
     .blog-post-meta {
-      margin-bottom: 1.25rem;
       color: #727272;
+    }
+
+    .container {
+      max-width: 960px;
+      word-wrap: break-word;
+
     }
   </style>
 
@@ -264,29 +262,29 @@
   <br>
   <br>
   <br>
+  <br>
   <div class="container">
-    <main>
-      <div class="p-4 p-md-5 mb-4 rounded text-body-emphasis bg-body-secondary">
-        <div class="col-lg-6 px-0">
+    <main class="container">
+      
+        
           <h1 class="display-4 fst-italic">Welcome to the home of PortMaster</h1>
           <p class="lead my-3">PortMaster is asimple tool that allows you to download various game ports that are
             available for 351Elec/AmberElec, ArkOS, JelOS, RetroOZ, TheRA, and UnofficialOS for the RK3326 and RK3566
             devices and the RG552.</p>
-          <p class="lead mb-0"><a href="installation.html" class="text-body-emphasis fw-bold">Download and install</a>
-          </p>
-        </div>
-      </div>
+          <p class="lead mb-0"><a href="installation.html" class="text-body-emphasis fw-bold">Download and install</a></p>
+ 
+
+      <br>
+      <br>
 
       <div class="row g-5">
         <div class="col-md-8">
           <h3 class="pb-4 mb-4 fst-italic border-bottom">
             PortMaster News
           </h3>
-
           <div id="articles-section">
-
           </div>
-
+          <br>
           <nav class="blog-pagination" aria-label="Pagination">
             <a class="btn btn-outline-primary rounded-pill" href="#">Older</a>
             <a class="btn btn-outline-secondary rounded-pill disabled" aria-disabled="true">Newer</a>
@@ -296,16 +294,18 @@
 
         <div class="col-md-4">
           <div class="position-sticky" style="top: 2rem;">
+
+
             <div>
-              <h4 class="fst-italic">Recent Ports</h4>
+              <h4 class="fst-italic">Recent posts</h4>
               <ul id="recents" class="list-unstyled">
               </ul>
             </div>
 
+
           </div>
         </div>
       </div>
-
 
     </main>
 
