@@ -27,6 +27,25 @@ function populateArticles() {
     articlesElement.innerHTML = "";
     articlesElement.appendChild(articleElement);
 
+ 
+
+    if (articleIndex + 1 < articles.length) {
+        document.getElementById("olderButton").disabled = false;
+        
+    }
+    else {
+        document.getElementById("olderButton").disabled = true;
+    }
+
+  
+    if (articleIndex < 1) {
+        document.getElementById("newerButton").disabled = true;
+        
+    }
+    else {
+        document.getElementById("newerButton").disabled = false;
+    }
+
 }
 
 function updateArticles(value) {
@@ -34,6 +53,8 @@ function updateArticles(value) {
         articleIndex += value;
         populateArticles();
     }
+
+
 
 
 }
