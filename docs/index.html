@@ -299,8 +299,8 @@
           </div>
           <br>
           <nav class="blog-pagination" aria-label="Pagination">
-            <button class="btn btn-outline-primary rounded-pill">Older</button>
-            <button class="btn btn-outline-secondary rounded-pill disabled" aria-disabled="true">Newer</button>
+            <button id="olderButton" class="btn btn-outline-primary rounded-pill" onclick="updateArticles(1)">Older</button>
+            <button id="newerButton" class="btn btn-outline-primary rounded-pill" onclick="updateArticles(-1)">Newer</button>
           </nav>
 
         </div>

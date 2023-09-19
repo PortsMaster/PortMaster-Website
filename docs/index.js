@@ -1,31 +1,41 @@
 var articles = [];
 var jsonData = {};
+var articleIndex = 0;
 
 function populateArticles() {
 
-    articles.forEach(function (article) {
-        const articleElement = document.createElement('article');
-        articleElement.setAttribute("class", "blog-post");
+    const articleElement = document.createElement('article');
+    articleElement.setAttribute("class", "blog-post");
 
-        const titleElement = document.createElement('h2');
-        titleElement.setAttribute("class", "display-5 link-body-emphasis mb-1");
-        titleElement.textContent = article.title;
+    const titleElement = document.createElement('h2');
+    titleElement.setAttribute("class", "display-5 link-body-emphasis mb-1");
+    titleElement.textContent = articles[articleIndex].title;
 
-        const authorElement = document.createElement('p');
-        authorElement.setAttribute("class","blog-post-meta");
-        authorElement.textContent = article.author;
+    const authorElement = document.createElement('p');
+    authorElement.setAttribute("class", "blog-post-meta");
+    authorElement.textContent = articles[articleIndex].author;
 
-        const contentElement = document.createElement('p');
-        var converter = new showdown.Converter();
-        contentElement.innerHTML = converter.makeHtml(atob(article.content));
+    const contentElement = document.createElement('p');
+    var converter = new showdown.Converter();
+    contentElement.innerHTML = converter.makeHtml(atob(articles[articleIndex].content));
 
-        articleElement.appendChild(titleElement);
-        articleElement.appendChild(authorElement);
-        articleElement.appendChild(contentElement);
+    articleElement.appendChild(titleElement);
+    articleElement.appendChild(authorElement);
+    articleElement.appendChild(contentElement);
 
-        var articlesElement = document.getElementById("articles-section");
-        articlesElement.appendChild(articleElement);
-    });
+    var articlesElement = document.getElementById("articles-section");
+    articlesElement.innerHTML = "";
+    articlesElement.appendChild(articleElement);
+
+}
+
+function updateArticles(value) {
+    if (articleIndex + value > -1 && articleIndex + value < articles.length) {
+        articleIndex += value;
+        populateArticles();
+    }
+
+
 }
 
 function populateRecentPorts() {
@@ -38,7 +48,7 @@ function populateRecentPorts() {
     for (var key of Object.keys(jsonData.slice(0, 5))) {
 
         const listItem = document.createElement('li');
-        
+
         const main = document.createElement('a');
         main.setAttribute("class", "d-flex flex-column flex-lg-row gap-3 align-items-start align-items-lg-center py-3 link-body-emphasis text-decoration-none border-top");
 
@@ -50,7 +60,7 @@ function populateRecentPorts() {
         image.src = source;
         image.setAttribute("width", "40%%");
         image.setAttribute("height", "40%");
-        image.setAttribute("class","bd-placeholder-img");
+        image.setAttribute("class", "bd-placeholder-img");
 
 
         const divElement = document.createElement('div');
@@ -71,7 +81,6 @@ function populateRecentPorts() {
 
         listItem.appendChild(main);
         list.appendChild(listItem);
-
     };
 
 
@@ -101,6 +110,7 @@ async function getPageContent() {
         console.error('Error fetching JSON data:', error);
     }
 
+    articles.reverse();
     populateArticles();
     populateRecentPorts();
 
