@@ -59,7 +59,7 @@ function createCard(data) {
     
 
     image.addEventListener('click', () => {
-        handleCardClick(data.name);
+        handleCardClick(data.name.replace(".zip",""));
     });
 
     const div3 = document.createElement('div');
@@ -71,7 +71,7 @@ function createCard(data) {
     title.textContent = data.attr.title;
 
     title.addEventListener('click', () => {
-        handleCardClick(data.name);
+        handleCardClick(data.name.replace(".zip",""));
     });
 
     const paragraph = document.createElement('p');

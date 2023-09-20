@@ -69,7 +69,7 @@ async function fetchDataAndDisplayDetails() {
         var card = null;
 
         for (var key of Object.keys(jsonData)) {
-            if (jsonData[key].name === name) {
+            if (jsonData[key].name.replace(".zip","") === name) {
                 card = jsonData[key];
             }
         };
