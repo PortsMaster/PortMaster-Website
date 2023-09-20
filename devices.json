@@ -3,7 +3,7 @@
   "model":"RG353M",
   "manufacturer":"Anbernic",
   "supported":"True",
-  "firmware":"ArkOS,uOS,Jelos,JELOS"
+  "firmware":"ArkOS,uOS,Jelos,JELOS",
   "notes":""
 }
 ]
