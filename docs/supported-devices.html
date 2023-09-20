@@ -153,6 +153,7 @@
             <tr>
                 <th>Model</th>
                 <th>Manufacturer</th>
+                <th>Firmware</th>
                 <th>Supported</th>
                 <th>Notes</th>
             </tr>
@@ -180,6 +181,8 @@ function populateTable() {
     model.innerHTML = devices[item].model;
     var manufacturer = document.createElement("td")
     manufacturer.innerHTML = devices[item].manufacturer;
+    var firmware = document.createElement("td")
+    firmware.innerHTML = devices[item].firmware;
     var supported = document.createElement("td")
     supported.innerHTML =  devices[item].supported;
     var notes = document.createElement("td")
@@ -187,6 +190,7 @@ function populateTable() {
 
     tr.appendChild(model);
     tr.appendChild(manufacturer);
+    tr.appendChild(firmware);
     tr.appendChild(supported);
     tr.appendChild(notes);
 
