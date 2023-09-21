@@ -8,7 +8,7 @@ function populateArticles() {
     articleElement.setAttribute("class", "blog-post");
 
     const titleElement = document.createElement('h2');
-    titleElement.setAttribute("class", "display-5 link-body-emphasis mb-1");
+    titleElement.setAttribute("class", "display-5 mb-1");
     titleElement.textContent = articles[articleIndex].title;
 
     const authorElement = document.createElement('p');
@@ -59,6 +59,10 @@ function updateArticles(value) {
 
 }
 
+function handlePortClick(name) {
+    window.location.href = `detail.html?name=${encodeURIComponent(name)}`;
+}
+
 function populateRecentPorts() {
 
     const list = document.getElementById("recents");
@@ -71,7 +75,7 @@ function populateRecentPorts() {
         const listItem = document.createElement('li');
 
         const main = document.createElement('a');
-        main.setAttribute("class", "d-flex flex-column flex-lg-row gap-3 align-items-start align-items-lg-center py-3 link-body-emphasis text-decoration-none border-top");
+        main.setAttribute("class", "d-flex flex-column flex-lg-row gap-3 align-items-start align-items-lg-center py-3 text-decoration-none border-top");
 
         const image = document.createElement("img");
         var source = "https://raw.githubusercontent.com/PortsMaster/PortMaster-Website/main/no.image.png";
@@ -82,14 +86,22 @@ function populateRecentPorts() {
         image.setAttribute("width", "40%%");
         image.setAttribute("height", "40%");
         image.setAttribute("class", "bd-placeholder-img");
+        
+        image.addEventListener('click', () => {
+            handlePortClick(jsonData[key].name.replace(".zip",""));
+        });
 
 
         const divElement = document.createElement('div');
         divElement.setAttribute("class", "col-lg-8");
 
         const titleElement = document.createElement('h6');
-        titleElement.setAttribute("class", "mb-0");
+        titleElement.setAttribute("class", "mb-0 link-body-emphasis");
         titleElement.textContent = jsonData[key].attr.title;
+
+        titleElement.addEventListener('click', () => {
+            handlePortClick(jsonData[key].name.replace(".zip",""));
+        });
 
         const dateElement = document.createElement('small');
         dateElement.setAttribute("class", "text-body-secondary");
