@@ -27,20 +27,20 @@ function populateArticles() {
     articlesElement.innerHTML = "";
     articlesElement.appendChild(articleElement);
 
- 
+
 
     if (articleIndex + 1 < articles.length) {
         document.getElementById("olderButton").disabled = false;
-        
+
     }
     else {
         document.getElementById("olderButton").disabled = true;
     }
 
-  
+
     if (articleIndex < 1) {
         document.getElementById("newerButton").disabled = true;
-        
+
     }
     else {
         document.getElementById("newerButton").disabled = false;
@@ -64,57 +64,62 @@ function handlePortClick(name) {
     window.location.href = `detail.html?name=${encodeURIComponent(name)}`;
 }
 
+function createRecent(item) {
+    const list = document.getElementById("recents");
+    const listItem = document.createElement('li');
+
+    const main = document.createElement('a');
+    main.setAttribute("class", "d-flex flex-column flex-lg-row gap-3 align-items-start align-items-lg-center py-3 text-decoration-none border-top");
+
+    var image = document.createElement("img");
+    var source = "https://raw.githubusercontent.com/PortsMaster/PortMaster-Website/main/no.image.png";
+    if (item.attr.media.screenshot !== null) {
+        source = "https://raw.githubusercontent.com/christianhaitian/PortMaster/main/images/" + item.attr.media.screenshot;
+    }
+    image.src = source;
+    image.setAttribute("width", "40%%");
+    image.setAttribute("height", "40%");
+    image.setAttribute("class", "bd-placeholder-img");
+
+    console.log("adding listener for " + item.name.replace(".zip", ""));
+    image.addEventListener('click', () => {
+        handlePortClick(item.name.replace(".zip", ""));
+    });
+
+
+    const divElement = document.createElement('div');
+    divElement.setAttribute("class", "col-lg-8");
+
+    const titleElement = document.createElement('h6');
+    titleElement.setAttribute("class", "mb-0 link-body-emphasis");
+    titleElement.textContent = item.attr.title;
+
+    titleElement.addEventListener('click', () => {
+        handlePortClick(item.name.replace(".zip", ""));
+    });
+
+    const dateElement = document.createElement('small');
+    dateElement.setAttribute("class", "text-body-secondary");
+    dateElement.textContent = item.date_updated;
+
+    divElement.appendChild(titleElement);
+    divElement.appendChild(dateElement);
+    main.appendChild(image);
+    main.appendChild(divElement);
+
+    listItem.appendChild(main);
+    list.appendChild(listItem);
+}
+
 function populateRecentPorts() {
 
-    const list = document.getElementById("recents");
     jsonData.sort(function (a, b) {
         if (Date.parse(a.date_updated) > Date.parse(b.date_updated))
             return -1
     });
     for (var key of Object.keys(jsonData.slice(0, 5))) {
 
-        const listItem = document.createElement('li');
-
-        const main = document.createElement('a');
-        main.setAttribute("class", "d-flex flex-column flex-lg-row gap-3 align-items-start align-items-lg-center py-3 text-decoration-none border-top");
-
-        const image = document.createElement("img");
-        var source = "https://raw.githubusercontent.com/PortsMaster/PortMaster-Website/main/no.image.png";
-        if (jsonData[key].attr.media.screenshot !== null) {
-            source = "https://raw.githubusercontent.com/christianhaitian/PortMaster/main/images/" + jsonData[key].attr.media.screenshot;
-        }
-        image.src = source;
-        image.setAttribute("width", "40%%");
-        image.setAttribute("height", "40%");
-        image.setAttribute("class", "bd-placeholder-img");
-
-        image.addEventListener('click', () => {
-            handlePortClick(jsonData[key].name.replace(".zip",""));
-        });
-
-
-        const divElement = document.createElement('div');
-        divElement.setAttribute("class", "col-lg-8");
-
-        const titleElement = document.createElement('h6');
-        titleElement.setAttribute("class", "mb-0 link-body-emphasis");
-        titleElement.textContent = jsonData[key].attr.title;
-
-        titleElement.addEventListener('click', () => {
-            handlePortClick(jsonData[key].name.replace(".zip",""));
-        });
-
-        const dateElement = document.createElement('small');
-        dateElement.setAttribute("class", "text-body-secondary");
-        dateElement.textContent = jsonData[key].date_updated;
-
-        divElement.appendChild(titleElement);
-        divElement.appendChild(dateElement);
-        main.appendChild(image);
-        main.appendChild(divElement);
-
-        listItem.appendChild(main);
-        list.appendChild(listItem);
+        createRecent(jsonData[key]);
     };
 
 
