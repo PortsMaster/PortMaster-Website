@@ -5994,7 +5994,7 @@
             "items_opt": null,
             "attr": {
                 "title": "The Curse Of Issyos",
-                "desc": "*Audio not works on lastest Jelos Releases* Defkalion was fishing on a quiet blue sea when he heard the voice of the Goddess Athena. Hurry up, she said, the isle of Issyos has been cursed by the Olympus. And so, fearing for his daughter Delia, his only family left, the fisherman sails back to his home, where the adventure is about to begin. To succesfully boot the game copy the data.win file into the gamedata folder, then boot the game from Coi.sh.",
+                "desc": "Defkalion was fishing on a quiet blue sea when he heard the voice of the Goddess Athena. Hurry up, she said, the isle of Issyos has been cursed by the Olympus. And so, fearing for his daughter Delia, his only family left, the fisherman sails back to his home, where the adventure is about to begin. To succesfully boot the game copy the data.win file into the gamedata folder, then boot the game from Coi.sh.",
                 "inst": "",
                 "genres": [
                     "action",
@@ -6016,7 +6016,7 @@
                 }
             },
             "download_url": "https://github.com/PortsMaster/PortMaster-Releases/releases/latest/download/TheCurseOfIssyos.zip",
-            "download_size": 11349085,
+            "download_size": 11349135,
             "date_added": "2023-09-06",
             "date_updated": "2023-09-11"
         },
@@ -6407,7 +6407,7 @@
             "items_opt": null,
             "attr": {
                 "title": "VA-11 Hall-A:Cyberpunk Bartender Action",
-                "desc": "*Audio not works on lastest Jelos Releases* VA-11 HALL-A: Cyberpunk Bartender Action is a booze em' up about waifus, technology, and post-dystopia life. In this world, corporations reign supreme, all human life is infected with nanomachines designed to oppress them, and the terrifying White Knights ensure that everyone obeys the laws.. To boot copy the data.win/game.unx files and all the folder inside the gamedata folder and then boot the game from Valhalla.sh.",
+                "desc": "VA-11 HALL-A: Cyberpunk Bartender Action is a booze em' up about waifus, technology, and post-dystopia life. In this world, corporations reign supreme, all human life is infected with nanomachines designed to oppress them, and the terrifying White Knights ensure that everyone obeys the laws.. To boot copy the data.win/game.unx files and all the folder inside the gamedata folder and then boot the game from Valhalla.sh.",
                 "inst": "",
                 "genres": [
                     "visual novel"
@@ -6427,7 +6427,7 @@
                 }
             },
             "download_url": "https://github.com/PortsMaster/PortMaster-Releases/releases/latest/download/Valhalla.zip",
-            "download_size": 11496765,
+            "download_size": 11496191,
             "date_added": "2023-09-06",
             "date_updated": "2023-09-06"
         },
@@ -6852,7 +6852,7 @@
             "items_opt": null,
             "attr": {
                 "title": "Zeroranger",
-                "desc": "*Audio not works on lastest Jelos Releases* ZeroRanger is a vertically scrolling 2D shoot'em up with heavy emphasis on shooting, dodging and... mystery? To start the game copy the data.win/game.unx and all the ogg files inside the gamedata folder, then boot the game from the ports menu on your device.",
+                "desc": "ZeroRanger is a vertically scrolling 2D shoot'em up with heavy emphasis on shooting, dodging and... mystery? To start the game copy the data.win/game.unx and all the ogg files inside the gamedata folder, then boot the game from the ports menu on your device.",
                 "inst": "",
                 "genres": [
                     "action",
@@ -6873,7 +6873,7 @@
                 }
             },
             "download_url": "https://github.com/PortsMaster/PortMaster-Releases/releases/latest/download/ZeroRanger.zip",
-            "download_size": 17523628,
+            "download_size": 17523679,
             "date_added": "2023-09-06",
             "date_updated": "2023-09-07"
         },
@@ -6949,7 +6949,7 @@
     "utils": {
         "mono-6.12.0.122-aarch64.squashfs": {
             "name": "Mono 6.12.0.122",
-            "download_url": "https://github.com/PortsMaster/PortMaster-Releases/releases/download/2023-09-21_1356/mono-6.12.0.122-aarch64.squashfs",
+            "download_url": "https://github.com/PortsMaster/PortMaster-Releases/releases/download/2023-09-21_1710/mono-6.12.0.122-aarch64.squashfs",
             "download_size": 262057984
         },
         "frt_2.1.6.squashfs": {
