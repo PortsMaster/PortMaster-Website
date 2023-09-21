@@ -234,7 +234,7 @@
                     formTitle.value = posts[item].title;
                     formAuthor.value = posts[item].author;
                     formDate.value = posts[item].date;
-                    easyMDE.value(atob(posts[item].content));
+                    easyMDE.value(posts[item].content);
                     currentPost = posts[item].title;
                 }
             }
@@ -274,7 +274,7 @@
                         posts[item].title = formTitle.value;
                         posts[item].author = formAuthor.value;
                         posts[item].date = formDate.value;
-                        posts[item].content = btoa(easyMDE.value());
+                        posts[item].content = easyMDE.value();
                         clearForm();
                         populateTable();
                         currentPost = "";
@@ -287,7 +287,7 @@
                     post.title = formTitle.value;
                     post.author = formAuthor.value;
                     post.date = formDate.value;
-                    post.content = btoa(easyMDE.value());
+                    post.content = easyMDE.value();
                     posts.push(post);
                     clearForm();
                     populateTable();
@@ -295,26 +295,6 @@
             }
             form.classList.add('was-validated')
         }
-
-        // Example starter JavaScript for disabling form submissions if there are invalid fields
-        (() => {
-            'use strict'
-
-            // Fetch all the forms we want to apply custom Bootstrap validation styles to
-            const forms = document.querySelectorAll('.needs-validation')
-
-            // Loop over them and prevent submission
-            Array.from(forms).forEach(form => {
-                form.addEventListener('submit', event => {
-                    if (!form.checkValidity()) {
-                        event.preventDefault()
-                        event.stopPropagation()
-                    }
-
-                    form.classList.add('was-validated')
-                }, false)
-            })
-        })()
 
         const easyMDE = new EasyMDE();
 
