@@ -66,7 +66,7 @@ function createCard(data) {
     div3.setAttribute("class","card-body");
 
     const title = document.createElement('h5');
-    title.setAttribute("class","card-title");
+    title.setAttribute("class","card-title link-body-emphasis");
     title.setAttribute("style","padding-top: 20px")
     title.textContent = data.attr.title;
 
