@@ -17,7 +17,7 @@ function populateArticles() {
 
     const contentElement = document.createElement('p');
     var converter = new showdown.Converter();
-    contentElement.innerHTML = converter.makeHtml(atob(articles[articleIndex].content));
+    contentElement.innerHTML = converter.makeHtml(articles[articleIndex].content);
 
     articleElement.appendChild(titleElement);
     articleElement.appendChild(authorElement);
