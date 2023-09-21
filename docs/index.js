@@ -52,6 +52,7 @@ function updateArticles(value) {
     if (articleIndex + value > -1 && articleIndex + value < articles.length) {
         articleIndex += value;
         populateArticles();
+        document.getElementById("articles-sectrion").scrollIntoView()
     }
 
 
@@ -86,7 +87,7 @@ function populateRecentPorts() {
         image.setAttribute("width", "40%%");
         image.setAttribute("height", "40%");
         image.setAttribute("class", "bd-placeholder-img");
-        
+
         image.addEventListener('click', () => {
             handlePortClick(jsonData[key].name.replace(".zip",""));
         });
