@@ -81,7 +81,6 @@ function createRecent(item) {
     image.setAttribute("height", "40%");
     image.setAttribute("class", "bd-placeholder-img");
 
-    console.log("adding listener for " + item.name.replace(".zip", ""));
     image.addEventListener('click', () => {
         handlePortClick(item.name.replace(".zip", ""));
     });
@@ -149,7 +148,11 @@ async function getPageContent() {
         console.error('Error fetching JSON data:', error);
     }
 
-    articles.reverse();
+    articles.sort(function(a, b) {
+        if (Date.parse(a.date) > Date.parse(b.date))
+        return -1
+      });
+      
     populateArticles();
     populateRecentPorts();
 
