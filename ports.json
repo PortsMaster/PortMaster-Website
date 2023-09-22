@@ -490,6 +490,35 @@
         },
         {
             "version": 2,
+            "name": "pixelheat.zip",
+            "items": [],
+            "items_opt": null,
+            "attr": {
+                "title": "Beat of The PixelHeat",
+                "desc": "Beat of The Pixel Heat is a rhythm game in which you must control HEAT, an artificial intelligence responsible for defending cyberspace from a wave of viral elements that have invaded your home! Run PixelHeat.sh to play.",
+                "inst": "",
+                "genres": [],
+                "porter": [
+                    "Tekkenfede"
+                ],
+                "image": {},
+                "rtr": true,
+                "runtime": null,
+                "reqs": [],
+                "media": {
+                    "screenshot": "pixelheat.screenshot.jpg",
+                    "cover": null,
+                    "thumbnail": null,
+                    "video": null
+                }
+            },
+            "download_url": "https://github.com/PortsMaster/PortMaster-Releases/releases/latest/download/PixelHeat.zip",
+            "download_size": 44156740,
+            "date_added": "2023-09-22",
+            "date_updated": "2023-09-22"
+        },
+        {
+            "version": 2,
             "name": "beat2x.zip",
             "items": [
                 "beat2x/",
@@ -1110,6 +1139,38 @@
             "download_size": 1770437,
             "date_added": "2023-08-02",
             "date_updated": "2023-08-02"
+        },
+        {
+            "version": 2,
+            "name": "chip.zip",
+            "items": [],
+            "items_opt": null,
+            "attr": {
+                "title": "Chip n Dale Rescue Rangers:Remastered",
+                "desc": "Nutcase was kidnapped by the cat Fatso, and Chip and Dale went to save her. As they begin the operation, they discover that the enemy has plotted more serious difficulties for the entire world. Not only will you need to help Gaika, but also destroy the antagonist's further plans. In this remaster, the developer completely changed the textures and character animations. Ready to run, launch CHIPNDALE.sh.",
+                "inst": "",
+                "genres": [
+                    "arcade",
+                    "platformer"
+                ],
+                "porter": [
+                    "Tekkenfede"
+                ],
+                "image": {},
+                "rtr": false,
+                "runtime": null,
+                "reqs": [],
+                "media": {
+                    "screenshot": "chip.screenshot.jpg",
+                    "cover": null,
+                    "thumbnail": null,
+                    "video": null
+                }
+            },
+            "download_url": "https://github.com/PortsMaster/PortMaster-Releases/releases/latest/download/chip.zip",
+            "download_size": 98474805,
+            "date_added": "2023-09-22",
+            "date_updated": "2023-09-22"
         },
         {
             "version": 2,
@@ -2141,8 +2202,8 @@
             },
             "download_url": "https://github.com/PortsMaster/PortMaster-Releases/releases/latest/download/Farmner.zip",
             "download_size": 148411440,
-            "date_added": "2023-09-21",
-            "date_updated": "2023-09-21"
+            "date_added": "2023-09-22",
+            "date_updated": "2023-09-22"
         },
         {
             "version": 2,
@@ -2348,8 +2409,8 @@
             },
             "download_url": "https://github.com/PortsMaster/PortMaster-Releases/releases/latest/download/freedroid.zip",
             "download_size": 245620140,
-            "date_added": "2023-09-21",
-            "date_updated": "2023-09-21"
+            "date_added": "2023-09-22",
+            "date_updated": "2023-09-22"
         },
         {
             "version": 2,
@@ -3347,6 +3408,37 @@
             "download_size": 22847784,
             "date_added": "2023-05-29",
             "date_updated": "2023-05-29"
+        },
+        {
+            "version": 2,
+            "name": "megaman.zip",
+            "items": [],
+            "items_opt": null,
+            "attr": {
+                "title": "Megaman:Rock N Roll",
+                "desc": "A mysterious robot force is invading the city and abducting Robot Masters. Protoman and Megaman both succumb to the terror leaving Roll alone and scared. Back at Dr. Light's lab Roll decides to go through the procedure her brother did to become a super fighting robot. Run Megaman.sh to play. Suggested to play on device with 2 gb of ram to lower a lot the possibility of slowdowns, but is has been defined playable also on lower specs device",
+                "inst": "",
+                "genres": [
+                    "arcade"
+                ],
+                "porter": [
+                    "Tekkenfede"
+                ],
+                "image": {},
+                "rtr": true,
+                "runtime": null,
+                "reqs": [],
+                "media": {
+                    "screenshot": "megaman.screenshot.jpg",
+                    "cover": null,
+                    "thumbnail": null,
+                    "video": null
+                }
+            },
+            "download_url": "https://github.com/PortsMaster/PortMaster-Releases/releases/latest/download/Megaman.zip",
+            "download_size": 102332480,
+            "date_added": "2023-09-22",
+            "date_updated": "2023-09-22"
         },
         {
             "version": 2,
@@ -6001,8 +6093,7 @@
                     "other"
                 ],
                 "porter": [
-                    "Tekkenfede",
-                    "Johnny on Flame"
+                    "Tekkenfede and Johnny on Flame"
                 ],
                 "image": {},
                 "rtr": false,
@@ -6949,7 +7040,7 @@
     "utils": {
         "mono-6.12.0.122-aarch64.squashfs": {
             "name": "Mono 6.12.0.122",
-            "download_url": "https://github.com/PortsMaster/PortMaster-Releases/releases/download/2023-09-21_1710/mono-6.12.0.122-aarch64.squashfs",
+            "download_url": "https://github.com/PortsMaster/PortMaster-Releases/releases/download/2023-09-22_1900/mono-6.12.0.122-aarch64.squashfs",
             "download_size": 262057984
         },
         "frt_2.1.6.squashfs": {
