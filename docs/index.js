@@ -13,7 +13,8 @@ function populateArticles() {
 
     const authorElement = document.createElement('p');
     authorElement.setAttribute("class", "blog-post-meta");
-    authorElement.textContent = articles[articleIndex].author;
+    var date = new Date(articles[articleIndex].date);
+    authorElement.innerHTML = date.toLocaleString('default', { month: 'long' }) + " " + date.getUTCDate() + ", " + date.getFullYear() + " by <a href=https://portmaster.games/profile.html?porter=" + articles[articleIndex].author + ">" + articles[articleIndex].author + "</a>";
 
     const contentElement = document.createElement('p');
     var converter = new showdown.Converter();
