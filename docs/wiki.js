@@ -56,8 +56,8 @@ function createCard(data) {
     }
     image.src =  source;
     image.setAttribute("class","bd-placeholder-img card-img-top");
+    image.setAttribute("loading", "lazy");
     
-
     image.addEventListener('click', () => {
         handleCardClick(data.name.replace(".zip",""));
     });
