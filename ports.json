@@ -514,8 +514,8 @@
             },
             "download_url": "https://github.com/PortsMaster/PortMaster-Releases/releases/latest/download/PixelHeat.zip",
             "download_size": 44156740,
-            "date_added": "2023-09-22",
-            "date_updated": "2023-09-22"
+            "date_added": "2023-09-24",
+            "date_updated": "2023-09-24"
         },
         {
             "version": 2,
@@ -1169,8 +1169,8 @@
             },
             "download_url": "https://github.com/PortsMaster/PortMaster-Releases/releases/latest/download/chip.zip",
             "download_size": 98474805,
-            "date_added": "2023-09-22",
-            "date_updated": "2023-09-22"
+            "date_added": "2023-09-24",
+            "date_updated": "2023-09-24"
         },
         {
             "version": 2,
@@ -2202,8 +2202,8 @@
             },
             "download_url": "https://github.com/PortsMaster/PortMaster-Releases/releases/latest/download/Farmner.zip",
             "download_size": 148411440,
-            "date_added": "2023-09-22",
-            "date_updated": "2023-09-22"
+            "date_added": "2023-09-24",
+            "date_updated": "2023-09-24"
         },
         {
             "version": 2,
@@ -2272,6 +2272,37 @@
             "download_size": 17798768,
             "date_added": "2023-07-30",
             "date_updated": "2023-07-30"
+        },
+        {
+            "version": 2,
+            "name": "firearrow.zip",
+            "items": [],
+            "items_opt": null,
+            "attr": {
+                "title": "Fire Arrow",
+                "desc": "Fire Arrow is a time attack (or 'Caravan', what used to be an important tradition in Japanese STGs in 90s) style shooter with a heavy emphasis on scoring, also known as *coffee break shmups*. Just copy data.win and ogg files inside gamedata. This version is NOT compatible with the one in the folder FAX,but the one you can find in the folder FA1.",
+                "inst": "",
+                "genres": [
+                    "arcade"
+                ],
+                "porter": [
+                    "Tekkenfede"
+                ],
+                "image": {},
+                "rtr": false,
+                "runtime": null,
+                "reqs": [],
+                "media": {
+                    "screenshot": "firearrow.screenshot.png",
+                    "cover": null,
+                    "thumbnail": null,
+                    "video": null
+                }
+            },
+            "download_url": "https://github.com/PortsMaster/PortMaster-Releases/releases/latest/download/firearrow.zip",
+            "download_size": 13177554,
+            "date_added": "2023-09-24",
+            "date_updated": "2023-09-24"
         },
         {
             "version": 2,
@@ -2409,8 +2440,8 @@
             },
             "download_url": "https://github.com/PortsMaster/PortMaster-Releases/releases/latest/download/freedroid.zip",
             "download_size": 245620140,
-            "date_added": "2023-09-22",
-            "date_updated": "2023-09-22"
+            "date_added": "2023-09-24",
+            "date_updated": "2023-09-24"
         },
         {
             "version": 2,
@@ -2966,6 +2997,38 @@
         },
         {
             "version": 2,
+            "name": "hftsr.zip",
+            "items": [],
+            "items_opt": null,
+            "attr": {
+                "title": "Hunt for the Shadow Rider",
+                "desc": "A rogue Shadow Rider has escaped to the year 2078. You are the only Hunter left who can take him down.  Hocoslamfy files are already included and ready to go.",
+                "inst": "",
+                "genres": [
+                    "platformer",
+                    "action"
+                ],
+                "porter": [
+                    "Tekkenfede"
+                ],
+                "image": {},
+                "rtr": true,
+                "runtime": null,
+                "reqs": [],
+                "media": {
+                    "screenshot": "hftsr.screenshot.png",
+                    "cover": null,
+                    "thumbnail": null,
+                    "video": null
+                }
+            },
+            "download_url": "https://github.com/PortsMaster/PortMaster-Releases/releases/latest/download/HFTSR.zip",
+            "download_size": 32877555,
+            "date_added": "2023-09-24",
+            "date_updated": "2023-09-24"
+        },
+        {
+            "version": 2,
             "name": "hurrican.zip",
             "items": [
                 "hurrican/",
@@ -3416,7 +3479,7 @@
             "items_opt": null,
             "attr": {
                 "title": "Megaman:Rock N Roll",
-                "desc": "A mysterious robot force is invading the city and abducting Robot Masters. Protoman and Megaman both succumb to the terror leaving Roll alone and scared. Back at Dr. Light's lab Roll decides to go through the procedure her brother did to become a super fighting robot. Run Megaman.sh to play. Suggested to play on device with 2 gb of ram to lower a lot the possibility of slowdowns, but is has been defined playable also on lower specs device",
+                "desc": "A mysterious robot force is invading the city and abducting Robot Masters. Protoman and Megaman both succumb to the terror leaving Roll alone and scared. Back at Dr. Light's lab Roll decides to go through the procedure her brother did to become a super fighting robot. Run Megaman.sh to play. Suggested to play on device with 2 gb of ram to lower a lot the possibility of slowdowns, but it has been defined playable also on lower specs device",
                 "inst": "",
                 "genres": [
                     "arcade"
@@ -3437,8 +3500,8 @@
             },
             "download_url": "https://github.com/PortsMaster/PortMaster-Releases/releases/latest/download/Megaman.zip",
             "download_size": 102332480,
-            "date_added": "2023-09-22",
-            "date_updated": "2023-09-22"
+            "date_added": "2023-09-24",
+            "date_updated": "2023-09-24"
         },
         {
             "version": 2,
@@ -4653,13 +4716,13 @@
                 "desc": "A caveman-era platform game using the Blues Brothers game engine developed by Titus Interactive.  Includes the demo files.  You can add your own full game Dos files to the ports/prehistorik2/gamedata folder.",
                 "inst": "",
                 "genres": [
-                    "platformer"
+                    "arcade"
                 ],
                 "porter": [
                     "Jetup"
                 ],
                 "image": {},
-                "rtr": true,
+                "rtr": false,
                 "runtime": null,
                 "reqs": [],
                 "media": {
@@ -4673,6 +4736,37 @@
             "download_size": 550337,
             "date_added": "2021-09-10",
             "date_updated": "2022-07-10"
+        },
+        {
+            "version": 2,
+            "name": "puremetal.zip",
+            "items": [],
+            "items_opt": null,
+            "attr": {
+                "title": "Pure Metal:Feature 1",
+                "desc": "Base has been attacked and you are the last hope of saving Pure Metal. Shoot down hoards of enemies and unforgiving bosses in classic shooter style. Touch controls feature smooth analog from the onscreen D-pad. Use the arrow keys and the z and x buttons to shoot the enemy with the keyboard. You have one life to make it through each level, but don't worry your ship can take 3 consecutive hits before being destroyed. Also your ship will regenerate to full power if you can manage to avoid enemy fire long enough. Bob and weave your way through the enemy fire and kill every thing in site. This game is designed to brutally come after you but pay attention and look for the patterns and avoid the onslaught of bullets.. Just copy the game.win or data.win inside the gamedata folder. Windows store version works too.",
+                "inst": "",
+                "genres": [
+                    "arcade"
+                ],
+                "porter": [
+                    "Tekkenfede"
+                ],
+                "image": {},
+                "rtr": false,
+                "runtime": null,
+                "reqs": [],
+                "media": {
+                    "screenshot": "puremetal.screenshot.png",
+                    "cover": null,
+                    "thumbnail": null,
+                    "video": null
+                }
+            },
+            "download_url": "https://github.com/PortsMaster/PortMaster-Releases/releases/latest/download/Puremetal.zip",
+            "download_size": 16834011,
+            "date_added": "2023-09-24",
+            "date_updated": "2023-09-24"
         },
         {
             "version": 2,
@@ -5839,6 +5933,38 @@
         },
         {
             "version": 2,
+            "name": "spooky.zip",
+            "items": [],
+            "items_opt": null,
+            "attr": {
+                "title": "Spooky Ghosts Dot Com ",
+                "desc": "Spooky Ghosts Dot Com is a small metroidvania about a ghost hunter named Ruby. One Halloween night a ghost hunting job comes in, but it turns out to not be a regular gig! Copy the file SpookyGhostsDotCom inside the game folder, if you have the steam version rename the file *SpookyGhostsDotCom-Steam*.",
+                "inst": "",
+                "genres": [
+                    "platformer",
+                    "arcade"
+                ],
+                "porter": [
+                    "Tekkenfede"
+                ],
+                "image": {},
+                "rtr": false,
+                "runtime": null,
+                "reqs": [],
+                "media": {
+                    "screenshot": "spooky.screenshot.png",
+                    "cover": null,
+                    "thumbnail": null,
+                    "video": null
+                }
+            },
+            "download_url": "https://github.com/PortsMaster/PortMaster-Releases/releases/latest/download/Spooky.zip",
+            "download_size": 8917271,
+            "date_added": "2023-09-24",
+            "date_updated": "2023-09-24"
+        },
+        {
+            "version": 2,
             "name": "starboy.zip",
             "items": [
                 "StarBoy.sh",
@@ -5942,6 +6068,37 @@
         },
         {
             "version": 2,
+            "name": "hydorah.zip",
+            "items": [],
+            "items_opt": null,
+            "attr": {
+                "title": "Super Hydorah",
+                "desc": "Super Hydorah is a nonlinear horizontal shoot' em up designed to offer a challenging experience, sublimating the richness of traditional shmup classics..  Copy the data.win file and the texts and music folders inside gamedata. Then Boot the game from Hydorah.sh.",
+                "inst": "",
+                "genres": [
+                    "arcade"
+                ],
+                "porter": [
+                    "Tekkenfede"
+                ],
+                "image": {},
+                "rtr": false,
+                "runtime": null,
+                "reqs": [],
+                "media": {
+                    "screenshot": "hydorah.screenshot.png",
+                    "cover": null,
+                    "thumbnail": null,
+                    "video": null
+                }
+            },
+            "download_url": "https://github.com/PortsMaster/PortMaster-Releases/releases/latest/download/Hydorah.zip",
+            "download_size": 5790387,
+            "date_added": "2023-09-24",
+            "date_updated": "2023-09-24"
+        },
+        {
+            "version": 2,
             "name": "super.mario.war.zip",
             "items": [
                 "smw/",
@@ -5973,6 +6130,37 @@
             "download_size": 38432841,
             "date_added": "2021-09-10",
             "date_updated": "2022-04-28"
+        },
+        {
+            "version": 2,
+            "name": "superxyx.zip",
+            "items": [],
+            "items_opt": null,
+            "attr": {
+                "title": "Super XYX",
+                "desc": "*Tate mode unstable, alternative controls in the game folder* The year is 3999, humanity has long colonized itself across the galaxy, devouring new worlds for their resources, enjoying the interstellar life of luxury, more or less friendly interactions with other alien races. That was until an ancient threat has awakened from it's slumber....  Copy the data.win file and the texts and music folders inside gamedata. Then Boot the game.",
+                "inst": "",
+                "genres": [
+                    "arcade"
+                ],
+                "porter": [
+                    "Tekkenfede"
+                ],
+                "image": {},
+                "rtr": false,
+                "runtime": null,
+                "reqs": [],
+                "media": {
+                    "screenshot": null,
+                    "cover": null,
+                    "thumbnail": null,
+                    "video": null
+                }
+            },
+            "download_url": "https://github.com/PortsMaster/PortMaster-Releases/releases/latest/download/SuperXYX.zip",
+            "download_size": 5603684,
+            "date_added": "2023-09-24",
+            "date_updated": "2023-09-24"
         },
         {
             "version": 2,
@@ -6093,7 +6281,8 @@
                     "other"
                 ],
                 "porter": [
-                    "Tekkenfede and Johnny on Flame"
+                    "Tekkenfede",
+                    "Johnny on Flame"
                 ],
                 "image": {},
                 "rtr": false,
@@ -6352,6 +6541,38 @@
             "download_size": 561067,
             "date_added": "2021-09-10",
             "date_updated": "2022-04-27"
+        },
+        {
+            "version": 2,
+            "name": "ubermoshcollection.zip",
+            "items": [],
+            "items_opt": null,
+            "attr": {
+                "title": "Ubermosh Collectio",
+                "desc": "Collection of all the 8 games of the saga.\\nOmega and Vol7 suggested only with device with 2 gb or more of ram, but works also on lower specs devices, often with very long boot time (up to 3 min for these two for the first boot). Jelos could have weird visualization of some menu sometimes but the interaction works and the gameplay works as espected. Inside the game folders you will find 8 folders each with the name of a Ubermosh game. Place the data.win you have inside in the correct gamedata \\\"ie. Ubermosh black data.win in \\\"BLACK/gamedata\\",
+                "inst": "",
+                "genres": [
+                    "arcade",
+                    "other"
+                ],
+                "porter": [
+                    "Tekkenfede"
+                ],
+                "image": {},
+                "rtr": false,
+                "runtime": null,
+                "reqs": [],
+                "media": {
+                    "screenshot": "ubermoshcollection.screenshot.png",
+                    "cover": null,
+                    "thumbnail": null,
+                    "video": null
+                }
+            },
+            "download_url": "https://github.com/PortsMaster/PortMaster-Releases/releases/latest/download/UbermoshCollection.zip",
+            "download_size": 102329929,
+            "date_added": "2023-09-24",
+            "date_updated": "2023-09-24"
         },
         {
             "version": 2,
@@ -7040,7 +7261,7 @@
     "utils": {
         "mono-6.12.0.122-aarch64.squashfs": {
             "name": "Mono 6.12.0.122",
-            "download_url": "https://github.com/PortsMaster/PortMaster-Releases/releases/download/2023-09-22_1900/mono-6.12.0.122-aarch64.squashfs",
+            "download_url": "https://github.com/PortsMaster/PortMaster-Releases/releases/download/2023-09-23_0924/mono-6.12.0.122-aarch64.squashfs",
             "download_size": 262057984
         },
         "frt_2.1.6.squashfs": {
