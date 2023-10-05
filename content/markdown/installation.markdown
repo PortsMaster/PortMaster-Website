@@ -1,6 +1,4 @@
-## Installation
-
-### Installing PortMaster
+## Installing PortMaster
 
 [Download](https://github.com/PortsMaster/PortMaster-GUI/releases/latest)
 
