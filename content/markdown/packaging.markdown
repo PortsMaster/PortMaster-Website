@@ -1,5 +1,108 @@
 # Packaging ports for PortMaster
-## Be aware that as of 11/7/2021, the packaging requirements list below are now met by just sourcing controls.txt from the PortMaster folder.  At the start of your port script just include the following:
+
+## To release a Port on PortMaster we have some guidelines that need to be followed:
+
+# Package Structure
+
+- [ports/](#)
+  - [portname/](#)
+    - [README](#)
+    - [portname.port.json](#)
+    - [licensefile](#)
+    - [gamename.gptk (If needed)](#)
+  - [libs/ (If needed)](#)
+  - [gamedata/](#)
+  - [PortScript.sh](#)
+  - [portname.screenshot.png](#)
+
+# The Launchscript .sh
+
+Below we pick apart a launchscript  and explain what each function does:
+
+```
+# Below we assign the source of the control folder (which is the PortMaster folder) based on the distro:
+#!/bin/bash
+
+if [ -d "/opt/system/Tools/PortMaster/" ]; then
+  controlfolder="/opt/system/Tools/PortMaster"  # Location for ArkOS which is mapped from /roms/tools or /roms2/tools for devices that support 2 sd cards and have them in use.
+elif [ -d "/opt/tools/PortMaster/" ]; then # Location for TheRA
+  controlfolder="/opt/tools/PortMaster"
+else
+  controlfolder="/roms/ports/PortMaster" # Location for 351Elec/AmberElec, JelOS, uOS and RetroOZ
+fi
+
+source $controlfolder/control.txt # We source the control.txt file contents here
+# The $ESUDO, $directory, $param_device and necessary sdl configuration controller configurations will be sourced from the control.txt file shown [here]
+
+
+get_controls # We pull the controller configs from the get_controls function from the control.txt file here
+
+# We switch to the port's directory location below & set the variable for easier handling below
+
+GAMEDIR=/$directory/ports/portfolder/
+cd $GAMEDIR
+
+# Some ports like to create save files or settings files in the user's home folder or other locations.  
+# You can either use XDG variables to redirect the Ports to our gamefolder if the port supports it:
+CONFDIR="$GAMEDIR/conf/"
+
+# Ensure the conf directory exists
+mkdir -p "$GAMEDIR/conf"
+
+# Set the XDG environment variables for config & savefiles
+export XDG_CONFIG_HOME="$CONFDIR"
+export XDG_DATA_HOME="$CONFDIR"
+
+or 
+
+# Use symlinks to reroute that to a location within the ports folder so the data stays with the port 
+# installation for easy backup and portability.
+
+$ESUDO rm -rf ~/.portfolder
+ln -sfv /$directory/ports/portname/conf/.portfolder ~/
+
+# Make sure uinput is accessible so we can make use of the gptokeyb controls.  351Elec/AmberElec, uOS and JelOS always runs in root, naughty naughty.  
+# The other distros don't so the $ESUDO variable provides the sudo or not dependant on the OS this script is run from.
+$ESUDO chmod 666 /dev/uinput
+
+
+# We launch gptokeyb using this $GPTOKEYB variable as it will take care of sourcing the executable from the central location,
+# assign the appropriate exit hotkey dependent on the device (ex. select + start for most devices and minus + start for the 
+# rgb10) and assign the appropriate method for killing an executable dependent on the OS the port is run from.
+# With -c we assign a custom mapping file else gptokeyb will only run as a tool to kill the process.
+# For $ANALOGSTICKS we have the ability to supply multiple gptk files to support 1 and 2 analogue stick devices in different ways.
+# For a proper documentation how gptokeyb works: LINK
+$GPTOKEYB "portexecutable" -c "./portname.gptk.$ANALOGSTICKS" &
+
+
+# Now we launch the port's executable and provide the location of specific libraries in may need along with the appropriate
+# controller configuration if it recognizes SDL controller input
+
+
+### Port specific additional libraries should be included within the port's directory in a separate subfolder named libs.
+They can be loaded at runtime using `export LD_LIBRARY_PATH` or using `LD_LIBRARY_PATH=` on the same line as the executable as long as it's before it. \
+LD_LIBRARY_PATH="$PWD/libs"
+
+SDL_GAMECONTROLLERCONFIG="$sdl_controllerconfig" # Provide appropriate controller configuration if it recognizes SDL controller input
+./portexecutable 2>&1 | tee -a ./log.txt # Launch the executable and write a log to log.txt
+
+# Although you can kill most of the ports (if not all of the ports) via a hotkey, the user may choose to exit gracefully.
+# That's fine but let's make sure gptokeyb is killed so we don't get ghost inputs or worse yet, 
+# launch it again and have 2 or more of them running.
+$ESUDO kill -9 $(pidof gptokeyb)
+
+# The line below is helpful for ArkOS, RetroOZ, and TheRA as some of these ports tend to cause the 
+# global hotkeys (like brightness and volume control) to stop working after exiting the port for some reason.
+$ESUDO systemctl restart oga_events &
+
+# Finally we clean up the terminal screen just for neatness sake as some people care about this.
+printf "\033c" > /dev/tty0
+
+```
+# Examples: 
+
+## Basic Launchscript for open source ports with no specific engines and use of gp2keyb for controls and some needed libraries
+
 ```
 #!/bin/bash
 
@@ -14,261 +117,191 @@ fi
 source $controlfolder/control.txt
 
 get_controls
-```
-and the $ESUDO, $directory, $param_device and necessary sdl configuration controller configurations will be sourced from the control.txt file shown [here](https://github.com/christianhaitian/PortMaster/blob/main/PortMaster/control.txt). \
-Thanks to JohnnyonFlame, dhwz, romadu, and shantigilbert for this easier to manage solution for common variables and future expansion needs if and when applicable.
 
-For an example of how a shell script can be setup to pull this info, see Blobby Volley 2's script with extra documentation added below. \
-**Note**:  This Blobby Volley 2 package allows for mouse conrol using the right analog stick on dual analog stick devices (such as the OGS or RG351MP) or on the singular analog stick device such as the OGA or RGB10.
-Hence the reason the package provies 2 configuration files for gptokeyb and is selected based on the $ANALOGSTICKS variable.
+GAMEDIR=/$directory/ports/portfolder/
+cd $GAMEDIR
 
-```
-#!/bin/bash
-
-# Below we assign the source of the control folder (which is the PortMaster folder) based on the distro:
-if [ -d "/opt/system/Tools/PortMaster/" ]; then
-  controlfolder="/opt/system/Tools/PortMaster" # Location for ArkOS which is mapped from /roms/tools or /roms2/tools for devices that support 2 sd cards and have them in use.
-elif [ -d "/opt/tools/PortMaster/" ]; then
-  controlfolder="/opt/tools/PortMaster" # Location for TheRA
-else
-  controlfolder="/roms/ports/PortMaster" # Location for 351Elec/AmberElec, JelOS and RetroOZ
-fi
-
-source $controlfolder/control.txt # We source the control.txt file contents here
-
-get_controls # We pull the controller configs from the get_controls function from the control.txt file here
-
-# We switch to the port's directory location below
-cd /$directory/ports/blobbyvolley2
-
-# Some ports like to create save files or settings files in the user's home folder or other locations.  
-# Let's use symlinks to reroute that to a location within the ports folder so the data stays with the port 
-# installation for easy backup and portability.
-$ESUDO rm -rf ~/.blobby
-ln -sfv /$directory/ports/blobbyvolley2/conf/.blobby ~/
-
-# Make sure uinput is accessible so we can make use of the gptokeyb controls.  351Elec/AmberElec and JelOS always runs in root, naughty naughty.  
-# The other distros don't so the $ESUDO variable provides the sudo or not dependant on the OS this script is run from.
 $ESUDO chmod 666 /dev/uinput
+$GPTOKEYB "portexecutable" -c "./portname.gptk" &
+LD_LIBRARY_PATH="$PWD/libs" SDL_GAMECONTROLLERCONFIG="$sdl_controllerconfig" ./portexecutable 2>&1 | tee -a ./log.txt
 
-# We launch gptokeyb using this $GPTOKEYB variable as it will take care of sourcing the executable from the central location,
-# assign the appropriate exit hotkey dependent on the device (ex. select + start for rg351 devices and minus + start for the 
-# rgb10) and assign the appropriate method for killing an executable dependent on the OS the port is run from.
-$GPTOKEYB "blobby" -c "./blobby.gptk.$ANALOGSTICKS" &
-
-# Now we launch the port's executable and provide the location of specific libraries in may need along with the appropriate
-# controller configuration if it recognizes SDL controller input
-LD_LIBRARY_PATH="$PWD/libs" SDL_GAMECONTROLLERCONFIG="$sdl_controllerconfig" ./blobby 2>&1 | tee -a ./log.txt
-
-# Although you can kill most of the ports (if not all of the ports) via a hotkey, the user may choose to exit gracefully.
-# That's fine but let's make sure gptokeyb is killed so we don't get ghost inputs or worse yet, 
-# launch it again and have 2 or more of them running.
 $ESUDO kill -9 $(pidof gptokeyb)
-
-# The line below is helpful for ArkOS, RetroOZ, and TheRA as some of these ports tend to cause the 
-# global hotkeys (like brightness and volume control) to stop working after exiting the port for some reason.
 $ESUDO systemctl restart oga_events &
-
-# Finally we clean up the terminal screen just for neatness sake as some people care about this.
-printf "\033c" >> /dev/tty1
+printf "\033c" > /dev/tty0
 ```
 
-### (Historical information below.  No longer needed or should be included in port scripts!)
+## Godot Game Example Launchscript
 
-Because the intention of the ports in PortMaster is to be as broadly compatible as possible with 351Elec/AmberElec and Ubuntu based custom firmwares for the RK3326 devices, there are some prerequisites the packages ports have to meet which are as follows
-
-### 351Elec/AmberElec and JelOS runs everything as root.  sudo is not needed nor does it work on 351Elec/AmberElec and JelOS.  Ubuntu based distros like ArkOS, TheRA and RetroOZ does support sudo though.~~
-
-So it's important to accomodate these differences as certain commands, as you'll read below, need sudo on Ubuntu based distros and some don't.  We need to make sudo available as an updatable variable instead.  A good solution for this is to check if the distro has a .OS_ARCH file located in a /storage/.config location.  Only 351Elec has such a file and such a location for that matter between among these defined distros.
 ```
-ESUDO="sudo"
-if [ -f "/storage/.config/.OS_ARCH" ]; then
-  ESUDO=""
-  export LD_LIBRARY_PATH="/storage/roms/ports/shadow-warrior/libs"
+
+#!/bin/bash
+
+if [ -d "/opt/system/Tools/PortMaster/" ]; then
+  controlfolder="/opt/system/Tools/PortMaster"
+elif [ -d "/opt/tools/PortMaster/" ]; then
+  controlfolder="/opt/tools/PortMaster"
+else
+  controlfolder="/roms/ports/PortMaster"
 fi
-```
-As a side note, you can also `cat` that .OS_ARCH file to find out which unit 351Elec/AmberElec is running on such as RG351V or RG351MP.  
-```
-if [ $(cat "/storage/.config/.OS_ARCH") == "RG351V" ]; then
-  echo "Do something"
-fi
-```
 
-### Identifying which rk3326 device it's being run from in order to set various parameters like gamepad controls and screen resolution.
+source $controlfolder/control.txt
 
-The best solution I've seen so far is to look at the device's gamecontroller existence in /dev/input/by-path/.  In some cases, you can also look in emulationstation's es_systems.cfg file to differentiate between a OGA 1.0(RK2020) and OGA 1.1(RGB10) unit.
-  As an example, here's how I typically do this for the Chi, Anbernic, OGA, OGS and the RK2020,
-```  
-if [[ -e "/dev/input/by-path/platform-ff300000.usb-usb-0:1.2:1.0-event-joystick" ]]; then
-  echo "anbernic"
-elif [[ -e "/dev/input/by-path/platform-odroidgo2-joypad-event-joystick" ]]; then
-  if [[ ! -z $(cat /etc/emulationstation/es_input.cfg | grep "190000004b4800000010000001010000") ]]; then
-    echo "oga"
-  else
-    echo "rk2020"
+get_controls
+
+GAMEDIR=/$directory/ports/portfolder/
+CONFDIR="$GAMEDIR/conf/"
+
+# Ensure the conf directory exists
+mkdir -p "$GAMEDIR/conf"
+
+# Set the XDG environment variables for config & savefiles
+export XDG_CONFIG_HOME="$CONFDIR"
+export XDG_DATA_HOME="$CONFDIR"
+
+cd $GAMEDIR
+
+runtime="frt_3.2.3"
+if [ ! -f "$controlfolder/libs/${runtime}.squashfs" ]; then
+  # Check for runtime if not downloaded via PM
+  if [ ! -f "$controlfolder/harbourmaster" ]; then
+    echo "This port requires the latest PortMaster to run, please go to https://portmaster.games/ for more info." > /dev/tty0
+    sleep 5
+    exit 1
   fi
-elif [[ -e "/dev/input/by-path/platform-odroidgo3-joypad-event-joystick" ]]; then
-  echo "ogs"
-else
-  echo "chi"
-fi
-```
-### Provide the ability to force quit a port where possible.
 
-You can use [oga_controls](https://github.com/christianhaitian/oga_controls.git) to do this.  Just have it launched before the actual port is launched and provide the name of the port's executable and fork it to the background.
-
-ex. `$ESUDO ./oga_controls opentyrian rk2020 &`
-Note: if the port is using it's own builtin gamepad control, be sure to disable oga_controls' button definitions so they don't potentially interfere with controls.  You do this by providing a oga_controls_settings.txt file in the same directory as oga_controls with all inputs disabled using `\"` so it just serves as an exit daemon.
-
-ex.
-
-oga_controls_settings.txt with all input buttons disabled
-
-```
-back = \"
-start = \"
-a = \"
-b = \"
-x = \"
-y = \"
-l1 = \"
-l2 = \"
-l3 = \"
-r1 = \"
-r2 = \"
-r3 = \"
-up = \"
-down = \" 
-left = \"
-right = \"
-left_analog_up = \"
-left_analog_down = \"
-left_analog_left = \"
-left_analog_right = \"
-right_analog_up = \"
-right_analog_down = \" 
-right_analog_left = \"
-right_analog_right = \"
-```
-
-you can also use [gptokeyb](https://github.com/christianhaitian/gptokeyb) which works similarly to oga_controls but has much better mouse based controls.  
-
-## If the port needs keyboard controls, you can use [oga_controls](https://github.com/christianhaitian/oga_controls.git) to emulate keyboard presses.  Reassignment of keyboard keys can be done via oga_controls_settings.txt.  The default assigned keys can be reviewed [here](https://github.com/christianhaitian/oga_controls/blob/17325791c46c1ee4ec2ad68d44b4ebb2fb305433/main.c#L69)
-
-It's important to note that when running oga_controls, you need to provide a name of the executable so it can kill the application using the device's hotkey combo as well as the device (anbernic, chi, oga, ogs, rk2020) so the keys can be assigned properly.  
-
-`$ESUDO ./oga_controls opentyrian chi &`
-
-As an aside, the reason for the rk2020 be assigned separate from the oga is because the rk2020 is missing one of the keys that is used by the oga for using hotkeys to kill applications.
-
-you can also use [gptokeyb](https://github.com/christianhaitian/gptokeyb) which works similarly to oga_controls but has much better mouse based controls.  
-
-### If the port uses SDL gamecontroller controls.  Assign them to a gamecontrollerdb.txt file or provide the controls to the port via SDL_GAMECONTROLLERCONFIG= during execution or as an export.
-
-You can have these preassigned per supported device so depending on which device is identified during execution, it will have the proper SDL_GAMECONTROLLERCONFIG info.
-
-ex.
-
-```
-if [[ -e "/dev/input/by-path/platform-ff300000.usb-usb-0:1.2:1.0-event-joystick" ]]; then
-  sdl_controllerconfig="03000000091200000031000011010000,OpenSimHardware OSH PB Controller,a:b1,b:b0,x:b3,y:b2,leftshoulder:b4,rightshoulder:b5,dpdown:h0.4,dpleft:h0.8,dpright:h0.2,dpup:h0.1,leftx:a0~,lefty:a1~,leftstick:b8,lefttrigger:b10,rightstick:b9,back:b7,start:b6,rightx:a2,righty:a3,righttrigger:b11,platform:Linux,"
-elif [[ -e "/dev/input/by-path/platform-odroidgo2-joypad-event-joystick" ]]; then
-  if [[ ! -z $(cat /etc/emulationstation/es_input.cfg | grep "190000004b4800000010000001010000") ]]; then
-    sdl_controllerconfig="190000004b4800000010000001010000,GO-Advance Gamepad (rev 1.1),a:b1,b:b0,x:b2,y:b3,leftshoulder:b4,rightshoulder:b5,dpdown:b9,dpleft:b10,dpright:b11,dpup:b8,leftx:a0,lefty:a1,back:b12,leftstick:b13,lefttrigger:b6,rightstick:b16,righttrigger:b7,start:b17,platform:Linux,"
-  else
-    sdl_controllerconfig="190000004b4800000010000000010000,GO-Advance Gamepad,a:b1,b:b0,x:b2,y:b3,leftshoulder:b4,rightshoulder:b5,dpdown:b7,dpleft:b8,dpright:b9,dpup:b6,leftx:a0,lefty:a1,back:b10,lefttrigger:b12,righttrigger:b13,start:b15,platform:Linux,"
-  fi
-elif [[ -e "/dev/input/by-path/platform-odroidgo3-joypad-event-joystick" ]]; then
-  sdl_controllerconfig="190000004b4800000011000000010000,GO-Super Gamepad,platform:Linux,x:b2,a:b1,b:b0,y:b3,back:b12,guide:b14,start:b13,dpleft:b10,dpdown:b9,dpright:b11,dpup:b8,leftshoulder:b4,lefttrigger:b6,rightshoulder:b5,righttrigger:b7,leftstick:b15,rightstick:b16,leftx:a0,lefty:a1,rightx:a2,righty:a3,platform:Linux,"
-else
-  sdl_controllerconfig="19000000030000000300000002030000,gameforce_gamepad,leftstick:b14,rightx:a3,leftshoulder:b4,start:b9,lefty:a0,dpup:b10,righty:a2,a:b1,b:b0,guide:b16,dpdown:b11,rightshoulder:b5,righttrigger:b7,rightstick:b15,dpright:b13,x:b2,back:b8,leftx:a1,y:b3,dpleft:b12,lefttrigger:b6,platform:Linux,"
+  $ESUDO $controlfolder/harbourmaster --quiet --no-check runtime_check "${runtime}.squashfs"
 fi
 
+# Setup Godot
+godot_dir="$HOME/godot"
+godot_file="$controlfolder/libs/${runtime}.squashfs"
+$ESUDO mkdir -p "$godot_dir"
+$ESUDO umount "$godot_file" || true
+$ESUDO mount "$godot_file" "$godot_dir"
+PATH="$godot_dir:$PATH"
 
-SDL_GAMECONTROLLERCONFIG="$sdl_controllerconfig" ./gmloader gamedata/am2r.apk
+export FRT_NO_EXIT_SHORTCUTS=FRT_NO_EXIT_SHORTCUTS # By default FRT sets Select as a Force Quit Hotkey, with this we disable that.
 
+$ESUDO chmod 666 /dev/uinput
+$GPTOKEYB "$runtime" -c "./godot.gptk" &
+SDL_GAMECONTROLLERCONFIG="$sdl_controllerconfig"
+"$runtime" --main-pack "gamename.pck"
+
+$ESUDO umount "$godot_dir"
+$ESUDO kill -9 $(pidof gptokeyb)
+$ESUDO systemctl restart oga_events &
+printf "\033c" > /dev/tty0
 ```
 
-### At least one RK3326 device (Anbernic RG351V) supports 2 sd card slots.  ArkOS is one that specifically distinguishes when the second sd card is being use or not for games and ports.  If a singular sd card is being used, then there's just a roms partition used for games and ports.  When the second sd card slow is being used, then there's a roms2 partition for games nad ports. That needs to be accounted for:
+## Love2d Example Launchscript
 
-ex. 
-```
-if [ -f "/opt/system/Advanced/Switch to main SD for Roms.sh" ]; then
-  directory="roms2"
-else
-  directory="roms"
-fi
-```
-
-### Port specific additional libraries should be included within the port's directory in a separate subfolder named libs.
-They can be loaded at runtime using `export LD_LIBRARY_PATH` or using `LD_LIBRARY_PATH=` on the same line as the executable as long as it's before it. \
-`LD_LIBRARY_PATH=./libs:$LD_LIBRARY_PATH ./executable`
-
-### Port specific config files that are normally created and stored in the home folder or anywhere outside the port's directory should be symlinked
-This allows the port's configuration information to stay within the port's folder.  This is important in order to maintain the portability and ease backup capability for ports for the user.
-
-ex.
-```
-$ESUDO rm -rf ~/.config/opentyrian
-ln -sfv /$directory/ports/opentyrian/ ~/.config/
-```
-
-### Now let's put it all together.  Below is an example script for AM2R that incorporates everything mentioned above
 ```
 #!/bin/bash
 
-ESUDO="sudo"
-if [ -f "/storage/.config/.OS_ARCH" ]; then
-  ESUDO=""
-  export LD_LIBRARY_PATH="/storage/roms/ports/shadow-warrior/libs"
-fi
-
-if [[ -e "/dev/input/by-path/platform-ff300000.usb-usb-0:1.2:1.0-event-joystick" ]]; then
-  sdl_controllerconfig="03000000091200000031000011010000,OpenSimHardware OSH PB Controller,a:b1,b:b0,x:b3,y:b2,leftshoulder:b4,rightshoulder:b5,dpdown:h0.4,dpleft:h0.8,dpright:h0.2,dpup:h0.1,leftx:a0~,lefty:a1~,leftstick:b8,lefttrigger:b10,rightstick:b9,back:b7,start:b6,rightx:a2,righty:a3,righttrigger:b11,platform:Linux,"
-  param_device="anbernic"
-elif [[ -e "/dev/input/by-path/platform-odroidgo2-joypad-event-joystick" ]]; then
-  if [[ ! -z $(cat /etc/emulationstation/es_input.cfg | grep "190000004b4800000010000001010000") ]]; then
-    sdl_controllerconfig="190000004b4800000010000001010000,GO-Advance Gamepad (rev 1.1),a:b1,b:b0,x:b2,y:b3,leftshoulder:b4,rightshoulder:b5,dpdown:b9,dpleft:b10,dpright:b11,dpup:b8,leftx:a0,lefty:a1,back:b12,leftstick:b13,lefttrigger:b6,rightstick:b16,righttrigger:b7,start:b17,platform:Linux,"
-    param_device="oga"
-  else
-    sdl_controllerconfig="190000004b4800000010000000010000,GO-Advance Gamepad,a:b1,b:b0,x:b2,y:b3,leftshoulder:b4,rightshoulder:b5,dpdown:b7,dpleft:b8,dpright:b9,dpup:b6,leftx:a0,lefty:a1,back:b10,lefttrigger:b12,righttrigger:b13,start:b15,platform:Linux,"
-    param_device="rk2020"
-  fi
-elif [[ -e "/dev/input/by-path/platform-odroidgo3-joypad-event-joystick" ]]; then
-  sdl_controllerconfig="190000004b4800000011000000010000,GO-Super Gamepad,platform:Linux,x:b2,a:b1,b:b0,y:b3,back:b12,guide:b14,start:b13,dpleft:b10,dpdown:b9,dpright:b11,dpup:b8,leftshoulder:b4,lefttrigger:b6,rightshoulder:b5,righttrigger:b7,leftstick:b15,rightstick:b16,leftx:a0,lefty:a1,rightx:a2,righty:a3,platform:Linux,"
-  param_device="ogs"
+if [ -d "/opt/system/Tools/PortMaster/" ]; then
+  controlfolder="/opt/system/Tools/PortMaster"
+elif [ -d "/opt/tools/PortMaster/" ]; then
+  controlfolder="/opt/tools/PortMaster"
 else
-  sdl_controllerconfig="19000000030000000300000002030000,gameforce_gamepad,leftstick:b14,rightx:a3,leftshoulder:b4,start:b9,lefty:a0,dpup:b10,righty:a2,a:b1,b:b0,guide:b16,dpdown:b11,rightshoulder:b5,righttrigger:b7,rightstick:b15,dpright:b13,x:b2,back:b8,leftx:a1,y:b3,dpleft:b12,lefttrigger:b6,platform:Linux,"
-  param_device="chi"
+  controlfolder="/roms/ports/PortMaster"
 fi
 
-$ESUDO chmod 666 /dev/tty1
+source $controlfolder/control.txt
 
-if [ -f "/opt/system/Advanced/Switch to main SD for Roms.sh" ]; then
-  directory="roms2"
-else
-  directory="roms"
-fi
+get_controls
 
-export LD_LIBRARY_PATH=/$directory/ports/am2r/libs:/usr/lib:/storage/.config/emuelec/lib32
-$ESUDO rm -rf ~/.config/am2r
-ln -sfv /$directory/ports/am2r/conf/am2r/ ~/.config/
-cd /$directory/ports/am2r
-$ESUDO ./oga_controls gmloader $param_device &
-SDL_GAMECONTROLLERCONFIG="$sdl_controllerconfig" ./gmloader gamedata/am2r.apk
-$ESUDO kill -9 $(pidof oga_controls)
-unset LD_LIBRARY_PATH
+GAMEDIR=/$directory/ports/portfolder
+cd $GAMEDIR
+
+
+$ESUDO chmod 666 /dev/uinput
+$GPTOKEYB "love" -c "./love.gptk" &
+LD_LIBRARY_PATH="$PWD/libs" 
+./love portname 2>&1 | tee $GAMEDIR/log.txt
+$ESUDO kill -9 $(pidof gptokeyb)
 $ESUDO systemctl restart oga_events &
-printf "\033c" > /dev/tty1
+printf "\033c" > /dev/tty0
+``` 
+## Gamemaker Studio GMS Example Launchscript
+
+In Progress
+
+# The README
+The Readme provides some basic information about the Port such as:
+
+- Portname
+- Source
+- Porter
+- Description
+- Compile instructions
+- Controls
+
+Example:
+
+```
+Abombniball (https://www.portmaster.games) 
+=========================
+
+Original version by:
+http://akawaka.csn.ul.ie/abombniball.php3
+
+Portmaster Version: 	
+
+- Cebion https://github.com/Cebion
+	
+Description 
+===========
+The objective of Abombniball is to defuse all the explosives on each level.
+As a ball, this would normally be a simple task,
+however each level is filled with traps and devious puzzles placed there by
+...oh...lets say "Dr. Y-Front", your arch-nemesis (he's very evil).
+These traps take the form of special tiles which disappear or do other nasty things.
+
+To compile:
+===========
+
+git clone git@github.com:Cebion/Abombniball.git
+cd Abombniball
+./configure
+make
+ 
+Controls:
+=============
+
+DPAD		= Move
 ```
 
-Handling port availability depending on functional needs:
-- For ports that work best on more powerful devices like the RG552, the port can be set to only be visible on that device by adding a `Title_P` to the ports description within the ports.md file.  See the Doom3 entry in the [ports.md](https://github.com/christianhaitian/PortMaster/blob/main/ports.md) for an example of this.
-- For ports that will only run on devices with full OpenGL capability and not just OpenGLES, the port can be set to only be visible on devices and Operating Systems with full OpenGL capability by adding a `Title_F` to the ports description within the ports.md file.
-- For ports that include the necessary assets to run upon installation, adding `runtype="rtr"` at the end of the description of the ports within the ports.md file will show up in the Ready to Run menu.  See the FreedroidRPG entry in the [ports.md](https://github.com/christianhaitian/PortMaster/blob/main/ports.md) for an example of this.
+# Port.json
+The Port.json contains all metadata on ports that our GUI and Wiki needs to properly display and install Ports.
+You can use following Port JSON Generator to generate a port.json file for you (https://portmaster.games/port-json.html)
 
-Notes:  
--  Note that in order to properly assign keys during execution for oga_controls, we have it assigned as a variable depending on what rk3326 device is detected during execution.  
--  We also add an additional kill process for oga_controls because the user may decide to exit a port properly through the port's exit menu.  If that happens, we still need to kill oga_controls or it may cause double key press issues in various menus or if another port is run, double up on the number of oga_controls are still running in memory.
-- We're restarting oga_events because for some reason in ArkOS, the use of oga_controls can impact the oga_events which is responsible for system global hotkeys like volume and brightness controls.  This is at least the case for ArkOS.
-- The printf command at the bottom is to clean up the terminal tty1 screen so potential key press screen junk doesn't remain and make the screen look messy between other various system functions.  Many people care about this.  ¯\_(ツ)_/¯
+Following Info needs to be added:
+- Port Title
+- Zip File Name
+- Script Name
+- Directory Name
+- Genres
+- Porter 
+- Description
+- Instructions what files or directions are needed to make the port work
+- Runtime
+
+# Licensefile 
+- Please add licensefiles for all sources and assets you used
+For example:
+
+- game project open source file (if it's an open source game)
+- gptokeyb license file
+- sdl1.2 compat license file
+- gl4es license file
+- box86 / box64 license files
+
+# Screenshot
+For use in the PortMaster GUI aswell as for the Wiki we need a screenshot of the gameplay or main function of the Port.
+A title screenshot would not show actual content of the port.
+The screenshot has to be at least 640x480 in dimensions and format can either be .jpg or .png
+For naming its portname.screenshot.png
+
+After putting all these files in one place please zip these files using regular zip.
+
+With this you can now go ahead to make a Pull Request on our main Portmaster Repo (if you tested the Port for all major cfws / devices of course) 
