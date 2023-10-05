@@ -2,45 +2,33 @@
 
 ## What are Ports?
 
-We have different types of games we support
+We have different types of games we support:
 
-1. Open Source Games from Scratch by some devs
-2. Open Source Engines made from scratch that work with original game assets
-3. Game Engines like GameMaker studio / Godot etc. that have compatible runners that need the original gamedata
-4. Linux Userspace x86 Emulators that translate X86 Linux Games to Arm.
+- Open Source Games from Scratch by some devs
+- Open Source Engines made from scratch that work with original game assets
+- Game Engines like GameMaker studio / Godot / Love2d etc. that have compatible runners that need the original gamedata
+- Linux Userspace x86 Emulators that translate X86 Linux Games to arm.
+- Linux Userspace x64 Emulators that translate x64 Linux games to aarch64
 
-So you will find all these mostly on github.
-Mind for 3/4 a LOT of hacking and tweaking is involved.
-
-for 1 and 2 often its just compile for arm and some tweak
+Mind for 3/4/5 a LOT of hacking and tweaking might be needed.
 
 ## How do we compile our games for PortMaster?
 
 Since PortMaster is platform independent and delivers their own dependencies we don't rely on the build mechanism of the CFWs out there.
-To compile games for the AARCH64 architecture you can do so by various ways.
+Various Instructions for Build Environments can be found here: https://portmaster.games/build-environments.html
 
-WSL2 chroot
-https://github.com/Cebion/Portmaster_builds
+Once you have your software compiled it is recommeded you test your game directly on your device via ssh.
+For testing you can stop Emulationstation to not clash with your Ports
 
-aarch64 chroot development VM by Christian (Virtual box VM with two chroot (aarch64 & armhf) instances.
-https://forum.odroid.com/viewtopic.php?p=306185#p306185
+AmberELEC, uOS, Jelos:  `systemctl stop emustation`
+ArkOS				 :  `systemctl stop emulationstation`
 
-create the chroot yourself:
-https://github.com/christianhaitian/arkos/wiki/Building#to-create-debian-based-chroots-in-a-linux-environment
+For packaging use the Packaging Guide https://portmaster.games/packaging.html and of course other Ports as a reference.
 
-More info about getting into the chroots and some other helpful tools here: https://github.com/christianhaitian/arkos/wiki/Building#to-get-into-chroots
 
-Cross-compiling tools for aarch64, with the arm64 SDL2 library etc.
+## Restrictions & Tools:
 
-On the device you test via ssh, you can exit emustation via systemctl stop emustation (on amberelec at least).
-
-For packaging you can reference other Portmaster ports and also the PortMaster Wiki.
-Missing libs we supply directly in the port in a libs folder and do a ld_library_path (already included in the most portmaster games scripts)
-
-If you're interested or already did a Port you can gain access to our internal PortMaster Dev Channels. Feel free to Message me about it.
-:doom_lost_soul: Restrictions & Tools:
-
-The Chipsets we're working with unfortunetaly have some restrictions in terms of features.
+The Chipsets we're working with unfortunately have some restrictions in terms of features.
 So we can't just use any game, compile it and run it.
 
 Most CFWs that support PortMaster don't have full OpenGL or Display Drivers: So no openGL and no x11 / weston.
@@ -49,53 +37,35 @@ Generally speaking Anbernic devices running a Rockchip SoC for example use the o
 
 There is a translation layer called Gl4es which has a partial support of openGL up to OpenGL 2.x
 
-So we have:
-OpenGL ES 2 support
-OpenGL 2.x through GL4ES
-https://github.com/ptitSeb/gl4es
-Box86 (Linux Userspace x86 Emulator, targeted at ARM Linux devices) https://github.com/ptitSeb/box86
-Box64 (Linux Userspace x86_64 Emulator, targeted at ARM64 Linux devices) https://github.com/ptitSeb/box64
-gptokeyb for keyboard/mouse/joystick mapping using a control file
-https://github.com/kloptops/gptokeyb
-No Vulkan, No X11, No display manager at all so KMS/DRM it is.
-SDL1.2 through sdl1.2compat https://github.com/libsdl-org/sdl12-compat
-Gamemaker Games Runner Research https://github.com/JohnnyonFlame/yyg_fix/blob/master/RESEARCH.md
-Godot Games via FRT 2
-https://github.com/efornara/frt/tree/2.0
+Tools we use:
+- [OpenGL ES 2 support](#)
+- [OpenGL 2.x through GL4ES](https://github.com/ptitSeb/gl4es)
+- [Box86 (Linux Userspace x86 Emulator, targeted at ARM Linux devices)](https://github.com/ptitSeb/box86)
+- [Box64 (Linux Userspace x86_64 Emulator, targeted at ARM64 Linux devices)](https://github.com/ptitSeb/box64)
+- [gptokeyb for keyboard/mouse/joystick mapping using a control file](https://github.com/kloptops/gptokeyb)
+- [No Vulkan, No X11, No display manager at all so KMS/DRM it is](#)
+- [SDL1.2 through sdl1.2compat](https://github.com/libsdl-org/sdl12-compat)
+- [Gamemaker Games Runner Research](https://github.com/JohnnyonFlame/yyg_fix/blob/master/RESEARCH.md)
+- [Godot Games via FRT 2](https://github.com/efornara/frt/tree/2.0)
+- [Love2d] Games via Love2d Engine (https://github.com/Cebion/love2d_aarch64)
 
 ## How to Package
 
-Packaging Instructions: https://github.com/christianhaitian/PortMaster/blob/main/docs/packaging.md
+[Packaging Instructions](https://github.com/christianhaitian/PortMaster/blob/main/docs/packaging.md)
+For packaging use the Packaging Guide https://portmaster.games/packaging.html and of course other Ports as a reference.
 
-For an example see this Pull Request here https://github.com/christianhaitian/PortMaster/pull/54 on how to request a merge to the repo. In the comments (not the ports.md file) make sure to include the sources you used for creating the port so I can add that to the portmaster wiki and credit to the original creator. Also include any instructions and notes that users will need to know (such as assets needed) in order to be able to get the port up and running. If you have any changes made to the original source available in a public git, please note that as well so I can include that in the portmaster wiki.
+## Working with different display resolutions
 
-I recommend naming the game folder lowercase and the launch Script with an upperletter with the same name.
-:rg351vd: Device Informations:
-
-:rg351b: RG351P/M Resolution: RK3326 1GB of RAM 320x480 (Screen is rotated via SDL2) - 2 Analog Sticks
-:rg351vg: RG351V Resolution: 640x480 1 GB of RAM
-:rg351p~1: RG351MP Resolution 640x480 1GB of RAM
-:rg351p~1: RG552 Resolution: 1920x1152 4GB of RAM
-RK3356 Devices: Resolution 640x480 2GB of RAM
-RG503 Resolution: 960 x 544 1GB of RAM
-🗒️ Ports Launchscript Options
-
-## Link configfolder to portmaster game
-
-WIP
-
-## Work with different display resolutions
-
-if [["$(cat /sys/firmware/devicetree/base/model | tr -d '\0')" == "Anbernic RG552"]]; then
+```bash
+if [["$(cat /sys/firmware/devicetree/base/model | tr -d ' ')" == "Anbernic RG552"]]; then
 xres="1920"
 yres="1152"
-
 elif [[-e "/sys/class/drm/card0-HDMI-A-1/status"]] && [["$(cat /sys/class/drm/card0-HDMI-A-1/status)" == "connected"]]; then
 xres="$(cat /sys/class/drm/card0-HDMI-A-1/modes | grep -o -P '\d*x\d*' | cut -dx -f1)"
-  yres="$(cat /sys/class/drm/card0-HDMI-A-1/modes | grep -o -P '\d*x\d*' | cut -dx -f2)"
+yres="$(cat /sys/class/drm/card0-HDMI-A-1/modes | grep -o -P '\d*x\d*' | cut -dx -f2)"
 elif [[-e "/sys/class/drm/card0-HDMI-A-1/status"]] && [["$(cat /sys/class/drm/card0-DSI-1/status)" == "connected"]]; then
 xres="$(cat /sys/class/drm/card0-DSI-1/modes | grep -o -P '\d*x\d*' | cut -dx -f1)"
-  yres="$(cat /sys/class/drm/card0-DSI-1/modes | grep -o -P '\d*x\d*' | cut -dx -f2)"
+yres="$(cat /sys/class/drm/card0-DSI-1/modes | grep -o -P '\d*x\d*' | cut -dx -f2)"
 else
 xres=640
 yres=480
@@ -106,37 +76,74 @@ echo $yres
 
 $ESUDO sed -i "s|window_width = [0-9]\+;|window_width = $xres;|g" $GAMEDIR/config/default.lua
 $ESUDO sed -i "s|window_height = [0-9]\+;|window_height = $yres;|g" $GAMEDIR/config/default.lua
+```
 
 ## GL4ES
 
-If you want to use gl4es make sure to drop the libGL.so.1 library into the libs folder in your port.
+If a game uses OpenGL you have the ability to use GL4ES.
+
+GL4ES is a library that provides OpenGL 2.x functionality for GLES2.0 accelerated Hardware (and of course also support OpenGL 1.5 function, sometimes better than when using GLES 1.1 backend) 
+There is also support for GLES 1.1 Hardware, emulating OpenGL 1.5, and some OpenGL 2.x+ extensions.
+
+Most function of OpenGL up to 1.5 are supported, with some notable exceptions:
+
+Reading of Depth or Stencil buffer will not work
+GL_FEEDBACK mode is not implemented
+No Accum emulation
+Some known general limitations:
+
+GL_SELECT as some limitation in its implementation (for example, current Depth buffer or bounded texture are not taken into account, also custom vertex shader will not work here)
+NPOT texture are supported, but not with GL_REPEAT / GL_MIRRORED, only GL_CLAMP will work properly (unless the GLES Hardware support NPOT)
+Multiple Color attachment on Framebuffer are not supported
+OcclusionQuery is implemented, but with a 0 bits precision
+Probably many other things
+
+If you want to use gl4es make sure to drop the `libGL.so.1` library into the libs folder in your port.
 
 When using GL4ES you must also set the environment variables so that gl4es can work properly.
-For our devices these are almost always
+For our devices these are almost always:
 
+```
 export LIBGL_ES=2
 export LIBGL_GL=21
 export LIBGL_FB=4
+```
+
+To Compile GL4ES: 
+
+```
+git clone https://github.com/ptitSeb/gl4es.git
+cd gl4es
+cmake .. -DNOX11=ON -DGLX_STUBS=ON -DEGL_WRAPPER=ON -DGBM=ON
+make
+```
+
 
 ## GPTOKEYB
 
-gptokeyb has the ability to act as a way to quit a game via start + select
-For this you call gptokeyb with the application name.
+`gptokeyb` has the ability to act as a way to quit a game via start + select.
+For this you call `gptokeyb` with the application name.
 
-ie. ./gptokeyb "application"
+ie. `./gptokeyb "application"`
 
-If you want to additionally set a custom config for example you can then set the -c switch to start gptokeyb in virtuell keyboard mode.
+If you want to additionally set a custom config for example you can then set the `-c` switch to start `gptokeyb` in virtual keyboard mode.
 
-ie ./gptokeyb "application" -c mykeymaps.gptk
+ie `./gptokeyb "application" -c mykeymaps.gptk`
+
+For the full GPTOKEYB Documentation https://portmaster.games/gptokeyb-documentation.html
+
 
 ## Java
 
-AmberELEC has JDK support already built in once you start a j2me game for the first time.
-You can supply this also via Portmaster.
-Note you also need a display application for your java application. So just running a jar file without anything won't work.
+AmberELEC / uOS / Jelos has JDK support already built in once you start a j2me game for the first time.
+You can supply this also via Portmaster Runtimes
+Note you also need a display backend for your java application. So just running a jar file without anything won't work.
 
-**Example**
+As of yet we have no Port that uses these but in theory this could be interesting for LIBGDX
 
+**Example**:
+
+```
 mkdir /storage/jdk
 https://cdn.azul.com/zulu-embedded/bin/zulu11.48.21-ca-jdk11.0.11-linux_aarch64.tar.gz
 tar xvfz zulu11.48.21-ca-jdk11.0.11-linux_aarch64.tar.gz
@@ -144,57 +151,50 @@ JAVA_HOME='/storage/jdk/zulu11.48.21-ca-jdk11.0.11-linux_aarch64'
 export JAVA_HOME
 PATH="$JAVA_HOME/bin:$PATH"
 export PATH
-/usr/bin/retroarch -L /tmp/cores/freej2me_libretro.so --config /storage/.config/retroarch/retroarch.cfg "/tmp/Doom RPG.jar
+/usr/bin/retroarch -L /tmp/cores/freej2me_libretro.so --config /storage/.config/retroarch/retroarch.cfg "/tmp/Doom RPG.jar"
+```
 
 ## SDL 1.2 Compat
 
-If you're having problems with Scaling try using
-SDL12COMPAT_OPENGL_SCALING: (checked during SDL_Init)
+SDL 1.2 Compat is a translation library that translates SDL 1.2 calls to SDL 2 and works very well.
+We have plenty of ports that work fantastic with it.
 
-Enables scaling of OpenGL applications to the current desktop resolution.
-If disabled, applications can change the real screen resolution. This option is
-enabled by default, but not all applications are compatible with it: try
-changing this if you can only see a black screen.
+To compile:
 
-Also check
+```
+git clone https://github.com/libsdl-org/sdl12-compat.git
+mkdir build && cd build
+cmake ..
+make 
+```
 
-SDL12COMPAT_USE_GAME_CONTROLLERS=1
+To use SDL 1.2 Compat you simply copy the resulting sdl 1.2 .so file into the ports libs folder.
 
-Use SDL2's higher-level Game Controller API to expose joysticks instead of its lower-level joystick API. The benefit of this is that you can exert more control over arbitrary hardware (deadzones, button mapping, device name, etc), and button and axes layouts are consistent (what is physically located where an Xbox360's "A" button is will always be SDL 1.2 joystick button 0, "B" will be 1, etc).
-⌨️ Compile Notes
+The tool has some configuration options which may be of use in your port.
 
-## GL4ES
-
-cmake .. -DNOX11=ON -DGLX_STUBS=ON -DEGL_WRAPPER=ON -DGBM=ON
-
-cannot guess build type
-
-wget 'http://git.savannah.gnu.org/gitweb/?p=config.git;a=blob_plain;f=config.guess;hb=HEAD' -O './config.guess' &&
-
-wget 'http://git.savannah.gnu.org/gitweb/?p=config.git;a=blob_plain;f=config.sub;hb=HEAD' -O './config.sub'
-
-## Capture Video and Screenshots
-
-You can use these scripts to capture either screenshots or videos on your device.
-
-Depending on your device you might need to adjust the width and height values.
-Attachment file type: archive
-screenshot.rar
-46.03 MB
+SDL12COMPAT_USE_GAME_CONTROLLERS: (checked during SDL_Init) Use SDL2's higher-level Game Controller API to expose joysticks instead of its lower-level joystick API. 
+The benefit of this is that you can exert more control over arbitrary hardware (deadzones, button mapping, device name, etc), 
+and button and axes layouts are consistent (what is physically located where an Xbox360's "A" button is will always be SDL 1.2 joystick button 0, "B" will be 1, etc). 
+The downside is it might not expose all of a given piece of hardware's functionality, or simply not make sense in general...if you need to use a flight stick, for example,
+ you should not use this hint. If there is no known game controller mapping for a joystick, and this hint is in use, it will not be listed as an availble device.
+ 
+The Full Documentation can be found [here] https://github.com/libsdl-org/sdl12-compat
+ 
 
 ## Godot
 
-Godot Games are played via custom export template tailored to SBC devies without X11 based on KMS/DRM with SDL2.
+Godot Games are played via a custom export template tailored to SBC devices without X11 based on KMS/DRM with SDL2 called FRT.
+The FRT binaries are prebuilt for you and are already in the PortMaster Runtime Repository.
 
 Limitations:
-Currently there is no mouse visible.
+Also note that in my custom fork of FRT all joystick code is disabled because Godot preconfigures controls and SDL picks up these keys without any chance to remap them afterwards. See [https://github.com/Cebion/frt](https://github.com/Cebion/frt)
 
-Also note that in my custom fork of FRT all joystick code is disabled because Godot preconfigures controls and SDL picks up these keys without any chance to remap them afterwards. See https://github.com/Cebion/frt
+So all control is done via `gptokeyb`.
 
-So all control is done via gptokeyb.
 
-To build:
+To build: (These are already present in the PortMaster Runtime Repo))
 
+```
 Download the godot editor version you need for the godot game.
 You can find out the version by examining the .pck file with https://dmitriysalnikov.itch.io/godot-pck-explorer
 wget https://downloads.tuxfamily.org/godotengine/3.5/godot-3.5-stable.tar.xz
@@ -204,22 +204,30 @@ git clone https://github.com/Cebion/frt.git
 cd ../
 scons platform=frt tools=no target=release use_llvm=yes module_webm_enabled=no -j12
 strip bin/godot.frt.opt.llvm
+```
+
 
 Then copy your binary to your game folder run it via:
 
-Either a .PCK file
+Either a .PCK file:
 
+```
 ./frt_100_332_arm64.bin --main-pack meteor.pck
+```
 
 Or via Folder:
 
+```
 /frt_3.2.3 --path godot-port-develop/
+```
 
 If you encounter an error like:
 
+```
 ERROR: Failed loading resource: res://gfx/UI.png. Make sure resources have been imported by opening the project in the editor at least once.
-at: \_load (core/io/resource_loader.cpp:271)
+at: _load (core/io/resource_loader.cpp:271)
 ERROR: res://scenes/gui.tscn:11 - Parse Error: [ext_resource] referenced nonexistent resource at: res://gfx/UI.png
+```
 
 Make sure the File is in the correct format.
 For that import the project and reimport the file in the correct format.
@@ -227,43 +235,213 @@ For example sometimes a png file imported as a Texture causes problems and needs
 
 Godot Editor -> Import Tab -> Filter for file in Filesystem -> Reimport As:
 
-## LÖVE
 
-KMS/DRM or FBDEV by default does not have a mouse cursor.
+## LÖVE (Love2D)
 
-Because of that we have to create a software cursor for each game.
+Love2d games are playable trough the aarch64 Port of every major version of Love2D
+
+To compile: 
+
+
+### Löve 11.4
+
+- Built using Ubuntu 20.04 LTS aarch64 chroot
+```
+wget https://github.com/love2d/love/releases/download/11.4/love-11.4-linux-src.tar.gz
+tar xf love-11.4-linux-src.tar.gz
+cd love-11.4/
+./configure
+make -j12
+strip src/.libs/liblove-11.4.so
+copy src/.libs/liblove-11.4.so device/libs
+copy src/.libs/love device/
+```
+
+### Löve 0.10.2
+- Built using Ubuntu 20.04 LTS aarch64 chroot
+```
+wget https://github.com/love2d/love/releases/download/0.10.2/love-0.10.2-linux-src.tar.gz
+tar xf love-0.10.2-linux-src.tar.gz
+cd love-0.10.2
+./configure
+make -j12
+strip src/.libs/liblove.so.0
+copy src/.libs/lliblove.so.0 device/libs
+copy src/.libs/love device/
+```
+
+### Löve 0.9.2
+- Built using Ubuntu 20.04 LTS aarch64 chroot
+- Uses experimental love2d gles build
+```
+git clone https://github.com/Cebion/love_0.9.2_GLES.git
+cd love_0.9.2_GLES
+platform/unix/automagic
+./configure
+make CFLAGS="-Wno-format-overflow"
+```
+
+Requires the ENV variable LOVE_GRAPHICS_USE_OPENGLES=1 on launch
+
+### Löve 0.8
+- Built using Debian Stretch aarch64 chroot
+- Needs boot.lua fixes to set fullscreen in the love binary before compiling
+```
+wget https://github.com/love2d/love/archive/refs/tags/0.8.0.tar.gz
+tar xf 0.8.0.tar.gz
+cd love_0.8.0
+platform/unix/automagic
+./configure
+```
+Edit src/scripts/boot.lua
+
+Change:
+```
+		screen = {
+			width = 800,
+			height = 600,
+			fullscreen = false,
+			vsync = true,
+			fsaa = 0,
+		},
+ ```
+to 
+
+```
+		screen = {
+			width = 640,
+			height = 480,
+			fullscreen = true,
+			vsync = true,
+			fsaa = 0,
+		},
+ ```
+Afterwards 
+```
+cd src/scripts/
+lua auto.lua boot
+cd../../
+make
+```
+
+### Löve 0.7.2
+- Built using Debian Stretch aarch64 chroot
+- Needs boot.lua fixes to set fullscreen in the love binary before compiling
+```
+wget https://github.com/love2d/love/archive/refs/tags/0.8.0.tar.gz
+tar xf 0.8.0.tar.gz
+cd love_0.8.0
+platform/unix/automagic
+./configure
+```
+Edit src/scripts/boot.lua
+
+Change:
+```
+		screen = {
+			width = 800,
+			height = 600,
+			fullscreen = false,
+			vsync = true,
+			fsaa = 0,
+		},
+ ```
+to 
+
+```
+		screen = {
+			width = 640,
+			height = 480,
+			fullscreen = true,
+			vsync = true,
+			fsaa = 0,
+		},
+ ```
+Afterwards 
+```
+cd src/scripts/
+lua auto.lua boot
+cd../../
+make
+```
+
+## Notes about missing cursor in KMS/DRM in Love
+You can add a software cursor for that
+
+KMS/DRM or FBDEV by default does not have a mouse cursor. 
+
+Because of that we have to create a software cursor for each game. 
 It's a simple process
 
-Download a cursor
+Download a cursor 
 example:
 https://raw.githubusercontent.com/medeirosT/adwaita-2bit-cusors/main/left_ptr.png
-and place it in the game directory root.
+  and place it in the game directory root.
 
-Edit the main.lua
+Edit the main.lua 
 
-Edit the function love.load() and add
--- Load your cursor image
-cursorImage = love.graphics.newImage("left_ptr.png")
+1.  Edit the function love.load() and add
+    -- Load your cursor image
+    
+``` cursorImage = love.graphics.newImage("left_ptr.png")```
 
-Hide the system cursor in the love.load() function:
-love.mouse.setVisible(false)
+ 2. Hide the system cursor in the love.load() function: 
+  
+```love.mouse.setVisible(false) ```
 
-Draw the custom cursor image in a new drawCursor function and call it at the end of the love.draw() function:
+3. Draw the custom cursor image in a new drawCursor function and call it at the end of the love.draw() function:
 
+```
 function drawCursor()
-local mouseX, mouseY = love.mouse.getPosition()
-love.graphics.draw(cursorImage, mouseX, mouseY)
+    local mouseX, mouseY = love.mouse.getPosition()
+    love.graphics.draw(cursorImage, mouseX, mouseY)
 end
 
 function love.draw()
--- Rest of the code
+    -- Rest of the code
 
     -- Draw the custom cursor
     drawCursor()
-
 end
+```
 
-Add cursor scaling to love.update()
-local xOffset = (love.graphics.getWidth() - simpleScale.getScale() \* gw) / 2
-mx = (love.mouse.getX() - xOffset) / simpleScale.getScale()
-my = love.mouse.getY() / simpleScale.getScale()
+4. Add cursor scaling to love.update()
+ ```
+ local xOffset = (love.graphics.getWidth() - simpleScale.getScale() * gw) / 2
+  mx = (love.mouse.getX() - xOffset) / simpleScale.getScale()
+  my = love.mouse.getY() / simpleScale.getScale()
+```
+ 
+
+## Box86
+
+To compile: 
+
+```
+Coming soon 
+```
+
+
+## Box64
+
+To compile:
+
+```
+Coming soon
+```
+
+## Mono
+
+Coming Soon
+
+
+
+## Problems you might encounter when compiling open source software:
+
+
+### cannot guess build type:
+
+```
+wget 'http://git.savannah.gnu.org/gitweb/?p=config.git;a=blob_plain;f=config.guess;hb=HEAD' -O './config.guess' &&
+wget 'http://git.savannah.gnu.org/gitweb/?p=config.git;a=blob_plain;f=config.sub;hb=HEAD' -O './config.sub'
+```
