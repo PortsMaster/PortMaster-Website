@@ -34,3 +34,24 @@ Just run PortMaster and reinstall the port. You can also unzip the associated `.
 
 See our Contribute section on https://portmaster.games/ 
 If you have any questions about the process not detailed in the documentation feel free to reach out on our Discord Server.
+
+## How can I run my Port via ssh to troubleshoot any starting issues?
+
+Download Putty:
+https://the.earth.li/~sgtatham/putty/latest/w64/putty.exe
+
+- Start Putty
+- Enter your Device IP
+- Open
+- Enter your ssh credentials
+
+  Amberelec: root / amberelec
+  ArkOS    : ark / ark 
+  Jelos    : root / check under system settings
+- enter
+```
+cd /roms/ports/
+./WhateveryourgameIsCalled.sh
+```
+You can then mark the output with your mouse and with ctrl + c / ctrl + v paste it into the ports-help channel on discord.
+
