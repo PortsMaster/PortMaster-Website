@@ -10,8 +10,8 @@
     - [portname.port.json](#)
     - [licensefile](#)
     - [gamename.gptk (If needed)](#)
-  - [libs/ (If needed)](#)
-  - [gamedata/](#)
+    - [libs/ (If needed)](#)
+    - [gamedata/](#)
   - [PortScript.sh](#)
   - [portname.screenshot.png](#)
 
