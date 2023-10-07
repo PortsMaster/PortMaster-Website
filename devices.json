@@ -1,9 +1,9 @@
 [
-{
-  "device":"RG353M",
-  "manufacturer":"Anbernic",
-  "supported":"True",
-  "firmware":"ArkOS,uOS,Jelos,JELOS",
-  "notes":""
-}
+  {
+    "device": "RG353M",
+    "manufacturer": "Anbernic",
+    "resolution": "640*480",
+    "firmware": "ArkOS,uOS,JELOS",
+    "notes":""
+  }
 ]

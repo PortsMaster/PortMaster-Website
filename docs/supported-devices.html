@@ -91,8 +91,7 @@
   <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark" aria-label="Fourth navbar example">
     <div class="container-fluid">
       <a class="navbar-brand" href="index.html">
-        <img height="35px"
-          src="https://raw.githubusercontent.com/PortsMaster/PortMaster-Website/main/logo.svg" />
+        <img height="35px" src="https://raw.githubusercontent.com/PortsMaster/PortMaster-Website/main/logo.svg" />
       </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample04"
         aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
@@ -102,6 +101,9 @@
         <ul class="navbar-nav me-auto mb-2 mb-md-0">
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="https://discord.gg/JxYBp9HTAY">Discord</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="https://github.com/PortsMaster">GitHub</a>
           </li>
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="faq.html">FAQ</a>
@@ -154,8 +156,8 @@
             <tr>
                 <th>Device</th>
                 <th>Manufacturer</th>
+                <th>Screen Resolution</th>
                 <th>Firmware</th>
-                <th>Supported</th>
                 <th>Notes</th>
             </tr>
         </thead>
@@ -182,17 +184,17 @@ function populateTable() {
     device.innerHTML = devices[item].device;
     var manufacturer = document.createElement("td")
     manufacturer.innerHTML = devices[item].manufacturer;
+    var resolution = document.createElement("td")
+    resolution.innerHTML =  devices[item].resolutiuon;
     var firmware = document.createElement("td")
     firmware.innerHTML = devices[item].firmware;
-    var supported = document.createElement("td")
-    supported.innerHTML =  devices[item].supported;
     var notes = document.createElement("td")
     notes.innerHTML =  devices[item].notes;
 
     tr.appendChild(device);
     tr.appendChild(manufacturer);
+    tr.appendChild(resolution);
     tr.appendChild(firmware);
-    tr.appendChild(supported);
     tr.appendChild(notes);
 
     tbody.appendChild(tr);
