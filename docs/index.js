@@ -1,5 +1,5 @@
 var articles = [];
-var jsonData = {};
+var jsonData = [];
 var articleIndex = 0;
 
 function populateArticles() {
@@ -74,8 +74,8 @@ function createRecent(item) {
 
     var image = document.createElement("img");
     var source = "https://raw.githubusercontent.com/PortsMaster/PortMaster-Website/main/no.image.png";
-    if (item.attr.media.screenshot !== null) {
-        source = "https://raw.githubusercontent.com/christianhaitian/PortMaster/main/images/" + item.attr.media.screenshot;
+    if (item.attr.image.screenshot !== null) {
+        source = "https://raw.githubusercontent.com/christianhaitian/PortMaster/main/images/" + item.attr.image.screenshot;
     }
     image.src = source;
     image.setAttribute("width", "40%%");
@@ -112,9 +112,8 @@ function createRecent(item) {
 }
 
 function populateRecentPorts() {
-
     jsonData.sort(function (a, b) {
-        if (Date.parse(a.date_updated) > Date.parse(b.date_updated))
+        if (Date.parse(a.status.date_updated) > Date.parse(b.status.date_updated))
             return -1
     });
     for (var key of Object.keys(jsonData.slice(0, 5))) {
@@ -133,8 +132,11 @@ async function getPageContent() {
         if (!response.ok) {
             throw new Error('Network response was not ok.');
         }
-        jsonData = await response.json();
-        jsonData = jsonData.ports;
+        var ports = await response.json();
+        ports = ports.ports;
+        for (var key of Object.keys(ports)) {
+            jsonData.push(ports[key])
+        }
     } catch (error) {
         console.error('Error fetching JSON data:', error);
     }
