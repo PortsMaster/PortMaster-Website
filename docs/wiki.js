@@ -190,6 +190,8 @@ function filterCards() {
           });
     }
 
+    var availablePorts = document.getElementById("port-count")
+    availablePorts.textContent = filteredData.length + " ports available"
     displayCards(filteredData);
 }
 
@@ -219,7 +221,6 @@ async function fetchDataAndDisplayCards() {
         }
         countsData = await response.json();
         for (var key of Object.keys(jsonData)) {
-            
             jsonData[key]["download_count"] = countsData["ports"][jsonData[key].name];
         }
 
