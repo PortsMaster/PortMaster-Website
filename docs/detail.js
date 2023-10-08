@@ -10,7 +10,7 @@ function displayCardDetails(data) {
 
 
     imageElement = document.getElementById("screenshot")
-    imageElement.src = (data.attr.media.screenshot ? "https://raw.githubusercontent.com/christianhaitian/PortMaster/main/images/" + data.attr.media.screenshot : "https://raw.githubusercontent.com/PortsMaster/PortMaster-Website/main/no.image.png");
+    imageElement.src = (data.attr.image.screenshot ? "https://raw.githubusercontent.com/christianhaitian/PortMaster/main/images/" + data.attr.image.screenshot : "https://raw.githubusercontent.com/PortsMaster/PortMaster-Website/main/no.image.png");
 
 
     //data.attr.desc ? document.getEleme('desc').textContent = data.attr.desc : document.getElementsByClassName('desc').hidden = true;
@@ -44,7 +44,7 @@ function displayCardDetails(data) {
 
 
     const downloadElement = document.getElementById("download");
-    downloadElement.setAttribute("onclick", "window.location.href='" + data.download_url + "';");
+    downloadElement.setAttribute("onclick", "window.location.href='" + data.status.download_url + "';");
 
     const markdownElement = document.getElementById("markdown");
     markdownElement.setAttribute("src", "https://raw.githubusercontent.com/PortsMaster/PortMaster-Website/main/markdown/" + data.name.toLowerCase().replace("zip", "md"));
