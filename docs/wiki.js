@@ -218,8 +218,9 @@ async function fetchDataAndDisplayCards() {
             throw new Error('Network response was not ok.');
         }
         countsData = await response.json();
-        for (var port of jsonData){
-            port["download_count"] = countsData["ports"][port.name];
+        for (var key of Object.keys(jsonData)) {
+            
+            jsonData[key]["download_count"] = countsData["ports"][jsonData[key].name];
         }
 
     } catch (error) {
