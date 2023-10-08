@@ -19,8 +19,8 @@ function createCard(data) {
 
     const image = document.createElement("img");
     var source = "https://raw.githubusercontent.com/PortsMaster/PortMaster-Website/main/no.image.png";
-    if (data.attr.media.screenshot !== null) {
-        source = "https://raw.githubusercontent.com/christianhaitian/PortMaster/main/images/" + data.attr.media.screenshot;
+    if (data.attr.image.screenshot !== null) {
+        source = "https://raw.githubusercontent.com/christianhaitian/PortMaster/main/images/" + data.attr.image.screenshot;
     }
     image.src = source;
     image.setAttribute("class", "bd-placeholder-img card-img-top");
@@ -66,7 +66,7 @@ function createCard(data) {
     const dateUpdated = document.createElement('p');
     dateUpdated.setAttribute("class","card-text text-body-secondary");
     dateUpdated.setAttribute("style","padding-top: 10px")
-    dateUpdated.textContent = "Updated: " + data.date_updated;
+    dateUpdated.textContent = "Updated: " + data.status.date_updated;
 
 
     const div4 = document.createElement('div');
@@ -79,7 +79,7 @@ function createCard(data) {
     button.setAttribute("type", "button");
     button.textContent = "Download"
     button.setAttribute("class","btn btn-sm btn-outline-primary");
-    button.setAttribute("onclick", "window.location.href='" + data.download_url + "';");
+    button.setAttribute("onclick", "window.location.href='" + data.status.download_url + "';");
 
     div5.appendChild(button);
 
