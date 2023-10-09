@@ -1,11 +1,12 @@
 import markdown
+import markdown2
 import os
 
 path = os.path.join("content","markdown")
 for file in os.listdir(path):
     with open(os.path.join(path,file), "r", encoding="utf-8") as input_file:
         text = input_file.read()
-        markdown_html = markdown.markdown(text)
+        markdown_html = markdown.markdown(text,extensions=['tables','fenced_code','markdown_checklist.extension','mdx_truly_sane_lists'])
         html_file = file.replace(".markdown",".html")
         page = open(os.path.join("website",html_file), "r")
         new_page = page.read().replace("{markdown}",markdown_html)

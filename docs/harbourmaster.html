@@ -139,19 +139,23 @@
       <h1>HarbourMaster</h1>
 <p>PortMaster Package Manager</p>
 <p>This is the script backend that handles listing available ports, downloading and installing/uninstalling ports for our PortMaster GUI</p>
-<ul>
-<li>[x] <code>ports.md</code> generation for <code>PortMaster.sh</code></li>
-<li>[x] List by Genre</li>
-<li>[ ] List by Updates</li>
-<li>[x] List by Ready to Run</li>
-<li>[x] Filter by device/capabilities</li>
-<li>[x] Download Ports</li>
-<li>[x] Install Ports</li>
-<li>[x] List ports</li>
-<li>[x] Detect ports installed by zip</li>
-<li>[x] Have a builtin list of known ports to figure out older ports and ports installed manually.</li>
-<li>[x] Multiple Ports repositories</li>
-<li>[x] Uninstall Ports</li>
+<ul class="checklist">
+<li>[x] <code>ports.md</code> generation for <code>PortMaster.sh</code><ul class="checklist">
+<li><input type="checkbox" disabled checked> List by Genre</li>
+<li><input type="checkbox" disabled> List by Updates</li>
+<li><input type="checkbox" disabled checked> List by Ready to Run</li>
+<li><input type="checkbox" disabled checked> Filter by device/capabilities</li>
+</ul>
+</li>
+<li><input type="checkbox" disabled checked> Download Ports</li>
+<li><input type="checkbox" disabled checked> Install Ports</li>
+<li><input type="checkbox" disabled checked> List ports</li>
+<li>[x] Detect ports installed by zip<ul class="checklist">
+<li><input type="checkbox" disabled checked> Have a builtin list of known ports to figure out older ports and ports installed manually.</li>
+</ul>
+</li>
+<li><input type="checkbox" disabled checked> Multiple Ports repositories</li>
+<li><input type="checkbox" disabled checked> Uninstall Ports</li>
 </ul>
 <h1>How it works:</h1>
 <h2>port.json</h2>
@@ -160,15 +164,45 @@
 <p>We have an <a href="https://kloptops.github.io/harbourmaster/port.html">easy to use webpage</a> for adding <code>port.json</code> file directly to your ports zip files, it all runs locally in your webbrowser so its easy to use.</p>
 <h2>Listing available ports:</h2>
 <p>Harbourmaster has a list of sources where it fetches ports from, by default it comes with:</p>
-<p>| Source               | Description                                                                           | Source File                  |
-| -------------------- | --------------------------------------------------------------------------------------| ---------------------------- |
-| PortMaster           | This draws from the default portmaster repository, it uses the PortMasterV1 protocol. | <code>020_portmaster.source.json</code> |
-| PortMaster Runtimes  | This is where runtimes for different runtimes live, it uses the GitHubRawReleaseV1 protocol. | <code>021_runtimes.source.json</code> |</p>
+<table>
+<thead>
+<tr>
+<th>Source</th>
+<th>Description</th>
+<th>Source File</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PortMaster</td>
+<td>This draws from the default portmaster repository, it uses the PortMasterV1 protocol.</td>
+<td><code>020_portmaster.source.json</code></td>
+</tr>
+<tr>
+<td>PortMaster Runtimes</td>
+<td>This is where runtimes for different runtimes live, it uses the GitHubRawReleaseV1 protocol.</td>
+<td><code>021_runtimes.source.json</code></td>
+</tr>
+</tbody>
+</table>
 <p>With these two sources portmaster behaves as usual.</p>
 <p>What makes portmaster different is it is now possible to install additional port sources, so that additional repositories of ports can be sourced.</p>
-<p>| Source               | Description                                                                           | Source File                  |
-| -------------------- | --------------------------------------------------------------------------------------| ---------------------------- |
-| Kloptops             | This is a source for my own testing port releases, it uses the <a href="https://github.com/kloptops/harbourmaster/tree/main/tools">GitHubRepoV1</a> protocol. | <a href="https://raw.githubusercontent.com/kloptops/Portmaster-misc/main/releases/050_kloptops.source.json"><code>050_kloptops.source.json</code></a> |</p>
+<table>
+<thead>
+<tr>
+<th>Source</th>
+<th>Description</th>
+<th>Source File</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Kloptops</td>
+<td>This is a source for my own testing port releases, it uses the <a href="https://github.com/kloptops/harbourmaster/tree/main/tools">GitHubRepoV1</a> protocol.</td>
+<td><a href="https://raw.githubusercontent.com/kloptops/Portmaster-misc/main/releases/050_kloptops.source.json"><code>050_kloptops.source.json</code></a></td>
+</tr>
+</tbody>
+</table>
 <p><em><strong>Note</strong>: additional sources can be added, make a PR to get yours added</em></p>
 <h2>Installing ports:</h2>
 <p>Harbourmaster follows a specific process to identify and fetch the appropriate port for downloading.</p>
@@ -195,18 +229,56 @@
 <h2>Known Ports:</h2>
 <p>Some ports, because of their nature, cannot or do not exist on PortMaster. So that harbourmaster can work as intended, we create a <code>.port.json</code> for them in the <a href="https://github.com/kloptops/harbourmaster/tree/main/known-ports">known-ports</a> directory. Please create a PR for any that you come across that we don't know about.</p>
 <h2>Commands available:</h2>
-<p>| Command                                                   | Effect                                                     |
-|  -------------------------------------------------------- | ---------------------------------------------------------- |
-| <code>harbourmaster update</code>                                    | downloads the latest ports information                     |
-| <code>harbourmaster portsmd [filters]</code>                         | generate a ports.md file compatible with PortMaster.sh     |
-| <code>harbourmaster list [filters]</code>                            | list available ports                                       |
-| <code>harbourmaster ports</code>                                     | list installed, broken, and unknown ports.                 |
-| <code>harbourmaster install http[s]://&lt;url&gt;.zip[.md5/md5sum]</code>  | downloads a port from the specified url. If the url ends with md5/md5sum it assumes the url without the md5 is the ports zipfile. It will check the md5 against what is downloaded. |
-| <code>harbourmaster install [source/]&lt;portname&gt;.zip</code>           | downloads and installs the port from available sources.    |
-| <code>harbourmaster uninstall &lt;portname&gt;.zip</code>                  | Uninstall specified port.                                  |
-| <code>harbourmaster runtimes_list</code>                             | List available runtime environments                        |
-| <code>harbourmaster runtimes_check &lt;runtime&gt;</code>                  | Installs the specified runtime if it is not installed      |
-| <code>harbourmaster upgrade harbourmaster</code>                     | Updates harbourmaster against the latest version on github |</p>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Effect</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>harbourmaster update</code></td>
+<td>downloads the latest ports information</td>
+</tr>
+<tr>
+<td><code>harbourmaster portsmd [filters]</code></td>
+<td>generate a ports.md file compatible with PortMaster.sh</td>
+</tr>
+<tr>
+<td><code>harbourmaster list [filters]</code></td>
+<td>list available ports</td>
+</tr>
+<tr>
+<td><code>harbourmaster ports</code></td>
+<td>list installed, broken, and unknown ports.</td>
+</tr>
+<tr>
+<td><code>harbourmaster install http[s]://&lt;url&gt;.zip[.md5/md5sum]</code></td>
+<td>downloads a port from the specified url. If the url ends with md5/md5sum it assumes the url without the md5 is the ports zipfile. It will check the md5 against what is downloaded.</td>
+</tr>
+<tr>
+<td><code>harbourmaster install [source/]&lt;portname&gt;.zip</code></td>
+<td>downloads and installs the port from available sources.</td>
+</tr>
+<tr>
+<td><code>harbourmaster uninstall &lt;portname&gt;.zip</code></td>
+<td>Uninstall specified port.</td>
+</tr>
+<tr>
+<td><code>harbourmaster runtimes_list</code></td>
+<td>List available runtime environments</td>
+</tr>
+<tr>
+<td><code>harbourmaster runtimes_check &lt;runtime&gt;</code></td>
+<td>Installs the specified runtime if it is not installed</td>
+</tr>
+<tr>
+<td><code>harbourmaster upgrade harbourmaster</code></td>
+<td>Updates harbourmaster against the latest version on github</td>
+</tr>
+</tbody>
+</table>
 <h2>Python libraries used:</h2>
 <ul>
 <li><a href="https://pypi.org/project/ansimarkup/">ansimarkup</a></li>
