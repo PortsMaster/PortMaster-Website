@@ -11,7 +11,7 @@ Through the volunteer contributions of the mighty **Port Navigators**, most of t
 The full list of supported devices can be found here: 
 
 ## How can I install PortMaster? 
-A Guide to install Portmaster can be found here:
+A Guide to install Portmaster can be found [here](https://portmaster.games/supported-devices.html)
 
 ## Do I have to use PortMaster to install ports?
 
