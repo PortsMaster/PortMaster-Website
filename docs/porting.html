@@ -297,10 +297,10 @@ ERROR: res://scenes/gui.tscn:11 - Parse Error: [ext_resource] referenced nonexis
 For that import the project and reimport the file in the correct format.
 For example sometimes a png file imported as a Texture causes problems and needs to be imported as an image.</p>
 <p>Godot Editor -&gt; Import Tab -&gt; Filter for file in Filesystem -&gt; Reimport As:</p>
-<h2>LÖVE (Love2D)</h2>
+<h2>LÃ–VE (Love2D)</h2>
 <p>Love2d games are playable trough the aarch64 Port of every major version of Love2D</p>
 <p>To compile:</p>
-<h3>Löve 11.4</h3>
+<h3>LÃ¶ve 11.4</h3>
 <ul>
 <li>Built using Ubuntu 20.04 LTS aarch64 chroot</li>
 </ul>
@@ -313,7 +313,7 @@ strip src/.libs/liblove-11.4.so
 copy src/.libs/liblove-11.4.so device/libs
 copy src/.libs/love device/
 </code></pre>
-<h3>Löve 0.10.2</h3>
+<h3>LÃ¶ve 0.10.2</h3>
 <ul>
 <li>Built using Ubuntu 20.04 LTS aarch64 chroot</li>
 </ul>
@@ -326,7 +326,7 @@ strip src/.libs/liblove.so.0
 copy src/.libs/lliblove.so.0 device/libs
 copy src/.libs/love device/
 </code></pre>
-<h3>Löve 0.9.2</h3>
+<h3>LÃ¶ve 0.9.2</h3>
 <ul>
 <li>Built using Ubuntu 20.04 LTS aarch64 chroot</li>
 <li>Uses experimental love2d gles build</li>
@@ -338,7 +338,7 @@ platform/unix/automagic
 make CFLAGS=&quot;-Wno-format-overflow&quot;
 </code></pre>
 <p>Requires the ENV variable LOVE_GRAPHICS_USE_OPENGLES=1 on launch</p>
-<h3>Löve 0.8</h3>
+<h3>LÃ¶ve 0.8</h3>
 <ul>
 <li>Built using Debian Stretch aarch64 chroot</li>
 <li>Needs boot.lua fixes to set fullscreen in the love binary before compiling</li>
@@ -374,7 +374,7 @@ lua auto.lua boot
 cd../../
 make
 </code></pre>
-<h3>Löve 0.7.2</h3>
+<h3>LÃ¶ve 0.7.2</h3>
 <ul>
 <li>Built using Debian Stretch aarch64 chroot</li>
 <li>Needs boot.lua fixes to set fullscreen in the love binary before compiling</li>
