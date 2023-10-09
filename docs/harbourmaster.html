@@ -1,313 +1,694 @@
-<!doctype html>
-<html lang="en" data-bs-theme="auto">
-
-<head>
-  <script src="color-modes.js"></script>
-  <script type="module" src="https://md-block.verou.me/md-block.js"></script>
-  <link rel="stylesheet" href="shared.css">
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/npm/anchor-js/anchor.min.js"></script>
-
-  <title>Harbourmaster</title>
-
-</head>
-
-<body class="bg-body-tertiary">
-  <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
-    <symbol id="check2" viewBox="0 0 16 16">
-      <path
-        d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z" />
-    </symbol>
-    <symbol id="circle-half" viewBox="0 0 16 16">
-      <path d="M8 15A7 7 0 1 0 8 1v14zm0 1A8 8 0 1 1 8 0a8 8 0 0 1 0 16z" />
-    </symbol>
-    <symbol id="moon-stars-fill" viewBox="0 0 16 16">
-      <path
-        d="M6 .278a.768.768 0 0 1 .08.858 7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278z" />
-      <path
-        d="M10.794 3.148a.217.217 0 0 1 .412 0l.387 1.162c.173.518.579.924 1.097 1.097l1.162.387a.217.217 0 0 1 0 .412l-1.162.387a1.734 1.734 0 0 0-1.097 1.097l-.387 1.162a.217.217 0 0 1-.412 0l-.387-1.162A1.734 1.734 0 0 0 9.31 6.593l-1.162-.387a.217.217 0 0 1 0-.412l1.162-.387a1.734 1.734 0 0 0 1.097-1.097l.387-1.162zM13.863.099a.145.145 0 0 1 .274 0l.258.774c.115.346.386.617.732.732l.774.258a.145.145 0 0 1 0 .274l-.774.258a1.156 1.156 0 0 0-.732.732l-.258.774a.145.145 0 0 1-.274 0l-.258-.774a1.156 1.156 0 0 0-.732-.732l-.774-.258a.145.145 0 0 1 0-.274l.774-.258c.346-.115.617-.386.732-.732L13.863.1z" />
-    </symbol>
-    <symbol id="sun-fill" viewBox="0 0 16 16">
-      <path
-        d="M8 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z" />
-    </symbol>
+<!DOCTYPE html>
+<html data-bs-theme="auto" lang="en">
+ <head>
+  <script src="color-modes.js">
+  </script>
+  <script src="https://md-block.verou.me/md-block.js" type="module">
+  </script>
+  <link href="shared.css" rel="stylesheet"/>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1" name="viewport"/>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js">
+  </script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet"/>
+  <script src="https://cdn.jsdelivr.net/npm/anchor-js/anchor.min.js">
+  </script>
+  <title>
+   Harbourmaster
+  </title>
+ </head>
+ <body class="bg-body-tertiary">
+  <svg class="d-none" xmlns="http://www.w3.org/2000/svg">
+   <symbol id="check2" viewbox="0 0 16 16">
+    <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z">
+    </path>
+   </symbol>
+   <symbol id="circle-half" viewbox="0 0 16 16">
+    <path d="M8 15A7 7 0 1 0 8 1v14zm0 1A8 8 0 1 1 8 0a8 8 0 0 1 0 16z">
+    </path>
+   </symbol>
+   <symbol id="moon-stars-fill" viewbox="0 0 16 16">
+    <path d="M6 .278a.768.768 0 0 1 .08.858 7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278z">
+    </path>
+    <path d="M10.794 3.148a.217.217 0 0 1 .412 0l.387 1.162c.173.518.579.924 1.097 1.097l1.162.387a.217.217 0 0 1 0 .412l-1.162.387a1.734 1.734 0 0 0-1.097 1.097l-.387 1.162a.217.217 0 0 1-.412 0l-.387-1.162A1.734 1.734 0 0 0 9.31 6.593l-1.162-.387a.217.217 0 0 1 0-.412l1.162-.387a1.734 1.734 0 0 0 1.097-1.097l.387-1.162zM13.863.099a.145.145 0 0 1 .274 0l.258.774c.115.346.386.617.732.732l.774.258a.145.145 0 0 1 0 .274l-.774.258a1.156 1.156 0 0 0-.732.732l-.258.774a.145.145 0 0 1-.274 0l-.258-.774a1.156 1.156 0 0 0-.732-.732l-.774-.258a.145.145 0 0 1 0-.274l.774-.258c.346-.115.617-.386.732-.732L13.863.1z">
+    </path>
+   </symbol>
+   <symbol id="sun-fill" viewbox="0 0 16 16">
+    <path d="M8 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z">
+    </path>
+   </symbol>
   </svg>
-
   <div class="dropdown position-fixed bottom-0 end-0 mb-3 me-3 bd-mode-toggle">
-    <button class="btn btn-bd-primary py-2 dropdown-toggle d-flex align-items-center" id="bd-theme" type="button"
-      aria-expanded="false" data-bs-toggle="dropdown" aria-label="Toggle theme (auto)">
-      <svg class="bi my-1 theme-icon-active" width="1em" height="1em">
-        <use href="#circle-half"></use>
+   <button aria-expanded="false" aria-label="Toggle theme (auto)" class="btn btn-bd-primary py-2 dropdown-toggle d-flex align-items-center" data-bs-toggle="dropdown" id="bd-theme" type="button">
+    <svg class="bi my-1 theme-icon-active" height="1em" width="1em">
+     <use href="#circle-half">
+     </use>
+    </svg>
+    <span class="visually-hidden" id="bd-theme-text">
+     Toggle theme
+    </span>
+   </button>
+   <ul aria-labelledby="bd-theme-text" class="dropdown-menu dropdown-menu-end shadow">
+    <li>
+     <button aria-pressed="false" class="dropdown-item d-flex align-items-center" data-bs-theme-value="light" type="button">
+      <svg class="bi me-2 opacity-50 theme-icon" height="1em" width="1em">
+       <use href="#sun-fill">
+       </use>
       </svg>
-      <span class="visually-hidden" id="bd-theme-text">Toggle theme</span>
+      Light
+      <svg class="bi ms-auto d-none" height="1em" width="1em">
+       <use href="#check2">
+       </use>
+      </svg>
+     </button>
+    </li>
+    <li>
+     <button aria-pressed="false" class="dropdown-item d-flex align-items-center" data-bs-theme-value="dark" type="button">
+      <svg class="bi me-2 opacity-50 theme-icon" height="1em" width="1em">
+       <use href="#moon-stars-fill">
+       </use>
+      </svg>
+      Dark
+      <svg class="bi ms-auto d-none" height="1em" width="1em">
+       <use href="#check2">
+       </use>
+      </svg>
+     </button>
+    </li>
+    <li>
+     <button aria-pressed="true" class="dropdown-item d-flex align-items-center active" data-bs-theme-value="auto" type="button">
+      <svg class="bi me-2 opacity-50 theme-icon" height="1em" width="1em">
+       <use href="#circle-half">
+       </use>
+      </svg>
+      Auto
+      <svg class="bi ms-auto d-none" height="1em" width="1em">
+       <use href="#check2">
+       </use>
+      </svg>
+     </button>
+    </li>
+   </ul>
+  </div>
+  <nav aria-label="Fourth navbar example" class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+   <div class="container-fluid">
+    <a class="navbar-brand" href="index.html">
+     <img height="35px" src="https://raw.githubusercontent.com/PortsMaster/PortMaster-Website/main/logo.svg"/>
+    </a>
+    <button aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-bs-target="#navbarsExample04" data-bs-toggle="collapse" type="button">
+     <span class="navbar-toggler-icon">
+     </span>
     </button>
-    <ul class="dropdown-menu dropdown-menu-end shadow" aria-labelledby="bd-theme-text">
-      <li>
-        <button type="button" class="dropdown-item d-flex align-items-center" data-bs-theme-value="light"
-          aria-pressed="false">
-          <svg class="bi me-2 opacity-50 theme-icon" width="1em" height="1em">
-            <use href="#sun-fill"></use>
-          </svg>
-          Light
-          <svg class="bi ms-auto d-none" width="1em" height="1em">
-            <use href="#check2"></use>
-          </svg>
-        </button>
+    <div class="collapse navbar-collapse" id="navbarsExample04">
+     <ul class="navbar-nav me-auto mb-2 mb-md-0">
+      <li class="nav-item">
+       <a aria-current="page" class="nav-link active" href="https://discord.gg/JxYBp9HTAY">
+        Discord
+       </a>
       </li>
-      <li>
-        <button type="button" class="dropdown-item d-flex align-items-center" data-bs-theme-value="dark"
-          aria-pressed="false">
-          <svg class="bi me-2 opacity-50 theme-icon" width="1em" height="1em">
-            <use href="#moon-stars-fill"></use>
-          </svg>
-          Dark
-          <svg class="bi ms-auto d-none" width="1em" height="1em">
-            <use href="#check2"></use>
-          </svg>
-        </button>
+      <li class="nav-item">
+       <a aria-current="page" class="nav-link active" href="https://github.com/PortsMaster">
+        GitHub
+       </a>
       </li>
-      <li>
-        <button type="button" class="dropdown-item d-flex align-items-center active" data-bs-theme-value="auto"
-          aria-pressed="true">
-          <svg class="bi me-2 opacity-50 theme-icon" width="1em" height="1em">
-            <use href="#circle-half"></use>
-          </svg>
-          Auto
-          <svg class="bi ms-auto d-none" width="1em" height="1em">
-            <use href="#check2"></use>
-          </svg>
-        </button>
-      </li>
-    </ul>
-  </div>
-  <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark" aria-label="Fourth navbar example">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="index.html">
-        <img height="35px" src="https://raw.githubusercontent.com/PortsMaster/PortMaster-Website/main/logo.svg" />
-      </a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample04"
-        aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarsExample04">
-        <ul class="navbar-nav me-auto mb-2 mb-md-0">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="https://discord.gg/JxYBp9HTAY">Discord</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="https://github.com/PortsMaster">GitHub</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="faq.html">FAQ</a>
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="wiki.html">Wiki</a>
-          </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">Portmaster</a>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="installation.html">Installation</a></li>
-              <li><a class="dropdown-item" href="runtimes.html">Runtimes</a></li>
-              <li><a class="dropdown-item" href="supported-devices.html">Supported Devices</a></li>
-              <li><a class="dropdown-item" href="gptokeyb-documentation.html">Gptokeyb Documentation</a></li>
-              <li><a class="dropdown-item" href="harbourmaster.html">Harbourmaster</a></li>
-            </ul>
-          </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">Contribute</a>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="porting.html">Porting</a></li>
-              <li><a class="dropdown-item" href="packaging.html">Packaging</a></li>
-              <li><a class="dropdown-item" href="build-environments.html">Build Environments</a></li>
-              <li><a class="dropdown-item" href="port-tools.html">Port Tools</a></li>
-              <li><a class="dropdown-item" href="port-json.html">Port JSON Generator</a></li>
-            </ul>
-          </li>
-          </li>
+      <li class="nav-item">
+       <a aria-current="page" class="nav-link active" href="faq.html">
+        FAQ
+       </a>
+       <li class="nav-item">
+        <a aria-current="page" class="nav-link active" href="wiki.html">
+         Wiki
+        </a>
+       </li>
+       <li class="nav-item dropdown">
+        <a aria-expanded="false" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#">
+         Portmaster
+        </a>
+        <ul class="dropdown-menu">
+         <li>
+          <a class="dropdown-item" href="installation.html">
+           Installation
+          </a>
+         </li>
+         <li>
+          <a class="dropdown-item" href="runtimes.html">
+           Runtimes
+          </a>
+         </li>
+         <li>
+          <a class="dropdown-item" href="supported-devices.html">
+           Supported Devices
+          </a>
+         </li>
+         <li>
+          <a class="dropdown-item" href="gptokeyb-documentation.html">
+           Gptokeyb Documentation
+          </a>
+         </li>
+         <li>
+          <a class="dropdown-item" href="harbourmaster.html">
+           Harbourmaster
+          </a>
+         </li>
         </ul>
-      </div>
+       </li>
+       <li class="nav-item dropdown">
+        <a aria-expanded="false" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#">
+         Contribute
+        </a>
+        <ul class="dropdown-menu">
+         <li>
+          <a class="dropdown-item" href="porting.html">
+           Porting
+          </a>
+         </li>
+         <li>
+          <a class="dropdown-item" href="packaging.html">
+           Packaging
+          </a>
+         </li>
+         <li>
+          <a class="dropdown-item" href="build-environments.html">
+           Build Environments
+          </a>
+         </li>
+         <li>
+          <a class="dropdown-item" href="port-tools.html">
+           Port Tools
+          </a>
+         </li>
+         <li>
+          <a class="dropdown-item" href="port-json.html">
+           Port JSON Generator
+          </a>
+         </li>
+        </ul>
+       </li>
+      </li>
+     </ul>
     </div>
+   </div>
   </nav>
-  <br>
-  <br>
-  <br>
+  <br/>
+  <br/>
+  <br/>
   <div class="container">
-    <main>
-      <h1>HarbourMaster</h1>
-<p>PortMaster Package Manager</p>
-<p>This is the script backend that handles listing available ports, downloading and installing/uninstalling ports for our PortMaster GUI</p>
-<ul>
-<li><input type="checkbox" checked="" disabled="" /> <code>ports.md</code> generation for <code>PortMaster.sh</code>
-<ul>
-<li><input type="checkbox" checked="" disabled="" /> List by Genre</li>
-<li><input type="checkbox" disabled="" /> List by Updates</li>
-<li><input type="checkbox" checked="" disabled="" /> List by Ready to Run</li>
-<li><input type="checkbox" checked="" disabled="" /> Filter by device/capabilities</li>
-</ul>
-</li>
-<li><input type="checkbox" checked="" disabled="" /> Download Ports</li>
-<li><input type="checkbox" checked="" disabled="" /> Install Ports</li>
-<li><input type="checkbox" checked="" disabled="" /> List ports</li>
-<li><input type="checkbox" checked="" disabled="" /> Detect ports installed by zip
-<ul>
-<li><input type="checkbox" checked="" disabled="" /> Have a builtin list of known ports to figure out older ports and ports installed manually.</li>
-</ul>
-</li>
-<li><input type="checkbox" checked="" disabled="" /> Multiple Ports repositories</li>
-<li><input type="checkbox" checked="" disabled="" /> Uninstall Ports</li>
-</ul>
-<h1>How it works:</h1>
-<h2>port.json</h2>
-<p>Most of what harbourmaster uses is a new file called <code>&lt;portname&gt;.port.json</code>, this contains all the information required for a port.</p>
-<p>An <a href="https://github.com/kloptops/harbourmaster/blob/main/data/example.port.json">example annotated json file is included</a>, however for the moment most ports do not have a <code>.port.json</code> file so harbourmaster creates them from various sources. Going forward all ports should have a <code>.port.json</code> file and will be a requirement of submission to PortMaster.</p>
-<p>We have an <a href="https://kloptops.github.io/harbourmaster/port.html">easy to use webpage</a> for adding <code>port.json</code> file directly to your ports zip files, it all runs locally in your webbrowser so its easy to use.</p>
-<h2>Listing available ports:</h2>
-<p>Harbourmaster has a list of sources where it fetches ports from, by default it comes with:</p>
-<table class="table table-bordered">
-<thead>
-<tr>
-<th>Source</th>
-<th>Description</th>
-<th>Source File</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>PortMaster</td>
-<td>This draws from the default portmaster repository, it uses the PortMasterV1 protocol.</td>
-<td><code>020_portmaster.source.json</code></td>
-</tr>
-<tr>
-<td>PortMaster Runtimes</td>
-<td>This is where runtimes for different runtimes live, it uses the GitHubRawReleaseV1 protocol.</td>
-<td><code>021_runtimes.source.json</code></td>
-</tr>
-</tbody>
-</table>
-<p>With these two sources portmaster behaves as usual.</p>
-<p>What makes portmaster different is it is now possible to install additional port sources, so that additional repositories of ports can be sourced.</p>
-<table class="table table-bordered">
-<thead>
-<tr>
-<th>Source</th>
-<th>Description</th>
-<th>Source File</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Kloptops</td>
-<td>This is a source for my own testing port releases, it uses the <a href="https://github.com/kloptops/harbourmaster/tree/main/tools">GitHubRepoV1</a> protocol.</td>
-<td><a href="https://raw.githubusercontent.com/kloptops/Portmaster-misc/main/releases/050_kloptops.source.json"><code>050_kloptops.source.json</code></a></td>
-</tr>
-</tbody>
-</table>
-<p><em><strong>Note</strong>: additional sources can be added, make a PR to get yours added</em></p>
-<h2>Installing ports:</h2>
-<p>Harbourmaster follows a specific process to identify and fetch the appropriate port for downloading.</p>
-<p>Here's an overview of the steps involved:</p>
-<ul>
-<li>Port Identification: Ports are uniquely identified by their zip file names. Although this method may not be flawless, it has proven to be effective in practice.</li>
-<li>Source Priority: Harbourmaster fetches ports from the sources provided, considering their priority order. The tool retrieves ports from the sources in the specified sequence.</li>
-<li>Verification and Validation: Once a port is fetched from a source, Harbourmaster verifies its integrity. This involves checking if the downloaded port matches the supplied MD5 checksum. This verification ensures that the port is not corrupted or modified during the download process.</li>
-<li>Zip Content Check: After the download is validated, Harbourmaster inspects the contents of the zip file. It checks for the presence of at least one bash file and a data directory. Additionally, it scans for any unusual files that could potentially override core operating system files.</li>
-<li>Port Configuration: Harbourmaster ensures that a <code>&lt;portname&gt;.port.json</code> file exists for the port. This file contains relevant information about the port itself, which is combined with other data during the installation process to fully flesh it out.</li>
-</ul>
-<p>By following this process, Harbourmaster reliably identifies, fetches, and verifies ports from the specified sources, ensuring the integrity and consistency of the downloaded files.</p>
-<h2>Keeping track of installed ports:</h2>
-<p>Harbourmaster keeps track of installed ports by examining the ports folder and reading the <code>&lt;portname&gt;.port.json</code> files associated with each port. These JSON files provide information about the specific files and directories related to each port.</p>
-<p>During this process, Harbourmaster performs the following checks and actions:</p>
-<ul>
-<li>Detection of Broken Ports: Harbourmaster verifies the presence of the files and directories indicated in the <code>&lt;portname&gt;.port.json</code> files for each installed port. If any of these files or directories are not found, it indicates that the port is broken or incomplete.</li>
-<li>Identification of Unclaimed Files: Harbourmaster scans the files and directories within the ports folder to identify any files that have not been associated with a known port. These unclaimed files are then processed further.</li>
-<li>Detection of Newly Installed Ports: Among the unclaimed files, Harbourmaster compares them against its database of known ports. If a match is found, indicating that a new port has been installed, Harbourmaster flags it as such.</li>
-<li>Creation of <code>&lt;portname&gt;.port.json</code> File: For newly installed ports, Harbourmaster creates a corresponding <code>&lt;portname&gt;.port.json</code> file. This file contains the necessary information about the port, enabling Harbourmaster to manage and track it effectively.</li>
-<li>Validation of Newly Found Ports: While processing newly found ports, Harbourmaster checks all associated files and directories. If any of these files or directories are missing, it identifies the port as broken or incomplete.</li>
-</ul>
-<p>By performing these checks and actions, Harbourmaster maintains an accurate record of installed ports, identifies broken ports, detects newly installed ports, and ensures the integrity of the associated files and directories. This also allows Harbourmaster to work with ports that are manually unzipped into the ports folder.</p>
-<h2>Known Ports:</h2>
-<p>Some ports, because of their nature, cannot or do not exist on PortMaster. So that harbourmaster can work as intended, we create a <code>.port.json</code> for them in the <a href="https://github.com/kloptops/harbourmaster/tree/main/known-ports">known-ports</a> directory. Please create a PR for any that you come across that we don't know about.</p>
-<h2>Commands available:</h2>
-<table class="table table-bordered">
-<thead>
-<tr>
-<th>Command</th>
-<th>Effect</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>harbourmaster update</code></td>
-<td>downloads the latest ports information</td>
-</tr>
-<tr>
-<td><code>harbourmaster portsmd [filters]</code></td>
-<td>generate a ports.md file compatible with PortMaster.sh</td>
-</tr>
-<tr>
-<td><code>harbourmaster list [filters]</code></td>
-<td>list available ports</td>
-</tr>
-<tr>
-<td><code>harbourmaster ports</code></td>
-<td>list installed, broken, and unknown ports.</td>
-</tr>
-<tr>
-<td><code>harbourmaster install http[s]://&lt;url&gt;.zip[.md5/md5sum]</code></td>
-<td>downloads a port from the specified url. If the url ends with md5/md5sum it assumes the url without the md5 is the ports zipfile. It will check the md5 against what is downloaded.</td>
-</tr>
-<tr>
-<td><code>harbourmaster install [source/]&lt;portname&gt;.zip</code></td>
-<td>downloads and installs the port from available sources.</td>
-</tr>
-<tr>
-<td><code>harbourmaster uninstall &lt;portname&gt;.zip</code></td>
-<td>Uninstall specified port.</td>
-</tr>
-<tr>
-<td><code>harbourmaster runtimes_list</code></td>
-<td>List available runtime environments</td>
-</tr>
-<tr>
-<td><code>harbourmaster runtimes_check &lt;runtime&gt;</code></td>
-<td>Installs the specified runtime if it is not installed</td>
-</tr>
-<tr>
-<td><code>harbourmaster upgrade harbourmaster</code></td>
-<td>Updates harbourmaster against the latest version on github</td>
-</tr>
-</tbody>
-</table>
-<h2>Python libraries used:</h2>
-<ul>
-<li><a href="https://pypi.org/project/ansimarkup/">ansimarkup</a></li>
-<li><a href="https://pypi.org/project/certifi/">certifi</a></li>
-<li><a href="https://pypi.org/project/colorama/">colorama</a></li>
-<li><a href="https://pypi.org/project/fastjsonschema/">fastjsonschema</a></li>
-<li><a href="https://pypi.org/project/idna/">idna</a></li>
-<li><a href="https://pypi.org/project/loguru/">loguru</a></li>
-<li><a href="https://github.com/mcpalmer1980/port_gui">port_gui</a> - used as pySDL2gui</li>
-<li><a href="https://pypi.org/project/pypng/">pypng</a></li>
-<li><a href="https://pypi.org/project/qrcode/">pyqrcode</a></li>
-<li><a href="https://pypi.org/project/PySDL2/">PySDL2</a></li>
-<li><a href="https://pypi.org/project/requests/">requests</a></li>
-<li><a href="https://pypi.org/project/typing-extensions/">typing-extensions</a></li>
-<li><a href="https://pypi.org/project/urllib3/">urllib3</a></li>
-</ul>
-
-      <script>
-        anchors.options.visible = 'always';
+   <main>
+    <h1>
+     HarbourMaster
+    </h1>
+    <p>
+     PortMaster Package Manager
+    </p>
+    <p>
+     This is the script backend that handles listing available ports, downloading and installing/uninstalling ports for our PortMaster GUI
+    </p>
+    <ul>
+     <li>
+      <input checked="" disabled="" type="checkbox"/>
+      <code>
+       ports.md
+      </code>
+      generation for
+      <code>
+       PortMaster.sh
+      </code>
+      <ul>
+       <li>
+        <input checked="" disabled="" type="checkbox"/>
+        List by Genre
+       </li>
+       <li>
+        <input disabled="" type="checkbox"/>
+        List by Updates
+       </li>
+       <li>
+        <input checked="" disabled="" type="checkbox"/>
+        List by Ready to Run
+       </li>
+       <li>
+        <input checked="" disabled="" type="checkbox"/>
+        Filter by device/capabilities
+       </li>
+      </ul>
+     </li>
+     <li>
+      <input checked="" disabled="" type="checkbox"/>
+      Download Ports
+     </li>
+     <li>
+      <input checked="" disabled="" type="checkbox"/>
+      Install Ports
+     </li>
+     <li>
+      <input checked="" disabled="" type="checkbox"/>
+      List ports
+     </li>
+     <li>
+      <input checked="" disabled="" type="checkbox"/>
+      Detect ports installed by zip
+      <ul>
+       <li>
+        <input checked="" disabled="" type="checkbox"/>
+        Have a builtin list of known ports to figure out older ports and ports installed manually.
+       </li>
+      </ul>
+     </li>
+     <li>
+      <input checked="" disabled="" type="checkbox"/>
+      Multiple Ports repositories
+     </li>
+     <li>
+      <input checked="" disabled="" type="checkbox"/>
+      Uninstall Ports
+     </li>
+    </ul>
+    <h1>
+     How it works:
+    </h1>
+    <h2>
+     port.json
+    </h2>
+    <p>
+     Most of what harbourmaster uses is a new file called
+     <code>
+      &lt;portname&gt;.port.json
+     </code>
+     , this contains all the information required for a port.
+    </p>
+    <p>
+     An
+     <a href="https://github.com/kloptops/harbourmaster/blob/main/data/example.port.json">
+      example annotated json file is included
+     </a>
+     , however for the moment most ports do not have a
+     <code>
+      .port.json
+     </code>
+     file so harbourmaster creates them from various sources. Going forward all ports should have a
+     <code>
+      .port.json
+     </code>
+     file and will be a requirement of submission to PortMaster.
+    </p>
+    <p>
+     We have an
+     <a href="https://kloptops.github.io/harbourmaster/port.html">
+      easy to use webpage
+     </a>
+     for adding
+     <code>
+      port.json
+     </code>
+     file directly to your ports zip files, it all runs locally in your webbrowser so its easy to use.
+    </p>
+    <h2>
+     Listing available ports:
+    </h2>
+    <p>
+     Harbourmaster has a list of sources where it fetches ports from, by default it comes with:
+    </p>
+    <table class="table table-bordered">
+     <thead>
+      <tr>
+       <th>
+        Source
+       </th>
+       <th>
+        Description
+       </th>
+       <th>
+        Source File
+       </th>
+      </tr>
+     </thead>
+     <tbody>
+      <tr>
+       <td>
+        PortMaster
+       </td>
+       <td>
+        This draws from the default portmaster repository, it uses the PortMasterV1 protocol.
+       </td>
+       <td>
+        <code>
+         020_portmaster.source.json
+        </code>
+       </td>
+      </tr>
+      <tr>
+       <td>
+        PortMaster Runtimes
+       </td>
+       <td>
+        This is where runtimes for different runtimes live, it uses the GitHubRawReleaseV1 protocol.
+       </td>
+       <td>
+        <code>
+         021_runtimes.source.json
+        </code>
+       </td>
+      </tr>
+     </tbody>
+    </table>
+    <p>
+     With these two sources portmaster behaves as usual.
+    </p>
+    <p>
+     What makes portmaster different is it is now possible to install additional port sources, so that additional repositories of ports can be sourced.
+    </p>
+    <table class="table table-bordered">
+     <thead>
+      <tr>
+       <th>
+        Source
+       </th>
+       <th>
+        Description
+       </th>
+       <th>
+        Source File
+       </th>
+      </tr>
+     </thead>
+     <tbody>
+      <tr>
+       <td>
+        Kloptops
+       </td>
+       <td>
+        This is a source for my own testing port releases, it uses the
+        <a href="https://github.com/kloptops/harbourmaster/tree/main/tools">
+         GitHubRepoV1
+        </a>
+        protocol.
+       </td>
+       <td>
+        <a href="https://raw.githubusercontent.com/kloptops/Portmaster-misc/main/releases/050_kloptops.source.json">
+         <code>
+          050_kloptops.source.json
+         </code>
+        </a>
+       </td>
+      </tr>
+     </tbody>
+    </table>
+    <p>
+     <em>
+      <strong>
+       Note
+      </strong>
+      : additional sources can be added, make a PR to get yours added
+     </em>
+    </p>
+    <h2>
+     Installing ports:
+    </h2>
+    <p>
+     Harbourmaster follows a specific process to identify and fetch the appropriate port for downloading.
+    </p>
+    <p>
+     Here's an overview of the steps involved:
+    </p>
+    <ul>
+     <li>
+      Port Identification: Ports are uniquely identified by their zip file names. Although this method may not be flawless, it has proven to be effective in practice.
+     </li>
+     <li>
+      Source Priority: Harbourmaster fetches ports from the sources provided, considering their priority order. The tool retrieves ports from the sources in the specified sequence.
+     </li>
+     <li>
+      Verification and Validation: Once a port is fetched from a source, Harbourmaster verifies its integrity. This involves checking if the downloaded port matches the supplied MD5 checksum. This verification ensures that the port is not corrupted or modified during the download process.
+     </li>
+     <li>
+      Zip Content Check: After the download is validated, Harbourmaster inspects the contents of the zip file. It checks for the presence of at least one bash file and a data directory. Additionally, it scans for any unusual files that could potentially override core operating system files.
+     </li>
+     <li>
+      Port Configuration: Harbourmaster ensures that a
+      <code>
+       &lt;portname&gt;.port.json
+      </code>
+      file exists for the port. This file contains relevant information about the port itself, which is combined with other data during the installation process to fully flesh it out.
+     </li>
+    </ul>
+    <p>
+     By following this process, Harbourmaster reliably identifies, fetches, and verifies ports from the specified sources, ensuring the integrity and consistency of the downloaded files.
+    </p>
+    <h2>
+     Keeping track of installed ports:
+    </h2>
+    <p>
+     Harbourmaster keeps track of installed ports by examining the ports folder and reading the
+     <code>
+      &lt;portname&gt;.port.json
+     </code>
+     files associated with each port. These JSON files provide information about the specific files and directories related to each port.
+    </p>
+    <p>
+     During this process, Harbourmaster performs the following checks and actions:
+    </p>
+    <ul>
+     <li>
+      Detection of Broken Ports: Harbourmaster verifies the presence of the files and directories indicated in the
+      <code>
+       &lt;portname&gt;.port.json
+      </code>
+      files for each installed port. If any of these files or directories are not found, it indicates that the port is broken or incomplete.
+     </li>
+     <li>
+      Identification of Unclaimed Files: Harbourmaster scans the files and directories within the ports folder to identify any files that have not been associated with a known port. These unclaimed files are then processed further.
+     </li>
+     <li>
+      Detection of Newly Installed Ports: Among the unclaimed files, Harbourmaster compares them against its database of known ports. If a match is found, indicating that a new port has been installed, Harbourmaster flags it as such.
+     </li>
+     <li>
+      Creation of
+      <code>
+       &lt;portname&gt;.port.json
+      </code>
+      File: For newly installed ports, Harbourmaster creates a corresponding
+      <code>
+       &lt;portname&gt;.port.json
+      </code>
+      file. This file contains the necessary information about the port, enabling Harbourmaster to manage and track it effectively.
+     </li>
+     <li>
+      Validation of Newly Found Ports: While processing newly found ports, Harbourmaster checks all associated files and directories. If any of these files or directories are missing, it identifies the port as broken or incomplete.
+     </li>
+    </ul>
+    <p>
+     By performing these checks and actions, Harbourmaster maintains an accurate record of installed ports, identifies broken ports, detects newly installed ports, and ensures the integrity of the associated files and directories. This also allows Harbourmaster to work with ports that are manually unzipped into the ports folder.
+    </p>
+    <h2>
+     Known Ports:
+    </h2>
+    <p>
+     Some ports, because of their nature, cannot or do not exist on PortMaster. So that harbourmaster can work as intended, we create a
+     <code>
+      .port.json
+     </code>
+     for them in the
+     <a href="https://github.com/kloptops/harbourmaster/tree/main/known-ports">
+      known-ports
+     </a>
+     directory. Please create a PR for any that you come across that we don't know about.
+    </p>
+    <h2>
+     Commands available:
+    </h2>
+    <table class="table table-bordered">
+     <thead>
+      <tr>
+       <th>
+        Command
+       </th>
+       <th>
+        Effect
+       </th>
+      </tr>
+     </thead>
+     <tbody>
+      <tr>
+       <td>
+        <code>
+         harbourmaster update
+        </code>
+       </td>
+       <td>
+        downloads the latest ports information
+       </td>
+      </tr>
+      <tr>
+       <td>
+        <code>
+         harbourmaster portsmd [filters]
+        </code>
+       </td>
+       <td>
+        generate a ports.md file compatible with PortMaster.sh
+       </td>
+      </tr>
+      <tr>
+       <td>
+        <code>
+         harbourmaster list [filters]
+        </code>
+       </td>
+       <td>
+        list available ports
+       </td>
+      </tr>
+      <tr>
+       <td>
+        <code>
+         harbourmaster ports
+        </code>
+       </td>
+       <td>
+        list installed, broken, and unknown ports.
+       </td>
+      </tr>
+      <tr>
+       <td>
+        <code>
+         harbourmaster install http[s]://&lt;url&gt;.zip[.md5/md5sum]
+        </code>
+       </td>
+       <td>
+        downloads a port from the specified url. If the url ends with md5/md5sum it assumes the url without the md5 is the ports zipfile. It will check the md5 against what is downloaded.
+       </td>
+      </tr>
+      <tr>
+       <td>
+        <code>
+         harbourmaster install [source/]&lt;portname&gt;.zip
+        </code>
+       </td>
+       <td>
+        downloads and installs the port from available sources.
+       </td>
+      </tr>
+      <tr>
+       <td>
+        <code>
+         harbourmaster uninstall &lt;portname&gt;.zip
+        </code>
+       </td>
+       <td>
+        Uninstall specified port.
+       </td>
+      </tr>
+      <tr>
+       <td>
+        <code>
+         harbourmaster runtimes_list
+        </code>
+       </td>
+       <td>
+        List available runtime environments
+       </td>
+      </tr>
+      <tr>
+       <td>
+        <code>
+         harbourmaster runtimes_check &lt;runtime&gt;
+        </code>
+       </td>
+       <td>
+        Installs the specified runtime if it is not installed
+       </td>
+      </tr>
+      <tr>
+       <td>
+        <code>
+         harbourmaster upgrade harbourmaster
+        </code>
+       </td>
+       <td>
+        Updates harbourmaster against the latest version on github
+       </td>
+      </tr>
+     </tbody>
+    </table>
+    <h2>
+     Python libraries used:
+    </h2>
+    <ul>
+     <li>
+      <a href="https://pypi.org/project/ansimarkup/">
+       ansimarkup
+      </a>
+     </li>
+     <li>
+      <a href="https://pypi.org/project/certifi/">
+       certifi
+      </a>
+     </li>
+     <li>
+      <a href="https://pypi.org/project/colorama/">
+       colorama
+      </a>
+     </li>
+     <li>
+      <a href="https://pypi.org/project/fastjsonschema/">
+       fastjsonschema
+      </a>
+     </li>
+     <li>
+      <a href="https://pypi.org/project/idna/">
+       idna
+      </a>
+     </li>
+     <li>
+      <a href="https://pypi.org/project/loguru/">
+       loguru
+      </a>
+     </li>
+     <li>
+      <a href="https://github.com/mcpalmer1980/port_gui">
+       port_gui
+      </a>
+      - used as pySDL2gui
+     </li>
+     <li>
+      <a href="https://pypi.org/project/pypng/">
+       pypng
+      </a>
+     </li>
+     <li>
+      <a href="https://pypi.org/project/qrcode/">
+       pyqrcode
+      </a>
+     </li>
+     <li>
+      <a href="https://pypi.org/project/PySDL2/">
+       PySDL2
+      </a>
+     </li>
+     <li>
+      <a href="https://pypi.org/project/requests/">
+       requests
+      </a>
+     </li>
+     <li>
+      <a href="https://pypi.org/project/typing-extensions/">
+       typing-extensions
+      </a>
+     </li>
+     <li>
+      <a href="https://pypi.org/project/urllib3/">
+       urllib3
+      </a>
+     </li>
+    </ul>
+    <script>
+     anchors.options.visible = 'always';
         anchors.add();
-      </script>
-    </main>
-
-    <footer class="my-5 pt-5 text-body-secondary text-center text-small">
-    </footer>
+    </script>
+   </main>
+   <footer class="my-5 pt-5 text-body-secondary text-center text-small">
+   </footer>
   </div>
-
-</body>
-
+ </body>
 </html>
