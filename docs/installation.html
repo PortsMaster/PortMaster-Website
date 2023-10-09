@@ -10,6 +10,7 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/anchor-js/anchor.min.js"></script>
   <title>Installation</title>
 
 </head>
@@ -135,9 +136,60 @@
   <br>
   <div class="container">
     <main>
-      <md-block
-        src="https://raw.githubusercontent.com/PortsMaster/PortMaster-Website/main/content/markdown/installation.markdown">
-      </md-block>
+      <h2>Installing PortMaster</h2>
+<p><a href="https://github.com/PortsMaster/PortMaster-GUI/releases/latest">Download</a></p>
+<p>To install PortMaster download the PortMaster.zip from the link above, unzip it and place it in the appropriate folder for your CFW.</p>
+<table>
+<thead>
+<tr>
+<th>CFW</th>
+<th>Location</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>AmberElec</td>
+<td>/storage/roms/ports/</td>
+</tr>
+<tr>
+<td>ArkOS</td>
+<td>/roms(or roms2)/tools/</td>
+</tr>
+<tr>
+<td>JELOS</td>
+<td>/storage/roms/ports/</td>
+</tr>
+<tr>
+<td>TheRA</td>
+<td>/opt/tools/</td>
+</tr>
+<tr>
+<td>UnofficialOS</td>
+<td>/storage/roms/ports/</td>
+</tr>
+</tbody>
+</table>
+<p>If your CFW is not listed above, it will most likely be in one of the above locations.</p>
+<h2>JELOS</h2>
+<p>To get it to work on JELOS:</p>
+<ul>
+<li>Go to <code>Tools -&gt; Start PortMaster</code> first then exit.</li>
+<li>Unzip PortMaster.zip and copy <code>PortMaster/</code> directory and all its contents into <code>/storage/roms/ports</code>.</li>
+<li>Restart EmulationStation</li>
+<li>You can now run <code>PortMaster</code> in the <code>PortMaster</code> directory.</li>
+<li><strong>WARNING</strong>: If you do <code>Tools -&gt; Start PortMaster</code> it will delete the <code>PortMaster.sh</code> and you will need to extract it from the zip again.</li>
+</ul>
+<h2>Other CFW</h2>
+<p>For the other CFW it is as simple as:</p>
+<ul>
+<li>Unzip PortMaster.zip and copy <code>PortMaster/</code> directory and all its contents into directory listed above.</li>
+<li><strong>If you're using ArkOS</strong>, you will need to move the <code>/roms(or roms2)/tools/PortMaster/PortMaster.sh</code> up one directory to <code>/roms(or roms2)/tools/PortMaster.sh</code></li>
+</ul>
+
+      <script>
+        anchors.options.visible = 'always';
+        anchors.add();
+      </script>
     </main>
 
     <footer class="my-5 pt-5 text-body-secondary text-center text-small">
