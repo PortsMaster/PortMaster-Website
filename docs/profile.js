@@ -66,7 +66,7 @@ function createCard(data) {
     const dateUpdated = document.createElement('p');
     dateUpdated.setAttribute("class","card-text text-body-secondary");
     dateUpdated.setAttribute("style","padding-top: 10px")
-    dateUpdated.textContent = "Updated: " + data.status.date_updated;
+    dateUpdated.textContent = "Updated: " + data.source.date_updated;
 
 
     const div4 = document.createElement('div');
@@ -79,7 +79,7 @@ function createCard(data) {
     button.setAttribute("type", "button");
     button.textContent = "Download"
     button.setAttribute("class","btn btn-sm btn-outline-primary");
-    button.setAttribute("onclick", "window.location.href='" + data.status.download_url + "';");
+    button.setAttribute("onclick", "window.location.href='" + data.source.download_url + "';");
 
     div5.appendChild(button);
 
@@ -120,6 +120,7 @@ function displayCards(data) {
 
 // Function to filter the cards based on the search query
 function filterCards() {
+
     const searchQuery = getUrlParameter('porter');
     var filteredData = {}
     for (var key of Object.keys(jsonData)) {
@@ -127,6 +128,10 @@ function filterCards() {
             filteredData[key] = jsonData[key];
         }
     };
+
+    var availablePorts = document.getElementById("port-count");
+    availablePorts.textContent = Object.keys(filteredData).length + " ports available";
+
     displayCards(filteredData);
     const nameElement = document.getElementById("name");
     const descriptionElement = document.getElementById("bio");
@@ -180,6 +185,9 @@ async function fetchDataAndDisplayCards() {
         }
         jsonData = await response.json();
         jsonData = jsonData.ports
+
+
+
         filterCards();
     } catch (error) {
         console.error('Error fetching JSON data:', error);
