@@ -138,11 +138,11 @@
     <div class="container">
         <main>
           <h2>What is PortMaster?</h2>
-<p><strong>PortMaster</strong> is a simple GUI tool designed to facilitate the downloading and installation of game ports for linux handheld devices. </p>
+<p><strong>PortMaster</strong> is a simple GUI tool designed to facilitate the downloading and installation of game ports for linux handheld devices.</p>
 <p>One of the goals of PortMaster is to not install or upgrade any existing OS libraries for any ports. Any of the ports that need a particular non-standard library are maintained within the ports' folder and made available specifically to that port during execution.</p>
 <p>Through the volunteer contributions of the mighty <strong>Port Navigators</strong>, most of the the ports available through PortMaster have been configured to launch with proper controls for the various devices that are supported.</p>
-<h2>What Devices are supported? ##</h2>
-<p>The full list of supported devices can be found here: </p>
+<h2>What Devices are supported?</h2>
+<p>The full list of supported devices can be found here:</p>
 <h2>How can I install PortMaster?</h2>
 <p>A Guide to install Portmaster can be found <a href="https://portmaster.games/supported-devices.html">here</a></p>
 <h2>Do I have to use PortMaster to install ports?</h2>
@@ -150,32 +150,41 @@
 <p>Keep in mind that some games require Runtimes that can be downloaded from (Runtime Link)</p>
 <p>For ArkOS on the RG351V &amp; 353V/S/RG353P/S or RG351MP, if SD2 is being used for roms, unzip the port to the /roms2/ports folder instead and copy the PortMaster folder to the /roms2/tools location. A few additional ports are available on the large releases repo <a href="https://github.com/PortsMaster/PortMaster-Releases/releases">https://github.com/PortsMaster/PortMaster-Releases/releases</a> due to their size (ex. SuperTux, Ur Quan Masters, and FreedroidRPG).</p>
 <h2>How do I get more info about the ports in PortMaster like the sources used and additional asset needs if applicable?</h2>
-<p>You can find all Ports with included instructions on the PortMaster Wiki 
-https://portmaster.games/wiki.html</p>
+<p>You can find all Ports with included instructions on the PortMaster Wiki
+<a href="https://portmaster.games/wiki.html">https://portmaster.games/wiki.html</a></p>
 <h2>If there are updates to Ports, how will that work?</h2>
 <p>Just run PortMaster and reinstall the port. You can also unzip the associated <code>.zip</code> for the port you want and unzip the contents of it to the ports folder. This should install the latest port related files if they've been updated in PortMaster. In most cases, it should not impact any existing game data you had to provide or existing saves unless the updated port made changes to the port backend that impacts previous saves.</p>
 <h2>How can I help add ports to PortMaster?</h2>
-<p>See our Contribute section on https://portmaster.games/ 
+<p>See our Contribute section on <a href="https://portmaster.games/">https://portmaster.games/</a>
 If you have any questions about the process not detailed in the documentation feel free to reach out on our Discord Server.</p>
 <h2>How can I run my Port via ssh to troubleshoot any starting issues?</h2>
 <p>Download Putty:
-https://the.earth.li/~sgtatham/putty/latest/w64/putty.exe</p>
+<a href="https://the.earth.li/~sgtatham/putty/latest/w64/putty.exe">https://the.earth.li/~sgtatham/putty/latest/w64/putty.exe</a></p>
 <ul>
-<li>Start Putty</li>
-<li>Enter your Device IP</li>
-<li>Open</li>
+<li>
+<p>Start Putty</p>
+</li>
+<li>
+<p>Enter your Device IP</p>
+</li>
+<li>
+<p>Open</p>
+</li>
 <li>
 <p>Enter your ssh credentials</p>
 <p>Amberelec: root / amberelec
-ArkOS    : ark / ark 
-Jelos    : root / check under system settings
-- enter</p>
+ArkOS    : ark / ark
+Jelos    : root / check under system settings</p>
+</li>
+<li>
+<p>enter</p>
 </li>
 </ul>
 <pre><code>cd /roms/ports/
 ./WhateveryourgameIsCalled.sh
 </code></pre>
 <p>You can then mark the output with your mouse and with ctrl + c / ctrl + v paste it into the ports-help channel on discord.</p>
+
           <script>
             anchors.options.visible = 'always';
             anchors.add();

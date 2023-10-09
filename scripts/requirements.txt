@@ -1,4 +1,2 @@
 requests
-markdown
-markdown-checklist
-mdx_truly_sane_lists
+cmarkgfm

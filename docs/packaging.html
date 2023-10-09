@@ -141,8 +141,10 @@
 <h2>To release a Port on PortMaster we have some guidelines that need to be followed:</h2>
 <h1>Package Structure</h1>
 <ul>
-<li><a href="#">ports/</a><ul>
-<li><a href="#">portname/</a><ul>
+<li><a href="#">ports/</a>
+<ul>
+<li><a href="#">portname/</a>
+<ul>
 <li><a href="#">README</a></li>
 <li><a href="#">portname.port.json</a></li>
 <li><a href="#">licensefile</a></li>
@@ -370,10 +372,10 @@ printf &quot;\033c&quot; &gt; /dev/tty0
 Original version by:
 http://akawaka.csn.ul.ie/abombniball.php3
 
-Portmaster Version:     
+Portmaster Version: 	
 
 - Cebion https://github.com/Cebion
-
+	
 Description 
 ===========
 The objective of Abombniball is to defuse all the explosives on each level.
@@ -389,36 +391,48 @@ git clone git@github.com:Cebion/Abombniball.git
 cd Abombniball
 ./configure
 make
-
+ 
 Controls:
 =============
 
-DPAD        = Move
+DPAD		= Move
 </code></pre>
 <h1>Port.json</h1>
 <p>The Port.json contains all metadata on ports that our GUI and Wiki needs to properly display and install Ports.
-You can use following Port JSON Generator to generate a port.json file for you (https://portmaster.games/port-json.html)</p>
-<p>Following Info needs to be added:
-- Port Title
-- Zip File Name
-- Script Name
-- Directory Name
-- Genres
-- Porter 
-- Description
-- Instructions what files or directions are needed to make the port work
-- Runtime</p>
+You can use following Port JSON Generator to generate a port.json file for you (<a href="https://portmaster.games/port-json.html">https://portmaster.games/port-json.html</a>)</p>
+<p>Following Info needs to be added:</p>
+<ul>
+<li>Port Title</li>
+<li>Zip File Name</li>
+<li>Script Name</li>
+<li>Directory Name</li>
+<li>Genres</li>
+<li>Porter</li>
+<li>Description</li>
+<li>Instructions what files or directions are needed to make the port work</li>
+<li>Runtime</li>
+</ul>
 <h1>Licensefile</h1>
 <ul>
-<li>Please add licensefiles for all sources and assets you used
-For example:</li>
-</ul>
-<ul>
-<li>game project open source file (if it's an open source game)</li>
-<li>gptokeyb license file</li>
-<li>sdl1.2 compat license file</li>
-<li>gl4es license file</li>
-<li>box86 / box64 license files</li>
+<li>
+<p>Please add licensefiles for all sources and assets you used
+For example:</p>
+</li>
+<li>
+<p>game project open source file (if it's an open source game)</p>
+</li>
+<li>
+<p>gptokeyb license file</p>
+</li>
+<li>
+<p>sdl1.2 compat license file</p>
+</li>
+<li>
+<p>gl4es license file</p>
+</li>
+<li>
+<p>box86 / box64 license files</p>
+</li>
 </ul>
 <h1>Screenshot</h1>
 <p>For use in the PortMaster GUI aswell as for the Wiki we need a screenshot of the gameplay or main function of the Port.
@@ -426,7 +440,8 @@ A title screenshot would not show actual content of the port.
 The screenshot has to be at least 640x480 in dimensions and format can either be .jpg or .png
 For naming its portname.screenshot.png</p>
 <p>After putting all these files in one place please zip these files using regular zip.</p>
-<p>With this you can now go ahead to make a Pull Request on our main Portmaster Repo (if you tested the Port for all major cfws / devices of course) </p>
+<p>With this you can now go ahead to make a Pull Request on our main Portmaster Repo (if you tested the Port for all major cfws / devices of course)</p>
+
       <script>
         anchors.options.visible = 'always';
         anchors.add();

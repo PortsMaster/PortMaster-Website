@@ -150,21 +150,19 @@
 <ul>
 <li>
 <p><strong>For 32-bit Arm environment:</strong></p>
-<p><code>bash
-sudo chroot /mnt/data/armhf/</code>
-or create an Arm32 shortcut on the desktop GUI and click on it.</p>
+<pre lang="bash"><code>sudo chroot /mnt/data/armhf/
+</code></pre>
+<p>or create an Arm32 shortcut on the desktop GUI and click on it.</p>
 </li>
-</ul>
-<ul>
 <li>
 <p><strong>For 64-bit Arm environment:</strong></p>
-<p><code>bash
-sudo chroot /mnt/data/arm64/</code>
-or create an Arm64 shortcut on the desktop GUI and click on it.</p>
+<pre lang="bash"><code>sudo chroot /mnt/data/arm64/
+</code></pre>
+<p>or create an Arm64 shortcut on the desktop GUI and click on it.</p>
 </li>
 </ul>
 <h4>Helpful Tools to Install:</h4>
-<pre><code class="language-bash">apt -y install build-essential git wget libdrm-dev python3 python3-pip python3-setuptools python3-wheel ninja-build libopenal-dev premake4 autoconf libevdev-dev ffmpeg libsnappy-dev libboost-tools-dev magics++ libboost-thread-dev libboost-all-dev pkg-config zlib1g-dev libpng-dev libsdl2-dev clang cmake cmake-data libarchive13 libcurl4 libfreetype6-dev libjsoncpp1 librhash0 libuv1 mercurial mercurial-common libgbm-dev libsdl2-ttf-2.0-0 libsdl2-ttf-dev
+<pre lang="bash"><code>apt -y install build-essential git wget libdrm-dev python3 python3-pip python3-setuptools python3-wheel ninja-build libopenal-dev premake4 autoconf libevdev-dev ffmpeg libsnappy-dev libboost-tools-dev magics++ libboost-thread-dev libboost-all-dev pkg-config zlib1g-dev libpng-dev libsdl2-dev clang cmake cmake-data libarchive13 libcurl4 libfreetype6-dev libjsoncpp1 librhash0 libuv1 mercurial mercurial-common libgbm-dev libsdl2-ttf-2.0-0 libsdl2-ttf-dev
 </code></pre>
 <h3>2. WSL2 chroot</h3>
 <p>For more information, visit the <a href="https://github.com/Cebion/Portmaster_builds">GitHub Repository</a>.</p>
@@ -173,120 +171,99 @@ or create an Arm64 shortcut on the desktop GUI and click on it.</p>
 <ul>
 <li>
 <p>Install required packages on Ubuntu 20.04 LTS WSL 2:</p>
-<p><code>bash
-sudo apt install build-essential binfmt-support daemonize libarchive-tools qemu-system qemu-user qemu-user-static gcc-aarch64-linux-gnu g++-aarch64-linux-gnu</code></p>
+<pre lang="bash"><code>sudo apt install build-essential binfmt-support daemonize libarchive-tools qemu-system qemu-user qemu-user-static gcc-aarch64-linux-gnu g++-aarch64-linux-gnu
+</code></pre>
 </li>
-</ul>
-<ul>
-<li>Download 20.04 Focal server-cloudimg-arm64-wsl.rootfs.tar.gz from Ubuntu Cloud image. <a href="https://cloud-images.ubuntu.com/releases/">Ubuntu Cloud Image</a></li>
-</ul>
-<ul>
+<li>
+<p>Download 20.04 Focal server-cloudimg-arm64-wsl.rootfs.tar.gz from Ubuntu Cloud image. <a href="https://cloud-images.ubuntu.com/releases/">Ubuntu Cloud Image</a></p>
+</li>
 <li>
 <p>Extract the tarball in a folder:</p>
-<p><code>bash
-mkdir folder
-sudo bsdtar -xpf ubuntu-20.04-server-cloudimg-arm64-wsl.rootfs.tar.gz -C folder</code></p>
+<pre lang="bash"><code>mkdir folder
+sudo bsdtar -xpf ubuntu-20.04-server-cloudimg-arm64-wsl.rootfs.tar.gz -C folder
+</code></pre>
 </li>
-</ul>
-<ul>
 <li>
 <p>Copy qemu static binary into that folder:</p>
-<p><code>bash
-sudo cp /usr/bin/qemu-aarch64-static folder/usr/bin</code></p>
+<pre lang="bash"><code>sudo cp /usr/bin/qemu-aarch64-static folder/usr/bin
+</code></pre>
 </li>
-</ul>
-<ul>
 <li>
 <p>Start systemd with daemonize:</p>
-<p><code>bash
-sudo daemonize /usr/bin/unshare -fp --mount-proc /lib/systemd/systemd --system-unit=basic.target</code></p>
+<pre lang="bash"><code>sudo daemonize /usr/bin/unshare -fp --mount-proc /lib/systemd/systemd --system-unit=basic.target
+</code></pre>
 </li>
-</ul>
-<ul>
 <li>
 <p>Check if AARCH64 binfmt entry is present:</p>
-<p><code>bash
-ls /proc/sys/fs/binfmt_misc/</code></p>
+<pre lang="bash"><code>ls /proc/sys/fs/binfmt_misc/
+</code></pre>
 </li>
-</ul>
-<ul>
 <li>
 <p>Mount and chroot into the environment:</p>
-<p><code>bash
-sudo mount -o bind /proc folder/proc
-sudo mount -o bind /dev folder/dev
-sudo chroot folder qemu-aarch64-static /bin/bash</code></p>
-</li>
-</ul>
-<ul>
-<li>
-<p>In the chroot, delete /etc/resolv.conf file and write a name server to it.</p>
-<p><code>bash
-rm /etc/resolv.conf
-echo "nameserver 8.8.8.8" &gt; /etc/resolv.conf</code></p>
-</li>
-</ul>
-<ul>
-<li>Exit chroot</li>
-</ul>
-<ul>
-<li>
-<p>Create chroot.sh:</p>
-<p>```bash</p>
-<h1>!/bin/bash</h1>
-<p>sudo daemonize /usr/bin/unshare -fp --mount-proc /lib/systemd/systemd --system-unit=basic.target</p>
-<p>sudo mount -o bind /proc folder/proc
+<pre lang="bash"><code>sudo mount -o bind /proc folder/proc
 sudo mount -o bind /dev folder/dev
 sudo chroot folder qemu-aarch64-static /bin/bash
-```</p>
+</code></pre>
 </li>
-</ul>
-<ul>
+<li>
+<p>In the chroot, delete /etc/resolv.conf file and write a name server to it.</p>
+<pre lang="bash"><code>rm /etc/resolv.conf
+echo &quot;nameserver 8.8.8.8&quot; &gt; /etc/resolv.conf
+</code></pre>
+</li>
+<li>
+<p>Exit chroot</p>
+</li>
+<li>
+<p>Create chroot.sh:</p>
+<pre lang="bash"><code>#!/bin/bash
+
+sudo daemonize /usr/bin/unshare -fp --mount-proc /lib/systemd/systemd --system-unit=basic.target
+
+sudo mount -o bind /proc folder/proc
+sudo mount -o bind /dev folder/dev
+sudo chroot folder qemu-aarch64-static /bin/bash
+</code></pre>
+</li>
 <li>
 <p>Make the chroot.sh executable:</p>
-<p><code>bash
-chmod +x chroot.sh</code></p>
+<pre lang="bash"><code>chmod +x chroot.sh
+</code></pre>
 </li>
-</ul>
-<ul>
 <li>
 <p>Chroot into the new environment:</p>
-<p><code>bash
-sudo ./chroot.sh</code></p>
+<pre lang="bash"><code>sudo ./chroot.sh
+</code></pre>
 </li>
-</ul>
-<ul>
 <li>
 <p>Update &amp; Upgrade the chroot:</p>
-<p><code>bash
-apt-get update &amp;&amp; apt-get upgrade</code></p>
+<pre lang="bash"><code>apt-get update &amp;&amp; apt-get upgrade 
+</code></pre>
 </li>
-</ul>
-<ul>
 <li>
 <p>Helpful development tools &amp; libraries to have in the chroot:</p>
-<p><code>bash
-apt-get install --no-install-recommends build-essential git wget libdrm-dev python3 python3-pip python3-setuptools python3-wheel ninja-build libopenal-dev premake4 autoconf libevdev-dev ffmpeg libboost-tools-dev magics++ libboost-thread-dev libboost-all-dev pkg-config zlib1g-dev libsdl-mixer1.2-dev libsdl1.2-dev libsdl-gfx1.2-dev libsdl2-mixer-dev clang cmake cmake-data libarchive13 libcurl4 libfreetype6-dev librhash0 libuv1 mercurial mercurial-common libgbm-dev libsdl-image1.2-dev</code></p>
+<pre lang="bash"><code>apt-get install --no-install-recommends build-essential git wget libdrm-dev python3 python3-pip python3-setuptools python3-wheel ninja-build libopenal-dev premake4 autoconf libevdev-dev ffmpeg libboost-tools-dev magics++ libboost-thread-dev libboost-all-dev pkg-config zlib1g-dev libsdl-mixer1.2-dev libsdl1.2-dev libsdl-gfx1.2-dev libsdl2-mixer-dev clang cmake cmake-data libarchive13 libcurl4 libfreetype6-dev librhash0 libuv1 mercurial mercurial-common libgbm-dev libsdl-image1.2-dev
+</code></pre>
 </li>
-</ul>
-<ul>
 <li>
 <p>Install custom SDL2 Libraries for better compatibility:</p>
-<p>```bash
-rm /usr/lib/aarch64-linux-gnu/libSDL2.<em> 
-rm -rf /usr/lib/aarch64-linux-gnu/libSDL2-2.0.so</em></p>
-<p>wget https://github.com/libsdl-org/SDL/archive/refs/tags/release-2.26.2.tar.gz
+<pre lang="bash"><code>rm /usr/lib/aarch64-linux-gnu/libSDL2.* 
+rm -rf /usr/lib/aarch64-linux-gnu/libSDL2-2.0.so*
+
+wget https://github.com/libsdl-org/SDL/archive/refs/tags/release-2.26.2.tar.gz
 ./configure --prefix=/usr
 make -j8
-make install</p>
-<p>/sbin/ldconfig
-```</p>
+make install
+
+/sbin/ldconfig
+</code></pre>
 </li>
 </ul>
 <h3>3. Create Your Own chroot</h3>
 <p>As per <a href="https://github.com/christianhaitian/arkos/wiki/Building#to-create-debian-based-chroots-in-a-linux-environment">this guide</a>.</p>
 <h3>4. Cross-Compiling Tools for AARCH64</h3>
 <p>With the arm64 SDL2 library, etc.</p>
+
       <!---
        <div  id="markdown">
 
