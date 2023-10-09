@@ -1,4 +1,4 @@
-name: Download ports.json
+name: Rebuild website content
 
 on:
   push
