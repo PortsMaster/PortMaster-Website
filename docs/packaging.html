@@ -1,174 +1,280 @@
-<!doctype html>
-<html lang="en" data-bs-theme="auto">
-
-<head>
-  <script src="color-modes.js"></script>
-  <script type="module" src="https://md-block.verou.me/md-block.js"></script>
-  <link rel="stylesheet" href="shared.css">
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
-  
- <script src="https://cdn.jsdelivr.net/npm/anchor-js/anchor.min.js"></script>
-  <title>Packaging</title>
-
-</head>
-
-<body class="bg-body-tertiary">
-  <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
-    <symbol id="check2" viewBox="0 0 16 16">
-      <path
-        d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z" />
-    </symbol>
-    <symbol id="circle-half" viewBox="0 0 16 16">
-      <path d="M8 15A7 7 0 1 0 8 1v14zm0 1A8 8 0 1 1 8 0a8 8 0 0 1 0 16z" />
-    </symbol>
-    <symbol id="moon-stars-fill" viewBox="0 0 16 16">
-      <path
-        d="M6 .278a.768.768 0 0 1 .08.858 7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278z" />
-      <path
-        d="M10.794 3.148a.217.217 0 0 1 .412 0l.387 1.162c.173.518.579.924 1.097 1.097l1.162.387a.217.217 0 0 1 0 .412l-1.162.387a1.734 1.734 0 0 0-1.097 1.097l-.387 1.162a.217.217 0 0 1-.412 0l-.387-1.162A1.734 1.734 0 0 0 9.31 6.593l-1.162-.387a.217.217 0 0 1 0-.412l1.162-.387a1.734 1.734 0 0 0 1.097-1.097l.387-1.162zM13.863.099a.145.145 0 0 1 .274 0l.258.774c.115.346.386.617.732.732l.774.258a.145.145 0 0 1 0 .274l-.774.258a1.156 1.156 0 0 0-.732.732l-.258.774a.145.145 0 0 1-.274 0l-.258-.774a1.156 1.156 0 0 0-.732-.732l-.774-.258a.145.145 0 0 1 0-.274l.774-.258c.346-.115.617-.386.732-.732L13.863.1z" />
-    </symbol>
-    <symbol id="sun-fill" viewBox="0 0 16 16">
-      <path
-        d="M8 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z" />
-    </symbol>
+<!DOCTYPE html>
+<html data-bs-theme="auto" lang="en">
+ <head>
+  <script src="color-modes.js">
+  </script>
+  <script src="https://md-block.verou.me/md-block.js" type="module">
+  </script>
+  <link href="shared.css" rel="stylesheet"/>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1" name="viewport"/>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js">
+  </script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet"/>
+  <script src="https://cdn.jsdelivr.net/npm/anchor-js/anchor.min.js">
+  </script>
+  <title>
+   Packaging
+  </title>
+ </head>
+ <body class="bg-body-tertiary">
+  <svg class="d-none" xmlns="http://www.w3.org/2000/svg">
+   <symbol id="check2" viewbox="0 0 16 16">
+    <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z">
+    </path>
+   </symbol>
+   <symbol id="circle-half" viewbox="0 0 16 16">
+    <path d="M8 15A7 7 0 1 0 8 1v14zm0 1A8 8 0 1 1 8 0a8 8 0 0 1 0 16z">
+    </path>
+   </symbol>
+   <symbol id="moon-stars-fill" viewbox="0 0 16 16">
+    <path d="M6 .278a.768.768 0 0 1 .08.858 7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278z">
+    </path>
+    <path d="M10.794 3.148a.217.217 0 0 1 .412 0l.387 1.162c.173.518.579.924 1.097 1.097l1.162.387a.217.217 0 0 1 0 .412l-1.162.387a1.734 1.734 0 0 0-1.097 1.097l-.387 1.162a.217.217 0 0 1-.412 0l-.387-1.162A1.734 1.734 0 0 0 9.31 6.593l-1.162-.387a.217.217 0 0 1 0-.412l1.162-.387a1.734 1.734 0 0 0 1.097-1.097l.387-1.162zM13.863.099a.145.145 0 0 1 .274 0l.258.774c.115.346.386.617.732.732l.774.258a.145.145 0 0 1 0 .274l-.774.258a1.156 1.156 0 0 0-.732.732l-.258.774a.145.145 0 0 1-.274 0l-.258-.774a1.156 1.156 0 0 0-.732-.732l-.774-.258a.145.145 0 0 1 0-.274l.774-.258c.346-.115.617-.386.732-.732L13.863.1z">
+    </path>
+   </symbol>
+   <symbol id="sun-fill" viewbox="0 0 16 16">
+    <path d="M8 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z">
+    </path>
+   </symbol>
   </svg>
-
   <div class="dropdown position-fixed bottom-0 end-0 mb-3 me-3 bd-mode-toggle">
-    <button class="btn btn-bd-primary py-2 dropdown-toggle d-flex align-items-center" id="bd-theme" type="button"
-      aria-expanded="false" data-bs-toggle="dropdown" aria-label="Toggle theme (auto)">
-      <svg class="bi my-1 theme-icon-active" width="1em" height="1em">
-        <use href="#circle-half"></use>
+   <button aria-expanded="false" aria-label="Toggle theme (auto)" class="btn btn-bd-primary py-2 dropdown-toggle d-flex align-items-center" data-bs-toggle="dropdown" id="bd-theme" type="button">
+    <svg class="bi my-1 theme-icon-active" height="1em" width="1em">
+     <use href="#circle-half">
+     </use>
+    </svg>
+    <span class="visually-hidden" id="bd-theme-text">
+     Toggle theme
+    </span>
+   </button>
+   <ul aria-labelledby="bd-theme-text" class="dropdown-menu dropdown-menu-end shadow">
+    <li>
+     <button aria-pressed="false" class="dropdown-item d-flex align-items-center" data-bs-theme-value="light" type="button">
+      <svg class="bi me-2 opacity-50 theme-icon" height="1em" width="1em">
+       <use href="#sun-fill">
+       </use>
       </svg>
-      <span class="visually-hidden" id="bd-theme-text">Toggle theme</span>
-    </button>
-    <ul class="dropdown-menu dropdown-menu-end shadow" aria-labelledby="bd-theme-text">
-      <li>
-        <button type="button" class="dropdown-item d-flex align-items-center" data-bs-theme-value="light"
-          aria-pressed="false">
-          <svg class="bi me-2 opacity-50 theme-icon" width="1em" height="1em">
-            <use href="#sun-fill"></use>
-          </svg>
-          Light
-          <svg class="bi ms-auto d-none" width="1em" height="1em">
-            <use href="#check2"></use>
-          </svg>
-        </button>
-      </li>
-      <li>
-        <button type="button" class="dropdown-item d-flex align-items-center" data-bs-theme-value="dark"
-          aria-pressed="false">
-          <svg class="bi me-2 opacity-50 theme-icon" width="1em" height="1em">
-            <use href="#moon-stars-fill"></use>
-          </svg>
-          Dark
-          <svg class="bi ms-auto d-none" width="1em" height="1em">
-            <use href="#check2"></use>
-          </svg>
-        </button>
-      </li>
-      <li>
-        <button type="button" class="dropdown-item d-flex align-items-center active" data-bs-theme-value="auto"
-          aria-pressed="true">
-          <svg class="bi me-2 opacity-50 theme-icon" width="1em" height="1em">
-            <use href="#circle-half"></use>
-          </svg>
-          Auto
-          <svg class="bi ms-auto d-none" width="1em" height="1em">
-            <use href="#check2"></use>
-          </svg>
-        </button>
-      </li>
-    </ul>
+      Light
+      <svg class="bi ms-auto d-none" height="1em" width="1em">
+       <use href="#check2">
+       </use>
+      </svg>
+     </button>
+    </li>
+    <li>
+     <button aria-pressed="false" class="dropdown-item d-flex align-items-center" data-bs-theme-value="dark" type="button">
+      <svg class="bi me-2 opacity-50 theme-icon" height="1em" width="1em">
+       <use href="#moon-stars-fill">
+       </use>
+      </svg>
+      Dark
+      <svg class="bi ms-auto d-none" height="1em" width="1em">
+       <use href="#check2">
+       </use>
+      </svg>
+     </button>
+    </li>
+    <li>
+     <button aria-pressed="true" class="dropdown-item d-flex align-items-center active" data-bs-theme-value="auto" type="button">
+      <svg class="bi me-2 opacity-50 theme-icon" height="1em" width="1em">
+       <use href="#circle-half">
+       </use>
+      </svg>
+      Auto
+      <svg class="bi ms-auto d-none" height="1em" width="1em">
+       <use href="#check2">
+       </use>
+      </svg>
+     </button>
+    </li>
+   </ul>
   </div>
-
-  <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark" aria-label="Fourth navbar example">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="index.html">
-        <img height="35px" src="https://raw.githubusercontent.com/PortsMaster/PortMaster-Website/main/logo.svg" />
-      </a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample04"
-        aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarsExample04">
-        <ul class="navbar-nav me-auto mb-2 mb-md-0">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="https://discord.gg/JxYBp9HTAY">Discord</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="https://github.com/PortsMaster">GitHub</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="faq.html">FAQ</a>
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="wiki.html">Wiki</a>
-          </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">Portmaster</a>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="installation.html">Installation</a></li>
-              <li><a class="dropdown-item" href="runtimes.html">Runtimes</a></li>
-              <li><a class="dropdown-item" href="supported-devices.html">Supported Devices</a></li>
-              <li><a class="dropdown-item" href="gptokeyb-documentation.html">Gptokeyb Documentation</a></li>
-              <li><a class="dropdown-item" href="harbourmaster.html">Harbourmaster</a></li>
-            </ul>
-          </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">Contribute</a>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="porting.html">Porting</a></li>
-              <li><a class="dropdown-item" href="packaging.html">Packaging</a></li>
-              <li><a class="dropdown-item" href="build-environments.html">Build Environments</a></li>
-              <li><a class="dropdown-item" href="port-tools.html">Port Tools</a></li>
-              <li><a class="dropdown-item" href="port-json.html">Port JSON Generator</a></li>
-            </ul>
-          </li>
-          </li>
+  <nav aria-label="Fourth navbar example" class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+   <div class="container-fluid">
+    <a class="navbar-brand" href="index.html">
+     <img height="35px" src="https://raw.githubusercontent.com/PortsMaster/PortMaster-Website/main/logo.svg"/>
+    </a>
+    <button aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-bs-target="#navbarsExample04" data-bs-toggle="collapse" type="button">
+     <span class="navbar-toggler-icon">
+     </span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarsExample04">
+     <ul class="navbar-nav me-auto mb-2 mb-md-0">
+      <li class="nav-item">
+       <a aria-current="page" class="nav-link active" href="https://discord.gg/JxYBp9HTAY">
+        Discord
+       </a>
+      </li>
+      <li class="nav-item">
+       <a aria-current="page" class="nav-link active" href="https://github.com/PortsMaster">
+        GitHub
+       </a>
+      </li>
+      <li class="nav-item">
+       <a aria-current="page" class="nav-link active" href="faq.html">
+        FAQ
+       </a>
+       <li class="nav-item">
+        <a aria-current="page" class="nav-link active" href="wiki.html">
+         Wiki
+        </a>
+       </li>
+       <li class="nav-item dropdown">
+        <a aria-expanded="false" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#">
+         Portmaster
+        </a>
+        <ul class="dropdown-menu">
+         <li>
+          <a class="dropdown-item" href="installation.html">
+           Installation
+          </a>
+         </li>
+         <li>
+          <a class="dropdown-item" href="runtimes.html">
+           Runtimes
+          </a>
+         </li>
+         <li>
+          <a class="dropdown-item" href="supported-devices.html">
+           Supported Devices
+          </a>
+         </li>
+         <li>
+          <a class="dropdown-item" href="gptokeyb-documentation.html">
+           Gptokeyb Documentation
+          </a>
+         </li>
+         <li>
+          <a class="dropdown-item" href="harbourmaster.html">
+           Harbourmaster
+          </a>
+         </li>
         </ul>
-      </div>
+       </li>
+       <li class="nav-item dropdown">
+        <a aria-expanded="false" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#">
+         Contribute
+        </a>
+        <ul class="dropdown-menu">
+         <li>
+          <a class="dropdown-item" href="porting.html">
+           Porting
+          </a>
+         </li>
+         <li>
+          <a class="dropdown-item" href="packaging.html">
+           Packaging
+          </a>
+         </li>
+         <li>
+          <a class="dropdown-item" href="build-environments.html">
+           Build Environments
+          </a>
+         </li>
+         <li>
+          <a class="dropdown-item" href="port-tools.html">
+           Port Tools
+          </a>
+         </li>
+         <li>
+          <a class="dropdown-item" href="port-json.html">
+           Port JSON Generator
+          </a>
+         </li>
+        </ul>
+       </li>
+      </li>
+     </ul>
     </div>
+   </div>
   </nav>
-  <br>
-  <br>
-  <br>
+  <br/>
+  <br/>
+  <br/>
   <div class="container">
-    <main>
-      <h1>Packaging ports for PortMaster</h1>
-<h2>To release a Port on PortMaster we have some guidelines that need to be followed:</h2>
-<h1>Package Structure</h1>
-<ul>
-<li><a href="#">ports/</a>
-<ul>
-<li><a href="#">portname/</a>
-<ul>
-<li><a href="#">README</a></li>
-<li><a href="#">portname.port.json</a></li>
-<li><a href="#">licensefile</a></li>
-<li><a href="#">gamename.gptk (If needed)</a></li>
-<li><a href="#">libs/ (If needed)</a></li>
-<li><a href="#">gamedata/</a></li>
-</ul>
-</li>
-<li><a href="#">PortScript.sh</a></li>
-<li><a href="#">portname.screenshot.png</a></li>
-</ul>
-</li>
-</ul>
-<h1>The Launchscript .sh</h1>
-<p>Below we pick apart a launchscript  and explain what each function does:</p>
-<pre><code># Below we assign the source of the control folder (which is the PortMaster folder) based on the distro:
+   <main>
+    <h1>
+     Packaging ports for PortMaster
+    </h1>
+    <h2>
+     To release a Port on PortMaster we have some guidelines that need to be followed:
+    </h2>
+    <h1>
+     Package Structure
+    </h1>
+    <ul>
+     <li>
+      <a href="#">
+       ports/
+      </a>
+      <ul>
+       <li>
+        <a href="#">
+         portname/
+        </a>
+        <ul>
+         <li>
+          <a href="#">
+           README
+          </a>
+         </li>
+         <li>
+          <a href="#">
+           portname.port.json
+          </a>
+         </li>
+         <li>
+          <a href="#">
+           licensefile
+          </a>
+         </li>
+         <li>
+          <a href="#">
+           gamename.gptk (If needed)
+          </a>
+         </li>
+         <li>
+          <a href="#">
+           libs/ (If needed)
+          </a>
+         </li>
+         <li>
+          <a href="#">
+           gamedata/
+          </a>
+         </li>
+        </ul>
+       </li>
+       <li>
+        <a href="#">
+         PortScript.sh
+        </a>
+       </li>
+       <li>
+        <a href="#">
+         portname.screenshot.png
+        </a>
+       </li>
+      </ul>
+     </li>
+    </ul>
+    <h1>
+     The Launchscript .sh
+    </h1>
+    <p>
+     Below we pick apart a launchscript  and explain what each function does:
+    </p>
+    <pre><code># Below we assign the source of the control folder (which is the PortMaster folder) based on the distro:
 #!/bin/bash
 
-if [ -d &quot;/opt/system/Tools/PortMaster/&quot; ]; then
-  controlfolder=&quot;/opt/system/Tools/PortMaster&quot;  # Location for ArkOS which is mapped from /roms/tools or /roms2/tools for devices that support 2 sd cards and have them in use.
-elif [ -d &quot;/opt/tools/PortMaster/&quot; ]; then # Location for TheRA
-  controlfolder=&quot;/opt/tools/PortMaster&quot;
+if [ -d "/opt/system/Tools/PortMaster/" ]; then
+  controlfolder="/opt/system/Tools/PortMaster"  # Location for ArkOS which is mapped from /roms/tools or /roms2/tools for devices that support 2 sd cards and have them in use.
+elif [ -d "/opt/tools/PortMaster/" ]; then # Location for TheRA
+  controlfolder="/opt/tools/PortMaster"
 else
-  controlfolder=&quot;/roms/ports/PortMaster&quot; # Location for 351Elec/AmberElec, JelOS, uOS and RetroOZ
+  controlfolder="/roms/ports/PortMaster" # Location for 351Elec/AmberElec, JelOS, uOS and RetroOZ
 fi
 
 source $controlfolder/control.txt # We source the control.txt file contents here
@@ -184,14 +290,14 @@ cd $GAMEDIR
 
 # Some ports like to create save files or settings files in the user's home folder or other locations.  
 # You can either use XDG variables to redirect the Ports to our gamefolder if the port supports it:
-CONFDIR=&quot;$GAMEDIR/conf/&quot;
+CONFDIR="$GAMEDIR/conf/"
 
 # Ensure the conf directory exists
-mkdir -p &quot;$GAMEDIR/conf&quot;
+mkdir -p "$GAMEDIR/conf"
 
 # Set the XDG environment variables for config &amp; savefiles
-export XDG_CONFIG_HOME=&quot;$CONFDIR&quot;
-export XDG_DATA_HOME=&quot;$CONFDIR&quot;
+export XDG_CONFIG_HOME="$CONFDIR"
+export XDG_DATA_HOME="$CONFDIR"
 
 or 
 
@@ -212,7 +318,7 @@ $ESUDO chmod 666 /dev/uinput
 # With -c we assign a custom mapping file else gptokeyb will only run as a tool to kill the process.
 # For $ANALOGSTICKS we have the ability to supply multiple gptk files to support 1 and 2 analogue stick devices in different ways.
 # For a proper documentation how gptokeyb works: LINK
-$GPTOKEYB &quot;portexecutable&quot; -c &quot;./portname.gptk.$ANALOGSTICKS&quot; &amp;
+$GPTOKEYB "portexecutable" -c "./portname.gptk.$ANALOGSTICKS" &amp;
 
 
 # Now we launch the port's executable and provide the location of specific libraries in may need along with the appropriate
@@ -221,9 +327,9 @@ $GPTOKEYB &quot;portexecutable&quot; -c &quot;./portname.gptk.$ANALOGSTICKS&quot
 
 ### Port specific additional libraries should be included within the port's directory in a separate subfolder named libs.
 They can be loaded at runtime using `export LD_LIBRARY_PATH` or using `LD_LIBRARY_PATH=` on the same line as the executable as long as it's before it. \
-LD_LIBRARY_PATH=&quot;$PWD/libs&quot;
+LD_LIBRARY_PATH="$PWD/libs"
 
-SDL_GAMECONTROLLERCONFIG=&quot;$sdl_controllerconfig&quot; # Provide appropriate controller configuration if it recognizes SDL controller input
+SDL_GAMECONTROLLERCONFIG="$sdl_controllerconfig" # Provide appropriate controller configuration if it recognizes SDL controller input
 ./portexecutable 2&gt;&amp;1 | tee -a ./log.txt # Launch the executable and write a log to log.txt
 
 # Although you can kill most of the ports (if not all of the ports) via a hotkey, the user may choose to exit gracefully.
@@ -236,19 +342,23 @@ $ESUDO kill -9 $(pidof gptokeyb)
 $ESUDO systemctl restart oga_events &amp;
 
 # Finally we clean up the terminal screen just for neatness sake as some people care about this.
-printf &quot;\033c&quot; &gt; /dev/tty0
+printf "\033c" &gt; /dev/tty0
 
 </code></pre>
-<h1>Examples:</h1>
-<h2>Basic Launchscript for open source ports with no specific engines and use of gp2keyb for controls and some needed libraries</h2>
-<pre><code>#!/bin/bash
+    <h1>
+     Examples:
+    </h1>
+    <h2>
+     Basic Launchscript for open source ports with no specific engines and use of gp2keyb for controls and some needed libraries
+    </h2>
+    <pre><code>#!/bin/bash
 
-if [ -d &quot;/opt/system/Tools/PortMaster/&quot; ]; then
-  controlfolder=&quot;/opt/system/Tools/PortMaster&quot;
-elif [ -d &quot;/opt/tools/PortMaster/&quot; ]; then
-  controlfolder=&quot;/opt/tools/PortMaster&quot;
+if [ -d "/opt/system/Tools/PortMaster/" ]; then
+  controlfolder="/opt/system/Tools/PortMaster"
+elif [ -d "/opt/tools/PortMaster/" ]; then
+  controlfolder="/opt/tools/PortMaster"
 else
-  controlfolder=&quot;/roms/ports/PortMaster&quot;
+  controlfolder="/roms/ports/PortMaster"
 fi
 
 source $controlfolder/control.txt
@@ -259,23 +369,25 @@ GAMEDIR=/$directory/ports/portfolder/
 cd $GAMEDIR
 
 $ESUDO chmod 666 /dev/uinput
-$GPTOKEYB &quot;portexecutable&quot; -c &quot;./portname.gptk&quot; &amp;
-LD_LIBRARY_PATH=&quot;$PWD/libs&quot; SDL_GAMECONTROLLERCONFIG=&quot;$sdl_controllerconfig&quot; ./portexecutable 2&gt;&amp;1 | tee -a ./log.txt
+$GPTOKEYB "portexecutable" -c "./portname.gptk" &amp;
+LD_LIBRARY_PATH="$PWD/libs" SDL_GAMECONTROLLERCONFIG="$sdl_controllerconfig" ./portexecutable 2&gt;&amp;1 | tee -a ./log.txt
 
 $ESUDO kill -9 $(pidof gptokeyb)
 $ESUDO systemctl restart oga_events &amp;
-printf &quot;\033c&quot; &gt; /dev/tty0
+printf "\033c" &gt; /dev/tty0
 </code></pre>
-<h2>Godot Game Example Launchscript</h2>
-<pre><code>
+    <h2>
+     Godot Game Example Launchscript
+    </h2>
+    <pre><code>
 #!/bin/bash
 
-if [ -d &quot;/opt/system/Tools/PortMaster/&quot; ]; then
-  controlfolder=&quot;/opt/system/Tools/PortMaster&quot;
-elif [ -d &quot;/opt/tools/PortMaster/&quot; ]; then
-  controlfolder=&quot;/opt/tools/PortMaster&quot;
+if [ -d "/opt/system/Tools/PortMaster/" ]; then
+  controlfolder="/opt/system/Tools/PortMaster"
+elif [ -d "/opt/tools/PortMaster/" ]; then
+  controlfolder="/opt/tools/PortMaster"
 else
-  controlfolder=&quot;/roms/ports/PortMaster&quot;
+  controlfolder="/roms/ports/PortMaster"
 fi
 
 source $controlfolder/control.txt
@@ -283,58 +395,60 @@ source $controlfolder/control.txt
 get_controls
 
 GAMEDIR=/$directory/ports/portfolder/
-CONFDIR=&quot;$GAMEDIR/conf/&quot;
+CONFDIR="$GAMEDIR/conf/"
 
 # Ensure the conf directory exists
-mkdir -p &quot;$GAMEDIR/conf&quot;
+mkdir -p "$GAMEDIR/conf"
 
 # Set the XDG environment variables for config &amp; savefiles
-export XDG_CONFIG_HOME=&quot;$CONFDIR&quot;
-export XDG_DATA_HOME=&quot;$CONFDIR&quot;
+export XDG_CONFIG_HOME="$CONFDIR"
+export XDG_DATA_HOME="$CONFDIR"
 
 cd $GAMEDIR
 
-runtime=&quot;frt_3.2.3&quot;
-if [ ! -f &quot;$controlfolder/libs/${runtime}.squashfs&quot; ]; then
+runtime="frt_3.2.3"
+if [ ! -f "$controlfolder/libs/${runtime}.squashfs" ]; then
   # Check for runtime if not downloaded via PM
-  if [ ! -f &quot;$controlfolder/harbourmaster&quot; ]; then
-    echo &quot;This port requires the latest PortMaster to run, please go to https://portmaster.games/ for more info.&quot; &gt; /dev/tty0
+  if [ ! -f "$controlfolder/harbourmaster" ]; then
+    echo "This port requires the latest PortMaster to run, please go to https://portmaster.games/ for more info." &gt; /dev/tty0
     sleep 5
     exit 1
   fi
 
-  $ESUDO $controlfolder/harbourmaster --quiet --no-check runtime_check &quot;${runtime}.squashfs&quot;
+  $ESUDO $controlfolder/harbourmaster --quiet --no-check runtime_check "${runtime}.squashfs"
 fi
 
 # Setup Godot
-godot_dir=&quot;$HOME/godot&quot;
-godot_file=&quot;$controlfolder/libs/${runtime}.squashfs&quot;
-$ESUDO mkdir -p &quot;$godot_dir&quot;
-$ESUDO umount &quot;$godot_file&quot; || true
-$ESUDO mount &quot;$godot_file&quot; &quot;$godot_dir&quot;
-PATH=&quot;$godot_dir:$PATH&quot;
+godot_dir="$HOME/godot"
+godot_file="$controlfolder/libs/${runtime}.squashfs"
+$ESUDO mkdir -p "$godot_dir"
+$ESUDO umount "$godot_file" || true
+$ESUDO mount "$godot_file" "$godot_dir"
+PATH="$godot_dir:$PATH"
 
 export FRT_NO_EXIT_SHORTCUTS=FRT_NO_EXIT_SHORTCUTS # By default FRT sets Select as a Force Quit Hotkey, with this we disable that.
 
 $ESUDO chmod 666 /dev/uinput
-$GPTOKEYB &quot;$runtime&quot; -c &quot;./godot.gptk&quot; &amp;
-SDL_GAMECONTROLLERCONFIG=&quot;$sdl_controllerconfig&quot;
-&quot;$runtime&quot; --main-pack &quot;gamename.pck&quot;
+$GPTOKEYB "$runtime" -c "./godot.gptk" &amp;
+SDL_GAMECONTROLLERCONFIG="$sdl_controllerconfig"
+"$runtime" --main-pack "gamename.pck"
 
-$ESUDO umount &quot;$godot_dir&quot;
+$ESUDO umount "$godot_dir"
 $ESUDO kill -9 $(pidof gptokeyb)
 $ESUDO systemctl restart oga_events &amp;
-printf &quot;\033c&quot; &gt; /dev/tty0
+printf "\033c" &gt; /dev/tty0
 </code></pre>
-<h2>Love2d Example Launchscript</h2>
-<pre><code>#!/bin/bash
+    <h2>
+     Love2d Example Launchscript
+    </h2>
+    <pre><code>#!/bin/bash
 
-if [ -d &quot;/opt/system/Tools/PortMaster/&quot; ]; then
-  controlfolder=&quot;/opt/system/Tools/PortMaster&quot;
-elif [ -d &quot;/opt/tools/PortMaster/&quot; ]; then
-  controlfolder=&quot;/opt/tools/PortMaster&quot;
+if [ -d "/opt/system/Tools/PortMaster/" ]; then
+  controlfolder="/opt/system/Tools/PortMaster"
+elif [ -d "/opt/tools/PortMaster/" ]; then
+  controlfolder="/opt/tools/PortMaster"
 else
-  controlfolder=&quot;/roms/ports/PortMaster&quot;
+  controlfolder="/roms/ports/PortMaster"
 fi
 
 source $controlfolder/control.txt
@@ -346,27 +460,49 @@ cd $GAMEDIR
 
 
 $ESUDO chmod 666 /dev/uinput
-$GPTOKEYB &quot;love&quot; -c &quot;./love.gptk&quot; &amp;
-LD_LIBRARY_PATH=&quot;$PWD/libs&quot; 
+$GPTOKEYB "love" -c "./love.gptk" &amp;
+LD_LIBRARY_PATH="$PWD/libs" 
 ./love portname 2&gt;&amp;1 | tee $GAMEDIR/log.txt
 $ESUDO kill -9 $(pidof gptokeyb)
 $ESUDO systemctl restart oga_events &amp;
-printf &quot;\033c&quot; &gt; /dev/tty0
+printf "\033c" &gt; /dev/tty0
 </code></pre>
-<h2>Gamemaker Studio GMS Example Launchscript</h2>
-<p>In Progress</p>
-<h1>The README</h1>
-<p>The Readme provides some basic information about the Port such as:</p>
-<ul>
-<li>Portname</li>
-<li>Source</li>
-<li>Porter</li>
-<li>Description</li>
-<li>Compile instructions</li>
-<li>Controls</li>
-</ul>
-<p>Example:</p>
-<pre><code>Abombniball (https://www.portmaster.games) 
+    <h2>
+     Gamemaker Studio GMS Example Launchscript
+    </h2>
+    <p>
+     In Progress
+    </p>
+    <h1>
+     The README
+    </h1>
+    <p>
+     The Readme provides some basic information about the Port such as:
+    </p>
+    <ul>
+     <li>
+      Portname
+     </li>
+     <li>
+      Source
+     </li>
+     <li>
+      Porter
+     </li>
+     <li>
+      Description
+     </li>
+     <li>
+      Compile instructions
+     </li>
+     <li>
+      Controls
+     </li>
+    </ul>
+    <p>
+     Example:
+    </p>
+    <pre><code>Abombniball (https://www.portmaster.games) 
 =========================
 
 Original version by:
@@ -381,7 +517,7 @@ Description
 The objective of Abombniball is to defuse all the explosives on each level.
 As a ball, this would normally be a simple task,
 however each level is filled with traps and devious puzzles placed there by
-...oh...lets say &quot;Dr. Y-Front&quot;, your arch-nemesis (he's very evil).
+...oh...lets say "Dr. Y-Front", your arch-nemesis (he's very evil).
 These traps take the form of special tiles which disappear or do other nasty things.
 
 To compile:
@@ -397,61 +533,107 @@ Controls:
 
 DPAD		= Move
 </code></pre>
-<h1>Port.json</h1>
-<p>The Port.json contains all metadata on ports that our GUI and Wiki needs to properly display and install Ports.
-You can use following Port JSON Generator to generate a port.json file for you (<a href="https://portmaster.games/port-json.html">https://portmaster.games/port-json.html</a>)</p>
-<p>Following Info needs to be added:</p>
-<ul>
-<li>Port Title</li>
-<li>Zip File Name</li>
-<li>Script Name</li>
-<li>Directory Name</li>
-<li>Genres</li>
-<li>Porter</li>
-<li>Description</li>
-<li>Instructions what files or directions are needed to make the port work</li>
-<li>Runtime</li>
-</ul>
-<h1>Licensefile</h1>
-<ul>
-<li>
-<p>Please add licensefiles for all sources and assets you used
-For example:</p>
-</li>
-<li>
-<p>game project open source file (if it's an open source game)</p>
-</li>
-<li>
-<p>gptokeyb license file</p>
-</li>
-<li>
-<p>sdl1.2 compat license file</p>
-</li>
-<li>
-<p>gl4es license file</p>
-</li>
-<li>
-<p>box86 / box64 license files</p>
-</li>
-</ul>
-<h1>Screenshot</h1>
-<p>For use in the PortMaster GUI aswell as for the Wiki we need a screenshot of the gameplay or main function of the Port.
+    <h1>
+     Port.json
+    </h1>
+    <p>
+     The Port.json contains all metadata on ports that our GUI and Wiki needs to properly display and install Ports.
+You can use following Port JSON Generator to generate a port.json file for you (
+     <a href="https://portmaster.games/port-json.html">
+      https://portmaster.games/port-json.html
+     </a>
+     )
+    </p>
+    <p>
+     Following Info needs to be added:
+    </p>
+    <ul>
+     <li>
+      Port Title
+     </li>
+     <li>
+      Zip File Name
+     </li>
+     <li>
+      Script Name
+     </li>
+     <li>
+      Directory Name
+     </li>
+     <li>
+      Genres
+     </li>
+     <li>
+      Porter
+     </li>
+     <li>
+      Description
+     </li>
+     <li>
+      Instructions what files or directions are needed to make the port work
+     </li>
+     <li>
+      Runtime
+     </li>
+    </ul>
+    <h1>
+     Licensefile
+    </h1>
+    <ul>
+     <li>
+      <p>
+       Please add licensefiles for all sources and assets you used
+For example:
+      </p>
+     </li>
+     <li>
+      <p>
+       game project open source file (if it's an open source game)
+      </p>
+     </li>
+     <li>
+      <p>
+       gptokeyb license file
+      </p>
+     </li>
+     <li>
+      <p>
+       sdl1.2 compat license file
+      </p>
+     </li>
+     <li>
+      <p>
+       gl4es license file
+      </p>
+     </li>
+     <li>
+      <p>
+       box86 / box64 license files
+      </p>
+     </li>
+    </ul>
+    <h1>
+     Screenshot
+    </h1>
+    <p>
+     For use in the PortMaster GUI aswell as for the Wiki we need a screenshot of the gameplay or main function of the Port.
 A title screenshot would not show actual content of the port.
 The screenshot has to be at least 640x480 in dimensions and format can either be .jpg or .png
-For naming its portname.screenshot.png</p>
-<p>After putting all these files in one place please zip these files using regular zip.</p>
-<p>With this you can now go ahead to make a Pull Request on our main Portmaster Repo (if you tested the Port for all major cfws / devices of course)</p>
-
-      <script>
-        anchors.options.visible = 'always';
+For naming its portname.screenshot.png
+    </p>
+    <p>
+     After putting all these files in one place please zip these files using regular zip.
+    </p>
+    <p>
+     With this you can now go ahead to make a Pull Request on our main Portmaster Repo (if you tested the Port for all major cfws / devices of course)
+    </p>
+    <script>
+     anchors.options.visible = 'always';
         anchors.add();
-      </script>
-    </main>
-
-    <footer class="my-5 pt-5 text-body-secondary text-center text-small">
-    </footer>
+    </script>
+   </main>
+   <footer class="my-5 pt-5 text-body-secondary text-center text-small">
+   </footer>
   </div>
-
-</body>
-
+ </body>
 </html>

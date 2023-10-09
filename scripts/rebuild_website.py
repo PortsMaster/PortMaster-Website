@@ -1,5 +1,6 @@
 import os
 import cmarkgfm
+from bs4 import BeautifulSoup
 
 path = os.path.join("content","markdown")
 for file in os.listdir(path):
@@ -10,6 +11,7 @@ for file in os.listdir(path):
         html_file = file.replace(".markdown",".html")
         page = open(os.path.join("website",html_file), "r", encoding="utf-8")
         new_page = page.read().replace("{markdown}",markdown_html).replace("<table>",'<table class="table table-bordered">')
+        new_page = BeautifulSoup(new_page, 'html.parser').prettify()
         f = open(os.path.join("docs",html_file), "w", encoding="utf-8")
         f.write(new_page)
         f.close()

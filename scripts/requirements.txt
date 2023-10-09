@@ -1,2 +1,3 @@
 requests
 cmarkgfm
+beautifulsoup4
