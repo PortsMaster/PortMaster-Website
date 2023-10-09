@@ -44,7 +44,7 @@ function displayCardDetails(data) {
 
 
     const downloadElement = document.getElementById("download");
-    downloadElement.setAttribute("onclick", "window.location.href='" + data.source.download_url + "';");
+    downloadElement.setAttribute("onclick", "window.location.href='" + data.source.url + "';");
 
     const markdownElement = document.getElementById("markdown");
     markdownElement.setAttribute("src", "https://raw.githubusercontent.com/PortsMaster/PortMaster-Website/main/markdown/" + data.name.toLowerCase().replace("zip", "md"));
