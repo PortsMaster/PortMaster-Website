@@ -79,7 +79,7 @@ function createCard(data) {
     button.setAttribute("type", "button");
     button.textContent = "Download"
     button.setAttribute("class","btn btn-sm btn-outline-primary");
-    button.setAttribute("onclick", "window.location.href='" + data.source.download_url + "';");
+    button.setAttribute("onclick", "window.location.href='" + data.source.url + "';");
 
     div5.appendChild(button);
 
