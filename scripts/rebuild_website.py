@@ -10,7 +10,7 @@ for file in os.listdir(path):
         markdown_html = cmarkgfm.github_flavored_markdown_to_html(text)
         html_file = file.replace(".markdown",".html")
         page = open(os.path.join("website",html_file), "r", encoding="utf-8")
-        new_page = page.read().replace("{markdown}",markdown_html).replace("<table>",'<table class="table table-bordered">')
+        new_page = page.read().replace("{markdown}",markdown_html).replace("<table>",'<table class="table table-bordered table-responsive-sm">')
         new_page = BeautifulSoup(new_page, 'html.parser').prettify()
         f = open(os.path.join("docs",html_file), "w", encoding="utf-8")
         f.write(new_page)
