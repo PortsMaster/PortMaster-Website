@@ -1,3 +1,4 @@
 requests
 markdown
-markdown2[all]
+markdown-checklist
+mdx_truly_sane_lists
