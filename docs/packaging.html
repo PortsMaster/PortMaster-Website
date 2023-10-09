@@ -10,6 +10,8 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
+  
+ <script src="https://cdn.jsdelivr.net/npm/anchor-js/anchor.min.js"></script>
   <title>Packaging</title>
 
 </head>
@@ -135,10 +137,246 @@
   <br>
   <div class="container">
     <main>
-      <md-block
-        src="https://raw.githubusercontent.com/PortsMaster/PortMaster-Website/main/content/markdown/packaging.markdown">
-      </md-block>
-
+      <h1>Packaging ports for PortMaster</h1>
+<h2>To release a Port on PortMaster we have some guidelines that need to be followed:</h2>
+<h1>Package Structure</h1>
+<ul>
+<li><a href="#">ports/</a></li>
+<li><a href="#">portname/</a><ul>
+<li><a href="#">README</a></li>
+<li><a href="#">portname.port.json</a></li>
+<li><a href="#">licensefile</a></li>
+<li><a href="#">gamename.gptk (If needed)</a></li>
+<li><a href="#">libs/ (If needed)</a></li>
+<li><a href="#">gamedata/</a></li>
+</ul>
+</li>
+<li><a href="#">PortScript.sh</a></li>
+<li><a href="#">portname.screenshot.png</a></li>
+</ul>
+<h1>The Launchscript .sh</h1>
+<p>Below we pick apart a launchscript  and explain what each function does:</p>
+<p>```</p>
+<h1>Below we assign the source of the control folder (which is the PortMaster folder) based on the distro:</h1>
+<h1>!/bin/bash</h1>
+<p>if [ -d "/opt/system/Tools/PortMaster/" ]; then
+  controlfolder="/opt/system/Tools/PortMaster"  # Location for ArkOS which is mapped from /roms/tools or /roms2/tools for devices that support 2 sd cards and have them in use.
+elif [ -d "/opt/tools/PortMaster/" ]; then # Location for TheRA
+  controlfolder="/opt/tools/PortMaster"
+else
+  controlfolder="/roms/ports/PortMaster" # Location for 351Elec/AmberElec, JelOS, uOS and RetroOZ
+fi</p>
+<p>source $controlfolder/control.txt # We source the control.txt file contents here</p>
+<h1>The $ESUDO, $directory, $param_device and necessary sdl configuration controller configurations will be sourced from the control.txt file shown [here]</h1>
+<p>get_controls # We pull the controller configs from the get_controls function from the control.txt file here</p>
+<h1>We switch to the port's directory location below &amp; set the variable for easier handling below</h1>
+<p>GAMEDIR=/$directory/ports/portfolder/
+cd $GAMEDIR</p>
+<h1>Some ports like to create save files or settings files in the user's home folder or other locations.</h1>
+<h1>You can either use XDG variables to redirect the Ports to our gamefolder if the port supports it:</h1>
+<p>CONFDIR="$GAMEDIR/conf/"</p>
+<h1>Ensure the conf directory exists</h1>
+<p>mkdir -p "$GAMEDIR/conf"</p>
+<h1>Set the XDG environment variables for config &amp; savefiles</h1>
+<p>export XDG_CONFIG_HOME="$CONFDIR"
+export XDG_DATA_HOME="$CONFDIR"</p>
+<p>or </p>
+<h1>Use symlinks to reroute that to a location within the ports folder so the data stays with the port</h1>
+<h1>installation for easy backup and portability.</h1>
+<p>$ESUDO rm -rf ~/.portfolder
+ln -sfv /$directory/ports/portname/conf/.portfolder ~/</p>
+<h1>Make sure uinput is accessible so we can make use of the gptokeyb controls.  351Elec/AmberElec, uOS and JelOS always runs in root, naughty naughty.</h1>
+<h1>The other distros don't so the $ESUDO variable provides the sudo or not dependant on the OS this script is run from.</h1>
+<p>$ESUDO chmod 666 /dev/uinput</p>
+<h1>We launch gptokeyb using this $GPTOKEYB variable as it will take care of sourcing the executable from the central location,</h1>
+<h1>assign the appropriate exit hotkey dependent on the device (ex. select + start for most devices and minus + start for the</h1>
+<h1>rgb10) and assign the appropriate method for killing an executable dependent on the OS the port is run from.</h1>
+<h1>With -c we assign a custom mapping file else gptokeyb will only run as a tool to kill the process.</h1>
+<h1>For $ANALOGSTICKS we have the ability to supply multiple gptk files to support 1 and 2 analogue stick devices in different ways.</h1>
+<h1>For a proper documentation how gptokeyb works: LINK</h1>
+<p>$GPTOKEYB "portexecutable" -c "./portname.gptk.$ANALOGSTICKS" &amp;</p>
+<h1>Now we launch the port's executable and provide the location of specific libraries in may need along with the appropriate</h1>
+<h1>controller configuration if it recognizes SDL controller input</h1>
+<h3>Port specific additional libraries should be included within the port's directory in a separate subfolder named libs.</h3>
+<p>They can be loaded at runtime using <code>export LD_LIBRARY_PATH</code> or using <code>LD_LIBRARY_PATH=</code> on the same line as the executable as long as it's before it. \
+LD_LIBRARY_PATH="$PWD/libs"</p>
+<p>SDL_GAMECONTROLLERCONFIG="$sdl_controllerconfig" # Provide appropriate controller configuration if it recognizes SDL controller input
+./portexecutable 2&gt;&amp;1 | tee -a ./log.txt # Launch the executable and write a log to log.txt</p>
+<h1>Although you can kill most of the ports (if not all of the ports) via a hotkey, the user may choose to exit gracefully.</h1>
+<h1>That's fine but let's make sure gptokeyb is killed so we don't get ghost inputs or worse yet,</h1>
+<h1>launch it again and have 2 or more of them running.</h1>
+<p>$ESUDO kill -9 $(pidof gptokeyb)</p>
+<h1>The line below is helpful for ArkOS, RetroOZ, and TheRA as some of these ports tend to cause the</h1>
+<h1>global hotkeys (like brightness and volume control) to stop working after exiting the port for some reason.</h1>
+<p>$ESUDO systemctl restart oga_events &amp;</p>
+<h1>Finally we clean up the terminal screen just for neatness sake as some people care about this.</h1>
+<p>printf "\033c" &gt; /dev/tty0</p>
+<p>```</p>
+<h1>Examples:</h1>
+<h2>Basic Launchscript for open source ports with no specific engines and use of gp2keyb for controls and some needed libraries</h2>
+<p>```</p>
+<h1>!/bin/bash</h1>
+<p>if [ -d "/opt/system/Tools/PortMaster/" ]; then
+  controlfolder="/opt/system/Tools/PortMaster"
+elif [ -d "/opt/tools/PortMaster/" ]; then
+  controlfolder="/opt/tools/PortMaster"
+else
+  controlfolder="/roms/ports/PortMaster"
+fi</p>
+<p>source $controlfolder/control.txt</p>
+<p>get_controls</p>
+<p>GAMEDIR=/$directory/ports/portfolder/
+cd $GAMEDIR</p>
+<p>$ESUDO chmod 666 /dev/uinput
+$GPTOKEYB "portexecutable" -c "./portname.gptk" &amp;
+LD_LIBRARY_PATH="$PWD/libs" SDL_GAMECONTROLLERCONFIG="$sdl_controllerconfig" ./portexecutable 2&gt;&amp;1 | tee -a ./log.txt</p>
+<p>$ESUDO kill -9 $(pidof gptokeyb)
+$ESUDO systemctl restart oga_events &amp;
+printf "\033c" &gt; /dev/tty0
+```</p>
+<h2>Godot Game Example Launchscript</h2>
+<p>```</p>
+<h1>!/bin/bash</h1>
+<p>if [ -d "/opt/system/Tools/PortMaster/" ]; then
+  controlfolder="/opt/system/Tools/PortMaster"
+elif [ -d "/opt/tools/PortMaster/" ]; then
+  controlfolder="/opt/tools/PortMaster"
+else
+  controlfolder="/roms/ports/PortMaster"
+fi</p>
+<p>source $controlfolder/control.txt</p>
+<p>get_controls</p>
+<p>GAMEDIR=/$directory/ports/portfolder/
+CONFDIR="$GAMEDIR/conf/"</p>
+<h1>Ensure the conf directory exists</h1>
+<p>mkdir -p "$GAMEDIR/conf"</p>
+<h1>Set the XDG environment variables for config &amp; savefiles</h1>
+<p>export XDG_CONFIG_HOME="$CONFDIR"
+export XDG_DATA_HOME="$CONFDIR"</p>
+<p>cd $GAMEDIR</p>
+<p>runtime="frt_3.2.3"
+if [ ! -f "$controlfolder/libs/${runtime}.squashfs" ]; then
+  # Check for runtime if not downloaded via PM
+  if [ ! -f "$controlfolder/harbourmaster" ]; then
+    echo "This port requires the latest PortMaster to run, please go to https://portmaster.games/ for more info." &gt; /dev/tty0
+    sleep 5
+    exit 1
+  fi</p>
+<p>$ESUDO $controlfolder/harbourmaster --quiet --no-check runtime_check "${runtime}.squashfs"
+fi</p>
+<h1>Setup Godot</h1>
+<p>godot_dir="$HOME/godot"
+godot_file="$controlfolder/libs/${runtime}.squashfs"
+$ESUDO mkdir -p "$godot_dir"
+$ESUDO umount "$godot_file" || true
+$ESUDO mount "$godot_file" "$godot_dir"
+PATH="$godot_dir:$PATH"</p>
+<p>export FRT_NO_EXIT_SHORTCUTS=FRT_NO_EXIT_SHORTCUTS # By default FRT sets Select as a Force Quit Hotkey, with this we disable that.</p>
+<p>$ESUDO chmod 666 /dev/uinput
+$GPTOKEYB "$runtime" -c "./godot.gptk" &amp;
+SDL_GAMECONTROLLERCONFIG="$sdl_controllerconfig"
+"$runtime" --main-pack "gamename.pck"</p>
+<p>$ESUDO umount "$godot_dir"
+$ESUDO kill -9 $(pidof gptokeyb)
+$ESUDO systemctl restart oga_events &amp;
+printf "\033c" &gt; /dev/tty0
+```</p>
+<h2>Love2d Example Launchscript</h2>
+<p>```</p>
+<h1>!/bin/bash</h1>
+<p>if [ -d "/opt/system/Tools/PortMaster/" ]; then
+  controlfolder="/opt/system/Tools/PortMaster"
+elif [ -d "/opt/tools/PortMaster/" ]; then
+  controlfolder="/opt/tools/PortMaster"
+else
+  controlfolder="/roms/ports/PortMaster"
+fi</p>
+<p>source $controlfolder/control.txt</p>
+<p>get_controls</p>
+<p>GAMEDIR=/$directory/ports/portfolder
+cd $GAMEDIR</p>
+<p>$ESUDO chmod 666 /dev/uinput
+$GPTOKEYB "love" -c "./love.gptk" &amp;
+LD_LIBRARY_PATH="$PWD/libs" 
+./love portname 2&gt;&amp;1 | tee $GAMEDIR/log.txt
+$ESUDO kill -9 $(pidof gptokeyb)
+$ESUDO systemctl restart oga_events &amp;
+printf "\033c" &gt; /dev/tty0
+``` </p>
+<h2>Gamemaker Studio GMS Example Launchscript</h2>
+<p>In Progress</p>
+<h1>The README</h1>
+<p>The Readme provides some basic information about the Port such as:</p>
+<ul>
+<li>Portname</li>
+<li>Source</li>
+<li>Porter</li>
+<li>Description</li>
+<li>Compile instructions</li>
+<li>Controls</li>
+</ul>
+<p>Example:</p>
+<p>```
+Abombniball (https://www.portmaster.games) 
+=========================</p>
+<p>Original version by:
+http://akawaka.csn.ul.ie/abombniball.php3</p>
+<p>Portmaster Version:     </p>
+<ul>
+<li>Cebion https://github.com/Cebion</li>
+</ul>
+<h1>Description</h1>
+<p>The objective of Abombniball is to defuse all the explosives on each level.
+As a ball, this would normally be a simple task,
+however each level is filled with traps and devious puzzles placed there by
+...oh...lets say "Dr. Y-Front", your arch-nemesis (he's very evil).
+These traps take the form of special tiles which disappear or do other nasty things.</p>
+<h1>To compile:</h1>
+<p>git clone git@github.com:Cebion/Abombniball.git
+cd Abombniball
+./configure
+make</p>
+<h1>Controls:</h1>
+<p>DPAD        = Move
+```</p>
+<h1>Port.json</h1>
+<p>The Port.json contains all metadata on ports that our GUI and Wiki needs to properly display and install Ports.
+You can use following Port JSON Generator to generate a port.json file for you (https://portmaster.games/port-json.html)</p>
+<p>Following Info needs to be added:
+- Port Title
+- Zip File Name
+- Script Name
+- Directory Name
+- Genres
+- Porter 
+- Description
+- Instructions what files or directions are needed to make the port work
+- Runtime</p>
+<h1>Licensefile</h1>
+<ul>
+<li>
+<p>Please add licensefiles for all sources and assets you used
+For example:</p>
+</li>
+<li>
+<p>game project open source file (if it's an open source game)</p>
+</li>
+<li>gptokeyb license file</li>
+<li>sdl1.2 compat license file</li>
+<li>gl4es license file</li>
+<li>box86 / box64 license files</li>
+</ul>
+<h1>Screenshot</h1>
+<p>For use in the PortMaster GUI aswell as for the Wiki we need a screenshot of the gameplay or main function of the Port.
+A title screenshot would not show actual content of the port.
+The screenshot has to be at least 640x480 in dimensions and format can either be .jpg or .png
+For naming its portname.screenshot.png</p>
+<p>After putting all these files in one place please zip these files using regular zip.</p>
+<p>With this you can now go ahead to make a Pull Request on our main Portmaster Repo (if you tested the Port for all major cfws / devices of course) </p>
+      <script>
+        anchors.options.visible = 'always';
+        anchors.add();
+      </script>
     </main>
 
     <footer class="my-5 pt-5 text-body-secondary text-center text-small">

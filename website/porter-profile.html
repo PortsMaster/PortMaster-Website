@@ -3,17 +3,15 @@
 
 <head>
     <script src="color-modes.js"></script>
-    <script type="module" src="https://md-block.verou.me/md-block.js"></script>
+    <script type="text/javascript" src="FileSaver.min.js"></script>
+    <link rel="stylesheet" href="shared.css">
+
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/anchor-js/anchor.min.js"></script>
-    <link rel="stylesheet" href="shared.css">
-
-    <title>FAQ</title>
+    <title>Port JSON Generator</title>
 
 </head>
 
@@ -85,6 +83,7 @@
             </li>
         </ul>
     </div>
+
     <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark" aria-label="Fourth navbar example">
         <div class="container-fluid">
           <a class="navbar-brand" href="index.html">
@@ -133,56 +132,193 @@
         </div>
       </nav>
     <br>
-    <br>
-    <br>
+
     <div class="container">
         <main>
-          <h2>What is PortMaster?</h2>
-<p><strong>PortMaster</strong> is a simple GUI tool designed to facilitate the downloading and installation of game ports for linux handheld devices. </p>
-<p>One of the goals of PortMaster is to not install or upgrade any existing OS libraries for any ports. Any of the ports that need a particular non-standard library are maintained within the ports' folder and made available specifically to that port during execution.</p>
-<p>Through the volunteer contributions of the mighty <strong>Port Navigators</strong>, most of the the ports available through PortMaster have been configured to launch with proper controls for the various devices that are supported.</p>
-<h2>What Devices are supported? ##</h2>
-<p>The full list of supported devices can be found here: </p>
-<h2>How can I install PortMaster?</h2>
-<p>A Guide to install Portmaster can be found here:</p>
-<h2>Do I have to use PortMaster to install ports?</h2>
-<p>You can simply go to the PortMaster repo <a href="https://github.com/christianhaitian/PortMaster">https://github.com/christianhaitian/PortMaster</a> find the <code>.zip</code> of the port you want, download it and unzip the contents of it to the <code>/roms/ports</code> folder. You'll also need to copy the PortMaster folder to your <code>/roms/ports</code> folder. If you don't want the PortMaster folder to show up in your Ports menu in Emulationstation, just delete the PortMaster.sh file as it won't be needed if you don't plan to install or update your ports online via this tool.</p>
-<p>Keep in mind that some games require Runtimes that can be downloaded from (Runtime Link)</p>
-<p>For ArkOS on the RG351V &amp; 353V/S/RG353P/S or RG351MP, if SD2 is being used for roms, unzip the port to the /roms2/ports folder instead and copy the PortMaster folder to the /roms2/tools location. A few additional ports are available on the large releases repo <a href="https://github.com/PortsMaster/PortMaster-Releases/releases">https://github.com/PortsMaster/PortMaster-Releases/releases</a> due to their size (ex. SuperTux, Ur Quan Masters, and FreedroidRPG).</p>
-<h2>How do I get more info about the ports in PortMaster like the sources used and additional asset needs if applicable?</h2>
-<p>You can find all Ports with included instructions on the PortMaster Wiki 
-https://portmaster.games/wiki.html</p>
-<h2>If there are updates to Ports, how will that work?</h2>
-<p>Just run PortMaster and reinstall the port. You can also unzip the associated <code>.zip</code> for the port you want and unzip the contents of it to the ports folder. This should install the latest port related files if they've been updated in PortMaster. In most cases, it should not impact any existing game data you had to provide or existing saves unless the updated port made changes to the port backend that impacts previous saves.</p>
-<h2>How can I help add ports to PortMaster?</h2>
-<p>See our Contribute section on https://portmaster.games/ 
-If you have any questions about the process not detailed in the documentation feel free to reach out on our Discord Server.</p>
-<h2>How can I run my Port via ssh to troubleshoot any starting issues?</h2>
-<p>Download Putty:
-https://the.earth.li/~sgtatham/putty/latest/w64/putty.exe</p>
-<ul>
-<li>Start Putty</li>
-<li>Enter your Device IP</li>
-<li>Open</li>
-<li>Enter your ssh credentials</li>
-</ul>
-<p>Amberelec: root / amberelec
-  ArkOS    : ark / ark 
-  Jelos    : root / check under system settings
-- enter
-<code>cd /roms/ports/
-./WhateveryourgameIsCalled.sh</code>
-You can then mark the output with your mouse and with ctrl + c / ctrl + v paste it into the ports-help channel on discord.</p>
-          <script>
-            anchors.options.visible = 'always';
-            anchors.add();
-          </script>
+            <div class="py-5 text-center">
+                <h2>Porter Profile Editor</h2>
+                <p class="lead">Use this form to add or update a porter profile.</p>
+            </div>
 
+            <div class="row g-5 justify-content-center">
+                <div class="col-md-7 col-lg-8">
+                    <form id="form" class="needs-validation" novalidate>
+                        <div class="row g-3">
+
+                            <div class="col-12">
+                                <label for="porters" class="form-label">Porter</label>
+                                <select class="form-select" id="porters" onchange="selectPorter()">
+                                </select>
+                            </div>
+
+                            <div class="col-12">
+                                <label for="name" class="form-label">Name</label>
+                                <input type="text" class="form-control" id="name" placeholder="" required>
+                                <div class="invalid-feedback">
+                                    Name is required.
+                                </div>
+                            </div>
+
+                            <div class="col-12">
+                                <label for="social" class="form-label">Social Media Link</label>
+                                <input type="text" class="form-control" id="social" placeholder="">
+                            </div>
+
+                            <div class="col-12">
+                                <label for="support" class="form-label">Donation Link (Ko-fi, PayPal etc)</label>
+                                <input type="text" class="form-control" id="support" placeholder="">
+                            </div>
+
+                            <div class="col-12">
+                                <label for="webpage" class="form-label">Personal Webpage or Github</label>
+                                <input type="text" class="form-control" id="webpage" placeholder="">
+                            </div>
+
+                            <div class="col-12">
+                                <label for="image" class="form-label">Profile Image URL</label>
+                                <input type="text" class="form-control" id="image" placeholder="">
+                            </div>
+
+                        </div>
+                        <br>
+                        <button onclick="validateForm()" class="w-100 btn btn-primary btn-lg"
+                            type="button">Update</button>
+                        <br>
+                        <br>
+                        <button onclick="downloadJson()" class="w-100 btn btn-primary btn-lg" type="button">Download
+                            Json</button>
+
+                    </form>
+                </div>
+            </div>
         </main>
 
         <footer class="my-5 pt-5 text-body-secondary text-center text-small">
         </footer>
     </div>
+
+    <script>
+        porters = null;
+        var selectElement = document.getElementById("porters");
+        var nameElement = document.getElementById("name");
+        var socialElement = document.getElementById("social");
+        var supportElement = document.getElementById("support");
+        var webpageElement = document.getElementById("webpage");
+        var imageElement = document.getElementById("image");
+
+        function selectPorter() {
+            var porter = document.getElementById("porters").value;
+            if (porter != "Add New Porter") {
+                nameElement.value = porters[porter].name;
+                socialElement.value = porters[porter].social
+                supportElement.value = porters[porter].support
+                webpageElement.value = porters[porter].webpage
+                imageElement.value = porters[porter].image
+                nameElement.readOnly = true;
+            }
+            else {
+                nameElement.value = "";
+                socialElement.value = "";
+                supportElement.value = "";
+                webpageElement.value = "";
+                imageElement.value = "";
+                nameElement.readOnly = false;
+            }
+        }
+
+        function validateForm() {
+            form = document.getElementById("form");
+            if (form.checkValidity()) {
+                updateProfile();
+            }
+
+            form.classList.add('was-validated')
+        }
+
+        function downloadJson() {
+            var json = JSON.stringify(porters, null, 2);
+            var file = new Blob([json], { type: "application/json" });
+            if (window.navigator.msSaveOrOpenBlob) // IE10+
+                window.navigator.msSaveOrOpenBlob(file, "porters.json");
+            else { // Others
+                var a = document.createElement("a"),
+                    url = URL.createObjectURL(file);
+                a.href = url;
+                a.download = "porters.json";
+                document.body.appendChild(a);
+                a.click();
+                setTimeout(function () {
+                    document.body.removeChild(a);
+                    window.URL.revokeObjectURL(url);
+                }, 0);
+            }
+        }
+
+        function updateProfile() {
+            var name = document.getElementById("name").value;
+
+            porters[name] = {};
+            porters[name].name = name;
+            porters[name].social = socialElement.value;
+            porters[name].support = supportElement.value;
+            porters[name].webpage = webpageElement.value;
+            porters[name].image = imageElement.value;
+
+            selectElement.length = 0;
+
+            var opt = document.createElement('option');
+            opt.value = "Add New Porter";
+            opt.innerHTML = "Add New Porter";
+            opt.selected;
+            selectElement.appendChild(opt);
+            for (var key of Object.keys(porters)) {
+                var opt = document.createElement('option');
+                opt.value = key;
+                opt.innerHTML = key;
+                selectElement.appendChild(opt);
+            };
+            nameElement.value = "";
+            socialElement.value = "";
+            supportElement.value = "";
+            webpageElement.value = "";
+            imageElement.value = "";
+            nameElement.readOnly = false;
+
+
+        }
+
+        async function loadPorters() {
+            try {
+                var response = await fetch('https://raw.githubusercontent.com/PortsMaster/PortMaster-Info/main/porters.json'); // Replace 'YOUR_JSON_URL_HERE' with the actual URL of your JSON data.
+                if (!response.ok) {
+                    throw new Error('Network response was not ok.');
+                }
+                porters = await response.json();
+            } catch (error) {
+                console.error('Error fetching JSON data:', error);
+            }
+
+            var opt = document.createElement('option');
+            opt.value = "Add New Porter";
+            opt.innerHTML = "Add New Porter";
+            opt.selected;
+            selectElement.appendChild(opt);
+            for (var key of Object.keys(porters)) {
+                var opt = document.createElement('option');
+                opt.value = key;
+                opt.innerHTML = key;
+                selectElement.appendChild(opt);
+            };
+        }
+
+        // Call the initial fetchDataAndDisplayCards function when the page is loaded
+        window.onload = function () {
+            loadPorters();
+
+        };
+    </script>
+
+
 </body>
 
 </html>

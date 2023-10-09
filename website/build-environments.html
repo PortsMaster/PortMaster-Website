@@ -4,17 +4,19 @@
 <head>
   <script src="color-modes.js"></script>
   <script type="module" src="https://md-block.verou.me/md-block.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/2.1.0/showdown.min.js"></script>
   <link rel="stylesheet" href="shared.css">
+
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <title>Build Environments</title>
+
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.css" />
 
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-  <script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
-  <title>Supported Devices</title>
+  <script src="https://cdn.jsdelivr.net/npm/anchor-js/anchor.min.js"></script>
 
 </head>
 
@@ -138,86 +140,21 @@
   <br>
   <div class="container">
     <main>
-      <div class="py-5 text-center">
-        <h1>
-          Supported Devices
-        </h1>
-        <br>
-        <p>
-          The following is the current support status of various devices
-        </p>
-        <br>
-      </div>
-      <div class="table-responsive-sm">
-        <table id="devices" class="display">
-          <thead>
-            <tr>
-              <th>Device</th>
-              <th>Manufacturer</th>
-              <th>Screen Resolution</th>
-              <th>Firmware</th>
-              <th>Notes</th>
-            </tr>
-          </thead>
-          <tbody id="tbody">
-          </tbody>
-        </table>
-      </div>
+      {markdown}
+      <!---
+       <div  id="markdown">
+
+    </div>
+    -->
+    <script>
+      anchors.options.visible = 'always';
+      anchors.add();
+    </script>
     </main>
 
     <footer class="my-5 pt-5 text-body-secondary text-center text-small">
     </footer>
   </div>
-  <script>
-
-    var devices = []
-
-    function populateTable() {
-      var tbody = document.getElementById("tbody");
-
-      for (item in devices) {
-        var tr = document.createElement("tr");
-
-        var device = document.createElement("td")
-        device.innerHTML = devices[item].device;
-        var manufacturer = document.createElement("td")
-        manufacturer.innerHTML = devices[item].manufacturer;
-        var resolution = document.createElement("td")
-        resolution.innerHTML = devices[item].resolution;
-        var firmware = document.createElement("td")
-        firmware.innerHTML = devices[item].firmware;
-        var notes = document.createElement("td")
-        notes.innerHTML = devices[item].notes;
-
-        tr.appendChild(device);
-        tr.appendChild(manufacturer);
-        tr.appendChild(resolution);
-        tr.appendChild(firmware);
-        tr.appendChild(notes);
-
-        tbody.appendChild(tr);
-      }
-    }
-
-    async function getDevices() {
-      try {
-        var response = await fetch('https://raw.githubusercontent.com/PortsMaster/PortMaster-Website/main/devices.json'); // Replace 'YOUR_JSON_URL_HERE' with the actual URL of your JSON data.
-        if (!response.ok) {
-          throw new Error('Network response was not ok.');
-        }
-        devices = await response.json();
-        populateTable();
-        $('#devices').DataTable({ responsive: true })
-      } catch (error) {
-        console.error('Error fetching JSON data:', error);
-      }
-    }
-
-    $(document).ready(function () {
-      getDevices();
-    });
-
-  </script>
 </body>
 
 </html>

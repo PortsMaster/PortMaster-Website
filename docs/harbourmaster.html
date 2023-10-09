@@ -10,6 +10,8 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/anchor-js/anchor.min.js"></script>
+
   <title>Harbourmaster</title>
 
 </head>
@@ -134,10 +136,97 @@
   <br>
   <div class="container">
     <main>
-      <md-block
-        src="https://raw.githubusercontent.com/PortsMaster/PortMaster-Website/main/content/markdown/harbourmaster.markdown">
-      </md-block>
-
+      <h1>HarbourMaster</h1>
+<p>PortMaster Package Manager</p>
+<p>This is the script backend that handles listing available ports, downloading and installing/uninstalling ports for our PortMaster GUI</p>
+<ul>
+<li>[x] <code>ports.md</code> generation for <code>PortMaster.sh</code></li>
+<li>[x] List by Genre</li>
+<li>[ ] List by Updates</li>
+<li>[x] List by Ready to Run</li>
+<li>[x] Filter by device/capabilities</li>
+<li>[x] Download Ports</li>
+<li>[x] Install Ports</li>
+<li>[x] List ports</li>
+<li>[x] Detect ports installed by zip</li>
+<li>[x] Have a builtin list of known ports to figure out older ports and ports installed manually.</li>
+<li>[x] Multiple Ports repositories</li>
+<li>[x] Uninstall Ports</li>
+</ul>
+<h1>How it works:</h1>
+<h2>port.json</h2>
+<p>Most of what harbourmaster uses is a new file called <code>&lt;portname&gt;.port.json</code>, this contains all the information required for a port.</p>
+<p>An <a href="https://github.com/kloptops/harbourmaster/blob/main/data/example.port.json">example annotated json file is included</a>, however for the moment most ports do not have a <code>.port.json</code> file so harbourmaster creates them from various sources. Going forward all ports should have a <code>.port.json</code> file and will be a requirement of submission to PortMaster.</p>
+<p>We have an <a href="https://kloptops.github.io/harbourmaster/port.html">easy to use webpage</a> for adding <code>port.json</code> file directly to your ports zip files, it all runs locally in your webbrowser so its easy to use.</p>
+<h2>Listing available ports:</h2>
+<p>Harbourmaster has a list of sources where it fetches ports from, by default it comes with:</p>
+<p>| Source               | Description                                                                           | Source File                  |
+| -------------------- | --------------------------------------------------------------------------------------| ---------------------------- |
+| PortMaster           | This draws from the default portmaster repository, it uses the PortMasterV1 protocol. | <code>020_portmaster.source.json</code> |
+| PortMaster Runtimes  | This is where runtimes for different runtimes live, it uses the GitHubRawReleaseV1 protocol. | <code>021_runtimes.source.json</code> |</p>
+<p>With these two sources portmaster behaves as usual.</p>
+<p>What makes portmaster different is it is now possible to install additional port sources, so that additional repositories of ports can be sourced.</p>
+<p>| Source               | Description                                                                           | Source File                  |
+| -------------------- | --------------------------------------------------------------------------------------| ---------------------------- |
+| Kloptops             | This is a source for my own testing port releases, it uses the <a href="https://github.com/kloptops/harbourmaster/tree/main/tools">GitHubRepoV1</a> protocol. | <a href="https://raw.githubusercontent.com/kloptops/Portmaster-misc/main/releases/050_kloptops.source.json"><code>050_kloptops.source.json</code></a> |</p>
+<p><em><strong>Note</strong>: additional sources can be added, make a PR to get yours added</em></p>
+<h2>Installing ports:</h2>
+<p>Harbourmaster follows a specific process to identify and fetch the appropriate port for downloading.</p>
+<p>Here's an overview of the steps involved:</p>
+<ul>
+<li>Port Identification: Ports are uniquely identified by their zip file names. Although this method may not be flawless, it has proven to be effective in practice.</li>
+<li>Source Priority: Harbourmaster fetches ports from the sources provided, considering their priority order. The tool retrieves ports from the sources in the specified sequence.</li>
+<li>Verification and Validation: Once a port is fetched from a source, Harbourmaster verifies its integrity. This involves checking if the downloaded port matches the supplied MD5 checksum. This verification ensures that the port is not corrupted or modified during the download process.</li>
+<li>Zip Content Check: After the download is validated, Harbourmaster inspects the contents of the zip file. It checks for the presence of at least one bash file and a data directory. Additionally, it scans for any unusual files that could potentially override core operating system files.</li>
+<li>Port Configuration: Harbourmaster ensures that a <code>&lt;portname&gt;.port.json</code> file exists for the port. This file contains relevant information about the port itself, which is combined with other data during the installation process to fully flesh it out.</li>
+</ul>
+<p>By following this process, Harbourmaster reliably identifies, fetches, and verifies ports from the specified sources, ensuring the integrity and consistency of the downloaded files.</p>
+<h2>Keeping track of installed ports:</h2>
+<p>Harbourmaster keeps track of installed ports by examining the ports folder and reading the <code>&lt;portname&gt;.port.json</code> files associated with each port. These JSON files provide information about the specific files and directories related to each port.</p>
+<p>During this process, Harbourmaster performs the following checks and actions:</p>
+<ul>
+<li>Detection of Broken Ports: Harbourmaster verifies the presence of the files and directories indicated in the <code>&lt;portname&gt;.port.json</code> files for each installed port. If any of these files or directories are not found, it indicates that the port is broken or incomplete.</li>
+<li>Identification of Unclaimed Files: Harbourmaster scans the files and directories within the ports folder to identify any files that have not been associated with a known port. These unclaimed files are then processed further.</li>
+<li>Detection of Newly Installed Ports: Among the unclaimed files, Harbourmaster compares them against its database of known ports. If a match is found, indicating that a new port has been installed, Harbourmaster flags it as such.</li>
+<li>Creation of <code>&lt;portname&gt;.port.json</code> File: For newly installed ports, Harbourmaster creates a corresponding <code>&lt;portname&gt;.port.json</code> file. This file contains the necessary information about the port, enabling Harbourmaster to manage and track it effectively.</li>
+<li>Validation of Newly Found Ports: While processing newly found ports, Harbourmaster checks all associated files and directories. If any of these files or directories are missing, it identifies the port as broken or incomplete.</li>
+</ul>
+<p>By performing these checks and actions, Harbourmaster maintains an accurate record of installed ports, identifies broken ports, detects newly installed ports, and ensures the integrity of the associated files and directories. This also allows Harbourmaster to work with ports that are manually unzipped into the ports folder.</p>
+<h2>Known Ports:</h2>
+<p>Some ports, because of their nature, cannot or do not exist on PortMaster. So that harbourmaster can work as intended, we create a <code>.port.json</code> for them in the <a href="https://github.com/kloptops/harbourmaster/tree/main/known-ports">known-ports</a> directory. Please create a PR for any that you come across that we don't know about.</p>
+<h2>Commands available:</h2>
+<p>| Command                                                   | Effect                                                     |
+|  -------------------------------------------------------- | ---------------------------------------------------------- |
+| <code>harbourmaster update</code>                                    | downloads the latest ports information                     |
+| <code>harbourmaster portsmd [filters]</code>                         | generate a ports.md file compatible with PortMaster.sh     |
+| <code>harbourmaster list [filters]</code>                            | list available ports                                       |
+| <code>harbourmaster ports</code>                                     | list installed, broken, and unknown ports.                 |
+| <code>harbourmaster install http[s]://&lt;url&gt;.zip[.md5/md5sum]</code>  | downloads a port from the specified url. If the url ends with md5/md5sum it assumes the url without the md5 is the ports zipfile. It will check the md5 against what is downloaded. |
+| <code>harbourmaster install [source/]&lt;portname&gt;.zip</code>           | downloads and installs the port from available sources.    |
+| <code>harbourmaster uninstall &lt;portname&gt;.zip</code>                  | Uninstall specified port.                                  |
+| <code>harbourmaster runtimes_list</code>                             | List available runtime environments                        |
+| <code>harbourmaster runtimes_check &lt;runtime&gt;</code>                  | Installs the specified runtime if it is not installed      |
+| <code>harbourmaster upgrade harbourmaster</code>                     | Updates harbourmaster against the latest version on github |</p>
+<h2>Python libraries used:</h2>
+<ul>
+<li><a href="https://pypi.org/project/ansimarkup/">ansimarkup</a></li>
+<li><a href="https://pypi.org/project/certifi/">certifi</a></li>
+<li><a href="https://pypi.org/project/colorama/">colorama</a></li>
+<li><a href="https://pypi.org/project/fastjsonschema/">fastjsonschema</a></li>
+<li><a href="https://pypi.org/project/idna/">idna</a></li>
+<li><a href="https://pypi.org/project/loguru/">loguru</a></li>
+<li><a href="https://github.com/mcpalmer1980/port_gui">port_gui</a> - used as pySDL2gui</li>
+<li><a href="https://pypi.org/project/pypng/">pypng</a></li>
+<li><a href="https://pypi.org/project/qrcode/">pyqrcode</a></li>
+<li><a href="https://pypi.org/project/PySDL2/">PySDL2</a></li>
+<li><a href="https://pypi.org/project/requests/">requests</a></li>
+<li><a href="https://pypi.org/project/typing-extensions/">typing-extensions</a></li>
+<li><a href="https://pypi.org/project/urllib3/">urllib3</a></li>
+</ul>
+      <script>
+        anchors.options.visible = 'always';
+        anchors.add();
+      </script>
     </main>
 
     <footer class="my-5 pt-5 text-body-secondary text-center text-small">
