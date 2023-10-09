@@ -113,7 +113,7 @@ function createRecent(item) {
 
 function populateRecentPorts() {
     jsonData.sort(function (a, b) {
-        if (Date.parse(a.status.date_updated) > Date.parse(b.status.date_updated))
+        if (Date.parse(a.source.date_updated) > Date.parse(b.source.date_updated))
             return -1
     });
     for (var key of Object.keys(jsonData.slice(0, 5))) {

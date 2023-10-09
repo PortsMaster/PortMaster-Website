@@ -98,7 +98,7 @@ function createCard(data) {
     const dateUpdated = document.createElement('p');
     dateUpdated.setAttribute("class","card-text text-body-secondary");
     dateUpdated.setAttribute("style","padding-top: 10px")
-    dateUpdated.textContent = "Updated: " + data.status.date_updated;
+    dateUpdated.textContent = "Updated: " + data.source.date_updated;
 
 
     const div4 = document.createElement('div');
@@ -111,7 +111,7 @@ function createCard(data) {
     button.setAttribute("type","button");
     button.textContent = "Download"
     button.setAttribute("class","btn btn-sm btn-outline-primary");
-    button.setAttribute("onclick","window.location.href='"+ data.status.download_url+ "';");
+    button.setAttribute("onclick","window.location.href='"+ data.source.download_url+ "';");
 
     div5.appendChild(button);
 
@@ -174,7 +174,7 @@ function filterCards() {
     };
     if (Newest){
         filteredData.sort(function(a, b) {
-            if (Date.parse(a.status.date_updated) > Date.parse(b.status.date_updated))
+            if (Date.parse(a.source.date_updated) > Date.parse(b.source.date_updated))
             return -1
           });
     }
