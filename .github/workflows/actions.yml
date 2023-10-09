@@ -2,7 +2,7 @@ name: Download ports.json
 
 on:
   schedule:
-    - cron: '0 * * * *'
+    - cron: '*/5 * * * *'
 
 jobs:
   build:
