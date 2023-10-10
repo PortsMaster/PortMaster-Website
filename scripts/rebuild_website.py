@@ -1,18 +1,23 @@
 import os
+import shutil
+
 import cmarkgfm
 from bs4 import BeautifulSoup
 
-path = os.path.join("content","markdown")
-for file in os.listdir(path):
-    with open(os.path.join(path,file), "r", encoding="utf-8") as input_file:
-        text = input_file.read()
-        #markdown_html = markdown.markdown(text,extensions=['tables','fenced_code','markdown_checklist.extension','mdx_truly_sane_lists'])
-        markdown_html = cmarkgfm.github_flavored_markdown_to_html(text)
-        html_file = file.replace(".markdown",".html")
-        page = open(os.path.join("website",html_file), "r", encoding="utf-8")
-        navbar_html = open(os.path.join("website","navbar.html"), "r", encoding="utf-8")
-        new_page = page.read().replace("{markdown}",markdown_html).replace("<table>",'<table class="table table-bordered">').replace("{navbar}",navbar_html.read())
-        new_page = BeautifulSoup(new_page, 'html.parser').prettify()
-        f = open(os.path.join("docs",html_file), "w", encoding="utf-8")
-        f.write(new_page)
+shutil.copytree(os.path.join("website","css"),os.path.join("docs","css"),dirs_exist_ok=True)
+shutil.copytree(os.path.join("website","js"),os.path.join("docs","js"),dirs_exist_ok=True)
+
+navbar_html = open(os.path.join("website","navbar.html"), "r", encoding="utf-8").read()
+
+for file in os.listdir("website"):
+    if ".html" in file and "navbar.html" not in file:
+        webpage = open(os.path.join("website",file), "r", encoding="utf-8").read()
+        if os.path.isfile(os.path.join("content","markdown",file.replace(".html",".markdown"))):
+            markdown_text = open(os.path.join("content","markdown",file.replace(".html",".markdown")), "r", encoding="utf-8").read()
+            markdown_html = cmarkgfm.github_flavored_markdown_to_html(markdown_text)
+            webpage = webpage.replace("{markdown}",markdown_html).replace("<table>",'<table class="table table-bordered">')
+
+        webpage = BeautifulSoup(webpage.replace("{navbar}",navbar_html), 'html.parser').prettify()
+        f = open(os.path.join("docs",file), "w", encoding="utf-8")
+        f.write(webpage)
         f.close()
