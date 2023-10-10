@@ -1,150 +1,193 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
-    <title>gptokeyb Mapping Tool</title>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
-    <!----  <style>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1" name="viewport"/>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet"/>
+  <title>
+   gptokeyb Mapping Tool
+  </title>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js">
+  </script>
+  <!----  <style>
         .mb-3 {
             float: left;
             width: 33%;
         }
     </style>
 -->
-</head>
-
-<body class="p-3 m-0 border-0 bd-example m-0 border-0">
-
-    <h1>
-        gptokeyb Mapping Tool
-    </h1>
-    <br>
-    <form>
-        <div class="mb-3">
-            <label for="back_button" class="form-label">Back Button: </label>
-            <select name="back_button" id="back_button">
-            </select>
-        </div>
-        <div class="mb-3">
-            <label for="start_button" class="form-label">Start Button: </label>
-            <select name="start_button" id="start_button">
-            </select>
-        </div>
-        <div class="mb-3">
-            <label for="a_button" class="form-label">A Button: </label>
-            <select name="a_button" id="a_button">
-            </select>
-        </div>
-        <div class="mb-3">
-            <label for="b_button" class="form-label">B Button: </label>
-            <select name="b_button" id="b_button">
-            </select>
-        </div>
-        <div class="mb-3">
-            <label for="x_button" class="form-label">X Button: </label>
-            <select name="x_button" id="x_button">
-            </select>
-        </div>
-        <div class="mb-3">
-            <label for="y_button" class="form-label">Y Button: </label>
-            <select name="y_button" id="y_button">
-            </select>
-        </div>
-        <div class="mb-3">
-            <label for="l1_button" class="form-label">L1 Button: </label>
-            <select name="l1_button" id="l1_button">
-            </select>
-        </div>
-        <div class="mb-3">
-            <label for="l2_button" class="form-label">L2 Button: </label>
-            <select name="l2_button" id="l2_button">
-            </select>
-        </div>
-        <div class="mb-3">
-            <label for="r1_button" class="form-label">R1 Button: </label>
-            <select name="r1_button" id="r1_button">
-            </select>
-        </div>
-        <div class="mb-3">
-            <label for="r2_button" class="form-label">R2 Button: </label>
-            <select name="r2_button" id="r2_button">
-            </select>
-        </div>
-        <div class="mb-3">
-            <label for="dpad_up" class="form-label">Dpad Up: </label>
-            <select name="dpad_up" id="dpad_up">
-            </select>
-        </div>
-        <div class="mb-3">
-            <label for="dpad_down" class="form-label">Dpad Down: </label>
-            <select name="dpad_down" id="dpad_down">
-            </select>
-        </div>
-        <div class="mb-3">
-            <label for="dpad_left" class="form-label">Dpad Left: </label>
-            <select name="dpad_left" id="dpad_left">
-            </select>
-        </div>
-        <div class="mb-3">
-            <label for="dpad_right" class="form-label">Dpad Right: </label>
-            <select name="dpad_right" id="dpad_right">
-            </select>
-        </div>
-        <div class="mb-3">
-            <label for="lstick_up" class="form-label">Left Joystick Up: </label>
-            <select name="lstick_up" id="lstick_up">
-
-            </select>
-        </div>
-        <div class="mb-3">
-            <label for="lstick_down" class="form-label">Left Joystick Down: </label>
-            <select name="lstick_down" id="lstick_down">
-            </select>
-        </div>
-        <div class="mb-3">
-            <label for="lstick_left" class="form-label">Left Joystick Left: </label>
-            <select name="lstick_left" id="lstick_left">
-            </select>
-        </div>
-        <div class="mb-3">
-            <label for="lstick_right" class="form-label">Left Joystick Right: </label>
-            <select name="lstick_right" id="lstick_right">
-            </select>
-        </div>
-        <div class="mb-3">
-            <label for="rstick_up" class="form-label">Right Joystick Up: </label>
-            <select name="rstick_up" id="rstick_up">
-            </select>
-        </div>
-        <div class="mb-3">
-            <label for="rstick_down" class="form-label">Right Joystick Down: </label>
-            <select name="rstick_down" id="rstick_down">
-            </select>
-        </div>
-        <div class="mb-3">
-            <label for="rstick_left" class="form-label">Right Joystick Left: </label>
-            <select name="rstick_left" id="rstick_left">
-            </select>
-        </div>
-        <div class="mb-3">
-            <label for="rstick_right" class="form-label">Right Joystick Right: </label>
-            <select name="rstick_right" id="rstick_right">
-            </select>
-        </div>
-    </form>
-    <button onclick="readContent()" class="btn btn-primary">Submit</button>
-
-    <!-- End Example Code -->
-
-    <div>
-        <textarea id="gptk" name="gptk" rows="28" cols="30"></textarea>
-    </div>
-    <script>
-        const key_maps = {
+ </head>
+ <body class="p-3 m-0 border-0 bd-example m-0 border-0">
+  <h1>
+   gptokeyb Mapping Tool
+  </h1>
+  <br/>
+  <form>
+   <div class="mb-3">
+    <label class="form-label" for="back_button">
+     Back Button:
+    </label>
+    <select id="back_button" name="back_button">
+    </select>
+   </div>
+   <div class="mb-3">
+    <label class="form-label" for="start_button">
+     Start Button:
+    </label>
+    <select id="start_button" name="start_button">
+    </select>
+   </div>
+   <div class="mb-3">
+    <label class="form-label" for="a_button">
+     A Button:
+    </label>
+    <select id="a_button" name="a_button">
+    </select>
+   </div>
+   <div class="mb-3">
+    <label class="form-label" for="b_button">
+     B Button:
+    </label>
+    <select id="b_button" name="b_button">
+    </select>
+   </div>
+   <div class="mb-3">
+    <label class="form-label" for="x_button">
+     X Button:
+    </label>
+    <select id="x_button" name="x_button">
+    </select>
+   </div>
+   <div class="mb-3">
+    <label class="form-label" for="y_button">
+     Y Button:
+    </label>
+    <select id="y_button" name="y_button">
+    </select>
+   </div>
+   <div class="mb-3">
+    <label class="form-label" for="l1_button">
+     L1 Button:
+    </label>
+    <select id="l1_button" name="l1_button">
+    </select>
+   </div>
+   <div class="mb-3">
+    <label class="form-label" for="l2_button">
+     L2 Button:
+    </label>
+    <select id="l2_button" name="l2_button">
+    </select>
+   </div>
+   <div class="mb-3">
+    <label class="form-label" for="r1_button">
+     R1 Button:
+    </label>
+    <select id="r1_button" name="r1_button">
+    </select>
+   </div>
+   <div class="mb-3">
+    <label class="form-label" for="r2_button">
+     R2 Button:
+    </label>
+    <select id="r2_button" name="r2_button">
+    </select>
+   </div>
+   <div class="mb-3">
+    <label class="form-label" for="dpad_up">
+     Dpad Up:
+    </label>
+    <select id="dpad_up" name="dpad_up">
+    </select>
+   </div>
+   <div class="mb-3">
+    <label class="form-label" for="dpad_down">
+     Dpad Down:
+    </label>
+    <select id="dpad_down" name="dpad_down">
+    </select>
+   </div>
+   <div class="mb-3">
+    <label class="form-label" for="dpad_left">
+     Dpad Left:
+    </label>
+    <select id="dpad_left" name="dpad_left">
+    </select>
+   </div>
+   <div class="mb-3">
+    <label class="form-label" for="dpad_right">
+     Dpad Right:
+    </label>
+    <select id="dpad_right" name="dpad_right">
+    </select>
+   </div>
+   <div class="mb-3">
+    <label class="form-label" for="lstick_up">
+     Left Joystick Up:
+    </label>
+    <select id="lstick_up" name="lstick_up">
+    </select>
+   </div>
+   <div class="mb-3">
+    <label class="form-label" for="lstick_down">
+     Left Joystick Down:
+    </label>
+    <select id="lstick_down" name="lstick_down">
+    </select>
+   </div>
+   <div class="mb-3">
+    <label class="form-label" for="lstick_left">
+     Left Joystick Left:
+    </label>
+    <select id="lstick_left" name="lstick_left">
+    </select>
+   </div>
+   <div class="mb-3">
+    <label class="form-label" for="lstick_right">
+     Left Joystick Right:
+    </label>
+    <select id="lstick_right" name="lstick_right">
+    </select>
+   </div>
+   <div class="mb-3">
+    <label class="form-label" for="rstick_up">
+     Right Joystick Up:
+    </label>
+    <select id="rstick_up" name="rstick_up">
+    </select>
+   </div>
+   <div class="mb-3">
+    <label class="form-label" for="rstick_down">
+     Right Joystick Down:
+    </label>
+    <select id="rstick_down" name="rstick_down">
+    </select>
+   </div>
+   <div class="mb-3">
+    <label class="form-label" for="rstick_left">
+     Right Joystick Left:
+    </label>
+    <select id="rstick_left" name="rstick_left">
+    </select>
+   </div>
+   <div class="mb-3">
+    <label class="form-label" for="rstick_right">
+     Right Joystick Right:
+    </label>
+    <select id="rstick_right" name="rstick_right">
+    </select>
+   </div>
+  </form>
+  <button class="btn btn-primary" onclick="readContent()">
+   Submit
+  </button>
+  <!-- End Example Code -->
+  <div>
+   <textarea cols="30" id="gptk" name="gptk" rows="28"></textarea>
+  </div>
+  <script>
+   const key_maps = {
             "\\\"": "Unmapped",
             "a": "A",
             "b": "B",
@@ -446,8 +489,6 @@
             document.getElementById("gptk").textContent = content;
 
         }
-
-    </script>
-</body>
-
+  </script>
+ </body>
 </html>
