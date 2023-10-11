@@ -371,13 +371,57 @@
           </optgroup>
          </select>
         </div>
-        <!--
-              <div class="col-12">
-                <label for="requirements" class="form-label">Requirements</label>
-                <select multiple class="form-select" id="requirements">
-                </select>
-              </div>
-              -->
+        <label class="form-label">
+         Resolution
+        </label>
+        <div class="form-check">
+         <input class="form-check-input" id="notlowres" name="resRadio" type="radio" value="notlowres"/>
+         <label class="form-check-label" for="notlowres">
+          Not Loweres: greater than 640*480
+         </label>
+        </div>
+        <div class="form-check">
+         <input class="form-check-input" id="hires" name="resRadio" type="radio" value="hires"/>
+         <label class="form-check-label" for="hires">
+          Hires: greater than 640*480
+         </label>
+        </div>
+        <div class="form-check">
+         <input checked="" class="form-check-input" id="anyres" name="resRadio" type="radio" value="anyres"/>
+         <label class="form-check-label" for="anyres">
+          Any Resolution
+         </label>
+        </div>
+        <label class="form-label">
+         Ram
+        </label>
+        <div class="form-check">
+         <input checked="" class="form-check-input" id="anygb" name="ramRadio" type="radio" value="anygb"/>
+         <label class="form-check-label" for="anygb">
+          No Minimum Ram
+         </label>
+        </div>
+        <div class="form-check">
+         <input class="form-check-input" id="2gb" name="ramRadio" type="radio" value="2gb"/>
+         <label class="form-check-label" for="2gb">
+          2gb Ram Minimum
+         </label>
+        </div>
+        <div class="form-check">
+         <input class="form-check-input" id="4gb" name="ramRadio" type="radio" value="4gb"/>
+         <label class="form-check-label" for="4gb">
+          4gb Ram Minimum
+         </label>
+        </div>
+        <label class="form-label">
+         Other
+        </label>
+        <div class="form-check">
+         <input class="form-check-input" id="power" type="checkbox" value="power"/>
+         <label class="form-check-label" for="power">
+          Power: any device above an rk3326 cpu
+         </label>
+        </div>
         <hr class="my-4"/>
         <div class="form-check">
          <input class="form-check-input" id="readytorun" type="checkbox"/>

@@ -83,54 +83,7 @@
       </li>
     </ul>
   </div>
-
-  <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark" aria-label="Fourth navbar example">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="index.html">
-        <img height="35px" src="https://raw.githubusercontent.com/PortsMaster/PortMaster-Website/main/logo.svg" />
-      </a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample04"
-        aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarsExample04">
-        <ul class="navbar-nav me-auto mb-2 mb-md-0">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="https://discord.gg/JxYBp9HTAY">Discord</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="https://github.com/PortsMaster">GitHub</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="faq.html">FAQ</a>
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="wiki.html">Wiki</a>
-          </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">Portmaster</a>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="installation.html">Installation</a></li>
-              <li><a class="dropdown-item" href="runtimes.html">Runtimes</a></li>
-              <li><a class="dropdown-item" href="supported-devices.html">Supported Devices</a></li>
-              <li><a class="dropdown-item" href="gptokeyb-documentation.html">Gptokeyb Documentation</a></li>
-              <li><a class="dropdown-item" href="harbourmaster.html">Harbourmaster</a></li>
-            </ul>
-          </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">Contribute</a>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="porting.html">Porting</a></li>
-              <li><a class="dropdown-item" href="packaging.html">Packaging</a></li>
-              <li><a class="dropdown-item" href="build-environments.html">Build Environments</a></li>
-              <li><a class="dropdown-item" href="port-tools.html">Port Tools</a></li>
-              <li><a class="dropdown-item" href="port-json.html">Port JSON Generator</a></li>
-            </ul>
-          </li>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
+  {navbar}
   <br>
 
   <div class="container">
@@ -253,14 +206,51 @@
                 </select>
               </div>
 
-              <!--
-              <div class="col-12">
-                <label for="requirements" class="form-label">Requirements</label>
-                <select multiple class="form-select" id="requirements">
-                </select>
+              <label class="form-label">Resolution</label>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="resRadio" value="notlowres" id="notlowres">
+                <label class="form-check-label" for="notlowres">
+                  Not Loweres: greater than 640*480
+                </label>
               </div>
-              -->
-
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="resRadio" value="hires" id="hires">
+                <label class="form-check-label" for="hires">
+                  Hires: greater than 640*480
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="resRadio" value="anyres" id="anyres" checked>
+                <label class="form-check-label" for="anyres">
+                  Any Resolution
+                </label>
+              </div>
+              <label class="form-label">Ram</label>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="ramRadio" value="anygb" id="anygb" checked>
+                <label class="form-check-label" for="anygb">
+                  No Minimum Ram
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="ramRadio" value="2gb" id="2gb">
+                <label class="form-check-label" for="2gb">
+                  2gb Ram Minimum
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="ramRadio" value="4gb" id="4gb">
+                <label class="form-check-label" for="4gb">
+                  4gb Ram Minimum
+                </label>
+              </div>
+              <label class="form-label">Other</label>
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="power" id="power">
+                <label class="form-check-label" for="power">
+                  Power: any device above an rk3326 cpu
+                </label>
+              </div>
               <hr class="my-4">
 
               <div class="form-check">

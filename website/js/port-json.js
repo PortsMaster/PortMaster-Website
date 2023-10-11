@@ -100,8 +100,30 @@ function getFormValues() {
   portJson.attr.desc = document.getElementById("description").value;
   portJson.attr.inst = document.getElementById("instructions").value;
   portJson.attr.runtime = document.getElementById("runtime").value ? document.getElementById("runtime").value : null;
-  //portJson.attr.reqs = Array.from(document.getElementById("requirements").selectedOptions).map(o => o.value);
   portJson.attr.rtr = document.getElementById("readytorun").checked;
+  portJson.attr.reqs = [];
+
+  // res requirements
+  if (document.getElementById("notlowres").checked){
+    portJson.attr.reqs.push("!lowres");
+  }
+  if (document.getElementById("hires").checked){
+    portJson.attr.reqs.push("hires");
+  }
+
+  // ram requirements
+  if (document.getElementById("2gb").checked){
+    portJson.attr.reqs.push("2gb");
+  }
+  if (document.getElementById("4gb").checked){
+    portJson.attr.reqs.push("4gb");
+  }
+
+  // power requirement
+  if (document.getElementById("power").checked){
+    portJson.attr.reqs.push("power");
+  }
+
   return portJson;
 }
 
@@ -115,7 +137,7 @@ function validateForm(){
 }
 
 function downloadJson() {
-  json = JSON.stringify(getFormValues(), null, 2);
+  var json = JSON.stringify(getFormValues(), null, 2);
   var file = new Blob([json], { type: "application/json" });
   if (window.navigator.msSaveOrOpenBlob) // IE10+
     window.navigator.msSaveOrOpenBlob(file, filename);
