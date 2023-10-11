@@ -206,11 +206,14 @@
                 </select>
               </div>
 
+              <hr class="my-4">
+              <label class="form-label">Requirements</label>
+              <hr class="my-4">
               <label class="form-label">Resolution</label>
               <div class="form-check">
                 <input class="form-check-input" type="radio" name="resRadio" value="notlowres" id="notlowres">
                 <label class="form-check-label" for="notlowres">
-                  Not Loweres: greater than 640*480
+                  Not Loweres: 640*480 and above
                 </label>
               </div>
               <div class="form-check">
@@ -249,6 +252,12 @@
                 <input class="form-check-input" type="checkbox" value="power" id="power">
                 <label class="form-check-label" for="power">
                   Power: any device above an rk3326 cpu
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="opengl" id="opengl">
+                <label class="form-check-label" for="opengl">
+                  OpenGL: any device with OpenGL, not OpenGLES
                 </label>
               </div>
               <hr class="my-4">

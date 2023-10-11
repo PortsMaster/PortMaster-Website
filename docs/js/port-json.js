@@ -119,6 +119,11 @@ function getFormValues() {
     portJson.attr.reqs.push("4gb");
   }
 
+    // opengl requirement
+    if (document.getElementById("opengl").checked){
+      portJson.attr.reqs.push("opengl");
+    }
+
   // power requirement
   if (document.getElementById("power").checked){
     portJson.attr.reqs.push("power");
