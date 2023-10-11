@@ -23,7 +23,7 @@ function displayCardDetails(data) {
     downloadCountElement.textContent = data.download_count;
 
     const lastUpdatedElement = document.getElementById("last_updated");
-    lastUpdatedElement.textContent = data.date_updated;
+    lastUpdatedElement.textContent = data.source.date_updated;
 
 
     var taggedGenres = "";
