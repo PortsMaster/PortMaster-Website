@@ -37,6 +37,12 @@ function displayCardDetails(data) {
     });
     taggedGenres ? document.getElementById("genres").innerHTML = taggedGenres : true;
 
+    var taggedRequirements = "";
+    data.attr.reqs.forEach((req) => {
+        taggedRequirements += '<span class="requirement-item badge bg-secondary">' + req + '</span>' + '<br>';
+    });
+    taggedRequirements ? document.getElementById("requirements").innerHTML = taggedRequirements : true;
+
     var porters = data.attr.porter;
     var porterHtml = "";
     porters.forEach((porter) => {
