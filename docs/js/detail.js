@@ -19,6 +19,11 @@ function displayCardDetails(data) {
     descriptionElement.innerHTML = converter.makeHtml(data.attr.desc);
     data.attr.porter ? document.getElementById('porter').textContent = data.attr.porter : document.getElementsByClassName('porter').hidden = true;
 
+    instructionsElement = document.getElementById('inst');
+    var converter = new showdown.Converter();
+    instructionsElement.innerHTML = converter.makeHtml(data.attr.inst);
+
+
     const downloadCountElement = document.getElementById("download_count");
     downloadCountElement.textContent = data.download_count;
 
