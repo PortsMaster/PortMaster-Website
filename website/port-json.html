@@ -205,6 +205,12 @@
                     <option value="frt_3.5.2.squashfs">GoDot / FRT 3.5.2</option>
                 </select>
               </div>
+              <hr class="my-4">
+              <label class="form-label">Ready To Run</label>
+              <div class="form-check">
+                <input type="checkbox" class="form-check-input" id="readytorun">
+                <label class="form-check-label" for="readytorun">This port is ready to run with all files required. If it only includes demo game files please specify in the description</label>
+              </div>
 
               <hr class="my-4">
               <label class="form-label">Requirements</label>
@@ -213,13 +219,13 @@
               <div class="form-check">
                 <input class="form-check-input" type="radio" name="resRadio" value="notlowres" id="notlowres">
                 <label class="form-check-label" for="notlowres">
-                  Not Loweres: 640*480 and above
+                  Not Lowres: Exclude 480x320 (351p, OGA, zpg pro, rgb10)
                 </label>
               </div>
               <div class="form-check">
                 <input class="form-check-input" type="radio" name="resRadio" value="hires" id="hires">
                 <label class="form-check-label" for="hires">
-                  Hires: greater than 640*480
+                  Highres: Anything above 640x480
                 </label>
               </div>
               <div class="form-check">
@@ -262,13 +268,6 @@
               </div>
               <hr class="my-4">
 
-              <div class="form-check">
-                <input type="checkbox" class="form-check-input" id="readytorun">
-                <label class="form-check-label" for="readytorun">This port is ready to run with all files
-                  included</label>
-              </div>
-
-              <hr class="my-4">
             </div>
 
             <button onclick="validateForm()" class="w-100 btn btn-primary btn-lg" type="button">Download JSON</button>
