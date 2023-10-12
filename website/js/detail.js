@@ -58,7 +58,7 @@ function displayCardDetails(data) {
     downloadElement.setAttribute("onclick", "window.location.href='" + data.source.url + "';");
 
     const markdownElement = document.getElementById("markdown");
-    markdownElement.setAttribute("src", "https://raw.githubusercontent.com/PortsMaster/PortMaster-Website/main/markdown/" + data.name.toLowerCase().replace("zip", "md"));
+    markdownElement.setAttribute("src", "https://raw.githubusercontent.com/christianhaitian/PortMaster/main/markdown/" + data.name.toLowerCase().replace("zip", "md"));
 
 
 }
@@ -71,7 +71,7 @@ async function fetchDataAndDisplayDetails() {
 
 
 
-        var response = await fetch('https://raw.githubusercontent.com/PortsMaster/PortMaster-Website/main/ports.json'); // Replace 'YOUR_JSON_URL_HERE' with the actual URL of your JSON data.
+        var response = await fetch('https://raw.githubusercontent.com/PortsMaster/PortMaster-Info/main/ports.json'); // Replace 'YOUR_JSON_URL_HERE' with the actual URL of your JSON data.
         if (!response.ok) {
             throw new Error('Network response was not ok.');
         }
