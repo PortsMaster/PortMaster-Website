@@ -2,6 +2,21 @@
 
 [Download](https://github.com/PortsMaster/PortMaster-GUI/releases/latest)
 
+### Via Script
+
+To install PortMaster via a simple Installation Script download either the Install.PortMaster.sh or Install.Full.PortMaster.sh (with all Runtimes already included) from the link above and place it in the appropriate folder for your CFW. After that simply execute the .sh from your Ports folder.
+
+| CFW          | Location               |
+|--------------|------------------------|
+| AmberElec    | /roms/ports/           |
+| ArkOS        | /roms(or roms2)/ports/ |
+| JELOS        | /roms/ports/           |
+| UnofficialOS | /roms/ports/           |
+
+If your CFW is not listed above, it will most likely be in one of the above locations.
+
+### Via Zip
+
 To install PortMaster download the PortMaster.zip from the link above, unzip it and place it in the appropriate folder for your CFW.
 
 | CFW          | Location               |
@@ -13,6 +28,7 @@ To install PortMaster download the PortMaster.zip from the link above, unzip it 
 | UnofficialOS | /storage/roms/ports/   |
 
 If your CFW is not listed above, it will most likely be in one of the above locations.
+
 
 ## JELOS
 
