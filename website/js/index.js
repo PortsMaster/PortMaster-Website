@@ -148,10 +148,7 @@ async function getPageContent() {
         console.error('Error fetching JSON data:', error);
     }
 
-    articles.sort(function(a, b) {
-        if (Date.parse(a.date) > Date.parse(b.date))
-        return -1
-      });
+    articles.sort((a,b)=> Date.parse(a.date) > Date.parse(b.datd) ? -1 :  (Date.parse(a.date) < Date.parse(b.date) ? 1 :0))
       
     populateArticles();
     populateRecentPorts();
