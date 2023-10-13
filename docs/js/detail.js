@@ -46,21 +46,31 @@ function displayCardDetails(data) {
     var porters = data.attr.porter;
     var porterHtml = "";
     porters.forEach((porter) => {
-        porterHtml += '<a href="profile.html?porter=' + porter +'">' + porter + '</a>';
-        if(porters.length > 1) {
+        porterHtml += '<a href="profile.html?porter=' + porter + '">' + porter + '</a>';
+        if (porters.length > 1) {
             porterHtml += "<br>";
         }
     });
-    data.attr.porter ? document.getElementById('porter').innerHTML = porterHtml: document.getElementsByClassName('porter').hidden = true;
+    data.attr.porter ? document.getElementById('porter').innerHTML = porterHtml : document.getElementsByClassName('porter').hidden = true;
 
 
     const downloadElement = document.getElementById("download");
     downloadElement.setAttribute("onclick", "window.location.href='" + data.source.url + "';");
 
-    const markdownElement = document.getElementById("markdown");
-    markdownElement.setAttribute("src", "https://raw.githubusercontent.com/christianhaitian/PortMaster/main/markdown/" + data.name.toLowerCase().replace("zip", "md"));
-
-
+    async function getmarkdown() {
+        try {
+            var response = await fetch("https://raw.githubusercontent.com/christianhaitian/PortMaster/main/markdown/" + data.name.replace("zip", "md")); // Replace 'YOUR_JSON_URL_HERE' with the actual URL of your JSON data.
+            if (!response.ok) {
+                throw new Error('Network response was not ok.');
+            }
+            markdown = await response.text();
+            const markdownElement = document.getElementById("markdown");
+            markdownElement.innerHTML = CmarkGFM.convert(markdown).replace("<table>", '<table class="table table-bordered">');
+        } catch (error) {
+            console.error('Error fetching JSON data:', error);
+        }
+    }
+    getmarkdown();
 }
 
 
@@ -80,7 +90,7 @@ async function fetchDataAndDisplayDetails() {
         var card = null;
 
         for (var key of Object.keys(jsonData)) {
-            if (jsonData[key].name.replace(".zip","") === name) {
+            if (jsonData[key].name.replace(".zip", "") === name) {
                 card = jsonData[key];
             }
         };
