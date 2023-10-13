@@ -173,10 +173,7 @@ function filterCards() {
 
     };
     if (Newest){
-        filteredData.sort(function(a, b) {
-            if (Date.parse(a.source.date_updated) > Date.parse(b.source.date_updated))
-            return -1
-          });
+        filteredData.sort((a,b)=> Date.parse(a.source.date_updated) > Date.parse(b.source.date_updated) ? -1 :  (Date.parse(a.source.date_updated) < Date.parse(b.source.date_updated) ? 1 :0));
     }
 
     if (AZ){
@@ -184,10 +181,7 @@ function filterCards() {
     }
 
     if (Downloaded){
-        filteredData.sort(function(a, b) {
-            if (a.download_count > b.download_count)
-            return -1
-          });
+        filteredData.sort((a,b)=> a.download_count > b.download_count ? -1 :  (a.download_count < b.download_count) ? 1 :0);
     }
 
     var availablePorts = document.getElementById("port-count")
