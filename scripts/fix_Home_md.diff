@@ -1,0 +1,13 @@
+diff --git a/Home.md b/Home.md
+index 7a36502..9275751 100644
+--- a/Home.md
++++ b/Home.md
+@@ -445,7 +445,7 @@ Instructions: Game files are already included and ready to go. \
+ Notes: Thanks to [joh-devl](https://github.com/joh-dev/HYPERFIGHT) for creating this game and making it available for free.  Also thanks to Cebion for the packaging for portmaster.
+ 
+ ### HYPER jump
+-Pick up the yellow orbs, dodge everything else. Game files are already included and ready to go.
++Instructions: Pick up the yellow orbs, dodge everything else. Game files are already included and ready to go.
+ 
+ DPAD = Movement \
+ A / B = Jump \

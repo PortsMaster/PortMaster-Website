@@ -1,0 +1,1387 @@
+[
+    {
+        "name": "2048.zip",
+        "title": "2048",
+        "instructions": "2048 files are already included and ready to go.  Just start 2048 from Ports in the emulationstation menu.",
+        "notes": "Thanks to [Gabriel Cirulli](http://gabrielecirulli.github.io/2048/) for creating this game and thanks to [Libretro](https://github.com/libretro/libretro-2048) for porting this as a retroarch core."
+    },
+    {
+        "name": "abes_adventure.zip",
+        "title": "Abe's Amazing Adventure!!",
+        "instructions": "Abe's Adventure files are already included and ready to go. Just start Abe's Adventure from Ports in the Emulationstation menu.",
+        "notes": "Thanks to [Gabor Torok/Pedro Izecksohn](https://abe.sourceforge.net/) and other contributors for creating this game and making available for free. Also thanks to Cebion for the packaging for portmaster."
+    },
+    {
+        "name": "abombniball.zip",
+        "title": "Abombniball",
+        "instructions": "Abombniball files are already included and ready to go. Just start Abombniball from Ports in the Emulationstation menu.",
+        "notes": "Thanks to Martin Donlon creating this game and making it available for free. Also thanks to Cebion for the packaging for portmaster."
+    },
+    {
+        "name": "profadeluxe.zip",
+        "title": "Abu Simbel Profanation Deluxe",
+        "instructions": "The game files are already included and ready to go. Just start Profanattion Deluxe  from Ports in the Emulationstation menu.",
+        "notes": "Thanks to [dmitrysmagin](https://github.com/dmitrysmagin/profadeluxe) and the Team of MA Software for creating this game and making available for free. Also thanks to Cebion for the packaging for portmaster."
+    },
+    {
+        "name": "abuse.zip",
+        "title": "Abuse",
+        "instructions": "The game is public domain so the files are already included and ready to go.  Just start Abuse from Ports in the emulationstation menu.",
+        "notes": "Thanks to Jonathan Clark, Dave Taylor and the rest of the Crack Dot Com team for making this 2D game and releasing it as public domain.  Thanks to [Xenoveritas](https://github.com/Xenoveritas/abuse) for porting it so that it's easier to build.  Also thanks to [romadu](https://github.com/romadu/abuse) for the porting work for portmaster."
+    },
+    {
+        "name": "alephone-marathoninfinity.zip",
+        "title": "Aleph-One (Marathon/Marathon 2/Marathon Infinity)",
+        "instructions": "Data files are already included and ready to go.  Just start Marathon, Marathon 2 or Marathon Infinity from Ports in the emulationstation menu.",
+        "notes": "Thanks to the [Aleph-One-Marathon Team](https://github.com/Aleph-One-Marathon/alephone) for creating this opensource engine.  Also thanks to romadu for the porting work for portmaster."
+    },
+    {
+        "name": "avp.zip",
+        "title": "Alien Vs. Predator",
+        "instructions": "You will need the original files of the PC release copied to the ports/avp folder.",
+        "notes": "The following files are needed:\n-  avp_huds directory\n-  avp_rifs directory\n-  fastfile directory\n-  language.txt file\n\n   #### ALL FILES AND FOLDERS NEED TO BE LOWERCASE ####\n\n  Includes 2 saves, 100% all missions and all cheats & a default profile with nothing unlocked.\n  (both have the controls setup for each species)\n-  Thanks to [sirlemonhead](https://github.com/neuromancer/avp) and other contributors for this engine. Also thanks to Kreal for the porting work and Rocky5 and Cebion for the packaging for portmaster."
+    },
+    {
+        "name": "am2r.zip",
+        "title": "AM2R",
+        "instructions": "You'll need to source your own am2r android apk and place it into the ports/am2r/gamedata folder.  Make sure it is named am2r.apk.  If need be, just rename the am2r apk you source to am2r.apk.  **The name is case sensitive!**",
+        "notes": "Thanks to JohnnyonFlame for the [droidports](https://github.com/JohnnyonFlame/droidports) loader that makes this possible.\nYou can donate towards JohnnyonFlame's work [here](https://ko-fi.com/johnnyonflame)"
+    },
+    {
+        "name": "anarch.zip",
+        "title": "Anarch",
+        "instructions": "Anarch files are already included and ready to go.  Just start Anarch from Ports in the emulationstation menu.",
+        "notes": "Thanks to [Miloslav \u010c\u00ed\u017e/drummyfish](https://drummyfish.itch.io/anarch) for creating the open source game.  Also thanks to christopher-roelofs for the porting and packaging for portmaster."
+    },
+    {
+        "name": "augustus.zip",
+        "title": "Augustus (Caeser III)",
+        "instructions": "You can buy a digital copy from GOG or Steam, or you can use an original CD-ROM version.  Install the game files into `ports/augustus/data`, here are some excellent instructions [from the Julius project](https://github.com/bvschaik/julius/wiki/Running-Julius) (which Augustus is a fork of). If installing from the CD's you'll need to get the [latest patches](https://github.com/bvschaik/julius/wiki/Patches).",
+        "notes": "Thanks to [Keriew](https://github.com/Keriew/augustus) for this modified version of the open source julius port from [Bianca van Schaik](https://github.com/bvschaik/julius) and other contributors. Also thanks to [Kloptops](https://github.com/kloptops/Portmaster-misc/tree/main/Augustus) for the packaging for portmaster and Cebion for the controls work."
+    },
+    {
+        "name": "axiom.verge.zip",
+        "title": "Axiom Verge",
+        "instructions": "You will need to add your own files to the ports/axiom-verge/gamedata folder. YOU HAVE TO USE THE DRM FREE EPIC GAMES VERSION. Also make sure you have the mono-6.12.0.122-aarch64.squashfs file in your Portmaster/libs folder. All instructions are in the ports/axiom-verge/gamedata folder.",
+        "notes": "Thanks to the [FNA-XNA](https://github.com/FNA-XNA/FNA) project for the runtime that's used to make this possible.\nAlso thanks to JohnnyonFlame, Overflask and Nuxx for the porting work for portmaster."
+    },
+    {
+        "name": "banana.duck.zip",
+        "title": "Banana Duck",
+        "instructions": "Game files are already included and ready to go.",
+        "notes": "Thanks to Hamdy Elzanqali for creating this games and [CYFO games](https://cyfo.itch.io/banana-duck) for permission to include the game files in this port.  Also thanks to tabreturn for the porting work for portmaster."
+    },
+    {
+        "name": "beat2x.zip",
+        "title": "Beat2x",
+        "instructions": "Beat2x files are already included and ready to go. Just start Beat2x from Ports in the emulationstation menu.",
+        "notes": "Thanks to miq01 and Zenzuke for this game, Bamboozler for packaging to Portmaster and the Portmaster testers for testing."
+    },
+    {
+        "name": "pixelheat.zip",
+        "title": "Beat of The Pixel Heat",
+        "instructions": "Ready To run, Just launch PixelHeat.sh",
+        "notes": "Thanks to [LucasMegaSriker](https://lucasmegastriker.itch.io/beat-of-the-pixelheat) for creating this game.  Also, thanks to Tekkenfede for the porting work and packaging for portmaster."
+    },
+    {
+        "name": "bermuda_syndrome.zip",
+        "title": "Bermuda Syndrome",
+        "instructions": "You will need the original files of the PC release or PC demo copied to the ports/bermuda/DATA folder.  Then just start Bermuda Syndrome.sh from Ports in the Emulationstation.",
+        "notes": "Thanks to [cyxx](https://github.com/cyxx/bermuda) for the Bermuda Syndrome engine reimplementation that makes this possible.  Also thanks to [jetup](https://github.com/Jetup13/bermuda-oga) for the porting work for portmaster."
+    },
+    {
+        "name": "billyfrontier.zip",
+        "title": "Billy Frontier (RG552 JelOS Only!)",
+        "instructions": "Billy Frontier files are already included and ready to go. Just start Billy Frontier from Ports in the emulationstation menu. Use the touchscreen to navigate the U and some gameplay. Currently only runs on the RG552 with Jelos installed.",
+        "notes": "Thanks to Pangea Software for creating the game and publicly releasing the game files. Thanks to [Jorio](https://github.com/jorio/BillyFrontier) for porting the game engine to various platforms. Also thanks to brooksytech for the porting work for portmaster."
+    },
+    {
+        "name": "bstone-aog.zip",
+        "title": "Blake Stone Aliens of Gold",
+        "instructions": "Includes the shareware files.  You can also add your own full version Blake Stone Aliens of Gold files to the ports/bstone-aog/gamedata/alien_of_gold folder.  Just start Blake Stone - Aliens of Gold from Ports in the emulationstation menu.",
+        "notes": "Thanks to [Boris I. Bendovsky](https://github.com/bibendovsky/bstone) for creating this unofficial source port.  Also thanks to Cebion and romadu for the porting work for portmaster."
+    },
+    {
+        "name": "bstone-ps.zip",
+        "title": "Blake Stone Planet Strike",
+        "instructions": "You'll need to add your own full version Blake Stone Planet Strike files to the ports/bstone-ps/gamedata/planet_strike folder.  Just start Blake Stone - Planet Strike from Ports in the emulationstation menu.",
+        "notes": "Thanks to [Boris I. Bendovsky](https://github.com/bibendovsky/bstone) for creating this unofficial source port.  Also thanks to Cebion and romadu for the porting work for portmaster."
+    },
+    {
+        "name": "blobwars.zip",
+        "title": "Blob Wars: Metal Blob Solid",
+        "instructions": "Blobwars files are already included and ready to go. Just start Blobwars from Ports in the Emulationstation menu.",
+        "notes": "Thanks to [Stephen Sweeney](https://github.com/perpendicular-dimensions/blobwars) and other contributors for creating this game and making available for free. Also thanks to Cebion for the packaging for portmaster."
+    },
+    {
+        "name": "blobby.volley2.zip",
+        "title": "Blobby Volley 2",
+        "instructions": "Blobby Volley 2 files are already included and ready to go.  Just start Blobby Volley 2 from Ports in the emulationstation menu.",
+        "notes": "Thanks to [Daniel Knobe, Jonathan Sieber, Sven Rech, Erik Schultheis, Silvio Mummert, New beach image and other contributors](https://github.com/danielknobe/blobbyvolley2) for creating this game and making available for free.  Also thanks to [Cebion and romadu](https://github.com/romadu/blobbyvolley2) for the porting work for portmaster."
+    },
+    {
+        "name": "block.attack.zip",
+        "title": "Block Attack",
+        "instructions": "Block Attack files are already included and ready to go.  Just start Block Attack from Ports in the emulationstation menu.",
+        "notes": "Thanks to [Poul Sander and contributors](https://github.com/blockattack/blockattack-game) for creating this game and making it available for free.  Also, thanks to Cebion for the porting work for portmaster."
+    },
+    {
+        "name": "blockout2.zip",
+        "title": "BlockOut II",
+        "instructions": "BlockOut II files are already included and ready to go. Just start BlockOut II from Ports in the Emulationstation menu.",
+        "notes": "Thanks to [Jean-Luc Pons](http://www.blockout.net/blockout2/). and other contributors for creating this game and making available for free. Also thanks to Cebion for the packaging for portmaster."
+    },
+    {
+        "name": "blood.zip",
+        "title": "Blood",
+        "instructions": "You'll need to add your own full version Blood 1.21 files to the ports/Blood folder.  Then just start Blood from Ports in the Emulationstation.",
+        "notes": "Thanks to [Nukeykt](https://github.com/nukeykt/NBlood) for the NBlood engine that makes this possible.  Also thanks to [romadu](https://github.com/romadu/NBlood) for the porting work for portmaster."
+    },
+    {
+        "name": "blues.brothers.zip",
+        "title": "Blues Brothers",
+        "instructions": "Includes the demo files. You can add your own full game Amiga or Dos files to the ports/bluesbrothers/gamedata folder..  Then just start Blues Brothers from Ports in the Emulationstation menu.",
+        "notes": "Thanks to [cyxx](https://github.com/cyxx/blues) for the Blues Brothers engine that makes this possible.  Also thanks to [Jetup13](https://github.com/Jetup13/blues-oga) for the porting work for portmaster."
+    },
+    {
+        "name": "bugdom.zip",
+        "title": "Bugdom (RG552 JelOS Only!)",
+        "instructions": "Bugdom files are already included and ready to go. Just start Bugdom from Ports in the emulationstation menu. Use the touchscreen to navigate the UI. Currently only runs on the RG552 with Jelos installed.",
+        "notes": "Thanks to Pangea Software for creating the game and publicly releasing the game files. Thanks to [Jorio](https://github.com/jorio/Bugdom) for porting the game engine to various platforms.  Also thanks to brooksytech for the porting work for portmaster."
+    },
+    {
+        "name": "burst.zip",
+        "title": "Burst",
+        "instructions": "Your aura switches between red and blue every few seconds, hit balls the same color as your aura to gain points. The more balls there are on the screen, the more points you get. Game files are already included and ready to go.\n\nDPAD = Movement\nA / B = Dash\nR1 = Restart\nSTART = Pause",
+        "notes": "Thanks to [Edgar Mendoza](https://edgarmendoza.itch.io/) for creating this game and for permission to bundle the game files.  Also thanks to tabreturn for the porting work for portmaster."
+    },
+    {
+        "name": "cannonball.zip",
+        "title": "Cannonball (OutRun)",
+        "instructions": "Add the OutRun Revision B ROMs into /roms/ports/cannonball/gamedata folder then start Cannonball from Ports in the emulationstation menu.  For exact naming of roms, view this [link](https://github.com/djyt/cannonball/blob/master/roms/roms.txt)",
+        "notes": "Thanks to [djyt](https://github.com/djyt/cannonball) for creating the engine for this OutRun arcade game and thanks to [Libretro](https://github.com/libretro/cannonball) for adding this as a retroarch core."
+    },
+    {
+        "name": "carmageddon.zip",
+        "title": "Carmageddon",
+        "instructions": "You need to copy the original game files to ports/carmageddon folder (works with demo version too).",
+        "notes": "Thanks to [Dethrace Labs](https://github.com/dethrace-labs/dethrace) for this reverse engineering the Carmageddon 1997 game.  Also thanks to orsonmmz for the porting work for portmaster."
+    },
+    {
+        "name": "cave.story.zip",
+        "title": "Cave Story",
+        "instructions": "Cave Story files are already included and ready to go.  Just start Cave Story from Ports in the emulationstation menu.",
+        "notes": "Thanks to [Libretro](https://github.com/libretro/nxengine-libretro) for porting this as a retroarch core."
+    },
+    {
+        "name": "cave.story-evo.zip",
+        "title": "Cave Story (evo)",
+        "instructions": "Install through [PortMaster](https://github.com/christianhaitian/arkos/wiki/PortMaster) and start Cave Story-Evo from Ports in the emulationstation menu.",
+        "notes": "Thanks to the [NXEngine](https://github.com/nxengine/nxengine-evo) team for the NXEngine Evo engine that makes this possible."
+    },
+    {
+        "name": "cceleste.zip",
+        "title": "Celeste Classic",
+        "instructions": "All game files are included and the game is ready to play.",
+        "notes": "Thanks to Maddy Thorson & Noel Berry for the original game, lemon32767 for the port.  Also thanks to Bamboozler for packaging the game for PortMaster."
+    },
+    {
+        "name": "chasm.zip",
+        "title": "Chasm",
+        "instructions": "- Download the Linux build of Chasm from your favorite platform, such as GOG, Steam or Humble:\n- [Steam](https://store.steampowered.com/app/312200/Chasm/) (windows, etc):\n   - Copy the following URL on your browser: `steam://open/console`\n   - Run the following command on the console: `download_depot 312200 312202`\n   - Find the assets on the path reported by the console when the download is finished.\n- [GOG](https://www.gog.com/game/chasm):\n   - Download the Linux build of the game on the website.\n   - Rename the `.sh` file (e.g. `chasm_1_084_61001.sh`) to `.gzip` (e.g. `chasm_1_084_61001.gzip`)\n   - Extract the file with your favorite utility (such as 7zip, unzip, etc.).\n   - Find the assets on `chasm_1_084_61001\\data\\noarch\\game\\`\n- [Humble](https://www.humblebundle.com/store/chasm):\n   - Pending (I don't have a humble copy \ud83e\udd37)\n- Copy all of the Linux build files, such as `Chasm.exe` and all of the accompanying files to `chasm/gamedata`\n- Enjoy.",
+        "notes": "Thanks for the the [FNA Project](https://github.com/FNA-XNA/FNA) for the amazing cross-platform, portable implementation of XNA.\nThanks to the [Bit Kid](https://bitkidgames.com/) folks for the amazing game and patience.\nThanks to JohnnyonFlame for the [FNA patches](https://github.com/JohnnyonFlame/FNAPatches) that makes this possible and the packaging for portmaster.\nYou can donate towards JohnnyonFlame's work [here](https://ko-fi.com/johnnyonflame)"
+    },
+    {
+        "name": "chip.zip",
+        "title": "Chip N Dale Rescue Rangers Remastered",
+        "instructions": "Ready To run, Just launch CHIPNDALE.sh",
+        "notes": "Thanks to [Unknown Author(s)](https://forum.gamemaker.io/index.php?threads/chip-dale-remastered-open-source.1652/) for creating this port and its distribution. Also thanks to Tekkenfede for the packaging for portmaster."
+    },
+    {
+        "name": "c-dogs.zip",
+        "title": "C-Dogs",
+        "instructions": "C-Dogs files are already included and ready to go.  Just start C-Dogs from Ports in the emulationstation menu.",
+        "notes": "Thanks to [cxong](https://github.com/cxong/cdogs-sdl) for this SDL build of the game that makes this possible."
+    },
+    {
+        "name": "cliff_hanger.zip",
+        "title": "Cliff Hanger",
+        "instructions": "Game files are already included and ready to go. Just start the game from Ports in the Emulationstation menu.",
+        "notes": "Thanks to [Joel Garcia](https://github.com/joelchrono12/cliff-hanger) for creating this game and making it available for free.  Also thanks to Cebion for the packaging for portmaster."
+    },
+    {
+        "name": "clockwind.zip",
+        "title": "Clockwind",
+        "instructions": "Game files are already included and ready to go.",
+        "notes": "Thanks to [alesan99](https://alesan99.itch.io/clockwind) for creating this game and making it available for free."
+    },
+    {
+        "name": "colorlines.zip",
+        "title": "ColorLines",
+        "instructions": "All files are included and game is ready to play.",
+        "notes": "Thanks to [Egor Kuleshov](https://github.com/Limows/SDL-ColorLines) for this port of a classic game and thanks to Bamboozler for packaging to Portmaster."
+    },
+    {
+        "name": "commander.genius.zip",
+        "title": "Commander Genius (Commander Keen)",
+        "instructions": "Load your keen folders into the /roms/ports/cgenius/games folder.  As an example, the shareware version of Commander Keen 1 is included and is named Keen.  Then just start Commander Genius from Ports in the emulationstation menu.",
+        "notes": "Thanks to [Gerhard Stein](https://github.com/gerstrong/Commander-Genius) and others related for the development of this port that makes this possible."
+    },
+    {
+        "name": "corsixth.zip",
+        "title": "CorsixTH (Theme Hospital)",
+        "instructions": "Load your Theme Hospital files into the ports/corsixth/HOSP folder.  As an example, the demo files of Theme Hospital is already included.  If you plan to use a full GOG version of the assets,there's a file `HOSP/DATAM/DEMO.DAT` that needs to be deleted when full game files are added or the port will be confused about whether what version is played, and erroneously checks the GOG files as invalid file sizes. See this [issue](https://github.com/CorsixTH/CorsixTH/issues/2092) for more information.  Then start CorsixTH from Ports in the emulationstation menu.",
+        "notes": "Thanks to [CorsixTH](https://github.com/CorsixTH/CorsixTH) team for creating this clone of Theme Hospital.  Also thanks to jetup and romadu for the porting work for portmaster."
+    },
+    {
+        "name": "cosmo-engine.zip",
+        "title": "Cosmo-Engine",
+        "instructions": "The first episode is shareware and included. You can add episode 2 & 3 (STN,VOL, and CFG files) to the ports/cosmo-engine/data folder.  Then start Cosmos Cosmic Adventure from Ports in the emulationstation station menu.",
+        "notes": "Thanks to [Eric Fry](https://github.com/yuv422/cosmo-engine) and other contributors for this open source engine.  Also thanks to Bamboozler for the porting work for portmaster."
+    },
+    {
+        "name": "cromagrally.zip",
+        "title": "Cro-MagRally (RG552 JelOS Only!)",
+        "instructions": "Cro-MagRally files are already included and ready to go. Just start Cro-MagRally from Ports in the emulationstation menu. Currently only runs on the RG552 with Jelos installed.",
+        "notes": "Thanks to Pangea Software for creating the game and publicly releasing the game files. Thanks to [Jorio](https://github.com/jorio/CroMagRally) for porting the game engine to various platforms.  Also thanks to brooksytech for the porting work for portmaster."
+    },
+    {
+        "name": "daikatana.zip",
+        "title": "Daikatana",
+        "instructions": "Copy all files on the retail game's data/ folder into the daikatana/gamedata folder.",
+        "notes": "Thanks to the [Daikatana 1.3 team](https://bitbucket.org/daikatana13/daikatana) for the guidance and trust.  Also thanks to JohnnyonFlame for the porting and packaging for PortMaster."
+    },
+    {
+        "name": "davegnukem.zip",
+        "title": "Dave Gnukem",
+        "instructions": "Dave Gnukem files are already included and ready to go. Just start Dave Gnukem from Ports in the emulationstation menu.",
+        "notes": "Thanks to [David Joffe](https://github.com/davidjoffe) developers and contributors for the open source game.  Also thanks to Bamboozler for the porting work for portmaster."
+    },
+    {
+        "name": "deep_sleep.zip",
+        "title": "Deep Sleep",
+        "instructions": "Game files are already included and ready to go. Just start the game from Ports in the Emulationstation menu.",
+        "notes": "Thanks to [ItsGeppy](https://itsgeppy.itch.io/deep-sleep) for creating this game and making it available for free.  Also thanks to Cebion for the packaging for portmaster."
+    },
+    {
+        "name": "defshot.zip",
+        "title": "Defshot",
+        "instructions": "* Download defshot_linux64.zip from https://securas.itch.io/defshot\n* Extract the defshot_linux64.zip file\n* Copy the defshot.pck to your defshot ports folder",
+        "notes": "Thanks to [securas](https://securas.itch.io/defshot) for creating this game and making it available for free on itch.io.  Also thanks to Cebion for the packaging for portmaster."
+    },
+    {
+        "name": "derclou.zip",
+        "title": "Der Clou!",
+        "instructions": "Der Clou!'s files are already included and ready to go. Optionally you can replace them with other versions as well. Just start Der Clou! from Ports in the Emulationstation menu.",
+        "notes": "Thanks to the [neo Software Produktions team](https://www.mobygames.com/game/2568/the-clue/) for creating the game and [Vasco Alexandre da Silva Costa](https://github.com/vcosta/derclou) for this open source port.  Also thanks to Cebion for the packaging for portmaster."
+    },
+    {
+        "name": "devilutionx.zip",
+        "title": "DevilutionX (Diablo 1)",
+        "instructions": "Copy diabdat.mpq from your CD or GoG installation (or extract it from the GoG installer) into /roms/ports/devilution folder. **Do not delete the gamecontrollerdb.txt file in the /roms/ports/devilution folder or there will be no controller support in the game!**  For controls, see [here](https://github.com/diasurgical/devilutionX/wiki/Game-Controller-Scheme)\nImportant Note: It\u2019s been reported that you must make sure you use the GOG version of diabdat.mpq with the newest patch_rt.mpq or you may experience a freeze of the game around level 20. If you experience issues after a version upgrade, backup your save file and uninstall/reinstall the port. If you make a config change that crashes the game, you can delete the ini file to get the game back to a good state\\",
+        "notes": "Thanks to the [diasurgical](https://github.com/diasurgical/devilutionX) team for the source port that makes this possible."
+    },
+    {
+        "name": "dinothawr.zip",
+        "title": "Dinothawr",
+        "instructions": "Dinothawr files are already included and ready to go.  Just start Dinothawr from Ports in the emulationstation menu.",
+        "notes": "Thanks to [Themaister](https://github.com/Themaister/Dinothawr) for creating this game and thanks to [Libretro](https://github.com/libretro/Dinothawr) for adding this as a retroarch core."
+    },
+    {
+        "name": "diverdown.zip",
+        "title": "Diver Down",
+        "instructions": "DiverDown files are already included and ready to go. Just start DiverDown from Ports in the Emulationstation menu.",
+        "notes": "Thanks to the team of [Escada Games](https://github.com/Escada-Games/diver-down) for creating this game and making available for free and [efornara](https://github.com/efornara/frt) for creating the FRT platform.  Also thanks to Cebion for the packaging for portmaster."
+    },
+    {
+        "name": "domeromantik.zip",
+        "title": "Dome Romantik",
+        "instructions": "Dome Romantik files are already included and ready to go. To Force a particular version rename the desired one in the installation folder as domeromantik-linux.zip (same for the gptk file) and delete the others ones, then boot.",
+        "notes": "A heartfelt thank you goes out to [Ren\u00e9 from Bippinbits](https://bippinbits.itch.io/dome-romantik) for granting authorization for this port and its distribution. Also thanks to Tekkenfede for the packaging for portmaster."
+    },
+    {
+        "name": "donut.dodo.zip",
+        "title": "Donut Dodo",
+        "instructions": "You can purchase Donut Dodo at: https://zapposh.itch.io/donut-dodo-retropie-edition. Download and extract it, and place the DonutDodo.pck file in the gamedata directory. This has been tested with DonutDodo_1_39.zip.",
+        "notes": "Thanks to [Pixel Games](https://zapposh.itch.io/donut-dodo-retropie-edition) for creating this game.  Also thanks to tabreturn for the porting work for portmaster."
+    },
+    {
+        "name": "doom3.zip",
+        "title": "Doom 3 (RG552 Only)",
+        "instructions": "You need to add your own full game pak files to the ports/doom3/base folder. Then you should be able to launch Doom3 from Ports in the emulationStation menu.",
+        "notes": "Thanks to [Gabriel Cuvillier](https://github.com/gabrielcuvillier/d3wasm) for the d3wasm engine. Also thanks to brooksytech for the porting and packaging for portmaster."
+    },
+    {
+        "name": "droid7.zip",
+        "title": "Droid7",
+        "instructions": "You can purchase DROID7 at: https://juancolacelli.itch.io/droid7. Download and extract it, and place the DROID7.pck file in the gamedata directory. This has been tested with Windows 64-bit, Dec 30 2022 release.",
+        "notes": "Thanks to [Juan Colacelli](https://juancolacelli.itch.io/droid7) for creating this game.  Also thanks to tabreturn for the porting work for portmaster."
+    },
+    {
+        "name": "duke.nukem.3d.zip",
+        "title": "Duke Nukem 3D",
+        "instructions": "You'll need to add your own full version DUKE3D.GRP and DUKE.RTS Duke Nukem 3D Atomic files to the ports/rednukem/gamedata folder.  Then just start Duke Nukem 3D from Ports in the Emulationstation.",
+        "notes": "Thanks to [Nukeykt](https://github.com/nukeykt/NBlood) for the Rednukem engine that makes this possible.  Also thanks to [romadu](https://github.com/romadu/NBlood) for the porting work for portmaster."
+    },
+    {
+        "name": "dungeonrush.zip",
+        "title": "Dungeon Rush",
+        "instructions": "Dungeon Rush files are already included and ready to go.  Just start DungeonRush from Ports in the emulationstation menu.",
+        "notes": "Thanks to [Yujia Qiao/rapiz1](https://github.com/Rapiz1/DungeonRush) for creating the open source game.  Also thanks to christopher-roelofs for the porting and packaging for portmaster."
+    },
+    {
+        "name": "echo_chamber.zip",
+        "title": "Echo Chamber",
+        "instructions": "Echo Chamber files are already included and ready to go. Just start the game from Ports in the Emulationstation menu.",
+        "notes": "Thanks to [Jon Topielski](https://jontopielski.itch.io/echo-chamber) creating this game and making it available for free and allowing us to include it in PortMaster. Also thanks to Cebion for the packaging for portmaster."
+    },
+    {
+        "name": "eity.zip",
+        "title": "Eity",
+        "instructions": "Eity files are already included and ready to go. Just start the game from Ports in the Emulationstation menu.",
+        "notes": "Thanks to [Eemeli Mark](https://github.com/TheJeme/Eity) for creating this game and making it available for free. Also thanks to Cebion for the packaging for portmaster."
+    },
+    {
+        "name": "enigma.zip",
+        "title": "Enigma",
+        "instructions": "Enigma files are already included and ready to go. Just start Enigma from Ports in the emulationstation menu.",
+        "notes": "Thanks to [Enigma-Game](https://github.com/Enigma-Game/Enigma) developers and contributors for the open source puzzle game.  Also thanks to Bamboozler for the porting work for portmaster."
+    },
+    {
+        "name": "escape.zip",
+        "title": "Escape",
+        "instructions": "Game files are already included and ready to go.",
+        "notes": "Thanks to [tom7](http://escape.spacebar.org/) for creating this game and making it available for free.  Also thanks to Cebion for the packaging for portmaster."
+    },
+    {
+        "name": "exhumed.zip",
+        "title": "Exhumed (aka PowerSlave)",
+        "instructions": "You'll need to add your own full version STUFF.DAT, DEMO.VCR and BOOK.MOV files to the ports/Exhumed folder.  Then just start Exhumed from Ports in the Emulationstation.",
+        "notes": "Thanks to [Nukeykt](https://github.com/nukeykt/NBlood) for the PCExhumed engine that makes this possible.  Also thanks to [romadu](https://github.com/romadu/NBlood) for the porting work for portmaster."
+    },
+    {
+        "name": "exult.zip",
+        "title": "Exult (aka Ultima 7)",
+        "instructions": "You'll need A copy of the black gate and/or serpent isle added to ports/exult/data/blackgate and/or ports/exult/data/serpentisle.  If done correctly there will be a ports/exult/data/blackgate/static and ports/exult/data/serpentisle/static folder.  You\u2019ll also need a copy of an existing saved game or you won\u2019t be able to start a game session.  Then just start Exult-keyring or Exult-nokeyring from Ports in the Emulationstation.",
+        "notes": "Thanks to the [Exult Team](https://github.com/exult/exult) for the Exult engine that makes this possible.  Also thanks to nl255 for the porting work for portmaster."
+    },
+    {
+        "name": "f1race.zip",
+        "title": "F1 Race",
+        "instructions": "All game files are included and game is ready to play.",
+        "notes": "Thanks to [EXL](https://github.com/EXL/F1-Race) for making this game available, Bamboozler for packaging for Portmaster and to the Portmaster testing team."
+    },
+    {
+        "name": "fade_to_black.zip",
+        "title": "F2bgl (Fade to Black)",
+        "instructions": "You will need the original files of the PC release or PC demo copied to the ports/f2bgl folder.  Then just start F2bgl.sh from Ports in the Emulationstation.",
+        "notes": "It\u2019s been reported that only the US based CD version of Fade to Black works with this port.\n(Europe and downsized US DOSBox versions are not compatible even when all files are present).  Thanks to waeggy123 for reporting this.\nThanks to [cyxx](https://github.com/cyxx/f2bgl) for the Fade to Black engine reimplementation that makes this possible.  Also thanks to romadu for the porting work for portmaster."
+    },
+    {
+        "name": "falling_time.zip",
+        "title": "Falling Time",
+        "instructions": "Falling Time files are already included and ready to go. Just start Falling Time from Ports in the emulationstation menu.",
+        "notes": "Thanks to [Nebuleon Fumika/Cong Xu](https://github.com/cxong/FallingTime) and other contributors for creating this game and making available for free. Also thanks to Cebion for the packaging for portmaster."
+    },
+    {
+        "name": "fallout1.zip",
+        "title": "Fallout 1",
+        "instructions": "You need to copy critter.dat, master.dat and the data folder from the original game to ports/fallout1 folder.  Make sure these file names and the data folder name is in lower case!",
+        "notes": "Thanks to [Alex Batalov](https://github.com/alexbatalov/fallout1-ce) and other contributors for creating this community edition. Also thanks to Kloptops for the packaging for portmaster."
+    },
+    {
+        "name": "fallout2.zip",
+        "title": "Fallout 2",
+        "instructions": "You need to copy critter.dat, master.dat, patch000.dat and data from the original game to ports/fallout2 folder.  Make sure these file names and the data folder name is in lower case!",
+        "notes": "Thanks to [Alex Batalov](https://github.com/alexbatalov/fallout2-ce) and other contributors for creating this community edition. Also thanks to Orson for the packaging for portmaster."
+    },
+    {
+        "name": "farmner.zip",
+        "title": "Farmner",
+        "instructions": "The game files are already included and ready to go.",
+        "notes": "* Suggested for rg552 is to force a lower resolution and speed up the mouse in the gpkt file.\n* Thanks to [jaydensippy](https://jaydensippy.itch.io/farmner) for this game and at the portmaster community for testing.  Also thanks to Tekkenfede for the packaging for portmaster."
+    },
+    {
+        "name": "final_quest.zip",
+        "title": "Final Quest: A Godot Research",
+        "instructions": "Game files are already included and ready to go. Just start the game from Ports in the Emulationstation menu.",
+        "notes": "Thanks to [Adri\u00e1n Touri\u00f1o Franco](https://github.com/AdrianTF/godot-research-and-development) for creating this game and making it available for free.  Also thanks to Cebion for the packaging for portmaster."
+    },
+    {
+        "name": "fire_and_fondness2.zip",
+        "title": "Fire and Fondness 2",
+        "instructions": "Game files are already included and ready to go.",
+        "notes": "Thanks to [John Gabriel](https://bitbucket.org/JohnGabrielUK/fire-and-fondness-2/) for creating this game and making it available for free.  Also thanks to Cebion for the packaging for portmaster."
+    },
+    {
+        "name": "firearrow.zip",
+        "title": "Fire Arrow",
+        "instructions": "Just copy data.win and ogg files inside gamedata. This version is NOT compatible with the one in the folder FAX,but the one you can find in the folder FA1.",
+        "notes": "Thanks to [Team Grybanser Fox](https://store.steampowered.com/app/509780/Fire_Arrow_Plus/) for creating this game.  Also thanks to Tekkenfede for the porting work for portmaster."
+    },
+    {
+        "name": "flare.zip",
+        "title": "Flare Engine",
+        "instructions": "The game files are already included and ready to go. More games can be downloaded from https://flarerpg.org/mods and placed in the ports/flare/mods folder.  Just start Flare from Ports in the Emulationstation menu.",
+        "notes": "Thanks to the [Flare team](https://github.com/flareteam/flare-engine) for creating the game.  Also thanks to Cebion for the packaging for portmaster."
+    },
+    {
+        "name": "fheroes2.zip",
+        "title": "Free Heroes of Might and Magic II",
+        "instructions": "Just add the data and maps folders from your full version GOG Heroes of Might and Magic II directory or download the demo files from [here](https://archive.org/download/HeroesofMightandMagicIITheSuccessionWars_1020/h2demo.zip) to the ports/fheroes2 folder or just launch Fheroes2 from the ports menu in Emulationstation and it will download the demo files and install them automatically.  Make sure to have wifi on for this to work!",
+        "notes": "Thanks to [Ihar Hubchyk](https://github.com/ihhub/fheroes2) for the Free Heroes of Might and Magic II engine that makes this possible.  Also thanks to romadu for the porting work for portmaster."
+    },
+    {
+        "name": "freedom.planet.zip",
+        "title": "Freedom Planet",
+        "instructions": "You must have a copy of Freedom Planet for Linux.  You'll need the contents of the Freedom.Planet/game folder to be copied into the freedomplanet/gamedata folder of your sd card.  Be sure the freedomplanet/gamedata folder on you sd card contains subfolders named bin32, bin64 and Data.  The runtime folder and the run.sh file is not needed and should be left out or it will cause a double entry for Freedom Planet in the ports section of Emulationstation.  There should also be a filed named Assets.dat in freedomplanet/gamedata as well.  Then run Freedom Planet from the Emulationstation ports menu.\nNote: This game can take a minute or two to initially load.\nThanks to ptitSeb for box86 (https://github.com/ptitSeb/box86)\nThanks to JohnnyonFlame for gl4es and the the necessary packaging to allow this game to run on supported linux distros. (https://github.com/JohnnyonFlame/gl4es/tree/sk_hacks)\nYou can donate towards JohnnyonFlame's work [here](https://ko-fi.com/johnnyonflame)"
+    },
+    {
+        "name": "freedroid.zip",
+        "title": "FreedroidRPG",
+        "instructions": "FreedroidRPG files are already included and ready to go. Just start FreedroidRPG from Ports in the emulationstation menu.",
+        "notes": "Thanks to the [FreedroidRPG Team](https://www.freedroid.org/) for creating this game. Also thanks to Cebion for the porting and packaging for portmaster."
+    },
+    {
+        "name": "freegemas.zip",
+        "title": "Freegemas",
+        "instructions": "Freegemas files are already included and ready to go. Just start Freegemas from Ports in the emulationstation menu.",
+        "notes": "Thanks to [Jos\u00e9 Tom\u00e1s Tocino](https://github.com/JoseTomasTocino/freegemas) for the open source recreation of Bejeweled.  Also thanks to Bamboozler for the porting work for portmaster."
+    },
+    {
+        "name": "freeserf.zip",
+        "title": "FreeSurf",
+        "instructions": "Copy the data file(s) from the original game into the `ports/freeserf`. You may use data file(s) from DOS or Amiga game version. Then just start FreeSurf from Ports in the emulationstation menu.\n\n- DOS data file is called `SPAE.PA`, `SPAD.PA`, `SPAF.PA` or `SPAU.PA`, depending on the language of the game.\n- Amiga files `gfxheader`, `gfxfast`, `gfxchip`, `gfxpics`, `sounds`, `music`.",
+        "notes": "Thanks to the [freeserf Team](https://github.com/freeserf/freeserf) and contributors for creating this game. Also thanks to [kloptops](https://github.com/kloptops/Portmaster-misc/tree/main/FreeSerf) for the porting and packaging for portmaster."
+    },
+    {
+        "name": "gemrb.zip",
+        "title": "GemRB",
+        "instructions": "To play various GemRB compatible games you need to copy over the game files into ports/gemrb/games into their own directory. For example you would install the Baldur's Gate game files into ports/gemrb/games/bg1 directory. Currently EE versions are not 100% compatible.",
+        "notes": "Thanks to the [GemRB](https://github.com/gemrb/gemrb) team for creating this open source engine.  Also thanks to [kloptops](https://github.com/kloptops/gemrb) for the porting and packaging for portmaster."
+    },
+    {
+        "name": "gigalomania.zip",
+        "title": "Gigalomania",
+        "instructions": "Gigalomania files are already included and ready to go. Just start Gigalomania from Ports in the Emulationstation menu.",
+        "notes": "Thanks to [Mark Harman](https://gigalomania.sourceforge.net/) and other contributors for creating this game and making available for free. Also thanks to Cebion for the packaging for portmaster."
+    },
+    {
+        "name": "gmu.music.player.zip",
+        "title": "Gmu Music Player",
+        "instructions": "Add your music (supports ogg, mp3, flac, and others) to ports/gmu-music-player/music/",
+        "notes": "Thanks to [jhe2](https://github.com/jhe2/gmu) for the development of this player initially designed for the GP2X, GCW0, Pandora, and other devices!  Thanks to [kane159](https://github.com/kane159/gmu-rk3326) on github for initial work on porting Gmu to the rg351v.  Also thanks to Slayer366 for the packaging for portmaster."
+    },
+    {
+        "name": "gnurobbo.zip",
+        "title": "GNU Robbo",
+        "instructions": "All files are included and game is ready to play",
+        "notes": "Thanks to [Marcin Klimczewski](https://github.com/bomblik/GNU_Robbo_PSVITA_PSP) for updating the original port and adding new features. Also thanks to Bamboozler for packaging to Portmaster."
+    },
+    {
+        "name": "gumgem.zip",
+        "title": "Gumgem",
+        "instructions": "You can purchase Gumgem at: https://dazel.itch.io/gumgem. Download the GameShell version and extract it, and place the Gumgem.pck file in the gamedata directory. This has been tested with the Gumgem 2.2 - GameShell version.\n\nDPAD = Movement\nA = Dash\nB = Jump\nX = Interact",
+        "notes": "Thanks to [Dzel](https://dazel.itch.io/gumgem/) for creating this game and for permission to bundle the game files.  Also thanks to tabreturn for the porting work for portmaster."
+    },
+    {
+        "name": "half-life.zip",
+        "title": "Half-Life",
+        "instructions": "To play Half-Life you need to copy over the contents of the valve directory from your steam install of [Half-Life](https://store.steampowered.com/app/70/HalfLife/) into ports/Half-Life/valve, on first run it will override the required files to run.\n\nTo play Half-Life: Blue Shift you need to have Half-Life installed, then copy over the contents of the bshift directory from your steam install of [Half-Life: Blue Shift](https://store.steampowered.com/app/130/HalfLife_Blue_Shift/) into ports/Half-Life/bshift, on first run it will override the required files to run, and create a Half-Life Blue Shift.sh in your ports directory.\n\nTo play Half-Life: Opposing Forces you need to have Half-Life installed, then copy over the contents of the gearbox directory from your steam install of [Half-Life: Opposing Forces](https://store.steampowered.com/app/50/HalfLife_Opposing_Force/) into ports/Half-Life/gearbox, on first run it will override the required files to run, and create a Half-Life Opposing Fores.sh in your ports directory.",
+        "notes": "Thanks to the [Flying With Gauss](https://github.com/FWGS/xash3d-fwgs) team and contributors for the Xash3D Engine fork of Unkle Mike's original work that makes this possible.  Also thanks to [kloptops](https://github.com/kloptops/Portmaster-HalfLife) for the porting work for portmaster."
+    },
+    {
+        "name": "heart.of.darkness.zip",
+        "title": "Heart of Darkness",
+        "instructions": "Just add your own Heart of Darkness game files to the ports/hode/gamedata folder.  Then Just start Heart of Darkness from Ports in the emulationstation menu.",
+        "notes": "Thanks to [usineur](https://github.com/usineur/hode) for the hode engine that makes this possible.  Also thanks to [Jetup13](https://github.com/Jetup13/hode-vs-oga) for the porting work for portmaster."
+    },
+    {
+        "name": "hota.zip",
+        "title": "Heart of The Alien Redux",
+        "instructions": "Heart Of The Alien (U).iso and Heart Of The Alien (U) xx.ogg or Heart Of The Alien (U) xx.mp3 02-42 need to be placed in the data folder.",
+        "notes": "Thanks to [M-HT](https://github.com/M-HT/hota) for this native port and thanks to Bamboozler for packing for Portmaster."
+    },
+    {
+        "name": "help.no.brake.zip",
+        "title": "HELP! NO BRAKE",
+        "instructions": "Hey umm, your car won't brake anymore. So better clear all the levels to get it fixed I guess. Game files are already included and ready to go.\n\nLEFT/RIGHT = Steer\nB / A = Boost\nSTART = Pause\nR1 = Quick restart",
+        "notes": "Thanks to [Edgar Mendoza](https://edgarmendoza.itch.io/) for creating this game and for permission to bundle the game files.  Also thanks to tabreturn for the porting work for portmaster."
+    },
+    {
+        "name": "hex-a-hop.zip",
+        "title": "Hex-A-Hop",
+        "instructions": "Hex-a-Hop files are already included and ready to go. Just start Hex-a-Hop from Ports in the emulationstation menu.",
+        "notes": "Thanks to [amuzen/pabs3](https://hexahop.sourceforge.net/) and other contributors for creating this game and making available for free. Also thanks to Cebion for the packaging for portmaster."
+    },
+    {
+        "name": "hexen2.zip",
+        "title": "Hexen 2/Hexen 2 - Portal of Praevus",
+        "instructions": "The Hexen II pak0.pak and pak1.pak data files are required for Hexen 2 and additionally, pak3.pak is required to play the Portal of Praevus expansion.  Once loaded, just start Hexen 2.sh or Hexen 2 - Portal of Praevus from Ports in the emulationstation menu.",
+        "notes": "Thanks to Slayer366 for the packaging for portmaster."
+    },
+    {
+        "name": "hijinx.zip",
+        "title": "Hijinx",
+        "instructions": "Hijinx files are already included and ready to go. Just start the game from Ports in the Emulationstation menu.",
+        "notes": "Thanks to [John Gabriel](https://bitbucket.org/JohnGabrielUK/hijinx/) for creating this game and making it available for free. Also thanks to Cebion for the packaging for portmaster."
+    },
+    {
+        "name": "hocoslamfy.zip",
+        "title": "Hocoslamfy",
+        "instructions": "Hocoslamfy files are already included and ready to go. Just start Hocoslamfy from Ports in the emulationstation menu.",
+        "notes": "Thanks to [Nebuleon](https://github.com/Nebuleon/hocoslamfy) and other contributors for creating this game and making available for free. Also thanks to Cebion for the packaging for portmaster."
+    },
+    {
+        "name": "humming.out.zip",
+        "title": "Humming Out",
+        "instructions": "You can purchase Humming Out at: https://mfproject.itch.io/hummin-out . Download the Linux version and extract it, and place the HumminOut.x86_64.pck file in the gamedata directory. This has been tested with the HumminOut_Linux.zip, Dec 04 2022 release.",
+        "notes": "Thanks to [MFauzan80](https://mfproject.itch.io/hummin-out) for creating this game.  Also thanks to tabreturn for the packaging for portmaster."
+    },
+    {
+        "name": "hftsr.zip",
+        "title": "Hunt For the Shadow Rider",
+        "instructions": "Ready To Run.",
+        "notes": "Thanks to [Alex Huntley](https://github.com/alexhuntley/Hunt-for-the-Shadow-Rider) for this game.  Also thanks to Tekkenfede for the porting work for portmaster."
+    },
+    {
+        "name": "hurrican.zip",
+        "title": "Hurrican (Turrican)",
+        "instructions": "Just add the data and lang folders from [here](https://github.com/drfiemost/Hurrican/archive/refs/heads/master.zip) to the ports/hurrican folder or just launch Hurrican from the ports menu in Emulationstation and it will download the files and install them automatically.  Make sure to have wifi on for this to work!",
+        "notes": "Thanks to [thrimbor](https://github.com/thrimbor/Hurrican) for the Hurrican engine that makes this possible.  Also thanks to [romadu](https://github.com/romadu/Hurrican) for the porting work for portmaster."
+    },
+    {
+        "name": "hydra.castle.labyrinth.zip",
+        "title": "Hydra Castle Labyrinth",
+        "instructions": "Hydra Castle Labyrinth files are already included and ready to go.  Just start Hydra Castle Labyrinth from Ports in the emulationstation menu.",
+        "notes": "Thanks to [ptitSeb](https://github.com/ptitSeb/hydracastlelabyrinth) for the SDL port of this game that makes this possible on this platform."
+    },
+    {
+        "name": "hyperfight.zip",
+        "title": "Hyperfight",
+        "instructions": "Game files are already included and ready to go.",
+        "notes": "Thanks to [joh-devl](https://github.com/joh-dev/HYPERFIGHT) for creating this game and making it available for free.  Also thanks to Cebion for the packaging for portmaster."
+    },
+    {
+        "name": "hyper.jump.zip",
+        "title": "HYPER jump",
+        "instructions": "Pick up the yellow orbs, dodge everything else. Game files are already included and ready to go.\n\nDPAD = Movement\nA / B = Jump\nSTART = Pause",
+        "notes": "Thanks to [Edgar Mendoza](https://edgarmendoza.itch.io/) for creating this game and for permission to bundle the game files.  Also thanks to tabreturn for the porting work for portmaster."
+    },
+    {
+        "name": "iconoclasts.zip",
+        "title": "Iconoclasts",
+        "instructions": "You must have a copy of Iconoclasts for Linux.\n- For **Steam** or **Preinstalled GOG**:\n   - Copy data into the ports/iconoclasts/gamedata folder\n   - Be sure the folder contains subfolders named 32, 64 and data\n- Alternatively, from GOG's self-installer:\n   - Rename the installer (e.g. `iconoclasts_1_15_chinese_24946.sh`) extension from .sh to .gz\n   - Then use 7zip to open the installer and grab the contents of the game folder (bin32, bin64, data and Assets.dat) and place it in the ports/iconoclasts/gamedata folder\nThen just start Iconoclast from Ports in the emulationstation menu.",
+        "notes": "**This game is best played on devices with a 640x480 screen resolution or higher!**\n\nThanks to JohnnyonFlame for [gl4es](https://github.com/ptitSeb/gl4es/pull/362) and the [necessary packaging](https://github.com/JohnnyonFlame/BoxofPatches) to allow this game to run on portmaster.\nYou can donate towards JohnnyonFlame's work [here](https://ko-fi.com/johnnyonflame)"
+    },
+    {
+        "name": "iichantra_pear.zip",
+        "title": "iiChantra P.E.A.R",
+        "instructions": "iiChantra files are already included and ready to go. Just start IIChantra P.E.A.R from Ports in the Emulationstation menu.",
+        "notes": "Thanks to the [Anonymous developers](https://iichantra.ru/) and other contributors for creating this game and making available for free. Also thanks to Cebion and kloptops for the packaging for portmaster."
+    },
+    {
+        "name": "invaders.zip",
+        "title": "Invaders",
+        "instructions": "You need to provide 4 roms (invaders.e, invaders.f, invaders.g, invaders.h) from a MAME 0.78 invaders.zip romset to the invaders/inv1 folder.  The MAME2003 version should work as well. Then start Invaders from Ports in the emulationstation menu.",
+        "notes": "Thanks to [loadzero](https://github.com/loadzero/si78c) for the memory accurate reimplementation of this game.  Also thanks to [romadu](https://github.com/romadu/si78c) for the porting work for portmaster and packaging for portmaster."
+    },
+    {
+        "name": "jazz2.zip",
+        "title": "Jazz2 Resurrection",
+        "instructions": "Let the intro play the first time you start the game, so it creates cache files. Copy the original game files (The Secret Files and/or The Christmas Chronicles) to ports/jazz2/Source.",
+        "notes": "Thanks to [deathkiller](https://github.com/deathkiller/jazz2-native) for creating this port.  Also thanks to orsonmmz for the porting and packaging work for portmaster."
+    },
+    {
+        "name": "hawkthorne.zip",
+        "title": "Journey to the Center of Hawkthorne",
+        "instructions": "Game files are already included and ready to go. Just start the game from Ports in the Emulationstation menu.",
+        "notes": "Thanks to the [Project Hawkthorne Team](https://github.com/hawkthorne/hawkthorne-journey) for creating this game and making it available for free. Also thanks to Cebion for the packaging for portmaster."
+    },
+    {
+        "name": "laserkombat.zip",
+        "title": "Laser Kombat",
+        "instructions": "All files are included and game is ready to play.",
+        "notes": "Thanks to [Wouter Wijsman](https://github.com/sharkwouter/laserkombat) for this game, Bamboozler for packaging for Portmaster and the Portmaster team for testing."
+    },
+    {
+        "name": "lbreakouthd.zip",
+        "title": "LBreakoutHD",
+        "instructions": "All files are included and ready to play.",
+        "notes": "Thanks to [Michael Speck](https://lgames.sourceforge.io/LBreakoutHD/) for creating LBreakout2 and LBreakoutHD, Bamboozler for packaging the game for PortMaster and to the PortMaster team for testing."
+    },
+    {
+        "name": "magicvigilante.zip",
+        "title": "Magic Vigilante",
+        "instructions": "Download game from https://nizakashii.itch.io/magicvigilante, copy data.win to /ports/magicviglante/gamedata",
+        "notes": "Thanks to [nizakashii](https://nizakashii.itch.io/magicvigilante) for creating this game and make it available for free.  Also thanks to booYah187 for the packaging for portmaster."
+    },
+    {
+        "name": "maldita.castilla.zip",
+        "title": "Maldita Castilla",
+        "instructions": "Maldita Castilla files are already included and ready to go.  Just start Maldita Castilla from ports in the emulationstation menu.",
+        "notes": "Thanks to [Locomalito](https://locomalito.com/maldita_castilla.php) for creating this game and make it available for free."
+    },
+    {
+        "name": "margot_beatrice_adventure.zip",
+        "title": "Margot-B\u00e9atrice Adventure",
+        "instructions": "Margot-B\u00e9atrice Adventure files are already included and ready to go.",
+        "notes": "Thanks to [Luc-Fr\u00e9d\u00e9ric Langis](https://github.com/Levrault/margot-beatrice-adventure) for creating this game and making it available for free.\n Also thanks to Cebion for the packaging for portmaster."
+    },
+    {
+        "name": "maximilien_adventure.zip",
+        "title": "Maximilien Adventure",
+        "instructions": "Game files are already included and ready to go.",
+        "notes": "Thanks to [Luc-Fr\u00e9d\u00e9ric Langis](https://github.com/Levrault/godot-maximilien-adventure) for creating this game and making it available for free.  Also thanks to Cebion for the packaging for portmaster."
+    },
+    {
+        "name": "meandmyshadow.zip",
+        "title": "Me and My Shadow",
+        "instructions": "All files are included and game is ready to play. Addons should be available to download after you restart the game the first time.",
+        "notes": "Thanks to [Jz Pan](https://github.com/acmepjz/meandmyshadow) and other contributers to this game, Bamboozler for packaging for Portmaster and the Portmaster team for testing."
+    },
+    {
+        "name": "megaman.zip",
+        "title": "Megaman Rock N Roll",
+        "instructions": "Ready To run, Just launch Megaman.sh",
+        "notes": "Thanks to [Dennis Engelhard](https://dennisengelhard.com/rock-n-roll/) for creating this game and its distribution. Also thanks to Tekkenfede for the packaging for portmaster."
+    },
+    {
+        "name": "meritous.zip",
+        "title": "Meritous",
+        "instructions": "Meritous files are already included and ready to go. Just start Meritous from Ports in the emulationstation menu.",
+        "notes": "Thanks to [Lancer-X/ASCEAI](https://github.com/zear/meritous) and other contributors for creating this game and making available for free. Also thanks to Cebion and Romadu for the packaging for portmaster."
+    },
+    {
+        "name": "mightymike.zip",
+        "title": "Mighty Mike (RG552 JelOS Only!)",
+        "instructions": "Mighty Mike files are already included and ready to go. Just start Mighty Mike from Ports in the emulationstation menu. Currently only runs on the RG552 with Jelos installed.",
+        "notes": "Thanks to Pangea Software for creating the game and publicly releasing the game files. Thanks to [Jorio](https://github.com/jorio/MightyMike) for porting the game engine to various platforms.  Also thanks to brooksytech for the porting work for portmaster."
+    },
+    {
+        "name": "mirrormagic.zip",
+        "title": "Mirror Magic",
+        "instructions": "Mirror Magic files are already included and ready to go. Just start Mirror Magic from Ports in the emulationstation menu.",
+        "notes": "Thanks to [Artsoft Entertainment](https://www.artsoft.org/mirrormagic/) for developing it and making it avaialble for free.  Also thanks to Bamboozler for the porting work for portmaster."
+    },
+    {
+        "name": "moonlight.zip",
+        "title": "Moonlight Nvidia Gamestreaming App",
+        "instructions": "PC Requirements and setup as follows:\n\nPC Requirements:\nA PC with an Nvidia 600 GPU or newer\n[GeForce Experience app](https://www.nvidia.com/en-us/geforce/geforce-experience/)\n\n1. You'll need to make sure your streaming PC and your rk3326 device with the supported linux distro are connected to the same network.\n2. When you launch Moonlight from the ports menu, you'll be presented with a menu with 2 options, Start Streaming and settings.  You'll want to go to settings first and choose the pair option.\n3. You'll be presented with a screen asking for the name or IP address of your PC with the Nvidia Geforce Experience app installed.\n4. Once you hit the ok button, you should be presented with a pairing dialog box on your PC.\n5. Enter the 4 digit PIN displayed on your device into the pairing dialog box and click the Connect button.\n6. By default, Moonlight is setup to stream Steam from your PC.  There are other options available such as Dolphin if you have that installed and configured on your PC.",
+        "notes": "Thanks to the [moonlight-stream](https://github.com/moonlight-stream/moonlight-embedded) team for creating this solution that makes it possible.  Also thanks to [AreaScout](https://github.com/AreaScout/moonlight-embedded) for the necessary modifications that make this possible to run on portmaster."
+    },
+    {
+        "name": "missdriller.zip",
+        "title": "Miss Driller",
+        "instructions": "All files are included and game is ready to play.",
+        "notes": "Thanks to [Adas](http://www.geocities.co.jp/berkeley/2093/driller.html) for the original port, kfazz, birslip and edd for the updated graphics and Tekkenfede for the new titlescreen and title on the play screen."
+    },
+    {
+        "name": "mr.boom.zip",
+        "title": "Mr. Boom",
+        "instructions": "Mr. Boom files are already included and ready to go.  Just start Mr. Boom from Ports in the emulationstation menu.",
+        "notes": "Thanks to [Javanaise](https://github.com/Javanaise/mrboom-libretro) for creating this clone for libretro/retroarch and thanks to [Libretro](https://github.com/libretro/mrboom-libretro) for officially incorporating this as a retroarch core."
+    },
+    {
+        "name": "multris.zip",
+        "title": "Multris",
+        "instructions": "Multris files are already included and ready to go. Just start Multris from Ports in the emulationstation menu.",
+        "notes": "Thanks to [Russell Reich](https://github.com/RustyReich/Multris) for developing this open source game.  Also thanks to Bamboozler for the porting work for portmaster."
+    },
+    {
+        "name": "murtop.zip",
+        "title": "Murtop",
+        "instructions": "You can purchase Murtop at: https://hiulit.itch.io/murtop. Download and extract it, and place the Murtop.pck file in the gamedata directory. This has been tested with Murtop ARM 64, version 1.2.0.",
+        "notes": "Thanks to [hiulit](https://hiulit.itch.io/murtop) for creating this game.  Also thanks to tabreturn for the porting work for portmaster."
+    },
+    {
+        "name": "neverball.zip",
+        "title": "Neverball and Neverputt",
+        "instructions": "Neverball and Neverputt files are already included and ready to go.  Just start Neverball or Neverputt from Ports in the emulationstation menu.",
+        "notes": "Thanks to [Neverball](https://github.com/Neverball/neverball) for creating both of these open source games.  Thanks to Bamboozler for the packaging work for portmaster."
+    },
+    {
+        "name": "nkaruga.zip",
+        "title": "nKaruga",
+        "instructions": "nKaruga files are already included and ready to go.  Just start nKaruga from Ports in the emulationstation menu.",
+        "notes": "Thanks to [matrefeytontias](https://github.com/matrefeytontias/nKaruga) for creating this game.  Thanks to [gameblabla](https://github.com/gameblabla/nKaruga) for the additional work on this game.  Also thanks to jetup for the packaging work for portmaster."
+    },
+    {
+        "name": "nam.zip",
+        "title": "NAM",
+        "instructions": "You'll need to add your own full version NAM.GRP and NAM.RTS and .CON files and optionally CD audio tracks as OGG file in the format trackXX.ogg (where XX is the track number) to the ports/rednukem-redneck1/gamedata folder.  Then you should be able to start NAM from the emulationstation menu.",
+        "notes": "Thanks to [Nukeykt](https://github.com/nukeykt/NBlood) for the Rednukem engine that makes this possible.  Also thanks to [romadu](https://github.com/romadu/NBlood) for the porting work for portmaster."
+    },
+    {
+        "name": "nanosaur2.zip",
+        "title": "Nanosaur (JelOS devices with OpenGL support Only)",
+        "instructions": "Nanosaur files are already included and ready to go. Just start Nanosaur from Ports in the emulationstation menu. Currently only runs on the RG552 with Jelos installed.",
+        "notes": "Thanks to Pangea Software for creating the game and publicly releasing the game files. Thanks to [Jorio](https://github.com/jorio/nanosaur) for porting the game engine to various platforms.  Also thanks to brooksytech for the porting work for portmaster."
+    },
+    {
+        "name": "nanosaur.zip",
+        "title": "Nanosaur 2 (JelOS devices with OpenGL support Only)",
+        "instructions": "Nanosaur 2 files are already included and ready to go. Just start Nanosaur from Ports in the emulationstation menu. Currently only runs on the JELOS devices with Mesa Panfrost OpenGL drivers.",
+        "notes": "Thanks to Pangea Software for creating the game and publicly releasing the game files. Thanks to [Jorio](https://github.com/jorio/nanosaur) for porting the game engine to various platforms. Also thanks to brooksytech for the porting work for portmaster."
+    },
+    {
+        "name": "neoncityriders.zip",
+        "title": "Neon City Riders (Only works on devices with at least 2GBs of RAM)",
+        "instructions": "Download the game from https://store.steampowered.com/app/1102650/Neon_City_Riders/ copy data.win and both .dat files to /ports/neoncityriders/gamedata.",
+        "notes": "Thanks to [Mecha Studios](https://store.steampowered.com/app/1102650/Neon_City_Riders/) for creating this game.  Also thanks to booYah187 for the packaging for portmaster."
+    },
+    {
+        "name": "nonny.zip",
+        "title": "Nonny",
+        "instructions": "Nonny files are already included and ready to go.  Just start Nonny from Ports in the emulationstation menu.",
+        "notes": "Thanks to [Greg Kikola](https://github.com/gkikola/nonny) for creating this game.  Thanks to Bamboozler for the packaging work for portmaster."
+    },
+    {
+        "name": "nothing.zip",
+        "title": "Nothing",
+        "instructions": "The game files are already included and ready to go.",
+        "notes": "Thanks to [Tsoding](https://github.com/tsoding/nothing) for creating this game.  Also thanks to [Tekkenfede](https://github.com/tsoding/nothing) for the packaging for portmaster."
+    },
+    {
+        "name": "nova_pinball.zip",
+        "title": "Nova Pinball",
+        "instructions": "Game files are already included and ready to go. Just start the game from Ports in the Emulationstation menu.",
+        "notes": "Thanks to [Wesley Werner](https://github.com/wesleywerner/nova-pinball) for creating this game and making it available for free and Eric Ahnell for the L\u00f6ve 11.2 Port. Also thanks to Cebion for the packaging for portmaster."
+    },
+    {
+        "name": "npuzzle.zip",
+        "title": "NPuzzle",
+        "instructions": "All files are included and game is ready to play.",
+        "notes": "Thanks to [Andy Shih](https://github.com/ashih42/n_puzzle) for making this game, Bamboozler for porting and packing to Portmaster and the Portmaster team for testing."
+    },
+    {
+        "name": "oddworld.zip",
+        "title": "Oddworld: Abe's Oddysee & Exoddus",
+        "instructions": "Copy all .lvl and .ddv files (and sound.dat for Exoddus) from the original game(s) to either the ports/oddysee or ports/exoddus directory.  Then just start Oddworld Abes Exoddus or Oddworld Abes Oddysee from Ports in the emulationstation menu.",
+        "notes": "Thanks to [Alive Team](https://github.com/AliveTeam/alive_reversing) for creating the opensource port that makes this possible.  Also thanks to Orson for the porting work for portmaster."
+    },
+    {
+        "name": "openblok.zip",
+        "title": "OpenBlok",
+        "instructions": "OpenBlok files are already included and ready to go. Just start OpenBlok from Ports in the emulationstation menu.",
+        "notes": "Thanks to [M\u00e1ty\u00e1s Mustoha](https://github.com/mmatyas) for developing this open source game.  Also thanks to Bamboozler for the porting work for portmaster."
+    },
+    {
+        "name": "openclaw.zip",
+        "title": "OpenClaw",
+        "instructions": "OpenClaw files are already included and ready to go.  Just start Openclaw from Ports in the emulationstation menu.",
+        "notes": "Thanks to [Petr Ja\u0161\u00ed\u010dek](https://github.com/pjasicek/OpenClaw) for creating the opensource port that makes this possible.  Also thanks to Cebion for the porting work for portmaster."
+    },
+    {
+        "name": "openfodder.zip",
+        "title": "OpenFodder",
+        "instructions": "The game comes with demo files ready to go.  Just start OpenFodder from Ports in the emulationstation menu.  To install the full versions, using the DOS CD, Copy `CF_ENG.DAT` from the CD (or the GOG install destination) to the `roms/openfodder/Data/Dos_CD` folder. For the Amiga version, See [here](https://github.com/OpenFodder/openfodder/blob/master/INSTALL.md#amiga) for details on doing so.",
+        "notes": "Thanks to the [OpenFodder Team](https://github.com/OpenFodder/openfodder) for the open source Cannon Fodder engine that makes this possible.  Also thanks to the kloptops for the porting work for portmaster."
+    },
+    {
+        "name": "openggs.zip",
+        "title": "Open Great Giana Sisters",
+        "instructions": "All files are included and game is ready to play.",
+        "notes": "Thanks to [Martin Imobersteg and Roman H\u00f6gg](https://github.com/bugix/OpenGGS) for this game and puch666 for providing music for the game. Thanks to Bamboozler for porting and packaging for PostMaster."
+    },
+    {
+        "name": "openjazz.zip",
+        "title": "OpenJazz",
+        "instructions": "Add the dos game files to the roms/ports/openjazz/gamedata/ folder then start OpenJazz from Ports in the emulationstation menu.",
+        "notes": "Thanks to [AlisterT](https://github.com/AlisterT/openjazz) for creating the opensource port that makes this possible.  Also thanks to [Jetup13](https://github.com/Jetup13/openjazz-oga) for the porting work for portmaster."
+    },
+    {
+        "name": "openmrac.zip",
+        "title": "OpenMRac",
+        "instructions": "Game files are already included and ready to go. Just start the game from Ports in the Emulationstation menu.",
+        "notes": "Thanks to Franticware for creating this game and making it available for free and Vojt\u011bch Salajka for the Programming. Also thanks to Cebion for the packaging for portmaster."
+    },
+    {
+        "name": "openomf.zip",
+        "title": "OpenOMF",
+        "instructions": "OpenOMF files are already included and ready to go.  Just start Openomf from Ports in the emulationstation menu.",
+        "notes": "Thanks to [omf2097 team](https://github.com/omf2097/openomf) for creating this opensource port.  Also thanks to Cebion for the porting work for portmaster."
+    },
+    {
+        "name": "openrct2.zip",
+        "title": "OpenRCT2 (Open Roller Coaster Tycoon 2)",
+        "instructions": "Install your Roller Coaster Tycoon 2 game files into `{PORTS}/openrct2/RCT2`, **these files are required**, and optionally your Roller Coaster Tycoon 1 game files into `{PORTS}/openrct2/RCT1`.  They can be bought at either [Steam](https://store.steampowered.com/app/285330/) or [GOG.com](https://www.gog.com/game/rollercoaster_tycoon_2). If you have the original RollerCoaster Tycoon and its expansion packs, you can point OpenRCT2 to these in order to play the original scenarios. Then just start OpenRCT2 from Ports in the emulationstation menu.",
+        "notes": "Thanks to [OpenRCT2 team](https://github.com/OpenRCT2/OpenRCT2) for creating this opensource port.  Also thanks to [kloptops](https://github.com/kloptops/Portmaster-misc/tree/main/OpenRCT2) for the porting work for portmaster."
+    },
+    {
+        "name": "opensupaplex.zip",
+        "title": "OpenSupaplex",
+        "instructions": "All files are included and game is ready to play. Every levelset requires a there to be a player created. Levelset 1 had a premade PLAYER1 created but all others will require you to create a new one. You can use start + dpad down to enter text input mode.",
+        "notes": "Thanks to [Sergio Padrino](https://github.com/sergiou87/open-supaplex) for this remake, Bamboozler for packaging for Portmaster and the Portmaster team for testing."
+    },
+    {
+        "name": "opensyobon.zip",
+        "title": "OpenSyobon",
+        "instructions": "All files are included and game is ready to play.",
+        "notes": "Thanks to [Wei Mingzhi](https://github.com/weimzh/syobon) for this updated remake, Bamboozler for packaging for Portmaster and the Portmaster team for testing."
+    },
+    {
+        "name": "opentyrian.zip",
+        "title": "OpenTyrian",
+        "instructions": "OpenTyrian 2.1 files are already included as they were made freeware sometime ago.  Just start OpenTyrian from Ports in the Emulationstation.",
+        "notes": "Thanks to the [OpenTyrian Team](https://github.com/opentyrian/opentyrian) and contributors for the open-source port that makes this possible."
+    },
+    {
+        "name": "openxcom.zip",
+        "title": "OpenXcom",
+        "instructions": "UFO Defense game data goes in the UFO folder, Terror from the deep goes in the TFTD folder, any mods go in the mods folder.  Then just start OpenXcomEX from Ports in the emulationstation menu.",
+        "notes": "**Never enable OpenGL or it will crash immediately on loading (which can be fixed by editing the .cfg file and turning it back off there)**\nThanks to [MeridianOXC](https://github.com/MeridianOXC/OpenXcom) and contributors for the open-source ports that makes this possible.  Also thanks to nl255 for the porting work for portmaster."
+    },
+    {
+        "name": "ottomatic.zip",
+        "title": "OttoMatic (RG552 JelOS Only!)",
+        "instructions": "Ottomatic files are already included and ready to go. Just start Ottomatic from Ports in the emulationstation menu. Currently only runs on the RG552 with Jelos installed.",
+        "notes": "Thanks to Pangea Software for creating the game and publicly releasing the game files. Thanks to [Jorio](https://github.com/jorio/ottomatic) for porting the game engine to various platforms.  Also thanks to brooksytech for the porting work for portmaster."
+    },
+    {
+        "name": "owlboy.zip",
+        "title": "Owlboy",
+        "instructions": "You must have a copy of Owlboy for Linux.  Copy data into the ports/owlboy/gamedata folder\nThen just start Owlboy from Ports in the emulationstation menu.",
+        "notes": "**This game is best played on devices with at least a 5\" screen.**  It is somewhat feasible on the 3.5\" 640x480 device like the Chi, RG351MP or RG351V.  Text is not legible on the 480x320 devices such as the RG351P/M, RGB10, or RK2020.\nThanks to the [FNA-XNA](https://github.com/FNA-XNA/FNA) project for the runtime that's used to make this possible.\nThanks to JohnnyonFlame for the port work that makes this possible.\nYou can sponsor FNA-XNA's work [here](https://github.com/sponsors/flibitijibibo)\nYou can donate towards JohnnyonFlame's work [here](https://ko-fi.com/johnnyonflame)"
+    },
+    {
+        "name": "paused.zip",
+        "title": "Paused",
+        "instructions": "Games files are already included and ready to go.",
+        "notes": "Thanks to [Hamdy of CYFO](https://cyfo.itch.io/paused) for for permission to bundle the game files. Also thanks to tabreturn for the packaging for portmaster."
+    },
+    {
+        "name": "pekka-kana-2.zip",
+        "title": "Pekka Kana 2",
+        "instructions": "Pekka Kana 2 files are already included and ready to go. Just start Pekka Kana 2 from Ports in the Emulationstation menu.",
+        "notes": "Thanks to [Janne Kivilahti, Samuli Tuomola, Danilo Lemos](https://github.com/danilolc/pk2) for creating this game, porting it to SDL and finally to SDL2 and making it available for free. Also thanks to Cebion for the packaging for portmaster."
+    },
+    {
+        "name": "pinball_disc_room.zip",
+        "title": "Pinball Disc Room",
+        "instructions": "All game files are included.",
+        "notes": "A big thanks to [dulsi](https://github.com/dulsi/PinballDiscRoom) for creating the game and sharing the source code. Also thanks to Cebion for the packaging for portmaster."
+    },
+    {
+        "name": "planetwaves.zip",
+        "title": "Planet Waves",
+        "instructions": "All files included. Run PlanetWaves.sh and Play.",
+        "notes": "A big thanks to [Escada Games](https://github.com/Escada-Games/planet-waves) for creating the game and sharing the source code. Also thanks to [Tekkenfede](https://github.com/Tekkenfede/planet-waves-handhelds) for the packaging for portmaster."
+    },
+    {
+        "name": "plaqueattackremake.zip",
+        "title": "Plaque Attack Remake",
+        "instructions": "To run the game start PlaqueAttackRemake.sh from your ports folder. To Force a particular version rename the desired one in the installation folder as PlaqueAttackRemake.zip and delete the other one, then boot.",
+        "notes": "A big thanks to [Escada Games](https://github.com/Keyband/dentaldefense) for creating the game and sharing the source code. Also thanks to Tekkenfede for the packaging for portmaster."
+    },
+    {
+        "name": "pockettactics.zip",
+        "title": "Pocket Tactics",
+        "instructions": "Pocket Tactics files are already included and ready to go.",
+        "notes": "Thanks to [Team Potato](https://gitlab.com/team-potato/pocket_tactics) for creating this game and making it available for free.  Also, thanks to Cebion for the porting work for portmaster."
+    },
+    {
+        "name": "powder.zip",
+        "title": "Powder",
+        "instructions": "Powder files are already included and ready to go. Just start Powder from Ports in the Emulationstation menu.",
+        "notes": "Thanks to [Jeff Lait](https://www.zincland.com/powder/) and other contributors for creating this game and making available for free. Also thanks to Cebion for the packaging for portmaster."
+    },
+    {
+        "name": "prehistorik.2.zip",
+        "title": "Prehistorik 2",
+        "instructions": "Includes the demo files. You can add your own full game Dos files to the ports/prehistorik2/gamedata folder.  Then just start Prehistorik 2 from Ports in the Emulationstation menu.",
+        "notes": "Thanks to [cyxx](https://github.com/cyxx/blues) for the Blues Brothers engine that makes this possible.  Also thanks to [Jetup13](https://github.com/Jetup13/blues-oga) for the porting work for portmaster."
+    },
+    {
+        "name": "puremetal.zip",
+        "title": "Pure Metal Feature 1",
+        "instructions": "Just copy the game.win or data.win inside the gamedata folder. Windows store version works too.",
+        "notes": "Thanks to [Limpid Liaison](https://store.steampowered.com/app/757050/Pure_Metal_Feature_1/?l=italian) for creating this game.  Also thanks to Tekkenfede for the porting work for portmaster."
+    },
+    {
+        "name": "quake.zip",
+        "title": "Quake 1",
+        "instructions": "Add .pak files to /roms/ports/quake/quakepaks/id1 then start Quake from Ports in the emulationstation menu.",
+        "notes": "Thanks to [Libretro](https://github.com/libretro/tyrquake) for adding this as a retroarch core."
+    },
+    {
+        "name": "quake.2.zip",
+        "title": "Quake 2",
+        "instructions": "Add .pak files to /roms/ports/quake2/baseq2 then start Quake 2 from Ports in the emulationstation menu.",
+        "notes": "Thanks to the [Yamagi Quake II team](https://github.com/yquake2/yquake2) for developing this client and [romadu](https://github.com/romadu/yquake2) for the porting work for portmaster."
+    },
+    {
+        "name": "quake3.zip",
+        "title": "Quake 3",
+        "instructions": "You need to add your own full game pak files and product key to the ports/quake3/baseq3 folder then start Quake 3 from Ports in the emulationstation menu.",
+        "notes": "Thanks to [Eugene C.](https://github.com/ec-/Quake3e) for developing this updated engine and [brooksytech](https://github.com/brooksytech/Quake3e) for the porting work for portmaster."
+    },
+    {
+        "name": "raptor.zip",
+        "title": "Raptor",
+        "instructions": "Shareware files are included and game is ready to run. See readme for detailed instructions for full version game files and other configuration options. In the name and callsign section, make sure the crosshair is not on input fields, press start + down to enable text entry. Press start once done to complete entry.",
+        "notes": "Thanks to [skynettx and wel97459 (Winston Lowe)](https://github.com/skynettx/raptor) for the port of this classic game and Bamboozler for the porting work for portmaster."
+    },
+    {
+        "name": "rawgl.zip",
+        "title": "RAWGL",
+        "instructions": "Includes the Out of this World demo files. You can add your own full game files to the ports/rawgl/gamedata/ folder. See this [link](https://github.com/cyxx/rawgl#supported-versions] for more supported files info.  Then just start RAWGL from Ports in the emulationstation menu.",
+        "notes": "Thanks to [cyxx](https://github.com/cyxx/rawgl) for the rawgl engine that makes this possible.  Also thanks to [Jetup13](https://github.com/Jetup13/rawgl-oga) for the porting work for portmaster."
+    },
+    {
+        "name": "rlvm.zip",
+        "title": "RLVM (RealLive VM)",
+        "instructions": "Add your game files to the ports/rlvm/games/GAME_NAME directory, multiple games can be installed and you will get a choice of which game you want to play at launch. HD Releases do not currently work properly.",
+        "notes": "Thanks to [Elliot Glaysher](https://github.com/eglaysher/rlvm.git) for the rlvm interpreter that makes this possible.  Also thanks to [kloptops](https://github.com/kloptops/rlvm) for the porting work for portmaster."
+    },
+    {
+        "name": "redneck.rampage.zip",
+        "title": "Redneck Rampage 1",
+        "instructions": "You'll need to add your own full version REDNECK.GRP and REDNECK.RTS and .CON files and optionally CD audio tracks as OGG file in the format trackXX.ogg (where XX is the track number) to the ports/rednukem-redneck1/gamedata folder.  Then you should be able to start Redneck Rampage from the emulationstation menu.",
+        "notes": "Thanks to [Nukeykt](https://github.com/nukeykt/NBlood) for the Rednukem engine that makes this possible.  Also thanks to [romadu](https://github.com/romadu/NBlood) for the porting work for portmaster."
+    },
+    {
+        "name": "redneck.rampage.rides.again.zip",
+        "title": "Redneck Rampage 2",
+        "instructions": "You'll need to add your own full version REDNECK.GRP and REDNECK.RTS and .CON files and optionally CD audio tracks as OGG file in the format trackXX.ogg (where XX is the track number) to the ports/rednukem-redneck2/gamedata folder.  Then you should be able to start Redneck Rampage Rides Again from the emulationstation menu.",
+        "notes": "Thanks to [Nukeykt](https://github.com/nukeykt/NBlood) for the Rednukem engine that makes this possible.  Also thanks to [romadu](https://github.com/romadu/NBlood) for the porting work for portmaster."
+    },
+    {
+        "name": "reminiscence.zip",
+        "title": "Reminiscence (Flashback)",
+        "instructions": "You will need the original files of the PC version copied to ports/reminiscence/gamedata folder.  Then you should be able to start REminiscence from the Ports section in the emulationstation menu.",
+        "notes": "Thanks to [Alex Chermenin](https://github.com/chermenin/REminiscence) for the Reminiscence engine that makes this possible.  Also thanks to [Jetup](https://github.com/Jetup13/REminiscence-oga) and romadu for the porting work for portmaster."
+    },
+    {
+        "name": "retrotime.zip",
+        "title": "Retro Time",
+        "instructions": "All files are included and game is ready to play.",
+        "notes": "Thanks to [Willems Davy](https://github.com/joyrider3774/RetroTime) for making this game, Bamboozler for porting to Portmaster and the Portmaster team for testing."
+    },
+    {
+        "name": "iortcw.zip",
+        "title": "Return to Castle Wolfenstein",
+        "instructions": "You'll need to add your own pak0.pk3, sp_pak1.pk3, sp_pak2.pk3, sp_pak3.pk3 and sp_pak4.pk3 to the ports/iortcw/main folder.  The Steam version seems to work best as it's patched for Linux use already.  Then you should be able to start Return to Castle Wolfenstein from the emulationstation menu.",
+        "notes": "Thanks to [Donny Springer, Zack Middleton, James Canete and other contributors](https://github.com/iortcw/iortcw) for this engine.  Also thanks to [JohnnyonFlame](https://github.com/JohnnyonFlame/handheld-iortcw) for the porting work for portmaster and romadu for the packaging for portmaster.\nYou can donate towards JohnnyonFlame's work [here](https://ko-fi.com/johnnyonflame)"
+    },
+    {
+        "name": "rick.dangerous.zip",
+        "title": "Rick Dangerous",
+        "instructions": "Rick Dangerous files are already included and ready to go.  Just start Rick Dangerous from Ports in the emulationstation menu.",
+        "notes": "Thanks to [r-type](https://github.com/r-type/xrick-libretro) for creating this libretro/retroarch core and thanks to [Libretro](https://github.com/libretro/xrick-libretro) for officially incorporating this as a retroarch core."
+    },
+    {
+        "name": "ri_li.zip",
+        "title": "Ri-li",
+        "instructions": "The game files are already included and ready to go. Just start Ri-li from Ports in the Emulationstation menu.",
+        "notes": "Thanks to the [Ri-li team](https://ri-li.sourceforge.net/index.html) for creating this open source port.  Also thanks to Kloptops & Cebion for the packaging for portmaster."
+    },
+    {
+        "name": "rigelengine.zip",
+        "title": "Rigel Engine",
+        "instructions": "You'll need to add your own full game files to the ports/RigelEngine/ folder.  Then just start RigelEngine from Ports in emulationstation menu.",
+        "notes": "Thanks to [Lethal Guitar](https://github.com/lethal-guitar/RigelEngine) for the source port of this game.  Also thanks to romadu for the porting work for portmaster."
+    },
+    {
+        "name": "rott.zip",
+        "title": "Rise of the Triad (Available through [PortMaster](https://github.com/christianhaitian/arkos/wiki/PortMaster))",
+        "instructions": "Demo files are already included.  You can also add your full version files to the ports/rott folder.  Just start ROTT from Ports in emulationstation menu.",
+        "notes": "Thanks to [icculus](https://icculus.org/rott/) for the source port of this game.  Also thanks to romadu for the porting work for portmaster."
+    },
+    {
+        "name": "rocksndiamonds.zip",
+        "title": "Rocks 'N' Diamonds",
+        "instructions": "Rocks 'N' Diamonds files are already included and ready to go.  Just start Rocks N Diamonds from Ports in the emulationstation menu.",
+        "notes": "Thanks to [Artsoft Entertainment](https://git.artsoft.org/rocksndiamonds.git/) for creating this game and making it available for free."
+    },
+    {
+        "name": "roguelight.zip",
+        "title": "Roguelight",
+        "instructions": "Download game from https://managore.itch.io/roguelight, copy data.win and .mp3 files to /ports/roguelight/gamedata.",
+        "notes": "Thanks to [Daniel Linssen](https://managore.itch.io/roguelight) for creating this game.  Also thanks to booYah187 for the packaging for portmaster."
+    },
+    {
+        "name": "rota.zip",
+        "title": "ROTA",
+        "instructions": "Game files are already included and ready to go. Just start the game from Ports in the Emulationstation menu.",
+        "notes": "Thanks to [Harmony Honey](https://github.com/HarmonyHoney/ROTA) for creating this game and making it available for free.  Also thanks to Cebion for the packaging for portmaster."
+    },
+    {
+        "name": "russiansubwaydogs.zip",
+        "title": "Russian Subway Dogs",
+        "instructions": "Download the game from https://store.steampowered.com/app/762610/Russian_Subway_Dogs/ copy data.win and all .ini files to /ports/russiansubwaydogs/gamedata",
+        "notes": "Thanks to [Spooky Squid Games Inc.](https://store.steampowered.com/developer/spookysquid?snr=1_5_9__2000)](https://store.steampowered.com/app/762610/Russian_Subway_Dogs/) for creating this game.  Also thanks to booYah187 for the packaging for portmaster."
+    },
+    {
+        "name": "rvgl.zip",
+        "title": "RVGL",
+        "instructions": "Necessary files will be downloaded and installed upon initial launch while connected to the internet.  Just start RVGL from Ports in the emulationstation menu. You can also manually download the needed files from [Re-Volt I/O](https://re-volt.io/downloads/misc)\\",
+        "notes": "Thanks to the [RV Team](https://rvgl.re-volt.io/) for this cross-platform rewrite / port of Re-Volt.  Also thanks to romadu for the packaging for portmaster."
+    },
+    {
+        "name": "sdlpop.zip",
+        "title": "SDLPoP (Prince of Persia)",
+        "instructions": "The game is an open-source port and is already included and ready to go.  Just start SDLPoP from Ports in the emulationstation menu.",
+        "notes": "Thanks to [NagyD](https://github.com/NagyD/SDLPoP) for the open-source port of this game which makes this possible."
+    },
+    {
+        "name": "sdlsopwith.zip",
+        "title": "SDL Sopwith",
+        "instructions": "All files are included and game is ready to play.",
+        "notes": "Thanks to [Simon Howard](https://github.com/fragglet/sdl-sopwith) for the SDL port and Dave L. Clark for releasing the source code for the original game. Thanks to Bamboozler for packing for Portmaster and the Portmaster team for testing."
+    },
+    {
+        "name": "shadow.warrior.zip",
+        "title": "Shadow Warrior",
+        "instructions": "You must add your own full version SW.GRP and SW.RTS Shadow Warrior files to the ports/shadow-warrior folder.  More information about the installation along with how to include music is available [here](https://www.jonof.id.au/jfsw/readme.html#install)",
+        "notes": "Thanks to [Jonathon Fowler](https://github.com/jonof/jfsw) for the source port of Ken Silverman's build engine.  Also thanks to romadu for the porting work for portmaster."
+    },
+    {
+        "name": "shipwreck.zip",
+        "title": "Shipwreck",
+        "instructions": "You must have a copy of Shipwreck by Brushfire games for Linux or Windows. Copy data into the `ports/shipwreck/gamedata` folder. Then just start Shipwreck from Ports in the emulationstation menu.",
+        "notes": "Thanks to the [FNA-XNA](https://github.com/FNA-XNA/FNA) project for the runtime that's used to make this possible.\nThanks to JohnnyonFlame for the FNA fork to run FNA games on these devices.\nThanks to jtothebell for the port work that makes this possible.\nYou can sponsor FNA-XNA's work [here](https://github.com/sponsors/flibitijibibo)\nYou can donate towards JohnnyonFlame's work [here](https://ko-fi.com/johnnyonflame)\nYou can sponsor jtothebell's work [here](https://github.com/sponsors/jtothebell)"
+    },
+    {
+        "name": "shovel.knight.zip",
+        "title": "Shovel Knight - Treasure Trove",
+        "instructions": "You must have a copy of Shovel Knight Treasure Trove for Linux.  You'll need the shovelknight folder:\n1. Be sure the folder contains subfolders named 32, 64 and data.  There should also be a filed named ShovelKnight.\n2. Copy the shovelknight folder to the roms/ports folder on your device.\n3. For a guide and video of what to do, check out Retro Game Corps' video guide [here](https://retrogamecorps.com/2021/05/09/shovel-knight-treasure-trove-on-retro-handheld-devices/)",
+        "notes": "**For PortMaster version, copy your Shovel Knight Treasure Trove for Linux folder to the ports/shovelknight/gamedata folder.  You should have ports/shovelknight/gamedata/shovelknight folder structure with additional subfolders such as 32, 64, and data within ports/shovelknight/gamedata/shovelknight.  Once done, just run Shovel Knight.sh.\n\nThanks to ptitSeb for box86 (https://github.com/ptitSeb/box86)\nThanks to JohnnyonFlame for gl4es and the necessary packaging to allow this game to run on supported linux distros. (https://github.com/JohnnyonFlame/gl4es/tree/sk_hacks)\nYou can donate towards JohnnyonFlame's work [here](https://ko-fi.com/johnnyonflame)"
+    },
+    {
+        "name": "simplesokoban.zip",
+        "title": "Simple Sokoban",
+        "instructions": "Simple Sokoban files are already included and ready to go.  Just start Simple Sokoban from Ports in the emulationstation menu.",
+        "notes": "Thanks to [Mateusz Viste](http://simplesok.osdn.io/) for creating the open source game.  Also thanks to christopher-roelofs for the porting and packaging for portmaster."
+    },
+    {
+        "name": "skijump3.zip",
+        "title": "Ski Jump 3",
+        "instructions": "Ski Jump 3 files are already included and ready to go.  Just start Skijump3 from Ports in the emulationstation menu.",
+        "notes": "Thanks to [suomipelit](https://github.com/suomipelit/skijump3-sdl) for creating this SDL2 ports.  Also thanks to cebion for the porting work for portmaster."
+    },
+    {
+        "name": "sonic.1.zip",
+        "title": "Sonic 1",
+        "instructions": "You must have a copy of the Sonic The Hedgehog Classic Android APK then do the following:\n1. Using 7Zip, open the apk and extract /assets/Data.rsdk.xmf.\n2. Rename the Data.rsdk.xmf to Data.rsdk.  Case is important!\n3. Copy the Data.rsdk file to the ports/sonic1 folder.\n4. If all is well, you should be able to run Sonic 1 now.\n5. For a video of what to do, check out Retro Game Corps' video guide [here](https://www.youtube.com/watch?v=iu_8ub7NYZM).",
+        "notes": "Thanks to [Rubberduckycooly](https://github.com/Rubberduckycooly/Sonic-1-2-2013-Decompilation) for the decompilation work that makes this possible."
+    },
+    {
+        "name": "sonic.2.zip",
+        "title": "Sonic 2",
+        "instructions": "You must have a copy of the Sonic The Hedgehog 2 Classic Android APK then do the following:\n1. Using 7Zip, open the apk and extract /assets/Data.rsdk.xmf.\n2. Rename the Data.rsdk.xmf to Data.rsdk.  Case is important!\n3. Copy the Data.rsdk file to the ports/sonic2 folder.\n4. If all is well, you should be able to run Sonic 2 now.\n5. For a video of what to do, check out Retro Game Corps' video guide [here](https://www.youtube.com/watch?v=iu_8ub7NYZM).",
+        "notes": "Thanks to [Rubberduckycooly](https://github.com/Rubberduckycooly/Sonic-1-2-2013-Decompilation) for the decompilation work that makes this possible."
+    },
+    {
+        "name": "sonic.cd.zip",
+        "title": "Sonic CD",
+        "instructions": "You must have a copy of the Sonic CD Classic Android APK then do the following:\n1. Using 7Zip, open the apk and extract Androind/obb/comm.sega.soniccd.classic/patch49.com.sega.soniccd.classic.obb.\n   * This file may have a different number such as patch56 or higher which should also work as well.\n2. Rename the patch49.com.sega.soniccd.classic.obb to Data.rsdk.  Case is important!\n3. Copy the Data.rsdk file to the ports/soniccd folder.\n4. If all is well, you should be able to run Sonic CD now.\n5. For a video of what to do, check out Retro Game Corps' video guide [here](https://www.youtube.com/watch?v=iu_8ub7NYZM).\n*Note*: There seems to be an issue with being able to consistently exit Sonic CD through the menu like you can with Sonic 1 and 2.  You can exit Sonic CD by holding Select and pressing Start. (For the RGB10, you can hold Minus and press Start.  For the Chi, you can hold the 1 key and press Start.)",
+        "notes": "Thanks to [Rubberduckycooly](https://github.com/Rubberduckycooly/Sonic-CD-11-Decompilation) for the decompilation work that makes this possible."
+    },
+    {
+        "name": "sonic.mania.zip",
+        "title": "Sonic Mania",
+        "instructions": "You must have a copy of the Sonic Mania Plus game from steam then do the following:\n1. Copy the Data.rsdk file from your windows install to the ports/sonicmania folder.\n2. If all is well, you should be able to run Sonic Mania now.",
+        "notes": "* Thanks to [Rubberduckycooly](https://github.com/Rubberduckycooly/RSDKv5-Decompilation) for the decompilation work that makes this possible.  Thanks to [TheGammaSqueeze](https://github.com/TheGammaSqueeze/RSDKv5-Decompilation) for the porting work.\n* Please note that the game comes preconfigured for displaying on a 640x480 device (ex. RG351V and RG353V/VS).  Unfortunately this truncates the menus a little but does not affect gameplay (the ring and lives hud are placed correctly).  If you go to Options then Video, you can force Fullscreen to On and restart the game and it will set the screen to fullscreen for widescreen devices but add black bars at the top and bottom of 4:3 screens like the RG351V.  Once you've made this change, you can't go back to 4:3 without either manually editing the settings.ini file within the sonicmania port folder and changing pixWidth to 320 and fullscreen to 0, or redownload the port through portmaster which will overwrite this settings.ini file with the default one provided in the port package that is preconfigured for 4:3.\n* To access DLC (Sonic Mania Plus), per the developer's [license requirements](https://github.com/Rubberduckycooly/RSDKv5-Decompilation/blob/master/LICENSE.md),  users need to compile this themselves. Thanks to romadu, the compile process has been made as simple as possible by providing a single GitHub repo that can be compiled on a device with ArkOS by following these instructions available [here](https://github.com/romadu/RSDKv5-Decompilation/blob/master/README.md#building-on-device-with-arkos)."
+    },
+    {
+        "name": "sorr.zip",
+        "title": "SorR (Streets of Rage Remake)",
+        "instructions": "You'll need to provide your own sorr.dat file, mod folder, and palettes folder:\n1. Obtain any version of SorR.  You can use either the windows or linux/debian version it does not matter which.\n2. Extract them /roms/ports/sorr (For RG351V if using SD2, extract to /roms2/ports/sorr instead).  You should have a /mod folder, a /palettes folder, and SorR.dat file in this location in order for the game to work.\n3. Then go to Ports, and launch SorR\n*Note*: ~~If you experience a slowdown in gameplay after sometime, force exit the game (You can use the normal force exit hotkey combination for your device), then start the game again and it will start from the beginning of the last stage you were on and be full speed for a few more stages.  It's the best workaround for the issue for now until someone can figure out and resolve the root cause of the slowdown.~~ [Fixed as of 10/6/2021]",
+        "notes": "Thanks to [josebagar](https://gitlab.com/josebagar/bennugd-monolithic) for the update to the bennugd-monolithic that made this possible.\nThanks to [isage](https://github.com/isage/sorr-vita) for the slow down fix that benefits this platform."
+    },
+    {
+        "name": "space.cadet.pinball.zip",
+        "title": "Space Cadet Pinball",
+        "instructions": "Just add your own Space Cadet Pinball PINBALL.DAT files and sound files to the spacecadetpinball folder.  Then start Space Cadet Pinball from Ports in the emulationstation menu.",
+        "notes": "Thanks to [Muzychenko Andrey](https://github.com/k4zmu2a/SpaceCadetPinball) for the reversed engineering work of this.  Also thanks to [Jetup](https://github.com/Jetup13/SpaceCadetPinball) and [romadu](https://github.com/romadu/SpaceCadetPinball) for the porting work for portmaster."
+    },
+    {
+        "name": "spelunky.zip",
+        "title": "Spelunky",
+        "instructions": "Spelunky files are already included and ready to go.  Just start Spelunky from Ports in the emulationstation menu.",
+        "notes": "Thanks to [ptitSeb](https://github.com/ptitSeb/box86) for box86.\nThanks to [yancharkin](https://github.com/yancharkin/SpelunkyClassicHD) for the updated source build."
+    },
+    {
+        "name": "spinch.zip",
+        "title": "Spinch",
+        "instructions": "Download the game from https://store.steampowered.com/app/794240/Spinch/ (also available but not tested from gog and humble). Copy data.win, all .ogg and .ini files to /ports/spinch/gamedata",
+        "notes": "Thanks to [[Queen Bee Games](https://store.steampowered.com/search/?developer=Queen%20Bee%20Games&snr=1_5_9__2000) for creating this game.  Also thanks to booYah187 for the packaging for portmaster."
+    },
+    {
+        "name": "spooky.zip",
+        "title": "Spooky Ghosts Dot Com",
+        "instructions": "Copy the file SpookyGhostsDotCom inside the game folder, if you have the steam version rename the file SpookyGhostsDotCom-Steam",
+        "notes": "Thanks to [Zertuk](https://store.steampowered.com/app/820620/Spooky_Ghosts_Dot_Com/) for creating this game.  Also thanks to Tekkenfede for the porting work for portmaster."
+    },
+    {
+        "name": "srb2.zip",
+        "title": "SRB2 (Sonic Robo Blast 2)",
+        "instructions": "Sonic Robo Blast 2 files are already included and ready to go.  Just start SRB2 from Ports in the emulationstation menu.  To use mods and addons for SRB2, just add the relevant files to ports/SRB2/conf/.srb2/addons and load them using Add Ons menu item while in the game.",
+        "notes": "Thanks to [Sonic Team Junior](https://github.com/STJr/SRB2) for creating this opensource fan game.  Also thanks to romadu for the packaging for portmaster."
+    },
+    {
+        "name": "srb2kart.zip",
+        "title": "SRB2Kart (Sonic Robo Blast 2 Kart)",
+        "instructions": "Sonic Robo Blast 2 files are already included and ready to go.  Just start Sonic Robo Blast 2 Kart from Ports in the emulationstation menu.  To use mods and addons for SRB2, just add the relevant files to ports/srb2kart/.srb2kart and load them using Add Ons menu item while in the game.\\",
+        "notes": "Thanks to [Sonic Team Junior](https://github.com/STJr/Kart-Public) for creating this opensource fan game.  Also thanks to romadu for the packaging for portmaster."
+    },
+    {
+        "name": "starboy.zip",
+        "title": "StarBoy",
+        "instructions": "You can purchase StarBoy at: https://mrkdji.itch.io/starboy. Download and extract it, and place the starboy_linux.pck file in the gamedata directory. This has been tested with starboy_linux.zip, version 1.0.3.",
+        "notes": "Thanks to [mrkdji](https://mrkdji.itch.io/starboy) for creating this game.  Also thanks to tabreturn for the packaging for portmaster."
+    },
+    {
+        "name": "starcatcher.zip",
+        "title": "Starcatcher",
+        "instructions": "Starcatcher files are already included and ready to go. Just start Starcatcher from Ports in the Emulationstation menu.",
+        "notes": "Thanks to the team of [Escada Games](https://github.com/Escada-Games/starcatcher) for creating this game and making available for free and [efornara](https://github.com/efornara/frt) for creating the FRT platform.  Also thanks to Cebion for the packaging for portmaster."
+    },
+    {
+        "name": "jediacademy.zip",
+        "title": "Star Wars Jedi Knight - Jedi Academy (RG552 Only)",
+        "instructions": "You need to add your own full game pak files to the ports/JediAcademy/base folder.  Then you should be able to launch Star Wars Jedi Knight - Jedi Academy from Ports in the emulationStation menu.",
+        "notes": "Thanks to [JACoders](https://github.com/JACoders/OpenJK) for the opensource engine.  Also thanks to [brooksytech](https://github.com/brooksytech/OpenJK-RG552) for the porting and packaging for portmaster."
+    },
+    {
+        "name": "jedioutcast.zip",
+        "title": "Star Wars Jedi Knight II - Jedi Outcast (RG552 Only)",
+        "instructions": "You need to add your own full game pak files to the ports/JediOutcast/base folder.  Then you should be able to launch Star Wars Jedi Knight - Jedi Outcast from Ports in the emulationstation menu.",
+        "notes": "Thanks to [JACoders](https://github.com/JACoders/OpenJK) for the opensource engine.  Also thanks to [brooksytech](https://github.com/brooksytech/OpenJK-RG552) for the porting and packaging for portmaster."
+    },
+    {
+        "name": "stardewvalley.zip",
+        "title": "Stardew Valley",
+        "instructions": "You must have a copy of the [compatibility version](https://www.stardewvalley.net/compatibility/) of Stardew Valley.  Steam or GOG versions should work.  If purchasing the game, have in mind that there is no GOG compatibility version for linux, as that requires using GOG Galaxy, which doesn't support linux at all. Windows compatibility version works fine.  Copy data into the ports/stardewvalley/gamedata folder\nThen just start StardewValley from Ports in the emulationstation menu.",
+        "notes": "Thanks to the [MonoGame](https://github.com/MonoGame/MonoGame) project for the framework that's used to make this possible.\nThanks to JohnnyonFlame for the port work that makes this possible.\nYou can donate towards MonoGame's work [here](https://www.monogame.net/donate/)\nYou can donate towards JohnnyonFlame's work [here](https://ko-fi.com/johnnyonflame)"
+    },
+    {
+        "name": "steelassault.zip",
+        "title": "Steel Assault (RG552 Only)",
+        "instructions": "You must have a copy of Steel Assault for Linux.  Copy data into the ports/steelassault/gamedata folder\nThen just start SteelAssault from Ports in the emulationstation menu.",
+        "notes": "Thanks to the [FNA-XNA](https://github.com/FNA-XNA/FNA) project for the runtime that's used to make this possible.\nThanks to JohnnyonFlame for the port work that makes this possible.\nYou can sponsor FNA-XNA's work [here](https://github.com/sponsors/flibitijibibo)\nYou can donate towards JohnnyonFlame's work [here](https://ko-fi.com/johnnyonflame)"
+    },
+    {
+        "name": "hydorah.zip",
+        "title": "Super Hydorah",
+        "instructions": "Copy the data.win file and the texts and music folders inside gamedata.",
+        "notes": "Thanks to [Locomalito, Gryzor87, Abylight](https://store.steampowered.com/app/628800/Super_Hydorah/) for creating this game.  Also thanks to Tekkenfede for the porting work for portmaster."
+    },
+    {
+        "name": "super.mario.war.zip",
+        "title": "Super Mario War",
+        "instructions": "Super Mario War files are already included and ready to go.  Just start Super Mario War from Ports in the emulationstation menu.\n\n**Netplay**: There's a netplay feature available with the portmaster version that supports network play between multiple units.  According to the author ([mmatyas](https://github.com/mmatyas/supermariowar/blob/master/docs/netplay.md)) of this feature, it is very much experimental so performance will vary depending on a a number of factors not limited to network latency, connection quality (2.4Ghz vs 5Ghz, vs Wired connection) and if attempting to play over Internet, lag and disconnects.  To use this feature: you can do the following:\n\n1. One of players has to run the server.  This can be done from the netplay menu provided when you launch Super Mario War from the PortMaster version.\n1. Server IPs can be added from the netplay menu from within settings.  The netplay menu will allow you to easily set Server 1 as your internal IP address, Server 2 as your external IP address.  You can also set alternative addresses for these servers as well.\n1. Make sure to start the server before you start Super Mario War.  Once started, you can join the server using your internal IP address.  The other players will need to join via your internal IP if playing on the same local network or your external IP if joining via Internet.\n    - Be aware that if playing over internet, the unit with the smw server started must have port forwarding on that wifi or wired router's configuration for UDP 12521 to point to the internal IP of the unit running the smw server.  If this is not done, Internet based players may not be able to join the smw server.\n1. Once connected, a room must be created with a name.  With the PortMaster setup, the x and y button can be used to just name the room x or y so the room can be setup and all players can enter the room and start playing.",
+        "notes": "Thanks to [M\u00e1ty\u00e1s Mustoha](https://github.com/mmatyas/supermariowar) for continuing the work originally started by Samuele Poletto and then Florian Hufsky to make this game what it is today."
+    },
+    {
+        "name": "supertux.zip",
+        "title": "SuperTux",
+        "instructions": "SuperTux files are already included and ready to go.  Just start SuperTux from Ports in the emulationstation menu.",
+        "notes": "Thanks to the [SuperTux](https://github.com/SuperTux/supertux) team and contributors for creating and making this game what it is today."
+    },
+    {
+        "name": "supertuxkart.zip",
+        "title": "SuperTuxKart",
+        "instructions": "SuperTuxKart files are already included and ready to go.  Just start SuperTuxKart from Ports in the emulationstation menu.",
+        "notes": "Thanks to the [SuperTuxKart](https://github.com/supertuxkart/stk-code) team and contributors for creating and making this game what it is today."
+    },
+    {
+        "name": "superxyx.zip",
+        "title": "Super XYX",
+        "instructions": "Copy the data.win file and the texts and music folders inside gamedata. Then Boot the game",
+        "notes": "Thanks to [Team Grybanser Fox](https://store.steampowered.com/app/654500/Super_XYX/?l=italian) for creating this game.  Also thanks to Tekkenfede for the porting work for portmaster."
+    },
+    {
+        "name": "tamatool.zip",
+        "title": "Tamatool (Tamagotchi P1 Explorer)",
+        "instructions": "You will need a compatible Tamagotchi P1 ROM called rom.bin in its folder. The expected ROM format is 16 bits in big-endian per instruction (the actual E0C6S46 instructions are 12-bit long).",
+        "notes": "Thanks to [Tamatool](https://github.com/jcrona/tamatool) for this Tamagotchi P1 explorer.  Also thanks to Bamboozler for the porting work for portmaster."
+    },
+    {
+        "name": "thecurseofissyos.zip",
+        "title": "The Curse of Issyos",
+        "instructions": "To successfully boot the game copy the data.win file into the gamedata folder, then boot the game from Coi.sh.",
+        "notes": "Thanks to [locomalito](http://locomalito.com/curse_of_issyos.php) for this game.  Also thanks to Tekkenfede for the porting and packaging for PortMaster."
+    },
+    {
+        "name": "thermomorph.zip",
+        "title": "Thermomorph",
+        "instructions": "Thermomorph files are already included and ready to go. Just start the game from Ports in the Emulationstation menu.",
+        "notes": "Thanks to [Varun Ramesh](https://github.com/rameshvarun/thermomorph) for creating this game and making it available for free. Also thanks to Cebion for the packaging for portmaster."
+    },
+    {
+        "name": "thwack.zip",
+        "title": "Thwack",
+        "instructions": "The full game is available for purchase at https://jontopielski.itch.io/thwack. To run the full game, down ThwackLinux.zip, extract it, and copy the Thwack.pck file into the gamedata directory. This supports the ThwackLinux.zip, Apr 28 2023 release.",
+        "notes": "Thanks to [Jon Topielski and team](https://cyfo.itch.io/paused) for creating this games. Also thanks to tabreturn for the packaging for portmaster."
+    },
+    {
+        "name": "tileworld.zip",
+        "title": "Tile World",
+        "instructions": "Tile World files are already included and ready to go.  To play the original Chip's Challenge levels, copy your chips.dat file into ports/tileworld/data folder and make sure it's lowercase.  Just start Tile World from Ports in the emulationstation menu",
+        "notes": "Thanks to [Ricardo Angeli](https://github.com/rangeli/tileworld) for this emulation port of Chip's Challenge created by Chuck Sommerville.  Also thanks to Slayer366 for the porting work for portmaster."
+    },
+    {
+        "name": "timespinner.zip",
+        "title": "Timespinner",
+        "instructions": "You must have a copy of Timespinner for Linux.  Copy data into the ports/timespinner/gamedata folder\nThen just start Timespinner from Ports in the emulationstation menu.",
+        "notes": "Thanks to the [FNA-XNA](https://github.com/FNA-XNA/FNA) project for the runtime that's used to make this possible.\nThanks to JohnnyonFlame for the port work that makes this possible.\nYou can sponsor FNA-XNA's work [here](https://github.com/sponsors/flibitijibibo)\nYou can donate towards JohnnyonFlame's work [here](https://ko-fi.com/johnnyonflame)"
+    },
+    {
+        "name": "tiny-crate.zip",
+        "title": "Tiny Crate",
+        "instructions": "Tiny Crate files are already included and ready to go. Just start Tiny Crate from Ports in the Emulationstation menu.",
+        "notes": "Thanks to [HarmonyHoney](https://github.com/HarmonyHoney/tiny_crate) for creating this game and making available for free and [efornara](https://github.com/efornara/frt) for creating the FRT platform.  Also thanks to Cebion for the packaging for portmaster."
+    },
+    {
+        "name": "titan_tactics.zip",
+        "title": "Titan Tactics",
+        "instructions": "Titan Tactics files are already included and ready to go. Just start Titan Tactics from Ports in the Emulationstation menu.",
+        "notes": "Thanks to [Team Potato](https://gitlab.com/team-potato/titan_tactics) for creating this game and making available for free and [efornara](https://github.com/efornara/frt) for creating the FRT platform. Also thanks to Cebion for the packaging for portmaster."
+    },
+    {
+        "name": "tomb.raider.1.zip",
+        "title": "Tomb Raider 1",
+        "instructions": "Just add your steam or gog Tomb Raider 1 files to the ports/tombraider1 folder.  Then you should be able to launch Tomb Raider 1 from Ports in the emulationStation menu.",
+        "notes": "Thanks to [XProger](https://github.com/XProger/OpenLara) for the OpenLara engine that makes this possible."
+    },
+    {
+        "name": "turbotabletennis.zip",
+        "title": "TurboTableTennis",
+        "instructions": "All game files are included.",
+        "notes": "Thanks to [MenacingMecha](https://menacingmecha.itch.io/turbo-table-tennis) for creating this game and allowing distribution of it.  Also thanks to booYah187 for the packaging for portmaster."
+    },
+    {
+        "name": "ubermoshcollection.zip",
+        "title": "Ubermosh Collection",
+        "instructions": "Inside the game folders you will find 8 folders each with the name of a Ubermosh game. Place the data.win you have inside in the correct gamedata \"ie. Ubermosh black data.win in \"BLACK/gamedata\"",
+        "notes": "Thanks to [Walter Machado](https://store.steampowered.com/sub/95016/) for creating this game.  Also thanks to Tekkenfede for the porting work for portmaster."
+    },
+    {
+        "name": "ultimatetapankaikki.zip",
+        "title": "Ultimate Tapan Kaikki",
+        "instructions": "The game files are already included and ready to go. Just start Ultimate Tapan Kaikki from Ports in the Emulationstation menu.",
+        "notes": "Thanks to the [suomipelit team](https://github.com/suomipelit/ultimatetapankaikki) for creating this open source port.  Also thanks to Kloptops and Cebion for the packaging for portmaster."
+    },
+    {
+        "name": "undertale.zip",
+        "title": "Undertale",
+        "instructions": "You'll need to provide your own Undertale Linux version assets.  You can purchase this from GoG for under $10.  If you purchase this from GoG, you'll need to download the Linux version and it will have a .sh extension.  Just change the .sh to .gz and use 7zip to open the file, then go to the \\data\\noarch\\game\\assets folder and copy all of it's contents to your /roms/ports/undertale/assets folder.  Then you should be able to launch Undertale from Ports in the emulationstation menu.",
+        "notes": "-  It's been reported that version 1.0.8 seems to work best with this setup. Version 2.0 or newer does not work at this time.\n-  On devices with resolutions higher than 640x480, pressing L1 or L2 will adjust the screen aspect ratio.\n\nThanks to ptitSeb for box86 (https://github.com/ptitSeb/box86)\nThanks to JohnnyonFlame for the necessary modification to allow this game to run on supported linux distros.\nYou can donate towards JohnnyonFlame's work [here](https://ko-fi.com/johnnyonflame)"
+    },
+    {
+        "name": "upo.zip",
+        "title": "Upo",
+        "instructions": "Upo files are already included and ready to go. Just start the game from Ports in the Emulationstation menu.",
+        "notes": "Thanks to [Eemeli Mark](https://github.com/TheJeme/upo) for creating this game and making it available for free. Also thanks to Cebion for the packaging for portmaster."
+    },
+    {
+        "name": "uqm.zip",
+        "title": "Ur-Quan Masters",
+        "instructions": "Ur-Quan Masters files are already included and ready to go.  Just start UQM from Ports in the emulationstation menu.",
+        "notes": "Thanks to [avolkov, luminescent, mcmartin and meep-eep](https://sourceforge.net/p/sc2/uqm/ci/main/tree/) for the creation and continued updates of this engine."
+    },
+    {
+        "name": "valhalla.zip",
+        "title": "VA-11 Hall-A:Cyberpunk_Bartender_Action",
+        "instructions": "To boot copy the data.win/game.unx files and all the folder inside the gamedata folder and then boot the game from Valhalla.sh.",
+        "notes": "Thanks to [sukebangames](https://sukebangames.itch.io/valhalla-bar) for this game.  Also thanks to Tekkenfede for the porting and packaging for PortMaster."
+    },
+    {
+        "name": "vanillara.zip",
+        "title": "VanillaRA (Command and Conquor Red Alert)",
+        "instructions": "Demo files are already included.  If you want to play the full version, you will need to place at least MAIN.MIX & READALERT.MIX into ports/vanillara/data/vanillara.  You can get the game files from [here](https://github.com/TheAssemblyArmada/Vanilla-Conquer#vanillatd-and-vanillara).  For multiple cd's for the campaigns & expansions it is a little more complex.  Follow the installation instructions from [here](https://github.com/TheAssemblyArmada/Vanilla-Conquer/wiki/Installing-VanillaRA).  If you want to use the expansions you will need the files from the patch 3.03, [available here](https://www.moddb.com/games/cc-red-alert/downloads/red-alert-303-beta-english-patch).",
+        "notes": "Thanks to [TheAssemblyArmada](https://github.com/TheAssemblyArmada/Vanilla-Conquer) and other contributors for the build.  Also thanks to kloptops and Snoopy from the AmberElec Discord for the porting work."
+    },
+    {
+        "name": "vanillatd.zip",
+        "title": "VanillaTD (Command and Conquor Tiberium Dawn)",
+        "instructions": "Demo files are already included.  If you want to play the full version, you will need to place the game files from the [following guide](https://github.com/TheAssemblyArmada/Vanilla-Conquer/wiki/Installing-VanillaTD) into ports/vanillatd/data/vanillatd.  You will need to delete all the game files in ports/vanillatd/data/vanillatd before installing full game files.",
+        "notes": "Thanks to [Vanilla Conquer](https://github.com/TheAssemblyArmada/Vanilla-Conquer) and other contributors for the build.  Also thanks to kloptops and Snoopy from the AmberElec Discord for the porting work."
+    },
+    {
+        "name": "vcmi.zip",
+        "title": "VCMI - Heroes of Might and Magic III",
+        "instructions": "You need to add required game files either from CD1 & CD2, GoG or an installed copy of the game. This requires about 2-3 gb of free space.  For the gog version copy `setup_heroes_of_might_and_magic_3_complete_4.0_(28740)-1.bin` and `setup_heroes_of_might_and_magic_3_complete_4.0_(28740).exe` into `ports/vcmi`.  For the cd version copy the contents of cd1 into `ports/vcmi/cd1` and cd2 into `ports/vcmi/cd2`.  For the installed version copy installed game files into `ports/vcmi/install`.",
+        "notes": "Thanks to [VCMI Team](https://github.com/vcmi/vcmi) for the open source Heroes of Might and Magic III engine that makes this possible.  Also thanks to the [kloptops](https://github.com/kloptops/Portmaster-misc/tree/main/VCMI) for the porting work for portmaster."
+    },
+    {
+        "name": "vvvvvv.zip",
+        "title": "VVVVVV",
+        "instructions": "The free Make and Play Edition data.zip file is already included.  Just start VVVVVV from Ports in the emulationstation menu.  You can also add your own purchased copy of the data.zip from your VVVVVV into the /roms/ports/VVVVVV folder if you prefer that version instead.",
+        "notes": "Thanks to [Terry Cavanagh](https://github.com/TerryCavanagh/VVVVVV) and other authors and contributors for the creation and continued updates of this game."
+    },
+    {
+        "name": "wetspot2.zip",
+        "title": "Wetspot 2",
+        "instructions": "Wetspot 2 files are already included and ready to go. Just start Wetspot 2 from Ports in the Emulationstation menu.",
+        "notes": "Thanks to [dmitrysmagin](https://github.com/dmitrysmagin/wetspot2) and [Angelo Mottola](https://geocities.restorativland.org/SiliconValley/Lakes/7303/) for creating this game and making available for free. Also thanks to Cebion for the packaging for portmaster."
+    },
+    {
+        "name": "wizardchase.zip",
+        "title": "Wizardchase",
+        "instructions": "Wizardchase files are already included and ready to go.",
+        "notes": "Thanks to [John Clarkr](https://github.com/clarkjohn/wizard-chase) for creating this game and making it available for free. Also thanks to Cebion for the packaging for portmaster."
+    },
+    {
+        "name": "wizznic.zip",
+        "title": "Wizznic!",
+        "instructions": "all files are already included and ready to go. Just start Wizznic! from Ports in the emulationstation menu.",
+        "notes": "Thanks to [DusteDdk](https://github.com/DusteDdk/Wizznic) for the original port, thanks to Bamboozler for the packaging for portmaster and thanks to the Portmaster testers for testing."
+    },
+    {
+        "name": "wordlesdl.zip",
+        "title": "Wordle SDL",
+        "instructions": "Wordle files are already included and ready to go.  Just start Wordle from Ports in the emulationstation menu.",
+        "notes": "Thanks to [Andrei Rafael](https://github.com/AndreiRafael/wordle_clone) for the original port and Rinnegatamante for the non desktop control logic.  Also thanks to Bamboozler for the packaging for portmaster."
+    },
+    {
+        "name": "world.war.ii.gi.zip",
+        "title": "World War II GI",
+        "instructions": "You'll need to add your own full version WW2GI.GRP and WW2DI.RTS and .CON files and optionally CD audio tracks as OGG file in the format trackXX.ogg (where XX is the track number) to the ports/rednukem-WWII/gamedata folder.  Then yo should be able to launch World War II GI from Ports in the emulationstation menu.",
+        "notes": "Thanks to [Nukeykt](https://github.com/nukeykt/NBlood) for the Rednukem engine that makes this possible.  Also thanks to [romadu](https://github.com/romadu/NBlood) for the porting work for portmaster."
+    },
+    {
+        "name": "worship_vector.zip",
+        "title": "Worship Vector",
+        "instructions": "Worship Vector files are already included and ready to go. Just start Worship Vector from Ports in the Emulationstation menu.",
+        "notes": "Thanks to [Quasist, JohnnyonFlame and Zear](https://github.com/JohnnyonFlame/Worship-Vector) and other contributors for creating this game and making available for free. Also thanks to Cebion for the packaging for portmaster."
+    },
+    {
+        "name": "xenonvalkyrie.zip",
+        "title": "Xenon Valkyrie",
+        "instructions": "Download the game from https://store.steampowered.com/app/573780/Xenon_Valkyrie/, copy data.win, all .ogg and .ini files to /ports/xenonvalkyrie/gamedata.",
+        "notes": "Thanks to [Diabolical Mind](https://store.steampowered.com/app/573780/Xenon_Valkyrie) for creating this game.  Also thanks to booYah187 for the packaging for portmaster."
+    },
+    {
+        "name": "hoverboard.zip",
+        "title": "xkcd Hoverboard",
+        "instructions": "All files are included. Just start xkcd Hoverboard from Ports in the Emulationstation menu.",
+        "notes": "Thanks to [Dmitry Marakasov](https://github.com/AMDmi3/hoverboard-sdl) for making a native version of Randall Munroe's [game](https://xkcd.com/1608/). Also thanks to Bamboozler for the packaging for portmaster and the portmaster team for testing."
+    },
+    {
+        "name": "yatka.zip",
+        "title": "Yatka",
+        "instructions": "All files included, ready to run. **To force an higher resolution add --scale2x or higher in the boot script**",
+        "notes": "Thanks to [szymor](https://github.com/szymor/yatka) for the source code.  Also thanks to Tekkenfede for the packaging for portmaster."
+    },
+    {
+        "name": "zeroranger.zip",
+        "title": "ZeroRanger",
+        "instructions": "To start the game copy the data.win/game.unx and all the ogg files inside the gamedata folder, then boot the game from the ports menu on your device.",
+        "notes": "Thanks to [system-erasure](https://system-erasure.itch.io/zeroranger) for this game.  Also thanks to Tekkenfede for the porting and packaging for PortMaster."
+    },
+    {
+        "name": "zgloom.zip",
+        "title": "ZGloom",
+        "instructions": "Gloom, Gloom 3, Zombie Massacre and Gloom Deluxe 1 level demo files are already included.",
+        "notes": "Thanks to [Swizpig](https://github.com/Swizpig/ZGloom) for this opensource port.  Also thanks to Bamboozler for the porting work for portmaster."
+    },
+    {
+        "name": "znax.zip",
+        "title": "Znax",
+        "instructions": "All files are included and ready to play.",
+        "notes": "Thanks to Nick Kouvaris for the original flash game, [Willems Davy](https://github.com/joyrider3774/Znax) for this port, Donskeeto for the music, Bamboozler for packaging for PortMaster and a special thanks to tekkenfede for creating a new theme for this port."
+    }
+]
