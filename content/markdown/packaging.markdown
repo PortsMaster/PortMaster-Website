@@ -6,7 +6,7 @@
 
 - [ports/](#)
   - [portname/](#)
-    - [portname.md](#)
+    - [README (optional)](#)
     - [portname.port.json](#)
     - [licensefile](#)
     - [gamename.gptk (If needed)](#)
@@ -14,6 +14,7 @@
     - [gamedata/](#)
   - [PortScript.sh](#)
   - [portname.screenshot.png](#)
+  - [portname.md](#)
 
 # The Launchscript .sh
 
