@@ -300,6 +300,8 @@ For example:
 This acts as a readme and for the Wiki Entry on our website.
 Please add the thank you notes from the original developers as well as how the game was compiled and any additional information likes controls.
 
+You can view the markdown before submitting it here: https://portmaster.games/markdown-viewer.html
+
 Example:
 
 
