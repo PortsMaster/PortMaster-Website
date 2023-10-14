@@ -195,8 +195,737 @@
   <br/>
   <div class="container">
    <main>
+    <h1>
+     gptokeyb
+    </h1>
     <p>
-     Content coming very soon. Please be patient.
+     Gamepad to Keyboard/mouse/xbox360(gamepad) emulator
+    </p>
+    <p>
+     Based on code by:
+     <a href="https://github.com/krishenriksen/AnberPorts/tree/master/AnberPorts-Joystick">
+      Kris Henriksen
+     </a>
+     and fake Xbox code from:
+     <a href="https://github.com/Emanem/js2xbox">
+      https://github.com/Emanem/js2xbox
+     </a>
+     <br>
+      Modified to use SDL2 by:
+      <a href="https://github.com/lethal-guitar">
+       Nikolai Wuttke
+      </a>
+      &amp;
+      <a href="https://github.com/shantigilbert">
+       Shanti Gilbert
+      </a>
+      for
+      <a href="https://github.com/EmuELEC/EmuELEC">
+       https://github.com/EmuELEC/EmuELEC
+      </a>
+      Interactive text entry added by
+      <a href="https://github.com/romadu">
+       Robin Duxfield
+      </a>
+     </br>
+    </p>
+    <p>
+     List of keycode values start here:
+    </p>
+    <h2>
+     Build
+    </h2>
+    <pre><code>mkdir build
+cd build
+cmake ..
+cmake --build .
+strip gptokeyb
+</code></pre>
+    <h2>
+     Use
+    </h2>
+    <p>
+     gptokeyb provides a kill switch for an application and mapping of gamepad buttons to keys and/or mouse. It also provides an xbox360-compatible controller mode.
+    </p>
+    <h3>
+     Environment Variable
+    </h3>
+    <p>
+     <code>
+      SDL_GAMECONTROLLERCONFIG_FILE
+     </code>
+     must be set so the gamepad buttons are properly assigned within gptokeyb, e.g.
+     <code>
+      SDL_GAMECONTROLLERCONFIG_FILE="./gamecontrollerdb.txt"
+     </code>
+     <code>
+      SDL_GAMECONTROLLERCONFIG_FILE
+     </code>
+     is automatically set in Emuelec
+    </p>
+    <p>
+     <code>
+      export HOTKEY
+     </code>
+     sets the button used as hotkey.
+     <code>
+      BACK
+     </code>
+     button is automatically selected as hotkey, unless overridden by
+     <code>
+      HOTKEY
+     </code>
+     environment variable
+    </p>
+    <p>
+     <code>
+      export TEXTINPUT="my name"
+     </code>
+     assigns text as preset for input so that
+     <code>
+      my name
+     </code>
+     is automatically entered, once triggered
+    </p>
+    <p>
+     <code>
+      export PCKILLMODE="Y"
+     </code>
+     indicates that
+     <code>
+      ALT+F4
+     </code>
+     should be sent to close the app before kill mode is processed, which can be used on Linux pcs
+    </p>
+    <h3>
+     Command Line Options
+    </h3>
+    <p>
+     <code>
+      xbox360
+     </code>
+     selects xbox360 joystick mode
+    </p>
+    <p>
+     <code>
+      textinput
+     </code>
+     select interactive text input mode (see below)
+    </p>
+    <p>
+     <code>
+      -c &lt;config_file_path_and_name.gptk&gt;
+     </code>
+     specifies button mapping for keyboard and mouse functions, e.g.
+     <code>
+      -c "./app.gptk"
+     </code>
+    </p>
+    <p>
+     <code>
+      -c
+     </code>
+     as the
+     <strong>
+      last
+     </strong>
+     of the command line options specifies that the default button mapping file should be used, which is
+     <code>
+      /emuelec/configs/gptokeyb/default.gptk
+     </code>
+    </p>
+    <p>
+     <code>
+      -1 &lt;application name&gt;
+     </code>
+     or
+    </p>
+    <p>
+     <code>
+      -k &lt;application name&gt;
+     </code>
+     provides the name of the application that will be closed by pressing
+     <strong>
+      start
+     </strong>
+     and
+     <strong>
+      select
+     </strong>
+     together
+    </p>
+    <p>
+     <code>
+      -sudokill
+     </code>
+     indicates that
+     <code>
+      sudo kill -9 &lt;application name&gt;
+     </code>
+     will be used to close the application instead of
+     <code>
+      killall &lt;application name&gt;
+     </code>
+    </p>
+    <h3>
+     Keyboard Mapping Options
+    </h3>
+    <p>
+     The config file that specifies button mapping for keyboard and mouse functions takes the form of
+     <code>
+      %s = %s
+     </code>
+     which is
+     <code>
+      gamepad button
+     </code>
+     =
+     <code>
+      keyboard key
+     </code>
+     . Any comment lines beginning with
+     <code>
+      #
+     </code>
+     are ignored. Deadzone values are used for analog sticks and triggers, and may be device specific.
+     <code>
+      mouse_scale
+     </code>
+     affects the speed of mouse movement, with a larger value causing slower movement.
+     <code>
+      mouse_scale = 8192
+     </code>
+     generally works well for RK3326 devices.
+     <code>
+      gamepad button = \"
+     </code>
+     can be used to unassign a button.
+    </p>
+    <p>
+     The
+     <code>
+      keyboard key
+     </code>
+     values must be in lowercase and simple text strings are translated into key codes, for example
+     <code>
+      enter
+     </code>
+     means
+     <code>
+      KEY_ENTER
+     </code>
+    </p>
+    <p>
+     Default mappings are:
+    </p>
+    <pre lang="back"><code>start = enter
+guide = enter
+
+a = x
+b = z
+x = c
+y = a
+
+l1 = rightshift
+l2 = home
+l3 = mouse_right
+
+r1 = leftshift
+r2 = end
+r3 = mouse_left
+
+up = up
+down = down
+left = left
+right = right
+
+left_analog_up = w
+left_analog_down = s
+left_analog_left = a
+left_analog_right = d
+
+right_analog_up = end
+right_analog_down = home
+right_analog_left = left
+right_analog_right = right
+
+# Old deadzone code
+deadzone_y = 2100
+deadzone_x = 1900
+mouse_scale = 512
+mouse_delay = 16
+
+# New deadzone code, this will overwrite the above deadzone code behaviour
+# Choices of: axial, radial, scaled_radial, sloped_axial, sloped_scaled_axial, hybrid
+deadzone_mode = scaled_radial
+deadzone = 2000
+deadzone_scale = 8
+deadzone_delay = 16 ## An alias for mouse delay
+</code></pre>
+    <h4>
+     Mouse slow
+    </h4>
+    <p>
+     You can additionally slow the cursors speed temporarily by defining a button as
+     <code>
+      mouse_slow
+     </code>
+     . The rate at which is slows is controlled by
+     <code>
+      mouse_slow_scale
+     </code>
+     .
+    </p>
+    <pre><code>l1 = mouse_slow
+
+mouse_slow_scale = 50 # 50%
+</code></pre>
+    <p>
+     The scale is proportional, so 75 will run the mouse at 75% of the mouse movement. So for example 7 becomes 5 with
+     <code>
+      mouse_slow_scale = 75
+     </code>
+     .
+    </p>
+    <h4>
+     Mouse control via Analog stick
+    </h4>
+    <p>
+     The mouse can be controlled via the analog sticks, either the left or the right if the device has one.
+    </p>
+    <pre><code>left_analog_up = mouse_movement_up
+# the rest of these do nothing:
+left_analog_down = mouse_movement_down
+left_analog_left = mouse_movement_left
+left_analog_right = mouse_movement_right
+
+</code></pre>
+    <p>
+     You can only have the left or right analog stick set as mouse movement at one time. If both are set, it will default to the left stick.
+    </p>
+    <p>
+     You can control the behaviour of the analog stick and the deadzones, we have several different deadzone scaling modes which we used the implementation of from here:
+     <a href="https://github.com/Minimuino/thumbstick-deadzones">
+      https://github.com/Minimuino/thumbstick-deadzones
+     </a>
+    </p>
+    <p>
+     The variable
+     <code>
+      deadzone
+     </code>
+     is the minimum amount the stick needs to move before it registers,
+     <code>
+      deadzone_scale
+     </code>
+     is the amount the mouse will move at the sticks maximum.
+     <code>
+      deadzone_delay
+     </code>
+     /
+     <code>
+      mouse_delay
+     </code>
+     is the delay between moving the mouse measured in milliseconds.
+    </p>
+    <pre><code># Choices of: axial, radial, scaled_radial, sloped_axial, sloped_scaled_axial, hybrid
+deadzone_mode = scaled_radial
+deadzone = 2000
+deadzone_scale = 8
+deadzone_delay = 16 ## An alias for mouse delay
+</code></pre>
+    <h4>
+     Dpad as mouse control
+    </h4>
+    <p>
+     You can control the mouse with the dpad, keeping with the normal configuration code, and the mouse movement rate is adjusted by setting
+     <code>
+      dpad_mouse_step
+     </code>
+     . The above
+     <code>
+      mouse_slow
+     </code>
+     keybinding works in conjunction with the mouse control as dpad, and you can still control the mouse via an analog stick.
+    </p>
+    <pre><code>up = mouse_movement_up
+
+dpad_mouse_step = 7
+</code></pre>
+    <p>
+     <strong>
+      Note:
+     </strong>
+     Enabling mouse control via dpad will disable all keybindings on the dpad.
+    </p>
+    <h4>
+     Hotkey + Button for additional Key Assignments
+    </h4>
+    <p>
+     An additional 8 keys can be assigned through Hotkey combinations for
+     <code>
+      a
+     </code>
+     ,
+     <code>
+      b
+     </code>
+     ,
+     <code>
+      x
+     </code>
+     ,
+     <code>
+      y
+     </code>
+     ,
+     <code>
+      l1
+     </code>
+     ,
+     <code>
+      l2
+     </code>
+     ,
+     <code>
+      r1
+     </code>
+     ,
+     <code>
+      r2
+     </code>
+     buttons. Hotkey+button assignments are specified by adding
+     <code>
+      _hk
+     </code>
+     for the appropriate button (see default mappings below). The keys can use the same
+     <code>
+      Alt
+     </code>
+     ,
+     <code>
+      Ctrl
+     </code>
+     or
+     <code>
+      Shift
+     </code>
+     modifiers by including a separate line that indicates
+     <code>
+      add_alt
+     </code>
+     ,
+     <code>
+      add_ctrl
+     </code>
+     or
+     <code>
+      add_shift
+     </code>
+     respectively.
+    </p>
+    <p>
+     The following example assigns
+     <code>
+      ALT+F4
+     </code>
+     to the combination of
+     <code>
+      hotkey
+     </code>
+     plus
+     <code>
+      A
+     </code>
+     button.
+    </p>
+    <pre><code>a_hk = f4
+a_hk = add_alt
+</code></pre>
+    <p>
+     Default mappings are:
+    </p>
+    <pre><code>a_hk = enter
+b_hk = esc
+x_hk = c
+y_hk = a
+l1_hk = esc
+l2_hk = home
+r1_hk = enter
+r2_hk = end
+</code></pre>
+    <h4>
+     Key Modifiers
+    </h4>
+    <p>
+     Sometimes key presses require a combination of
+     <code>
+      Alt
+     </code>
+     ,
+     <code>
+      Ctrl
+     </code>
+     or
+     <code>
+      Shift
+     </code>
+     plus the key. These combinations can be specified by adding a separate line that indicates
+     <code>
+      add_alt
+     </code>
+     ,
+     <code>
+      add_ctrl
+     </code>
+     or
+     <code>
+      add_shift
+     </code>
+     respectively. Modified keys can '''not''' be repeated at present.
+    </p>
+    <p>
+     The following example assigns
+     <code>
+      CTRL+X
+     </code>
+     to the
+     <code>
+      A
+     </code>
+     button.
+    </p>
+    <pre><code>a = x
+a = add_ctrl
+</code></pre>
+    <h4>
+     Key Repeat
+    </h4>
+    <p>
+     A simple keyboard key repeat function has been added that emulates automatic repeat of a keyboard key, once it has been held for at least an initial
+     <code>
+      delay
+     </code>
+     , at a regular
+     <code>
+      interval
+     </code>
+     . Key repeat works for one key at a time only (the first key that is pressed and held is repeated, and holding another key will not cause that to repeat, unless the first key is released). Key repeat has not been set up to work for analog triggers (L2/R2) at the moment.
+    </p>
+    <p>
+     The default delay and interval are based on SDL1.2 standard and can be adjusted with
+     <code>
+      repeat_delay =
+     </code>
+     and
+     <code>
+      repeat_interval =
+     </code>
+    </p>
+    <pre lang="SDL_DEFAULT_REPEAT_DELAY"><code>SDL_DEFAULT_REPEAT_INTERVAL 30
+</code></pre>
+    <p>
+     Key repeat is configured by adding
+     <code>
+      gamepad_button = repeat
+     </code>
+     as a separate line, in addition to the line
+     <code>
+      gamepad_button = keyboard key
+     </code>
+     . The following assigns arrow keys with key repeat to the gamepad d-pad and left analog stick.
+    </p>
+    <pre><code>
+up = up
+up = repeat
+down = down
+down = repeat
+left = left
+left = repeat
+right = right
+right = repeat
+left_analog_up = up
+left_analog_up = repeat
+left_analog_down = down
+left_analog_down = repeat
+left_analog_left = left
+left_analog_left = repeat
+left_analog_right = right
+left_analog_right = repeat
+</code></pre>
+    <h3>
+     Text Entry Options
+    </h3>
+    <p>
+     Text entry is possible, either by sending a preset (e.g. to enter your name to begin a game) or via an interactive input mode that's similar to entry of initials for a high score table
+    </p>
+    <p>
+     Text entry options are enabled by environment variable settings
+    </p>
+    <pre><code>export TEXTINPUTPRESET="My Name"         # defines preset text to insert
+export TEXTINPUTINTERACTIVE="Y"        # enables interactive text input mode
+export TEXTINPUTNOAUTOCAPITALS="Y"     # disables automatic capitalisation of first letter of words in interactive text input mode
+export TEXTINPUTADDEXTRASYMBOLS="Y"    # enables additional symbols for interactive text input
+</code></pre>
+    <p>
+     Interactive input mode is also enabled by command line option
+     <code>
+      "textinput"
+     </code>
+    </p>
+    <h4>
+     Preset Text Input
+    </h4>
+    <p>
+     Text Entry preset mode is enabled by
+     <code>
+      TEXTINPUTPRESET
+     </code>
+     environment variable whereby a name preset can be easily entered whenever a game displays a text prompt. When Text Entry is triggered with
+     <code>
+      START+D-PAD LEFT
+     </code>
+     , the preset text is entered as a series of key strokes.
+    </p>
+    <p>
+     Text Entry preset mode also assigns
+     <code>
+      START+A
+     </code>
+     to send
+     <code>
+      ENTER
+     </code>
+     .
+    </p>
+    <p>
+     CONTROLS
+     <code>
+      START+D-PAD LEFT
+     </code>
+     to send preset
+     <code>
+      START+D-PAD RIGHT
+     </code>
+     to send
+     <code>
+      ENTER
+     </code>
+    </p>
+    <h4>
+     Interactive Text Input
+    </h4>
+    <p>
+     Interactive Text Entry mode is enabled by launching GPtoKEYB with command line option
+     <code>
+      "textinput"
+     </code>
+     or by environment variable
+     <code>
+      TEXTINPUTINTERACTIVE="Y"
+     </code>
+     , and is triggered with
+     <code>
+      START+D-PAD DOWN
+     </code>
+     . Once activated, Interactive Text Entry mode works similarly to entering initials for game highscores, with
+     <code>
+      D-PAD UP/DOWN
+     </code>
+     switching between letters for the currently selected character,
+     <code>
+      D-PAD RIGHT
+     </code>
+     moving to next character,
+     <code>
+      D-PAD LEFT
+     </code>
+     deleting and moving back one character,
+     <code>
+      SELECT/HOTKEY
+     </code>
+     cancelling interactive text entry, and
+     <code>
+      START
+     </code>
+     to confirm and exit interactive text entry.
+     <code>
+      A
+     </code>
+     sends
+     <code>
+      ENTER KEY
+     </code>
+     in interactive text entry mode and exits interactive text entry.
+    </p>
+    <h5>
+     Interactive Input Mode Controls
+    </h5>
+    <pre><code>START+D-PAD DOWN to activate
+once activated
+D-PAD UP = previous letter
+D-PAD DOWN = next letter
+D-PAD RIGHT = next character
+D-PAD LEFT = delete and move back one character
+L1 = jump back 13 letters for current character
+R1 = jump forward 13 letters for current character
+A = send ENTER key and exit mode
+SELECT/HOTKEY = cancel and exit mode (deletes all characters)
+START = confirm and exit mode (also sends ENTER key)
+</code></pre>
+    <h5>
+     Capitals
+    </h5>
+    <p>
+     By default Interactive Text Entry mode will start with
+     <code>
+      A
+     </code>
+     as the first letter and immediately after a space, and
+     <code>
+      a
+     </code>
+     otherwise, unless environment variable
+     <code>
+      TEXTINPUTNOAUTOCAPITALS="Y"
+     </code>
+     is set, whereby all letters will start as
+     <code>
+      a
+     </code>
+     .
+    </p>
+    <h5>
+     Symbols
+    </h5>
+    <p>
+     By default Interactive Text Entry mode includes only a limited number of symbols "[space] . , - _ ( )", and a full set of symbols is included with environment variable
+     <code>
+      TEXTINPUTADDEXTRASYMBOLS="Y"
+     </code>
+     .
+    </p>
+    <h5>
+     Exiting mode
+    </h5>
+    <p>
+     Interactive Text Entry relies on the game providing a text prompt and sends key strokes to add and change characters, so it is only useful in these situations. Interactive Text Entry is automatically exited when either
+     <code>
+      SELECT
+     </code>
+     ,
+     <code>
+      HOTKEY
+     </code>
+     ,
+     <code>
+      START
+     </code>
+     or
+     <code>
+      A
+     </code>
+     are pressed, to minimise issues by accidentally triggering this mode.
     </p>
     <script>
      anchors.options.visible = 'always';
