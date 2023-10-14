@@ -6,7 +6,7 @@
 
 - [ports/](#)
   - [portname/](#)
-    - [README](#)
+    - [portname.md](#)
     - [portname.port.json](#)
     - [licensefile](#)
     - [gamename.gptk (If needed)](#)
@@ -295,6 +295,55 @@ For example:
 - sdl1.2 compat license file
 - gl4es license file
 - box86 / box64 license files
+
+# Portname.md
+This acts as a readme and for the Wiki Entry on our website.
+Please add the thank you notes from the original developers as well as how the game was compiled and any additional information likes controls.
+
+Example:
+
+
+## Notes
+<br/>
+
+Thanks to [Tom Mewett](https://github.com/tmewett/BrogueCE) for this game.
+
+Source: https://github.com/tmewett/BrogueCE
+<br/>
+
+## Controls
+<br/>
+
+| Button | Action |
+|--|--|
+| Start | New game |
+| Select + L2 | Play |
+| Select + L1 | Load saved games |
+| Select + A | Load last save |
+| Select + B | Load previous save |
+| Select + X | Change mode |
+| D-pad, Left-Analog | Move character |
+| L3 | Enable keyboard cursor / Confirm action, dialog |
+| R3 | Explore |
+| X | Search |
+| Y | Rest |
+| B | Cancel any action, dialog |
+| Select | Open inventory |
+| L1 | Throw item |
+| L2 | Unequip item |
+| R2 | Equip item |
+| R1 | Apply item |
+| Select + Y | List of every item in the game |
+
+## Compile
+<br/>
+
+```shell 
+git clone https://github.com/tmewett/BrogueCE.git
+change config.mk options to release
+make 
+```
+
 
 # Screenshot
 For use in the PortMaster GUI aswell as for the Wiki we need a screenshot of the gameplay or main function of the Port.
