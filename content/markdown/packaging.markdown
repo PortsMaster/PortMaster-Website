@@ -303,7 +303,7 @@ Please add the thank you notes from the original developers as well as how the g
 
 You can view the markdown before submitting it here: https://portmaster.games/markdown-viewer.html
 
-Example:
+ [Example](https://raw.githubusercontent.com/PortsMaster/PortMaster-Website/main/content/markdown/example.md):
 
 
 ## Notes
@@ -312,6 +312,7 @@ Example:
 Thanks to [Tom Mewett](https://github.com/tmewett/BrogueCE) for this game.
 
 Source: https://github.com/tmewett/BrogueCE
+
 <br/>
 
 ## Controls
@@ -337,6 +338,8 @@ Source: https://github.com/tmewett/BrogueCE
 | R2 | Equip item |
 | R1 | Apply item |
 | Select + Y | List of every item in the game |
+
+<br/>
 
 ## Compile
 <br/>
