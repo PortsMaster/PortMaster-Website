@@ -1,22 +1,26 @@
 # Packaging ports for PortMaster
+<br/>
 
 ## To release a Port on PortMaster we have some guidelines that need to be followed:
 
 # Package Structure
-
+<br/>
 - [ports/](#)
   - [portname/](#)
     - [README (optional)](#)
     - [portname.port.json](#)
+    - [portname.screenshot.png](#)
+    - [portname.md](#)
     - [licensefile](#)
     - [gamename.gptk (If needed)](#)
     - [libs/ (If needed)](#)
     - [gamedata/](#)
   - [PortScript.sh](#)
-  - [portname.screenshot.png](#)
-  - [portname.md](#)
+
+<br/>
 
 # The Launchscript .sh
+<br/>
 
 Below we pick apart a launchscript  and explain what each function does:
 
@@ -100,7 +104,11 @@ $ESUDO systemctl restart oga_events &
 printf "\033c" > /dev/tty0
 
 ```
+
+<br/>
+
 # Examples: 
+<br/>
 
 ## Basic Launchscript for open source ports with no specific engines and use of gp2keyb for controls and some needed libraries
 
@@ -131,7 +139,11 @@ $ESUDO systemctl restart oga_events &
 printf "\033c" > /dev/tty0
 ```
 
+<br/>
+
 ## Godot Game Example Launchscript
+<br/>
+
 
 ```
 
@@ -194,7 +206,11 @@ $ESUDO systemctl restart oga_events &
 printf "\033c" > /dev/tty0
 ```
 
+<br/>
+
 ## Love2d Example Launchscript
+<br/>
+
 
 ```
 #!/bin/bash
@@ -222,12 +238,20 @@ LD_LIBRARY_PATH="$PWD/libs"
 $ESUDO kill -9 $(pidof gptokeyb)
 $ESUDO systemctl restart oga_events &
 printf "\033c" > /dev/tty0
-``` 
+```
+
+<br/>
+
 ## Gamemaker Studio GMS Example Launchscript
+<br/>
 
 In Progress
 
+<br/>
+
 # The README
+<br/>
+
 The Readme provides some basic information about the Port such as:
 
 - Portname
@@ -272,7 +296,11 @@ Controls:
 DPAD		= Move
 ```
 
+<br/>
+
 # Port.json
+<br/>
+
 The Port.json contains all metadata on ports that our GUI and Wiki needs to properly display and install Ports.
 You can use following Port JSON Generator to generate a port.json file for you (https://portmaster.games/port-json.html)
 
@@ -287,7 +315,12 @@ Following Info needs to be added:
 - Instructions what files or directions are needed to make the port work
 - Runtime
 
+  
+<br/>
+
 # Licensefile 
+<br/>
+
 - Please add licensefiles for all sources and assets you used
 For example:
 
@@ -297,59 +330,19 @@ For example:
 - gl4es license file
 - box86 / box64 license files
 
+<br/>
+
 # Portname.md
+<br/>
+
 This acts as a readme and for the Wiki Entry on our website.
 Please add the thank you notes from the original developers as well as how the game was compiled and any additional information likes controls.
 
 You can view the markdown before submitting it here: https://portmaster.games/markdown-viewer.html
 
- [Example](https://raw.githubusercontent.com/PortsMaster/PortMaster-Website/main/content/markdown/example.md):
-
-
-## Notes
-<br/>
-
-Thanks to [Tom Mewett](https://github.com/tmewett/BrogueCE) for this game.
-
-Source: https://github.com/tmewett/BrogueCE
+[Example](https://raw.githubusercontent.com/PortsMaster/PortMaster-Website/main/content/markdown/example.md)
 
 <br/>
-
-## Controls
-<br/>
-
-| Button | Action |
-|--|--|
-| Start | New game |
-| Select + L2 | Play |
-| Select + L1 | Load saved games |
-| Select + A | Load last save |
-| Select + B | Load previous save |
-| Select + X | Change mode |
-| D-pad, Left-Analog | Move character |
-| L3 | Enable keyboard cursor / Confirm action, dialog |
-| R3 | Explore |
-| X | Search |
-| Y | Rest |
-| B | Cancel any action, dialog |
-| Select | Open inventory |
-| L1 | Throw item |
-| L2 | Unequip item |
-| R2 | Equip item |
-| R1 | Apply item |
-| Select + Y | List of every item in the game |
-
-<br/>
-
-## Compile
-<br/>
-
-```shell 
-git clone https://github.com/tmewett/BrogueCE.git
-change config.mk options to release
-make 
-```
-
 
 # Screenshot
 For use in the PortMaster GUI aswell as for the Wiki we need a screenshot of the gameplay or main function of the Port.
