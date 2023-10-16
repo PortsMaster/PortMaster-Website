@@ -1,10 +1,8 @@
 # Packaging ports for PortMaster
-
 ## To release a Port on PortMaster we have some guidelines that need to be followed:
 
-# Package Structure
-
-- [ports/](#)
+# Port Zip Structure
+- [portname.zip/](#)
   - [portname/](#)
     - [README (optional)](#)
     - [portname.port.json](#)
@@ -13,11 +11,17 @@
     - [libs/ (If needed)](#)
     - [gamedata/](#)
   - [PortScript.sh](#)
-  - [portname.screenshot.png](#)
-  - [portname.md](#)
+
+# PortMaster Repo Structure
+- [PortMaster/](#)
+  - [images/](#)
+    - [portname.screenshot.png](#)
+  - [markdown/](#)
+    - [portname.md](#)
+  - [portname.zip](#)
+
 
 # The Launchscript .sh
-
 Below we pick apart a launchscript  and explain what each function does:
 
 ```
@@ -100,8 +104,8 @@ $ESUDO systemctl restart oga_events &
 printf "\033c" > /dev/tty0
 
 ```
-# Examples: 
 
+# Examples: 
 ## Basic Launchscript for open source ports with no specific engines and use of gp2keyb for controls and some needed libraries
 
 ```
@@ -222,9 +226,9 @@ LD_LIBRARY_PATH="$PWD/libs"
 $ESUDO kill -9 $(pidof gptokeyb)
 $ESUDO systemctl restart oga_events &
 printf "\033c" > /dev/tty0
-``` 
-## Gamemaker Studio GMS Example Launchscript
+```
 
+## Gamemaker Studio GMS Example Launchscript
 In Progress
 
 # The README
@@ -287,6 +291,7 @@ Following Info needs to be added:
 - Instructions what files or directions are needed to make the port work
 - Runtime
 
+  
 # Licensefile 
 - Please add licensefiles for all sources and assets you used
 For example:
@@ -303,50 +308,7 @@ Please add the thank you notes from the original developers as well as how the g
 
 You can view the markdown before submitting it here: https://portmaster.games/markdown-viewer.html
 
-Example:
-
-
-## Notes
-<br/>
-
-Thanks to [Tom Mewett](https://github.com/tmewett/BrogueCE) for this game.
-
-Source: https://github.com/tmewett/BrogueCE
-<br/>
-
-## Controls
-<br/>
-
-| Button | Action |
-|--|--|
-| Start | New game |
-| Select + L2 | Play |
-| Select + L1 | Load saved games |
-| Select + A | Load last save |
-| Select + B | Load previous save |
-| Select + X | Change mode |
-| D-pad, Left-Analog | Move character |
-| L3 | Enable keyboard cursor / Confirm action, dialog |
-| R3 | Explore |
-| X | Search |
-| Y | Rest |
-| B | Cancel any action, dialog |
-| Select | Open inventory |
-| L1 | Throw item |
-| L2 | Unequip item |
-| R2 | Equip item |
-| R1 | Apply item |
-| Select + Y | List of every item in the game |
-
-## Compile
-<br/>
-
-```shell 
-git clone https://github.com/tmewett/BrogueCE.git
-change config.mk options to release
-make 
-```
-
+[Example](https://raw.githubusercontent.com/PortsMaster/PortMaster-Website/main/content/markdown/example.md)
 
 # Screenshot
 For use in the PortMaster GUI aswell as for the Wiki we need a screenshot of the gameplay or main function of the Port.
