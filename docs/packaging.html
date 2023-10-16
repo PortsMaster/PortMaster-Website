@@ -198,18 +198,16 @@
     <h1>
      Packaging ports for PortMaster
     </h1>
-    <!-- raw HTML omitted -->
     <h2>
      To release a Port on PortMaster we have some guidelines that need to be followed:
     </h2>
     <h1>
-     Package Structure
+     Port Zip Structure
     </h1>
-    <!-- raw HTML omitted -->
     <ul>
      <li>
       <a href="#">
-       ports/
+       portname.zip/
       </a>
       <ul>
        <li>
@@ -225,16 +223,6 @@
          <li>
           <a href="#">
            portname.port.json
-          </a>
-         </li>
-         <li>
-          <a href="#">
-           portname.screenshot.png
-          </a>
-         </li>
-         <li>
-          <a href="#">
-           portname.md
           </a>
          </li>
          <li>
@@ -267,11 +255,50 @@
       </ul>
      </li>
     </ul>
-    <!-- raw HTML omitted -->
+    <h1>
+     PortMaster Repo Structure
+    </h1>
+    <ul>
+     <li>
+      <a href="#">
+       PortMaster/
+      </a>
+      <ul>
+       <li>
+        <a href="#">
+         images/
+        </a>
+        <ul>
+         <li>
+          <a href="#">
+           portname.screenshot.png
+          </a>
+         </li>
+        </ul>
+       </li>
+       <li>
+        <a href="#">
+         markdown/
+        </a>
+        <ul>
+         <li>
+          <a href="#">
+           portname.md
+          </a>
+         </li>
+        </ul>
+       </li>
+       <li>
+        <a href="#">
+         portname.zip
+        </a>
+       </li>
+      </ul>
+     </li>
+    </ul>
     <h1>
      The Launchscript .sh
     </h1>
-    <!-- raw HTML omitted -->
     <p>
      Below we pick apart a launchscript  and explain what each function does:
     </p>
@@ -354,11 +381,9 @@ $ESUDO systemctl restart oga_events &amp;
 printf "\033c" &gt; /dev/tty0
 
 </code></pre>
-    <!-- raw HTML omitted -->
     <h1>
      Examples:
     </h1>
-    <!-- raw HTML omitted -->
     <h2>
      Basic Launchscript for open source ports with no specific engines and use of gp2keyb for controls and some needed libraries
     </h2>
@@ -387,11 +412,9 @@ $ESUDO kill -9 $(pidof gptokeyb)
 $ESUDO systemctl restart oga_events &amp;
 printf "\033c" &gt; /dev/tty0
 </code></pre>
-    <!-- raw HTML omitted -->
     <h2>
      Godot Game Example Launchscript
     </h2>
-    <!-- raw HTML omitted -->
     <pre><code>
 #!/bin/bash
 
@@ -451,11 +474,9 @@ $ESUDO kill -9 $(pidof gptokeyb)
 $ESUDO systemctl restart oga_events &amp;
 printf "\033c" &gt; /dev/tty0
 </code></pre>
-    <!-- raw HTML omitted -->
     <h2>
      Love2d Example Launchscript
     </h2>
-    <!-- raw HTML omitted -->
     <pre><code>#!/bin/bash
 
 if [ -d "/opt/system/Tools/PortMaster/" ]; then
@@ -482,19 +503,15 @@ $ESUDO kill -9 $(pidof gptokeyb)
 $ESUDO systemctl restart oga_events &amp;
 printf "\033c" &gt; /dev/tty0
 </code></pre>
-    <!-- raw HTML omitted -->
     <h2>
      Gamemaker Studio GMS Example Launchscript
     </h2>
-    <!-- raw HTML omitted -->
     <p>
      In Progress
     </p>
-    <!-- raw HTML omitted -->
     <h1>
      The README
     </h1>
-    <!-- raw HTML omitted -->
     <p>
      The Readme provides some basic information about the Port such as:
     </p>
@@ -552,11 +569,9 @@ Controls:
 
 DPAD		= Move
 </code></pre>
-    <!-- raw HTML omitted -->
     <h1>
      Port.json
     </h1>
-    <!-- raw HTML omitted -->
     <p>
      The Port.json contains all metadata on ports that our GUI and Wiki needs to properly display and install Ports.
 You can use following Port JSON Generator to generate a port.json file for you (
@@ -597,11 +612,9 @@ You can use following Port JSON Generator to generate a port.json file for you (
       Runtime
      </li>
     </ul>
-    <!-- raw HTML omitted -->
     <h1>
      Licensefile
     </h1>
-    <!-- raw HTML omitted -->
     <ul>
      <li>
       <p>
@@ -635,11 +648,9 @@ For example:
       </p>
      </li>
     </ul>
-    <!-- raw HTML omitted -->
     <h1>
      Portname.md
     </h1>
-    <!-- raw HTML omitted -->
     <p>
      This acts as a readme and for the Wiki Entry on our website.
 Please add the thank you notes from the original developers as well as how the game was compiled and any additional information likes controls.
@@ -655,7 +666,6 @@ Please add the thank you notes from the original developers as well as how the g
       Example
      </a>
     </p>
-    <!-- raw HTML omitted -->
     <h1>
      Screenshot
     </h1>
