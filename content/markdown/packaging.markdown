@@ -1,28 +1,27 @@
 # Packaging ports for PortMaster
-<br/>
-
 ## To release a Port on PortMaster we have some guidelines that need to be followed:
 
-# Package Structure
-<br/>
-
-- [ports/](#)
+# Port Zip Structure
+- [portname.zip/](#)
   - [portname/](#)
     - [README (optional)](#)
     - [portname.port.json](#)
-    - [portname.screenshot.png](#)
-    - [portname.md](#)
     - [licensefile](#)
     - [gamename.gptk (If needed)](#)
     - [libs/ (If needed)](#)
     - [gamedata/](#)
   - [PortScript.sh](#)
 
-<br/>
+# PortMaster Repo Structure
+- [PortMaster/](#)
+  - [images/](#)
+    - [portname.screenshot.png](#)
+  - [markdown/](#)
+    - [portname.md](#)
+  - [portname.zip](#)
+
 
 # The Launchscript .sh
-<br/>
-
 Below we pick apart a launchscript  and explain what each function does:
 
 ```
@@ -106,11 +105,7 @@ printf "\033c" > /dev/tty0
 
 ```
 
-<br/>
-
 # Examples: 
-<br/>
-
 ## Basic Launchscript for open source ports with no specific engines and use of gp2keyb for controls and some needed libraries
 
 ```
@@ -140,11 +135,7 @@ $ESUDO systemctl restart oga_events &
 printf "\033c" > /dev/tty0
 ```
 
-<br/>
-
 ## Godot Game Example Launchscript
-<br/>
-
 
 ```
 
@@ -207,11 +198,7 @@ $ESUDO systemctl restart oga_events &
 printf "\033c" > /dev/tty0
 ```
 
-<br/>
-
 ## Love2d Example Launchscript
-<br/>
-
 
 ```
 #!/bin/bash
@@ -241,18 +228,10 @@ $ESUDO systemctl restart oga_events &
 printf "\033c" > /dev/tty0
 ```
 
-<br/>
-
 ## Gamemaker Studio GMS Example Launchscript
-<br/>
-
 In Progress
 
-<br/>
-
 # The README
-<br/>
-
 The Readme provides some basic information about the Port such as:
 
 - Portname
@@ -297,11 +276,7 @@ Controls:
 DPAD		= Move
 ```
 
-<br/>
-
 # Port.json
-<br/>
-
 The Port.json contains all metadata on ports that our GUI and Wiki needs to properly display and install Ports.
 You can use following Port JSON Generator to generate a port.json file for you (https://portmaster.games/port-json.html)
 
@@ -317,11 +292,7 @@ Following Info needs to be added:
 - Runtime
 
   
-<br/>
-
 # Licensefile 
-<br/>
-
 - Please add licensefiles for all sources and assets you used
 For example:
 
@@ -331,19 +302,13 @@ For example:
 - gl4es license file
 - box86 / box64 license files
 
-<br/>
-
 # Portname.md
-<br/>
-
 This acts as a readme and for the Wiki Entry on our website.
 Please add the thank you notes from the original developers as well as how the game was compiled and any additional information likes controls.
 
 You can view the markdown before submitting it here: https://portmaster.games/markdown-viewer.html
 
 [Example](https://raw.githubusercontent.com/PortsMaster/PortMaster-Website/main/content/markdown/example.md)
-
-<br/>
 
 # Screenshot
 For use in the PortMaster GUI aswell as for the Wiki we need a screenshot of the gameplay or main function of the Port.
