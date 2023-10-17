@@ -65,7 +65,7 @@ function displayCardDetails(data) {
             }
             markdown = await response.text();
             const markdownElement = document.getElementById("markdown");
-            markdownElement.innerHTML = CmarkGFM.convert(markdown).replace("<table>", '<table class="table table-bordered">');
+            markdownElement.innerHTML = CmarkGFM.convert(markdown.replaceAll("<br/>","")).replaceAll("<table>", '<table class="table table-bordered">').replaceAll('<h2>','<h2 style="margin-top: 1em;margin-bottom: 1em;">'); 
         } catch (error) {
             console.error('Error fetching JSON data:', error);
         }
