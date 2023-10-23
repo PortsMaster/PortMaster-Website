@@ -1,13 +1,10 @@
 ## Notes
-<br/>
 
 Thanks to [Martin Törnqvist](https://gitlab.com/martin-tornqvist/ia) for this game.
 
 Source: https://gitlab.com/martin-tornqvist/ia
-<br/>
 
 ## Controls
-<br/>
 
 | Button | Action |
 |--|--|
@@ -34,7 +31,6 @@ Source: https://gitlab.com/martin-tornqvist/ia
 | Right_Analog_Left | CLOSE DOOR, or jam closed door |
 
 ## Compile
-<br/>
 
 ```shell 
 git clone https://gitlab.com/martin-tornqvist/ia
