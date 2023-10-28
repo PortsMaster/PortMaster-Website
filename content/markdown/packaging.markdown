@@ -258,7 +258,7 @@ GAMEDIR=/$directory/ports/blastius
 exec > >(tee "$GAMEDIR/log.txt") 2>&1
 
 # Jelos has a Pipewire Implentation and gmloader needs the Pipewireplugin folder for sound to work
-if [ "$OS_NAME" != "JELOS" ]; then
+if [ "$OS_NAME" == "JELOS" ]; then
   export SPA_PLUGIN_DIR="/usr/lib32/spa-0.2"
   export PIPEWIRE_MODULE_DIR="/usr/lib32/pipewire-0.3/"
 fi
