@@ -3,18 +3,27 @@
  <head>
   <script src="js/color-modes.js">
   </script>
-  <script src="js/FileSaver.min.js" type="text/javascript">
+  <script src="https://md-block.verou.me/md-block.js" type="module">
   </script>
-  <link href="css/shared.css" rel="stylesheet"/>
   <meta charset="utf-8"/>
   <meta content="width=device-width, initial-scale=1" name="viewport"/>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js">
   </script>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"/>
   <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet"/>
-  <title>
-   Port JSON Generator
-  </title>
+  <link href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.css" rel="stylesheet">
+   <link href="https://cdn.jsdelivr.net/npm/easymde/dist/easymde.min.css" rel="stylesheet"/>
+   <script src="https://cdn.jsdelivr.net/npm/easymde/dist/easymde.min.js">
+   </script>
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js">
+   </script>
+   <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js" type="text/javascript">
+   </script>
+   <link href="css/shared.css" rel="stylesheet"/>
+   <title>
+    Port Metadata Editor
+   </title>
+  </link>
  </head>
  <body class="bg-body-tertiary">
   <svg class="d-none" xmlns="http://www.w3.org/2000/svg">
@@ -194,276 +203,250 @@
    </div>
   </nav>
   <br/>
+  <br/>
+  <br/>
   <div class="container">
    <main>
     <div class="py-5 text-center">
-     <h2>
-      Port JSON Generator
-     </h2>
-     <p class="lead">
-      Use this form to generate a portname.port.json file for a port. See the
-      <a href="packaging.html">
-       packaging documentation
-      </a>
-      for where to place the file.
-     </p>
+     <h1>
+      Port Metadata Editor
+     </h1>
     </div>
     <div class="row g-5 justify-content-center">
      <div class="col-md-7 col-lg-8">
       <form class="needs-validation" id="form" novalidate="">
        <div class="row g-3">
         <div class="col-12">
+         <div class="col-sm-12 text-center">
+          <button class="btn btn-primary btn-sm" onclick="downloadJson()" style="float: right;" type="button">
+           Download JSON
+          </button>
+         </div>
+        </div>
+        <div class="col-12">
          <label class="form-label" for="title">
-          Port Title
+          Port Name
          </label>
-         <input class="form-control" id="title" placeholder="" required="" type="text"/>
-         <div class="invalid-feedback">
-          Port title is required.
-         </div>
+         <input class="form-control" id="title" placeholder="" type="text"/>
         </div>
         <div class="col-12">
-         <label class="form-label" for="zipname">
-          Zip File Name
+         <label class="form-label" for="title">
+          Metadata Name
          </label>
-         <input class="form-control" id="zipname" placeholder="" required="" type="text"/>
-         <div class="invalid-feedback">
-          Zip name is required.
-         </div>
+         <input class="form-control" id="title" placeholder="" type="text"/>
         </div>
-        <div class="col-12">
-         <label class="form-label" for="scriptname">
-          Script Name
+        <div class="col-6">
+         <label class="form-label" for="developer">
+          Developer
          </label>
-         <input class="form-control" id="scriptname" placeholder="" required="" type="text"/>
-         <div class="invalid-feedback">
-          Script name is required.
-         </div>
+         <input class="form-control" id="developer" placeholder="" type="text"/>
         </div>
-        <div class="col-12">
-         <label class="form-label" for="directoryname">
-          Directory Name
+        <div class="col-6">
+         <label class="form-label" for="publisher">
+          Publisher
          </label>
-         <input class="form-control" id="directoryname" placeholder="" required="" type="text"/>
-         <div class="invalid-feedback">
-          Directory name is required.
-         </div>
+         <input class="form-control" id="publisher" placeholder="" type="text"/>
         </div>
-        <div class="col-12">
-         <label class="form-label" for="genres">
-          Genres
+        <div class="col-6">
+         <label class="form-label" for="date">
+          Release Date
          </label>
-         <select class="form-select" id="genres" multiple="" required="">
-          <option value="action">
-           Action
-          </option>
-          <option value="adventure">
-           Adventure
-          </option>
-          <option value="arcade">
-           Arcade
-          </option>
-          <option value="casino/card">
-           Casino/Card
-          </option>
-          <option value="fps">
-           First Person Shooter (FPS)
-          </option>
-          <option value="platformer">
-           Platformer
-          </option>
-          <option value="puzzle">
-           Puzzle
-          </option>
-          <option value="racing">
-           Racing
-          </option>
-          <option value="rhythm">
-           Rhythm
-          </option>
-          <option value="rpg">
-           Role-playing game (RPG)
-          </option>
-          <option value="simulation">
-           Simulation
-          </option>
-          <option value="sports">
-           Sports
-          </option>
-          <option value="strategy">
-           Strategy
-          </option>
-          <option value="visual novel">
-           Visual Novel
-          </option>
-          <option value="other">
-           Other
-          </option>
-         </select>
-         <div class="invalid-feedback">
-          Genre is required.
-         </div>
+         <input class="form-control" id="date" required="" type="date">
+          <div class="invalid-feedback">
+           Date is required.
+          </div>
+         </input>
         </div>
-        <div class="col-md-6">
-         <label class="form-label" for="porter">
-          Porter
+        <div class="col-6">
+         <label class="form-label" for="genre">
+          Genre
          </label>
-         <select class="form-select" id="porter" multiple="" required="">
-         </select>
-         <div class="invalid-feedback">
-          Porter is required.
-         </div>
+         <input class="form-control" id="genre" placeholder="" type="text"/>
         </div>
-        <div class="col-md-6">
-         <label class="form-label" for="addporter">
-          Add Porter
+        <div class="col-6">
+         <label class="form-label" for="rating">
+          Rating
          </label>
-         <input class="form-control" id="addporter" placeholder="" type="text"/>
-         <br/>
-         <button class="w-100 btn btn-primary" onclick="addPorter()" type="button">
-          Add
-         </button>
+         <input class="form-control" id="rating" min="0" placeholder="" type="number"/>
+        </div>
+        <div class="col-6">
+         <label class="form-label" for="players">
+          Players
+         </label>
+         <input class="form-control" id="players" min="1" placeholder="" type="number"/>
         </div>
         <div class="col-12">
          <label class="form-label" for="description">
           Description
          </label>
-         <textarea class="form-control" id="description" required="" rows="3"></textarea>
-         <div class="invalid-feedback">
-          Description is required.
-         </div>
+         <textarea class="form-control" id="description" rows="3"></textarea>
         </div>
-        <div class="col-12">
-         <label class="form-label" for="instructions">
-          Instructions
-         </label>
-         <textarea class="form-control" id="instructions" required="" rows="3"></textarea>
-         <div class="invalid-feedback">
-          instructions are required.
-         </div>
-        </div>
-        <div class="col-12">
-         <label class="form-label" for="runtime">
-          Runtime
-         </label>
-         <select class="form-select" id="runtime">
-          <option value="">
-           None (the usual option)
-          </option>
-          <optgroup label="Mono">
-           <option value="mono-6.12.0.122-aarch64.squashfs">
-            Mono (6.12.0.112)
-           </option>
-          </optgroup>
-          <optgroup label="GoDot / FRT">
-           <option value="frt_2.1.6.squashfs">
-            GoDot / FRT 2.1.6
-           </option>
-           <option value="frt_3.0.6_v1.squashfs">
-            GoDot / FRT 3.0.6
-           </option>
-           <option value="frt_3.1.2.squashfs">
-            GoDot / FRT 3.1.2
-           </option>
-           <option value="frt_3.2.3.squashfs">
-            GoDot / FRT 3.2.3
-           </option>
-           <option value="frt_3.3.4.squashfs">
-            GoDot / FRT 3.3.4
-           </option>
-           <option value="frt_3.4.5.squashfs">
-            GoDot / FRT 3.4.5
-           </option>
-           <option value="frt_3.5.2.squashfs">
-            GoDot / FRT 3.5.2
-           </option>
-          </optgroup>
-         </select>
-        </div>
-        <hr class="my-4"/>
-        <label class="form-label">
-         Ready To Run
-        </label>
-        <div class="form-check">
-         <input class="form-check-input" id="readytorun" type="checkbox"/>
-         <label class="form-check-label" for="readytorun">
-          This port is ready to run with all files required. If it only includes demo game files please specify in the description
-         </label>
-        </div>
-        <hr class="my-4"/>
-        <label class="form-label">
-         Requirements
-        </label>
-        <hr class="my-4"/>
-        <label class="form-label">
-         Resolution
-        </label>
-        <div class="form-check">
-         <input class="form-check-input" id="notlowres" name="resRadio" type="radio" value="notlowres"/>
-         <label class="form-check-label" for="notlowres">
-          Not Lowres: Exclude 480x320 (351p, OGA, zpg pro, rgb10)
-         </label>
-        </div>
-        <div class="form-check">
-         <input class="form-check-input" id="hires" name="resRadio" type="radio" value="hires"/>
-         <label class="form-check-label" for="hires">
-          Highres: Anything above 640x480
-         </label>
-        </div>
-        <div class="form-check">
-         <input checked="" class="form-check-input" id="anyres" name="resRadio" type="radio" value="anyres"/>
-         <label class="form-check-label" for="anyres">
-          Any Resolution
-         </label>
-        </div>
-        <label class="form-label">
-         Ram
-        </label>
-        <div class="form-check">
-         <input checked="" class="form-check-input" id="anygb" name="ramRadio" type="radio" value="anygb"/>
-         <label class="form-check-label" for="anygb">
-          No Minimum Ram
-         </label>
-        </div>
-        <div class="form-check">
-         <input class="form-check-input" id="2gb" name="ramRadio" type="radio" value="2gb"/>
-         <label class="form-check-label" for="2gb">
-          2gb Ram Minimum
-         </label>
-        </div>
-        <div class="form-check">
-         <input class="form-check-input" id="4gb" name="ramRadio" type="radio" value="4gb"/>
-         <label class="form-check-label" for="4gb">
-          4gb Ram Minimum
-         </label>
-        </div>
-        <label class="form-label">
-         Other
-        </label>
-        <div class="form-check">
-         <input class="form-check-input" id="power" type="checkbox" value="power"/>
-         <label class="form-check-label" for="power">
-          Power: any device above an rk3326 cpu
-         </label>
-        </div>
-        <div class="form-check">
-         <input class="form-check-input" id="opengl" type="checkbox" value="opengl"/>
-         <label class="form-check-label" for="opengl">
-          OpenGL: any device with OpenGL, not OpenGLES
-         </label>
-        </div>
-        <hr class="my-4"/>
        </div>
-       <button class="w-100 btn btn-primary btn-lg" onclick="validateForm()" type="button">
-        Download JSON
-       </button>
+       <div class="col-12">
+        <div class="col-sm-12 text-center">
+         <button class="btn btn-primary btn-md" onclick="submitForm()" type="button">
+          Submit
+         </button>
+         <button class="btn btn-danger btn-md" onclick="clearForm()" type="button">
+          Clear
+         </button>
+        </div>
+       </div>
       </form>
      </div>
+    </div>
+    <br/>
+    <div class="table-responsive-sm">
+     <table class="display" id="ports">
+      <thead>
+       <tr>
+        <th>
+         Name
+        </th>
+        <th>
+         Launcher
+        </th>
+        <th>
+         Action
+        </th>
+       </tr>
+      </thead>
+      <tbody id="tbody">
+      </tbody>
+     </table>
     </div>
    </main>
    <footer class="my-5 pt-5 text-body-secondary text-center text-small">
    </footer>
   </div>
-  <script src="js/port-json.js">
+  <script>
+   function populateForm(launcher) {
+            for (port in ports) {
+                if (ports[port].launcher == launcher) {
+                    var formName = document.getElementById("name");
+                    var formAuthor = document.getElementById("author");
+                    var formDate = document.getElementById("date");
+                    var formContent = document.getElementById("content");
+                    formTitle.value = posts[item].title;
+                    formAuthor.value = posts[item].author;
+                    formDate.value = posts[item].date;
+                    easyMDE.value(posts[item].content);
+                    currentPost = posts[item].title;
+                }
+            }
+        }
+
+        function downloadJson() {
+            json = JSON.stringify(posts, null, 2);
+            var file = new Blob([json], { type: "application/json" });
+            if (window.navigator.msSaveOrOpenBlob) // IE10+
+                window.navigator.msSaveOrOpenBlob(file, filename);
+            else { // Others
+                var a = document.createElement("a"),
+                    url = URL.createObjectURL(file);
+                a.href = url;
+                a.download =  "news.json";
+                document.body.appendChild(a);
+                a.click();
+                setTimeout(function () {
+                    document.body.removeChild(a);
+                    window.URL.revokeObjectURL(url);
+                }, 0);
+            }
+        }
+
+        function submitForm() {
+
+            form = document.getElementById("form");
+            if (form.checkValidity()) {
+                var formTitle = document.getElementById("title");
+                var formAuthor = document.getElementById("author");
+                var formDate = document.getElementById("date");
+                var formContent = document.getElementById("content");
+
+                newPost = true;
+                for (item in posts) {
+                    if (currentPost == posts[item].title) {
+                        posts[item].title = formTitle.value;
+                        posts[item].author = formAuthor.value;
+                        posts[item].date = formDate.value;
+                        posts[item].content = easyMDE.value();
+                        clearForm();
+                        populateTable();
+                        currentPost = "";
+                        newPost = false;
+                    }
+                }
+
+                if (newPost) {
+                    var post = {}
+                    post.title = formTitle.value;
+                    post.author = formAuthor.value;
+                    post.date = formDate.value;
+                    post.content = easyMDE.value();
+                    posts.push(post);
+                    clearForm();
+                    populateTable();
+                }
+            }
+            form.classList.add('was-validated')
+        }
+
+        var currentPort = "";
+
+        var ports = []
+
+        function populateTable() {
+            var tbody = document.getElementById("tbody");
+            tbody.innerHTML = ""
+
+            for (port in ports) {
+                var tr = document.createElement("tr");
+
+                var name = document.createElement("td");
+                name.innerHTML = ports[port].name;
+                var launcher = document.createElement("td");
+                launcher.innerHTML = ports[port].launcher;
+                var action = document.createElement("td");
+                var button = document.createElement("button");
+                button.textContent = "Edit";
+                button.setAttribute("class", "btn btn-primary btn-sm");
+                button.setAttribute("onclick", "populateForm('" + ports[port].launcher + "')")
+
+                action.append(button);
+
+                tr.appendChild(name);
+                tr.appendChild(launcher);
+                tr.appendChild(action);
+                tbody.appendChild(tr);
+            }
+        }
+
+        async function getPorts() {
+
+            try {
+                var response = await fetch('https://raw.githubusercontent.com/PortsMaster/PortMaster-Info/main/port_metadata.json'); // Replace 'YOUR_JSON_URL_HERE' with the actual URL of your JSON data.
+                if (!response.ok) {
+                    throw new Error('Network response was not ok.');
+                }
+                ports = await response.json();
+
+                populateTable();
+                $('#ports').DataTable({ responsive: true })
+            } catch (error) {
+                console.error('Error fetching JSON data:', error);
+            }
+        }
+
+        function clearForm() {
+            form = document.getElementById("form");
+            form.reset();
+            currentPost = "";
+        }
+
+        $(document).ready(function () {
+            getPorts();
+        });
   </script>
  </body>
 </html>
