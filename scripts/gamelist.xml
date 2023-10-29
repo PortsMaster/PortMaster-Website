@@ -1,0 +1,2540 @@
+<?xml version="1.0"?>
+<gameList>
+	<provider>
+		<System>PC Dos</System>
+		<software>Skraper</software>
+		<database>ScreenScraper.fr</database>
+		<web>http://www.screenscraper.fr</web>
+	</provider>
+	<game>
+		<path>./OpenTyrian.sh</path>
+		<name>Tyrian</name>
+		<desc>The game is set in the year 20,031. The player takes on the role of Trent Hawkins, a skilled spaceship pilot. While on the planet Tyrian, a hostile drone shoots his best friend, Buce Quesillac. Before dying Buce warns Trent that the drone belonged to the militaristic MicroSol megacorporation. MicroSol has discovered Gravitium (the game's brand of Unobtainium) on Tyrian and seeks to keep it a secret. Now on MicroSol's hit list, Trent manages to secure a small, armed spacecraft and set out to the free world of Savara.</desc>
+		<releasedate>19950610T000000</releasedate>
+		<developer>Eclipse Software</developer>
+		<publisher>Epic MegaGames</publisher>
+		<genre>Shooter</genre>
+		<image>./images/Tyrian.png</image>
+	</game>
+	<game>
+		<path>./OpenSyobon.sh</path>
+		<name>Cat Mario [Syobon Action]</name>
+		<desc>Syobon Action, also known as Cat Mario, is a Japanese freeware platform game released in February 2007. It is known for its levels designed to cause extreme rage due to innocuous-looking objects that suddenly kill the character. Though the game is a parody of Super Mario Bros. for the Nintendo Entertainment System, it adds elements from other Mario games such as Super Mario World.</desc>
+		<releasedate>20070201T000000</releasedate>
+		<developer>Chiku</developer>
+		<publisher>Chiku</publisher>
+		<genre>Platform</genre>
+		<image>./images/Cat Mario.png</image>
+	</game>
+	<game>
+		<path>./Water Closet.sh</path>
+		<name>Water Closet</name>
+		<desc>Water Closet (AKA WC) is a (somewhat ridiculous) 2D platform puzzle game. Guide Walter Chambers through a series of stages as he attempts to return home from a bizarre world that he has become trapped in.</desc>
+		<releasedate>20190101T000000</releasedate>
+		<developer>Parallel Realities</developer>
+		<publisher>Parallel Realities</publisher>
+		<genre>Platform</genre>
+		<image>./images/Water Closet.png</image>
+	</game>
+	<game>
+		<path>./Hydorah.sh</path>
+		<name>Super Hydorah</name>
+		<desc>An evil force has launched an invasion over the Omios star. Only you, the most skilled and deadly pilot in the galaxy, can face the dreadful menace of the Meroptians, bio-mechanical creatures set in a ruthless war of conquest. Equip your ship, select a route and fight planet by planet against the hordes of Meroptians! Super Hydorah is a nonlinear horizontal shoot’ em up designed to offer a challenging and memorable experience, sublimating the wisdom and richness of traditional shmup classics. The game has direct action, nostalgic art and a wide variety of unique spatial content and situations. It is hours of intense fun, alone or with your friends, to face the menace of the Meroptians aboard the Delta Lance.</desc>
+		<releasedate>20170920T000000</releasedate>
+		<developer>Locomalito</developer>
+		<publisher>Locomalito</publisher>
+		<genre>Shooter</genre>
+		<image>./images/Super Hydorah.png</image>
+	</game>
+	<game>
+		<path>./prototype.sh</path>
+		<name>ProtoType</name>
+		<desc>an RType remake from Dark Castle Software</desc>
+		<releasedate>20061205T000000</releasedate>
+		<developer>ptitSeb</developer>
+		<publisher>ptitSeb</publisher>
+		<genre>Shooter</genre>
+		<image>./images/ProtoType.png</image>
+	</game>
+	<game id="157729" source="ScreenScraper.fr">
+		<path>./wipeout.sh</path>
+		<name>WipEout</name>
+		<desc>WipEout is a futuristic racing game set in the year 2052. Racing for one of four teams, the player competes in the F3600 Anti-Gravity Racing League on six tracks. Each team's hovercraft racer has different ratings in speed, acceleration and turning. In addition to high-speed racing, there is also shooting in the game, with different weapon pickups like rockets and mines available, useful for slowing one's opponents down. Shields can also be picked up and can block the weapons' effects.
+
+There are championship, single race and time trial modes. Winning the championship in the regular Venom class unlocks the Rapier class, where the craft are faster and the tracks have slightly different looks.
+
+There is also a two-player mode where two opponents can race and shoot at each other.</desc>
+		<releasedate>19950929T000000</releasedate>
+		<developer>Psygnosis</developer>
+		<publisher>Psygnosis</publisher>
+		<genre>Strategy-Simulation</genre>
+		<hash>0CE7AF1E</hash>
+		<image>./images/Wipeout.png</image>
+		<genreid>1280</genreid>
+	</game>
+	<game>
+		<path>./Nuclear Throne Mobile.sh</path>
+		<name>Nuclear Throne Mobile</name>
+		<desc>Nuclear Throne is a post-apocalyptic roguelike-like top-down shooter. Not 'the final hope of humanity' post-apocalyptic, but 'humanity is extinct and mutants and monsters now roam the world' post-apocalyptic. Fight your way through the wastelands with powerful weaponry, collecting radiation to mutate some new limbs and abilities. All these things and more you could do if only you were good at this game. Can you reach the Nuclear Throne?</desc>
+		<image>./images/Nuclear Throne Mobile.png</image>
+		<releasedate>20071227T000000</releasedate>
+		<developer>Vlambeer</developer>
+		<publisher>Vlambeer</publisher>
+		<genre>Action</genre>
+		<playcount>1</playcount>
+		<lastplayed>20230930T211356</lastplayed>
+	</game>
+	<game>
+		<path>./Kobo Deluxe.sh</path>
+		<name>Kobo Deluxe</name>
+		<desc>Kobo Deluxe is an enhanced version of Akira Higuchi's game XKobo for Un*x systems with X11. Kobo Deluxe adds sound, smoother animation, high resolution support, OpenGL acceleration (optional), an intuitive menu driven user interface, joystick support and other features. Recent versions also add a number of alternative skill levels with slightly modernized gameplay.</desc>
+		<image>./images/Kobo Deluxe.png</image>
+		<releasedate>20071227T000000</releasedate>
+		<developer>David Olofson</developer>
+		<publisher>David Olofson</publisher>
+		<genre>Shooter</genre>
+		<playcount>1</playcount>
+		<lastplayed>20230930T211356</lastplayed>
+	</game>
+	<game>
+		<path>./Satryn.sh</path>
+		<name>Satryn</name>
+		<desc>a chaotic, infinite twin stick shooty</desc>
+		<image>./images/Satryn.png</image>
+		<releasedate>20210319T000000</releasedate>
+		<developer>maybell</developer>
+		<publisher>maybell</publisher>
+		<genre>Shooter</genre>
+		<playcount>1</playcount>
+		<lastplayed>20230930T211356</lastplayed>
+	</game>
+	<game id="304202" source="ScreenScraper.fr">
+		<path>./Half-Life.sh</path>
+		<name>Half-Life</name>
+		<desc>Black Mesa Research Facility is an ultra-secret laboratory under government contract, conducting top-secret and extremely volatile experiments. The scientist Gordon Freeman a Black Mesa employee. This morning, as usual, he pits his way to the research facility for a run-of-the-mill experiment. However, when the experiment initiates, Gordon realizes that it might not be as ordinary as he thought. Odd things begin to happen as he makes his way to one of the Black Mesa test chambers. Even weirder things happen when he starts to move the test sample towards the antimass-spectrometer. 
+ 
+At that moment everything goes horribly wrong. Aliens from the planet Xen have suddenly invaded the facility, injuring or killing many of the employees. The Marines have come to the facility to kill off the aliens and the surviving witnesses of the accident. Gordon understands what that means: he will have to fight his way through aliens and Marines to get to the top of the Black Mesa complex and much beyond. 
+ 
+The story of Half-Life is told entirely in-game: everything is seen through the eyes of the protagonist. Most story elements unfold via scripted sequences, triggered by the player reaching a certain area. If other characters have information to reveal, they address the player directly. The Black Mesa complex in the game is not made up of distinct levels, but is mostly a continuous world, where it is possible to backtrack through large parts of the game. 
+ 
+The game's weapon arsenal is, to a large part, made up of realistic weapons like pistols, machine guns and explosives, but there are also futuristic energy weapons developed at Black Mesa as well as organic weapons acquired from the invading aliens. Most weapons feature an alternate firing mode. 
+ 
+Enemies fall into two categories: aliens and human soldiers. While most of the aliens are not very bright, the humans display some relatively advanced artificial intelligence: they seek cover, retreat when hit and try to drive the player from his cover by throwing grenades. Some of the alien enemies can not be killed by normal means. The environment must be used against them instead, going with a general tendency of the game to alternate the combat with environmental puzzles.</desc>
+		<releasedate>19981119T000000</releasedate>
+		<developer>Valve</developer>
+		<publisher>Sierra On-Line</publisher>
+		<genre>Shooter</genre>
+		<hash />
+		<image>./images/Half-Life.png</image>
+		<genreid>256</genreid>
+	</game>
+	<game id="304230" source="ScreenScraper.fr">
+		<path>./Half-Life Blue Shift.sh</path>
+		<name>Half-Life: Blue Shift</name>
+		<desc>Return to the Black Mesa complex in this additional Half-Life storyline. In this module, you play Barney Calhoun, a security officer working Blue Shift who is present at Black Mesa at the same time as Gordon Freeman.  Your goal is to try to get out of Black Mesa alive as all hell breaks loose and reality is altered around you. 
+ 
+This version can be played stand-alone and also includes the Half-Life High Definition Pack that replaces most of the Half-Life/Opposing Force/Blue Shift player and weapon models and textures with updated high-res models and textures.</desc>
+		<releasedate>20010601T000000</releasedate>
+		<developer>Gearbox Software</developer>
+		<publisher>Sierra On-Line</publisher>
+		<genre>Shooter / 1st person-Shooter</genre>
+		<hash />
+		<image>./images/Half-Life Blue Shift.png</image>
+		<genreid>259</genreid>
+	</game>
+	<game>
+		<path>./Half-Life Opposing Force.sh</path>
+		<name>Half-Life: Opposing Force</name>
+		<desc>Return to the Black Mesa Research Facility as one of the military specialists assigned to eliminate Gordon Freeman. Experience an entirely new episode of single player action. Meet fierce alien opponents, and experiment with new weaponry.</desc>
+		<releasedate>19991101T000000</releasedate>
+		<developer>Gearbox Software</developer>
+		<publisher>Sierra On-Line</publisher>
+		<genre>Shooter / 1st person-Shooter</genre>
+		<hash />
+		<image>./images/Half-Life Opposing Force.png</image>
+		<genreid>259</genreid>
+	</game>
+	<game id="359072" source="ScreenScraper.fr">
+		<path>./Hydra Castle Labyrinth.sh</path>
+		<name>Hydra Castle Labyrinth</name>
+		<desc>Hydra Castle Labyrinth is an old school action / platform game. 
+The game starts with your character inside the castle, without any introduction or tutorial. You just start playing and decide which direction to go. 
+At first, your character doesn't have a special item, just his sword. As you progress, you find new items that will help you in your quest, as some levels are particularly difficult. 
+Besides the normal enemies that you encounter throughout the game, you will also find bosses here and there, and like back then they will be tough. 
+Hydra Castle Labyrinth is quite a fun platform game, featuring gameplay that despite the years still performs very well.</desc>
+		<rating>0.9</rating>
+		<releasedate>20110101T000000</releasedate>
+		<developer>E. Hashimoto (Buster)</developer>
+		<publisher>E. Hashimoto (Buster)</publisher>
+		<genre>Action / Adventure-Platform-Action</genre>
+		<players>1</players>
+		<hash>35F59B69</hash>
+		<image>./images/Hydra Castle Labyrinth.png</image>
+		<genreid>257</genreid>
+	</game>
+	<game>
+		<path>./Cave Story.sh</path>
+		<name>Cave Story</name>
+		<desc>Cave Story takes you into a rare world where a curious race of innocent, rabbit-like creatures called Mimiga run free. You wake up in a dark cave with no memory of who you are, where you came from or why you're in such a place. Uncovering Mimiga Village, you discover that the once-carefree Mimiga are in danger at the hands of a maniacal scientist. Their only hope rests squarely on the shoulders of a quiet, amnesiac boy who can't remember his own name. Take control, learn the origins of this world's power, stop the delusional villain and save the Mimiga.</desc>
+		<rating>0.9</rating>
+		<releasedate>20041220T000000</releasedate>
+		<developer>Studio Pixel</developer>
+		<publisher>Studio Pixel</publisher>
+		<genre>Action / Adventure-Platform-Action</genre>
+		<players>1</players>
+		<image>./images/Cave Story.png</image>
+		<genreid>257</genreid>
+	</game>
+	<game>
+		<path>./nKaruga.sh</path>
+		<name>nKaruga</name>
+		<desc>nKaruga is a demake of the popular bullet heck game Ikaruga, released in 2002 for Dreamcast and 2003 for Gamecube. Ikaruga is a vertical shoot ’em up that features an unique polarity-switching gameplay. Switch the ship’s polarity and “get hit and absorb” enemy bullets! Achieve High Score with the chain bonus! nKaruga originated on the TI-Nspire calculator series as a C++ game by developer matrefeytontias. The PC version can be found at gamejolt.</desc>
+		<rating>0.6</rating>
+		<releasedate>20220226T000000</releasedate>
+		<developer>Mattias Refeyton</developer>
+		<publisher>Mattias Refeyton</publisher>
+		<genre>Shooter</genre>
+		<players>1</players>
+		<image>./images/nKaruga.png</image>
+	</game>
+	<game>
+		<path>./LBreakoutHD.sh</path>
+		<name>LBreakout 2</name>
+		<desc>The successor to LBreakout offers you a new challenge in more than 50 levels with loads of new bonuses (goldshower, joker, explosive balls, bonus magnet ...), maluses (chaos, darkness, weak balls, malus magnet ...) and special bricks (growing bricks, explosive bricks, regenerative bricks ...).</desc>
+		<rating>0.9</rating>
+		<releasedate>20151710T000000</releasedate>
+		<developer>Michael Speck</developer>
+		<publisher>Michael Speck</publisher>
+		<genre>Action</genre>
+		<players>1</players>
+		<image>./images/LBreakout 2.png</image>
+	</game>
+	<game>
+		<path>./Moonlight.sh</path>
+		<name>Moonlight Game Streaming</name>
+		<desc>Moonlight allows you to play your PC games on almost any device, whether you're in another room or miles away from your gaming rig.</desc>
+		<rating>0.9</rating>
+		<releasedate>20140620T000000</releasedate>
+		<developer>Cameron Gutman</developer>
+		<publisher>Cameron Gutman</publisher>
+		<genre>Service</genre>
+		<players>1</players>
+		<image>./images/Moonlight.png</image>
+	</game>
+	<game>
+		<path>./Dinothawr.sh</path>
+		<name>Dinothawr</name>
+		<desc>The goal of the game is to save your frozen friends by pushing them onto lava so they can thaw. It mixes gameplay mechanics from Kickle Cubicle and Sokoban with some lovely ambient homegrown music.</desc>
+		<rating>0.9</rating>
+		<releasedate>20140103T000000</releasedate>
+		<developer>Libretro</developer>
+		<publisher>Libretro</publisher>
+		<genre>Puzzle</genre>
+		<players>1</players>
+		<image>./images/Dinothawr.png</image>
+	</game>
+	<game>
+		<path>./Coi.sh</path>
+		<name>The Curse of Issyos</name>
+		<desc>Defkalion was fishing on a quiet blue sea when he heard the voice of the Goddess Athena. Hurry up, she said, the isle of Issyos has been cursed by the Olympus. And so, fearing for his daughter Delia, his only family left, the fisherman sails back to his home, where the adventure is about to begin.</desc>
+		<rating>0.9</rating>
+		<releasedate>20151215T000000</releasedate>
+		<developer>Locomalito</developer>
+		<publisher>Locomalito</publisher>
+		<genre>Platform</genre>
+		<players>1</players>
+		<image>./images/The Curse of Issyos.png</image>
+	</game>
+	<game>
+		<path>./Cave Story-evo.sh</path>
+		<name>Cave Story Evo</name>
+		<desc>A somewhat upgraded version of Cave Story.</desc>
+		<rating>0.9</rating>
+		<releasedate>20041220T000000</releasedate>
+		<developer>NXEngine</developer>
+		<publisher>NXEngine</publisher>
+		<genre>Action / Adventure-Platform-Action</genre>
+		<players>1</players>
+		<image>./images/Cave Story Evo.png</image>
+		<genreid>257</genreid>
+	</game>
+	<game id="316616" source="ScreenScraper.fr">
+		<path>./Maldita Castilla.sh</path>
+		<name>Maldita Castilla</name>
+		<desc>The kingdom of Castile is cursed. Thou hath been sent forth by thy King to learn of the source of this evil and rid the land of it. God be with thee, Don Ramiro! 
+ 
+Maldita Castilla (Damn Castile) is a side scrolling action game that is, clearly, inspired by such games as Ghosts 'N Goblins, Rygar, Karnov, among others. 
+ 
+You, as Spanish knight Don Ramiro, must move to the right, killing enemies as you go. Along the way, you encounter treasure chests that will help you. At certain points, you must defeat a boss to advance. You are trying to get through all the bosses to find and defeat the source of all this evil plaguing Castile.</desc>
+		<releasedate>20121212T000000</releasedate>
+		<developer>Locomalito</developer>
+		<publisher>Locomalito</publisher>
+		<genre>Action</genre>
+		<hash />
+		<image>./images/Maldita Castilla.png</image>
+		<genreid>256</genreid>
+	</game>
+	<game id="342068" source="ScreenScraper.fr">
+		<path>./Star Wars Jedi Knight - Jedi Academy.sh</path>
+		<name>Star Wars: Jedi Knight - Jedi Academy</name>
+		<desc>Star Wars: Jedi Knight - Jedi Academy is the sequel to Star Wars: Jedi Knight II - Jedi Outcast.  
+The player is cast as Jaden Korr, a padawan at the Jedi Academy taught by Luke Skywalker and Kyle Katarn. Both the character and his lightsaber are to be created at the beginning of the game. Throughout the game, the player will acquire several force powers and weapons, such as lightning and the Tenlos Disruptor Rifle. As he progresses through the different missions, he may be seduced by the dark side of the Force...</desc>
+		<releasedate>20030916T000000</releasedate>
+		<developer>Raven Software</developer>
+		<publisher>Activision</publisher>
+		<genre>Action / Adventure-Action</genre>
+		<hash />
+		<image>./images/Star Wars Jedi Knight - Jedi Academy.png</image>
+		<genreid>256</genreid>
+	</game>
+	<game id="342064" source="ScreenScraper.fr">
+		<path>./Star Wars Jedi Knight II - Jedi Outcast.sh</path>
+		<name>Star Wars: Jedi Knight II - Jedi Outcast</name>
+		<desc>In Jedi Outcast, you once again play Kyle Katarn, star of LucasArts' Star Wars-inspired 1st-person shooters Star Wars: Dark Forces and Star Wars: Jedi Knight - Dark Forces II. 
+ 
+Kyle has retired from being a Jedi fearing consequences from the Dark Side of the Power found within himself during his chase of the foul Sith-Lord Jerec into the lost vale of the Jedi at the end of Dark Forces 2. Chronologically taking place after the second Star Wars Trilogy, you'll meet various well known people from the original Star Wars movies like Luke Skywalker himself and Lando Calrissian. 
+ 
+Also following the tradition of its predecessors, you explore the surroundings in the typical 3D environment and can use a lot of different weapons and gear from the Star Wars Universe, including the famous Jedi Weapon, the light saber.</desc>
+		<releasedate>20020328T000000</releasedate>
+		<developer>Raven Software</developer>
+		<publisher>LucasArts</publisher>
+		<genre>Shooter / 1st person-Shooter</genre>
+		<hash />
+		<image>./images/Star Wars Jedi Knight II - Jedi Outcast.png</image>
+		<genreid>259</genreid>
+	</game>
+	<game id="188926" source="ScreenScraper.fr">
+		<path>./World War II GI.sh</path>
+		<name>World War II GI</name>
+		<desc>World War II GI is a first-person shooter that takes players back to D-Day and the Normandy invasion. The player takes control of a G.I. (''galvanized iron'', referring to a soldier in the US military), sent in to wipe out scores of Wehrmacht and SS soldiers. Missions take the player through the D-Day beach landings, assaults on equipment depots, and other set pieces. This game is based on the Build engine, with 3D environments and 2D character sprites. It shares many gameplay elements with NAM, created by the same developers.
+</desc>
+		<releasedate>19990315T000000</releasedate>
+		<developer>TNT Team</developer>
+		<publisher>GT Interactive</publisher>
+		<genre>Shooter-Shooter / 1st person</genre>
+		<hash>1C6D88F7</hash>
+		<image>./images/World War II GI.png</image>
+		<genreid>259</genreid>
+	</game>
+	<game id="190934" source="ScreenScraper.fr">
+		<path>./UQM.sh</path>
+		<name>The Ur-Quan Masters</name>
+		<desc>The Ur-Quan Masters is a 2002 open source fangame modification, based on the action-adventure science fiction game Star Control II. The original Star Control II was released for the PC in 1992, and ported to the 3DO Interactive Multiplayer in 1994. It has been frequently mentioned among the best games of all time, with additional praise for its writing, world design, character design, and music. 
+ 
+After the Star Control II copyrights reverted to creators Paul Reiche III and Fred Ford, they licensed their content to their fan community to keep their series in the public eye. The open source development team was able to remake the 3DO version as a port to modern operating systems. Released under the title The Ur-Quan Masters, the modified remake has since been downloaded nearly two million times, earning critical reception as one of the best free games available, with additional praise for its fan modifications.</desc>
+		<rating>1</rating>
+		<releasedate>20021101T000000</releasedate>
+		<developer>The Ur-Quan Masters Team</developer>
+		<players>1-2</players>
+		<hash />
+		<image>./images/The Ur-Quan Masters.png</image>
+	</game>
+	<game id="350114" source="ScreenScraper.fr">
+		<path>./Undertale.sh</path>
+		<name>Undertale</name>
+		<desc>Years after a devastating war between humans and monsters, a child has fallen through a hole and into the monsters' underground world. Under the care of a kindly monster woman named Toriel, they learn the basics of the underground world, including that they may be attacked by other monsters who are less friendly. After the child leave's Toriel's care, it's up to them how they proceed through the underground, including whether they kill the monsters in their way or try to find peaceful resolutions to conflict. 
+ 
+Undertale is an Eastern RPG with some action aspects in its combat system. In the overworld, the player explores areas, solves puzzles, and talks to NPCs. When a battle is triggered, typically through random encounter, the game switches to the combat screen. A heart representing the child's soul appears in a small box, in which objects representing the monsters' attacks appear and must be dodged in real time. On the child's turn, they can attack monsters more directly through the fight command. A meter that determines the strength of the player's attack must be hit with good timing in order to deal more damage. 
+ 
+Alternatively, players may choose to perform friendly actions in battle or show mercy to the opponent in order to resolve conflict without bloodshed. It is possible to finish every encounter in the game without killing anyone, though some monsters are more difficult to do this with than others. The player may need to perform certain actions in the overworld before some monsters can be befriended. 
+ 
+Although only one Undertale save file can be kept at a time, the game remembers certain player actions across playthroughs, mainly in reference to how violent or peaceful they were. Resetting to an earlier save or starting a new game after specific actions are taken can affect how some NPCs treat the player and how the story is ultimately resolved.</desc>
+		<releasedate>20170915T000000</releasedate>
+		<publisher>Fangamer</publisher>
+		<hash />
+		<image>./images/Undertale.png</image>
+	</game>
+	<game id="188859" source="ScreenScraper.fr">
+		<path>./Ultimatetapankaikki.sh</path>
+		<name>The Ultimate Tapan Kaikki</name>
+		<desc>The Ultimate Tapan Kaikki (Translates roughly to The Ultimate I'll Kill Everyone) is a simple top-down shooter. The goal of the game is, as the title suggests, to kill everyone on the map by using weapons either picked up from the map or bought from stores. That sounds simple, but it isn't as easy as one might think, as the enemies are numerous and stimpacks are scarce.The game comes with two episodes and ability to create more on your own with a simple level-editor.
+</desc>
+		<releasedate>19982201T000000</releasedate>
+		<developer>ErrorFree</developer>
+		<publisher>ErrorFree</publisher>
+		<hash>1897BCD8</hash>
+		<image>./images/The Ultimate Tapan Kaikki.png</image>
+	</game>
+	<game>
+		<path>./TresBashers.sh</path>
+		<name>Tres-Bashers</name>
+		<desc>Tres-Bashers is a 2D monster-bashing adventure featuring a big interconnected map full of cryptids, secrets, and more! Find 40 different monster types and whack 'em with your baseball bat!</desc>
+		<releasedate>20211001T000000</releasedate>
+		<developer>ondydev</developer>
+		<publisher>ondydev</publisher>
+		<genre>Action-Platform</genre>
+		<hash />
+		<image>./images/Tres-Bashers.png</image>
+		<genreid>257</genreid>
+	</game>
+	<game>
+		<path>./Blobwars.sh</path>
+		<name>Metal Blob Solid - Blob Wars</name>
+		<desc>Metal Blob Solid is a 2D platform game, the first in the Blobwars series. You take on the role of a fearless Blob agent, Bob, who's mission is to infiltrate various enemy bases and rescue as many MIAs as possible, while battling many vicious aliens.</desc>
+		<releasedate>20150203T000000</releasedate>
+		<developer>Gianfilippo Cimmino</developer>
+		<publisher>Gianfilippo Cimmino</publisher>
+		<genre>Action-Platform</genre>
+		<hash />
+		<image>./images/Metal Blob Solid.png</image>
+		<genreid>257</genreid>
+	</game>
+	<game id="340826" source="ScreenScraper.fr">
+		<path>./Spelunky.sh</path>
+		<name>Spelunky</name>
+		<desc>Spelunky is a platform game about an explorer who discovers a cave in the desert and ventures inside to loot for treasure, reminiscent of Rick Dangerous and La•Mulana. The game consists of sixteen levels, but for each playthrough the entire level layout (general structure, enemies, traps, items) is completely randomized, making it an entirely new game each time. There are also some fixed parameters, such as certain sets of enemies and level themes that are introduced only from a specific level. The game features four separate "areas", each of which contains four levels and is set in a different environment and has different enemies.  
+ 
+The main goal is to finish the sixteen levels by locating the exits, but players are encouraged to collect jewels and other types of treasure. The main character can move around, run, jump, hang off ledges and attack enemies with his whip (jumping on top off them works as well). He begins with four "hearts" (health) and when these are used up, the entire game needs to be replayed. The explorer also suffers falling damage when the distance is too high. The other basic equipment includes a rope to climb up and a number of bombs. The latter is not only used to dispose of enemies such as spiders, bats, snakes, cavemen and the undead, but also to blast through certain parts of the level. They can be used to create a path and often expose treasure hidden in the ground and walls.</desc>
+		<releasedate>20090901T000000</releasedate>
+		<developer>Mossmouth</developer>
+		<publisher>Mossmouth</publisher>
+		<genre>Action-Platform</genre>
+		<hash />
+		<image>./images/Spelunky.png</image>
+		<genreid>257</genreid>
+	</game>
+	<game id="342942" source="ScreenScraper.fr">
+		<path>./SorR.sh</path>
+		<name>Streets of Rage Remake</name>
+		<desc>Streets of Rage Remake is a reworked version of the MegaDrive classic. 
+You go through a huge city fighting against people who will attack you. There are over 60 different enemies, you can choose from 16 characters, select your favorite and wreak havoc. 
+It's even better than the original. More characters, more levels, more action... Incredible. 
+Plus, it's free!</desc>
+		<releasedate>20030623T000000</releasedate>
+		<developer>BoMbErGaMeS</developer>
+		<genre>Beat'em Up</genre>
+		<hash />
+		<image>./images/Streets of Rage Remake.png</image>
+		<genreid>263</genreid>
+	</game>
+	<game id="188454" source="ScreenScraper.fr">
+		<path>./Rocks n Diamonds.sh</path>
+		<name>Rocks 'n' Diamonds</name>
+		<releasedate>19981205T000000</releasedate>
+		<hash>7B8A00B9</hash>
+		<image>./images/Rocks'n'Diamonds.png</image>
+		<desc>Rocks'n'Diamonds is a puzzle video game with elements of Boulder Dash, Supaplex, Emerald Mine, Solomon's Key, and Sokoban clone. It is free software under the GNU GPL-2.0-only license created by Artsoft Entertainment and designed by Holger Schemel.</desc>
+	</game>
+	<game id="188413" source="ScreenScraper.fr">
+		<path>./Redneck Rampage Rides Again.sh</path>
+		<name>Redneck Rampage Rides Again</name>
+		<desc>This stand-alone sequel to Redneck Rampage finds Leonard and Bubba shooting their way back to Hickston after crash-landing the UFO at the end of the first game.  Using the same engine and most of the same graphics as the original, RRRA adds vehicles, some new weapons (including a sling blade), new alien clones (a Dennis Hopper-ish biker and an evil cheerleader), and fourteen levels of ass-whuppin'.
+</desc>
+		<releasedate>19980515T000000</releasedate>
+		<developer>Xatrix</developer>
+		<publisher>Interplay</publisher>
+		<genre>Shooter-Shooter / 1st person</genre>
+		<hash>7B8A00B9</hash>
+		<image>./images/Redneck Rampage Rides Again.png</image>
+		<genreid>259</genreid>
+	</game>
+	<game>
+		<path>./Ri-Li.sh</path>
+		<name>Ri-Li</name>
+		<desc>Ri-li is an arcade game licensed under the GPL (General Public License). You drive a toy wood engine in many levels and you must collect all the coaches to win.You can dowload it and play indefinitely.</desc>
+		<releasedate>20060101T000000</releasedate>
+		<developer>D. Roux-Serret</developer>
+		<image>./images/Ri-Li.png</image>
+	</game>
+	<game id="329980" source="ScreenScraper.fr">
+		<path>./Quake 2.sh</path>
+		<name>Quake II</name>
+		<desc>A sequel in name only, this follow up to id's 1996 Quake, is a first-person shooter revolving around the Earth-Strogg war. The Strogg alien race threatens the Earth, but Earth has launched a counter-offensive, Operation Alien Overlord. Overlord takes the battle to the Strogg homeworld with the ultimate objective of securing their capital city and killing their ruler. 
+ 
+As a FPS, Quake II contains a variety of weapons including the fall back Blaster, the Railgun, and the secret BFG10K. Health, armor, and ammunition pick-ups can be found during levels, as can the classic Quake's Quad Damage power-up. Game play involves mowing down alien opponents as the player progresses through levels, completing in-game objectives. Quake II also comes with multiplayer support for Deathmatches.</desc>
+		<rating>0.8</rating>
+		<releasedate>19971201T000000</releasedate>
+		<developer>id Software</developer>
+		<publisher>Activision</publisher>
+		<genre>Fight / 3D-Shooter / 1st person-Fight-Shooter</genre>
+		<hash />
+		<image>./images/Quake II.png</image>
+		<genreid>262</genreid>
+	</game>
+	<game id="329982" source="ScreenScraper.fr">
+		<path>./Quake 3.sh</path>
+		<name>Quake III: Arena</name>
+		<desc>The third game in the Quake series is a departure from the previous games, focusing exclusively on multiplayer arena fighting with no story-driven singleplayer part - directly competing with Epic Games that did the same with the contemporary Unreal Tournament. 
+ 
+The offline part takes the player through a number of one-on-one and team-based challenges against AI-controlled opponents, slowly ranking upwards in difficulty, as the character of the player's choosing. Compared to the previous titles, the colours and general design of the game are much brighter and it shakes off the dominant shades of brown and grey the previous titles in the series were known for. The player's arsenal consists of new and familiar, but redesigned weapons, including a gauntlet (melee attacks) and a machine gun as the spawn weapons, a shotgun, plasma gun, lightning gun, rocket launcher, railgun and BFG. Each weapon has specific advantages, ranging from the amount of damage to reloading times and the ability to hit-scan opponents.</desc>
+		<rating>1</rating>
+		<releasedate>19991201T000000</releasedate>
+		<developer>id Software</developer>
+		<publisher>Activision</publisher>
+		<genre>Fight / 3D-Shooter / 1st person-Fight-Shooter</genre>
+		<players>1-12</players>
+		<hash />
+		<image>./images/Quake III Arena.png</image>
+		<genreid>262</genreid>
+	</game>
+	<game id="329964" source="ScreenScraper.fr">
+		<path>./Quake.sh</path>
+		<name>Quake</name>
+		<desc>An enemy with the codename ''Quake'', which is believed to come from another dimension, is using teleporter gates to invade Earth. The player takes the role of a nameless soldier who arrives at his base only to find out Quake has overrun it and killed everyone. Somewhere in the base there must be a teleporter to Quake's realm. The mission is clear: take the fight to the enemy, overcoming countless hordes of monsters, and exact revenge. 
+ 
+id Software's follow-up to Doom and Doom II, Quake is a first-person shooter. Its main technological innovation is the use of a true 3D engine - the levels themselves as well as the enemies are polygonal. This not only allows for more natural level designs and character animations, but also for more realistic lighting and the inclusion of simulated physics that have an effect on gameplay: grenades can bounce off walls and around corners, for example.</desc>
+		<releasedate>19960101T000000</releasedate>
+		<developer>id Software</developer>
+		<publisher>id Software</publisher>
+		<genre>Shooter / 1st person-Shooter</genre>
+		<hash />
+		<image>./images/Quake.png</image>
+		<genreid>259</genreid>
+	</game>
+	<game>
+		<path>./Prehistorik 2.sh</path>
+		<name>Prehistorik 2</name>
+		<desc>Prehistorik 2 takes up the story of its predecessor, for another caveman-era platform game.  
+ 
+The hero must use his club to crush animal enemies, many of which then release bonus items to collect. He no longer needs to feed his clan, so there is no required minimum food target, unlike the original game. Other bonus items are located around the levels, while yet more can be found by using your club creatively and adventurously.  
+ 
+Passwords for every level can be found written in various places and they are different on every computer. You also encounter bosses after every few levels. In addition, the game includes hidden locations, multiple level exits and even hidden levels.</desc>
+		<image>./images/Prehistorik 2.png</image>
+		<rating>0.75</rating>
+		<releasedate>19930101T000000</releasedate>
+		<developer>Titus</developer>
+		<publisher>Titus</publisher>
+		<genre>Platform-Action</genre>
+	</game>
+	<game id="188245" source="ScreenScraper.fr">
+		<path>./Openomf.sh</path>
+		<name>One Must Fall 2097</name>
+		<desc>One Must Fall 2097 is a fighting game with a twist. Instead of the usual Street Fighter II trend of games, in this game you play one of 10 characters controlling one of 10 huge robots in a fighting match.According to the game, in the year 2097, the human race is controlled by one company known as W.A.R., which started as a small company providing the Earth government with construction robots. After a while W.A.R. grew further and further and eventually took over Earth Gov.In the year 2097, W.A.R. decided to colonize Ganymede, one of Jupiter's moons. Because of the harsh climate and difficult terrain, they sought for one person, the best of the best, to rule Ganymede for them. They've decided the best way to choose this person is to organize a huge contest, in which the winner will earn a seat in the W.A.R. high counsel and control of Ganymede.You're one of the contestants, and you want to win.
+</desc>
+		<releasedate>19941001T000000</releasedate>
+		<developer>Diversions Entertainment</developer>
+		<publisher>Epic Games</publisher>
+		<genre>Fight / 2D-Fight</genre>
+		<players>2</players>
+		<hash>32260626</hash>
+		<image>./images/One Must Fall 2097.png</image>
+		<genreid>262</genreid>
+	</game>
+	<game id="190931" source="ScreenScraper.fr">
+		<path>./Mr. Boom.sh</path>
+		<name>Mr. Boom</name>
+		<desc>Mr.Boom is a Bomberman clone for the RetroArch platform and was converted from DOS assembly using asm2c. 
+Mr.Boom supports up to 8 players and features like netplay, AI bots (new C++ feature), pushing bombs, remote controls and kangaroo riding...</desc>
+		<releasedate>19990101T000000</releasedate>
+		<developer>Remdy Software</developer>
+		<players>1-8</players>
+		<hash>32260626</hash>
+		<image>./images/Mr Boom.png</image>
+	</game>
+	<game>
+		<path>./Meritous.sh</path>
+		<name>Meritous</name>
+		<desc>Far below the surface of the planet is a secret. A place of limitless power. Those that seek to control such a utopia will soon bring an end to themselves. Seeking an end to the troubles that plague him, PSI user MERIT journeys into the hallowed Orcus Dome in search of answers.</desc>
+		<releasedate>20190226T000000</releasedate>
+		<developer>Lancer-X/ASCEAI</developer>
+		<publisher>ASCEAI</publisher>
+		<hash />
+		<image>./images/Meritous.png</image>
+	</game>
+	<game>
+		<path>./Marathon Infinity.sh</path>
+		<name>Marathon: Infinity</name>
+		<desc>Marathon Infinity is a first-person shooter video game, the third in the science fiction Marathon Trilogy by Bungie. The game was released on October 15, 1996 and included more levels than its predecessor Marathon 2: Durandal.</desc>
+		<releasedate>19961015T000000</releasedate>
+		<developer>Bungie</developer>
+		<publisher>Bandai</publisher>
+		<hash />
+		<image>./images/Marathon Infinity.png</image>
+	</game>
+	<game>
+		<path>./Marathon 2.sh</path>
+		<name>Marathon 2: Durandal</name>
+		<desc>Marathon 2: Durandal is a first-person shooter video game, part of the science fiction Marathon Trilogy by Bungie. It was released on November 24, 1995. The game is mostly set on the fictional planet of Lh'owon, homeworld of the S'pht, and once again the player takes the role of a shipboard security officer from the Marathon. This is the only game in the series to be officially released for Windows and Xbox 360 XBLA in addition to the Mac. The unofficial Aleph One community enhancement, built on engine source opened by Bungie in 1999, allows the game to be played on many other platforms. The entire game including assets were released for free to the public by Bungie in 2005, now commonly bundled for distribution with Aleph One.</desc>
+		<releasedate>19951124T000000</releasedate>
+		<developer>Bungie</developer>
+		<publisher>Bandai</publisher>
+		<hash />
+		<image>./images/Marathon 2.png</image>
+	</game>
+	<game id="307580" source="ScreenScraper.fr">
+		<path>./Hurrican.sh</path>
+		<name>Hurrican</name>
+		<desc>Inspired by the epic Turrican game series, Hurrican stays by all means true to the original game while still being highly innovative. 
+ 
+Blast your way through myriads of enemies, explore the secrets of nine massive worlds and collect tons of powerups to increase your firepower in this highly explosive Run and Gun arcade game. 
+ 
+Hurrican is THE ultimate “Turrican Mega-Mix”, taking ideas from several installements of the original franchise while at the same time expanding on it's universe. 
+ 
+Oh, and did we mention the two-player local coop-mode?</desc>
+		<releasedate>20070620T000000</releasedate>
+		<developer>Poke53280</developer>
+		<publisher>Poke53280</publisher>
+		<genre>Shooter / Run and Gun-Shooter</genre>
+		<players>1-2</players>
+		<hash />
+		<image>./images/Hurrican.png</image>
+		<genreid>256</genreid>
+	</game>
+	<game id="301360" source="ScreenScraper.fr">
+		<path>./Gato Roboto.sh</path>
+		<name>Gato Roboto</name>
+		<desc>Pounce inside of your cozy armored mech and set off on a dangerous trek through an alien underworld full of irritable creatures and treacherous obstacles in a valiant effort to save your stranded captain and his crashed spaceship. Tiptoe outside the friendly confines of your technological marvel and follow your feline instincts through tight tunnels and mysterious waterways to scavenge for new weapons and gear. Adventure awaits the most curious of cats in Gato Roboto!</desc>
+		<releasedate>20190530T000000</releasedate>
+		<developer>Doinksoft</developer>
+		<publisher>Devolver Digital</publisher>
+		<hash />
+		<image>./images/Gato Roboto.png</image>
+	</game>
+	<game>
+		<path>./Flare.sh</path>
+		<name>Flare Engine</name>
+		<desc>Flare is an open source, 2D action RPG licensed under the GPL3 license. Its game play can be likened to the games in the Diablo series.</desc>
+		<rating>0.8</rating>
+		<releasedate>20221012T000000</releasedate>
+		<developer>Clint Bellanger</developer>
+		<genre>Strategy</genre>
+		<players>1-4</players>
+		<hash />
+		<image>./images/Flare.png</image>
+		<genreid>1280</genreid>
+	</game>
+	<game id="157872" source="ScreenScraper.fr">
+		<path>./HoMM2.sh</path>
+		<name>Heroes of Might and Magic II</name>
+		<desc>Heroes of Might and Magic II is a fantasy role-playing game which takes place in the land of Enroth, a place of magic. There are a multitude of creature types, from griffins to rocs, golems to pikemen, unicorns to hydras, and four different dragons. Each castle type has six different creatures, from the weak to the strong. There are six castle types, each corresponding to a hero class: Knight, Sorceress, Wizard (Good side), Barbarian, Necromancer and Warlock (Evil side). There are also six different types of neutral creatures you can recruit in special structures scattered about the maps.
+
+Compared to the first game, this sequel has larger and more interactive combat screens. The spell system is now based on spell points instead of spell memorization.
+
+The maps themselves range from small two player maps, to huge maps that all six player types could fit in easily. There is a map maker included, and you can multiplay via hotseat, modem, or IP.</desc>
+		<rating>0.8</rating>
+		<releasedate>19961001T000000</releasedate>
+		<developer>New World Computing's</developer>
+		<publisher>3DO</publisher>
+		<genre>Strategy</genre>
+		<players>1-6</players>
+		<hash />
+		<image>./images/Heroes of Might and Magic II.png</image>
+		<genreid>1280</genreid>
+	</game>
+	<game id="280004" source="ScreenScraper.fr">
+		<path>./Blockout 2.sh</path>
+		<name>BlockOut II</name>
+		<releasedate>19890208T000000</releasedate>
+		<hash />
+		<desc>BlockOut II is a freeware, open-source remake of a Tetris variant puzzler from 1989, with slight improvements to the graphics and sounds and the option to upload the score to an online table. The gameplay is still the same, where the objective is to move and arrange 3D pieces falling inside a pit seen from above, to create complete layers at the bottom and make them disappear. The pieces can be rotated on all axis to fit in the nooks and crannies available. If the layers accumulate and fill all the space to the top, the game is over. As in the original, the size of the well and the shape of the pieces can be configured in the options menu.</desc>
+		<image>./images/Blockout II.png</image>
+	</game>
+	<game id="108792" source="ScreenScraper.fr">
+		<path>./Duke Nukem 3D.sh</path>
+		<name>Duke Nukem 3D</name>
+		<desc>Duke Nukem, the politically incorrect action hero and ultimate alien ass kicker, defends Earth and its babes from alien invasion in Duke Nukem 3D. This is the award winning game that helped define the FPS genre, introducing unparalleled interactivity, and a main character that spoke. Take the fight to the aliens across 39 levels featuring Hollywood, Los Angeles, a moon base, and alien spacecraft. Innovative items like the Jetpack, HoloDuke, Shrink Ray, or Pipe Bombs allow you to fight the aliens in any style you want. Defeat the aliens, so Duke can get back to some R&amp;R with a stogie, a warm belly, and a bottle of Jack.</desc>
+		<rating>0.85</rating>
+		<releasedate>19960129T000000</releasedate>
+		<developer>3D Realms</developer>
+		<publisher>GT Interactive</publisher>
+		<genre>Shooter-Shooter / 1st person</genre>
+		<players>1</players>
+		<hash>28BC4F2E</hash>
+		<image>./images/Duke Nukem 3D.png</image>
+		<genreid>259</genreid>
+	</game>
+	<game>
+		<path>./Blake Stone - Aliens of Gold.sh</path>
+		<name>Blake Stone: Aliens of Gold</name>
+		<desc>Aliens of Gold, the first game in the Blake Stone series, pits the space-age British secret agent against Dr. Pyrus Goldfire; a madman bent on world domination. Using a mastery of genetic engineering and a tremendous reserve of wealth, Dr. Goldfire intends to unleash a mutant army upon the Earth.The first chapter begins in Goldfire's S.T.A.R. Institute headquarters building. Each level has Blake fighting through guards to find an elevator keycard for the next level. Dr. Goldfire will personally appear along the way to fire shots at Blake, and his genetic creations also pose a tough challenge. Each chapter lasts 10 levels, and brings Blake closer to reaching Goldfire, only to have the mad doctor escape to a new installation in his network, and the start of a new chapter.Blake Stone uses the Wolfenstein 3-D engine to render its levels. Basic gameplay and enemy AI is similar in most respects. Some of Blake's innovations include silent weapons that can kill guards without alerting others. Alerts are given to the player through text messages on the HUD. Health can be gained through use of wall-mounted vending machines, operated with tokens picked up off dead guards. An automap and stat-tracking are both available during gameplay. Finally, there are friendly AI characters who offer clues and powerups when you speak to them - provided Blake doesn't accidentally shoot them first!
+</desc>
+		<image>./images/Blake Stone Aliens of Gold.png</image>
+		<rating>0.5</rating>
+		<releasedate>19931205T020000</releasedate>
+		<developer>JAM Productions</developer>
+		<publisher>Apogee Software</publisher>
+		<genre>Shooter</genre>
+		<players />
+	</game>
+	<game>
+		<path>./SDLPoP.sh</path>
+		<name>Prince Of Persia</name>
+		<desc>Prince of Persia was originally released in 1989 for the Apple II by Jordan Mechner. Mechner used film of his younger brother David running, jumping, and performing many of the Prince's actions. Mechner then rotoscoped the film to create the animations that give the Prince his fluid movement.
+
+Part of the game's appeal was its then unique focus on environmental puzzle-solving, as well as its one-on-one sword duels. Mechner has stated that the game was inspired by the first ten minutes of Raiders of the Lost Ark, for the character's acrobatics in a dangerous environment.
+
+Prince of Persia has since been ported to a number of different platforms, including the Amiga, Apple Macintosh, DOS, NES, Game Boy, Sega Genesis, Game Gear, SNES, Sharp X68000, Atari ST, and SAM Coupé.
+
+The music was written by Jordan Mechner's father, Francis Mechner.</desc>
+		<image>./images/Prince of Persia.png</image>
+		<rating>0.6</rating>
+		<releasedate>19891003T000000</releasedate>
+		<developer>Brøderbund Software</developer>
+		<publisher>Brøderbund Software</publisher>
+		<genre>Platform</genre>
+	</game>
+	<game>
+		<path>./Blake Stone - Planet Strike.sh</path>
+		<name>Blake Stone: Planet Strike!</name>
+		<desc>Blake Stone: Planet Strike is the commercial sequel to Blake Stone: Aliens of Gold.An evolution rather than a revolution, Planet Strike doesn't dramatically change things and features everything from the original game except the elevator. In the place of the elevator, the player must now collect a bomb on every map and bring it to a security cube; the bomb will destroy the cube allowing the player to use the exit.It features 24 new levels, played in a single episode in a linear fashion (despite a between level map trying to convince you otherwise), a new weapon, the Plasma Discharger (which functions as the game's ultimate weapon), and several new bad guys and bosses.Though the ''new bad guys'' comment is a little misleading as only one of them is actually all new; the others are the boss aliens from Aliens of Gold (with their stats reduced to non-boss level) or simply slightly edited and re-coloured bad guys from the previous game.
+</desc>
+		<image>./images/Blake Stone Planet Strike.png</image>
+		<rating>0</rating>
+		<releasedate>19941028T020000</releasedate>
+		<developer>JAM Productions</developer>
+		<publisher>Apogee Software</publisher>
+		<genre>Shooter</genre>
+		<players />
+	</game>
+	<game id="63306" source="ScreenScraper.fr">
+		<path>./Cannonball.sh</path>
+		<name>Out Run [Enhanced Edition]</name>
+		<desc>Out Run is a ground-breaking racing game in which the player drives a red Ferrari Testarossa through a number of colourful European locations, trying to reach each end-of-level checkpoint before the tight time limit expires. 
+ 
+Each of the game's stages is packed with civilian traffic that must be carefully avoided, as players try to negotiate the game's twisting, hilly roads.  
+ 
+At the end of every stage players are presented with a fork in the road, allowing them to chose which route they wish to take next. This was not the first time this feature had appeared (Tatsumi's 1983 racer, TX-1, was the first to introduce forked roads). 
+ 
+As well as being able to choose routes, players could also - via the game's "in-car radio" - choose one of three different catchy tunes to listen to while driving. The songs are 'Magical Sound Shower', 'Passing Breeze' and 'Splash Wave'.</desc>
+		<rating>0.9</rating>
+		<releasedate>19860101T000000</releasedate>
+		<developer>SEGA</developer>
+		<publisher>SEGA</publisher>
+		<genre>Race, Driving-Race 3rd Pers. view</genre>
+		<players>1</players>
+		<hash />
+		<image>./images/Out Run.png</image>
+		<genreid>1537</genreid>
+	</game>
+	<game>
+		<path>./Blues Brothers.sh</path>
+		<name>The Blues Brothers</name>
+		<desc>The Blues Brothers are on the run from the law. Take control of either bulky Jake or nippy Elwood in this five-level platform game. You must cross a prison, a river and the big city to reach freedom. You also must find your missing records and collect these. Everything and everyone is against you, but you can pick up and throw warehouse crates to defeat your opponents.</desc>
+		<image>./images/The Blues Brothers.png</image>
+		<rating>0</rating>
+		<releasedate>19910101T000000</releasedate>
+		<developer>Titus</developer>
+		<publisher>Titus</publisher>
+		<genre>Platform / Run Jump Scrolling</genre>
+	</game>
+	<game>
+		<path>./F2bgl.sh</path>
+		<name>Fade to Black</name>
+		<desc>Fade to Black is the sequel to Flashback: the Quest for Identity. The player takes control of Conrad, the hero from Flashback who has been imprisoned by his old enemy, the Morphs. Gaining the trust and assistance of the mysterious Ancients, Conrad must fight off the Morph invasion, not knowing whom he can trust.The game uses fully polygonal graphics for both character models and environment. The camera changes angles depending on the location of the player character, similar to the Alone in the Dark series. Conrad can use various weapons to eliminate the enemies and will also have to solve some puzzles on the way. He can not, however, perform as many moves as in Flashback; he can't climb or jump, and the only way he can potentially avoid being shot by enemies is by ducking.
+</desc>
+		<image>./images/Fade to Black.png</image>
+		<rating>0.65</rating>
+		<releasedate>19950101T000000</releasedate>
+		<developer>Delphine Software International</developer>
+		<publisher>Electronic Arts</publisher>
+		<genre>Action / Adventure-Action</genre>
+	</game>
+	<game>
+		<path>./Devilutionx.sh</path>
+		<name>Diablo + Hellfire</name>
+		<desc>Diablo is an action role-playing dungeon crawler video game series developed by Blizzard North and continued by Blizzard Entertainment after the North studio shut down in 2005. The series is made up of four core games: Diablo, Diablo II, Diablo III, and Diablo IV. Expansions include the third-party published Hellfire, which follows the first game; Lord of Destruction, published by Blizzard and released after the second game; and Reaper of Souls, which follows the third game. Additional content is provided through story elements explored in other media forms.</desc>
+		<image>./images/Diablo + Hellfire.png</image>
+		<releasedate>19970103T000000</releasedate>
+		<developer>Blizzard Entertainment</developer>
+		<publisher>Blizzard Entertainment</publisher>
+		<playcount>3</playcount>
+		<lastplayed>20231019T131129</lastplayed>
+	</game>
+	<game id="297188" source="ScreenScraper.fr">
+		<path>./Fallout 2.sh</path>
+		<name>Fallout 2</name>
+		<desc>The sequel to Fallout starts eighty years after its predecessor. When the First Vault Dweller was forced from his home, he walked north until he found some new friends and founded a tribe in a suitable place. But some years after his death, the tribe is dying. The Elders decide that one of the tribe members, the "Chosen One", must find the salvation, a universal tool called G.E.C.K. (short for "Garden of Eden Creation Kit"). Sadly, the hero's only clue are the ancient disks the Vault Dweller has left, and the only equipment are his clothes and PipBoy. With courage and determination the proclaimed Chosen One leaves to save his village, unaware of the consequences his actions will carry. 
+ 
+Visually and gameplay-wise, Fallout 2 is very similar to its predecessor. Combat and character growth are handled the same way, using the S.P.E.C.I.A.L. attribute system and relying on skills to customize the protagonist.</desc>
+		<releasedate>19981029T000000</releasedate>
+		<developer>Black Isle Studios</developer>
+		<publisher>Interplay</publisher>
+		<genre>Action RPG-Role playing games</genre>
+		<players>1</players>
+		<hash />
+		<image>./images/Fallout 2.png</image>
+		<genreid>768</genreid>
+	</game>
+	<game id="297186" source="ScreenScraper.fr">
+		<path>./Fallout.sh</path>
+		<name>Fallout</name>
+		<desc>Set in the aftermath of a world-wide nuclear war, Fallout will challenge you to survive in an unknown and dangerous world. You will take the role of a Vault-dweller, a person who has grown up in a secluded, underground survival Vault. Circumstances arise that force you to go Outside - to a strange world 80 years after the end of modern civilization. A world of mutants, radiation, gangs and violence. 
+ 
+Your immediate task is to find a replacement for the broken water purification controller chip. Without that chip, your fellow Vault dwellers are doomed to dehydration or will be forced to leave the safety of the Vault for the Outside. 
+ 
+The core of the game revolves around your character. Fallout uses a skill-based system to allow you to fine tune your character. As you gain experience (roughly half from combat, the other half from solving adventure seeds and non-combat events), your character will grow as you determine. Combat in Fallout is tactical turn-based. You can take as much time as you need to make decisions. Choose from different types of attacks, with a variety of weapons and attack skills.</desc>
+		<releasedate>19971009T000000</releasedate>
+		<hash />
+		<image>./images/Fallout.png</image>
+	</game>
+	<game>
+		<path>./Hexen 2 - Portal of Praevus.sh</path>
+		<name>Hexen II: Portal of Praevus</name>
+		<desc>After the defeat of Eidolon, an evil wizard known as Praevus attempts to resurrect the Serpent Riders to use as his slaves. You must stop him from succeeding.</desc>
+		<image>./images/Hexen II - Portal of Praevus.png</image>
+		<releasedate>20070803T000000</releasedate>
+		<developer>Raven Software</developer>
+		<publisher>Activision</publisher>
+		<genre>Shooter / 1st person-Shooter</genre>
+	</game>
+	<game>
+		<path>./Hexen 2.sh</path>
+		<name>Hexen II</name>
+		<desc>The world of Thyrion was continuously conquered by the demon brothers known as the Serpent Riders. After two of them were defeated, the oldest and most powerful of the three, Eidolon, is the only one that stands between slavery and liberation. A lone hero must first defeat his generals, the Four Horsemen of the Apocalypse, and finally bring the fight to Eidolon himself. 
+ 
+Hexen II is the third game in the Heretic and Hexen series. Like its predecessors, it is a medieval fantasy-themed first-person shooter. Similarly to Hexen, the player can choose between different character classes - Paladin, Crusader, Assassin, and Necromancer (four as opposed to three in Hexen).</desc>
+		<image>./images/Hexen II.png</image>
+		<releasedate>20070803T000000</releasedate>
+		<developer>Raven Software</developer>
+		<publisher>Activision</publisher>
+		<genre>Shooter / 1st person-Shooter</genre>
+	</game>
+	<game>
+		<path>./CorsixTH.sh</path>
+		<name>Theme Hospital</name>
+		<desc>Theme Hospital is a level-based hospital management simulation where players have to start on an empty building, and then assemble rooms with all kinds of material, from desks and file cabinets for the general diagnosis to the expensive ultra-scanners and X-rays to diagnose such bizarre diseases as Bloaty Head, Slack Songue or Alien DNA, and treat them with even more bizarre machines like an Head Inflator or a DNA fixer. There are several additional rooms, such as a staff room for your employees to rest, a toilet so that patients don't have to relieve themselves in the corridors, a research department to get the most advanced diagnostic and treatment technologies and a training room where consultants can teach a thing or two to rookies, making them capable doctors.</desc>
+		<image>./images/Theme Hospital.png</image>
+		<rating>0.75</rating>
+		<releasedate>19980201T000000</releasedate>
+		<developer>Bullfrog</developer>
+		<publisher>Electronic Arts</publisher>
+		<genre>Strategy-Build And Management-Simulation</genre>
+		<players>4</players>
+	</game>
+	<game>
+		<path>./Bermuda Syndrome.sh</path>
+		<name>Bermuda Syndrome</name>
+		<desc>Jack Thompson is a pilot of an American B-17 bomber during World War II. His plane is shot down by German fighters and is about to crash. However, a mysterious portal appears, transporting Jack into an alternate reality. Jack ends up in a jungle and promptly saves a young woman who is attacked by a gigantic dinosaur. It appears that the woman is a princess who was about to be sacrificed for her father. The two decide to travel together, trying to survive in the dangerous jungle and eventually escape.Bermuda Syndrome is a cinematic platformer similar in concept to Flashback. The emphasis of the gameplay is on solving problems and carefully proceeding through screens filled with enemies and hazards. Jumping, fighting, and occasionally using items are required to succeed. At some points it is necessary to interact with the princess in order to solve a puzzle.
+</desc>
+		<image>./images/Bermuda Syndrome.png</image>
+		<rating>0.7</rating>
+		<releasedate>19960101T000000</releasedate>
+		<developer>Century Interactive</developer>
+		<publisher>BMG Interactive</publisher>
+		<genre>Action / Adventure-Platform-Action</genre>
+	</game>
+	<game>
+		<path>./Bleed2.sh</path>
+		<name>Bleed 2</name>
+		<desc>A furiously fun and fast-paced arcade action game, Bleed 2 welcomes back pink-haired heroine Wryn, the world's greatest – and only remaining – hero, as she fights to defend the globe from an invading force of villains. Master the art of air-dodging and bullet-reflecting to stylishly take down a relentless barrage of bad guys and bosses (and naughty kittys!), and make sure Wryn lives up to her title as the Greatest Hero of All Time!</desc>
+		<image>./images/Bleed 2.png</image>
+		<releasedate>20170208T000000</releasedate>
+		<developer>BOOTDISK REVOLUTION</developer>
+		<publisher>BOOTDISK REVOLUTION</publisher>
+		<genre>Platform / Shooter Scrolling-Platform</genre>
+		<players>2</players>
+	</game>
+	<game>
+		<path>./steelassault/gamedata/Shaders/buildEffects.sh</path>
+		<name>buildEffects</name>
+		<rating>0</rating>
+		<releasedate>19700101T020000</releasedate>
+		<hidden>true</hidden>
+	</game>
+	<game>
+		<path>./C-Dogs.sh</path>
+		<name>Cyberdogs</name>
+		<desc>If anyone remembers the top-down shooters Loaded or Chaos Engine, Cyberdogs is the same basic gameplay. You must choose your character and his weapons that you will fight with. In your mission you must destroy the enemy and retrieve the lost items.
+</desc>
+		<image>./images/Cyberdogs.png</image>
+		<releasedate>19940101T000000</releasedate>
+		<developer>Freeware</developer>
+		<publisher>Freeware</publisher>
+		<genre>Action</genre>
+		<players>2</players>
+	</game>
+	<game>
+		<path>./Dave GNukem.sh</path>
+		<name>Dave Gnukem</name>
+		<desc>Dave Gnukem is an open source retro-style 2D scrolling platform shooter, inspired by and similar to Duke Nukem 1 (a famous original 1991 game that launched the Duke Nukem series). It currently runs on Windows, macOS, Linux and various other platforms. It is written in C++ and uses LibSDL libraries. It features an integrated level editor. Note this is not really a 'clone' or a 're-make'; it is probably most akin to a parody.</desc>
+		<image>./images/Dave GNukem.png</image>
+		<rating>0.95</rating>
+		<releasedate>19930101T000000</releasedate>
+		<genre>Action-Adventure-Platform / Shooter Scrolling-Platform</genre>
+	</game>
+	<game>
+		<path>./Der Clou.sh</path>
+		<name>The Clue! [Der Clou!]</name>
+		<desc>You play Matt Stuvysant, a man of Polish descent and criminal persuasion. You arrive in London with nothing but the clothes on your back and a desire to become the greatest criminal mind this century. Once getting a room and meeting some accomplices, you must begin your career. Starting with small shops and gradually working your way up to the theft of the Crown Jewels.
+
+The game allows you to control almost every aspect of the crime, from choosing the target building and accomplices to actually planning the burglary itself.</desc>
+		<image>./images/The Clue!.png</image>
+		<releasedate>19940101T000000</releasedate>
+		<publisher>Kompart UK, Ltd.</publisher>
+		<genre>Adventure</genre>
+	</game>
+	<game>
+		<path>./Oddworld Abes Oddysee.sh</path>
+		<name>Oddworld - Abe's Oddysee</name>
+		<desc>Abe's Oddysee begins with the eponymous protagonist as a prisoner in RuptureFarms, from which he narrates his story. He and many other Mudokons are slaves to Molluck the Glukkon, the owner of RuptureFarms: "the biggest meat-processing plant on Oddworld". Abe is a contented floor-waxer First Class and currently Employee of the Year.
+
+At the time of the story, the ingredients of the corporation's three major "Tasty Treats" (Scrab Cakes, Paramite Pies, and Meech Munchies) are quickly running out, with the Meeches already extinct. While working late, Abe overhears Molluck's plan to use the Mudokon slaves as meat products called "Mudokon Pops!", which frightens Abe into escaping from the factory.</desc>
+		<image>./images/Oddworld - Abe's Oddysee.png</image>
+		<rating>0.8</rating>
+		<releasedate>19970919T000000</releasedate>
+		<developer>Oddworld Inhabitants</developer>
+		<publisher>GT Interactive</publisher>
+		<genre>Platform-Adventure</genre>
+		<players>2</players>
+	</game>
+	<game>
+		<path>./Oddworld Abes Exoddus.sh</path>
+		<name>Oddworld - Abe's Exoddus</name>
+		<desc>Those nasty Glukons are at it again, intent on oppressing the loveable Mudokons any way they can. Last time, the meanies were manufacturing Mudokon jerky. Now, they've officially taken genocide too far, by forcing blind Mudokons into slave labor to dig up the bones of their fellow deceased. It so happens, by the way, that Mudokon bones add just the right kick to a favorite Glukon recipe, Soulstorm Brew.
+ Who's gonna save the day? Our unlikely hero Abe, of course. You remember Abe: that blue-green, loincloth-wearing, six foot-tall Fraggle with chronic digestive problems? Yep, he would have been content to rest on his laurels after rescuing ninety-nine of his Mudokon buddies from extermination in Oddworld: Abe's Oddysee, but a group of disgruntled ghosts elected good ol' Abe to avenge their deaths.</desc>
+		<image>./images/Oddworld - Abe's Exoddus.png</image>
+		<rating>0.8</rating>
+		<releasedate>19981101T000000</releasedate>
+		<developer>Oddworld Inhabitants</developer>
+		<publisher>GT Interactive</publisher>
+		<genre>Adventure-Platform</genre>
+		<players>2</players>
+	</game>
+	<game>
+		<path>./Flare Engine.sh</path>
+		<name>Flare Engine</name>
+		<image>./images/Flare.png</image>
+	</game>
+	<game>
+		<path>./HoMM3.sh</path>
+		<name>Heroes of Might and Magic III</name>
+		<desc>Heroes of Might and Magic III is a turn-based strategy game developed by Jon Van Caneghem through New World Computing originally released for Microsoft Windows by The 3DO Company in 1999. Its ports to several computer and console systems followed in 1999–2000.</desc>
+		<image>./images/Heroes of Might and Magic III.png</image>
+		<rating>0.8</rating>
+		<releasedate>19991001T000000</releasedate>
+		<developer>New World Computing's</developer>
+		<publisher>3DO</publisher>
+		<genre>Strategy</genre>
+		<players>6</players>
+	</game>
+	<game>
+		<path>./hurrican/data/textures/pvr/PVRCompress.sh</path>
+		<name>PVRCompress</name>
+		<rating>0</rating>
+		<releasedate>19700101T020000</releasedate>
+		<hidden>true</hidden>
+	</game>
+	<game>
+		<path>./cdogs/graphics/chars/bodies/make_spritesheet.sh</path>
+		<name>make_spritesheet</name>
+		<rating>0</rating>
+		<releasedate>19700101T020000</releasedate>
+		<hidden>true</hidden>
+	</game>
+	<game>
+		<path>./cdogs/graphics/chars/heads/make_spritesheet.sh</path>
+		<name>make_spritesheet</name>
+		<rating>0</rating>
+		<releasedate>19700101T020000</releasedate>
+		<hidden>true</hidden>
+	</game>
+	<game>
+		<path>./cdogs/graphics/door/generate.sh</path>
+		<name>generate</name>
+		<rating>0</rating>
+		<releasedate>19700101T020000</releasedate>
+		<hidden>true</hidden>
+	</game>
+	<game>
+		<path>./cdogs/graphics/make_bullet_spritesheet.sh</path>
+		<name>make_bullet_spritesheet</name>
+		<rating>0</rating>
+		<releasedate>19700101T020000</releasedate>
+		<hidden>true</hidden>
+	</game>
+	<game>
+		<path>./cdogs/graphics/wall/generate.sh</path>
+		<name>generate</name>
+		<rating>0</rating>
+		<releasedate>19700101T020000</releasedate>
+		<hidden>true</hidden>
+	</game>
+	<game>
+		<path>./flare/mods/HERESY/languages/regenerate_po.sh</path>
+		<name>regenerate_po</name>
+		<rating>0</rating>
+		<releasedate>19700101T020000</releasedate>
+		<hidden>true</hidden>
+	</game>
+	<game>
+		<path>./Bejeweled.sh</path>
+		<name>Bejeweled</name>
+		<desc>The object of the game is to score as many points as possible by swapping adjacent gems to create sets, either horizontal or vertical, of 3 or more identical gems. 
+ 
+You can play Bejeweled in either Normal or Timetrial mode. Switch modes by clicking the appropriate button on the left-hand control bar. You will have to abandon your game in progress to switch game modes.</desc>
+		<image>./images/Bejeweled.png</image>
+		<releasedate>20000101T000000</releasedate>
+		<developer>PopCap Games</developer>
+		<publisher>PopCap Games</publisher>
+		<genre>Puzzle-Game</genre>
+	</game>
+	<game>
+		<path>./Hex-A-Hop.sh</path>
+		<name>Hex-A-Hop</name>
+		<desc>Hex-a-hop is a hexagonal tiles based puzzle game written by Tom Beaumont. The player controls a girl, who has to destroy all green tiles by jumping on them. In addition to the green tiles there are plenty of other kind of tiles with varying functionality gradually introduced.</desc>
+		<image>./images/Hex-A-Hop.png</image>
+		<releasedate>20090511T000000</releasedate>
+		<developer>Tom Beaumont</developer>
+	</game>
+	<game>
+		<path>./Hocoslamfy.sh</path>
+		<name>Hocoslamfy</name>
+		<desc>Hocoslamfy is a funny and simple game to spend your time. You are a small bee and you must fly to avoid the bamboo shoots!</desc>
+		<image>./images/Hocoslamfy.png</image>
+		<releasedate>20182710T000000</releasedate>
+		<developer>Gianfilippo Cimmino</developer>
+	</game>
+	<game>
+		<path>./Brave Dogs Road.sh</path>
+		<name>Brave Dog's Road</name>
+		<desc>Brave Dog's Road is a short platformer about a dog who dreams of adventure.</desc>
+		<image>./images/Brave Dog's Road.png</image>
+		<releasedate>20200801T000000</releasedate>
+		<developer>Shawn</developer>
+		<genre>Platform</genre>
+	</game>
+	<game>
+		<path>./IIChantra P.E.A.R.sh</path>
+		<name>iiChantra P.E.A.R.</name>
+		<desc>iiChantra is a cross-platform 2D-Action, «retro» in style but modern in gameplay. Despite the similarity of the name, iiChantra is not a clone of any particular game in Contra series, trying instead to capture the feeling of a few first games in some aspects of gameplay, parodies it in other and tries to go beyond its ideas in the rest. From the very beginning of the development process original resources were in high priority, so all of them were created especially for the game and not used before, but most of the character and enemies are familiar to the visitors of the imageboard.</desc>
+		<image>./images/iiChantra.png</image>
+		<releasedate>20120123T000000</releasedate>
+		<developer>Anonymous Soviet Russia</developer>
+		<genre>Platform / Shooter Scrolling-Platform</genre>
+	</game>
+	<game>
+		<path>./cdogs/cdogs/mathc/run_tests.sh</path>
+		<name>run_tests</name>
+		<rating>0</rating>
+		<releasedate>19700101T020000</releasedate>
+		<hidden>true</hidden>
+	</game>
+	<game>
+		<path>./cdogs/graphics/recolor.sh</path>
+		<name>recolor</name>
+		<rating>0</rating>
+		<releasedate>19700101T020000</releasedate>
+		<hidden>true</hidden>
+	</game>
+	<game>
+		<path>./Marathon.sh</path>
+		<name>Marathon</name>
+		<desc>Marathon is a first-person shooter video game developed and published by Bungie, and released in December 1994 for the Apple Macintosh. The game takes place several centuries into the future in outer space and sets the player as a security officer attempting to stop an alien invasion aboard a colony ship named the Marathon.</desc>
+		<image>./images/Marathon.png</image>
+		<releasedate>19941101T000000</releasedate>
+		<developer>Bungie</developer>
+		<publisher>Bandai</publisher>
+	</game>
+	<game id="332166" source="ScreenScraper.fr">
+		<path>./RVGL.sh</path>
+		<releasedate>19990818T000000</releasedate>
+		<name>Re-Volt</name>
+		<hash />
+		<image>./images/Re-Volt.png</image>
+		<desc>The premise of the game involves racing radio-controlled cars around environments like museums, steamships, construction sites and supermarkets. During a race the cars can collect random weapons to use to displace competitors. Cars and tracks were both unlocked through success in the game's tournament modes.</desc>
+	</game>
+	<game>
+		<path>./Shadow Warrior.sh</path>
+		<name>Shadow Warrior</name>
+		<desc>Lo Wang has been working as a Shadow Warrior (a bodyguard and mercenary of sorts) for the powerful Zilla Corporation for years. But when he discovered the evil Zilla's plan to summon monsters from other dimensions and conquer the world, he left in disgust. Realizing that Lo Wang might jeopardize his plans, Zilla sends his assassins after him.Shadow Warrior is a first-person shooter similar in style and gameplay to Duke Nukem 3D. The game set in a generic ''Asialand'', which looks like China and Japan conflated together. It features deliberately immature and politically incorrect humor, as well as a protagonist who delivers regular one-liners, commenting upon the situation at hand. Much of the humor is derived from over-the-top, stereotypical portrayals of Asian culture (e.g. scantily clad young women drawn in Japanese anime style). The player has to complete several levels, fighting enemies and occasionally solving puzzles on the way. Though the game primarily focuses on exploration and combat, puzzle-solving plays a larger role than in most other contemporary shooters. There are also a few sequences that allow the player to drive vehicles, some of which have mounted weapons. Like Duke Nukem 3D, the game's environments are interactive, allowing the player to manipulate or destroy scenery and many objects, often revealing secret areas. On a technical side, the game introduces climbable ladders, true room-over-room situations, and voxels (instead of sprites) for weapons and inventory items.Enemies include evil ninjas with various weapons, ''coolies'' which carry a crate of dynamite and blow themselves up when near the player character, female assassins with crossbows, and many more. To combat them, Lo Wang can use a variety of weapons and items. Weapons include: Lo Wang's fists, a katana, shuriken, a riot gun, an Uzi (two of which can be equipped and used at a time), a rocket launcher firing heat-seeking or nuclear missile, a grenade launcher, sticky bombs, a railgun, and even some enemy body parts. Many of these weapons have a secondary firing mode. Lo Wang can also find and use gadgets such as caltrops to leave in the enemies' way, or gas bombs to choke foes who happen to be near it.
+</desc>
+		<image>./images/Shadow Warrior.png</image>
+		<rating>0.8</rating>
+		<releasedate>19970101T000000</releasedate>
+		<developer>3D Realms</developer>
+		<publisher>GT Interactive</publisher>
+		<genre>Shooter / 1st person-Action-Shooter</genre>
+		<players>2-8</players>
+	</game>
+	<game>
+		<path>./Heart of Darkness.sh</path>
+		<name>Heart Of Darkness</name>
+		<desc>The eternally delayed Heart of Darkness has finally made its way to the PlayStation gaming console! One day, as Andy was in the park with his dog Whiskey, strange things started to happen. Almost in an instant, a vortex to some undiscovered realm opened up and sucked the poor doggie in. Determined to get his pooch back, Andy hopped in a homemade flying contraption and set off on a journey; where he was going, he did not know. 
+ On his way to this unknown world, Andy was met with some resistance and crash-landed into a wall of pure granite. Upon meeting up with a creepy monster, it was easy to see things were not kosher; this Land of Darkness has been overrun by horrific shadow monsters working in service of the Master of Darkness. It is the player's objective to ultimately destroy this evil nemesis, save Whiskey, and return home with both lives in tact.</desc>
+		<image>./images/Heart of Darkness.png</image>
+		<rating>0.75</rating>
+		<releasedate>19980731T000000</releasedate>
+		<developer>Amazing Studio</developer>
+		<publisher>Ocean</publisher>
+		<genre>Platform</genre>
+	</game>
+  <game id="158251" source="ScreenScraper.fr">
+    <path>./OpenFodder.sh</path>
+    <name>Cannon Fodder</name>
+    <desc>Guide a team of up to four soldiers through 72 levels of combat in this innovative top-down action/strategy hybrid, best thought of as Lemmings crossed with Commando crossed with Dune 2. The characters are controlled indirectly using the mouse, as you activate each soldier or group of them by highlighting them, click the left button to move them to a particular spot, and the right button for them to fire guns at an enemy. You can also pick up grenades, which can be used to destroy groups of enemies or buildings (by pressing both buttons at once). 
+
+Each mission has a specific objective, and some feature vehicles such as tanks to make things easier. Your troops can cross water but can't shoot within it, so finding and controlling bridges is often crucial. You can use the arrangement of trees to find hiding places to shoot from, and should watch out for CPU soldiers also doing so.</desc>
+    <rating>0.8</rating>
+    <releasedate>19930101T000000</releasedate>
+    <developer>Sensible Software</developer>
+    <publisher>Virgin</publisher>
+    <genre>Strategy</genre>
+    <players>1</players>
+    <hash>8ED22A7F</hash>
+    <image>./images/Cannon Fodder.png</image>
+    <genreid>1280</genreid>
+  </game>
+	<game>
+		<path>./OpenJazz.sh</path>
+		<name>Jazz Jackrabbit</name>
+		<desc>Jazz Jackrabbit is a series of platform video games featuring the eponymous character, Jazz Jackrabbit, a green anthropomorphic hare, who fights with his nemesis, Devan Shell, in a science fiction parody of the fable, The Tortoise and the Hare. Created by Arjan Brussee and Cliff Bleszinski and developed by Epic Games, the series debuted on MS-DOS in 1994 with Jazz Jackrabbit.</desc>
+		<image>./images/Jazz Jackrabbit.png</image>
+		<rating>0.75</rating>
+		<releasedate>19940801T000000</releasedate>
+		<developer>Epic MegaGames</developer>
+		<publisher>Epic Games</publisher>
+		<genre>Platform / Shooter Scrolling-Platform</genre>
+	</game>
+	<game id="339840" source="ScreenScraper.fr">
+		<path>./Sonic CD.sh</path>
+		<name>Sonic CD</name>
+		<desc>Rather than a straight port or an emulated title, this version of the 1993 Sonic CD game is a completely redone version for modern platforms and based on a fanmade Retro engine. The original version was released for the SEGA CD and later also ported to Windows. This version supports a whole host of more modern platforms as well as a complete re-release for the Windows platform. 
+ 
+It has many changes and additions, such as true 16:9 aspect ratio (instead of stretched 4:3 like the ports of other Sonic games), the choice between both the Japanese/European and American soundtracks, a constant framerate of 60 frames per second, several bugfixes, an option to select between the original CD's Spin Dash or the Sonic 2 Spin Dash and the inclusion of Tails (with his Sonic 3 abilities) as an unlockable character. 
+ 
+The game adds leaderboards for the Single Player and Time Attack modes. It also regains the original game's extra modes, the D.A. Garden and Visual Mode, and also includes the Sound Test and Stage Select modes as unlockables, unlike the original in which you had to input a cheat code to enter them.</desc>
+		<releasedate>20120119T000000</releasedate>
+		<developer>SEGA</developer>
+		<publisher>SEGA</publisher>
+		<genre>Platform</genre>
+		<hash />
+		<image>./images/Sonic CD.png</image>
+		<genreid>257</genreid>
+	</game>
+	<game>
+		<path>./Sonic 1.sh</path>
+		<name>Sonic The Hedgehog</name>
+		<desc>Sonic the Hedgehog is the first of many games starring Sega's premier rodent Sonic. It's a side scrolling platform game with a difference: speed. Sonic rushes through levels with incredible speed, allowing him to traverse loops and jumps with ease. The evil Dr. Robotnik has captured many of Sonic's animal friends and trapped them inside robots. Sonic can free his friends by destroying the robots with his spin attack. Meanwhile, Dr. Robotnik is trying to control the all-powerful chaos emeralds and Sonic must grab them before he does in the 3D rotating bonus levels. Sonic's weapon is his spin attack; while jumping, Sonic destroys hostile robots by touch. Throughout the platforming levels Sonic collects numerous rings. If Sonic is hit by an enemy, all the rings he's carrying fall out and scatter around; Sonic can quickly grab the rings back before they disappear. If Sonic is hit while not carrying any rings, he dies. Collecting 100 rings gives Sonic an extra life. There is also an invincibility bonus which temporarily protects Sonic from all attacks. The game is divided into several "zones", each of them containing three levels. At the end of each zone Sonic confronts Dr. Robotnik in a boss fight. Sonic the Hedgehog is a significant game because it gave Sega it's first real mascot, and established the Genesis as the video game system with "attitude."</desc>
+		<image>./images/Sonic the Hedgehog.png</image>
+		<rating>0.8</rating>
+		<releasedate>19910623T000000</releasedate>
+		<developer>SEGA</developer>
+		<publisher>SEGA</publisher>
+		<genre>Action-Platform</genre>
+	</game>
+	<game id="339892" source="ScreenScraper.fr">
+		<path>./SRB2.sh</path>
+		<name>Sonic Robo Blast 2</name>
+		<desc>Sonic Robo Blast 2 is a freeware, non-licensed game set in the universe of SEGA's Sonic the Hedgehog. 
+ 
+The game uses a third-person perspective and a full 3D engine. There are 3 characters to choose from: Sonic, Tails and Knuckles, each with different abilities, and their task is to go through 3 zones (Greenflower, Techno Hill and Castle Eggman), with additional unlockable levels. During the game characters find tokens that take them to special stages to get chaos emeralds or to unlock secrets. The main goal is to stop Eggman's plans for world domination.</desc>
+		<releasedate>19980101T000000</releasedate>
+		<developer>Sonic Team Junior</developer>
+		<publisher>Sonic Team Junior</publisher>
+		<genre>Platform</genre>
+		<hash />
+		<image>./images/Sonic Robo Blast 2.png</image>
+		<genreid>257</genreid>
+	</game>
+	<game id="188454" source="ScreenScraper.fr">
+		<path>./Starcatcher.sh</path>
+		<name>Starcatcher</name>
+		<releasedate>20220101T000000</releasedate>
+		<hash>7B8A00B9</hash>
+		<image>./images/Starcatcher.png</image>
+		<desc> Collect stars on this space platformer!</desc>
+	</game>
+	<game>
+		<path>./SuperTux.sh</path>
+		<name>SuperTux</name>
+		<desc>SuperTux is classical sidescrolling platformer in 2D, starring Tux, the Linux mascot, as main character. Tux has to rescue the penguin Penny from the clutches of the evil Nolok. 
+ 
+The gameplay of SuperTux is heavily influenced by Super Mario Bros. Tux in his normal form dies at one hit, but he can transform to Super Tux if he finds an egg, and he can throw fireballs if he finds a fireflower (which only appears when he's Super Tux). Tux can collect coins, which in the current version are used to activate save point within a level (otherwise, Tux has to go through a level all over again if he dies).</desc>
+		<image>./images/SuperTux.png</image>
+		<rating>0.75</rating>
+		<releasedate>20030101T000000</releasedate>
+		<developer>SuperTux Development Team</developer>
+		<publisher>SuperTux Development Team</publisher>
+		<genre>Action-Platform / Run Jump Scrolling-Platform</genre>
+	</game>
+	<game>
+		<path>./Tamatool.sh</path>
+		<name>Tamagotchi Tool</name>
+		<desc>Tamagotchi Emulator</desc>
+		<releasedate>19961123T000000</releasedate>
+		<image>./images/Tamagotchi Tool.png</image>
+	</game>
+	<game id="187295" source="ScreenScraper.fr">
+		<path>./Blues Brothers Jukebox Adventure.sh</path>
+		<name>The Blues Brothers: Jukebox Adventure</name>
+		<desc>Jukebox Adventure is the sequel to The Blues Brothers. Once again, the player has to choose a favourite Blues Brother and take him through different side-scrolling platform levels. He needs to collect records and use them as defence by throwing them towards enemies. There are also power-ups that can be gathered until the jukebox to progress to the next level is found.</desc>
+		<rating>0.7</rating>
+		<releasedate>19930101T000000</releasedate>
+		<developer>Titus</developer>
+		<publisher>Titus</publisher>
+		<genre>Platform / Fighter Scrolling-Platform</genre>
+		<players>1-2</players>
+		<hash>F5D4C6D6</hash>
+		<image>./images/The Blues Brothers - Jukebox Adventure.png</image>
+		<genreid>258</genreid>
+	</game>
+	<game id="188201" source="ScreenScraper.fr">
+		<path>./NAM.sh</path>
+		<name>NAM</name>
+		<desc>The year is 1966, shortly after USA deployed its troops to participate in the Vietnam War. Alan ''The Bear'' Westmoreland, a Marine Corps sergeant, is sent behind the enemy lines. He is known for his high endurance, achieved by ingesting various stimulants. As long as these drugs keep him going, the Bear isn't afraid of danger, and is used by his superiors for missions with overwhelming odds. The raid turns into total warfare; with only a small team at his side, the Sergeant will have to do everything he is capable of in order to survive.NAM is a military-themed first-person shooter that uses the Build engine. The protagonist has to fight his way through the jungle, with various weapons such as M16, M60, M79, LAW, and others. The missions range from urban gun battles to sneaking in the thick jungles and man-made tunnels under the ground. The battlefields are frequented by air strikes, anti-personnel mines (which the player can spot with a mine detector), fire fights, ambushes, snipers and tanks. Fellow soldiers will aid Alan in battle, though for the most part he'll have to depend on himself.A multiplayer battle is included, featuring 19 multiplayer levels with different game modes like Gruntmatch, Capture-the-flag and Fireteam, where each player is allowed to select a soldier type and is sent on different missions.
+</desc>
+		<releasedate>19980731T000000</releasedate>
+		<developer>TNT Team</developer>
+		<publisher>GT Interactive</publisher>
+		<hash />
+		<image>./images/Nam.png</image>
+	</game>
+	<game>
+		<path>./Tiny Crate.sh</path>
+		<name>Tiny Crate</name>
+		<desc>Tiny Crate is a cute little precision platformer with puzzle elements! Lift and toss crates to traverse over spike pits and reach higher ground! Weigh down buttons to create platforms and solve the puzzle! Push yourself and make tight jumps! You got this!</desc>
+		<releasedate>20210926T000000</releasedate>
+		<developer>Harmony Honey</developer>
+		<publisher>Harmony Honey</publisher>
+		<genre>Action-Platform</genre>
+		<hash />
+		<image>./images/Tiny Crate.png</image>
+		<genreid>257</genreid>
+	</game>
+	<game>
+		<path>./VVVVVV.sh</path>
+		<name>VVVVVV</name>
+		<desc>VVVVVV is a 2010 puzzle-platform game created by Terry Cavanagh. In the game, the player controls Captain Viridian, who must rescue their spacecrew after a teleporter malfunction caused them to be separated in Dimension VVVVVV.</desc>
+		<image>./images/VVVVVV.png</image>
+		<rating>7</rating>
+		<releasedate>20101101T000000</releasedate>
+		<developer>Terry Cavanagh</developer>
+		<publisher>Terry Cavanagh</publisher>
+		<genre>Platform</genre>
+	</game>
+	<game>
+		<path>./Wetspot2.sh</path>
+		<name>Wetspot 2</name>
+		<desc>The arcade game WetSpot 2 is similar to older versions of Pengo and Bubble Bobble. Up to two people can play simultaneously while controlling a little crab through a series of mazes. In order to advance to the next level, you must eliminate all the monsters on the current one. Since you lack weapons, you must use the same bricks that make up the level's walls in order to achieve your objective. How? Simply approach a brick and press the fire button; the brick in front of you will start to move in that direction and halt only when it collides with another brick.</desc>
+		<image>./images/Wetspot 2.png</image>
+		<releasedate>19980101T000000</releasedate>
+	</game>
+	<game>
+		<path>./VanillaRA.sh</path>
+		<name>Command &amp; Conquer : Red Alert</name>
+		<desc>The game involves commanding either the Soviets or Allies through 14 different missions, which vary depending on the side you choose. In order to amass your troops (consisting of tanks, infantry, naval and air forces), you must first build various structures with your available funds. Each map screen will have two types of natural resources (ore and gemstones) that can be collected to finance your operation. Missions generally involve building a base, mining resources and generating a mix of troops to mount an assault on the enemy's base. 
+   The PlayStation version supports the mouse and includes a Skirmish mode, which lets you face up to three computer opponents on 20 different maps in an all-out battle for domination. Want to start out with more credits or troops? How about increase the game speed? These options can all be adjusted before you begin a game. The PlayStation version also supports the Link Cable so you can battle a second player head to head or with computer-controlled AI teams. Twenty-one music tracks will keep your foot tapping as you wage war, and a password save feature will allow you to continue your single-player missions at a later time.</desc>
+		<image>./images/Command &amp; Conquer - Red Alert.png</image>
+		<rating>0.85</rating>
+		<releasedate>19971031T000000</releasedate>
+		<developer>Westwood Studios</developer>
+		<publisher>Virgin Interactive</publisher>
+		<genre>Strategy</genre>
+		<players>2</players>
+	</game>
+	<folder>
+		<path>./cdogs</path>
+		<name>cdogs</name>
+		<rating>0</rating>
+		<releasedate>19700101T020000</releasedate>
+		<hidden>true</hidden>
+	</folder>
+	<game>
+		<path>./1.sh</path>
+		<name>1</name>
+	</game>
+	<game>
+		<path>./TheyNeedToBeFed.sh</path>
+		<name>TheyNeedToBeFed</name>
+	</game>
+	<game>
+		<path>./Wolfenstein 3D.sh</path>
+		<name>Wolfenstein 3D</name>
+		<desc>The first three episodes of the game focus on William "B.J." Blazkowicz's attempts to escape from Castle Wolfenstein and overthrow the Nazi regime.
+
+In the first episode, Escape from Castle Wolfenstein, B.J., an Allied spy, has been captured while trying to find the plans for Operation Eisenfaust, and was imprisoned in Castle Wolfenstein. Initially armed only with a knife and a Walther P38 (obtained by overpowering the guard in his cell), B.J. tries to escape the castle prison. Taking on SS guards, he eventually finds himself face to face with head prison guard Hans Grosse.
+
+In the second episode, Operation: Eisenfaust, B.J. finds out that the operation is real, and that Nazis are creating an army of undead mutants in Castle Hollehammer. B.J. enters the castle and confronts the mad scientist Dr. Schabbs, creator of the mutants. His defeat signals the end of this biological war.
+
+Die, Führer, Die! is, chronologically, the final episode. Fighting through Nazi soldiers, and attacking the bunker under the Reichstag, he finds himself up against Adolf Hitler himself (equipped with a robotic suit and 4 Gatling guns).</desc>
+		<image>./images/Wolfenstein 3D.png</image>
+		<rating>0.6</rating>
+		<releasedate>19920101T000000</releasedate>
+		<developer>id Software</developer>
+		<publisher>Apogee Software</publisher>
+		<genre>Shooter / 1st person-Shooter</genre>
+	</game>
+	<game>
+		<path>./opennox.sh</path>
+		<name>opennox</name>
+	</game>
+	<game>
+		<path>./SteelAssault.sh</path>
+		<name>Steel Assault</name>
+		<desc>Punch, whip, and zipline your way through a post-apocalyptic America in this 16-bit retro-style action platformer! Play as Taro Takahashi, a resistance soldier on a revenge mission against the dictator who lords over the ashes.</desc>
+		<image>./images/Steel Assault.png</image>
+		<releasedate>20210928T000000</releasedate>
+		<developer>Zenovia Interactive</developer>
+		<publisher>Tribute Games Inc.</publisher>
+		<genre>Action-Platform</genre>
+	</game>
+	<game>
+		<path>./Hijinx.sh</path>
+		<name>Hijinx - Enhanced Edition</name>
+		<desc>Hijinx is a game of pure platforming. There are no enemies to thwart, and no grand quests to complete: just you, the level exit, and an improbable number of spikes on almost every wall between the two.
+
+But it's never that simple: sometimes you can't touch the ground, sometimes gravity is on the fritz, and every so often, the level is filled with coins we nicked from the plumber next door. To win the game, you must collect every card in every level; and before every card is another challenge to complete.
+
+The original Hijinx won first place at the third Godot Wild Jam. The enhanced edition brings with it a complete graphical overhaul, and adds new levels and gameplay mechanics to make a total of thirty cards to collect over ten unique levels, besides numerous other changes.</desc>
+		<image>./images/Hijinx - Enhanced Edition.png</image>
+		<releasedate>20190727T000000</releasedate>
+		<developer>JohnGabrielUK</developer>
+		<publisher>JohnGabrielUK</publisher>
+		<genre>Action-Platform</genre>
+	</game>
+	<game>
+		<path>./cybershadow.sh</path>
+		<name>cybershadow</name>
+	</game>
+	<game>
+		<path>./Bleed.sh</path>
+		<name>Bleed</name>
+		<desc>Wryn is a girl with a big arsenal and big dreams -- she wants to be the ultimate videogame hero! Help her take down the Greatest Heroes of All Time in an action-packed bid to claim the title for herself and show the world what a true hero looks like! 
+Bleed is an action-platformer focused on stylish, acrobatic dodging and fluid, challenging gameplay. There's no filler -- just you and your skills against seven levels of enemies, obstacles, breakneck set-pieces and inventive bosses!</desc>
+		<image>./images/Bleed.png</image>
+		<releasedate>20130703T000000</releasedate>
+		<developer>BOOTDISK REVOLUTION</developer>
+		<publisher>BOOTDISK REVOLUTION</publisher>
+		<genre>Platform / Shooter Scrolling-Platform</genre>
+		<players>2</players>
+		<playcount>1</playcount>
+		<lastplayed>20230430T082155</lastplayed>
+	</game>
+	<game>
+		<path>./Sonic Mania.sh</path>
+		<name>Sonic Mania Plus</name>
+		<desc>Experience the ultimate celebration of past and future in Sonic Mania, an all-new 2D Sonic adventure running at a crisp 60FPS with stunning HD retro-style graphics. Multiple playable characters give you the ability to go explosively fast as Sonic, soar as Tails, or power through tough obstacles with Knuckles' brute strength. You can re-live the Sonic of the past with an exciting new twist on classic zones while fighting against new bosses and Dr. Eggman's evil robot army. Go head-to-head with players in Competition Mode or play in Co-Op Mode with a friend. Sonic Mania was developed by Christian Whitehead, Headcannon, and PagodaWest Games in collaboration with Sonic Team. Welcome to Sonic Mania</desc>
+		<image>./images/Sonic Mania.png</image>
+		<rating>0.8</rating>
+		<releasedate>20170829T000000</releasedate>
+		<developer>Headcannon</developer>
+		<publisher>SEGA</publisher>
+		<genre>Action-Platform / Run Jump Scrolling-Platform</genre>
+		<players>2</players>
+		<playcount>1</playcount>
+		<lastplayed>20230601T180244</lastplayed>
+	</game>
+	<game>
+		<path>./Timespinner.sh</path>
+		<name>Timespinner</name>
+		<desc>With her family murdered in front of her and the ancient Timespinner device destroyed, Lunais is suddenly transported into a unknown world, stranded with seemingly no hope of return. Using her power to control time, Lunais vows to take her revenge on the evil Lachiem Empire, but sometimes the course of history isn’t quite as black and white as it seems...   
+ 
+Explore an intricate, connected world with beautifully drawn and detailed pixel art environments. Traverse between the barren present and luscious past of Lachiem, collecting elemental magic orbs and combining their power to destroy enemies with blades and spells. Befriend mysterious creatures called Familiars, such as the adorable dream dragon Meyef, and train them to aid you in battle. Test your skills and timing with intense boss battles, and you venture forth to take on the Emperor himself!</desc>
+		<image>./images/Timespinner.png</image>
+		<releasedate>20180925T000000</releasedate>
+		<developer>Lunar Ray Games</developer>
+		<publisher>Chucklefish</publisher>
+		<genre>Platform / Run Jump Scrolling-Platform-Action / Adventure-Action</genre>
+		<playcount>3</playcount>
+		<lastplayed>20230926T190855</lastplayed>
+	</game>
+	<game>
+		<path>./Freedom Planet.sh</path>
+		<name>Freedom Planet</name>
+		<desc>Freedom Planet is a 2D platformer whose gameplay is based on several Sega Genesis-era games, including Sonic the Hedgehog and Gunstar Heroes. The player may choose which heroine to use, and each has her own abilities and exclusive stages to conquer. Lilac can run at high speeds and defeat enemies with her melee attacks. Carol uses her martial arts skills to fight, and uses both her wall-jumping abilities and motorcycle to get from place to place. Lastly, Milla can create shields with her psychic powers, throw items, and float to distant platforms. 
+ 
+The game features a story-based Adventure mode, a purely gameplay-based Classic mode, and a Time Attack mode. Speedrunning is both supported and encouraged, including achievements for beating specified times for each stage.</desc>
+		<image>./images/Freedom Planet.png</image>
+		<releasedate>20140721T000000</releasedate>
+		<developer>GalaxyTrail Games</developer>
+		<publisher>GalaxyTrail Games</publisher>
+		<genre>Platform / Run Jump Scrolling-Platform</genre>
+		<playcount>2</playcount>
+		<lastplayed>20230926T194733</lastplayed>
+	</game>
+	<game>
+		<path>./Iconoclasts.sh</path>
+		<name>Iconoclasts</name>
+		<desc>Robin just wants to be a mechanic and help people, but without a license she’s a sinner in Mother’s eyes. Ever since picking up her wrench, the world has been going nuts and she's wanted to bolt it back together. Now Penance is raining down on everyone she loves and One Concern agents are after her. 
+ 
+But something big is going on – bigger than droughts of Ivory fuel and personal conflicts – and Robin’s in the thick of it. 
+ 
+Numerous densely detailed locations filled with fine-tuned action and puzzles 
+20+ gear-grinding, screen-filling boss battles stand in your way. 
+ 
+Three game-changing difficulty settings supported by a unique tweak system 
+A heart-wrenching epic – can one mechanic fix the whole world?</desc>
+		<image>./images/Iconoclasts.png</image>
+		<releasedate>20180123T000000</releasedate>
+		<developer>Konjak</developer>
+		<publisher>Bifrost Entertainment</publisher>
+		<genre>Platform / Shooter Scrolling-Platform</genre>
+		<playcount>1</playcount>
+		<lastplayed>20230926T192028</lastplayed>
+	</game>
+	<game>
+		<path>./Clockwind.sh</path>
+		<name>Clockwind</name>
+		<image>./images/Clockwind.png</image>
+		<desc>The mechanic of this game is time travel. Make your way through 4 levels utilizing the passage of time in different ways. This may involve making trees grow or turning a car in to a flying car.</desc>
+		<playcount>1</playcount>
+		<releasedate>20191228T000000</releasedate>
+		<developer>alesan99</developer>
+		<publisher>alesan99</publisher>
+		<genre>Platform</genre>
+		<lastplayed>20230927T214441</lastplayed>
+	</game>
+	<game>
+		<path>./Daikatana.sh</path>
+		<name>Daikatana</name>
+		<playcount>1</playcount>
+		<image>./images/Daikatana.png</image>
+		<desc>Daikatana is a first-person shooter game developed by Ion Storm. It was published by Eidos Interactive for Windows and Kemco for Nintendo 64. Players control a swordsmaster who travels through various time periods using the eponymous Daikatana, a powerful sword tied to the fate of the world.</desc>
+		<releasedate>20000523T000000</releasedate>
+		<developer>John Romero</developer>
+		<publisher>Eidos Interactive</publisher>
+		<genre>Shooter</genre>
+		<lastplayed>20230927T214441</lastplayed>
+	</game>
+	<game>
+		<path>./DROID7.sh</path>
+		<name>DROID7</name>
+		<playcount>1</playcount>
+		<image>./images/Droid7.png</image>
+		<desc>DROID7 is a platformer, jump your way up on a generated tower while a laser beam chases you from below. The higher you go, the faster it gets, and it isn't long before disappearing (and reappearing) platforms and spikes are introduced to make your life harder. You gain score as you ascend, with your high score being saved.</desc>
+		<releasedate>20200312T000000</releasedate>
+		<developer>Juan Colacelli</developer>
+		<publisher>Juan Colacelli</publisher>
+		<genre>Platform</genre>
+		<lastplayed>20230927T214441</lastplayed>
+	</game>
+	<game>
+		<path>./Firearrow.sh</path>
+		<name>Fire Arrow</name>
+		<playcount>1</playcount>
+		<image>./images/Fire Arrow.png</image>
+		<desc>Fire Arrow is a short time attack "coffee break" shoot 'em up with randomized enemies and adaptive difficulty. There are two different modes - 3 minutes and 5 minutes - and two ships to choose from, tackling a single stage shooting for a high-score. Ships can be toggled by the press of a button, serving as alternate fire modes and you also have the usual handful of bombs. Other than the basic shot power-up, destroyed enemies drop medals to pick up for extra score.</desc>
+		<releasedate>20130101T000000</releasedate>
+		<developer>G System</developer>
+		<publisher>G System</publisher>
+		<genre>Shoot'em Up</genre>
+		<lastplayed>20230927T214441</lastplayed>
+	</game>
+	<game id="191359" source="ScreenScraper.fr">
+		<path>./Heart of the Alien Redux.sh</path>
+		<name>Heart of the Alien - Redux</name>
+		<desc>Heart of the Alien is a cinematic platformer video game. It is a sequel to Another World and continues the story directly from where the original ended. The game switches the player's role from Another World; this time the player takes control of Buddy, the main character's alien ally from the previous game.</desc>
+		<releasedate>19940101T000000</releasedate>
+		<genre>Adventure</genre>
+		<players>1</players>
+		<hash />
+		<image>./images/Heart of the Alien Redux.png</image>
+		<genreid>512</genreid>
+	</game>
+	<game>
+		<path>./Banana Duck.sh</path>
+		<name>Banana Duck</name>
+		<desc>Banana Duck is an action game that puts you in a relatable challenge. Picture yourself as a banana-craving, non-swimming duck in a fridge full of tomatoes and carrots. Navigate past evil veggies and nonsensical saw blades to relish the pursuit of bananas. Embrace the challenge, enjoy the absurdity, and savor the taste of this unique adventure.</desc>
+		<releasedate>20230801T000000</releasedate>
+		<developer>Hamdy Elzanqali</developer>
+		<publisher>Hamdy Elzanqali</publisher>
+		<genre>Action-Platform</genre>
+		<hash />
+		<image>./images/Banana Duck.png</image>
+		<genreid>257</genreid>
+	</game>
+	<game>
+		<path>./Deep Sleep.sh</path>
+		<name>Deep Sleep</name>
+		<desc>It's morning and you gotta wake up for work, you hear the alarm clocks, but to wake up you need to collect all the clocks and escape the room before deep sleep ghosts catch you. They'll follow your every step and will eventually catch and make you fall into Deep Sleep if you're not careful. Use your Dream Pillow to traverse through 15 different and challenging levels! Good luck!</desc>
+		<releasedate>20200924T000000</releasedate>
+		<developer>ItsGeppy</developer>
+		<publisher>ItsGeppy</publisher>
+		<genre>Action-Platform</genre>
+		<hash />
+		<image>./images/Deep Sleep.png</image>
+		<genreid>257</genreid>
+	</game>
+	<game>
+		<path>./Defshot.sh</path>
+		<name>Defshot</name>
+		<desc>A 2D shooter made for the KoriJam</desc>
+		<releasedate>20210503T000000</releasedate>
+		<developer>securas</developer>
+		<publisher>securas</publisher>
+		<genre>Action-Platform</genre>
+		<hash />
+		<image>./images/Defshot.png</image>
+		<genreid>257</genreid>
+	</game>
+	<game>
+		<path>./GNU Robbo.sh</path>
+		<name>GNU Robbo</name>
+		<desc>Robbo is a puzzle video game designed by Janusz Pelc and published by LK Avalon in 1989 for the Atari 8-bit family. A success on the Polish domestic market, it was later ported to other computer platforms and released in the United States as The Adventures of Robbo.</desc>
+		<releasedate>20020927T000000</releasedate>
+		<developer>Janusz Pelc</developer>
+		<publisher>LK Avalon</publisher>
+		<genre>Puzzle</genre>
+		<hash />
+		<image>./images/GNU Robbo.png</image>
+	</game>
+	<game>
+		<path>./Donut Dodo.sh</path>
+		<name>Donut Dodo</name>
+		<desc>Donut Dodo is a light-hearted arcade game, reminiscent of the beloved classics from the early 80's that we still cherish to this very day. You play as Baker Billy Burns, who has to run, jump, and climb to outwit Donut Dodo and his bunch of clueless minions.</desc>
+		<releasedate>20220603T000000</releasedate>
+		<developer>pixel.games</developer>
+		<publisher>pixel.games</publisher>
+		<genre>Action-Platform</genre>
+		<hash />
+		<image>./images/Donut Dodo.png</image>
+		<genreid>257</genreid>
+	</game>
+	<game>
+		<path>./Farmner.sh</path>
+		<name>Farmner</name>
+		<desc>Your daughter has gone missing. You have followed footsteps next to a path to what seems to be an abandoned farmland. There are torches still glowing hot, where is everyone? Find your daughter, quickly!</desc>
+		<releasedate>20200530T000000</releasedate>
+		<developer>jaydensippy</developer>
+		<publisher>jaydensippy</publisher>
+		<genre>Survival</genre>
+		<hash />
+		<image>./images/Farmner.png</image>
+	</game>
+	<game>
+		<path>./Fire and Fondness 2.sh</path>
+		<name>Fire and Fondness 2</name>
+		<desc>Daytime television just got hot: in the hit gameshow, Fire &amp; Fondness, young lovers put their relationships to the test in the ultimate courtship ritual: attempting to navigate a succession of convoluted, flamethrower-filled deathtraps. Our lawyers are advising us to clarify that the fire is fake. As are the teleporters. But the relationships are real! (Probably.) The original Fire &amp; Fondness was the winner of the Godot Community Game Jam 2018. The sequel, which features an original soundtrack, contains thirty-five levels, with new tricks and mechanics around every corner, including a set of super-difficult challenges for expert players. It also has a dog.</desc>
+		<releasedate>20200808T000000</releasedate>
+		<developer>JohnGabrielUK</developer>
+		<publisher>JohnGabrielUK</publisher>
+		<genre>Puzzle</genre>
+		<hash />
+		<image>./images/Fire and Fondness 2.png</image>
+	</game>
+	<game>
+		<path>./Digger.sh</path>
+		<name>Digger</name>
+		<desc>Take control of a mechanical digging machine as you tunnel your way through the earth, searching for valuable gems and the even more valuable bags of gold!  But watch out for Nobbins and Hobbins, and don't be careless enough to let the bags of gold crush you! 
+ 
+Digger is an arcade game combining elements of the popular arcade games Dig Dug and Mr. Do!.  Players control the titular 'Digger' that can tunnel through dirt with ease.  The goal of each level is to gather up each of the gems, which allows you to progress to the next stage.</desc>
+		<image>./images/Digger.png</image>
+		<releasedate>19830101T000000</releasedate>
+		<developer>Windmill Software</developer>
+		<publisher>Windmill Software</publisher>
+		<genre>Action / Labyrinth-Action</genre>
+		<playcount>1</playcount>
+		<lastplayed>20230930T211356</lastplayed>
+	</game>
+	<game>
+		<path>./Hawkthorne.sh</path>
+		<name>Journey to the Center of Hawkthorne</name>
+		<desc>Journey to the Center of Hawkthorne is a fan-made game inspired by the classic Community episode Digital Estate Planning in which the study group finds itself living inside an old-school video game, this independently-produced 2D platformer features Jeff Winger, Britta, Abed, Shirley, Annie, Troy and Pierce as 8-bit gaming characters.</desc>
+		<image>./images/Journey to the Center of Hawkthorne.png</image>
+		<releasedate>20120601T000000</releasedate>
+		<developer>Independent</developer>
+		<publisher>Independent</publisher>
+		<genre>Platform</genre>
+		<playcount>1</playcount>
+		<lastplayed>20230930T211356</lastplayed>
+	</game>
+	<game>
+		<path>./Gumgem.sh</path>
+		<name>Gumgem</name>
+		<desc>The gummy kingdom is in danger! The evil gummy bear has taken the prince prisoner! Like never before we need a hero who knows how to get the prince out of trouble! You're our only hope! Please, go rescue the prince!</desc>
+		<image>./images/Gumgem.png</image>
+		<releasedate>20181007T000000</releasedate>
+		<developer>DAZEL</developer>
+		<publisher>DAZEL</publisher>
+		<genre>Platform</genre>
+		<playcount>1</playcount>
+		<lastplayed>20230930T211356</lastplayed>
+	</game>
+	<game>
+		<path>./HELP! NO BRAKE.sh</path>
+		<name>HELP! NO BRAKE</name>
+		<desc>Hey umm, your car won't brake anymore. So better clear all the levels to get it fixed I guess.</desc>
+		<image>./images/Help! No Break.png</image>
+		<releasedate>20221022T000000</releasedate>
+		<developer>Edgar Mendoza</developer>
+		<publisher>Edgar Mendoza</publisher>
+		<genre>Racing</genre>
+		<playcount>1</playcount>
+		<lastplayed>20230930T211356</lastplayed>
+	</game>
+	<game>
+		<path>./hyper JUMP.sh</path>
+		<name>hyper JUMP</name>
+		<desc>Pick up the yellow orbs, dodge everything else.</desc>
+		<image>./images/Hyper Jump.png</image>
+		<releasedate>20220716T000000</releasedate>
+		<developer>Edgar Mendoza</developer>
+		<publisher>Edgar Mendoza</publisher>
+		<genre>Arcade</genre>
+		<playcount>1</playcount>
+		<lastplayed>20230930T211356</lastplayed>
+	</game>
+	<game>
+		<path>./Hyperfight.sh</path>
+		<name>HYPERFIGHT</name>
+		<desc>HYPERFIGHT is a fighting game where every hit is lethal, and every win counts. You'll have to risk your points to gain access to your character's special and super moves, which can turn the tide of the game in a heartbeat. Designed to be easy to pick up and hard to master, so grab a friend, any friend! </desc>
+		<image>./images/HYPERFIGHT.png</image>
+		<releasedate>20190916T000000</releasedate>
+		<developer>joh</developer>
+		<publisher>joh</publisher>
+		<genre>Fighting</genre>
+		<playcount>1</playcount>
+		<lastplayed>20230930T211356</lastplayed>
+	</game>
+	<game>
+		<path>./Margot-Beatrice Adventure.sh</path>
+		<name>Margot-Beatrice Adventure</name>
+		<desc>The courageous princess Margot-Béatrice try to re-take the forest gem but she encounter a terrible (in every way) sorcerer that emprison her in a cristal prison. She now forced to call her animal friends to free her and save the forest.</desc>
+		<image>./images/Margot-Beatrice Adventure.png</image>
+		<releasedate>20220629T000000</releasedate>
+		<developer>Levrault</developer>
+		<publisher>Levrault</publisher>
+		<genre>Platform</genre>
+		<playcount>1</playcount>
+		<lastplayed>20230930T211356</lastplayed>
+	</game>
+	<game>
+		<path>./Maximilien Adventure.sh</path>
+		<name>Maximilien Adventure</name>
+		<desc>Maximilien, a young adventure, survive a terrible plane crash. With the help of some locals, he will needs to get through the jungle and find his brother and sister.</desc>
+		<image>./images/Maximilien Adventure.png</image>
+		<releasedate>20200410T000000</releasedate>
+		<developer>Levrault</developer>
+		<publisher>Levrault</publisher>
+		<genre>Platform</genre>
+		<playcount>1</playcount>
+		<lastplayed>20230930T211356</lastplayed>
+	</game>
+	<game>
+		<path>./Me and My Shadow.sh</path>
+		<name>Me and My Shadow</name>
+		<desc>Me and My Shadow is a puzzle/platform game in which you try to reach the exit by solving puzzles. Spikes, moving blocks, fragile blocks and much more stand between you and the exit. Record your moves and let your shadow mimic them to reach blocks you couldn’t reach alone.</desc>
+		<image>./images/Me and My Shadow.png</image>
+		<releasedate>20120725T000000</releasedate>
+		<developer>gordebak</developer>
+		<publisher>gordebak</publisher>
+		<genre>Platform</genre>
+		<playcount>1</playcount>
+		<lastplayed>20230930T211356</lastplayed>
+	</game>
+	<game>
+		<path>./Megaman.sh</path>
+		<name>Megaman Rock N Roll</name>
+		<desc>A mysterious robot force is invading the city and abducting Robot Masters. Protoman and Megaman both succumb to the terror leaving Roll alone and scared. Back at Dr. Light's lab Roll decides to go through the procedure her brother did to become a super fighting robot.</desc>
+		<image>./images/Megaman Rock N Roll.png</image>
+		<releasedate>20191125T000000</releasedate>
+		<developer>Dennis Engelhard</developer>
+		<publisher>Dennis Engelhard</publisher>
+		<genre>Platform</genre>
+		<playcount>1</playcount>
+		<lastplayed>20230930T211356</lastplayed>
+	</game>
+	<game>
+		<path>./Murtop.sh</path>
+		<name>Murtop</name>
+		<desc>Help Murti save the world from an invasion of carrot-hungry moles with her bomb-pooping skills!</desc>
+		<image>./images/Murtop.png</image>
+		<releasedate>20230425T000000</releasedate>
+		<developer>hiulit</developer>
+		<publisher>hiulit</publisher>
+		<genre>Platform</genre>
+		<playcount>1</playcount>
+		<lastplayed>20230930T211356</lastplayed>
+	</game>
+	<game>
+		<path>./PAUSED.sh</path>
+		<name>PAUSED</name>
+		<desc>What do ducks have to do with rabbits? Exactly, adventure and physics stuff are what you are looking for. If you don't mind, please pause a minute and enjoy an easy set of puzzles and a relaxing game with (I think) beautiful pixel art environment.</desc>
+		<image>./images/Paused.png</image>
+		<releasedate>20230424T000000</releasedate>
+		<developer>Hamdy Elzanqali</developer>
+		<publisher>Hamdy Elzanqali</publisher>
+		<genre>Platform</genre>
+		<playcount>1</playcount>
+		<lastplayed>20230930T211356</lastplayed>
+	</game>
+	<game>
+		<path>./PigeonAscent.sh</path>
+		<name>Pigeon Ascent</name>
+		<desc> In Pigeon Ascent, take care of your own pigeon as they fight increasingly stronger foes, and then face the legendary Pigeon God at the end... can you keep death far from your bird?</desc>
+		<image>./images/Pigeon Ascent.png</image>
+		<releasedate>20200421T000000</releasedate>
+		<developer>Escada Games</developer>
+		<publisher>Escada Games</publisher>
+		<genre>Adventure</genre>
+		<playcount>1</playcount>
+		<lastplayed>20230930T211356</lastplayed>
+	</game>
+	<game>
+		<path>./Pinball Disc Room.sh</path>
+		<name>Pinball Disc Room</name>
+		<desc>How did you end up in this pinball of death? The blades teleport in. Dodge the discs to survive. Knock down the popups to open the passage way but beware you can't control when you exit.</desc>
+		<image>./images/Pinball Disc Room.png</image>
+		<releasedate>20201025T000000</releasedate>
+		<developer>Identical Games</developer>
+		<publisher>Identical Games</publisher>
+		<genre>Arcade</genre>
+		<playcount>1</playcount>
+		<lastplayed>20230930T211356</lastplayed>
+	</game>
+	<game>
+		<path>./PlaqueAttackRemake.sh</path>
+		<name>Dental Defense</name>
+		<desc>The player controls a tube of toothpaste, defending teeth against various types of food, such as hamburgers and french fries. The objective is to fire toothpaste at food intent on destroying the teeth. If the food touches a tooth, it begins breaking down the tooth. If the player is fast enough to shoot the piece of food as soon as it starts breaking down the tooth the player will be able to save the tooth. If not, the tooth will decay and disappears from the screen. The food comes in waves, and the movements become more complicated. Destroying the food scores points, as does the number of teeth and the amount of toothpaste left at the end of each wave. After a certain number of points is scored, users gain bonus teeth. Bonus teeth are applied at the end of each wave. If all eight teeth are still present, the additional teeth will be placed on the sides of the mouth. Otherwise the teeth will replace any teeth lost. Play continues until all the teeth are gone, at which point the game is over.</desc>
+		<image>./images/Plaque Attack Remake.png</image>
+		<releasedate>20180212T000000</releasedate>
+		<developer>Escada Games, Sucraiso</developer>
+		<publisher>Escada Games, Sucraiso</publisher>
+		<genre>Arcade</genre>
+		<playcount>1</playcount>
+		<lastplayed>20230930T211356</lastplayed>
+	</game>
+	<game>
+		<path>./Puremetal.sh</path>
+		<name>Pure Metal - Feature 1</name>
+		<desc>Can you save Pure Metal from the clutches of evil? Kill the hoards of enemies and rain righteous fury on the bosses and save the planet!</desc>
+		<image>./images/Pure Metal Feature 1.png</image>
+		<releasedate>20200610T000000</releasedate>
+		<developer>Limpid Liaison</developer>
+		<publisher>Limpid</publisher>
+		<genre>Shoot'em Up</genre>
+		<playcount>1</playcount>
+		<lastplayed>20230930T211356</lastplayed>
+	</game>
+	<game>
+		<path>./CHIPNDALE.sh</path>
+		<name>Chip 'N Dale Rescue Rangers - Remastered</name>
+		<desc>Disney's Chip 'n Dale Rescue Rangers: Remastered - A re-release of a game based on the animated series Chip and Dale rush to the rescue. The walkthrough offers single-player and two-player co-op. Taking control of the main character, the player begins a rescue mission. Need to locate a lost kitten. As the operation progresses, the central characters are drawn into more serious trouble and intrigue.</desc>
+		<image>./images/Chip N Dale Rescue Rangers Remastered.png</image>
+		<releasedate>20150310T000000</releasedate>
+		<developer>RR16 Studio</developer>
+		<publisher>RR16 Studio</publisher>
+		<genre>Platform</genre>
+		<playcount>1</playcount>
+		<lastplayed>20230930T211356</lastplayed>
+	</game>
+	<game>
+		<path>./Retro Time.sh</path>
+		<name>Retro Time</name>
+		<desc>Retro Time is a game containing 8 retro based games playable in 3 game modes being Retro Carousel, Time Attack and Lives mode. The game is a port from my competetion entry for Fuze 4 for Nintendo switch, in colleboration Wireframe magazine.</desc>
+		<image>./images/Retro Time.png</image>
+		<releasedate>20220210T000000</releasedate>
+		<developer>joyrider3774</developer>
+		<publisher>joyrider3774</publisher>
+		<genre>Platform</genre>
+		<playcount>1</playcount>
+		<lastplayed>20230930T211356</lastplayed>
+	</game>
+	<game>
+		<path>./Spooky.sh</path>
+		<name>Spooky Ghosts Dot Com</name>
+		<desc>Spooky Ghosts Dot Com is a small metroidvania about a ghost hunter named Ruby.  One Halloween night a ghost hunting job comes in, but it turns out to not be a regular gig!</desc>
+		<image>./images/Spooky Ghosts Dot Com.png</image>
+		<releasedate>20180320T000000</releasedate>
+		<developer>zertuk</developer>
+		<publisher>zertuk</publisher>
+		<genre>Platform</genre>
+		<playcount>1</playcount>
+		<lastplayed>20230930T211356</lastplayed>
+	</game>
+	<game>
+		<path>./StarBoy.sh</path>
+		<name>StarBoy</name>
+		<desc>During its journey StarBoy crashed and got lost in an unknown planet, help him return back to its spaceship!</desc>
+		<image>./images/StarBoy.png</image>
+		<releasedate>20210504T000000</releasedate>
+		<developer>mrkdji</developer>
+		<publisher>mrkdji</publisher>
+		<genre>Platform</genre>
+		<playcount>1</playcount>
+		<lastplayed>20230930T211356</lastplayed>
+	</game>
+	<game>
+		<path>./StarBoy.sh</path>
+		<name>StarBoy</name>
+		<desc>During its journey StarBoy crashed and got lost in an unknown planet, help him return back to its spaceship!</desc>
+		<image>./images/StarBoy.png</image>
+		<releasedate>20210504T000000</releasedate>
+		<developer>mrkdji</developer>
+		<publisher>mrkdji</publisher>
+		<genre>Platform</genre>
+		<playcount>1</playcount>
+		<lastplayed>20230930T211356</lastplayed>
+	</game>
+	<game>
+		<path>./SuperXYX.sh</path>
+		<name>Super XYX</name>
+		<desc>Black Serpent rises... The year is 3999, humanity has long colonized itself across the galaxy, devouring new worlds for their resources, enjoying the interstellar life of luxury, more or less friendly interactions with other alien races. That was until an ancient threat has awakened from it's slumber. The Black Serpent, the great destroyer of worlds. He's back and he's about to make the Milky Way, his greatest feast yet. A bunch of unrelated misfits Now, there's a bunch of heroes who are fighting back...... but they have nothing to do with saving the world. No, they've got all their own reasons to fight Black Serpent and his forces. And there's 6 of them (4 of which are unlockable) each with unique shots and bombs.</desc>
+		<image>./images/Super XYX.png</image>
+		<releasedate>20210504T000000</releasedate>
+		<developer>Team Grybanser Fox</developer>
+		<publisher>Team Grybanser Fox</publisher>
+		<genre>Shoot'em Up</genre>
+		<playcount>1</playcount>
+		<lastplayed>20230930T211356</lastplayed>
+	</game>
+	<game id="188429" source="ScreenScraper.fr">
+		<path>./Rick Dangerous.sh</path>
+		<name>Rick Dangerous</name>
+		<desc>You play Rick Dangerous, an Indiana Jones type who's on a quest to find the lost Coolu Amazon tribe.  However, his plane crashes in the middle of a bunch of crazed Coolus. Hopefully he's up to the challenge of escaping. If he is, he will find himself in the pyramid of Egypt with no easy way past leaders and their minions, and then engulfed in a web of traps in a Nazi base.Rick Dangerous is a platform game across over 100 screens, in which Rick has his gun in one hand, and dynamite sticks in another. You must take a methodical approach to clearing each screen, as there are traps in place which will need memorizing and preempting where possible. Use the dynamite wisely, for enemies you can't get into the purely-horizontal range of your gun.
+</desc>
+		<rating>0.9</rating>
+		<releasedate>19890101T000000</releasedate>
+		<developer>Core Design</developer>
+		<publisher>Microplay Software</publisher>
+		<genre>Platform</genre>
+		<players>1</players>
+		<hash>30E02FF7</hash>
+		<image>./images/Rick Dangerous.png</image>
+		<genreid>257</genreid>
+	</game>
+	<game>
+		<path>./Thermomorph.sh</path>
+		<name>Thermomorph</name>
+		<desc>Your crew is dead. Unidentified creatures stalk the halls of your mining ship. Armed with a motion sensor and a flamethrower, you must survive until the escape pod is repaired.</desc>
+		<image>./images/Thermomorph.png</image>
+		<releasedate>20180516T000000</releasedate>
+		<developer>Varun R.</developer>
+		<publisher>Varun R.x</publisher>
+		<genre>Puzzle</genre>
+		<playcount>1</playcount>
+		<lastplayed>20230930T211356</lastplayed>
+	</game>
+	<game>
+		<path>./Thwack.sh</path>
+		<name>Thwack</name>
+		<desc>Thwack is a top-down arcade tennis game featuring quirky characters and hard-to-master ball physics.</desc>
+		<image>./images/Thwack.png</image>
+		<releasedate>20221003T000000</releasedate>
+		<developer>Jon Topielski, Alpha6, mafgar</developer>
+		<publisher>Jon Topielski, Alpha6, mafgar</publisher>
+		<genre>Sports</genre>
+		<playcount>1</playcount>
+		<lastplayed>20230930T211356</lastplayed>
+	</game>
+	<game>
+		<path>./UbermoshCollection.sh</path>
+		<name>UBERMOSH Collection</name>
+		<desc>UBERMOSH is an arcade game about cutting bullets with a sword, in a gun-filled cyberpunk mosh pit." Like a pinball table or a coin-op arcade machine, UBERMOSH was made to give you a shot of adrenaline in a couple of minutes. Each time you play a new level is generated for you to beat your score in 90 seconds.</desc>
+		<image>./images/UBERMOSH Collection.png</image>
+		<releasedate>20190430T000000</releasedate>
+		<developer>Walter Machado</developer>
+		<publisher>Walter Machado</publisher>
+		<genre>Action</genre>
+		<playcount>1</playcount>
+		<lastplayed>20230930T211356</lastplayed>
+	</game>
+	<game>
+		<path>./Upo.sh</path>
+		<name>upo</name>
+		<desc>upo is a procedurally generated music game.</desc>
+		<image>./images/UPO.png</image>
+		<releasedate>20210613T000000</releasedate>
+		<developer>Jeme</developer>
+		<publisher>Jeme</publisher>
+		<genre>Puzzle</genre>
+		<playcount>1</playcount>
+		<lastplayed>20230930T211356</lastplayed>
+	</game>
+	<game>
+		<path>./Wizardchase.sh</path>
+		<name>Wizard Chase</name>
+		<desc>Collect all the treasure in the dungeon! Can you make it to the second level? Good luck!</desc>
+		<image>./images/Wizard Chase.png</image>
+		<releasedate>20220214T000000</releasedate>
+		<developer>clarkjohn</developer>
+		<publisher>clarkjohn</publisher>
+		<genre>Action</genre>
+		<playcount>1</playcount>
+		<lastplayed>20230930T211356</lastplayed>
+	</game>
+	<game>
+		<path>./xkcd Hoverboard.sh</path>
+		<name>xkcd Hoverboard</name>
+		<desc>Randall Munroe's webcomic xkcd has been around for well over a decade, touching on everything from pop culture to science, love, and beyond, and it's garnered a pretty huge audience. To celebrate the launch of his new book, Thing Explainer, Randall Munroe has released Hoverboard, a very simple little platformer where you gather coins from a small playfield and drop them in a box. The end!... or is it?! Using keys to move and jump, you'll find your hoverboard can jump an infinite number of times and take you beyond the designated play area to explore a surprisingly huge black and white world with secrets aplenty. There's not much to do other than take in the sights and collect more coins, but with so much to find, all rendered in a simple but lovely black-and-white stickman style, Hoverboard is worth a romp as a great piece of interactive art full of secrets and references to everything under the sun.</desc>
+		<image>./images/xkcd.png</image>
+		<releasedate>20150217T000000</releasedate>
+		<developer>Randall Munroe</developer>
+		<publisher>Randall Munroe</publisher>
+		<genre>Platform</genre>
+		<playcount>1</playcount>
+		<lastplayed>20230930T211356</lastplayed>
+	</game>
+	<game>
+		<path>./Zeroranger.sh</path>
+		<name>ZeroRanger</name>
+		<desc>ZeroRanger is a vertically scrolling 2D shoot'em up with heavy emphasis on shooting, dodging and... mystery? The forces of unknown alien menace GREEN ORANGE have begun their invasion. With the planet's main defense force swiftly taken down, only two secondary fighters remain against the complete defeat. Blast your way through the enemy forces and unleash your fighter's latent potential! Unlock new weapons and abilities as you hone your skills against the invaders! ... But even then, is this enough against the true power of your enemy? The final battle starts now...</desc>
+		<image>./images/ZeroRanger.png</image>
+		<releasedate>20181002T000000</releasedate>
+		<developer>system_erasure</developer>
+		<publisher>system_erasure</publisher>
+		<genre>Shoot'em Up</genre>
+		<playcount>1</playcount>
+		<lastplayed>20230930T211356</lastplayed>
+	</game>
+	<game>
+		<path>./Jazz Jackrabbit 2.sh</path>
+		<name>Jazz Jackrabbit 2</name>
+		<desc>Jazz the jackrabbit was just about to marry his girlfriend Eva Earlong, when his arch-nemesis, the turtle Devan Shell, stole the wedding ring. To add insult to injury, Eva's hostile mother has locked Jazz and his brother Spaz in a dungeon. The two hares must escape, retrieve the precious jewel, and punish Devan for his evil deeds. 
+ 
+Like its predecessor, Jazz Jackrabbit 2 is a platform shooter. Unlike the previous installment, the sequel allows the player to control Spaz as well. Jazz retains his ability to hover in the air by using his ears, and Spaz can stomp and smash enemies. The hares use a default blaster gun with unlimited ammunition and can later acquire more powerful weapons, a few of which (e.g. a freezing gun) were not found in the first game. Coins can be found throughout the stages and then given to vendors to access bonus areas. 
+ 
+The party mode allows up to four players to use the same computer with split-screen, or up to eight players to compete on two screens via modem. The level editor JCS (Jazz Creation Station) is also included in the game. </desc>
+		<image>./images/Jazz Jackrabbit 2.png</image>
+		<releasedate>19980101T000000</releasedate>
+		<developer>Epic MegaGames</developer>
+		<publisher>Gathering of Developpers</publisher>
+		<genre>Platform / Shooter Scrolling-Platform</genre>
+		<players>4</players>
+		<playcount>1</playcount>
+		<lastplayed>20231005T193627</lastplayed>
+	</game>
+	<game>
+		<path>./Exhumed.sh</path>
+		<name>Powerslave [Exhumed]</name>
+		<desc>In this First person shooter, you're an armed forces specialist sent to investigate strange happenings at the ancient Egyptian city of Karnak. Soon you learn that alien invaders with a penchant for mummifying humans alive have taken over the place. You have to fight your way through increasingly difficult levels with an unbelievable cast in order to finish it. 
+</desc>
+		<image>./images/Powerslave.png</image>
+		<rating>0.65</rating>
+		<releasedate>19960101T000000</releasedate>
+		<developer>Lobotomy Software</developer>
+		<publisher>Playmates Interactive</publisher>
+		<genre>Shooter-Shooter / 1st person</genre>
+		<playcount>1</playcount>
+		<lastplayed>20231006T111521</lastplayed>
+	</game>
+	<game>
+		<path>./SaltandSanctuary.sh</path>
+		<name>Salt and Sanctuary</name>
+		<desc>In Salt and Sanctuary, you play as a person washed ashore a mysterious island following a shipwreck. The ship was carrying a princess, who is now missing. The player must explore the island and survive against its myriad inhabitants if they wish to rescue the princess. 
+ 
+The player explores each region of the island, finding new paths and battling enemies and bosses to earn salt. Players will also find sanctuaries, where they can heal up and use the salt to upgrade their character's stats and abilities through a skill tree. If a player dies, all of the salt they were carrying will be lost, unless they can kill the enemy which killed them first.</desc>
+		<image>./images/Salt and Sanctuary.png</image>
+		<releasedate>20160517T000000</releasedate>
+		<developer>Ska Studios</developer>
+		<publisher>Ska Studios</publisher>
+		<genre>Platform-Action RPG-Role playing games</genre>
+		<players>2</players>
+		<playcount>2</playcount>
+		<lastplayed>20231006T112245</lastplayed>
+	</game>
+	<game>
+		<path>./ROTA.sh</path>
+		<name>ROTA</name>
+		<desc>In ROTA gravity bends beneath your feet! Move blocks and twist gravity to solve puzzles. Collect all 50 gems and explore 8 vibrant worlds</desc>
+		<image>./images/Rota.png</image>
+		<releasedate>20220507T000000</releasedate>
+		<developer>Harmony Honey</developer>
+		<publisher>Harmony Honey</publisher>
+		<genre>Platform</genre>
+		<playcount>2</playcount>
+		<lastplayed>20231006T111626</lastplayed>
+	</game>
+	<game>
+		<path>./Magic Vigilante.sh</path>
+		<name>Magic Vigilante</name>
+		<desc>A bullet hell shooter where you can manipulate time to deflect enemy projectiles.</desc>
+		<image>./images/Magic Vigilante.png</image>
+		<releasedate>20230312T000000</releasedate>
+		<developer>nizakashii</developer>
+		<publisher>nizakashii</publisher>
+		<genre>Shoot'em Up</genre>
+		<playcount>2</playcount>
+		<lastplayed>20231007T213120</lastplayed>
+	</game>
+	<game>
+		<path>./Xenon Valkyrie.sh</path>
+		<name>Project Xenon Valkyrie</name>
+		<desc>Xenon Valkyrie is a rogue-like with many RPG elements in which you will have to get to the deepest part of a moon and finish the plans of a wicked witch. You will be able to get many weapons randomly as you fight in a world that is created every time you play.</desc>
+		<image>./images/Project Xenon Valkyrie.png</image>
+		<releasedate>20170203T000000</releasedate>
+		<developer>Diabolical Mind</developer>
+		<publisher>Daniel Fernandez Chavez</publisher>
+		<genre>Platform</genre>
+		<playcount>7</playcount>
+		<lastplayed>20231010T235231</lastplayed>
+	</game>
+	<game>
+		<path>./Carmageddon.sh</path>
+		<name>Carmageddon</name>
+		<desc>Motorized carnage. Ever wanted to hit pedestrians during a race? Now's your chance. Carmageddon is an ultra-violent racing game which caused much controversy during the '90s but was also very popular due to its fun factor. It was also one of the first batch of games to make use of 3D accelerated graphics (using OpenGL and 3dfx Voodoo cards).
+
+At the beginning of the game the player only has one car and is ranked at #99. The overall objective is to race all the way to the top, collecting the opponents' cars on the way as trophies (and possibly replacements to his vehicle). In the race itself the player tries to damage opponents by driving into them, and can also kill pedestrians. Damage, kills and spectacular moves earn credits for the player which can be used for upgrades and even making repairs to the car at anytime during the race. If you wreck a certain car in 4 races or so, you get to drive it. There are many power-ups strewn around the courses which range from useful to fun to downright absurd. Though the player can win by racing fairly and normally, most players found it much more fun to wreck everything in sight.
+
+Carmageddon is a violent game which is probably not suitable for minors.</desc>
+		<image>./images/Carmageddon.png</image>
+		<releasedate>19970620T000000</releasedate>
+		<developer>Stainless Software</developer>
+		<publisher>SCi Games</publisher>
+		<genre>Race, Driving</genre>
+		<players>2</players>
+		<playcount>2</playcount>
+		<lastplayed>20231011T175252</lastplayed>
+	</game>
+	<game>
+		<path>./Sulka.sh</path>
+		<name>Sulka</name>
+		<desc>Help Sulka find a new home!</desc>
+		<image>./images/Sulka.png</image>
+		<releasedate>20211114T000000</releasedate>
+		<developer>Kultisti</developer>
+		<publisher>Kultisti</publisher>
+		<genre>Platform</genre>
+		<playcount>1</playcount>
+		<lastplayed>20231007T213120</lastplayed>
+	</game>
+	<game>
+		<path>./Roguelight.sh</path>
+		<name>Roguelight</name>
+		<desc>The deeper you travel the darker it gets, and you only have your arrows to light the way.</desc>
+		<image>./images/Roguelight.png</image>
+		<releasedate>20140813T000000</releasedate>
+		<developer>Daniel Linssen</developer>
+		<publisher>Daniel Linssen</publisher>
+		<genre>Platform</genre>
+		<playcount>5</playcount>
+		<lastplayed>20231012T180701</lastplayed>
+	</game>
+	<game>
+		<path>./Sulka.sh</path>
+		<name>Sulka</name>
+		<desc>Help Sulka find a new home!</desc>
+		<image>./images/Sulka.png</image>
+		<releasedate>20211114T000000</releasedate>
+		<developer>Kultisti</developer>
+		<publisher>Kultisti</publisher>
+		<genre>Platform</genre>
+		<playcount>2</playcount>
+		<lastplayed>20231012T175239</lastplayed>
+	</game>
+	<game>
+		<path>./Doom 3.sh</path>
+		<name>Doom 3</name>
+		<desc>Doom 3 is set on Mars in 2145, where a military-industrial conglomerate has set up a scientific research facility into fields such as teleportation, biological research, and advanced weapons design. The teleportation experiments open a gateway to Hell, resulting in a catastrophic invasion of the Mars base by demons. The player controls a space marine who fights through the base to stop the demons attacking Mars and reaching Earth. </desc>
+		<image>./images/Doom 3.png</image>
+		<releasedate>20040803T000000</releasedate>
+		<developer>id Software</developer>
+		<publisher>Activision</publisher>
+		<genre>First Person Shooter</genre>
+		<playcount>1</playcount>
+		<lastplayed>20231012T175239</lastplayed>
+	</game>
+	<game>
+		<path>./CYBERWAY.sh</path>
+		<name>CYBERWAY</name>
+		<desc>CYBERWAY is a relaxing endless driving game features a 1990s aesthetic with cool soundtrack.</desc>
+		<image>./images/CYBERWAY.png</image>
+		<releasedate>20201216T000000</releasedate>
+		<developer>GGBotNet</developer>
+		<publisher>GGBotNet</publisher>
+		<genre>Racing</genre>
+		<playcount>1</playcount>
+		<lastplayed>20231012T175239</lastplayed>
+	</game>
+	<game>
+		<path>./Grand Theft Auto 3.sh</path>
+		<name>Grand Theft Auto III</name>
+		<desc>After leaving San Andreas and going on a crime spree throughout the country, Claude Speed and Catalina head to Liberty City for a life of crime. During a bank heist, Claude is betrayed by Catalina and her Colombian friend Miguel, and he is shot by her just as they are leaving the scene of the crime. Claude fully recovers....in a prison cell. However, while being transported to a prison, Colombians ambush the prison van for an inmate riding with Claude. Claude and his friend, 8-Ball, escape in the process. Now it is time for revenge. Claude slowly rises through the ranks of the local gangs, gaining trust from local mob bosses and turning on others. Claude gains influence, trust, and most importantly, money along the way. It is time for Claude to rise from the dead and get revenge for what Catalina has done. 
+ 
+Grand Theft Auto III is similar in its concept to its predecessors: the player is cast in the role of a vicious (albeit novice) criminal, who performs tasks for crime lords and gradually raises his rank in the criminal world. Driving is the main gameplay element in the game, though the player can also fully explore the city on foot. For the first time in the series, the entire game is rendered in 3D. Different camera angles are available for driving, and free camera rotation is available when on foot.</desc>
+		<image>./images/Grand Theft Auto III.png</image>
+		<releasedate>20020521T000000</releasedate>
+		<developer>Rockstar North</developer>
+		<publisher>Rockstar Games</publisher>
+		<genre>Simulation-Race, Driving-Shooter / 3rd person-Shooter-Adventure / RealTime 3D-Adventure</genre>
+		<playcount>1</playcount>
+		<lastplayed>20231014T114831</lastplayed>
+	</game>
+	<game>
+		<path>./Grand Theft Auto Vice City.sh</path>
+		<name>Grand Theft Auto: Vice City</name>
+		<desc>Tommy Vercetti is a gangster who just got off a fifteen-year prison sentence for not squealing on his friends. Because he didn't rat out his "family", Tommy's sent to work with Sonny Forelli, his old boss. Sonny gives him an easy drug job, but everything goes wrong, and Tommy loses everything. Upon returning to Sonny, he gets mad and wants his money back. Unfortunately, everybody in Vice City, from gangsters and Cubans to bikers and politicians are in his way, and it's up to Tommy to clear a path. 
+ 
+Grand Theft Auto: Vice City offers the same free-roaming driving and action gameplay style as its predecessor, but in a new setting based on the city of Miami. The game includes all the features of the previous installment and builds upon them. There are new cars in the game, reminiscent of typical vehicles from the 1980s. Some cars are earlier models of the vehicles from GTA III. A few missions also involve the protagonist navigating a boat.</desc>
+		<image>./images/Grand Theft Auto Vice City.png</image>
+		<rating>1</rating>
+		<releasedate>20080104T000000</releasedate>
+		<developer>Rockstar North</developer>
+		<publisher>Rockstar Games</publisher>
+		<genre>Shooter / 3rd person-Shooter-Race, Driving-Adventure / RealTime 3D-Adventure</genre>
+		<playcount>1</playcount>
+		<lastplayed>20231014T115022</lastplayed>
+	</game>
+	<game>
+		<path>./SuperDrome Bugs.sh</path>
+		<name>SuperDrome Bugs</name>
+		<desc>Simon Pray ( or S.Pray for friends) it's a pest extinguisher living in Mexico, but for some reason pests are nowhere to be found, and that translates to: no work, which means no money, which means hard life. One day S. Pray receives a call from a luxurious mansion offering him a job. Something doesn't seem right, but Simon doesn't have time to think about it, he needs the money!. Join S.Pray and help him get rid of the pests!</desc>
+		<image>./images/SuperDrome Bugs.png</image>
+		<releasedate>20210813T000000</releasedate>
+		<developer>Pistacho Duck</developer>
+		<publisher>Pistacho Duck</publisher>
+		<genre>Action-Platform</genre>
+		<playcount>1</playcount>
+		<lastplayed>20231018T234643</lastplayed>
+	</game>
+	<game>
+		<path>./sm64.sh</path>
+		<name>Super Mario 64</name>
+		<desc>Super Mario 64 is a platform game developed and published by Nintendo for the Nintendo 64. It was released in Japan and North America in 1996 and PAL regions in 1997. It is the first Super Mario game to feature 3D gameplay, combining traditional Super Mario gameplay, visual style, and characters in a large open world.</desc>
+		<image>./images/Super Mario 64.png</image>
+		<releasedate>19960623T000000</releasedate>
+		<developer>Nintendo</developer>
+		<playcount>3</playcount>
+		<lastplayed>20231019T131129</lastplayed>
+	</game>
+	<game>
+		<path>./Owlboy.sh</path>
+		<name>Owlboy</name>
+		<desc>The player controls Otus, who is capable of flying and carrying objects during flight. These objects vary in use, but are mainly used as ranged weapons, thrown weapons, and puzzle-solving tools. As the game progresses, Otus gains allies that accompany him during his journey, each having their own weapon with exclusive properties.</desc>
+		<image>./images/Owlboy.png</image>
+		<releasedate>20161111T000000</releasedate>
+		<developer>D-Pad Studio</developer>
+		<playcount>3</playcount>
+		<lastplayed>20231019T131129</lastplayed>
+	</game>
+	<game>
+		<path>./Redneck Rampage.sh</path>
+		<name>Redneck Rampage</name>
+		<desc>Redneck Rampage is a pseudo-3D first person shooter much like Duke Nukem 3D, with 2D sprites for enemies and other objects. In fact, it uses the same Build engine as Duke Nukem 3D.Redneck Rampage also has a singularly unique setting... instead of taking place in an alien installation or secret government facility, the game is set in the backwater small town of Hickston, Arkansas. It seems that a bunch of tabloid leather-fetish cyborg aliens have abducted the town's stereotypical redneck inhabitants and cloned them. The aliens have also abducted Bessie, the prize pig of brothers Leonard and Bubba. As Leonard you'll have to fight the local yokel clones as well as the aliens throughout Hickston to rescue your pig. The 'Redneck' theme is used very heavily. Levels range from trailer parks to chicken processing plants, and the arsenal of odd weapons include a gun that shoots circular saws, a TNT crossbow, and even a machine gun bra. Also, instead of armor and health kits, you restore health and become tougher by drinking whisky and eating pork rinds. But if you drink too much you go into ''drunk mode'' with blurred vision and stumbling movement.
+</desc>
+		<image>./images/Redneck Rampage.png</image>
+		<releasedate>19970407T000000</releasedate>
+		<developer>Xatrix</developer>
+		<publisher>Interplay</publisher>
+		<genre>Shooter-Shooter / 1st person</genre>
+		<playcount>1</playcount>
+		<lastplayed>20231019T131402</lastplayed>
+	</game>
+	<game>
+		<path>./Return to Castle Wolfenstein.sh</path>
+		<name>Return to Castle Wolfenstein</name>
+		<desc>Two secret agents are captured while they are investigating Nazi Germany's occult activities in Castle Wolfenstein. Agent One is subsequently tortured to death by his interrogator, but B.J. Blazkowicz manages to escape his cell by killing the guard. 
+ 
+Return to Castle Wolfenstein is a reboot of Wolfenstein 3D. The game puts the player in the combat boots of Blazkowicz, who will first have to escape the castle and report back to his superiors, and afterwards restart the hunt for the SS Paranormal Division.</desc>
+		<image>./images/Return to Castle Wolfenstein.png</image>
+		<releasedate>20011119T000000</releasedate>
+		<developer>Gray Matter</developer>
+		<publisher>Activision</publisher>
+		<genre>Shooter / 1st person-Shooter</genre>
+		<playcount>1</playcount>
+		<lastplayed>20231019T131524</lastplayed>
+	</game>
+	<game>
+		<path>./ROTT.sh</path>
+		<name>Rise of the Triad: Dark War</name>
+		<desc>A madman with power to kill millions has been discovered, and HUNT (High-risk United Nations Taskforce) has been dispatched to discover his plans. Your team was infiltrating his island stronghold when everything went to hell. The infiltration boat exploded and fire came from all directions. The only way out is in, into the the fortress, but to stay out here would be certain death. So in you go, guns blazing...Rise of the Triad, a first-person shooter, is the successor of Wolfenstein 3D, with a somewhat improved 3D engine. Everything is still composed from blocks, but multiple vertical levels have been added; there are stairs made of platforms floating in air, and jump pads which launch you (and the enemies) high up so that you can walk over tall barriers in your way. The game offers a lot of weapons. You begin with a pistol, but later you can find an extra pistol for John Woo-style shooting, and a MP40 rifle. All these weapons have unlimited ammo. You can also find more potent weapons - from classic rocket launcher, to quite wacky contraptions such as a ''drunk missile'' launcher or the ''Excalibat'', a powerful baseball bat. However, you can carry only one such a strong weapon at a time, and they have limited ammo. Enemies are mostly humans equipped with various weapons. Their attacks can be quite varied; some of them can steal your weapons (though you can retrieve them after killing them), other shoot nets at you that trap you (you have to wriggle out, unless you found a knife, which will allow you to cut your way out). Apart from enemies, you'll be endangered by fireball launchers, rolling boulders and crushing walls. There's a lot of power-ups you can pick up. They all have various wacky effects: for example, ''God Mode'' makes you immortal and allows you to toss homing, insta-death missiles; ''Dog Mode'' turns you into a... dog, which can fit into small spaces (and is inexplicably invulnerable to weapons); ''Shrooms Mode'' makes everything shine with bright colours, as if you were on drugs; ''Elasto Mode'' makes you very prone to bouncing off walls when you run into them. ROTT also offers a lot of multi-player game modes; there's the standard deathmatch and ''Capture the Triad'', but there are also more varied modes - e.g. in ''Collector'' the players have no weapons, instead trying to collect as many ''triads'' as possible; in ''Deluder'', the players earn points by destroying ''eluders'' which move around the level. 
+</desc>
+		<image>./images/Rise of the Triad - Dark War.png</image>
+		<releasedate>19950217T000000</releasedate>
+		<developer>Developers of Incredible Power, The</developer>
+		<publisher>Apogee Software</publisher>
+		<genre>Shooter-Shooter / 1st person</genre>
+		<playcount>1</playcount>
+		<lastplayed>20231019T131552</lastplayed>
+	</game>
+	<game>
+		<path>./Shovel Knight.sh</path>
+		<name>Shovel Knight - Treasure Trove</name>
+		<desc>Shovel Knight: Treasure Trove is the full and complete edition of Shovel Knight, a sweeping classic action adventure game series with awesome gameplay, memorable characters, and an 8-bit retro aesthetic! Become Shovel Knight, wielder of the Shovel Blade, as he runs, jumps, and battles in a quest for his lost beloved. Take down the nefarious knights of the Order of No Quarter and their menacing leader, The Enchantress.</desc>
+		<image>./images/Shovel Knight Treasure Trove.png</image>
+		<releasedate>20170405T000000</releasedate>
+		<developer>Yacht Club Games</developer>
+		<publisher>Yacht Club Games</publisher>
+		<genre>Action-Platform / Run Jump Scrolling-Platform</genre>
+		<playcount>1</playcount>
+		<lastplayed>20231019T132020</lastplayed>
+	</game>
+	<game>
+		<path>./Sonic 2.sh</path>
+		<name>Sonic The Hedgehog 2</name>
+		<desc>Sonic the Hedgehog 2 is a side-scrolling platformer based around speed, and the sequel to Sonic the Hedgehog. Players run through different worlds called "Zones", each with a specific theme. There are two Acts in nearly all of the 10 Zones, and at the end of each Zone's last Act is a machine that Robotnik controls, which you must defeat to progress. Sonic and Tails can collect rings which are scattered throughout all of the levels. When the player collects 100 rings they earn an extra life. The rings also act as protection - if Sonic is hurt when he is carrying rings, they scatter everywhere and he is briefly invincible. If he is hit again when he has no rings, he'll lose a life. If the player reaches a continue point lamppost with 50 or more rings, they'll be able to access the Special Stage. In this stage, you must gather a set amount of rings in a halfpipe-like stage before you reach a checkpoint. Complete all the checkpoints and you'll earn one of the seven Chaos Emeralds. The game also includes the ability to play the game co-op with a friend - at any time, a player can plug in a second controller and take over the AI controlled Tails. Tails has infinite lives and the camera remains focused on Sonic, meaning that Tails will not hinder play. Sonic (and Tails) can now also get speed from a standing start by holding down and repeatedly pressing the jump button for a "Spin Dash". This is useful when stuck near steep slopes or other areas where you need some momentum. The game also features a 2-player versus mode. This mode is a horizontally split-screen race through levels based on three of the zones in the single player game.</desc>
+		<image>./images/Sonic the Hedgehog 2.png</image>
+		<rating>0.85</rating>
+		<releasedate>19920101T000000</releasedate>
+		<developer>SEGA</developer>
+		<publisher>SEGA</publisher>
+		<genre>Action-Platform</genre>
+		<players>2</players>
+		<playcount>2</playcount>
+		<lastplayed>20231019T132152</lastplayed>
+	</game>
+	<game>
+		<path>./StardewValley.sh</path>
+		<name>Stardew Valley</name>
+		<desc>Stardew Valley is an RPG inspired by the Harvest Moon games where you play as the inheritor of an old farm in a small town called Stardew Valley. Leaving the taxing big city life behind, you embark upon a quest to restore the neglected tract through dedication and hard work. 
+ 
+The gameplay consists of keeping the plot of land clean from decaying plants, stones, logs and stumps, planting and fostering new vegetation, discovering new places, combating hostile animals and monsters, earning money and collecting materials in order to create new tools and buildings, joining in social activities and events, befriending and romancing non-playable characters, all while managing the protagonist's energy levels. 
+ 
+There are multiple subplots which the player may choose to impact, for example, one may choose to hinder or help Joja Corporation in outselling smaller businesses in order to control and renew the town which would rid it of its traditions. The game is an open-ended one and there is no official ending. The content changes often as it being updated regularly based on player feedback.</desc>
+		<image>./images/Stardew Valley.png</image>
+		<releasedate>20160226T000000</releasedate>
+		<developer>ConcernedApe</developer>
+		<publisher>Chucklefish LTD</publisher>
+		<playcount>2</playcount>
+		<lastplayed>20231019T132329</lastplayed>
+	</game>
+	<game>
+		<path>./Neon City Riders.sh</path>
+		<name>Neon City Riders</name>
+		<desc>Explore a decaying futuristic city in search of items, superpowers and companions to free all the turfs of the evil gangs and unite their people again!</desc>
+		<image>./images/Neon City Riders.png</image>
+		<releasedate>20200312T000000</releasedate>
+		<developer>Mecha Studios</developer>
+		<publisher> Bromio, Gamera Games</publisher>
+		<genre>RPG</genre>
+		<playcount>2</playcount>
+		<lastplayed>20231019T131004</lastplayed>
+	</game>
+	<game>
+		<path>./Boni+.sh</path>
+		<name>Boni+</name>
+		<desc>Boni the skeleton is traveling across the Mexican "Dia de muertos", however, he needs to go across the spooky Iztepetl cementery. HELP HIM GET HIS SKELETAL BODY TO THE OTHER SIDE!!!</desc>
+		<image>./images/Boni+.png</image>
+		<rating>0.5</rating>
+		<releasedate>20211019T000000</releasedate>
+		<developer>Pistacho Duck</developer>
+		<publisher>Pistacho Duck</publisher>
+		<genre>Platform</genre>
+		<playcount>1</playcount>
+		<lastplayed>20231020T005604</lastplayed>
+	</game>
+	<game>
+		<path>./Apoc Runner.sh</path>
+		<name>Apoc Runner</name>
+		<desc>As the world burns, as the streets crumble, you cling to one thing: survival. An unstoppable alien blight has taken hold of the earth, and there's no fighting it. Escape is the only option. Run, jump and slide your way through urban destruction in this intense platformer!</desc>
+		<image>./images/Apoc Runner.png</image>
+		<rating>0.6</rating>
+		<releasedate>20200601T000000</releasedate>
+		<developer>Omnitron Studios</developer>
+		<publisher>Omnitron Studios</publisher>
+		<genre>Platform</genre>
+		<playcount>1</playcount>
+		<lastplayed>20231020T005749</lastplayed>
+	</game>
+	<game>
+		<path>./redpulse.sh</path>
+		<name>REDPULSE</name>
+		<desc>REDPULSE is a run 'n gun game inspired by bullet hell shooters that encourages speedy and aggressive gameplay.</desc>
+		<image>./images/REDPULSE.png</image>
+		<rating>0.7</rating>
+		<releasedate>20170909T000000</releasedate>
+		<developer>boghog</developer>
+		<publisher>boghog</publisher>
+		<genre>Arcade</genre>
+		<playcount>5</playcount>
+		<lastplayed>20231020T010504</lastplayed>
+	</game>
+	<game>
+		<path>./Blood.sh</path>
+		<name>Blood</name>
+		<desc>Caleb was once a feared gunslinger, until he met a woman who was involved with a mysterious cult known as Cabal. Caleb, too, is sucked in, and soon becomes one of the Chosen - the most favored worshippers of the evil god Tchernobog. But one day, Tchernobog inexplicably kills the four Chosen, including Caleb. Mysteriously resurrected years later, Caleb is out to get revenge, and learn why his lord cast him down so abruptly.
+
+Blood is a first-person shooter with horror elements, which uses the Build engine. Similarly to Duke Nukem 3D, the environment is interactive: many objects can be physically moved or affected in other ways. Destruction of landscapes is possible (although only in specific spots), with bullet holes being left by misplaced shots. The Build engine version is 2.5D, so there are rooms above rooms and puzzles which are based on this.</desc>
+		<image>./images/Blood.png</image>
+		<marquee>./images/Blood-marquee.png</marquee>
+		<rating>0.85</rating>
+		<releasedate>19970531T000000</releasedate>
+		<developer>Monolith Productions, Inc.</developer>
+		<publisher>GT Interactive</publisher>
+		<genre>Shooter</genre>
+		<players>40</players>
+		<playcount>1</playcount>
+		<lastplayed>20231021T232641</lastplayed>
+	</game>
+	<game>
+		<path>./Abuse.sh</path>
+		<name>Abuse</name>
+		<desc>It is the unimaginably distant year 2009. You are Nick Vrenna, falsely locked inside a high security prison. The genetic experiments conducted in the prison, combined with a full-scale riot that took place recently, caused all guards and inmates to be transformed into insane, aggressive mutants. Your job is to escape while stopping the genetic plague from transforming the whole world. 
+
+Abuse is a side-scrolling platformer with a lot of shooting. It's a nonlinear game, as the levels often have a few exits that lead to different areas. Your character is a cyborg equipped with various weapons; initially, you only have a weak laser rifle with unlimited ammo, but you can find more powerful guns later on, such as grenade launchers, flamethrowers or lightsabers. You move through a building complex, fighting any enemies you might encounter on the way. The enemies are mostly the mutants, but also the defense systems (such as stationary missile launchers). 
+
+While you move with the keyboard, you can aim with your mouse, so you can shoot at any angle no matter what direction you are running. On your way, you'll find elevators, teleporters, cracked walls that can be destroyed and more. 
+
+Apart from ammo and health, you can also find upgrades which have a number of beneficial effect - increasing your running speed, for example.</desc>
+		<image>./images/Abuse.png</image>
+		<rating>0.75</rating>
+		<releasedate>19950101T000000</releasedate>
+		<developer>Crack dot Com</developer>
+		<publisher>Crack dot Com</publisher>
+		<genre>Action</genre>
+		<playcount>1</playcount>
+		<lastplayed>20231021T232455</lastplayed>
+	</game>
+	<game>
+		<path>./Commander Genius.sh</path>
+		<name>Commander Keen Series</name>
+		<desc>Commander Keen is a series of side-scrolling platform video games developed primarily by id Software.</desc>
+		<image>./images/Commander Genius.png</image>
+		<rating>0.8</rating>
+		<releasedate>19901214T000000</releasedate>
+		<developer>id Software</developer>
+		<publisher>3D Realms</publisher>
+		<genre>Platform / Run Jump Scrolling</genre>
+		<playcount>1</playcount>
+		<lastplayed>20231021T233144</lastplayed>
+	</game>
+	<game>
+		<path>./Augustus.sh</path>
+		<name>Caesar III</name>
+		<desc>As a provincial governor charged with spreading the glory of Rome our mission is clear: build cities, foster trade and industry, make money. How you accomplish this is entirely up to you. Gain wealth and power, make a career out of pleasing the emperor, battle Barbarians and repel invaders or concentrate on building the next Eternal City. Fail and you’ll end up as lunch for the lions. Prove your strength of mind and spirit and you just may be crowned Caesar!</desc>
+		<image>./images/Caesar III.png</image>
+		<releasedate>19980930T000000</releasedate>
+		<playcount>1</playcount>
+		<lastplayed>20231021T232719</lastplayed>
+	</game>
+	<game>
+		<path>./Another World.sh</path>
+		<name>Another World</name>
+		<desc>A young physics professor named Lester conducts a particle experiment. Suddenly, something goes wrong, a lightning strikes, and in a moment Lester finds himself in a strange alien world. Now he must fight for his life, first with his bare hands, then with a gun he finds. But what gives him courage is that he is not alone. One of the aliens who escapes from the prison together with him helps him on his dangerous quest. Friendship can overcome all the obstacles.
+
+Out of This World combines shooting, platforming, and puzzle-solving elements. The game is divided into stages; some of them are straightforward and can only be accessed one time, while others are connected to each other, constituting a larger environment. Exploration and problem-solving are emphasized. Many levels include challenges not seen in the previous ones. Tasks may involve environmental puzzles, timed sequences, precise jumping, and combat.
+
+Typically, enemies are defeated by using an energy gun found in an early stage. The gun's regular function is shooting energy projectiles. By pressing down and holding the fire button the player can activate an energy shield which protects Lester from regular attacks, allowing him to fire from relative safety until it evaporates. Finally, by holding the fire button even longer the gun creates powerful blasts which can disrupt shields. Most enemies are equipped with similar guns and are able to perform the same actions as Lester. Fighting enemies therefore requires tactical usage of regular attacks, shields, and bombs, as well as learning enemy patterns.
+
+Each level can be accessed by typing a code the player learns after having completed the level. If Lester dies, the level must be restarted. There is no on-screen interface and no in-game dialogue in the game. Vector graphics are used for creating the game's environments and animated cutscenes.
+</desc>
+		<image>./images/Another World.png</image>
+		<rating>0.9</rating>
+		<releasedate>19910101T000000</releasedate>
+		<developer>Delphine Software International</developer>
+		<publisher>Interplay</publisher>
+		<genre>Adventure-Adventure / Survival Horror</genre>
+		<playcount>2</playcount>
+		<lastplayed>20231021T232538</lastplayed>
+	</game>
+	<game>
+		<path>./Openclaw.sh</path>
+		<name>Claw</name>
+		<desc>A famous cat pirate, Captain Nathaniel Joseph Claw, is imprisoned by the Cocker-Spaniards (a dog species, a pun on Cocker Spaniel) after they attack and sink his ship. In the prison cell, waiting for his execution, he finds a note and a piece of a map hidden in the wall. The note tells of the Amulet of Nine Lives—a mystical artifact that grants its wearer near-immortality. Breaking out of his cell, Claw sets out to collect all 9 gems of the amulet and retrieve it for himself.</desc>
+		<image>./images/Claw.png</image>
+		<releasedate>19970905T000000</releasedate>
+		<developer>Monolith Productions</developer>
+		<publisher>Monolith Productions</publisher>
+		<genre>Platform</genre>
+		<players>64</players>
+		<playcount>3</playcount>
+		<lastplayed>20231021T233041</lastplayed>
+	</game>
+	<game>
+		<path>./REminiscence.sh</path>
+		<name>Flashback : The Quest for Identity</name>
+		<desc>Flashback, known in the US as Flashback: The Quest for Identity, is arguably Delphine Software's greatest work. CD-based versions tend to include full motion video cutscenes and an enhanced music soundtrack, but are essentially the same game.  
+ 
+The year is 2142. You play as Conrad B. Hart, a man who has lost his memory. After barely escaping from hostile aliens, Conrad's bike crashes on an unknown planet. Conrad finds himself in the jungle, and from now on his quest for survival.</desc>
+		<image>./images/Flashback - The Quest for Identity.png</image>
+		<rating>0.95</rating>
+		<releasedate>19930101T000000</releasedate>
+		<developer>Delphine Software International</developer>
+		<publisher>U.S. Gold</publisher>
+		<genre>Action-Adventure-Platform / Shooter Scrolling-Platform</genre>
+		<playcount>1</playcount>
+		<lastplayed>20231021T232434</lastplayed>
+	</game>
+	<game>
+		<path>./Celeste Classic.sh</path>
+		<name>Celeste</name>
+		<desc>Help Madeline survive her inner demons on her journey to the top of Celeste Mountain, in this super-tight, hand-crafted platformer from the creators of multiplayer classic TowerFall.</desc>
+		<image>./images/Celeste.png</image>
+		<rating>0.8</rating>
+		<releasedate>20180125T000000</releasedate>
+		<developer>Matt Makes Games</developer>
+		<publisher>Matt Makes Games</publisher>
+		<playcount>1</playcount>
+		<lastplayed>20231021T232749</lastplayed>
+	</game>
+	<game>
+		<path>./VanillaTD.sh</path>
+		<name>Command &amp; Conquer</name>
+		<desc>Command &amp; Conquer developed ideas from Westwood's previous Dune 2, forming a real time strategy game which has influenced many. The control system of selecting units with the mouse and then directing them is similar to future titles such as Total Annihilation.
+
+The game focuses on a war between two organizations, The Brotherhood of Nod and the Global Defense Initiative. You can take control of either side for more than 15 missions. Both have different units and structures, including artillery, tanks and light infantry.
+
+In most missions you have to build a base first to build new units and structures. Most important are the special harvesters, which collect Tiberium and deliver it to a refinery, where it's converted into money - money which is needed to create additional units.
+
+The game also features FMV mission briefings and victory cutscenes.</desc>
+		<image>./images/Command &amp; Conquer.png</image>
+		<rating>0.7</rating>
+		<releasedate>19970310T000000</releasedate>
+		<developer>Westwood Studios</developer>
+		<publisher>Virgin Interactive Entertainment</publisher>
+		<genre>Strategy</genre>
+		<playcount>1</playcount>
+		<lastplayed>20231021T233101</lastplayed>
+	</game>
+	<game>
+		<path>./Cosmos Cosmic Adventure.sh</path>
+		<name>Cosmo's Cosmic Adventure - Forbidden Planet</name>
+		<desc>The storyline is about a little alien boy named "Cosmo". Cosmo's parents are taking him to Walt Disney World for his birthday. A comet hits their ship, forcing them to land on an unknown planet (called Zonk in and repair the ship. Cosmo goes exploring, and when he returns, his parents are missing. Seeing large footprints, Cosmo thinks that his parents have been captured and sets off to rescue them before they are eaten. There are three episodes in the game series in which Cosmo must navigate through 10 alien-themed levels for each episode.</desc>
+		<image>./images/Cosmo's Cosmic Adventure - Forbidden Planet.png</image>
+		<releasedate>19920302T000000</releasedate>
+		<developer>Apogee Software</developer>
+		<publisher>Apogee Software</publisher>
+		<genre>Platform</genre>
+		<playcount>1</playcount>
+		<lastplayed>20231021T233228</lastplayed>
+	</game>
+	<game>
+		<path>./Aliens vs Predator.sh</path>
+		<name>Aliens vs Predator</name>
+		<desc>There are three campaigns in the game, one for each race/faction (the Colonial Marines, the Aliens, and the Predators), that, while separate in terms of individual plot and gameplay, form one overarching storyline. Following the storyline of the campaign modes comes the multiplayer aspect of the game. In this Multiplayer section of the game, players face off in various game types in various ways.</desc>
+		<image>./images/Aliens vs Predator.png</image>
+		<releasedate>20100216T000000</releasedate>
+		<developer>Rebellion Developments</developer>
+		<publisher>Sega</publisher>
+		<playcount>4</playcount>
+		<lastplayed>20231021T232507</lastplayed>
+	</game>
+	<game>
+		<path>./Space Cadet Pinball.sh</path>
+		<name>3D Pinball Space Cadet</name>
+		<desc>3D Pinball for Windows: Space Cadet (referred to as 3D Pinball or simply Pinball) is the version of the game bundled with various Microsoft products. It was originally packaged with Microsoft Plus! 95 and later included in Windows NT, Windows Me, Windows 2000 and Windows XP.</desc>
+		<image>./images/3D Pinball Space Cadet.png</image>
+		<releasedate>19961505T000000</releasedate>
+		<playcount>1</playcount>
+		<lastplayed>20231022T145949</lastplayed>
+	</game>
+	<game>
+		<path>./Duke Nukem 2.sh</path>
+		<name>Duke Nukem II</name>
+		<desc>In the "near future" year 1998, the evil Rigelatins plan to enslave Earth, and they kidnap Duke Nukem (who was performing in an interview about his new autobiography, "Why I'm So Great"), to use his brain to plot the attack for their forces. Duke must break free in order to save the world, once again.</desc>
+		<image>./images/Duke Nukem 2.png</image>
+		<releasedate>19931203T000000</releasedate>
+		<developer>Apogee Software</developer>
+		<publisher>Apogee Software</publisher>
+		<genre>Platform</genre>
+		<playcount>1</playcount>
+		<lastplayed>20231022T150054</lastplayed>
+	</game>
+	<game>
+		<path>./Abu Simbel Profanation Deluxe.sh</path>
+		<name>Abu Simbel Profanation Deluxe</name>
+		<desc>This open-source, freeware remake of the Spanish platform game from 1985 replaces the graphics and sounds with new enhanced assets, while maintaining the same unforgiving gameplay of the original. The player controls Johnny Jones, an archaeologist deformed by an Egyptian curse after desecrating the tomb of a Pharaoh. Since the main character is unarmed and only capable of walking and jumping, the goal is to carefully explore all the maze-like rooms of the Abu Simbel temple complex, each filled with dangerous enemies to be avoided and obstacles that must be navigated to reach the inner chambers.</desc>
+		<image>./images/Abu Simbel Profanation Deluxe.png</image>
+		<releasedate>20050222T000000</releasedate>
+		<developer>M.A. Software</developer>
+		<playcount>1</playcount>
+		<lastplayed>20231022T150251</lastplayed>
+	</game>
+	<game>
+		<path>./FreeSerf.sh</path>
+		<name>The Settlers</name>
+		<desc>The Settlers (also known as Serf City: Life is Feudal, original German title Die Siedler) is a slow-paced strategy video game by Blue Byte Software, released in 1993 for Commodore Amiga and in 1994 for the PC. The player is tasked with building a medieval settlement populated by an army of workers, each of whom perform their own individual task. The player competes against computer controlled opponents or another human player for supremacy of the land and resources.</desc>
+		<image>./images/The Settlers.png</image>
+		<releasedate>19930101T000000</releasedate>
+		<publisher>Blue Byte</publisher>
+		<genre>Various</genre>
+		<playcount>1</playcount>
+		<lastplayed>20231022T185944</lastplayed>
+	</game>
+	<game>
+		<path>./Super Mario War.sh</path>
+		<name>Super Mario War</name>
+		<desc>Super Mario War is an open-source, platform-adventure video game and level editor first released in 2004. It is based upon gameplay elements and audiovisual media that are unofficially cloned from Nintendo's Super Mario series.</desc>
+		<image>./images/Super Mario War.png</image>
+		<releasedate>20040927T000000</releasedate>
+		<developer>72dpiarmy</developer>
+		<publisher>72dpiarmy</publisher>
+		<genre>Action-Platform</genre>
+		<playcount>10</playcount>
+		<lastplayed>20231022T195821</lastplayed>
+	</game>
+	<game>
+		<path>./Neo-Gensokyo.sh</path>
+		<name>Neo-Gensokyo Zero</name>
+		<desc>Slash and dash through robotic enemies, dodge through danmaku in bullet-time, rack up combos to increase your Power level, pinpoint a boss's openings and dance through their moves to counterattack with perfect timing.</desc>
+		<image>./images/Neo-Gensokyo Zero.png</image>
+		<releasedate>20200621T000000</releasedate>
+		<developer>Firecat1311</developer>
+		<publisher>Firecat1311</publisher>
+		<genre>Platform</genre>
+		<playcount>2</playcount>
+		<lastplayed>20231022T223414</lastplayed>
+	</game>
+	<game>
+		<path>./Psebay.sh</path>
+		<name>Psebay</name>
+		<desc>Psebay is an atmospheric adventure in moto trial genre. EXCITING GAMEPLAY WITH DYNAMIC GRAVITY. 'Flying' over the hills and cliffs on a motorbike is surely compelling. But when the ground crumbles under your wheels and the world turns upside down, that's when it becomes really cool!</desc>
+		<image>./images/Psebay.png</image>
+		<releasedate>20170712T000000</releasedate>
+		<developer>Eugeny Butakov</developer>
+		<publisher>Eugeny Butakov</publisher>
+		<genre>Platform</genre>
+		<playcount>5</playcount>
+		<lastplayed>20231022T223917</lastplayed>
+	</game>
+	<game>
+		<path>./Tomb Raider 1.sh</path>
+		<name>Tomb Raider</name>
+		<desc>Tomb Raider is an action-adventure video game in which the player assumes the role of archaeologist-adventurer Lara Croft, who navigates through a series of ancient ruins and tombs in search of an ancient artefact.</desc>
+		<image>./images/Tomb Raider.png</image>
+		<releasedate>19961025T000000</releasedate>
+		<developer>Core Design</developer>
+		<publisher>Eidos Interactive</publisher>
+		<genre>Adventure-Action</genre>
+		<playcount>1</playcount>
+		<lastplayed>20231025T132702</lastplayed>
+	</game>
+	<game>
+		<path>./Shipwreck.sh</path>
+		<name>Shipwreck</name>
+		<desc>Shipwreck is a top down adventure game in which you must travel the land, explore dungeons, and defeat monsters to earn safe passage off the island on which you are stranded.</desc>
+		<image>./images/Shipwreck.png</image>
+		<rating>0.8</rating>
+		<releasedate>20140225T000000</releasedate>
+		<developer>Brushfire Games</developer>
+		<publisher>Brushfire Games</publisher>
+		<playcount>10</playcount>
+		<lastplayed>20231026T005803</lastplayed>
+	</game>
+	<game>
+		<path>./AM2R.sh</path>
+		<name>Another Metroid 2 Remake</name>
+		<desc>AM2R is an action-adventure game developed by Argentinian programmer Milton Guasti and released on August 6, 2016, Metroid's 30th anniversary. It was originally released for Windows. It is an unofficial remake of the 1991 Game Boy game Metroid II: Return of Samus in the style of Metroid: Zero Mission.</desc>
+		<image>./images/Another Metroid 2 Remake.png</image>
+		<releasedate>20160816T000000</releasedate>
+		<playcount>5</playcount>
+		<lastplayed>20231026T120102</lastplayed>
+	</game>
+	<game>
+		<path>./DiverDown.sh</path>
+		<name>Diver Down</name>
+		<desc>Diver Down is a stealth-platformer made for the Godot Wild Jam #2, where the theme was "Hidden within". Avoid the lights on 20 different stages using your mysterious Diver Down ability, that allows you to dive onto solids!</desc>
+		<image>./images/Diver Down.png</image>
+		<releasedate>20180325T000000</releasedate>
+		<developer>Escada-Games</developer>
+		<publisher>Escada-Games</publisher>
+		<genre>Action-Platform</genre>
+		<playcount>1</playcount>
+		<lastplayed>20231026T120246</lastplayed>
+	</game>
+	<game>
+		<path>./Axiom Verge.sh</path>
+		<name>Axiom Verge</name>
+		<desc>Axiom Verge is a 2D metroidvania platform shooter centered around the protagonist Trace, a scientist who, after an experiment gone wrong, finds himself on the world of Sudra. By the time Trace arrives on Sudra he finds this world and his civilization collapsed due to the release of the "Pathogen". With help of the Russalki (giant war machines that guard Sudra), Trace has to fight back the invading forces and return back across The Breach to Earth.</desc>
+		<image>.//images/Axiom Verge.png</image>
+		<rating>0.65</rating>
+		<releasedate>20150514T000000</releasedate>
+		<developer>Thomas Happ Games</developer>
+		<publisher>Thomas Happ Games</publisher>
+		<genre>Platform / Run Jump Scrolling-Platform</genre>
+		<playcount>3</playcount>
+		<lastplayed>20231026T142311</lastplayed>
+	</game>
+	<game>
+		<path>./Chasm.sh</path>
+		<name>Chasm</name>
+		<desc>Explore the depths below a remote mountain town in this procedurally-generated Adventure Platformer. Taking inspiration from hack 'n slash dungeon crawlers and Metroidvania-style platformers, Chasm will immerse you in a fantasy world full of exciting treasure, deadly enemies, and abundant secrets.</desc>
+		<image>./images/Chasm.png</image>
+		<rating>0.9</rating>
+		<releasedate>20180731T000000</releasedate>
+		<developer>Bit Kid, Inc.</developer>
+		<publisher>Bit Kid, Inc.</publisher>
+		<genre>Action / Adventure-Platform-Action</genre>
+		<playcount>1</playcount>
+		<lastplayed>20231026T113854</lastplayed>
+	</game>
+	<game>
+		<path>./TMNTShreddersRevenge.sh</path>
+		<name>TMNT: Shredder's Revenge</name>
+		<desc>Shredder's Revenge is a side-scrolling action brawler with a pixelated artstyle. The player assumes control of Leonardo, Donatello, Michelangelo, Raphael, April O'Neil, Master Splinter, and unlockable character Casey Jones as they combat opponents including the Foot Clan, Krang, Bebop and Rocksteady, and Shredder in locations ranging from New York City sewers to Dimension X. Each character has their own attributes (range, speed, and power) and plays differently. They have unique super moves and taunts. Throughout each stage, players can find pizza boxes, which can be used to heal them, and other pies that grant players extra strength and infinite supers for a brief period of time.</desc>
+		<image>./images/TMNT Shredder's Revenge.png</image>
+		<releasedate>20220616T000000</releasedate>
+		<developer>Tribute Games</developer>
+		<publisher>DotEmu</publisher>
+		<genre>Platform / Run Jump Scrolling-Platform-Action / Adventure-Action</genre>
+		<players>4</players>
+		<playcount>38</playcount>
+		<lastplayed>20231026T141259</lastplayed>
+	</game>
+	<game>
+		<path>./Quakespasm - Dissolution of Eternity.sh</path>
+		<name>Quakespasm - Dissolution of Eternity</name>
+		<playcount>1</playcount>
+		<lastplayed>20231026T173405</lastplayed>
+	</game>
+</gameList>
