@@ -10,7 +10,17 @@ function displayCardDetails(data) {
 
 
     imageElement = document.getElementById("screenshot")
-    imageElement.src = (data.attr.image.screenshot ? "https://raw.githubusercontent.com/christianhaitian/PortMaster/main/images/" + data.attr.image.screenshot : "https://raw.githubusercontent.com/PortsMaster/PortMaster-Website/main/no.image.png");
+
+    var repo = "https://raw.githubusercontent.com/christianhaitian/PortMaster/main/images/";
+    if (data.source.repo == "multiverse") {
+        repo = "https://raw.githubusercontent.com/PortsMaster-MV/PortMaster-Multiverse/main/images/";
+    }
+    var source = "https://raw.githubusercontent.com/PortsMaster/PortMaster-Website/main/no.image.png";
+    if (data.attr.image.screenshot !== null) {
+        source = repo + data.attr.image.screenshot;
+    }
+
+    imageElement.src = source;
 
 
     //data.attr.desc ? document.getEleme('desc').textContent = data.attr.desc : document.getElementsByClassName('desc').hidden = true;
@@ -59,13 +69,17 @@ function displayCardDetails(data) {
 
     async function getmarkdown() {
         try {
-            var response = await fetch("https://raw.githubusercontent.com/christianhaitian/PortMaster/main/markdown/" + data.name.replace("zip", "md")); // Replace 'YOUR_JSON_URL_HERE' with the actual URL of your JSON data.
+            var repo = "https://raw.githubusercontent.com/christianhaitian/PortMaster/main/markdown/";
+            if (data.source.repo == "multiverse") {
+                repo = "https://raw.githubusercontent.com/PortsMaster-MV/PortMaster-Multiverse/main/markdown/";
+            }
+            var response = await fetch(repo + data.name.replace("zip", "md")); // Replace 'YOUR_JSON_URL_HERE' with the actual URL of your JSON data.
             if (!response.ok) {
                 throw new Error('Network response was not ok.');
             }
             markdown = await response.text();
             const markdownElement = document.getElementById("markdown");
-            markdownElement.innerHTML = CmarkGFM.convert(markdown.replaceAll("<br/>","")).replaceAll("<table>", '<table class="table table-bordered">').replaceAll('<h2>','<h2 style="margin-top: 1em;margin-bottom: 1em;">'); 
+            markdownElement.innerHTML = CmarkGFM.convert(markdown.replaceAll("<br/>", "")).replaceAll("<table>", '<table class="table table-bordered">').replaceAll('<h2>', '<h2 style="margin-top: 1em;margin-bottom: 1em;">');
         } catch (error) {
             console.error('Error fetching JSON data:', error);
         }
