@@ -18,9 +18,13 @@ function createCard(data) {
     div2.setAttribute("class", "card shadow-sm");
 
     const image = document.createElement("img");
+    var repo = "https://raw.githubusercontent.com/christianhaitian/PortMaster/main/images/";
+    if (data.source.repo == "multiverse"){
+        repo = "https://raw.githubusercontent.com/PortsMaster-MV/PortMaster-Multiverse/main/images/";
+    } 
     var source = "https://raw.githubusercontent.com/PortsMaster/PortMaster-Website/main/no.image.png";
     if (data.attr.image.screenshot !== null) {
-        source = "https://raw.githubusercontent.com/christianhaitian/PortMaster/main/images/" + data.attr.image.screenshot;
+        source =   repo +  data.attr.image.screenshot;
     }
     image.src = source;
     image.setAttribute("class", "bd-placeholder-img card-img-top");

@@ -73,9 +73,13 @@ function createRecent(item) {
     main.setAttribute("class", "d-flex flex-column flex-lg-row gap-3 align-items-start align-items-lg-center py-3 text-decoration-none border-top");
 
     var image = document.createElement("img");
+    var repo = "https://raw.githubusercontent.com/christianhaitian/PortMaster/main/images/";
+    if (item.source.repo == "multiverse"){
+        repo = "https://raw.githubusercontent.com/PortsMaster-MV/PortMaster-Multiverse/main/images/";
+    } 
     var source = "https://raw.githubusercontent.com/PortsMaster/PortMaster-Website/main/no.image.png";
     if (item.attr.image.screenshot !== null) {
-        source = "https://raw.githubusercontent.com/christianhaitian/PortMaster/main/images/" + item.attr.image.screenshot;
+        source =   repo +  item.attr.image.screenshot;
     }
     image.src = source;
     image.setAttribute("width", "40%%");
