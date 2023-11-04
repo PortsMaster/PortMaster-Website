@@ -312,7 +312,7 @@
     }
 
     function downloadReadme() {
-      filename = document.getElementById("zipname");
+      filename = document.getElementById("zipname").value.replace(".zip", ".md").replaceAll(" ",".").toLowerCase();
       var file = new Blob([markdown], { type: "application/text" });
       if (window.navigator.msSaveOrOpenBlob) // IE10+
         window.navigator.msSaveOrOpenBlob(file, filename);
@@ -320,7 +320,7 @@
         var a = document.createElement("a"),
           url = URL.createObjectURL(file);
         a.href = url;
-        a.download = filename.value.replace(".zip", ".md");
+        a.download = filename;
         document.body.appendChild(a);
         a.click();
         setTimeout(function () {
