@@ -104,6 +104,21 @@ function createCard(data) {
     dateUpdated.setAttribute("style","padding-top: 10px")
     dateUpdated.textContent = "Updated: " + data.source.date_updated;
 
+    var taggedMisc = "";
+    if (data.attr.rtr){
+        taggedMisc += '<span class="misc-item badge bg-secondary">Ready to Run</span> ';
+    }
+
+    if (data.attr.exp){
+        taggedMisc += '<span class="misc-item badge bg-secondary">Experimental</span> ';
+    }
+
+    if (data.source.repo == "multiverse"){
+        taggedMisc += '<span class="misc-item badge bg-secondary">Multiverse</span> ';
+    }
+
+    const miscValues = document.createElement('p');
+    miscValues.innerHTML = taggedMisc;
 
     const div4 = document.createElement('div');
     div4.setAttribute("class","d-flex justify-content-between align-items-center");
@@ -133,6 +148,7 @@ function createCard(data) {
     div3.appendChild(image);
     div3.appendChild(title);
     div3.appendChild(paragraph);
+    div3.appendChild(miscValues);
     div3.appendChild(porter);
     div3.appendChild(dateUpdated);
     div3.appendChild(div4);

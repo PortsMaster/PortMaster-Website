@@ -1,0 +1,1524 @@
+<!DOCTYPE html>
+<html data-bs-theme="auto" lang="en">
+ <head>
+  <script src="js/color-modes.js">
+  </script>
+  <script src="https://md-block.verou.me/md-block.js" type="module">
+  </script>
+  <link href="css/shared.css" rel="stylesheet"/>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1" name="viewport"/>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js">
+  </script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet"/>
+  <script src="https://cdn.jsdelivr.net/npm/anchor-js/anchor.min.js">
+  </script>
+  <link href="css/documentation.css" rel="stylesheet"/>
+  <title>
+   Themes
+  </title>
+ </head>
+ <body class="bg-body-tertiary">
+  <svg class="d-none" xmlns="http://www.w3.org/2000/svg">
+   <symbol id="check2" viewbox="0 0 16 16">
+    <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z">
+    </path>
+   </symbol>
+   <symbol id="circle-half" viewbox="0 0 16 16">
+    <path d="M8 15A7 7 0 1 0 8 1v14zm0 1A8 8 0 1 1 8 0a8 8 0 0 1 0 16z">
+    </path>
+   </symbol>
+   <symbol id="moon-stars-fill" viewbox="0 0 16 16">
+    <path d="M6 .278a.768.768 0 0 1 .08.858 7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278z">
+    </path>
+    <path d="M10.794 3.148a.217.217 0 0 1 .412 0l.387 1.162c.173.518.579.924 1.097 1.097l1.162.387a.217.217 0 0 1 0 .412l-1.162.387a1.734 1.734 0 0 0-1.097 1.097l-.387 1.162a.217.217 0 0 1-.412 0l-.387-1.162A1.734 1.734 0 0 0 9.31 6.593l-1.162-.387a.217.217 0 0 1 0-.412l1.162-.387a1.734 1.734 0 0 0 1.097-1.097l.387-1.162zM13.863.099a.145.145 0 0 1 .274 0l.258.774c.115.346.386.617.732.732l.774.258a.145.145 0 0 1 0 .274l-.774.258a1.156 1.156 0 0 0-.732.732l-.258.774a.145.145 0 0 1-.274 0l-.258-.774a1.156 1.156 0 0 0-.732-.732l-.774-.258a.145.145 0 0 1 0-.274l.774-.258c.346-.115.617-.386.732-.732L13.863.1z">
+    </path>
+   </symbol>
+   <symbol id="sun-fill" viewbox="0 0 16 16">
+    <path d="M8 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z">
+    </path>
+   </symbol>
+  </svg>
+  <div class="dropdown position-fixed bottom-0 end-0 mb-3 me-3 bd-mode-toggle">
+   <button aria-expanded="false" aria-label="Toggle theme (auto)" class="btn btn-bd-primary py-2 dropdown-toggle d-flex align-items-center" data-bs-toggle="dropdown" id="bd-theme" type="button">
+    <svg class="bi my-1 theme-icon-active" height="1em" width="1em">
+     <use href="#circle-half">
+     </use>
+    </svg>
+    <span class="visually-hidden" id="bd-theme-text">
+     Toggle theme
+    </span>
+   </button>
+   <ul aria-labelledby="bd-theme-text" class="dropdown-menu dropdown-menu-end shadow">
+    <li>
+     <button aria-pressed="false" class="dropdown-item d-flex align-items-center" data-bs-theme-value="light" type="button">
+      <svg class="bi me-2 opacity-50 theme-icon" height="1em" width="1em">
+       <use href="#sun-fill">
+       </use>
+      </svg>
+      Light
+      <svg class="bi ms-auto d-none" height="1em" width="1em">
+       <use href="#check2">
+       </use>
+      </svg>
+     </button>
+    </li>
+    <li>
+     <button aria-pressed="false" class="dropdown-item d-flex align-items-center" data-bs-theme-value="dark" type="button">
+      <svg class="bi me-2 opacity-50 theme-icon" height="1em" width="1em">
+       <use href="#moon-stars-fill">
+       </use>
+      </svg>
+      Dark
+      <svg class="bi ms-auto d-none" height="1em" width="1em">
+       <use href="#check2">
+       </use>
+      </svg>
+     </button>
+    </li>
+    <li>
+     <button aria-pressed="true" class="dropdown-item d-flex align-items-center active" data-bs-theme-value="auto" type="button">
+      <svg class="bi me-2 opacity-50 theme-icon" height="1em" width="1em">
+       <use href="#circle-half">
+       </use>
+      </svg>
+      Auto
+      <svg class="bi ms-auto d-none" height="1em" width="1em">
+       <use href="#check2">
+       </use>
+      </svg>
+     </button>
+    </li>
+   </ul>
+  </div>
+  <nav aria-label="Fourth navbar example" class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+   <div class="container-fluid">
+    <a class="navbar-brand" href="index.html">
+     <img height="35px" src="https://raw.githubusercontent.com/PortsMaster/PortMaster-Website/main/logo.svg"/>
+    </a>
+    <button aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-bs-target="#navbarsExample04" data-bs-toggle="collapse" type="button">
+     <span class="navbar-toggler-icon">
+     </span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarsExample04">
+     <ul class="navbar-nav me-auto mb-2 mb-md-0">
+      <li class="nav-item">
+       <a aria-current="page" class="nav-link active" href="https://discord.gg/JxYBp9HTAY">
+        Discord
+       </a>
+      </li>
+      <li class="nav-item">
+       <a aria-current="page" class="nav-link active" href="https://github.com/PortsMaster">
+        GitHub
+       </a>
+      </li>
+      <li class="nav-item">
+       <a aria-current="page" class="nav-link active" href="faq.html">
+        FAQ
+       </a>
+       <li class="nav-item">
+        <a aria-current="page" class="nav-link active" href="wiki.html">
+         Wiki
+        </a>
+       </li>
+       <li class="nav-item dropdown">
+        <a aria-expanded="false" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#">
+         Portmaster
+        </a>
+        <ul class="dropdown-menu">
+         <li>
+          <a class="dropdown-item" href="installation.html">
+           Installation
+          </a>
+         </li>
+         <li>
+          <a class="dropdown-item" href="runtimes.html">
+           Runtimes
+          </a>
+         </li>
+         <li>
+          <a class="dropdown-item" href="supported-devices.html">
+           Supported Devices
+          </a>
+         </li>
+         <li>
+          <a class="dropdown-item" href="gptokeyb-documentation.html">
+           Gptokeyb Documentation
+          </a>
+         </li>
+         <li>
+          <a class="dropdown-item" href="harbourmaster.html">
+           Harbourmaster
+          </a>
+         </li>
+        </ul>
+       </li>
+       <li class="nav-item dropdown">
+        <a aria-expanded="false" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#">
+         Contribute
+        </a>
+        <ul class="dropdown-menu">
+         <li>
+          <a class="dropdown-item" href="porting.html">
+           Porting
+          </a>
+         </li>
+         <li>
+          <a class="dropdown-item" href="packaging.html">
+           Packaging
+          </a>
+         </li>
+         <li>
+          <a class="dropdown-item" href="build-environments.html">
+           Build Environments
+          </a>
+         </li>
+         <li>
+          <a class="dropdown-item" href="port-tools.html">
+           Port Tools
+          </a>
+         </li>
+         <li>
+          <a class="dropdown-item" href="port-json.html">
+           Port JSON Generator
+          </a>
+         </li>
+         <li>
+          <a class="dropdown-item" href="port-markdown.html">
+           Port Markdown Generator
+          </a>
+         </li>
+        </ul>
+       </li>
+      </li>
+     </ul>
+    </div>
+   </div>
+  </nav>
+  <br/>
+  <br/>
+  <br/>
+  <div class="container">
+   <main>
+    <h2>
+     PortMaster Theme Specification
+    </h2>
+    <p>
+     PortMasters new gui has a flexible theme system build around a
+     <code>
+      theme.json
+     </code>
+     file.
+    </p>
+    <p>
+     This is currently a WIP documenting the theme format.
+    </p>
+    <h2>
+     Scene Format
+    </h2>
+    <p>
+     The theme has a few different sections:
+    </p>
+    <ul>
+     <li>
+      <code>
+       #info
+      </code>
+      : Info about the theme
+     </li>
+     <li>
+      <code>
+       #base
+      </code>
+      : The base element, which every gui element in the theme inherits from
+     </li>
+     <li>
+      <code>
+       #pallet
+      </code>
+      : Predefined colours for the theme.
+     </li>
+     <li>
+      <code>
+       #resources
+      </code>
+      : Images the theme uses, can either be an atlas or individual images.
+     </li>
+     <li>
+      <code>
+       #elements
+      </code>
+      : Reusable elements that different scenes in your theme can use.
+     </li>
+     <li>
+      <strong>
+       scenes
+      </strong>
+      : Scenes that the gui uses
+     </li>
+    </ul>
+    <p>
+     It also uses a template system for the text, so that the gui elements automatically update as the text changes.
+    </p>
+    <h2>
+     Element Inheritence Order:
+    </h2>
+    <p>
+     The order that elemets get their values is defined as:
+    </p>
+    <p>
+     element -&gt; scene
+     <code>
+      #base
+     </code>
+     -&gt; global
+     <code>
+      #base
+     </code>
+    </p>
+    <p>
+     If you use a reusable element the order is:
+    </p>
+    <p>
+     element -&gt; element
+     <code>
+      #element
+     </code>
+     -&gt; scene
+     <code>
+      #base
+     </code>
+     -&gt; global
+     <code>
+      #base
+     </code>
+    </p>
+    <h2>
+     Element overrides
+    </h2>
+    <p>
+     You can override values in elements based on hardware by specifying a hardware capabilities on an attribute:
+    </p>
+    <pre lang="json"><code>
+    "#base": {
+        "font": "DejaVuSans.ttf",
+        "font-scale[hires]": 2.0,
+        "font-scale[5:3,hires]": 3.0
+    },
+
+</code></pre>
+    <p>
+     You can override entire elements based on hardware capabilities:
+    </p>
+    <pre lang="json"><code>
+        "ports_list": {
+            "area": [0.0, 0.1, 0.4, 0.95],
+            "border-x": 16,
+            "roundness": 10,
+            "font-size": 14,
+            "font-color": "list_text",
+            "select-color": "list_selected",
+            "text-clip": true,
+            "text-wrap": false,
+            "autoscroll": "slide",
+            "scroll-speed": 30,
+            "scroll-delay-start": 500,
+            "scroll-delay-end":   500
+        },
+        "ports_list[hires]": {
+            "area": [0.0, 0.1, 0.3, 0.95]
+        },
+</code></pre>
+    <p>
+     Since this uses the capabilities system used in ports you can add them together and or not them.
+    </p>
+    <p>
+     Currently the capabilities are:
+    </p>
+    <ul>
+     <li>
+      <code>
+       hires
+      </code>
+      : devices with a screen resolution greater than 640:480
+     </li>
+     <li>
+      <code>
+       lowres
+      </code>
+      : devices with a screen resolution smaller then 640:480
+     </li>
+     <li>
+      <code>
+       power
+      </code>
+      : any device above an
+      <code>
+       rk3326
+      </code>
+      cpu.
+     </li>
+     <li>
+      <code>
+       opengl
+      </code>
+      : any device with
+      <code>
+       OpenGL
+      </code>
+      , not OpenGLES.
+     </li>
+     <li>
+      <code>
+       wide
+      </code>
+      : any aspect ratio above 4:3
+     </li>
+     <li>
+      <code>
+       3:2
+      </code>
+      : aspect ratio of 3:2
+     </li>
+     <li>
+      <code>
+       4:3
+      </code>
+      : aspect ratio of 4:3
+     </li>
+     <li>
+      <code>
+       5:3
+      </code>
+      : aspect ratio of 5:3
+     </li>
+     <li>
+      <code>
+       16:9
+      </code>
+      : aspect ratio of 16:9
+     </li>
+     <li>
+      <code>
+       427:240
+      </code>
+      : aspect ratio of 427:240 (ogs/ogu &amp; friends)
+     </li>
+     <li>
+      <code>
+       480x320
+      </code>
+      : screen resolution of 480x320
+     </li>
+     <li>
+      <code>
+       640x480
+      </code>
+      : screen resolution of 640x480
+     </li>
+     <li>
+      <code>
+       854x480
+      </code>
+      : screen resolution of 854x480
+     </li>
+     <li>
+      <code>
+       960x544
+      </code>
+      : screen resolution of 960x544
+     </li>
+     <li>
+      <code>
+       1280x720
+      </code>
+      : screen resolution of 1280x720
+     </li>
+     <li>
+      <code>
+       1920x1152
+      </code>
+      : screen resolution of 1920x1152
+     </li>
+     <li>
+      <code>
+       language
+      </code>
+      : the current language (en_US, de_DE, es_ES, fr_FR, it_IT, and pl_PL)
+     </li>
+    </ul>
+    <p>
+     You can combine them like so:
+    </p>
+    <ul>
+     <li>
+      <code>
+       !lowres|hires
+      </code>
+      : must be exactly 640:480
+     </li>
+    </ul>
+    <h2>
+     Scenes
+    </h2>
+    <p>
+     Scenes can define their own
+     <code>
+      #base
+     </code>
+     element, which will cause all elements in that scene to inherit from.
+    </p>
+    <p>
+     Currently there are the following scenes:
+    </p>
+    <ul>
+     <li>
+      <code>
+       main_menu
+      </code>
+      : The main menu
+     </li>
+     <li>
+      <code>
+       option_menu
+      </code>
+      : Options screen
+     </li>
+     <li>
+      <code>
+       ports_list
+      </code>
+      : The list of ports
+     </li>
+     <li>
+      <code>
+       port_info
+      </code>
+      : Detailed port information.
+     </li>
+     <li>
+      <code>
+       message_window
+      </code>
+      : A scrolling list of messages, used during downloading, installation, and fetching the latest ports information.
+     </li>
+     <li>
+      <code>
+       message_box
+      </code>
+      : An alert box
+     </li>
+     <li>
+      <code>
+       filter_list
+      </code>
+      : Available filters
+     </li>
+     <li>
+      <code>
+       themes_list
+      </code>
+      : List themes / downloader.
+     </li>
+    </ul>
+    <h3>
+     Scene: main_menu
+    </h3>
+    <p>
+     This is the main menu scene, it requires the
+     <code>
+      option_list
+     </code>
+     element. It is the first scene to load and if backed out of will quit the program.
+    </p>
+    <pre lang="json"><code>    "main_menu": {
+        "option_list": {
+            "area": [ 0.0, 0.0, 1.0, 1.0 ],
+            "font": "DejaVuSans.ttf",
+            "font-size": 10,
+            "list": []
+        },
+        "button_bar": {
+            "area": [ 0.0, 8.0, 1.0, 1.0 ],
+            "font": "DejaVuSans.ttf",
+            "font-size": 10,
+            "bar": []
+        }
+    }
+</code></pre>
+    <p>
+     The option_list can contain whatever text you feel is most appropriate, the actual option that gets called is the same option in the
+     <code>
+      option
+     </code>
+     list.
+    </p>
+    <h3>
+     Scene: options_menu
+    </h3>
+    <p>
+     This is the options menu scene, it requires the
+     <code>
+      option_list
+     </code>
+     element. It is loaded from main-menu, this scene is reused for each subsequent option submenu.
+    </p>
+    <pre lang="json"><code>    "options_menu": {
+        "option_list": {
+            "area": [ 0.0, 0.0, 1.0, 1.0 ],
+            "font": "DejaVuSans.ttf",
+            "font-size": 10,
+            "list": []
+        },
+        "button_bar": {
+            "area": [ 0.0, 8.0, 1.0, 1.0 ],
+            "font": "DejaVuSans.ttf",
+            "font-size": 10,
+            "bar": []
+        }
+    }
+</code></pre>
+    <h3>
+     Scene: ports_list
+    </h3>
+    <p>
+     This is the main list of ports, it requires the
+     <code>
+      ports_list
+     </code>
+     element. It is loaded from main-menu, this scene is reused for listing ports for installing and uninstalling.
+    </p>
+    <pre lang="json"><code>    "ports_list": {
+        "ports_list": {
+            "area": [ 0.0, 0.0, 1.0, 1.0 ],
+            "font": "DejaVuSans.ttf",
+            "font-size": 10,
+            "list": []
+        },
+        "button_bar": {
+            "area": [ 0.0, 8.0, 1.0, 1.0 ],
+            "font": "DejaVuSans.ttf",
+            "font-size": 10,
+            "bar": []
+        }
+    }
+</code></pre>
+    <h2>
+     Elements
+    </h2>
+    <h3>
+     The basics
+    </h3>
+    <p>
+     Elements are always rectangles, they must always have an
+     <code>
+      area
+     </code>
+     parameter. This can be pixels specifically, or a percentage of the parent area.
+    </p>
+    <p>
+     If you specify negative pixels for the width/height it subtracts it from the width/height of the parent area.
+    </p>
+    <p>
+     If you specify the coordinates in pixels it is in thef format:
+     <code>
+      x, y, width, height
+     </code>
+    </p>
+    <p>
+     If you specify it as a percentage of the parent area it is as:
+     <code>
+      top-left-x, top-left-y, bottom-right-x, bottom-right-y
+     </code>
+    </p>
+    <pre lang="json"><code>
+    "get_rect_perc": {
+        // 25%, 25% to 75%, 75%
+        "area": [0.25, 0.25, 0.75, 0.75]
+    },
+
+    "get_rect_px": {
+        // same as above on a 640x480 display
+        "area": [160, 120, 320, 240]
+    },
+
+    "get_rect_inset": {
+        // same as above on a 640x480 display
+        "area": [160, 120, -160, -120]
+    },
+
+</code></pre>
+    <p>
+     As hinted to above, you can specify a parent element to use as the basis of the calculating element positions.
+    </p>
+    <pre lang="json"><code>        "left_pane": {
+            // [0, 0, 192, 480] on 640x480 display
+            "area": [ 0.0, 0.0, 0.3, 1.0 ]
+        },
+        "right_pane": {
+            // [192, 0, 448, 480] on 640x480 display
+            "area": [ 0.3, 0.0, 1.0, 1.0 ]
+        },
+        "port_info_image_area": {
+            // [202, 10, 236, 230] using the above right_pane as the basis
+            "parent": "right_pane",
+            "area": [ 10, 10, -10, 0.5 ]
+        },
+        "port_info_text_area": {
+            // [202, 240, 236, 230] using the above right_pane as the basis
+            "parent": "right_pane",
+            "area": [ 10, 0.5, -10, -10 ]
+        },
+</code></pre>
+    <p>
+     By mixing and matching these you can build very powerful layouts.
+    </p>
+    <p>
+     You can also use the element overrides to further customise for different screen sizes.
+    </p>
+    <pre lang="json"><code>        "left_pane": {
+            "area": [ 0.0, 0.0, 0.3, 1.0 ],
+            "area[wide]": [ 0.0, 0.0, 0.4, 1.0 ]
+        },
+        "right_pane": {
+            "area": [ 0.3, 0.0, 1.0, 1.0 ],
+            "area[wide]": [ 0.4, 0.0, 1.0, 1.0 ]
+        },
+</code></pre>
+    <p>
+     Elements can be themed by setting a
+     <code>
+      fill
+     </code>
+     ,
+     <code>
+      outline
+     </code>
+     ,
+     <code>
+      thickness
+     </code>
+     , and
+     <code>
+      roundness
+     </code>
+     :
+    </p>
+    <ul>
+     <li>
+      <code>
+       fill
+      </code>
+      : the color to fill in the elements rect
+     </li>
+     <li>
+      <code>
+       outline
+      </code>
+      : the color of the outline for the elements rect
+     </li>
+     <li>
+      <code>
+       thickness
+      </code>
+      : how thick the stroke of the outline is
+     </li>
+     <li>
+      <code>
+       roundess
+      </code>
+      : if sdlGFX is available, it will make a roundrect with x pixels of roundness in the corners.
+     </li>
+     <li>
+      <code>
+       progress-fill
+      </code>
+      : this is a special fill colour, used for the progress bar.
+     </li>
+    </ul>
+    <h3>
+     Displaying Text
+    </h3>
+    <p>
+     Currently there are a few ways of displaying text.
+    </p>
+    <p>
+     To display text at a minimum you need a
+     <code>
+      font
+     </code>
+     ,
+     <code>
+      font-size
+     </code>
+     ,
+     <code>
+      font-color
+     </code>
+     , and
+     <code>
+      text
+     </code>
+     .
+    </p>
+    <pre lang="json"><code>    "text_element": {
+        "area": [0.25, 0.25, 0.75, 0.75],
+        "text": "Text to be displayed!",
+        "font": "DejaVuSans.ttf",
+        "font-size": 20,
+        "font-color": [0, 0, 0]
+    }
+</code></pre>
+    <p>
+     A special option is
+     <code>
+      font-scale
+     </code>
+     which should be used to broadly scale fonts across multiple elements or scenes using the element overrides.
+    </p>
+    <pre lang="json"><code>    "#base": {
+        "font-scale[hires]": 2.0,
+    }
+</code></pre>
+    <p>
+     You can align text to different positions of the element.
+    </p>
+    <ul>
+     <li>
+      <code>
+       topleft
+      </code>
+     </li>
+     <li>
+      <code>
+       topcenter
+      </code>
+     </li>
+     <li>
+      <code>
+       topright
+      </code>
+     </li>
+     <li>
+      <code>
+       midleft
+      </code>
+     </li>
+     <li>
+      <code>
+       center
+      </code>
+     </li>
+     <li>
+      <code>
+       midright
+      </code>
+     </li>
+     <li>
+      <code>
+       bottomleft
+      </code>
+     </li>
+     <li>
+      <code>
+       bottomcenter
+      </code>
+     </li>
+     <li>
+      <code>
+       bottomright
+      </code>
+     </li>
+    </ul>
+    <p>
+     You can control the way text is displayed with word wrapping, automatic scrolling, clipping, and scaling.
+    </p>
+    <ul>
+     <li>
+      shrink/grow the text to fill the region:
+      <code>
+       "text-clip": false
+      </code>
+     </li>
+     <li>
+      clip the text and just show what is visible:
+      <code>
+       "text-clip": true
+      </code>
+     </li>
+     <li>
+      word wrap the text if it is too wide for the area provided:
+      <code>
+       "text-wrap": true
+      </code>
+     </li>
+    </ul>
+    <p>
+     It also supports text auto-scrolling if it doesnt fit within the area it is displayed. It will horizontally scroll if the text is wider (word wrap is off), and vertically scroll if it is too tall (word-wrap is on).
+    </p>
+    <pre lang="json"><code>    "element_name": {
+        // Other element bits and bobs here.
+
+        "text-clip": true,          // This must be true for scrolling to work
+        "text-wrap": false,         // If text-wrap is false, it will default to a horizontal scroll, otherwise it defaults to a vertical scroll
+
+        "autoscroll": "slide",      // null does nothing, "slide" scrolls down then resets, "marquee" scrolls back and forth
+
+        "scroll-speed": 30,         // How many miliseconds between each scrolling step
+        "scroll-delay-start": 500,  // How many miliseconds to wait before starting to scroll
+        "scroll-delay-end":   500,   // How many miliseconds to wait at the end of scrolling
+
+        "scroll-direction": "horizontal" // override the defaults assumed based on text-wrap
+    }
+
+</code></pre>
+    <h3>
+     Images
+    </h3>
+    <p>
+     Probably should write something here.
+    </p>
+    <h3>
+     Lists
+    </h3>
+    <p>
+     The list system is quite adequate
+    </p>
+    <h2>
+     Basic presentation options
+    </h2>
+    <pre lang="json"><code>    "element_name": {
+        "select-color":    [255, 128, 128],  // color to draw the selected item as
+        "select-fill":     [128, 128, 128],  // color to fill behind the selected item
+        "alt-fill":        [210, 210, 210],  // color to fill alternating rows
+        "no-select-color": [128, 128, 128],  // color to draw text on unselectable rows.
+        "no-select-fill":  [210, 210, 210],  // color to fill on unselectable rows.
+        "inactive-select-color": [128,  64,  64],  // color to draw the selected item if the element is inactive
+    }
+</code></pre>
+    <h2>
+     Pointer
+    </h2>
+    <pre lang="json"><code>    "element_name": {
+        "pointer": "pointer.png",                 // pointer image
+        "pointer-align": ["midright", "midleft"], // poisition of (1) list/text to attach the position (2) of the pointer to
+        "pointer-size": [128, 64],                // scale it to this size, otherwise use the size of the image provided
+        "pointer-attach": "text",                 // attach to the rendered "text" rect, or the "list" item rect.
+        "pointer-offset": [0, 0],                 // offset it by x,y pixels after the position is calculated.
+        "pointer-flip-x": false,                  // flip the image horizontally
+        "pointer-flip-y": false,                  // flip it vertically
+        "pointer-mirror": false,                  // mirror the pointer and display on the other side of the list item
+        "pointer-mirror-x": false,                // flip the mirrored pointer horizontally
+        "pointer-mirror-y": false,                // flip the mirrored pointer vertically
+    }
+</code></pre>
+    <h2>
+     Special Words
+    </h2>
+    <p>
+     Within the templating system we have special words for things like button bindings and checkboxes. They are used for showing buttons and actions, and checkboxes.
+    </p>
+    <p>
+     It is possible to either override these special words with text, or replace them with an image.
+    </p>
+    <table class="table table-bordered">
+     <thead>
+      <tr>
+       <th>
+        Special Word
+       </th>
+       <th>
+        Description
+       </th>
+      </tr>
+     </thead>
+     <tbody>
+      <tr>
+       <td>
+        <code>
+         _A
+        </code>
+       </td>
+       <td>
+        Button A
+       </td>
+      </tr>
+      <tr>
+       <td>
+        <code>
+         _B
+        </code>
+       </td>
+       <td>
+        Button B
+       </td>
+      </tr>
+      <tr>
+       <td>
+        <code>
+         _X
+        </code>
+       </td>
+       <td>
+        Button X
+       </td>
+      </tr>
+      <tr>
+       <td>
+        <code>
+         _Y
+        </code>
+       </td>
+       <td>
+        Button Y
+       </td>
+      </tr>
+      <tr>
+       <td>
+        <code>
+         _UP
+        </code>
+       </td>
+       <td>
+        Button UP
+       </td>
+      </tr>
+      <tr>
+       <td>
+        <code>
+         _DOWN
+        </code>
+       </td>
+       <td>
+        Button DOWN
+       </td>
+      </tr>
+      <tr>
+       <td>
+        <code>
+         _LEFT
+        </code>
+       </td>
+       <td>
+        Button LEFT
+       </td>
+      </tr>
+      <tr>
+       <td>
+        <code>
+         _RIGHT
+        </code>
+       </td>
+       <td>
+        Button RIGHT
+       </td>
+      </tr>
+      <tr>
+       <td>
+        <code>
+         _START
+        </code>
+       </td>
+       <td>
+        Button START
+       </td>
+      </tr>
+      <tr>
+       <td>
+        <code>
+         _SELECT
+        </code>
+       </td>
+       <td>
+        Button SELECT
+       </td>
+      </tr>
+      <tr>
+       <td>
+        <code>
+         _L
+        </code>
+       </td>
+       <td>
+        Button L
+       </td>
+      </tr>
+      <tr>
+       <td>
+        <code>
+         _R
+        </code>
+       </td>
+       <td>
+        Button R
+       </td>
+      </tr>
+      <tr>
+       <td>
+        <code>
+         _CHECKED
+        </code>
+       </td>
+       <td>
+        Checked item in a list
+       </td>
+      </tr>
+      <tr>
+       <td>
+        <code>
+         _UNCHECKED
+        </code>
+       </td>
+       <td>
+        Unchecked item in a list
+       </td>
+      </tr>
+     </tbody>
+    </table>
+    <p>
+     To replace the words with text you can simply add the following to your theme, like used in the
+     <code>
+      basic_theme
+     </code>
+     :
+    </p>
+    <pre lang="json"><code>    "#override": {
+        "_A":         "A:",
+        "_B":         "B:",
+        "_X":         "X:",
+        "_Y":         "Y:",
+        "_UP":        "UP:",
+        "_DOWN":      "DOWN:",
+        "_LEFT":      "LEFT:",
+        "_RIGHT":     "RIGHT:",
+        "_START":     "START:",
+        "_SELECT":    "SELECT:",
+        "_L":         "L",
+        "_R":         "R",
+        "_CHECKED":   "[x]",
+        "_UNCHECKED": "[  ]",
+    }
+</code></pre>
+    <p>
+     To replace them with images you will need to load either images and use name to override the image name, or use an image atlas like in the
+     <code>
+      default_theme
+     </code>
+     .
+    </p>
+    <pre lang="json"><code>    "#resources": {
+        "buttons.png": {
+            "atlas": {
+                "_A":         [  0,   0, 180, 180],
+                "_B":         [180,   0, 180, 180],
+                "_X":         [360,   0, 180, 180],
+                "_Y":         [540,   0, 180, 180],
+                "_UP":        [900, 360, 180,  90],
+                "_DOWN":      [900, 450, 180,  90],
+                "_LEFT":      [900, 180,  90, 180],
+                "_RIGHT":     [990, 180,  90, 180],
+                "_START":     [  0, 180, 360, 180],
+                "_SELECT":    [360, 180, 360, 180],
+                "_L":         [  0, 360, 270, 180],
+                "_R":         [270, 360, 270, 180],
+                "_CHECKED":   [900,   0, 180, 180],
+                "_UNCHECKED": [720,   0, 180, 180]
+            }
+        }
+    }
+</code></pre>
+    <h2>
+     Text Template System
+    </h2>
+    <p>
+     PortMaster has a simple text templating engine, it supports tags and if/then/else statements.
+    </p>
+    <p>
+     You can use the tags in text areas and they will automatically update as their value changes.
+    </p>
+    <p>
+     An example of using the system.time_24hr tag:
+    </p>
+    <pre lang="json"><code>    {
+        // Element options
+        "text": "{system.time_24hr}"
+    }
+</code></pre>
+    <p>
+     If no data is found for a tag the tag name is returned.
+    </p>
+    <pre lang="json"><code>    {
+        // This will display "{system.unknown_tag}"
+        "text": "{system.unknown_tag}"
+    }
+</code></pre>
+    <p>
+     Obviously multiple tags can be used at once:
+    </p>
+    <pre lang="json"><code>    {
+        // This might display "ArkOS (07232023)" on ArkOS for example"
+        "text": "OS: {system.cfw_name} ({system.cfw_version})"
+    }
+</code></pre>
+    <p>
+     As mentioned above you can use if/then/else statements in the text:
+    </p>
+    <pre lang="json"><code>    {
+        // If port_info.runtime is not false it will display "\nRuntime: {}"
+        "text": "{if:port_info.runtime}\nRuntime: {port_info.runtime} ({port_info.runtime_status}){else}No Runtime Required{endif}"
+    }
+</code></pre>
+    <p>
+     You can even compare two tags text:
+    </p>
+    <pre lang="json"><code>    {
+        // if ports_list.total_ports doesnt equal ports_list.filter_ports
+        "text": "{if:!ports_list.total_ports::ports_list.filtered}{ports_list.filter_ports} / {ports_list.total_ports}{else}{ports_list.total_ports}{endif}"
+    }
+</code></pre>
+    <p>
+     The format is:
+    </p>
+    <p>
+     <code>
+      {if:[!]&lt;KEYNAME&gt;[:&lt;EQUALS TEXT&gt;[:OTHER KEY]]}&lt;TRUTH TEXT&gt;[{else}&lt;ELSE TEXT&gt;]{endif}
+     </code>
+    </p>
+    <h3>
+     Hopefully this helps, if not... oh well i will write it better later on.
+    </h3>
+    <table class="table table-bordered">
+     <thead>
+      <tr>
+       <th>
+        Tag
+       </th>
+       <th>
+        Result
+       </th>
+      </tr>
+     </thead>
+     <tbody>
+      <tr>
+       <td>
+        <code>
+         {if:!port_info.runtime}
+        </code>
+       </td>
+       <td>
+        <code>
+         port_info.runtime
+        </code>
+        != ""
+       </td>
+      </tr>
+      <tr>
+       <td>
+        <code>
+         {if:port_info.runtime}
+        </code>
+       </td>
+       <td>
+        <code>
+         port_info.runtime
+        </code>
+        == ""
+       </td>
+      </tr>
+      <tr>
+       <td>
+        <code>
+         {if:port_info.runtime:Mono 6.12.0.122}
+        </code>
+       </td>
+       <td>
+        <code>
+         port_info.runtime
+        </code>
+        == "Mono 6.12.0.122"
+       </td>
+      </tr>
+      <tr>
+       <td>
+        <code>
+         {if:!port_info.runtime:Mono 6.12.0.122}
+        </code>
+       </td>
+       <td>
+        <code>
+         port_info.runtime
+        </code>
+        != "Mono 6.12.0.122"
+       </td>
+      </tr>
+      <tr>
+       <td>
+        <code>
+         {if:ports_list.total_ports::ports_list.filter_ports}
+        </code>
+       </td>
+       <td>
+        <code>
+         ports_list.total_ports
+        </code>
+        ==
+        <code>
+         ports_list.filter_ports
+        </code>
+       </td>
+      </tr>
+      <tr>
+       <td>
+        <code>
+         {if:!ports_list.total_ports::ports_list.filter_ports}
+        </code>
+       </td>
+       <td>
+        <code>
+         ports_list.total_ports
+        </code>
+        !=
+        <code>
+         ports_list.filter_ports
+        </code>
+       </td>
+      </tr>
+     </tbody>
+    </table>
+    <h3>
+     System tags
+    </h3>
+    <ul>
+     <li>
+      <p>
+       system.time_24hr
+      </p>
+     </li>
+     <li>
+      <p>
+       system.time_12hr
+      </p>
+     </li>
+     <li>
+      <p>
+       system.free_space
+      </p>
+     </li>
+     <li>
+      <p>
+       system.used_space
+      </p>
+     </li>
+     <li>
+      <p>
+       system.cfw_name
+      </p>
+     </li>
+     <li>
+      <p>
+       system.cfw_version
+      </p>
+     </li>
+     <li>
+      <p>
+       system.device_name
+      </p>
+     </li>
+     <li>
+      <p>
+       system.battery_level
+      </p>
+     </li>
+     <li>
+      <p>
+       system.ip_address
+      </p>
+     </li>
+     <li>
+      <p>
+       system.progress_text
+      </p>
+     </li>
+     <li>
+      <p>
+       system.progress_amount
+      </p>
+     </li>
+     <li>
+      <p>
+       system.progress_perc_5
+      </p>
+     </li>
+     <li>
+      <p>
+       system.progress_perc_10
+      </p>
+     </li>
+     <li>
+      <p>
+       system.progress_perc_20
+      </p>
+     </li>
+     <li>
+      <p>
+       system.progress_perc_25
+      </p>
+     </li>
+     <li>
+      <p>
+       system.progress_spinner_5
+      </p>
+     </li>
+     <li>
+      <p>
+       system.progress_spinner_10
+      </p>
+     </li>
+     <li>
+      <p>
+       system.progress_spinner_20
+      </p>
+     </li>
+     <li>
+      <p>
+       system.progress_spinner_25
+      </p>
+     </li>
+     <li>
+      <p>
+       system.progress_perc_5_or_spinner
+      </p>
+     </li>
+     <li>
+      <p>
+       system.progress_perc_10_or_spinner
+      </p>
+     </li>
+     <li>
+      <p>
+       system.progress_perc_20_or_spinner
+      </p>
+     </li>
+     <li>
+      <p>
+       system.progress_perc_25_or_spinner
+      </p>
+     </li>
+    </ul>
+    <h3>
+     Port info tags
+    </h3>
+    <ul>
+     <li>
+      port_info.image
+     </li>
+     <li>
+      port_info.title
+     </li>
+     <li>
+      port_info.description
+     </li>
+     <li>
+      port_info.instructions
+     </li>
+     <li>
+      port_info.genres
+     </li>
+     <li>
+      port_info.porter
+     </li>
+     <li>
+      port_info.ready_to_run
+     </li>
+     <li>
+      port_info.download_size
+     </li>
+     <li>
+      port_info.runtime
+     </li>
+     <li>
+      port_info.runtime_status
+     </li>
+    </ul>
+    <h2>
+     Ports List tags
+    </h2>
+    <ul>
+     <li>
+      ports_list.total_ports
+     </li>
+     <li>
+      ports_list.filter_ports
+     </li>
+     <li>
+      ports_list.filters
+     </li>
+    </ul>
+    <h2>
+     Theme info tags
+    </h2>
+    <ul>
+     <li>
+      theme_info.image
+     </li>
+     <li>
+      theme_info.name
+     </li>
+     <li>
+      theme_info.description
+     </li>
+     <li>
+      theme_info.creator
+     </li>
+     <li>
+      theme_info.status
+     </li>
+    </ul>
+    <h3>
+     Control flow of PortMaster
+    </h3>
+    <pre><code>Main:
+  -&gt; Install Menu
+  -&gt; Uninstall Menu -&gt; Port List [Installed filter]
+  -&gt; Options
+  -&gt; Quit
+
+Install Menu:
+  -&gt; All Ports    -&gt; Port List [No filter]
+  -&gt; Ready To Run -&gt; Port List [RTR filter]
+
+  -&gt; Lists 1      -&gt; Custom List
+  -&gt; Lists 2      -&gt; Custom List
+  -&gt; Lists 3      -&gt; Custom List
+  -&gt; Lists 4      -&gt; Custom List
+
+  -&gt; Back
+
+Port List:
+  -&gt; List of Ports
+    -&gt; Inspect
+    -&gt; Back
+
+Options:
+  -&gt; TBD.
+  -&gt; Back
+
+Inspect:
+  -&gt; Install/Re-Install or Uninstall
+  -&gt; Back
+
+Install/Uninstall:
+  -&gt; Message Screen
+  -&gt; Back
+</code></pre>
+    <script>
+     anchors.options.visible = 'always';
+        anchors.add();
+    </script>
+   </main>
+   <footer class="my-5 pt-5 text-body-secondary text-center text-small">
+   </footer>
+  </div>
+ </body>
+</html>
