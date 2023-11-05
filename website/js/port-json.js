@@ -23,6 +23,8 @@ var portSchema = {
     "image": null,
     /* Does the port run without any additional files. */
     "rtr": false,
+    /* experimental port flag */
+    "exp": false,
     /* What runtime do we require? */
     "runtime": null,
     /* Any hardware/software requirements: opengl, power, 4:3, 3:2, 16:9, lowres, hires */
@@ -101,6 +103,7 @@ function getFormValues() {
   portJson.attr.inst = document.getElementById("instructions").value;
   portJson.attr.runtime = document.getElementById("runtime").value ? document.getElementById("runtime").value : null;
   portJson.attr.rtr = document.getElementById("readytorun").checked;
+  portJson.attr.exp = document.getElementById("experimental").checked;
   portJson.attr.reqs = [];
 
   // res requirements

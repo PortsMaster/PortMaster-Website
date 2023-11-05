@@ -116,7 +116,7 @@ function createRecent(item) {
 }
 
 function populateRecentPorts() {
-    jsonData.sort((a,b)=> Date.parse(a.source.date_updated) > Date.parse(b.source.date_updated) ? -1 :  (Date.parse(a.source.date_updated) < Date.parse(b.source.date_updated) ? 1 :0))
+    jsonData.sort((a,b)=> Date.parse(a.source.date_added) > Date.parse(b.source.date_added) ? -1 :  (Date.parse(a.source.date_added) < Date.parse(b.source.date_added) ? 1 :0))
     for (var key of Object.keys(jsonData.slice(0, 5))) {
 
         createRecent(jsonData[key]);

@@ -23,6 +23,7 @@ function displayCardDetails(data) {
     imageElement.src = source;
 
 
+    
     //data.attr.desc ? document.getEleme('desc').textContent = data.attr.desc : document.getElementsByClassName('desc').hidden = true;
     descriptionElement = document.getElementById('desc');
     var converter = new showdown.Converter();
@@ -40,6 +41,21 @@ function displayCardDetails(data) {
     const lastUpdatedElement = document.getElementById("last_updated");
     lastUpdatedElement.textContent = data.source.date_updated;
 
+    var taggedMisc = "";
+    if (data.attr.rtr){
+        taggedMisc += '<span class="misc-item badge bg-secondary">Ready to Run</span><br>';
+    }
+
+    if (data.attr.exp){
+        taggedMisc += '<span class="misc-item badge bg-secondary">Experimental</span><br>';
+    }
+
+    if (data.source.repo == "multiverse"){
+        taggedMisc += '<span class="misc-item badge bg-secondary">Multiverse</span><br>';
+    }
+
+    const miscElement = document.getElementById("misc");
+    miscElement.innerHTML = taggedMisc;
 
     var taggedGenres = "";
     data.attr.genres.forEach((genre) => {
