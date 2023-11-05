@@ -1,6 +1,6 @@
 ## Installing PortMaster
 
-[Download](https://github.com/PortsMaster/PortMaster-GUI/releases/latest) the latest version of PortMaster.
+[Download](https://github.com/PortsMaster/PortMaster-GUI/releases/8.5.2_0811) the latest version of PortMaster.
 
 - Install.PortMaster.sh - The base install of PortMaster.
 - Install.Full.PortMaster.sh - The base install + all runtimes.
