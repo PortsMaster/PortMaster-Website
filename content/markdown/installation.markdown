@@ -32,17 +32,6 @@ To install PortMaster download the PortMaster.zip from the link above, unzip it 
 
 If your CFW is not listed above, it will most likely be in one of the above locations.
 
-
-## JELOS
-
-To get it to work on JELOS:
-
-- Go to `Tools -> Start PortMaster` first then exit.
-- Unzip PortMaster.zip and copy `PortMaster/` directory and all its contents into `/storage/roms/ports`.
-- Restart EmulationStation
-- You can now run `PortMaster` in the `PortMaster` directory.
-- **WARNING**: If you do `Tools -> Start PortMaster` it will delete the `PortMaster.sh` and you will need to extract it from the zip again.
-
 ## Other CFW
 
 For the other CFW it is as simple as:
