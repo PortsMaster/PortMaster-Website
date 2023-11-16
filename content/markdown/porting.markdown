@@ -117,7 +117,32 @@ cd gl4es
 cmake .. -DNOX11=ON -DGLX_STUBS=ON -DEGL_WRAPPER=ON -DGBM=ON
 make
 ```
+## QT5
 
+You have the ability to use QT5 for our handheld devices by using the official eglfs plugin.
+We provide QT5 libraries as a runtime since they are +150mb big.
+
+To troubleshoot QT5 games you can use `export QT_DEBUG_PLUGINS=1`to get more detailed error output.
+
+Following exports are needed to run the game
+`QML2_IMPORT_PATH` showing to qt5/qml 
+`QT_QPA_PLATFORM=eglfs` choosing the eglfs plugin for egl gles output
+`QT_QPA_PLATFORM_PLUGIN_PATH`sowing to qt5/plugins. If you game uses a nonstandard plugin library you need to configure it on your buildhost with qmake and then copy the libraries over
+`LD_LIBRARY_PATH` to qt5/libs 
+
+To compile QT5 for aarch64
+```
+git clone git://code.qt.io/qt/qt5.git
+cd qt5/
+git checkout 5.15
+./init-repository --module-subset=default
+./configure -release -opengl es2 -eglfs -no-xcb -gbm -kms -shared -opensource -confirm-license -make libs -v
+make
+make install
+```
+
+For more information about EGLFS and Aarch64 see this article
+https://wiki.qt.io/RaspberryPi2EGLFS
 
 ## GPTOKEYB
 
