@@ -425,6 +425,56 @@ cmake .. -DNOX11=ON -DGLX_STUBS=ON -DEGL_WRAPPER=ON -DGBM=ON
 make
 </code></pre>
     <h2>
+     QT5
+    </h2>
+    <p>
+     You have the ability to use QT5 for our handheld devices by using the official eglfs plugin.
+We provide QT5 libraries as a runtime since they are +150mb big.
+    </p>
+    <p>
+     To troubleshoot QT5 games you can use
+     <code>
+      export QT_DEBUG_PLUGINS=1
+     </code>
+     to get more detailed error output.
+    </p>
+    <p>
+     Following exports are needed to run the game
+     <code>
+      QML2_IMPORT_PATH
+     </code>
+     showing to qt5/qml
+     <code>
+      QT_QPA_PLATFORM=eglfs
+     </code>
+     choosing the eglfs plugin for egl gles output
+     <code>
+      QT_QPA_PLATFORM_PLUGIN_PATH
+     </code>
+     sowing to qt5/plugins. If you game uses a nonstandard plugin library you need to configure it on your buildhost with qmake and then copy the libraries over
+     <code>
+      LD_LIBRARY_PATH
+     </code>
+     to qt5/libs
+    </p>
+    <p>
+     To compile QT5 for aarch64
+    </p>
+    <pre><code>git clone git://code.qt.io/qt/qt5.git
+cd qt5/
+git checkout 5.15
+./init-repository --module-subset=default
+./configure -release -opengl es2 -eglfs -no-xcb -gbm -kms -shared -opensource -confirm-license -make libs -v
+make
+make install
+</code></pre>
+    <p>
+     For more information about EGLFS and Aarch64 see this article
+     <a href="https://wiki.qt.io/RaspberryPi2EGLFS">
+      https://wiki.qt.io/RaspberryPi2EGLFS
+     </a>
+    </p>
+    <h2>
      GPTOKEYB
     </h2>
     <p>
