@@ -86,7 +86,7 @@ $GPTOKEYB "portexecutable" -c "./portname.gptk.$ANALOGSTICKS" &
 
 ### Port specific additional libraries should be included within the port's directory in a separate subfolder named libs.
 They can be loaded at runtime using `export LD_LIBRARY_PATH` or using `LD_LIBRARY_PATH=` on the same line as the executable as long as it's before it. \
-LD_LIBRARY_PATH="$PWD/libs"
+LD_LIBRARY_PATH="$PWD/libs:$LD_LIBRARY_PATH"
 
 SDL_GAMECONTROLLERCONFIG="$sdl_controllerconfig" # Provide appropriate controller configuration if it recognizes SDL controller input
 ./portexecutable 2>&1 | tee -a ./log.txt # Launch the executable and write a log to log.txt
@@ -128,7 +128,7 @@ cd $GAMEDIR
 
 $ESUDO chmod 666 /dev/uinput
 $GPTOKEYB "portexecutable" -c "./portname.gptk" &
-LD_LIBRARY_PATH="$PWD/libs" SDL_GAMECONTROLLERCONFIG="$sdl_controllerconfig" ./portexecutable 2>&1 | tee -a ./log.txt
+LD_LIBRARY_PATH="$PWD/libs:$LD_LIBRARY_PATH" SDL_GAMECONTROLLERCONFIG="$sdl_controllerconfig" ./portexecutable 2>&1 | tee -a ./log.txt
 
 $ESUDO kill -9 $(pidof gptokeyb)
 $ESUDO systemctl restart oga_events &
@@ -218,10 +218,11 @@ get_controls
 GAMEDIR=/$directory/ports/portfolder
 cd $GAMEDIR
 
+export LD_LIBRARY_PATH="$PWD/libs:$LD_LIBRARY_PATH"
 
 $ESUDO chmod 666 /dev/uinput
+
 $GPTOKEYB "love" -c "./love.gptk" &
-LD_LIBRARY_PATH="$PWD/libs" 
 ./love portname 2>&1 | tee $GAMEDIR/log.txt
 $ESUDO kill -9 $(pidof gptokeyb)
 $ESUDO systemctl restart oga_events &
@@ -266,7 +267,7 @@ fi
 
 # Port specific additional libraries should be included within the port's directory in a separate subfolder named libs.
 # Prioritize the armhf libs to avoid conflicts with aarch64
-export LD_LIBRARY_PATH="/usr/lib32:$GAMEDIR/libs:$GAMEDIR/utils/libs"
+export LD_LIBRARY_PATH="/usr/lib32:$GAMEDIR/libs:$GAMEDIR/utils/libs:$LD_LIBRARY_PATH"
 export GMLOADER_DEPTH_DISABLE=1
 export GMLOADER_SAVEDIR="$GAMEDIR/gamedata/"
 
