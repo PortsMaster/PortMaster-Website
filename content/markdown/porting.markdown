@@ -127,7 +127,7 @@ To troubleshoot QT5 games you can use `export QT_DEBUG_PLUGINS=1`to get more det
 Following exports are needed to run the game
 `QML2_IMPORT_PATH` showing to qt5/qml 
 `QT_QPA_PLATFORM=eglfs` choosing the eglfs plugin for egl gles output
-`QT_QPA_PLATFORM_PLUGIN_PATH`sowing to qt5/plugins. If you game uses a nonstandard plugin library you need to configure it on your buildhost with qmake and then copy the libraries over
+`QT_PLUGIN_PATH`showing to qt5/plugins. If you game uses a nonstandard plugin library you need to configure it on your buildhost with qmake and then copy the libraries over
 `LD_LIBRARY_PATH` to qt5/libs 
 
 To compile QT5 for aarch64
@@ -143,6 +143,34 @@ make install
 
 For more information about EGLFS and Aarch64 see this article
 https://wiki.qt.io/RaspberryPi2EGLFS
+
+## QT6
+
+You have the ability to use QT6 for our handheld devices by using the official eglfs plugin.
+We provide QT6 libraries as a runtime since they are +150mb big.
+
+To troubleshoot QT6 games you can use `export QT_DEBUG_PLUGINS=1`to get more detailed error output.
+
+Following exports are needed to run the game
+`QML2_IMPORT_PATH` showing to qt6/qml 
+`QT_QPA_PLATFORM=eglfs` choosing the eglfs plugin for egl gles output
+`QT_PLUGIN_PATH`showing to qt6/plugins. If you game uses a nonstandard plugin library you need to configure it on your buildhost with qmake and then copy the libraries over
+`LD_LIBRARY_PATH` to qt6/libs 
+
+To compile QT6 for aarch64
+```
+git clone git://code.qt.io/qt/qt5.git qt6
+cd qt6/
+git checkout 6.6
+./init-repository --module-subset=default
+mkdir qt6-build && cd qt6-build
+./cmake with following variables
+-DFEATURE_accessibility_atspi_bridge: BOOL=OFF -DFEATURE_androiddeployqt: BOOL=OFF -DFEATURE_egl_x11: BOOL=OFF -DFEATURE_eglfs_x11: BOOL=OFF -DFEATURE_opengl_desktop: BOOL=OFF
+-DFEATURE_opengles2: BOOL=ON -DFEATURE_opengles3: BOOL=ON -DFEATURE_opengles31: BOOL=ON -DFEATURE_opengles32: BOOL=ON -DFEATURE_qt3d_vulkan: BOOL=OFF 
+-DFEATURE_vkkhrdisplay: BOOL=OFF -DFEATURE_vulkan: BOOL=OFF -DFEATURE_wayland_vulkan_server_buffer: BOOL=OFF -DFEATURE_xcb_xlib: BOOL=OFF -DFEATURE_xkbcommon_x11: BOOL=OFF
+make
+make install
+```
 
 ## GPTOKEYB
 
