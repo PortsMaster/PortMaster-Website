@@ -449,9 +449,9 @@ We provide QT5 libraries as a runtime since they are +150mb big.
      </code>
      choosing the eglfs plugin for egl gles output
      <code>
-      QT_QPA_PLATFORM_PLUGIN_PATH
+      QT_PLUGIN_PATH
      </code>
-     sowing to qt5/plugins. If you game uses a nonstandard plugin library you need to configure it on your buildhost with qmake and then copy the libraries over
+     showing to qt5/plugins. If you game uses a nonstandard plugin library you need to configure it on your buildhost with qmake and then copy the libraries over
      <code>
       LD_LIBRARY_PATH
      </code>
@@ -474,6 +474,54 @@ make install
       https://wiki.qt.io/RaspberryPi2EGLFS
      </a>
     </p>
+    <h2>
+     QT6
+    </h2>
+    <p>
+     You have the ability to use QT6 for our handheld devices by using the official eglfs plugin.
+We provide QT6 libraries as a runtime since they are +150mb big.
+    </p>
+    <p>
+     To troubleshoot QT6 games you can use
+     <code>
+      export QT_DEBUG_PLUGINS=1
+     </code>
+     to get more detailed error output.
+    </p>
+    <p>
+     Following exports are needed to run the game
+     <code>
+      QML2_IMPORT_PATH
+     </code>
+     showing to qt6/qml
+     <code>
+      QT_QPA_PLATFORM=eglfs
+     </code>
+     choosing the eglfs plugin for egl gles output
+     <code>
+      QT_PLUGIN_PATH
+     </code>
+     showing to qt6/plugins. If you game uses a nonstandard plugin library you need to configure it on your buildhost with qmake and then copy the libraries over
+     <code>
+      LD_LIBRARY_PATH
+     </code>
+     to qt6/libs
+    </p>
+    <p>
+     To compile QT6 for aarch64
+    </p>
+    <pre><code>git clone git://code.qt.io/qt/qt5.git qt6
+cd qt6/
+git checkout 6.6
+./init-repository --module-subset=default
+mkdir qt6-build &amp;&amp; cd qt6-build
+./cmake with following variables
+-DFEATURE_accessibility_atspi_bridge: BOOL=OFF -DFEATURE_androiddeployqt: BOOL=OFF -DFEATURE_egl_x11: BOOL=OFF -DFEATURE_eglfs_x11: BOOL=OFF -DFEATURE_opengl_desktop: BOOL=OFF
+-DFEATURE_opengles2: BOOL=ON -DFEATURE_opengles3: BOOL=ON -DFEATURE_opengles31: BOOL=ON -DFEATURE_opengles32: BOOL=ON -DFEATURE_qt3d_vulkan: BOOL=OFF 
+-DFEATURE_vkkhrdisplay: BOOL=OFF -DFEATURE_vulkan: BOOL=OFF -DFEATURE_wayland_vulkan_server_buffer: BOOL=OFF -DFEATURE_xcb_xlib: BOOL=OFF -DFEATURE_xkbcommon_x11: BOOL=OFF
+make
+make install
+</code></pre>
     <h2>
      GPTOKEYB
     </h2>
