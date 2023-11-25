@@ -8,8 +8,8 @@ from bs4 import BeautifulSoup
 r = requests.get("https://raw.githubusercontent.com/PortsMaster/gptokeyb/main/README.md", allow_redirects=True)
 open(os.path.join("content","markdown","gptokeyb-documentation.markdown"), 'wb').write(r.content)
 
-r = requests.get("https://raw.githubusercontent.com/kloptops/harbourmaster/main/data/theme.md", allow_redirects=True)
-open(os.path.join("content","markdown","themes.markdown"), 'wb').write(r.content)
+#r = requests.get("https://raw.githubusercontent.com/kloptops/harbourmaster/main/data/theme.md", allow_redirects=True)
+#open(os.path.join("content","markdown","themes.markdown"), 'wb').write(r.content)
 
 shutil.copytree(os.path.join("website","css"),os.path.join("docs","css"),dirs_exist_ok=True)
 shutil.copytree(os.path.join("website","js"),os.path.join("docs","js"),dirs_exist_ok=True)
