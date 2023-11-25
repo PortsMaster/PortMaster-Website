@@ -105,11 +105,13 @@ Currently there are the following scenes:
 - `main_menu`: The main menu
 - `option_menu`: Options screen
 - `ports_list`: The list of ports
+  - `filter_list`: Filter scene that pops up over the ports_list scene.
 - `port_info`: Detailed port information.
+  - `port_info_popup`: A popup scene that displays above the `port_info` scene
 - `message_window`: A scrolling list of messages, used during downloading, installation, and fetching the latest ports information.
 - `message_box`: An alert box
-- `filter_list`: Available filters
-- `themes_list`: List themes / downloader.
+- `themes_list`: Theme manager scene.
+- `runtime_list`: Runtime manager scene.
 
 ### Scene: main_menu
 
@@ -358,6 +360,55 @@ The list system is quite adequate
     }
 ```
 
+## `#config`
+
+The `#config` section in a scene is used for changing the behaviour of a scene, currently it is only used for setting button mappings in the `port_info` and `port_info_popup` scenes, but will be expanded as needed.
+
+By default the `port_info` scene is defined as:
+
+```json
+    "port_info": {
+        "#config": {
+            "buttons": {
+                "UP": "prev_port",
+                "DOWN": "next_port"
+            }
+        }
+    }
+```
+
+However if a `port_info_popup` is present it will default to this:
+
+```json
+    "port_info": {
+        "#config": {
+            "buttons": {
+                "LEFT": "prev_port",
+                "RIGHT": "next_port",
+                "UP": "port_info_popup"
+            }
+        }
+    },
+
+    "port_info_popup": {
+        "#config": {
+            "buttons": {
+                "DOWN": "pop_scene"
+            }
+        }
+    }
+```
+
+The code will automatically set the buttons for the button bar. The actions `prev_port` and `next_port` do not add to the button bar to stop if from being crowded.
+
+Currently the only actions are:
+
+- `prev_port`
+- `next_port`
+- `port_info_popup`
+- `pop_scene`
+
+More will be added as required.
 
 ## Special Words
 
@@ -524,6 +575,7 @@ The format is:
 
 ### Port info tags
 
+- port_info.name
 - port_info.image
 - port_info.title
 - port_info.description
