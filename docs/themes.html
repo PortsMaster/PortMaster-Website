@@ -495,12 +495,32 @@
        ports_list
       </code>
       : The list of ports
+      <ul>
+       <li>
+        <code>
+         filter_list
+        </code>
+        : Filter scene that pops up over the ports_list scene.
+       </li>
+      </ul>
      </li>
      <li>
       <code>
        port_info
       </code>
       : Detailed port information.
+      <ul>
+       <li>
+        <code>
+         port_info_popup
+        </code>
+        : A popup scene that displays above the
+        <code>
+         port_info
+        </code>
+        scene
+       </li>
+      </ul>
      </li>
      <li>
       <code>
@@ -516,15 +536,15 @@
      </li>
      <li>
       <code>
-       filter_list
+       themes_list
       </code>
-      : Available filters
+      : Theme manager scene.
      </li>
      <li>
       <code>
-       themes_list
+       runtime_list
       </code>
-      : List themes / downloader.
+      : Runtime manager scene.
      </li>
     </ul>
     <h3>
@@ -918,6 +938,106 @@
         "pointer-mirror-y": false,                // flip the mirrored pointer vertically
     }
 </code></pre>
+    <h2>
+     <code>
+      #config
+     </code>
+    </h2>
+    <p>
+     The
+     <code>
+      #config
+     </code>
+     section in a scene is used for changing the behaviour of a scene, currently it is only used for setting button mappings in the
+     <code>
+      port_info
+     </code>
+     and
+     <code>
+      port_info_popup
+     </code>
+     scenes, but will be expanded as needed.
+    </p>
+    <p>
+     By default the
+     <code>
+      port_info
+     </code>
+     scene is defined as:
+    </p>
+    <pre lang="json"><code>    "port_info": {
+        "#config": {
+            "buttons": {
+                "UP": "prev_port",
+                "DOWN": "next_port"
+            }
+        }
+    }
+</code></pre>
+    <p>
+     However if a
+     <code>
+      port_info_popup
+     </code>
+     is present it will default to this:
+    </p>
+    <pre lang="json"><code>    "port_info": {
+        "#config": {
+            "buttons": {
+                "LEFT": "prev_port",
+                "RIGHT": "next_port",
+                "UP": "port_info_popup"
+            }
+        }
+    },
+
+    "port_info_popup": {
+        "#config": {
+            "buttons": {
+                "DOWN": "pop_scene"
+            }
+        }
+    }
+</code></pre>
+    <p>
+     The code will automatically set the buttons for the button bar. The actions
+     <code>
+      prev_port
+     </code>
+     and
+     <code>
+      next_port
+     </code>
+     do not add to the button bar to stop if from being crowded.
+    </p>
+    <p>
+     Currently the only actions are:
+    </p>
+    <ul>
+     <li>
+      <code>
+       prev_port
+      </code>
+     </li>
+     <li>
+      <code>
+       next_port
+      </code>
+     </li>
+     <li>
+      <code>
+       port_info_popup
+      </code>
+     </li>
+     <li>
+      <code>
+       pop_scene
+      </code>
+     </li>
+    </ul>
+    <p>
+     More will be added as required.
+    </p>
     <h2>
      Special Words
     </h2>
@@ -1415,6 +1535,9 @@
      Port info tags
     </h3>
     <ul>
+     <li>
+      port_info.name
+     </li>
      <li>
       port_info.image
      </li>
