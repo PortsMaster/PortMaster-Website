@@ -177,17 +177,25 @@ function displayCards(data) {
 function filterCards() {
     const searchQuery = document.getElementById('search').value.trim().toLowerCase();
     const readyToRun = document.getElementById('ready-to-run').checked;
+    const filesNeeded = document.getElementById('files-needed').checked;
     var filteredData = []
     var queries = searchQuery.split(" ");
     for (var key of Object.keys(jsonData)) {
         queries.forEach(element => {
             if ((jsonData[key].attr.title.toLowerCase().includes(element) || jsonData[key].attr.genres.join().toLowerCase().includes(element) || jsonData[key].attr.porter.join().toLowerCase().includes(element) ) && !filteredData.includes(jsonData[key])) {
 
+                if (readyToRun || filesNeeded ) {
                 if (readyToRun){
                     if (jsonData[key].attr.rtr){
                         filteredData.push(jsonData[key]);
                     }
+                } if (filesNeeded) {
+                    if (!jsonData[key].attr.rtr){
+                        filteredData.push(jsonData[key]);
+                    }
                 }
+            }
+
                 else {
                     filteredData.push(jsonData[key]);
                 }                
