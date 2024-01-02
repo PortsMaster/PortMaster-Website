@@ -399,8 +399,8 @@ Following Requierements need to be added:
 For testing we have a dedicated testing section in our Discord called testing-n-dev (https://discord.com/channels/1122861252088172575/1122885073507733625)
 - Have your port in following structure:
 
-  ```
-  ## Port Zip Structure
+```
+   Port Zip Structure
 - [portname.zip/](#)
   - [portname/](#)
     - [README (optional)](#)
@@ -411,15 +411,15 @@ For testing we have a dedicated testing section in our Discord called testing-n-
     - [gamedata/](#)
   - [PortScript.sh](#)
 
-## PortMaster Repo Structure
+ PortMaster Repo Structure
 - [PortMaster/](#)
   - [images/](#)
     - [portname.screenshot.png](#)
   - [markdown/](#)
     - [portname.md](#)
   - [portname.zip](#)
-  - ```
-  - 
+```
+
 
 After that your port will be reviewed by one of the crew members.
 
