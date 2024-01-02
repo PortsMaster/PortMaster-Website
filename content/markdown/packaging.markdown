@@ -389,3 +389,37 @@ For naming its portname.screenshot.png
 After putting all these files in one place please zip these files using regular zip.
 
 With this you can now go ahead to make a Pull Request on our main Portmaster Repo (if you tested the Port for all major cfws / devices of course) 
+
+## Creating a Pull Request
+To submit your game to PortMaster you need to create a fork of the current main PortMaster Repo (https://github.com/christianhaitian/PortMaster)
+
+Following Requierements need to be added:
+- Tested your game on all major CFWs (AmberELEC, ArkOS, JELOS)
+- Tested all major resolutions (480x320, 640x,480 and higher res like 1280x720)
+For testing we have a dedicated testing section in our Discord called testing-n-dev (https://discord.com/channels/1122861252088172575/1122885073507733625)
+- Have your port in following structure:
+
+  ```
+  ## Port Zip Structure
+- [portname.zip/](#)
+  - [portname/](#)
+    - [README (optional)](#)
+    - [portname.port.json](#)
+    - [licensefile](#)
+    - [gamename.gptk (If needed)](#)
+    - [libs/ (If needed)](#)
+    - [gamedata/](#)
+  - [PortScript.sh](#)
+
+## PortMaster Repo Structure
+- [PortMaster/](#)
+  - [images/](#)
+    - [portname.screenshot.png](#)
+  - [markdown/](#)
+    - [portname.md](#)
+  - [portname.zip](#)
+  - ```
+  - 
+
+After that your port will be reviewed by one of the crew members.
+
