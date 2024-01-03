@@ -49,7 +49,7 @@
   {
     "device": "RG351P/M",
     "manufacturer": "Anbernic",
-    "resolution": "320*480",
+    "resolution": "480*320",
     "firmware": "ArkOS,AmberELEC,JELOS",
     "notes": "Some ports may have issues with this aspect ratio. Results will vary from port to port."
   },
@@ -63,7 +63,7 @@
   {
     "device": "X55",
     "manufacturer": "Powkiddy",
-    "resolution": "320*480",
+    "resolution": "1280*720",
     "firmware": "JELOS",
     "notes": ""
   }
