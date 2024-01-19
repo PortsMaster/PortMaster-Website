@@ -37,7 +37,7 @@
     "device": "RGB30",
     "manufacturer": "Powkiddy",
     "resolution": "720*720",
-    "firmware": "ArkOS",
+    "firmware": "ArkOS,JELOS",
     "notes": "Some ports may have issues with this aspect ratio. Results will vary from port to port."
   },{
     "device": "RK2023 ",
