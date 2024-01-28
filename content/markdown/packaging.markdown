@@ -1,27 +1,157 @@
-# Packaging ports for PortMaster
+# Packaging Ports for PortMaster
+
+## Index
+- [Portname Requirements](#portname-requirements)
+- [New Port Structure](#new-port-structure)
+  - [port.json](#portjson)
+  - [README.md](#readmemd)
+  - [Screenshot](#screenshot)
+  - [License File](#licensefile)
+  - [The Launch Script (.sh)](#the-launchscript-sh)
+  - [Examples](#examples)
+- [Creating a Pull Request](#creating-a-pull-request)
+
 **To release a Port on PortMaster we have some guidelines that need to be followed:**
 
-## Port Zip Structure
-- [portname.zip/](#)
-  - [portname/](#)
-    - [README (optional)](#)
-    - [portname.port.json](#)
-    - [licensefile](#)
-    - [gamename.gptk (If needed)](#)
-    - [libs/ (If needed)](#)
-    - [gamedata/](#)
-  - [PortScript.sh](#)
+### Portname requirements
 
-## PortMaster Repo Structure
-- [PortMaster/](#)
-  - [images/](#)
-    - [portname.screenshot.png](#)
-  - [markdown/](#)
-    - [portname.md](#)
-  - [portname.zip](#)
+The **portname** must start with either a lowercase letter (a-z) or a number (0-9).
+
+You can then have a combination of lowercase letters (a-z), numbers (0-9), periods (.), or underscores (\_).
+
+There is no limit on the length of the name, but keep it short.
+
+This name must not clash with any other existing ports.
+
+### New Port Structure:
+
+Ports are now contained within the `port` top level directory, each port has its own sub-directory named after the port itself. Each port must adhere to the `portname` rules stated above. Each port must have a `port.json`, `screenshot.{jpg,png}`, `README.md`, a port script and a port directory. It may optionally include a `cover.{jpg,png}`.
+
+The script should have capital letters (like `Port Name.sh`) and must end in `.sh`, the port directory should be the same as the containing directory. Some legacy ports have different names, new ports won't be accepted unless they follow the new convention.
+
+Scripts and port directories must be unique across the whole project, checks will be run to ensure this is right.
+
+A port directory might look like the following:
+
+```
+- portname/
+  - port.json
+  - README.md
+  - screenshot.jpg
+  - cover.jpg (Optional)
+  - Port Name.sh
+  - portname/
+    - <portfiles here>
+    - LICENSE Files
+```
+
+#### port.json
+
+This is used by portmaster, this should include all the pertinent info for the port, [we have a handy port.json generator here](http://portmaster.games/port-json.html).
+
+Example from 2048.
+
+```json
+{
+    "version": 2,
+    "name": "2048.zip",
+    "items": [
+        "2048.sh",
+        "2048/"
+    ],
+    "items_opt": null,
+    "attr": {
+        "title": "2048",
+        "desc": "The 2048 puzzle game",
+        "inst": "Ready to run.",
+        "genres": [
+            "puzzle"
+        ],
+        "porter": [
+            "Christian_Haitian"
+        ],
+        "image": {},
+        "rtr": true,
+        "runtime": null,
+        "reqs": []
+    }
+}
+```
+
+#### README.md
+
+This adds additional info for the port on the wiki, [we have a handy README.md generator here](http://portmaster.games/port-markdown.html).
+
+Example:
+
+```markdown
+# Notes
+
+Thanks to [Martin Törnqvist](https://gitlab.com/martin-tornqvist/ia) for this game.
+
+Source: https://gitlab.com/martin-tornqvist/ia
+
+## Controls
+
+| Button | Action |
+|--|--|
+| Back | Inventory |
+| Start | Map |
+| D-pad/Right-Analog | Movement, navigation in menus |
+| A | Select something in a menu, confirm action, etc. |
+| B | Cancel/proceed |
+| Back + A | Y (yes for answering questions in dialogs) |
+| Back + B | N (no for answering questions in dialogs), make noise |
+| Back + Y | Toggle lantern |
+| Back + X | WAIT five turns, or until something happens |
+| X | Melee attack adjacent monster (useful for diagonals) |
+| Y | Swap weapons |
+| L1 | Cast spell |
+| L2 | Throw item |
+| L3 | LOOK, VIEW descriptions of things on the map |
+| R1 | Fire ranged weapon |
+| R2 | Reload ranged weapon |
+| R3 | CHARACTER information |
+| Right_Analog_Up | Pickup item |
+| Right_Analog_Right | KICK or strike objects, or DESTROY CORPSES |
+| Right_Analog_Down | DISARM trap |
+| Right_Analog_Left | CLOSE DOOR, or jam closed door |
+
+## Compile
+
+```shell 
+git clone https://gitlab.com/martin-tornqvist/ia
+cd ia
+./build-release.sh
+```
+#### Screenshot
+For use in the PortMaster GUI aswell as for the Wiki we need a screenshot of the gameplay or main function of the Port.
+A title screenshot would not show actual content of the port.
+The screenshot has to be at least 640x480 in dimensions and format can either be .jpg or .png
+For naming its portname.screenshot.png
+
+For convinient use we also have a screenshot tool for making screenshots on your device.
+https://github.com/Cebion/Portmaster_builds/releases/download/1.0/screenshot.rar
+
+You can use these scripts to capture either screenshots or videos on your device. Depending on your device you might need to adjust the width and height values.
 
 
-## The Launchscript .sh
+  
+#### Licensefile 
+Please add licensefiles for all sources and assets you used.
+
+For example:
+
+- game project open source file (if it's an open source game)
+- gptokeyb license file
+- sdl1.2 compat license file
+- gl4es license file
+- box86 / box64 license files
+
+#### The Launchscript .sh
+
+The script should have capital letters (like `Port Name.sh`) and must end in `.sh`, the port directory should be the same as the containing directory. Some legacy ports have different names, new ports won't be accepted unless they follow the new convention.
+
 Below we pick apart a launchscript  and explain what each function does:
 
 ```
@@ -39,6 +169,9 @@ fi
 source $controlfolder/control.txt # We source the control.txt file contents here
 # The $ESUDO, $directory, $param_device and necessary sdl configuration controller configurations will be sourced from the control.txt file shown [here]
 
+# With device_info we can get dynamic device information like resolution, cpu, cfw etc.
+source $controlfolder/device_info.txt
+
 
 get_controls # We pull the controller configs from the get_controls function from the control.txt file here
 
@@ -46,6 +179,9 @@ get_controls # We pull the controller configs from the get_controls function fro
 
 GAMEDIR=/$directory/ports/portfolder/
 cd $GAMEDIR
+
+# Log the execution of the script
+exec > >(tee "$GAMEDIR/log.txt") 2>&1
 
 # Some ports like to create save files or settings files in the user's home folder or other locations.  
 # You can either use XDG variables to redirect the Ports to our gamefolder if the port supports it:
@@ -86,10 +222,13 @@ $GPTOKEYB "portexecutable" -c "./portname.gptk.$ANALOGSTICKS" &
 
 ### Port specific additional libraries should be included within the port's directory in a separate subfolder named libs.
 They can be loaded at runtime using `export LD_LIBRARY_PATH` or using `LD_LIBRARY_PATH=` on the same line as the executable as long as it's before it. \
-LD_LIBRARY_PATH="$PWD/libs:$LD_LIBRARY_PATH"
 
-SDL_GAMECONTROLLERCONFIG="$sdl_controllerconfig" # Provide appropriate controller configuration if it recognizes SDL controller input
-./portexecutable 2>&1 | tee -a ./log.txt # Launch the executable and write a log to log.txt
+export LD_LIBRARY_PATH="$GAMEDIR/libs:$LD_LIBRARY_PATH"
+
+# Provide appropriate controller configuration if it recognizes SDL controller input
+export SDL_GAMECONTROLLERCONFIG="$sdl_controllerconfig" 
+
+./portexecutable Launch the executable
 
 # Although you can kill most of the ports (if not all of the ports) via a hotkey, the user may choose to exit gracefully.
 # That's fine but let's make sure gptokeyb is killed so we don't get ghost inputs or worse yet, 
@@ -105,8 +244,10 @@ printf "\033c" > /dev/tty0
 
 ```
 
-## Examples: 
-### Basic Launchscript for open source ports with no specific engines and use of gp2keyb for controls and some needed libraries
+### Examples: 
+
+#### Basic Launchscript
+for open source ports with no specific engines and use of gp2keyb for controls and some needed libraries
 
 ```
 #!/bin/bash
@@ -120,15 +261,21 @@ else
 fi
 
 source $controlfolder/control.txt
+source $controlfolder/device_info.txt
 
 get_controls
 
 GAMEDIR=/$directory/ports/portfolder/
 cd $GAMEDIR
 
+exec > >(tee "$GAMEDIR/log.txt") 2>&1
+
+export SDL_GAMECONTROLLERCONFIG="$sdl_controllerconfig"
+export LD_LIBRARY_PATH="$GAMEDIR/libs:$LD_LIBRARY_PATH"
+
 $ESUDO chmod 666 /dev/uinput
 $GPTOKEYB "portexecutable" -c "./portname.gptk" &
-LD_LIBRARY_PATH="$PWD/libs:$LD_LIBRARY_PATH" SDL_GAMECONTROLLERCONFIG="$sdl_controllerconfig" ./portexecutable 2>&1 | tee -a ./log.txt
+./portexecutable
 
 $ESUDO kill -9 $(pidof gptokeyb)
 $ESUDO systemctl restart oga_events &
@@ -150,11 +297,14 @@ else
 fi
 
 source $controlfolder/control.txt
+source $controlfolder/device_info.txt
 
 get_controls
 
 GAMEDIR=/$directory/ports/portfolder/
 CONFDIR="$GAMEDIR/conf/"
+
+exec > >(tee "$GAMEDIR/log.txt") 2>&1
 
 # Ensure the conf directory exists
 mkdir -p "$GAMEDIR/conf"
@@ -185,11 +335,13 @@ $ESUDO umount "$godot_file" || true
 $ESUDO mount "$godot_file" "$godot_dir"
 PATH="$godot_dir:$PATH"
 
-export FRT_NO_EXIT_SHORTCUTS=FRT_NO_EXIT_SHORTCUTS # By default FRT sets Select as a Force Quit Hotkey, with this we disable that.
+# By default FRT sets Select as a Force Quit Hotkey, with this we disable that.
+export FRT_NO_EXIT_SHORTCUTS=FRT_NO_EXIT_SHORTCUTS # 
+
+export SDL_GAMECONTROLLERCONFIG="$sdl_controllerconfig"
 
 $ESUDO chmod 666 /dev/uinput
 $GPTOKEYB "$runtime" -c "./godot.gptk" &
-SDL_GAMECONTROLLERCONFIG="$sdl_controllerconfig"
 "$runtime" --main-pack "gamename.pck"
 
 $ESUDO umount "$godot_dir"
@@ -212,18 +364,21 @@ else
 fi
 
 source $controlfolder/control.txt
+source $controlfolder/device_info.txt
 
 get_controls
 
 GAMEDIR=/$directory/ports/portfolder
 cd $GAMEDIR
 
-export LD_LIBRARY_PATH="$PWD/libs:$LD_LIBRARY_PATH"
+exec > >(tee "$GAMEDIR/log.txt") 2>&1
+
+export LD_LIBRARY_PATH="$GAMEDIR/libs:$LD_LIBRARY_PATH"
 
 $ESUDO chmod 666 /dev/uinput
 
 $GPTOKEYB "love" -c "./love.gptk" &
-./love portname 2>&1 | tee $GAMEDIR/log.txt
+./love portname
 $ESUDO kill -9 $(pidof gptokeyb)
 $ESUDO systemctl restart oga_events &
 printf "\033c" > /dev/tty0
@@ -246,6 +401,10 @@ fi
 # The $ESUDO, $directory, $param_device and necessary 
 # Sdl configuration controller configurations will be sourced from the control.txt
 source $controlfolder/control.txt
+
+# With device_info we can get dynamic device information like resolution, cpu, cfw etc.
+source $controlfolder/device_info.txt
+
 
 # We pull the controller configs from the get_controls function from the control.txt file here
 get_controls
@@ -298,128 +457,38 @@ $ESUDO kill -9 $(pidof gptokeyb)
 $ESUDO systemctl restart oga_events &
 printf "\033c" > /dev/tty0
 
-``` 
-
-## The README
-The Readme provides some basic information about the Port such as:
-
-- Portname
-- Source
-- Porter
-- Description
-- Compile instructions
-- Controls
-
-Example:
-
-```
-Abombniball (https://www.portmaster.games) 
-=========================
-
-Original version by:
-http://akawaka.csn.ul.ie/abombniball.php3
-
-Portmaster Version: 	
-
-- Cebion https://github.com/Cebion
-	
-Description 
-===========
-The objective of Abombniball is to defuse all the explosives on each level.
-As a ball, this would normally be a simple task,
-however each level is filled with traps and devious puzzles placed there by
-...oh...lets say "Dr. Y-Front", your arch-nemesis (he's very evil).
-These traps take the form of special tiles which disappear or do other nasty things.
-
-To compile:
-===========
-
-git clone git@github.com:Cebion/Abombniball.git
-cd Abombniball
-./configure
-make
- 
-Controls:
-=============
-
-DPAD		= Move
 ```
 
-## Port.json
-The Port.json contains all metadata on ports that our GUI and Wiki needs to properly display and install Ports.
-You can use following Port JSON Generator to generate a port.json file for you (https://portmaster.games/port-json.html)
 
-Following Info needs to be added:
-- Port Title
-- Zip File Name
-- Script Name
-- Directory Name
-- Genres
-- Porter 
-- Description
-- Instructions what files or directions are needed to make the port work
-- Runtime
-
-  
-## Licensefile 
-Please add licensefiles for all sources and assets you used.
-
-For example:
-
-- game project open source file (if it's an open source game)
-- gptokeyb license file
-- sdl1.2 compat license file
-- gl4es license file
-- box86 / box64 license files
-
-## Portname.md
-This acts as a readme and for the Wiki Entry on our website.
-Please add the thank you notes from the original developers as well as how the game was compiled and any additional information likes controls.
-
-You can view the markdown before submitting it here: https://portmaster.games/port-markdown.html
-
-[Example](https://raw.githubusercontent.com/PortsMaster/PortMaster-Website/main/content/markdown/example.md)
-
-## Screenshot
-For use in the PortMaster GUI aswell as for the Wiki we need a screenshot of the gameplay or main function of the Port.
-A title screenshot would not show actual content of the port.
-The screenshot has to be at least 640x480 in dimensions and format can either be .jpg or .png
-For naming its portname.screenshot.png
-
-After putting all these files in one place please zip these files using regular zip.
+### Creating a Pull Request
 
 With this you can now go ahead to make a Pull Request on our main Portmaster Repo (if you tested the Port for all major cfws / devices of course) 
 
-## Creating a Pull Request
-To submit your game to PortMaster you need to create a fork of the current main PortMaster Repo (https://github.com/christianhaitian/PortMaster)
+To submit your game to PortMaster you need to create a fork of the current main PortMaster Repo 
+([https://github.com/christianhaitian/PortMaster](https://github.com/PortsMaster/PortMaster-New))
 
-Following Requierements need to be added:
-- Tested your game on all major CFWs (AmberELEC, ArkOS, JELOS)
-- Tested all major resolutions (480x320, 640x,480 and higher res like 1280x720)
-For testing we have a dedicated testing section in our Discord called testing-n-dev (https://discord.com/channels/1122861252088172575/1122885073507733625)
-- Have your port in following structure:
+After forking the repo, go into the settings for the fork and disable github actions for your fork.
 
+Afterwards you can clone the repo, and you should run the newly made `tools/prepare_repo.sh` from the root of repo. This will download the latest files from the release system.
+
+```bash
+tools/prepare_repo.sh
 ```
-   Port Zip Structure
-- [portname.zip/](#)
-  - [portname/](#)
-    - [README (optional)](#)
-    - [portname.port.json](#)
-    - [licensefile](#)
-    - [gamename.gptk (If needed)](#)
-    - [libs/ (If needed)](#)
-    - [gamedata/](#)
-  - [PortScript.sh](#)
+From there you can create a new directory in `ports/` for your new port, be sure to check the below `New Port Structure` section to make sure your port has all the required files.
 
- PortMaster Repo Structure
-- [PortMaster/](#)
-  - [images/](#)
-    - [portname.screenshot.png](#)
-  - [markdown/](#)
-    - [portname.md](#)
-  - [portname.zip](#)
+After your port has been added and you are ready to submit it, you can run the `build_release.py` script to check if your port adheres to the port standards.
+
+```bash
+python3 tools/build_release.py --do-check
 ```
+This will check your port to make sure it has all the required files, and will warn of any issues.
 
+If you add a file that is larger than 90+ MB, you will have to run the script `tools/build_data.py`. It will split the file into 50mb chunks suitable for committing to github. If you edit the large-file just rerun the above script and it will update the chunks. This also adds the file to `.gitginore` in the ports directory so that the large file will not be committed to the repo.
 
-After that your port will be reviewed by one of the crew members.
+From there you can do a PR and it will be checked again, portmaster crew members will double check it once again.
 
+You can use the build_release.py to build the zips of any ports that have changed.
+
+```bash
+python3 tools/build_release.py
+```
