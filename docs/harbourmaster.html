@@ -282,22 +282,18 @@
      port.json
     </h2>
     <p>
-     Most of what harbourmaster uses is a new file called
+     Most of what harbourmaster uses is a file called
      <code>
       &lt;portname&gt;.port.json
      </code>
-     , this contains all the information required for a port.
+     , this contains all the information required for a port. Without this file, harbourmaster cannot properly add the port to PortMaster.
     </p>
     <p>
      An
      <a href="https://github.com/kloptops/harbourmaster/blob/main/data/example.port.json">
       example annotated json file is included
      </a>
-     , however for the moment most ports do not have a
-     <code>
-      .port.json
-     </code>
-     file so harbourmaster creates them from various sources. Going forward all ports should have a
+     . All ports must have a
      <code>
       .port.json
      </code>
