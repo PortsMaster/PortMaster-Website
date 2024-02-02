@@ -1,0 +1,39 @@
+{
+  "version": 2,
+  "name": "portname.zip",
+  "items": [
+    "Portname.sh",
+    "portname/"
+  ],
+  "items_opt": [],
+  "attr": {
+    "title": "PORTNAME",
+    "porter": [
+      "YOURNAMEHERE"
+    ],
+    "desc": "PORT DESCRIPTION HERE",
+    "inst": "INSTALL INSTRUCTIONS HERE",
+    "genres": [
+      "action",
+      "adventure",
+      "arcade",
+      "casino/card",
+      "fps",
+      "platformer",
+      "puzzle",
+      "racing",
+      "rhythm",
+      "rpg",
+      "simulation",
+      "sports",
+      "strategy",
+      "visual novel",
+      "other"
+    ],
+    "image": "screenshot.png",
+    "rtr": false,
+    "exp": false,
+    "runtime": null,
+    "reqs": []
+  }
+}
