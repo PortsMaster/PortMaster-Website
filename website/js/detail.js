@@ -85,11 +85,17 @@ function displayCardDetails(data) {
 
     async function getmarkdown() {
         try {
-            var repo = "https://raw.githubusercontent.com/christianhaitian/PortMaster/main/markdown/";
+            var response = null;
+            var repo = "https://raw.githubusercontent.com/PortsMaster/PortMaster-New/main/ports/";
             if (data.source.repo == "multiverse") {
                 repo = "https://raw.githubusercontent.com/PortsMaster-MV/PortMaster-Multiverse/main/markdown/";
+                response = await fetch(repo + data.name.replace("zip", "md"));
             }
-            var response = await fetch(repo + data.name.replace("zip", "md")); // Replace 'YOUR_JSON_URL_HERE' with the actual URL of your JSON data.
+            else
+            {
+                response = await fetch(repo + data.name.replace(".zip", "") + "/README.md");
+            }
+            
             if (!response.ok) {
                 throw new Error('Network response was not ok.');
             }

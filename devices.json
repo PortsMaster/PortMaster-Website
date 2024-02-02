@@ -1,6 +1,6 @@
 [
   {
-    "device": "RG353M/V/P",
+    "device": "RG353 M/V/P/VS",
     "manufacturer": "Anbernic",
     "resolution": "640*480",
     "aspect ratio": "4:3",
@@ -8,7 +8,7 @@
     "notes": ""
   },
   {
-    "device": "RG353",
+    "device": "RG351MP",
     "manufacturer": "Anbernic",
     "resolution": "640*480",
     "aspect ratio": "4:3",
@@ -58,7 +58,7 @@
     "manufacturer": "Anbernic",
     "resolution": "480*320",
     "aspect ratio": "3:2",
-    "firmware": "ArkOS,AmberELEC,JELOS",
+    "firmware": "ArkOS (Wummle),AmberELEC,JELOS",
     "notes": "Some ports may have issues with this aspect ratio. Results will vary from port to port."
   },
   {
