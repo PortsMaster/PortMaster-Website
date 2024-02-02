@@ -21,9 +21,9 @@ This is the script backend that handles listing available ports, downloading and
 
 ## port.json
 
-Most of what harbourmaster uses is a new file called `<portname>.port.json`, this contains all the information required for a port.
+Most of what harbourmaster uses is a file called `<portname>.port.json`, this contains all the information required for a port. Without this file, harbourmaster cannot properly add the port to PortMaster.
 
-An [example annotated json file is included][example_json], however for the moment most ports do not have a `.port.json` file so harbourmaster creates them from various sources. Going forward all ports should have a `.port.json` file and will be a requirement of submission to PortMaster.
+An [example annotated json file is included][example_json]. All ports must have a `.port.json` file and will be a requirement of submission to PortMaster.
 
 We have an [easy to use webpage][port_html] for adding `port.json` file directly to your ports zip files, it all runs locally in your webbrowser so its easy to use.
 
