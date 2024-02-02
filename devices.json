@@ -1,15 +1,17 @@
 [
   {
-    "device": "RG353M/V/P",
+    "device": "RG353 M/V/P/VS",
     "manufacturer": "Anbernic",
     "resolution": "640*480",
+    "aspect ratio": "4:3",
     "firmware": "ArkOS,JELOS",
     "notes": ""
   },
   {
-    "device": "RG353",
+    "device": "RG351MP",
     "manufacturer": "Anbernic",
     "resolution": "640*480",
+    "aspect ratio": "4:3",
     "firmware": "ArkOS,AmberELEC,JELOS",
     "notes": ""
   },
@@ -17,12 +19,14 @@
     "device": "RG503",
     "manufacturer": "Anbernic",
     "resolution": "960*544",
+    "aspect ratio": "15:8",
     "firmware": "ArkOS",
     "notes": "Some ports may have issues with this aspect ratio. Results will vary from port to port."
   }, {
     "device": "RG552",
     "manufacturer": "Anbernic",
     "resolution": "1920*1152",
+    "aspect ratio": "5:3",
     "firmware": "ArkOS",
     "notes": "Some ports may have issues with this aspect ratio. Results will vary from port to port."
   },
@@ -30,6 +34,7 @@
     "device": "RGB10",
     "manufacturer": "Powkiddy",
     "resolution": "854*480",
+    "aspect ratio": "16:9",
     "firmware": "ArkOS",
     "notes": "Some ports may have issues with this aspect ratio. Results will vary from port to port."
   },
@@ -37,12 +42,14 @@
     "device": "RGB30",
     "manufacturer": "Powkiddy",
     "resolution": "720*720",
+    "aspect ratio": "1:1",
     "firmware": "ArkOS,JELOS",
     "notes": "Some ports may have issues with this aspect ratio. Results will vary from port to port."
   },{
     "device": "RK2023 ",
     "manufacturer": "Powkiddy",
     "resolution": "640*480",
+    "aspect ratio": "4:3",
     "firmware": "ArkOS",
     "notes": ""
   },
@@ -50,13 +57,15 @@
     "device": "RG351P/M",
     "manufacturer": "Anbernic",
     "resolution": "480*320",
-    "firmware": "ArkOS,AmberELEC,JELOS",
+    "aspect ratio": "3:2",
+    "firmware": "ArkOS (Wummle),AmberELEC,JELOS",
     "notes": "Some ports may have issues with this aspect ratio. Results will vary from port to port."
   },
   {
     "device": "RG351V",
     "manufacturer": "Anbernic",
     "resolution": "640*480",
+    "aspect ratio": "4:3",
     "firmware": "ArkOS,AmberELEC,JELOS",
     "notes": "Some ports may have issues with this aspect ratio. Results will vary from port to port."
   },
@@ -64,6 +73,7 @@
     "device": "X55",
     "manufacturer": "Powkiddy",
     "resolution": "1280*720",
+    "aspect ratio": "16:9",
     "firmware": "JELOS",
     "notes": ""
   }
