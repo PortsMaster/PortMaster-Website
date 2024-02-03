@@ -88,7 +88,6 @@ function createRecent(item) {
     }
 
     image.src = source;
-
     image.setAttribute("width", "40%%");
     image.setAttribute("height", "40%");
     image.setAttribute("class", "bd-placeholder-img");
