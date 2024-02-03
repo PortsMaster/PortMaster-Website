@@ -11,13 +11,17 @@ function displayCardDetails(data) {
 
     imageElement = document.getElementById("screenshot")
 
-    var repo = "https://raw.githubusercontent.com/christianhaitian/PortMaster/main/images/";
-    if (data.source.repo == "multiverse") {
-        repo = "https://raw.githubusercontent.com/PortsMaster-MV/PortMaster-Multiverse/main/images/";
-    }
     var source = "https://raw.githubusercontent.com/PortsMaster/PortMaster-Website/main/no.image.png";
+
     if (data.attr.image.screenshot !== null) {
-        source = repo + data.attr.image.screenshot;
+        if (data.source.repo == "main") {
+            /* Hopefully this works. */
+            source = ("https://raw.githubusercontent.com/PortsMaster/PortMaster-New/main/ports/" + 
+                data.attr.image.screenshot.replace(".screenshot", "/screenshot"));
+        } else if (data.source.repo == "multiverse") {
+            source = ("https://raw.githubusercontent.com/PortsMaster-MV/PortMaster-Multiverse/main/images/" +
+                data.attr.image.screenshot);
+        } 
     }
 
     imageElement.src = source;
