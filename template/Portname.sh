@@ -14,8 +14,8 @@ fi
 source $controlfolder/control.txt
 # Import [$DISPLAY_WIDTH, $DISPLAY_HEIGHT, $DISPLAY_ORIENTATION, $CFW_NAME, $CFW_VERSION, $DEVICE_RAM, $DEVICE_NAME, $ANALOG_STICKS, $DEVICE_CPU] from device_info.txt
 source $controlfolder/device_info.txt
-# Import special lines required for 32bit ports running on JELOS from mod_jelos.txt
-#source $controlfolder/mod_jelos.txt
+# Import modules based on CFW
+[ -f "$controlfolder/mod_${CFW_NAME}.txt" ] && source "$controlfolder/mod_${CFW_NAME}.txt"
 
 # We pull the controller configs from the get_controls function from the control.txt file here
 get_controls
