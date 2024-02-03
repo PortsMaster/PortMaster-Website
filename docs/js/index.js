@@ -73,15 +73,22 @@ function createRecent(item) {
     main.setAttribute("class", "d-flex flex-column flex-lg-row gap-3 align-items-start align-items-lg-center py-3 text-decoration-none border-top");
 
     var image = document.createElement("img");
-    var repo = "https://raw.githubusercontent.com/christianhaitian/PortMaster/main/images/";
-    if (item.source.repo == "multiverse"){
-        repo = "https://raw.githubusercontent.com/PortsMaster-MV/PortMaster-Multiverse/main/images/";
-    } 
+
     var source = "https://raw.githubusercontent.com/PortsMaster/PortMaster-Website/main/no.image.png";
+
     if (item.attr.image.screenshot !== null) {
-        source =   repo +  item.attr.image.screenshot;
+        if (item.source.repo == "main") {
+            /* Hopefully this works. */
+            source = ("https://raw.githubusercontent.com/PortsMaster/PortMaster-New/main/ports/" + 
+                item.attr.image.screenshot.replace(".screenshot", "/screenshot"));
+        } else if (item.source.repo == "multiverse") {
+            source = ("https://raw.githubusercontent.com/PortsMaster-MV/PortMaster-Multiverse/main/images/" +
+                item.attr.image.screenshot);
+        } 
     }
+
     image.src = source;
+
     image.setAttribute("width", "40%%");
     image.setAttribute("height", "40%");
     image.setAttribute("class", "bd-placeholder-img");
