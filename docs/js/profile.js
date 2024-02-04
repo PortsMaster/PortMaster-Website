@@ -27,8 +27,8 @@ function createCard(data) {
             source = ("https://raw.githubusercontent.com/PortsMaster/PortMaster-New/main/ports/" + 
                 data.attr.image.screenshot.replace(".screenshot", "/screenshot"));
         } else if (data.source.repo == "multiverse") {
-            source = ("https://raw.githubusercontent.com/PortsMaster-MV/PortMaster-Multiverse/main/images/" +
-                data.attr.image.screenshot);
+            source = ("https://raw.githubusercontent.com/PortsMaster-MV/PortMaster-MV-New/main/ports/" + 
+                data.attr.image.screenshot.replace(".screenshot", "/screenshot"));
         } 
     }
 
