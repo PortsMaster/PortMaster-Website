@@ -153,7 +153,7 @@ function downloadJson() {
     var a = document.createElement("a"),
       url = URL.createObjectURL(file);
     a.href = url;
-    a.download = document.getElementById("directoryname").value + ".port.json";
+    a.download = "port.json";
     document.body.appendChild(a);
     a.click();
     setTimeout(function () {
