@@ -82,8 +82,8 @@ function createRecent(item) {
             source = ("https://raw.githubusercontent.com/PortsMaster/PortMaster-New/main/ports/" + 
                 item.attr.image.screenshot.replace(".screenshot", "/screenshot"));
         } else if (item.source.repo == "multiverse") {
-            source = ("https://raw.githubusercontent.com/PortsMaster-MV/PortMaster-Multiverse/main/images/" +
-                item.attr.image.screenshot);
+            source = ("https://raw.githubusercontent.com/PortsMaster-MV/PortMaster-MV-New/main/ports/" + 
+                item.attr.image.screenshot.replace(".screenshot", "/screenshot"));
         } 
     }
 
