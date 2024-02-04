@@ -465,7 +465,7 @@ printf "\033c" > /dev/tty0
 With this you can now go ahead to make a Pull Request on our main Portmaster Repo (if you tested the Port for all major cfws / devices of course) 
 
 To submit your game to PortMaster you need to create a fork of the current main PortMaster Repo 
-([https://github.com/christianhaitian/PortMaster](https://github.com/PortsMaster/PortMaster-New))
+https://github.com/PortsMaster/PortMaster-New
 
 After forking the repo, go into the settings for the fork and disable github actions for your fork.
 
