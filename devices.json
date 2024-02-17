@@ -27,7 +27,7 @@
     "manufacturer": "Anbernic",
     "resolution": "1920*1152",
     "aspect ratio": "5:3",
-    "firmware": "ArkOS",
+    "firmware": "AmberELEC,JELOS",
     "notes": "Some ports may have issues with this aspect ratio. Results will vary from port to port."
   },
   {
