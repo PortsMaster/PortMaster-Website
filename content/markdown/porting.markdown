@@ -4,11 +4,11 @@
 
 We have different types of games we support:
 
-- Open Source Games from Scratch by some devs
+- Open Source Games from Repos like Github where we compile and package the game for PortMaster
 - Open Source Engines made from scratch that work with original game assets
-- Game Engines like GameMaker studio / Godot / Love2d etc. that have compatible runners that need the original gamedata
-- Linux Userspace x86 Emulators that translate X86 Linux Games to arm.
-- Linux Userspace x64 Emulators that translate x64 Linux games to aarch64
+- Game Engines like GameMaker studio / Godot / Love2d that have compatible runners that need the original gamedata
+- Linux Userspace x86 Emulator (Box86) that translate X86 Linux Games to arm.
+- Linux Userspace x64 Emulators (Box64) that translate x64 Linux games to aarch64
 
 Mind for 3/4/5 a LOT of hacking and tweaking might be needed.
 
@@ -42,8 +42,8 @@ Tools we use:
 - [OpenGL 2.x through GL4ES](https://github.com/ptitSeb/gl4es)
 - [Box86 (Linux Userspace x86 Emulator, targeted at ARM Linux devices)](https://github.com/ptitSeb/box86)
 - [Box64 (Linux Userspace x86_64 Emulator, targeted at ARM64 Linux devices)](https://github.com/ptitSeb/box64)
-- [gptokeyb for keyboard/mouse/joystick mapping using a control file](https://github.com/kloptops/gptokeyb)
-- [No Vulkan, No X11, No display manager at all so KMS/DRM it is](#)
+- [gptokeyb for keyboard/mouse/joystick mapping using a control file](https://github.com/PortsMaster/gptokeyb)
+- [No Vulkan, No X11, No display manager at all so KMS/DRM or output via SDL2 it is](#)
 - [SDL1.2 through sdl1.2compat](https://github.com/libsdl-org/sdl12-compat)
 - [Gamemaker Games Runner Research](https://github.com/JohnnyonFlame/yyg_fix/blob/master/RESEARCH.md)
 - [Godot Games via FRT 2](https://github.com/efornara/frt/tree/2.0)
@@ -54,29 +54,6 @@ Tools we use:
 [Packaging Instructions](https://github.com/christianhaitian/PortMaster/blob/main/docs/packaging.md)
 For packaging use the Packaging Guide https://portmaster.games/packaging.html and of course other Ports as a reference.
 
-## Working with different display resolutions
-
-```bash
-if [["$(cat /sys/firmware/devicetree/base/model | tr -d ' ')" == "Anbernic RG552"]]; then
-xres="1920"
-yres="1152"
-elif [[-e "/sys/class/drm/card0-HDMI-A-1/status"]] && [["$(cat /sys/class/drm/card0-HDMI-A-1/status)" == "connected"]]; then
-xres="$(cat /sys/class/drm/card0-HDMI-A-1/modes | grep -o -P '\d*x\d*' | cut -dx -f1)"
-yres="$(cat /sys/class/drm/card0-HDMI-A-1/modes | grep -o -P '\d*x\d*' | cut -dx -f2)"
-elif [[-e "/sys/class/drm/card0-HDMI-A-1/status"]] && [["$(cat /sys/class/drm/card0-DSI-1/status)" == "connected"]]; then
-xres="$(cat /sys/class/drm/card0-DSI-1/modes | grep -o -P '\d*x\d*' | cut -dx -f1)"
-yres="$(cat /sys/class/drm/card0-DSI-1/modes | grep -o -P '\d*x\d*' | cut -dx -f2)"
-else
-xres=640
-yres=480
-fi
-
-echo $xres
-echo $yres
-
-$ESUDO sed -i "s|window_width = [0-9]\+;|window_width = $xres;|g" $GAMEDIR/config/default.lua
-$ESUDO sed -i "s|window_height = [0-9]\+;|window_height = $yres;|g" $GAMEDIR/config/default.lua
-```
 
 ## GL4ES
 
