@@ -217,19 +217,19 @@
     </p>
     <ul>
      <li>
-      Open Source Games from Scratch by some devs
+      Open Source Games from Repos like Github where we compile and package the game for PortMaster
      </li>
      <li>
       Open Source Engines made from scratch that work with original game assets
      </li>
      <li>
-      Game Engines like GameMaker studio / Godot / Love2d etc. that have compatible runners that need the original gamedata
+      Game Engines like GameMaker studio / Godot / Love2d that have compatible runners that need the original gamedata
      </li>
      <li>
-      Linux Userspace x86 Emulators that translate X86 Linux Games to arm.
+      Linux Userspace x86 Emulator (Box86) that translate X86 Linux Games to arm.
      </li>
      <li>
-      Linux Userspace x64 Emulators that translate x64 Linux games to aarch64
+      Linux Userspace x64 Emulators (Box64) that translate x64 Linux games to aarch64
      </li>
     </ul>
     <p>
@@ -307,13 +307,13 @@ So we can't just use any game, compile it and run it.
       </a>
      </li>
      <li>
-      <a href="https://github.com/kloptops/gptokeyb">
+      <a href="https://github.com/PortsMaster/gptokeyb">
        gptokeyb for keyboard/mouse/joystick mapping using a control file
       </a>
      </li>
      <li>
       <a href="#">
-       No Vulkan, No X11, No display manager at all so KMS/DRM it is
+       No Vulkan, No X11, No display manager at all so KMS/DRM or output via SDL2 it is
       </a>
      </li>
      <li>
@@ -352,29 +352,6 @@ So we can't just use any game, compile it and run it.
      </a>
      and of course other Ports as a reference.
     </p>
-    <h2>
-     Working with different display resolutions
-    </h2>
-    <pre lang="bash"><code>if [["$(cat /sys/firmware/devicetree/base/model | tr -d ' ')" == "Anbernic RG552"]]; then
-xres="1920"
-yres="1152"
-elif [[-e "/sys/class/drm/card0-HDMI-A-1/status"]] &amp;&amp; [["$(cat /sys/class/drm/card0-HDMI-A-1/status)" == "connected"]]; then
-xres="$(cat /sys/class/drm/card0-HDMI-A-1/modes | grep -o -P '\d*x\d*' | cut -dx -f1)"
-yres="$(cat /sys/class/drm/card0-HDMI-A-1/modes | grep -o -P '\d*x\d*' | cut -dx -f2)"
-elif [[-e "/sys/class/drm/card0-HDMI-A-1/status"]] &amp;&amp; [["$(cat /sys/class/drm/card0-DSI-1/status)" == "connected"]]; then
-xres="$(cat /sys/class/drm/card0-DSI-1/modes | grep -o -P '\d*x\d*' | cut -dx -f1)"
-yres="$(cat /sys/class/drm/card0-DSI-1/modes | grep -o -P '\d*x\d*' | cut -dx -f2)"
-else
-xres=640
-yres=480
-fi
-
-echo $xres
-echo $yres
-
-$ESUDO sed -i "s|window_width = [0-9]\+;|window_width = $xres;|g" $GAMEDIR/config/default.lua
-$ESUDO sed -i "s|window_height = [0-9]\+;|window_height = $yres;|g" $GAMEDIR/config/default.lua
-</code></pre>
     <h2>
      GL4ES
     </h2>
