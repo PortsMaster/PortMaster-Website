@@ -347,6 +347,9 @@ echo "nameserver 8.8.8.8" &gt; /etc/resolv.conf
      <li>
       <p>
        Exit chroot
+       <code>
+        mkdir -p folder/tmp/.X11-unix
+       </code>
       </p>
      </li>
      <li>
@@ -359,6 +362,8 @@ sudo daemonize /usr/bin/unshare -fp --mount-proc /lib/systemd/systemd --system-u
 
 sudo mount -o bind /proc folder/proc
 sudo mount -o bind /dev folder/dev
+sudo mount -o bind /tmp/.X11-unix folder/tmp/.X11-unix
+xhost + local:
 sudo chroot folder qemu-aarch64-static /bin/bash
 </code></pre>
      </li>
