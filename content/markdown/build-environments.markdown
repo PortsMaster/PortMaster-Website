@@ -90,7 +90,7 @@ For more information, visit the [GitHub Repository](https://github.com/Cebion/Po
   ```
 
 - Exit chroot
-
+  ```mkdir -p folder/tmp/.X11-unix```
 - Create chroot.sh:
 
   ```bash
@@ -100,6 +100,8 @@ For more information, visit the [GitHub Repository](https://github.com/Cebion/Po
   
   sudo mount -o bind /proc folder/proc
   sudo mount -o bind /dev folder/dev
+  sudo mount -o bind /tmp/.X11-unix folder/tmp/.X11-unix
+  xhost + local:
   sudo chroot folder qemu-aarch64-static /bin/bash
   ```
 
