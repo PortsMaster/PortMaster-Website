@@ -187,7 +187,6 @@
                   instructions are required.
                 </div>
               </div>
-
               <div class="col-12">
                 <label for="runtime" class="form-label">Runtime</label>
                 <select class="form-select" id="runtime">
@@ -203,6 +202,16 @@
                     <option value="frt_3.3.4.squashfs">GoDot / FRT 3.3.4</option>
                     <option value="frt_3.4.5.squashfs">GoDot / FRT 3.4.5</option>
                     <option value="frt_3.5.2.squashfs">GoDot / FRT 3.5.2</option>
+                </select>
+              </div>
+              <div class="col-12">
+                <label for="arch" class="form-label">Architecture</label>
+                <select multiple class="form-select" id="arch" required>
+                  <option value="aarch64">AArch64</option>
+                  <option value="">Runtime</option>
+                  <option value="armhf">ARMHF</option>
+                  <option value="x86_64">x86_64</option>
+                  <option value="x86">x86</option>
                 </select>
               </div>
               <hr class="my-4">
