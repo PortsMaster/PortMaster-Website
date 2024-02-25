@@ -1,5 +1,5 @@
 
-var portSchema = {
+const portSchema = {
   /* Version number of the port.json format, currently 2 */
   "version": 2,
   /* Name of the zip file, this uniquely identifies the port */
@@ -29,6 +29,8 @@ var portSchema = {
     "runtime": null,
     /* Any hardware/software requirements: opengl, power, 4:3, 3:2, 16:9, lowres, hires */
     "reqs": [],
+     /* Architecture aarch64,armhf, x86_64, x86  */
+    "arch": [],
   }
 }
 
@@ -105,6 +107,11 @@ function getFormValues() {
   portJson.attr.rtr = document.getElementById("readytorun").checked;
   portJson.attr.exp = document.getElementById("experimental").checked;
   portJson.attr.reqs = [];
+
+  portJson.attr.arch = [];
+  if (document.getElementById("arch").value != ""){
+  portJson.attr.arch = Array.from(document.getElementById("arch").selectedOptions).map(o => o.value);
+  }
 
   // res requirements
   if (document.getElementById("notlowres").checked){
