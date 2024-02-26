@@ -23,7 +23,7 @@ For ArkOS on the RG351V & 353V/S/RG353P/S or RG351MP, if SD2 is being used for r
 
 ## How do I get more info about the ports in PortMaster like the sources used and additional asset needs if applicable?
 
-You can find all Ports with included instructions on the [PortMaster Wiki](https://portmaster.games/wiki.html)
+You can find all Ports with included instructions on the [PortMaster Wiki](https://portmaster.games/games.html)
 
 ## If there are updates to Ports, how will that work?
 
