@@ -210,7 +210,7 @@ function filterCards() {
 
     };
     if (Newest){
-        filteredData.sort((a,b)=> Date.parse(a.source.date_updated) > Date.parse(b.source.date_updated) ? -1 :  (Date.parse(a.source.date_updated) < Date.parse(b.source.date_updated) ? 1 :0));
+        filteredData.sort((a,b)=> Date.parse(a.source.date_added) > Date.parse(b.source.date_added) ? -1 :  (Date.parse(a.source.date_added) < Date.parse(b.source.date_added) ? 1 :0));
     }
 
     if (AZ){
