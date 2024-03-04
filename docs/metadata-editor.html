@@ -10,6 +10,8 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js">
   </script>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <script src="https://cdn.jsdelivr.net/npm/xmlbuilder2/lib/xmlbuilder2.min.js">
+  </script>
   <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet"/>
   <link href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.css" rel="stylesheet">
    <link href="https://cdn.jsdelivr.net/npm/easymde/dist/easymde.min.css" rel="stylesheet"/>
@@ -231,23 +233,22 @@
       <form class="needs-validation" id="form" novalidate="">
        <div class="row g-3">
         <div class="col-12">
-         <div class="col-sm-12 text-center">
-          <button class="btn btn-primary btn-sm" onclick="downloadJson()" style="float: right;" type="button">
-           Download JSON
-          </button>
-         </div>
-        </div>
-        <div class="col-12">
-         <label class="form-label" for="title">
-          Port Name
+         <label class="form-label" for="name">
+          Name
          </label>
-         <input class="form-control" id="title" placeholder="" type="text"/>
+         <input class="form-control" id="name" placeholder="" type="text"/>
         </div>
-        <div class="col-12">
-         <label class="form-label" for="title">
-          Metadata Name
+        <div class="col-6">
+         <label class="form-label" for="path">
+          Script Path
          </label>
-         <input class="form-control" id="title" placeholder="" type="text"/>
+         <input class="form-control" id="path" placeholder="./portname.sh" type="text"/>
+        </div>
+        <div class="col-6">
+         <label class="form-label" for="image">
+          Image Path
+         </label>
+         <input class="form-control" id="image" placeholder="./portname/cover.png" type="text"/>
         </div>
         <div class="col-6">
          <label class="form-label" for="developer">
@@ -277,29 +278,18 @@
          </label>
          <input class="form-control" id="genre" placeholder="" type="text"/>
         </div>
-        <div class="col-6">
-         <label class="form-label" for="rating">
-          Rating
-         </label>
-         <input class="form-control" id="rating" min="0" placeholder="" type="number"/>
-        </div>
-        <div class="col-6">
-         <label class="form-label" for="players">
-          Players
-         </label>
-         <input class="form-control" id="players" min="1" placeholder="" type="number"/>
-        </div>
         <div class="col-12">
          <label class="form-label" for="description">
           Description
          </label>
-         <textarea class="form-control" id="description" rows="3"></textarea>
+         <textarea class="form-control" id="description" rows="5"></textarea>
         </div>
        </div>
+       <br/>
        <div class="col-12">
         <div class="col-sm-12 text-center">
-         <button class="btn btn-primary btn-md" onclick="submitForm()" type="button">
-          Submit
+         <button class="btn btn-primary btn-md" onclick="getFormValues()" style="margin-right: 15px;" type="button">
+          Download XML
          </button>
          <button class="btn btn-danger btn-md" onclick="clearForm()" type="button">
           Clear
@@ -318,9 +308,6 @@
          Name
         </th>
         <th>
-         Launcher
-        </th>
-        <th>
          Action
         </th>
        </tr>
@@ -334,32 +321,46 @@
    </footer>
   </div>
   <script>
-   function populateForm(launcher) {
-            for (port in ports) {
-                if (ports[port].launcher == launcher) {
-                    var formName = document.getElementById("name");
-                    var formAuthor = document.getElementById("author");
-                    var formDate = document.getElementById("date");
-                    var formContent = document.getElementById("content");
-                    formTitle.value = posts[item].title;
-                    formAuthor.value = posts[item].author;
-                    formDate.value = posts[item].date;
-                    easyMDE.value(posts[item].content);
-                    currentPost = posts[item].title;
+   async function populateForm(port) {
+            
+            try {
+                var response = await fetch('https://raw.githubusercontent.com/PortsMaster/PortMaster-New/main/ports/' + port.replace(".zip","") + '/gameinfo.xml'); // Replace 'YOUR_JSON_URL_HERE' with the actual URL of your JSON data.
+                if (!response.ok) {
+                    throw new Error('Network response was not ok.');
                 }
+                xml = await response.text();
+                
+                const doc = xmlbuilder2.create(xml);
+                const obj = doc.end({ format: 'object' });
+                
+                var date = ""
+                if (obj.gameList.game.releasedate) {
+                    date = obj.gameList.game.releasedate.slice(0,4) + "-" + obj.gameList.game.releasedate.slice(4,6) + "-" + obj.gameList.game.releasedate.slice(6,8);
+                }
+
+                document.getElementById("name").value = obj.gameList.game.name ? obj.gameList.game.name: "";
+                document.getElementById("path").value = obj.gameList.game.path ? obj.gameList.game.path: "";
+                document.getElementById("image").value = obj.gameList.game.image ? obj.gameList.game.image: "";
+                document.getElementById("developer").value = obj.gameList.game.developer ? obj.gameList.game.developer: "";
+                document.getElementById("publisher").value = obj.gameList.game.publisher ? obj.gameList.game.publisher: "";
+                document.getElementById("date").value = date;
+                document.getElementById("genre").value = obj.gameList.game.genre ? obj.gameList.game.genre: "";
+                document.getElementById("description").value = obj.gameList.game.desc ? obj.gameList.game.desc: "";
+
+            } catch (error) {
+                console.error('Error populating form: ', error);
             }
         }
 
-        function downloadJson() {
-            json = JSON.stringify(posts, null, 2);
-            var file = new Blob([json], { type: "application/json" });
+        function downloadXML(xml) {
+            var file = new Blob([xml], { type: "application/xml" });
             if (window.navigator.msSaveOrOpenBlob) // IE10+
                 window.navigator.msSaveOrOpenBlob(file, filename);
             else { // Others
                 var a = document.createElement("a"),
                     url = URL.createObjectURL(file);
                 a.href = url;
-                a.download =  "news.json";
+                a.download = "gameinfo.xml";
                 document.body.appendChild(a);
                 a.click();
                 setTimeout(function () {
@@ -369,41 +370,55 @@
             }
         }
 
-        function submitForm() {
+        function getFormValues() {
+            var name = document.getElementById("name").value;
+            var scriptPath = document.getElementById("path").value;
+            var imagePath = document.getElementById("image").value;
+            var developer = document.getElementById("developer").value;
+            var publisher = document.getElementById("publisher").value;
+            var description = document.getElementById("description").value;
+            var genre = document.getElementById("genre").value;
+            var date = document.getElementById("date").value;
 
-            form = document.getElementById("form");
-            if (form.checkValidity()) {
-                var formTitle = document.getElementById("title");
-                var formAuthor = document.getElementById("author");
-                var formDate = document.getElementById("date");
-                var formContent = document.getElementById("content");
+            if (date != ""){
+                date = date.replaceAll("-", "") + "T000000";
+             }
 
-                newPost = true;
-                for (item in posts) {
-                    if (currentPost == posts[item].title) {
-                        posts[item].title = formTitle.value;
-                        posts[item].author = formAuthor.value;
-                        posts[item].date = formDate.value;
-                        posts[item].content = easyMDE.value();
-                        clearForm();
-                        populateTable();
-                        currentPost = "";
-                        newPost = false;
+            var json = {
+                gameList: {
+                    game: {
                     }
                 }
-
-                if (newPost) {
-                    var post = {}
-                    post.title = formTitle.value;
-                    post.author = formAuthor.value;
-                    post.date = formDate.value;
-                    post.content = easyMDE.value();
-                    posts.push(post);
-                    clearForm();
-                    populateTable();
-                }
             }
-            form.classList.add('was-validated')
+
+            if (scriptPath != "") {
+                json.gameList.game.path = scriptPath
+            }
+            if (name != "") {
+                json.gameList.game.name = name
+            }
+            if (description != "") {
+                json.gameList.game.desc = description
+            }
+            if (date != "") {
+                json.gameList.game.releasedate = date
+            }
+            if (developer != "") {
+                json.gameList.game.developer = developer
+            }
+            if (publisher != "") {
+                json.gameList.game.publisher = publisher
+            }
+            if (genre != "") {
+                json.gameList.game.genre = genre
+            }
+            if (imagePath != "") {
+                json.gameList.game.image = imagePath
+            }
+
+            const doc = xmlbuilder2.create({ version: '1.0', encoding: 'utf-8' }, json);
+            var xml = doc.end({ prettyPrint: true });
+            downloadXML(xml);
         }
 
         var currentPort = "";
@@ -411,26 +426,25 @@
         var ports = []
 
         function populateTable() {
+
+
             var tbody = document.getElementById("tbody");
             tbody.innerHTML = ""
 
+
             for (port in ports) {
                 var tr = document.createElement("tr");
-
                 var name = document.createElement("td");
-                name.innerHTML = ports[port].name;
-                var launcher = document.createElement("td");
-                launcher.innerHTML = ports[port].launcher;
+                name.innerHTML = ports[port].attr.title;
                 var action = document.createElement("td");
                 var button = document.createElement("button");
-                button.textContent = "Edit";
+                button.textContent = "View";
                 button.setAttribute("class", "btn btn-primary btn-sm");
-                button.setAttribute("onclick", "populateForm('" + ports[port].launcher + "')")
+                button.setAttribute("onclick", "populateForm('" + port + "')")
 
                 action.append(button);
 
                 tr.appendChild(name);
-                tr.appendChild(launcher);
                 tr.appendChild(action);
                 tbody.appendChild(tr);
             }
@@ -439,11 +453,13 @@
         async function getPorts() {
 
             try {
-                var response = await fetch('https://raw.githubusercontent.com/PortsMaster/PortMaster-Info/main/port_metadata.json'); // Replace 'YOUR_JSON_URL_HERE' with the actual URL of your JSON data.
+                var response = await fetch('https://raw.githubusercontent.com/PortsMaster/PortMaster-Info/main/ports.json'); // Replace 'YOUR_JSON_URL_HERE' with the actual URL of your JSON data.
                 if (!response.ok) {
                     throw new Error('Network response was not ok.');
                 }
-                ports = await response.json();
+                portsJson = await response.json();
+
+                ports = portsJson.ports;
 
                 populateTable();
                 $('#ports').DataTable({ responsive: true })
