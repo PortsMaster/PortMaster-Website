@@ -79,11 +79,9 @@ function createRecent(item) {
     if (item.attr.image.screenshot !== null) {
         if (item.source.repo == "main") {
             /* Hopefully this works. */
-            source = ("https://raw.githubusercontent.com/PortsMaster/PortMaster-New/main/ports/" + 
-                item.attr.image.screenshot.replace(".screenshot", "/screenshot"));
+            source = ("https://raw.githubusercontent.com/PortsMaster/PortMaster-New/main/ports/" +  item.name.replace(".zip","/") + item.attr.image.screenshot);
         } else if (item.source.repo == "multiverse") {
-            source = ("https://raw.githubusercontent.com/PortsMaster-MV/PortMaster-MV-New/main/ports/" + 
-                item.attr.image.screenshot.replace(".screenshot", "/screenshot"));
+            source = ("https://raw.githubusercontent.com/PortsMaster-MV/PortMaster-MV-New/main/ports/" +  item.name.replace(".zip","/") + item.attr.image.screenshot);
         } 
     }
 
