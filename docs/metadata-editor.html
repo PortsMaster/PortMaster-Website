@@ -236,37 +236,37 @@
          <label class="form-label" for="name">
           Name
          </label>
-         <input class="form-control" id="name" placeholder="" type="text"/>
+         <input class="form-control" id="name" oninput="populateXML()" placeholder="" type="text"/>
         </div>
         <div class="col-6">
          <label class="form-label" for="path">
           Script Path
          </label>
-         <input class="form-control" id="path" placeholder="./portname.sh" type="text"/>
+         <input class="form-control" id="path" oninput="populateXML()" placeholder="./portname.sh" type="text"/>
         </div>
         <div class="col-6">
          <label class="form-label" for="image">
           Image Path
          </label>
-         <input class="form-control" id="image" placeholder="./portname/cover.png" type="text"/>
+         <input class="form-control" id="image" oninput="populateXML()" placeholder="./portname/cover.png" type="text"/>
         </div>
         <div class="col-6">
          <label class="form-label" for="developer">
           Developer
          </label>
-         <input class="form-control" id="developer" placeholder="" type="text"/>
+         <input class="form-control" id="developer" oninput="populateXML()" placeholder="" type="text"/>
         </div>
         <div class="col-6">
          <label class="form-label" for="publisher">
           Publisher
          </label>
-         <input class="form-control" id="publisher" placeholder="" type="text"/>
+         <input class="form-control" id="publisher" oninput="populateXML()" placeholder="" type="text"/>
         </div>
         <div class="col-6">
          <label class="form-label" for="date">
           Release Date
          </label>
-         <input class="form-control" id="date" required="" type="date">
+         <input class="form-control" id="date" oninput="populateXML()" required="" type="date">
           <div class="invalid-feedback">
            Date is required.
           </div>
@@ -276,20 +276,29 @@
          <label class="form-label" for="genre">
           Genre
          </label>
-         <input class="form-control" id="genre" placeholder="" type="text"/>
+         <input class="form-control" id="genre" oninput="populateXML()" placeholder="" type="text"/>
         </div>
         <div class="col-12">
          <label class="form-label" for="description">
           Description
          </label>
-         <textarea class="form-control" id="description" rows="5"></textarea>
+         <textarea class="form-control" id="description" oninput="populateXML()" rows="5"></textarea>
+        </div>
+        <div class="col-12">
+         <label class="form-label" for="xml">
+          XML
+         </label>
+         <textarea class="form-control" id="xml" readonly="" rows="5"></textarea>
         </div>
        </div>
        <br/>
        <div class="col-12">
         <div class="col-sm-12 text-center">
-         <button class="btn btn-primary btn-md" onclick="getFormValues()" style="margin-right: 15px;" type="button">
+         <button class="btn btn-primary btn-md" onclick="download()" style="margin-right: 15px;" type="button">
           Download XML
+         </button>
+         <button class="btn btn-primary btn-md" onclick="copyXML()" style="margin-right: 15px;" type="button">
+          Copy XML
          </button>
          <button class="btn btn-danger btn-md" onclick="clearForm()" type="button">
           Clear
@@ -321,35 +330,54 @@
    </footer>
   </div>
   <script>
-   async function populateForm(port) {
-            
+   function copyXML() {
+            var copyText = document.getElementById("xml");
+            copyText.select();
+            copyText.setSelectionRange(0, 99999);
+            navigator.clipboard.writeText(copyText.value);
+        }
+
+        async function populateForm(port) {
+
             try {
-                var response = await fetch('https://raw.githubusercontent.com/PortsMaster/PortMaster-New/main/ports/' + port.replace(".zip","") + '/gameinfo.xml'); // Replace 'YOUR_JSON_URL_HERE' with the actual URL of your JSON data.
+                var response = await fetch('https://raw.githubusercontent.com/PortsMaster/PortMaster-New/main/ports/' + port.replace(".zip", "") + '/gameinfo.xml'); // Replace 'YOUR_JSON_URL_HERE' with the actual URL of your JSON data.
                 if (!response.ok) {
                     throw new Error('Network response was not ok.');
                 }
                 xml = await response.text();
-                
+
                 const doc = xmlbuilder2.create(xml);
                 const obj = doc.end({ format: 'object' });
-                
+
                 var date = ""
                 if (obj.gameList.game.releasedate) {
-                    date = obj.gameList.game.releasedate.slice(0,4) + "-" + obj.gameList.game.releasedate.slice(4,6) + "-" + obj.gameList.game.releasedate.slice(6,8);
+                    date = obj.gameList.game.releasedate.slice(0, 4) + "-" + obj.gameList.game.releasedate.slice(4, 6) + "-" + obj.gameList.game.releasedate.slice(6, 8);
                 }
 
-                document.getElementById("name").value = obj.gameList.game.name ? obj.gameList.game.name: "";
-                document.getElementById("path").value = obj.gameList.game.path ? obj.gameList.game.path: "";
-                document.getElementById("image").value = obj.gameList.game.image ? obj.gameList.game.image: "";
-                document.getElementById("developer").value = obj.gameList.game.developer ? obj.gameList.game.developer: "";
-                document.getElementById("publisher").value = obj.gameList.game.publisher ? obj.gameList.game.publisher: "";
+                document.getElementById("name").value = obj.gameList.game.name ? obj.gameList.game.name : "";
+                document.getElementById("path").value = obj.gameList.game.path ? obj.gameList.game.path : "";
+                document.getElementById("image").value = obj.gameList.game.image ? obj.gameList.game.image : "";
+                document.getElementById("developer").value = obj.gameList.game.developer ? obj.gameList.game.developer : "";
+                document.getElementById("publisher").value = obj.gameList.game.publisher ? obj.gameList.game.publisher : "";
                 document.getElementById("date").value = date;
-                document.getElementById("genre").value = obj.gameList.game.genre ? obj.gameList.game.genre: "";
-                document.getElementById("description").value = obj.gameList.game.desc ? obj.gameList.game.desc: "";
+                document.getElementById("genre").value = obj.gameList.game.genre ? obj.gameList.game.genre : "";
+                document.getElementById("description").value = obj.gameList.game.desc ? obj.gameList.game.desc : "";
+
+                populateXML();
 
             } catch (error) {
                 console.error('Error populating form: ', error);
             }
+        }
+
+        function populateXML() {
+            xml = getFormValues();
+            document.getElementById("xml").value = xml
+        }
+
+        function download() {
+            xml = getFormValues();
+            downloadXML(xml);
         }
 
         function downloadXML(xml) {
@@ -380,9 +408,9 @@
             var genre = document.getElementById("genre").value;
             var date = document.getElementById("date").value;
 
-            if (date != ""){
+            if (date != "") {
                 date = date.replaceAll("-", "") + "T000000";
-             }
+            }
 
             var json = {
                 gameList: {
@@ -418,7 +446,7 @@
 
             const doc = xmlbuilder2.create({ version: '1.0', encoding: 'utf-8' }, json);
             var xml = doc.end({ prettyPrint: true });
-            downloadXML(xml);
+            return xml;
         }
 
         var currentPort = "";
