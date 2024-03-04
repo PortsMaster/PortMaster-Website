@@ -111,31 +111,36 @@
 
                             <div class="col-12">
                                 <label for="name" class="form-label">Name</label>
-                                <input type="text" class="form-control" id="name" placeholder="">
+                                <input oninput="populateXML()" type="text" class="form-control" id="name"
+                                    placeholder="">
                             </div>
 
                             <div class="col-6">
                                 <label for="path" class="form-label">Script Path</label>
-                                <input type="text" placeholder="./portname.sh" class="form-control" id="path">
+                                <input oninput="populateXML()" type="text" placeholder="./portname.sh"
+                                    class="form-control" id="path">
                             </div>
 
                             <div class="col-6">
                                 <label for="image" class="form-label">Image Path</label>
-                                <input type="text" placeholder="./portname/cover.png" class="form-control" id="image">
+                                <input oninput="populateXML()" type="text" placeholder="./portname/cover.png"
+                                    class="form-control" id="image">
                             </div>
 
                             <div class="col-6">
                                 <label for="developer" class="form-label">Developer</label>
-                                <input type="text" class="form-control" id="developer" placeholder="">
+                                <input oninput="populateXML()" type="text" class="form-control" id="developer"
+                                    placeholder="">
                             </div>
                             <div class="col-6">
                                 <label for="publisher" class="form-label">Publisher</label>
-                                <input type="text" class="form-control" id="publisher" placeholder="">
+                                <input oninput="populateXML()" type="text" class="form-control" id="publisher"
+                                    placeholder="">
                             </div>
 
                             <div class="col-6">
                                 <label for="date" class="form-label">Release Date</label>
-                                <input id="date" class="form-control" type="date" required />
+                                <input oninput="populateXML()" id="date" class="form-control" type="date" required />
                                 <div class="invalid-feedback">
                                     Date is required.
                                 </div>
@@ -143,18 +148,29 @@
 
                             <div class="col-6">
                                 <label for="genre" class="form-label">Genre</label>
-                                <input type="text" class="form-control" id="genre" placeholder="">
+                                <input oninput="populateXML()" type="text" class="form-control" id="genre"
+                                    placeholder="">
                             </div>
 
                             <div class="col-12">
                                 <label for="description" class="form-label">Description</label>
-                                <textarea class="form-control" id="description" rows="5"></textarea>
+                                <textarea oninput="populateXML()" class="form-control" id="description"
+                                    rows="5"></textarea>
+                            </div>
+                            <div class="col-12">
+                                <label for="xml" class="form-label">XML</label>
+                                <textarea readonly class="form-control" id="xml" rows="5"></textarea>
                             </div>
                         </div>
                         <br>
                         <div class="col-12">
                             <div class="col-sm-12 text-center">
-                                <button style="margin-right: 15px;" class="btn btn-primary btn-md" onclick="getFormValues()" type="button">Download XML</button>
+                                <button style="margin-right: 15px;" class="btn btn-primary btn-md" onclick="download()"
+                                    type="button">Download XML</button>
+
+                                <button style="margin-right: 15px;" class="btn btn-primary btn-md" onclick="copyXML()"
+                                    type="button">Copy XML</button>
+
                                 <button class="btn btn-danger btn-md" onclick="clearForm()" type="button">Clear</button>
                             </div>
                         </div>
@@ -182,36 +198,54 @@
     </div>
     <script>
 
+        function copyXML() {
+            var copyText = document.getElementById("xml");
+            copyText.select();
+            copyText.setSelectionRange(0, 99999);
+            navigator.clipboard.writeText(copyText.value);
+        }
 
         async function populateForm(port) {
-            
+
             try {
-                var response = await fetch('https://raw.githubusercontent.com/PortsMaster/PortMaster-New/main/ports/' + port.replace(".zip","") + '/gameinfo.xml'); // Replace 'YOUR_JSON_URL_HERE' with the actual URL of your JSON data.
+                var response = await fetch('https://raw.githubusercontent.com/PortsMaster/PortMaster-New/main/ports/' + port.replace(".zip", "") + '/gameinfo.xml'); // Replace 'YOUR_JSON_URL_HERE' with the actual URL of your JSON data.
                 if (!response.ok) {
                     throw new Error('Network response was not ok.');
                 }
                 xml = await response.text();
-                
+
                 const doc = xmlbuilder2.create(xml);
                 const obj = doc.end({ format: 'object' });
-                
+
                 var date = ""
                 if (obj.gameList.game.releasedate) {
-                    date = obj.gameList.game.releasedate.slice(0,4) + "-" + obj.gameList.game.releasedate.slice(4,6) + "-" + obj.gameList.game.releasedate.slice(6,8);
+                    date = obj.gameList.game.releasedate.slice(0, 4) + "-" + obj.gameList.game.releasedate.slice(4, 6) + "-" + obj.gameList.game.releasedate.slice(6, 8);
                 }
 
-                document.getElementById("name").value = obj.gameList.game.name ? obj.gameList.game.name: "";
-                document.getElementById("path").value = obj.gameList.game.path ? obj.gameList.game.path: "";
-                document.getElementById("image").value = obj.gameList.game.image ? obj.gameList.game.image: "";
-                document.getElementById("developer").value = obj.gameList.game.developer ? obj.gameList.game.developer: "";
-                document.getElementById("publisher").value = obj.gameList.game.publisher ? obj.gameList.game.publisher: "";
+                document.getElementById("name").value = obj.gameList.game.name ? obj.gameList.game.name : "";
+                document.getElementById("path").value = obj.gameList.game.path ? obj.gameList.game.path : "";
+                document.getElementById("image").value = obj.gameList.game.image ? obj.gameList.game.image : "";
+                document.getElementById("developer").value = obj.gameList.game.developer ? obj.gameList.game.developer : "";
+                document.getElementById("publisher").value = obj.gameList.game.publisher ? obj.gameList.game.publisher : "";
                 document.getElementById("date").value = date;
-                document.getElementById("genre").value = obj.gameList.game.genre ? obj.gameList.game.genre: "";
-                document.getElementById("description").value = obj.gameList.game.desc ? obj.gameList.game.desc: "";
+                document.getElementById("genre").value = obj.gameList.game.genre ? obj.gameList.game.genre : "";
+                document.getElementById("description").value = obj.gameList.game.desc ? obj.gameList.game.desc : "";
+
+                populateXML();
 
             } catch (error) {
                 console.error('Error populating form: ', error);
             }
+        }
+
+        function populateXML() {
+            xml = getFormValues();
+            document.getElementById("xml").value = xml
+        }
+
+        function download() {
+            xml = getFormValues();
+            downloadXML(xml);
         }
 
         function downloadXML(xml) {
@@ -242,9 +276,9 @@
             var genre = document.getElementById("genre").value;
             var date = document.getElementById("date").value;
 
-            if (date != ""){
+            if (date != "") {
                 date = date.replaceAll("-", "") + "T000000";
-             }
+            }
 
             var json = {
                 gameList: {
@@ -280,7 +314,7 @@
 
             const doc = xmlbuilder2.create({ version: '1.0', encoding: 'utf-8' }, json);
             var xml = doc.end({ prettyPrint: true });
-            downloadXML(xml);
+            return xml;
         }
 
         var currentPort = "";
