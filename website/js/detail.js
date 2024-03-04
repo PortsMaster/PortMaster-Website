@@ -16,11 +16,9 @@ function displayCardDetails(data) {
     if (data.attr.image.screenshot !== null) {
         if (data.source.repo == "main") {
             /* Hopefully this works. */
-            source = ("https://raw.githubusercontent.com/PortsMaster/PortMaster-New/main/ports/" + 
-                data.attr.image.screenshot.replace(".screenshot", "/screenshot"));
+            source = ("https://raw.githubusercontent.com/PortsMaster/PortMaster-New/main/ports/" +  data.name.replace(".zip","/") + data.attr.image.screenshot);
         } else if (data.source.repo == "multiverse") {
-            source = ("https://raw.githubusercontent.com/PortsMaster-MV/PortMaster-MV-New/main/ports/" + 
-                data.attr.image.screenshot.replace(".screenshot", "/screenshot"));
+            source = ("https://raw.githubusercontent.com/PortsMaster-MV/PortMaster-MV-New/main/ports/" + data.name.replace(".zip","/") + data.attr.image.screenshot);
         } 
     }
 
