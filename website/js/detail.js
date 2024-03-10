@@ -90,8 +90,8 @@ function displayCardDetails(data) {
             var response = null;
             var repo = "https://raw.githubusercontent.com/PortsMaster/PortMaster-New/main/ports/";
             if (data.source.repo == "multiverse") {
-                repo = "https://raw.githubusercontent.com/PortsMaster-MV/PortMaster-Multiverse/main/markdown/";
-                response = await fetch(repo + data.name.replace("zip", "md"));
+                repo = "https://raw.githubusercontent.com/PortsMaster-MV/PortMaster-MV-New/main/ports/";
+                response = await fetch(repo + data.name.replace(".zip", "") + "/README.md");
             }
             else
             {
