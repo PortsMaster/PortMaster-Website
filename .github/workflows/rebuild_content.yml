@@ -1,7 +1,9 @@
 name: Rebuild website content
 
 on:
-  push
+  push:
+
+  workflow_dispatch:
 
 jobs:
   build:
