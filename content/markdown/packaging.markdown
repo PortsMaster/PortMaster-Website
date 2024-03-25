@@ -38,6 +38,7 @@ A port directory might look like the following:
   - port.json
   - README.md
   - screenshot.jpg
+  - gameinfo.xml
   - cover.jpg (Optional)
   - Port Name.sh
   - portname/
@@ -48,6 +49,7 @@ A port directory might look like the following:
 #### port.json
 
 This is used by portmaster, this should include all the pertinent info for the port, [we have a handy port.json generator here](http://portmaster.games/port-json.html).
+Make sure to select the correct architecture. If the game is using a runtime e.g. Godot/Mono/Java no arch needs to be entered.
 
 Example from 2048.
 
@@ -73,7 +75,11 @@ Example from 2048.
         "image": {},
         "rtr": true,
         "runtime": null,
-        "reqs": []
+        "reqs": [],
+        "arch": [
+            "aarch64",
+            "armhf"
+        ]
     }
 }
 ```
@@ -81,61 +87,73 @@ Example from 2048.
 #### README.md
 
 This adds additional info for the port on the wiki, [we have a handy README.md generator here](http://portmaster.games/port-markdown.html).
+Please always add a dedicated thank you note for the developer/creator. Without these people we would not be here. 
 
 Example:
 
 ```markdown
-# Notes
-
-Thanks to [Martin Törnqvist](https://gitlab.com/martin-tornqvist/ia) for this game.
-
-Source: https://gitlab.com/martin-tornqvist/ia
-
+## Notes
+Thanks to the [Alien Blaster Team](https://www.schwardtnet.de/alienblaster/) for creating this game and making it available for free!
+ 
 ## Controls
 
 | Button | Action |
-|--|--|
-| Back | Inventory |
-| Start | Map |
-| D-pad/Right-Analog | Movement, navigation in menus |
-| A | Select something in a menu, confirm action, etc. |
-| B | Cancel/proceed |
-| Back + A | Y (yes for answering questions in dialogs) |
-| Back + B | N (no for answering questions in dialogs), make noise |
-| Back + Y | Toggle lantern |
-| Back + X | WAIT five turns, or until something happens |
-| X | Melee attack adjacent monster (useful for diagonals) |
-| Y | Swap weapons |
-| L1 | Cast spell |
-| L2 | Throw item |
-| L3 | LOOK, VIEW descriptions of things on the map |
-| R1 | Fire ranged weapon |
-| R2 | Reload ranged weapon |
-| R3 | CHARACTER information |
-| Right_Analog_Up | Pickup item |
-| Right_Analog_Right | KICK or strike objects, or DESTROY CORPSES |
-| Right_Analog_Down | DISARM trap |
-| Right_Analog_Left | CLOSE DOOR, or jam closed door |
+|--|--| 
+|A| Special Weapon|
+|B| Main Weapon|
+|X| Swap Weapon|
+|Y| Spwap Special Weapon |
+|R1| Key "1" |
+ 
 
 ## Compile
 
-```shell 
-git clone https://gitlab.com/martin-tornqvist/ia
-cd ia
-./build-release.sh
+```shell
+wget http://www.schwardtnet.de/alienblaster/archives/alienblaster-1.1.0.tgz
+cd alienblaster-1.1.0
+make
 ```
 #### Screenshot
 For use in the PortMaster GUI aswell as for the Wiki we need a screenshot of the gameplay or main function of the Port.
 A title screenshot would not show actual content of the port.
 The screenshot has to be at least 640x480 in dimensions and format can either be .jpg or .png
-For naming its portname.screenshot.png
+For naming its screenshot.png
 
 For convinient use we also have a screenshot tool for making screenshots on your device.
 https://github.com/Cebion/Portmaster_builds/releases/download/1.0/screenshot.rar
 
 You can use these scripts to capture either screenshots or videos on your device. Depending on your device you might need to adjust the width and height values.
 
+#### Gameinfo.xml & Cover
 
+Portmaster installs Metadata including a cover to emulationstation upon a Port install.
+For this we use a custom gameinfo.xml with all the data needed for Emulationstation and a cover file.
+
+The Coverfile should always show gameplay in additon to other media like boxart or logo.
+If no cover is used Portmaster will use the screenshot instead.
+
+To edit existing metadata and to create a new gameinfo.xml file you can use following tool:
+https://portmaster.games/metadata-editor.html
+
+Here is the structure of a filled out gameinfo.xml
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<gameList>
+  <game>
+    <path>./Angband.sh</path>
+    <name>Angband</name>
+    <desc>Angband is a free, single-player dungeon exploration game.
+
+You play an adventurer seeking riches, fighting monsters, and preparing for a final battle with Morgoth, the Lord of Darkness.</desc>
+    <releasedate>20230819T000000</releasedate>
+    <developer>Angband Development Team</developer>
+    <publisher>Angband Development Team</publisher>
+    <genre>RPG</genre>
+    <image>./angband/cover.png</image>
+  </game>
+</gameList>
+```
   
 #### Licensefile 
 Please add licensefiles for all sources and assets you used.
@@ -172,66 +190,72 @@ source $controlfolder/control.txt # We source the control.txt file contents here
 # With device_info we can get dynamic device information like resolution, cpu, cfw etc.
 source $controlfolder/device_info.txt
 
-# Optional we can source custom mod files from the portmaster folder example mod_jelos.txt which containts pipewire fixes
-# [ -f "${controlfolder}/mod_${CFW_NAME}.txt" ] && source "${controlfolder}/mod_${CFW_NAME}.txt"
+# If a Port is built for armhf architecture only (Need for Speed 2 for example) we set this flag so that some environment condition variables are set in the CFWs mod files.
+# Example "https://github.com/PortsMaster/PortMaster-GUI/blob/main/PortMaster/mod_JELOS.txt"
+export PORT_32BIT="Y" # If using a 32 bit port, else comment it out.
 
+# We source custom mod files from the portmaster folder example mod_jelos.txt which containts pipewire fixes
+[ -f "${controlfolder}/mod_${CFW_NAME}.txt" ] && source "${controlfolder}/mod_${CFW_NAME}.txt"
 
-get_controls # We pull the controller configs from the get_controls function from the control.txt file here
+# We pull the controller configs like the correct SDL2 Gamecontrollerdb GUID from the get_controls function from the control.txt file here
+get_controls
 
-# We switch to the port's directory location below & set the variable for easier handling below
-
+# We switch to the port's directory location below & set the variable for the gamedir and a configuration dir  easier handling below
 GAMEDIR=/$directory/ports/portfolder/
-cd $GAMEDIR
-
-# Log the execution of the script
-exec > >(tee "$GAMEDIR/log.txt") 2>&1
-
-# Some ports like to create save files or settings files in the user's home folder or other locations.  
-# You can either use XDG variables to redirect the Ports to our gamefolder if the port supports it:
 CONFDIR="$GAMEDIR/conf/"
 
 # Ensure the conf directory exists
 mkdir -p "$GAMEDIR/conf"
 
+# Switch to the game directory
+cd $GAMEDIR
+
+# Log the execution of the script, the script overwrites itself on each launch
+> "$GAMEDIR/log.txt" && exec > >(tee "$GAMEDIR/log.txt") 2>&1
+
+# Some ports like to create save files or settings files in the user's home folder or other locations. We map these config folders so we can either preconfigure games and or have the savefiles in one place. I
+# You can either use XDG variables to redirect the Ports to our gamefolder if the port supports it:
+
 # Set the XDG environment variables for config & savefiles
-export XDG_CONFIG_HOME="$CONFDIR"
 export XDG_DATA_HOME="$CONFDIR"
 
-or 
+# OR  
 
-# Use symlinks to reroute that to a location within the ports folder so the data stays with the port 
-# installation for easy backup and portability.
+# Use symlinks to reroute that to a location within the ports folder.
 
 $ESUDO rm -rf ~/.portfolder
 ln -sfv /$directory/ports/portname/conf/.portfolder ~/
 
-# Make sure uinput is accessible so we can make use of the gptokeyb controls.  351Elec/AmberElec, uOS and JelOS always runs in root, naughty naughty.  
-# The other distros don't so the $ESUDO variable provides the sudo or not dependant on the OS this script is run from.
-$ESUDO chmod 666 /dev/uinput
+# Starting with the multiarch support we make sure that older PortMaster versions still revert to the old binary names. 
+export DEVICE_ARCH="${DEVICE_ARCH:-aarch64}"
 
+# Port specific additional libraries should be included within the port's directory in a separate subfolder named libs.aarch64, libs.armhf or libs.x64
+export LD_LIBRARY_PATH="$GAMEDIR/libs.${DEVICE_ARCH}:$LD_LIBRARY_PATH"
+
+# Provide appropriate controller configuration if it recognizes SDL controller input
+export SDL_GAMECONTROLLERCONFIG="$sdl_controllerconfig"
+
+# If a port uses GL4ES (libgl.so.1) a folder named gl4es.aarch64 etc. needs to be created with the libgl.so.1 file in it. This makes sure that each cfw and device get the correct GL4ES export.
+if [ -f "${controlfolder}/libgl_${CFWNAME}.txt" ]; then 
+  source "${controlfolder}/libgl_${CFW_NAME}.txt"
+else
+  source "${controlfolder}/libgl_default.txt"
+fi
+
+# For Ports that use gptokeyb's xbox360 mode we need to make sure /dev/uinput is accessible on non-root cfws
+# For distros running as root, including sudo in scripts can be problematic. The $ESUDO variable dynamically uses sudo based on the OS."
+$ESUDO chmod 666 /dev/uinput
 
 # We launch gptokeyb using this $GPTOKEYB variable as it will take care of sourcing the executable from the central location,
 # assign the appropriate exit hotkey dependent on the device (ex. select + start for most devices and minus + start for the 
 # rgb10) and assign the appropriate method for killing an executable dependent on the OS the port is run from.
 # With -c we assign a custom mapping file else gptokeyb will only run as a tool to kill the process.
 # For $ANALOGSTICKS we have the ability to supply multiple gptk files to support 1 and 2 analogue stick devices in different ways.
-# For a proper documentation how gptokeyb works: LINK
-$GPTOKEYB "portexecutable" -c "./portname.gptk.$ANALOGSTICKS" &
+# For a proper documentation how gptokeyb works: [Link](https://github.com/PortsMaster/gptokeyb)
+$GPTOKEYB "portexecutable.${DEVICE_ARCH}" -c "./portname.gptk.$ANALOGSTICKS" &
 
-
-# Now we launch the port's executable and provide the location of specific libraries in may need along with the appropriate
-# controller configuration if it recognizes SDL controller input
-
-
-### Port specific additional libraries should be included within the port's directory in a separate subfolder named libs.
-They can be loaded at runtime using `export LD_LIBRARY_PATH` or using `LD_LIBRARY_PATH=` on the same line as the executable as long as it's before it. \
-
-export LD_LIBRARY_PATH="$GAMEDIR/libs:$LD_LIBRARY_PATH"
-
-# Provide appropriate controller configuration if it recognizes SDL controller input
-export SDL_GAMECONTROLLERCONFIG="$sdl_controllerconfig" 
-
-./portexecutable Launch the executable
+# Now we launch the port's executable with multiarch support. Make sure to rename your file according to the architecture you built for. E.g. portexecutable.aarch64
+./portexecutable.${DEVICE_ARCH} Launch the executable
 
 # Although you can kill most of the ports (if not all of the ports) via a hotkey, the user may choose to exit gracefully.
 # That's fine but let's make sure gptokeyb is killed so we don't get ghost inputs or worse yet, 
@@ -266,22 +290,46 @@ fi
 source $controlfolder/control.txt
 source $controlfolder/device_info.txt
 
+#export PORT_32BIT="Y" # If using a 32 bit port
+[ -f "${controlfolder}/mod_${CFW_NAME}.txt" ] && source "${controlfolder}/mod_${CFW_NAME}.txt"
+
 get_controls
 
 GAMEDIR=/$directory/ports/portfolder/
+CONFDIR="$GAMEDIR/conf/"
+
+mkdir -p "$GAMEDIR/conf"
+
 cd $GAMEDIR
 
-exec > >(tee "$GAMEDIR/log.txt") 2>&1
+> "$GAMEDIR/log.txt" && exec > >(tee "$GAMEDIR/log.txt") 2>&1
 
+# if XDG Path does not work
+#$ESUDO rm -rf ~/.portfolder
+#ln -sfv $GAMEDIR/conf/.portfolder ~/
+
+export XDG_DATA_HOME="$CONFDIR"
+export DEVICE_ARCH="${DEVICE_ARCH:-aarch64}"
+export LD_LIBRARY_PATH="$GAMEDIR/libs.${DEVICE_ARCH}:$LD_LIBRARY_PATH"
 export SDL_GAMECONTROLLERCONFIG="$sdl_controllerconfig"
-export LD_LIBRARY_PATH="$GAMEDIR/libs:$LD_LIBRARY_PATH"
+#export TEXTINPUTINTERACTIVE="Y"
 
-$ESUDO chmod 666 /dev/uinput
-$GPTOKEYB "portexecutable" -c "./portname.gptk" &
-./portexecutable
+# If using gl4es
+#if [ -f "${controlfolder}/libgl_${CFWNAME}.txt" ]; then 
+#  source "${controlfolder}/libgl_${CFW_NAME}.txt"
+#else
+#  source "${controlfolder}/libgl_default.txt"
+#fi
+
+# Only for xbox360 mode
+#$ESUDO chmod 666 /dev/uinput
+
+$GPTOKEYB "portexecutable.${DEVICE_ARCH}" -c "./portname.gptk.$ANALOGSTICKS" &
+./portexecutable.${DEVICE_ARCH}
 
 $ESUDO kill -9 $(pidof gptokeyb)
 $ESUDO systemctl restart oga_events &
+printf "\033c" > /dev/tty1
 printf "\033c" > /dev/tty0
 ```
 
@@ -302,21 +350,27 @@ fi
 source $controlfolder/control.txt
 source $controlfolder/device_info.txt
 
+[ -f "${controlfolder}/mod_${CFW_NAME}.txt" ] && source "${controlfolder}/mod_${CFW_NAME}.txt"
+
 get_controls
 
 GAMEDIR=/$directory/ports/portfolder/
 CONFDIR="$GAMEDIR/conf/"
 
-exec > >(tee "$GAMEDIR/log.txt") 2>&1
-
-# Ensure the conf directory exists
 mkdir -p "$GAMEDIR/conf"
+cd $GAMEDIR
+
+> "$GAMEDIR/log.txt" && exec > >(tee "$GAMEDIR/log.txt") 2>&1
+
+#  If XDG Path does not work
+#$ESUDO rm -rf ~/.portfolder
+#ln -sfv $GAMEDIR/conf/.portfolder ~/
 
 # Set the XDG environment variables for config & savefiles
-export XDG_CONFIG_HOME="$CONFDIR"
 export XDG_DATA_HOME="$CONFDIR"
-
-cd $GAMEDIR
+export DEVICE_ARCH="${DEVICE_ARCH:-aarch64}"
+export LD_LIBRARY_PATH="$GAMEDIR/libs.${DEVICE_ARCH}:$LD_LIBRARY_PATH"
+export SDL_GAMECONTROLLERCONFIG="$sdl_controllerconfig"
 
 runtime="frt_3.2.3"
 if [ ! -f "$controlfolder/libs/${runtime}.squashfs" ]; then
@@ -339,11 +393,8 @@ $ESUDO mount "$godot_file" "$godot_dir"
 PATH="$godot_dir:$PATH"
 
 # By default FRT sets Select as a Force Quit Hotkey, with this we disable that.
-export FRT_NO_EXIT_SHORTCUTS=FRT_NO_EXIT_SHORTCUTS # 
+export FRT_NO_EXIT_SHORTCUTS=FRT_NO_EXIT_SHORTCUTS 
 
-export SDL_GAMECONTROLLERCONFIG="$sdl_controllerconfig"
-
-$ESUDO chmod 666 /dev/uinput
 $GPTOKEYB "$runtime" -c "./godot.gptk" &
 "$runtime" --main-pack "gamename.pck"
 
@@ -351,6 +402,7 @@ $ESUDO umount "$godot_dir"
 $ESUDO kill -9 $(pidof gptokeyb)
 $ESUDO systemctl restart oga_events &
 printf "\033c" > /dev/tty0
+printf "\033c" > /dev/tty1
 ```
 
 ### Love2d Example Launchscript
@@ -369,29 +421,42 @@ fi
 source $controlfolder/control.txt
 source $controlfolder/device_info.txt
 
+[ -f "${controlfolder}/mod_${CFW_NAME}.txt" ] && source "${controlfolder}/mod_${CFW_NAME}.txt"
+
 get_controls
 
 GAMEDIR=/$directory/ports/portfolder
+CONFDIR="$GAMEDIR/conf/"
+
+mkdir -p "$GAMEDIR/conf"
 cd $GAMEDIR
 
-exec > >(tee "$GAMEDIR/log.txt") 2>&1
+> "$GAMEDIR/log.txt" && exec > >(tee "$GAMEDIR/log.txt") 2>&1
 
-export LD_LIBRARY_PATH="$GAMEDIR/libs:$LD_LIBRARY_PATH"
+#  If XDG Path does not work
+#$ESUDO rm -rf ~/.portfolder
+#ln -sfv $GAMEDIR/conf/.portfolder ~/
 
-$ESUDO chmod 666 /dev/uinput
+# Set the XDG environment variables for config & savefiles
+export XDG_DATA_HOME="$CONFDIR"
 
-$GPTOKEYB "love" -c "./love.gptk" &
-./love portname
+export DEVICE_ARCH="${DEVICE_ARCH:-aarch64}"
+export LD_LIBRARY_PATH="$GAMEDIR/libs.${DEVICE_ARCH}:$LD_LIBRARY_PATH"
+export SDL_GAMECONTROLLERCONFIG="$sdl_controllerconfig"
+
+$GPTOKEYB "love.${DEVICE_ARCH}" -c "./love.gptk" &
+./love.${DEVICE_ARCH} gamedata
+
 $ESUDO kill -9 $(pidof gptokeyb)
 $ESUDO systemctl restart oga_events &
 printf "\033c" > /dev/tty0
+printf "\033c" > /dev/tty1
 ```
 
 ### Gamemaker Studio gmloader Example Launchscript
 
 ```
 #!/bin/bash
-# Below we assign the source of the control folder (which is the PortMaster folder) based on the distro:
 if [ -d "/opt/system/Tools/PortMaster/" ]; then
   controlfolder="/opt/system/Tools/PortMaster"
 elif [ -d "/opt/tools/PortMaster/" ]; then
@@ -400,58 +465,36 @@ else
   controlfolder="/roms/ports/PortMaster"
 fi
 
-# We source the control.txt file contents here
-# The $ESUDO, $directory, $param_device and necessary 
-# Sdl configuration controller configurations will be sourced from the control.txt
 source $controlfolder/control.txt
-
-# With device_info we can get dynamic device information like resolution, cpu, cfw etc.
 source $controlfolder/device_info.txt
 
-# We load custom fixes for some firmwares for example jelos on 32 bit mod_jelos.txt
+export PORT_32BIT="Y" # If using a 32 bit port
 [ -f "${controlfolder}/mod_${CFW_NAME}.txt" ] && source "${controlfolder}/mod_${CFW_NAME}.txt"
 
+get_controls
 
-
-GAMEDIR=/$directory/ports/blastius
-
-# We log the execution of the script into log.txt
-exec > >(tee "$GAMEDIR/log.txt") 2>&1
-
-
-
-
-# Port specific additional libraries should be included within the port's directory in a separate subfolder named libs.
-# Prioritize the armhf libs to avoid conflicts with aarch64
-export LD_LIBRARY_PATH="/usr/lib32:$GAMEDIR/libs:$GAMEDIR/utils/libs:$LD_LIBRARY_PATH"
-export GMLOADER_DEPTH_DISABLE=1
-export GMLOADER_SAVEDIR="$GAMEDIR/gamedata/"
+GAMEDIR=/$directory/ports/portfolder/
+CONFDIR="$GAMEDIR/conf/"
+mkdir -p "$GAMEDIR/conf"
 
 cd $GAMEDIR
+> "$GAMEDIR/log.txt" && exec > >(tee "$GAMEDIR/log.txt") 2>&1
 
-# If "gamedata/data.win" exists and its size is 3,389,976 bytes, apply the xdelta3 patch
-if [ -f "./gamedata/data.win" ]; then
-    file_size=$(ls -l "./gamedata/data.win" | awk '{print $5}')
-    if [ "$file_size" -eq 3389976 ]; then
-        $ESUDO ./utils/xdelta3 -d -s gamedata/data.win -f ./patch.xdelta gamedata/data.win
-    fi
-fi
-
-# Check for file existence before trying to manipulate them:
-[ -f "./gamedata/data.win" ] && mv gamedata/data.win gamedata/game.droid
-[ -f "./gamedata/game.win" ] && mv gamedata/game.win gamedata/game.droid
-
-# Make sure uinput is accessible so we can make use of the gptokeyb controls
-$ESUDO chmod 666 /dev/uinput
-
-$GPTOKEYB "gmloader" -c ./blastius.gptk &
-
+export LD_LIBRARY_PATH="$GAMEDIR/libs.${DEVICE_ARCH}:$LD_LIBRARY_PATH"
+export SDL_GAMECONTROLLERCONFIG="$sdl_controllerconfig"
 $ESUDO chmod +x "$GAMEDIR/gmloader"
 
-./gmloader blastius.apk
+# Only for xbox360 mode
+#$ESUDO chmod 666 /dev/uinput
+
+# if no .gptk file is used use $GPTOKEYB "gmloader" & 
+$GPTOKEYB "gmloader" -c ./controls.gptk &
+./gmloader donor.apk
+
 
 $ESUDO kill -9 $(pidof gptokeyb)
 $ESUDO systemctl restart oga_events &
+printf "\033c" > /dev/tty1
 printf "\033c" > /dev/tty0
 
 ```
