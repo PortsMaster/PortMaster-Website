@@ -323,15 +323,6 @@
        <form class="needs-validation" id="form" novalidate="">
         <div class="row g-3">
          <div class="col-12">
-          <label class="form-label" for="zipname">
-           Port Zip Filename
-          </label>
-          <input class="form-control" id="zipname" oninput="renderMarkdown()" placeholder="" required="" type="text"/>
-          <div class="invalid-feedback">
-           Zip name is required.
-          </div>
-         </div>
-         <div class="col-12">
           <label class="form-label" for="notes">
            Notes
           </label>
@@ -467,7 +458,7 @@
     }
 
     function downloadReadme() {
-      filename = document.getElementById("zipname").value.replace(".zip", ".md").replaceAll(" ",".").toLowerCase();
+      filename = "README.md";
       var file = new Blob([markdown], { type: "application/text" });
       if (window.navigator.msSaveOrOpenBlob) // IE10+
         window.navigator.msSaveOrOpenBlob(file, filename);
