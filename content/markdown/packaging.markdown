@@ -6,6 +6,7 @@
   - [port.json](#portjson)
   - [README.md](#readmemd)
   - [Screenshot](#screenshot)
+  - [Gameinfo.xml & Cover](#gameinfo-xml-cover)
   - [License File](#licensefile)
   - [The Launch Script (.sh)](#the-launchscript-sh)
   - [Examples](#examples)
