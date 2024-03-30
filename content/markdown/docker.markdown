@@ -1,6 +1,6 @@
 # Docker PM images
 
-The docker file and supporting images is aimed at help support compiling games to use with Portmaster as per the [PM Build Guide](https://portmaster.games/build-environments.html)
+The docker file and supporting images are aimed at helping to support compiling ports to use with Portmaster as per the [PM Build Guide](https://portmaster.games/build-environments.html)
 
 ## How to use the image
 
