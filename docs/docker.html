@@ -1,20 +1,14 @@
 <!DOCTYPE html>
 <html data-bs-theme="auto" lang="en">
  <head>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet"/>
   <script src="js/color-modes.js">
   </script>
   <script src="https://md-block.verou.me/md-block.js" type="module">
   </script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/2.1.0/showdown.min.js">
-  </script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet"/>
   <link href="css/shared.css" rel="stylesheet"/>
   <meta charset="utf-8"/>
   <meta content="width=device-width, initial-scale=1" name="viewport"/>
-  <meta content="" name="description"/>
-  <title>
-   Build Environments
-  </title>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js">
   </script>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"/>
@@ -22,6 +16,9 @@
   <script src="https://cdn.jsdelivr.net/npm/anchor-js/anchor.min.js">
   </script>
   <link href="css/documentation.css" rel="stylesheet"/>
+  <title>
+   Port Tools
+  </title>
  </head>
  <body class="bg-body-tertiary">
   <svg class="d-none" xmlns="http://www.w3.org/2000/svg">
@@ -223,235 +220,109 @@
   <div class="container">
    <main>
     <h1>
-     How Do We Compile Our Games for PortMaster?
+     Using Docker with PortMaster.
     </h1>
     <p>
-     Since PortMaster is platform-independent and delivers its own dependencies, we don't rely on the build mechanism of the CFWs out there. To compile games for the AARCH64 architecture, you can do so in various ways.
+     The docker file and supporting images are aimed at helping to support compiling ports to use with Portmaster as per the
+     <a href="https://portmaster.games/build-environments.html">
+      PM Build Guide
+     </a>
     </p>
     <h2>
-     Methods for Compiling
+     How to use the image
     </h2>
     <h3>
-     1. AARCH64 chroot development VM by Christian
+     32-bit ARM
     </h3>
     <p>
-     This is a Virtual Box VM with two chroot instances (AARCH64 &amp; ARMHF).
+     Download the prebuilt image and run the Docker container using:
     </p>
-    <p>
-     <strong>
-      For More Info:
-     </strong>
-     <a href="https://forum.odroid.com/viewtopic.php?p=306185#p306185">
-      Forum Post
-     </a>
-    </p>
-    <h4>
-     Getting Into Chroots:
-    </h4>
-    <ul>
-     <li>
-      <p>
-       <strong>
-        For 32-bit Arm environment:
-       </strong>
-      </p>
-      <pre lang="bash"><code>sudo chroot /mnt/data/armhf/
-</code></pre>
-      <p>
-       or create an Arm32 shortcut on the desktop GUI and click on it.
-      </p>
-     </li>
-     <li>
-      <p>
-       <strong>
-        For 64-bit Arm environment:
-       </strong>
-      </p>
-      <pre lang="bash"><code>sudo chroot /mnt/data/arm64/
-</code></pre>
-      <p>
-       or create an Arm64 shortcut on the desktop GUI and click on it.
-      </p>
-     </li>
-    </ul>
-    <h4>
-     Helpful Tools to Install:
-    </h4>
-    <pre lang="bash"><code>apt -y install build-essential git wget libdrm-dev python3 python3-pip python3-setuptools python3-wheel ninja-build libopenal-dev premake4 autoconf libevdev-dev ffmpeg libsnappy-dev libboost-tools-dev magics++ libboost-thread-dev libboost-all-dev pkg-config zlib1g-dev libpng-dev libsdl2-dev clang cmake cmake-data libarchive13 libcurl4 libfreetype6-dev libjsoncpp1 librhash0 libuv1 mercurial mercurial-common libgbm-dev libsdl2-ttf-2.0-0 libsdl2-ttf-dev
+    <pre lang="bash"><code>docker pull monkeyx/retro_builder:arm32
+docker run --rm --privileged multiarch/qemu-user-static --reset -p yes
+docker run --privileged -it --platform=linux/armhf --name builder32 monkeyx/retro_builder:arm32 bash
 </code></pre>
     <h3>
-     2. WSL2 chroot
+     64-bit ARM
     </h3>
     <p>
-     For more information, visit the
-     <a href="https://github.com/Cebion/Portmaster_builds">
-      GitHub Repository
-     </a>
-     .
+     Download the prebuilt image and run the Docker container using:
     </p>
-    <h4>
-     Build Environment
-    </h4>
-    <h5>
-     Instructions to set it up:
-    </h5>
-    <ul>
-     <li>
-      <p>
-       Install required packages on Ubuntu 20.04 LTS WSL 2:
-      </p>
-      <pre lang="bash"><code>sudo apt install build-essential binfmt-support daemonize libarchive-tools qemu-system qemu-user qemu-user-static gcc-aarch64-linux-gnu g++-aarch64-linux-gnu
+    <pre lang="bash"><code>docker pull monkeyx/retro_builder:arm64
+docker run --rm --privileged multiarch/qemu-user-static --reset -p yes
+docker run --privileged -it --platform=linux/arm64 --name builder64 monkeyx/retro_builder:arm64 bash
 </code></pre>
-     </li>
-     <li>
-      <p>
-       Download 20.04 Focal server-cloudimg-arm64-wsl.rootfs.tar.gz from Ubuntu Cloud image.
-       <a href="https://cloud-images.ubuntu.com/releases/">
-        Ubuntu Cloud Image
-       </a>
-      </p>
-     </li>
-     <li>
-      <p>
-       Extract the tarball in a folder:
-      </p>
-      <pre lang="bash"><code>mkdir folder
-sudo bsdtar -xpf ubuntu-20.04-server-cloudimg-arm64-wsl.rootfs.tar.gz -C folder
-</code></pre>
-     </li>
-     <li>
-      <p>
-       Copy qemu static binary into that folder:
-      </p>
-      <pre lang="bash"><code>sudo cp /usr/bin/qemu-aarch64-static folder/usr/bin
-</code></pre>
-     </li>
-     <li>
-      <p>
-       Start systemd with daemonize:
-      </p>
-      <pre lang="bash"><code>sudo daemonize /usr/bin/unshare -fp --mount-proc /lib/systemd/systemd --system-unit=basic.target
-</code></pre>
-     </li>
-     <li>
-      <p>
-       Check if AARCH64 binfmt entry is present:
-      </p>
-      <pre lang="bash"><code>ls /proc/sys/fs/binfmt_misc/
-</code></pre>
-     </li>
-     <li>
-      <p>
-       Mount and chroot into the environment:
-      </p>
-      <pre lang="bash"><code>sudo mount -o bind /proc folder/proc
-sudo mount -o bind /dev folder/dev
-sudo chroot folder qemu-aarch64-static /bin/bash
-</code></pre>
-     </li>
-     <li>
-      <p>
-       In the chroot, delete /etc/resolv.conf file and write a name server to it.
-      </p>
-      <pre lang="bash"><code>rm /etc/resolv.conf
-echo "nameserver 8.8.8.8" &gt; /etc/resolv.conf
-</code></pre>
-     </li>
-     <li>
-      <p>
-       Exit chroot
-       <code>
-        mkdir -p folder/tmp/.X11-unix
-       </code>
-      </p>
-     </li>
-     <li>
-      <p>
-       Create chroot.sh:
-      </p>
-      <pre lang="bash"><code>#!/bin/bash
-
-sudo daemonize /usr/bin/unshare -fp --mount-proc /lib/systemd/systemd --system-unit=basic.target
-
-sudo mount -o bind /proc folder/proc
-sudo mount -o bind /dev folder/dev
-sudo mount -o bind /tmp/.X11-unix folder/tmp/.X11-unix
-xhost + local:
-sudo chroot folder qemu-aarch64-static /bin/bash
-</code></pre>
-     </li>
-     <li>
-      <p>
-       Make the chroot.sh executable:
-      </p>
-      <pre lang="bash"><code>chmod +x chroot.sh
-</code></pre>
-     </li>
-     <li>
-      <p>
-       Chroot into the new environment:
-      </p>
-      <pre lang="bash"><code>sudo ./chroot.sh
-</code></pre>
-     </li>
-     <li>
-      <p>
-       Update &amp; Upgrade the chroot:
-      </p>
-      <pre lang="bash"><code>apt-get update &amp;&amp; apt-get upgrade 
-</code></pre>
-     </li>
-     <li>
-      <p>
-       Helpful development tools &amp; libraries to have in the chroot:
-      </p>
-      <pre lang="bash"><code>apt-get install --no-install-recommends build-essential git wget libdrm-dev python3 python3-pip python3-setuptools python3-wheel ninja-build libopenal-dev premake4 autoconf libevdev-dev ffmpeg libboost-tools-dev magics++ libboost-thread-dev libboost-all-dev pkg-config zlib1g-dev libsdl-mixer1.2-dev libsdl1.2-dev libsdl-gfx1.2-dev libsdl2-mixer-dev clang cmake cmake-data libarchive13 libcurl4 libfreetype6-dev librhash0 libuv1 mercurial mercurial-common libgbm-dev libsdl-image1.2-dev
-</code></pre>
-     </li>
-     <li>
-      <p>
-       Install custom SDL2 Libraries for better compatibility:
-      </p>
-      <pre lang="bash"><code>rm /usr/lib/aarch64-linux-gnu/libSDL2.* 
-rm -rf /usr/lib/aarch64-linux-gnu/libSDL2-2.0.so*
-
-wget https://github.com/libsdl-org/SDL/archive/refs/tags/release-2.26.2.tar.gz
-./configure --prefix=/usr
-make -j8
-make install
-
-/sbin/ldconfig
-</code></pre>
-     </li>
-    </ul>
     <h3>
-     3. Use Docker
+     64-bit X86_64
     </h3>
     <p>
-     Multi Arch compilation with this
-     <a href="https://portmaster.games/docker.html">
-      Docker Guide
-     </a>
+     Download the prebuilt image and run the Docker container using:
     </p>
+    <pre lang="bash"><code>docker pull monkeyx/retro_builder:x86_64
+docker run --rm --privileged multiarch/qemu-user-static --reset -p yes
+docker run --privileged -it --platform=linux/amd64 --name builderx86_64 monkeyx/retro_builder:x86_64 bash
+</code></pre>
+    <h2>
+     Copy files from Container to Host
+    </h2>
+    <p>
+     Ensure the relevant docker container is running
+    </p>
+    <pre lang="bash"><code>docker container start builder32
+docker container start builder64
+docker container start builderx86_64
+</code></pre>
+    <p>
+     Copy the files
+    </p>
+    <p>
+     docker cp
+     <!-- raw HTML omitted -->
+     :/file/path/within/container /host/path/target
+docker cp
+     <!-- raw HTML omitted -->
+     :/file/path/within/container /host/path/target
+    </p>
+    <p>
+     Example
+    </p>
+    <pre lang="bash"><code>docker cp builder32:/root/file .
+</code></pre>
+    <h2>
+     How to build the image
+    </h2>
     <h3>
-     4. Create Your Own chroot
+     32-bit ARM
     </h3>
     <p>
-     As per
-     <a href="https://github.com/christianhaitian/arkos/wiki/Building#to-create-debian-based-chroots-in-a-linux-environment">
-      this guide
-     </a>
-     .
+     Execute the following on your machine:
     </p>
+    <pre lang="bash"><code>git clone https://github.com/monkeyx-net/retro_builder_docker.git
+cd retro_builder_docker
+docker build . --platform linux/arm/v7 -t monkeyx/retro_builder:arm32
+</code></pre>
     <h3>
-     5. Cross-Compiling Tools for AARCH64
+     64-bit ARM
     </h3>
     <p>
-     With the arm64 SDL2 library, etc.
+     Execute the following on your machine:
     </p>
+    <pre lang="bash"><code>git clone https://github.com/monkeyx-net/retro_builder_docker.git
+cd retro_builder_docker
+docker build . --platform linux/arm64 -t monkeyx/retro_builder:arm64
+</code></pre>
+    <h3>
+     64-bit x86_64
+    </h3>
+    <p>
+     Execute the following on your machine:
+    </p>
+    <pre lang="bash"><code>git clone https://github.com/monkeyx-net/retro_builder_docker.git
+cd retro_builder_docker
+docker build . --platform linux/amd64 -t monkeyx/retro_builder:x86_64
+</code></pre>
     <script>
      anchors.options.visible = 'always';
-      anchors.add();
+        anchors.add();
     </script>
    </main>
    <footer class="my-5 pt-5 text-body-secondary text-center text-small">
