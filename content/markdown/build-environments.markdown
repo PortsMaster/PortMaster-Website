@@ -143,10 +143,14 @@ For more information, visit the [GitHub Repository](https://github.com/Cebion/Po
   /sbin/ldconfig
   ```
 
-### 3. Create Your Own chroot
+### 3. Use Docker
+
+As per [Docker Guide](#)
+
+### 4. Create Your Own chroot
 
 As per [this guide](https://github.com/christianhaitian/arkos/wiki/Building#to-create-debian-based-chroots-in-a-linux-environment).
 
-### 4. Cross-Compiling Tools for AARCH64
+### 5. Cross-Compiling Tools for AARCH64
 
 With the arm64 SDL2 library, etc.
