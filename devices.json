@@ -12,7 +12,7 @@
     "manufacturer": "Anbernic",
     "resolution": "640*480",
     "aspect ratio": "4:3",
-    "firmware": "ArkOS,AmberELEC,JELOS",
+    "firmware": "ArkOS,AmberELEC,JELOS, ROCKNIX",
     "notes": ""
   },
   {
@@ -20,7 +20,7 @@
     "manufacturer": "Anbernic",
     "resolution": "960*544",
     "aspect ratio": "15:8",
-    "firmware": "ArkOS",
+    "firmware": "ArkOS,JELOS",
     "notes": "Some ports may have issues with this aspect ratio. Results will vary from port to port."
   }, {
     "device": "RG552",
