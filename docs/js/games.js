@@ -132,13 +132,11 @@ function createCard(data) {
 
     const button = document.createElement('button');
     button.setAttribute("type","button");
-    //button.textContent = "Download"
     button.textContent = "Details"
     button.setAttribute("class","btn btn-sm btn-outline-primary");
-    //button.setAttribute("onclick","window.location.href='"+ data.source.url+ "';");
-    button.setAttribute("onclick","window.location.href='detail.html?name=" + data.name.replace(".zip","") + "';");
-    
+    button.setAttribute("onclick","window.open('detail.html?name=" + data.name.replace(".zip","") + "');");    
 
+    
     div5.appendChild(button);
 
 
