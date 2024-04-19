@@ -208,6 +208,9 @@
             <li class="nav-item">
               <a class="nav-link active" aria-current="page" href="games.html">Games</a>
             </li>
+            <li class="nav-item">
+              <a href="https://opencollective.com/portmaster" class="nav-link active" aria-current="page"><i class="bi bi-bag-heart-fill"></i>Donate</a>
+            </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
                 aria-expanded="false">Portmaster</a>
@@ -233,11 +236,7 @@
                 <li><a class="dropdown-item" href="themes.html">Themes</a></li>
               </ul>
             </li>
-            <li class="nav-item">
-              <a href="https://opencollective.com/portmaster" class="nav-link active" aria-current="page"><i class="bi bi-bag-heart-fill"></i> Donate</a>
-            </li>
-            
-          </ul>
+            </ul>
           <ul class="navbar-nav ">
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">Sort</a>
@@ -245,8 +244,12 @@
                 <div class="dropdown-item">
                   <li><label><input checked onchange="sortAZ()" id="sortAZ" class="form-check-input" type="checkbox"
                         value='' /> A - Z</label></li>
+                </div>
+                <div class="dropdown-item">
                   <li><label><input onchange="sortDownloaded()" id="sortDownloaded" class="form-check-input"
                         type="checkbox" value='' /> Most Downloaded</label></li>
+                </div>
+                <div class="dropdown-item">
                   <li><label><input onchange="sortNewest()" id="sortNewest" class="form-check-input" type="checkbox"
                         value='' /> Most Recent</label></li>
                 </div>
@@ -260,8 +263,11 @@
                 <div class="dropdown-item">
                   <li><label><input onchange="filterCards()" id="ready-to-run" class="form-check-input" type="checkbox"
                         value='' /> Ready to Run</label></li>
-                        <li><label><input onchange="filterCards()" id="files-needed" class="form-check-input" type="checkbox"
-                          value='' />Files Needed</label></li>
+                       
+                </div>
+                <div class="dropdown-item">
+                    <li><label><input onchange="filterCards()" id="files-needed" class="form-check-input" type="checkbox"
+                        value='' />Files Needed</label></li>
                 </div>
               </ul>
             </li>
