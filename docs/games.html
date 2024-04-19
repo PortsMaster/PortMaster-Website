@@ -217,6 +217,13 @@
          Games
         </a>
        </li>
+       <li class="nav-item">
+        <a aria-current="page" class="nav-link active" href="https://opencollective.com/portmaster">
+         <i class="bi bi-bag-heart-fill">
+         </i>
+         Donate
+        </a>
+       </li>
        <li class="nav-item dropdown">
         <a aria-expanded="false" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#">
          Portmaster
@@ -296,13 +303,6 @@
          </li>
         </ul>
        </li>
-       <li class="nav-item">
-        <a aria-current="page" class="nav-link active" href="https://opencollective.com/portmaster">
-         <i class="bi bi-bag-heart-fill">
-         </i>
-         Donate
-        </a>
-       </li>
       </ul>
       <ul class="navbar-nav">
        <li class="nav-item dropdown">
@@ -317,12 +317,16 @@
             A - Z
            </label>
           </li>
+         </div>
+         <div class="dropdown-item">
           <li>
            <label>
             <input class="form-check-input" id="sortDownloaded" onchange="sortDownloaded()" type="checkbox" value=""/>
             Most Downloaded
            </label>
           </li>
+         </div>
+         <div class="dropdown-item">
           <li>
            <label>
             <input class="form-check-input" id="sortNewest" onchange="sortNewest()" type="checkbox" value=""/>
@@ -346,6 +350,8 @@
             Ready to Run
            </label>
           </li>
+         </div>
+         <div class="dropdown-item">
           <li>
            <label>
             <input class="form-check-input" id="files-needed" onchange="filterCards()" type="checkbox" value=""/>
