@@ -220,7 +220,7 @@ function filterCards() {
     }
 
     var availablePorts = document.getElementById("port-count")
-    availablePorts.textContent = filteredData.length + " ports available"
+    availablePorts.textContent = filteredData.length + " Ports Available"
     displayCards(filteredData);
 }
 
