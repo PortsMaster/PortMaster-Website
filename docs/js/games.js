@@ -5,7 +5,7 @@ var Newest = false;
 var Downloaded = false;
 
 
-function sortAZ(){
+function sortAZ() {
     AZ = true;
     Newest = false;
     Downloaded = false;
@@ -16,7 +16,7 @@ function sortAZ(){
     filterCards();
 }
 
-function sortNewest(){
+function sortNewest() {
     AZ = false;
     Downloaded = false;
     Newest = true;
@@ -27,7 +27,7 @@ function sortNewest(){
     filterCards();
 }
 
-function sortDownloaded(){
+function sortDownloaded() {
     AZ = false;
     Newest = false;
     Downloaded = true;
@@ -44,10 +44,10 @@ function sortDownloaded(){
 function createCard(data) {
 
     const div1 = document.createElement('div');
-    div1.setAttribute("class","col");
+    div1.setAttribute("class", "col");
 
     const div2 = document.createElement('div');
-    div2.setAttribute("class","card h-100 shadow-sm");
+    div2.setAttribute("class", "card h-100 shadow-sm");
 
     const image = document.createElement("img");
 
@@ -56,68 +56,68 @@ function createCard(data) {
     if (data.attr.image.screenshot !== null) {
         if (data.source.repo == "main") {
             /* Hopefully this works. */
-            source = ("https://raw.githubusercontent.com/PortsMaster/PortMaster-New/main/ports/" + data.name.replace(".zip","/") +  data.attr.image.screenshot);
+            source = ("https://raw.githubusercontent.com/PortsMaster/PortMaster-New/main/ports/" + data.name.replace(".zip", "/") + data.attr.image.screenshot);
         } else if (data.source.repo == "multiverse") {
-            source = ("https://raw.githubusercontent.com/PortsMaster-MV/PortMaster-MV-New/main/ports/" + data.name.replace(".zip","/") +  data.attr.image.screenshot);
-        } 
+            source = ("https://raw.githubusercontent.com/PortsMaster-MV/PortMaster-MV-New/main/ports/" + data.name.replace(".zip", "/") + data.attr.image.screenshot);
+        }
     }
 
-    image.src =  source;
-    image.setAttribute("class","bd-placeholder-img card-img-top");
+    image.src = source;
+    image.setAttribute("class", "bd-placeholder-img card-img-top");
     image.setAttribute("loading", "lazy");
-    
+
     image.addEventListener('click', () => {
-        handleCardClick(data.name.replace(".zip",""));
+        handleCardClick(data.name.replace(".zip", ""));
     });
 
     const div3 = document.createElement('div');
-    div3.setAttribute("class","card-body");
+    div3.setAttribute("class", "card-body");
 
     const title = document.createElement('h5');
-    title.setAttribute("class","card-title link-body-emphasis");
-    title.setAttribute("style","padding-top: 20px")
+    title.setAttribute("class", "card-title link-body-emphasis");
+    title.setAttribute("style", "padding-top: 20px")
     title.textContent = data.attr.title;
 
     title.addEventListener('click', () => {
-        handleCardClick(data.name.replace(".zip",""));
+        handleCardClick(data.name.replace(".zip", ""));
     });
 
     const paragraph = document.createElement('p');
-    paragraph.setAttribute("class","card-text");
-    paragraph.setAttribute("style","padding-top: 10px")
+    paragraph.setAttribute("class", "card-text");
+    paragraph.setAttribute("style", "padding-top: 10px")
 
     var converter = new showdown.Converter();
 
     paragraph.innerHTML = converter.makeHtml(data.attr.desc);
 
     const porter = document.createElement('p');
-    porter.setAttribute("class","card-text");
-    porter.setAttribute("style","padding-top: 10px")
+    porter.setAttribute("class", "card-text");
+    porter.setAttribute("style", "padding-top: 10px")
     var porters = data.attr.porter;
     var porterHtml = "Porter: ";
     porters.forEach((porter) => {
-        porterHtml += '<a href="profile.html?porter=' + porter +'">' + porter + '</a>';
-        if(porters.length > 1) {
+        porterHtml += '<a href="profile.html?porter=' + porter + '">' + porter + '</a>';
+        if (porters.length > 1) {
             porterHtml += " ";
         }
     });
     porter.innerHTML = porterHtml;
 
     const dateUpdated = document.createElement('p');
-    dateUpdated.setAttribute("class","card-text text-body-secondary");
-    dateUpdated.setAttribute("style","padding-top: 10px")
+    dateUpdated.setAttribute("class", "card-text text-body-secondary");
+    dateUpdated.setAttribute("style", "padding-top: 10px")
     dateUpdated.textContent = "Updated: " + data.source.date_updated;
 
     var taggedMisc = "";
-    if (data.attr.rtr){
+    if (data.attr.rtr) {
         taggedMisc += '<span class="misc-item badge bg-secondary">Ready to Run</span> ';
     }
 
-    if (data.attr.exp){
+    if (data.attr.exp) {
         taggedMisc += '<span class="misc-item badge bg-secondary">Experimental</span> ';
     }
 
-    if (data.source.repo == "multiverse"){
+    if (data.source.repo == "multiverse") {
         taggedMisc += '<span class="misc-item badge bg-secondary">Multiverse</span> ';
     }
 
@@ -125,32 +125,32 @@ function createCard(data) {
     miscValues.innerHTML = taggedMisc;
 
     const div4 = document.createElement('div');
-    div4.setAttribute("class","d-flex justify-content-between align-items-center");
+    div4.setAttribute("class", "d-flex justify-content-between align-items-center");
 
     const div5 = document.createElement('div');
-    div5.setAttribute("class","btn-group");
+    div5.setAttribute("class", "btn-group");
 
     const button = document.createElement('button');
-    button.setAttribute("type","button");
+    button.setAttribute("type", "button");
     //button.textContent = "Download"
     button.textContent = "Details"
-    button.setAttribute("class","btn btn-sm btn-outline-primary");
+    button.setAttribute("class", "btn btn-sm btn-outline-primary");
     //button.setAttribute("onclick","window.location.href='"+ data.source.url+ "';");
-    button.setAttribute("onclick","window.location.href='detail.html?name=" + data.name.replace(".zip","") + "';");
-    
+    button.setAttribute("onclick", "window.location.href='detail.html?name=" + data.name.replace(".zip", "") + "';");
+
 
     div5.appendChild(button);
 
 
 
     const small = document.createElement('small');
-    small.setAttribute("class","text-body-secondary");
+    small.setAttribute("class", "text-body-secondary");
     small.textContent = "Downloads: " + (countsData["ports"][data.name] ? countsData["ports"][data.name] : "0");
 
 
     div4.appendChild(small);
     div4.appendChild(div5);
-    
+
 
     div3.appendChild(image);
     div3.appendChild(title);
@@ -159,7 +159,7 @@ function createCard(data) {
     div3.appendChild(porter);
     div3.appendChild(dateUpdated);
     div3.appendChild(div4);
-    
+
     div2.appendChild(div3)
     div1.appendChild(div2)
 
@@ -184,39 +184,50 @@ function filterCards() {
     const filesNeeded = document.getElementById('files-needed').checked;
     var filteredData = []
     var queries = searchQuery.split(" ");
-    for (var key of Object.keys(jsonData)) {
-        queries.forEach(element => {
-            if ((jsonData[key].attr.title.toLowerCase().includes(element) || jsonData[key].attr.genres.join().toLowerCase().includes(element) || jsonData[key].attr.porter.join().toLowerCase().includes(element) ) && !filteredData.includes(jsonData[key])) {
+    if (searchQuery.length > 0) {
+        for (var key of Object.keys(jsonData)) {
+            var list = [jsonData[key].attr.title,jsonData[key].attr.porter.join(),jsonData[key].attr.genres.join()];
+            const options = { includeScore: true, isCaseSensitive: false, shouldSort: true };
+            const fuse = new Fuse(list, options);
+            const result = fuse.search(document.getElementById('search').value.trim());
 
-                if (readyToRun || filesNeeded ) {
-                if (readyToRun){
-                    if (jsonData[key].attr.rtr){
-                        filteredData.push(jsonData[key]);
+            if (result.length > 0) {
+                // the lower the score , the closer to the name
+                if ((result[0].score < .04) && !filteredData.includes(jsonData[key])) {
+                    if (readyToRun || filesNeeded) {
+                        if (readyToRun) {
+                            if (jsonData[key].attr.rtr) {
+                                filteredData.push(jsonData[key]);
+                            }
+                        } if (filesNeeded) {
+                            if (!jsonData[key].attr.rtr) {
+                                filteredData.push(jsonData[key]);
+                            }
+                        }
                     }
-                } if (filesNeeded) {
-                    if (!jsonData[key].attr.rtr){
+                    else {
                         filteredData.push(jsonData[key]);
-                    }
+                    } 
                 }
             }
+        }
 
-                else {
-                    filteredData.push(jsonData[key]);
-                }                
-            }
-        });
-
-    };
-    if (Newest){
-        filteredData.sort((a,b)=> Date.parse(a.source.date_added) > Date.parse(b.source.date_added) ? -1 :  (Date.parse(a.source.date_added) < Date.parse(b.source.date_added) ? 1 :0));
+    }
+    else {
+        for (var key of Object.keys(jsonData)) {
+            filteredData.push(jsonData[key]);
+        }
+    }
+    if (Newest) {
+        filteredData.sort((a, b) => Date.parse(a.source.date_added) > Date.parse(b.source.date_added) ? -1 : (Date.parse(a.source.date_added) < Date.parse(b.source.date_added) ? 1 : 0));
     }
 
-    if (AZ){
+    if (AZ) {
         filteredData.sort();
     }
 
-    if (Downloaded){
-        filteredData.sort((a,b)=> a.download_count > b.download_count ? -1 :  (a.download_count < b.download_count) ? 1 :0);
+    if (Downloaded) {
+        filteredData.sort((a, b) => a.download_count > b.download_count ? -1 : (a.download_count < b.download_count) ? 1 : 0);
     }
 
     var availablePorts = document.getElementById("port-count")
