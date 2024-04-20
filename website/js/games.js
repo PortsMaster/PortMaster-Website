@@ -190,7 +190,7 @@ function filterCards() {
             const options = { includeScore: true, isCaseSensitive: false, shouldSort: true };
             const fuse = new Fuse(list, options);
             const result = fuse.search(document.getElementById('search').value.trim());
-
+            console.log(result)
             if (result.length > 0) {
                 // the lower the score , the closer to the name
                 if ((result[0].score < .04) && !filteredData.includes(jsonData[key])) {
@@ -215,7 +215,20 @@ function filterCards() {
     }
     else {
         for (var key of Object.keys(jsonData)) {
-            filteredData.push(jsonData[key]);
+            if (readyToRun || filesNeeded) {
+                if (readyToRun) {
+                    if (jsonData[key].attr.rtr) {
+                        filteredData.push(jsonData[key]);
+                    }
+                } if (filesNeeded) {
+                    if (!jsonData[key].attr.rtr) {
+                        filteredData.push(jsonData[key]);
+                    }
+                }
+            }
+            else {
+                filteredData.push(jsonData[key]);
+            } 
         }
     }
     if (Newest) {
