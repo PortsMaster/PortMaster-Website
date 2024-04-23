@@ -464,6 +464,10 @@ Coming soon
 
 Coming Soon
 
+## GMS
+
+Before suggesting a GMS game please supply additional information about the game: GMS version, bytecode and YYC usage. To check your suggestion you can open the *data.win* or *game.unx* file with the Bleeding Edge version of [UnderTaleModTool](https://github.com/UnderminersTeam/UndertaleModTool). You will find the version and bytecode at the top of the program, above the toolbar. If the game uses YYC, you will see a pop-up warning.
+
 
 
 ## Problems you might encounter when compiling open source software:
