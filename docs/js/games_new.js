@@ -479,6 +479,7 @@ function populateDeviceDropdown() {
         const a = document.createElement('a');
         //a.textContent = devices[key]["name"]
         const label = document.createElement('label');
+        label.setAttribute("for", key);
         const input = document.createElement('input');
         input.setAttribute("class", "form-check-input");
         input.setAttribute("type", "checkbox"); 
