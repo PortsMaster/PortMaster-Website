@@ -466,7 +466,52 @@ Coming Soon
 
 ## GMS
 
-Before suggesting a GMS game please supply additional information about the game: GMS version, bytecode and YYC usage. To check your suggestion you can open the *data.win* or *game.unx* file with the Bleeding Edge version of [UnderTaleModTool](https://github.com/UnderminersTeam/UndertaleModTool). You will find the version and bytecode at the top of the program, above the toolbar. If the game uses YYC, you will see a pop-up warning.
+### Checking your GMS game before suggesting
+
+In this short tutorial, we'll explain how to check your GameMakerStudio (GMS) suggestion for essential information. We'll use UnderTaleModTool to determine the GMS version, bytecode version, and whether the game uses YYC. This information is crucial for assessing the game's compatibility and feasibility for porting to devices supported by PortMaster.
+
+### What is YYC?
+
+YYC, or YoYo Compiler, is a feature in GameMaker Studio that compiles game code directly into machine code. This results in faster execution speeds and enhanced security. However, the compiled code is tightly integrated into the executable, limiting portability to other platforms.
+
+### Step 1: Install UnderTaleModTool and open the program
+
+The first step in obtaining the required information is to download UnderTaleModTool from [here](https://github.com/UnderminersTeam/UndertaleModTool/releases). Please download the latest Bleeding Edge release for your platform. We'll be using the GUI version.
+
+### Step 2: Extracting the game assets (Skip this step if your suggestion is a Windows or Linux game)
+
+Android GameMaker Studio games are packaged in an Android Package (APK) file. To extract the assets from the APK, we can use a program like [7Zip](https://www.7-zip.org/download.html). After installing 7Zip, locate your APK file, right-click, select 7Zip, then choose "extract to gamename\". This will create an extracted folder with the game's assets.
+
+### Step 3: Open your GMS suggestion in UnderTaleModTool
+
+Now, open UnderTaleModTool. Click on *File* in the menu bar, then select *Open*. Locate the game's assets. For Android games, this will be under *assets* in the folder we extracted earlier. You will find a file named data.win, game.unx, or game.droid. Double-click on the respective file to open it with UnderTaleModTool.
+
+### Step 4: Determine if the game uses the YoYo Compiler
+
+UnderTaleModTool can detect if a game uses the YoYo Compiler. If the game uses YYC, a warning will pop up. If no warning appears, the game uses the bytecode compiler.
+
+### Step 5: Determine the GameMaker Studio and Bytecode versions
+
+In UnderTaleModTool, find the relevant information by clicking on *Data* then *General Info*. The bytecode version is displayed in the top field, labeled "Bytecode version", with a number between thirteen and seventeen. A couple of fields below, you will see one named *Version*, which displays the GameMakerStudio version. This version can be categorized into the following groups:
+- GMS 1.X.X.X
+- GMS 2.X.X.X 
+- GMS 2022.X 
+- GMS 2023.X
+- GMS 2024.X
+
+### Step 6: Determine if the game is compatible
+
+Refer to the table below to determine if the game has potential to be ported:
+
+| Platform     | Bytecode | YYC  |
+|--------------|----------|------|
+| Android      | Yes      | Yes  |
+| Windows      | Yes      | No   |
+| Linux        | Yes      | No   |
+
+### Additional notes
+
+There are instances where a seemingly incompatible game *can* be compatible. It's possible that developers only use the YoYo Compiler on certain platforms, or older versions of a game were not YYC. If you find a compatible version, ensure it can be legally and trustworthily downloaded, such as through the Steam Console. Don't forget to include instructions if you're suggesting such a game.
 
 
 
