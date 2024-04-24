@@ -55,7 +55,6 @@ function sortDownloaded() {
 // Function to create a card element for each JSON object
 // https://discord.gg/JxYBp9HTAY
 function createCard(data) {
-    //console.log(data)
     const div1 = document.createElement('div');
     div1.setAttribute("class", "col");
 
@@ -167,7 +166,7 @@ function createCard(data) {
     button.textContent = "Details"
     button.setAttribute("class", "btn btn-sm btn-outline-primary");
     //button.setAttribute("onclick","window.location.href='"+ data.source.url+ "';");
-    button.setAttribute("onclick", "window.location.href='detail.html?name=" + data.name.replace(".zip", "") + "&devices="+ deviceDetails.join(",") +"';");
+    button.setAttribute("onclick", "window.location.href='detail_new.html?name=" + data.name.replace(".zip", "") + "&devices="+ deviceDetails.join(",") +"';");
 
 
     div5.appendChild(button);
@@ -247,105 +246,98 @@ function filterCards() {
     var queries = searchQuery.split(" ");
     if (searchQuery.length > 0) {
         var selected = [];
-        //for (var key of Object.keys(jsonData)) {
-            const options = { includeScore: true,isCaseSensitive: false,shouldSort: true,keys: ['attr.title','attr.porter'] };
-            //console.log(jsonData);
-            const fuse = new Fuse(jsonData, options);
+        for (var key of Object.keys(jsonData)) {
+            jsonData[key]["supported"] = [];
+            var list = [jsonData[key].attr.title,jsonData[key].attr.porter.join(),jsonData[key].attr.genres.join()];
+            const options = { includeScore: true, isCaseSensitive: false, shouldSort: true };
+            const fuse = new Fuse(list, options);
             const result = fuse.search(document.getElementById('search').value.trim());
-            //jsonData[key]["supported"] = [];
-            //var list = [jsonData[key].attr.title,jsonData[key].attr.porter.join(),jsonData[key].attr.genres.join()];
-            //const options = { includeScore: true, isCaseSensitive: false, shouldSort: true };
-            //const fuse = new Fuse(list, options);
-            //const result = fuse.search(document.getElementById('search').value.trim());
             
-            //var score = stringSimilarity(jsonData[key].attr.title,document.getElementById('search').value.trim());
-            //console.log(score);
-            //if (score > .2) {
-            //    jsonData[key]["score"] = score;
-            if (result.length > 0) {
+            var score = stringSimilarity(jsonData[key].attr.title,document.getElementById('search').value.trim());
+            console.log(score);
+            if (score > .2 ) {
+                jsonData[key]["score"] = score;
+            //if (result.length > 0) {
                 // the lower the score , the closer to the name
-                result.forEach(element => {
-                if ( !filteredData.includes(element.item)) {
-                    element.item["supported"] = [];
+                if ( !filteredData.includes(jsonData[key])) {
                     if (readyToRun || filesNeeded) {
                         if (readyToRun) {
-                            //console.log(element);
-                            if (element.item.attr.rtr) {
-                                if (element.item.attr.avail.length < 1) {
-                                    if (!filteredData.includes(element.item)) {
-                                        if (!element.item["supported"].includes("ALL")){
-                                            element.item["supported"].push("ALL");
+                            if (jsonData[key].attr.rtr) {
+                                if (jsonData[key].attr.avail.length < 1) {
+                                    if (!filteredData.includes(jsonData[key])) {
+                                        if (!jsonData[key]["supported"].includes("ALL")){
+                                            jsonData[key]["supported"].push("ALL");
                                         }
-                                        filteredData.push(element.item);
+                                        filteredData.push(jsonData[key]);
                                     }
                                 }
-                                for ( item in element.item.attr.avail) {
-                                    var device = element.item.attr.avail[item].split(":")[0];
-                                    var cfw = element.item.attr.avail[item].split(":")[1]
-                                    var deviceElement = document.getElementById(device);
-                                    if (deviceElement && deviceElement.checked){
-                                        if (!element.item["supported"].includes(device)){
-                                            element.item["supported"].push(device);
+                                for ( item in jsonData[key].attr.avail) {
+                                    var device = jsonData[key].attr.avail[item].split(":")[0];
+                                    var cfw = jsonData[key].attr.avail[item].split(":")[1]
+                                    var element = document.getElementById(device);
+                                    if (element && element.checked){
+                                        if (!jsonData[key]["supported"].includes(device)){
+                                            jsonData[key]["supported"].push(device);
                                         }
                                         if (!selected.includes(device)){
                                             selected.push(device);
                                         }
                                     }
-                                    if (deviceElement && deviceElement.checked || device == "ALL"){
-                                        if ((deviceElement && deviceElement.id == device) || device == "ALL" ){
-                                            if (!element.item["supported"].includes(device)){
-                                                element.item["supported"].push(device);
+                                    if (element && element.checked || device == "ALL"){
+                                        if ((element && element.id == device) || device == "ALL" ){
+                                            if (!jsonData[key]["supported"].includes(device)){
+                                                jsonData[key]["supported"].push(device);
                                             }
-                                            if (!filteredData.includes(element.item)) {
-                                                filteredData.push(element.item);
+                                            if (!filteredData.includes(jsonData[key])) {
+                                                filteredData.push(jsonData[key]);
                                             }
                                         }
                                        
                                     }
                                 }
                                 if (selected.length < 1){
-                                    if (!filteredData.includes(element.item)) {
-                                        filteredData.push(element.item);
+                                    if (!filteredData.includes(jsonData[key])) {
+                                        filteredData.push(jsonData[key]);
                                     }
                                 }
                             }
                         } if (filesNeeded) {
-                            if (!element.item.attr.rtr) {
-                                if (element.item.attr.avail.length < 1) {
-                                    if (!filteredData.includes(element.item)) {
-                                        if (!element.item["supported"].includes("ALL")){
-                                            element.item["supported"].push("ALL");
+                            if (!jsonData[key].attr.rtr) {
+                                if (jsonData[key].attr.avail.length < 1) {
+                                    if (!filteredData.includes(jsonData[key])) {
+                                        if (!jsonData[key]["supported"].includes("ALL")){
+                                            jsonData[key]["supported"].push("ALL");
                                         }
-                                        filteredData.push(element.item);
+                                        filteredData.push(jsonData[key]);
                                     }
                                 }
-                                for ( item in element.item.attr.avail) {
-                                    var device = element.item.attr.avail[item].split(":")[0];
-                                    var cfw = element.item.attr.avail[item].split(":")[1]
-                                    var deviceElement = document.getElementById(device);
-                                    if (deviceElement && deviceElement.checked){
-                                        if (!element.item["supported"].includes(device)){
-                                            element.item["supported"].push(device);
+                                for ( item in jsonData[key].attr.avail) {
+                                    var device = jsonData[key].attr.avail[item].split(":")[0];
+                                    var cfw = jsonData[key].attr.avail[item].split(":")[1]
+                                    var element = document.getElementById(device);
+                                    if (element && element.checked){
+                                        if (!jsonData[key]["supported"].includes(device)){
+                                            jsonData[key]["supported"].push(device);
                                         }
                                         if (!selected.includes(device)){
                                             selected.push(device);
                                         }
                                     }
-                                    if (deviceElement && deviceElement.checked || device == "ALL"){
-                                        if ((deviceElement && deviceElement.id == device) || device == "ALL" ){
-                                            if (!element.item["supported"].includes(device)){
-                                                element.item["supported"].push(device);
+                                    if (element && element.checked || device == "ALL"){
+                                        if ((element && element.id == device) || device == "ALL" ){
+                                            if (!jsonData[key]["supported"].includes(device)){
+                                                jsonData[key]["supported"].push(device);
                                             }
-                                            if (!filteredData.includes(element.item)) {
-                                                filteredData.push(element.item);
+                                            if (!filteredData.includes(jsonData[key])) {
+                                                filteredData.push(jsonData[key]);
                                             }
                                         }
                                        
                                     }
                                 }
                                 if (selected.length < 1){
-                                    if (!filteredData.includes(element.item)) {
-                                        filteredData.push(element.item);
+                                    if (!filteredData.includes(jsonData[key])) {
+                                        filteredData.push(jsonData[key]);
                                     }
                                 }
                             }
@@ -355,10 +347,9 @@ function filterCards() {
                    
                     } 
                 }
-            });
             }
-        //}
-        //filteredData.sort((a, b) => a.score > b.score ? -1 : (a.score < b.score) ? 1 : 0);
+        }
+        filteredData.sort((a, b) => a.score > b.score ? -1 : (a.score < b.score) ? 1 : 0);
     }
     else {
         var selected = [];
@@ -508,7 +499,7 @@ function selectDevice(deviceName){
         deviceCFW.pop(deviceName);
         filterCards();
     }
-    //console.log(deviceCFW.length);
+    console.log(deviceCFW.length);
  
 }
 
@@ -568,13 +559,7 @@ async function fetchDataAndDisplayCards() {
             throw new Error('Network response was not ok.');
         }
         jsonData = await response.json();
-        var array = [];
-        for (port in jsonData.ports) {
-            
-            //console.log(jsonData.ports[port]);
-            array.push(jsonData.ports[port]);
-        }
-        jsonData = array;
+        jsonData = jsonData.ports
     } catch (error) {
         console.error('Error fetching JSON data:', error);
     }
@@ -585,8 +570,8 @@ async function fetchDataAndDisplayCards() {
             throw new Error('Network response was not ok.');
         }
         countsData = await response.json();
-        for (port in jsonData) {
-            jsonData[port]["download_count"] = countsData["ports"][jsonData[port].name];
+        for (var key of Object.keys(jsonData)) {
+            jsonData[key]["download_count"] = countsData["ports"][jsonData[key].name];
         }
 
     } catch (error) {

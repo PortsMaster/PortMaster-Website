@@ -141,7 +141,7 @@ function filterCards() {
     };
 
     var availablePorts = document.getElementById("port-count");
-    availablePorts.textContent = Object.keys(filteredData).length + " ports available";
+    availablePorts.textContent = Object.keys(filteredData).length + " Ports Available";
 
     displayCards(filteredData);
     const nameElement = document.getElementById("name");
