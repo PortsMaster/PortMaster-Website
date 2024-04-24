@@ -166,7 +166,7 @@ function createCard(data) {
     button.textContent = "Details"
     button.setAttribute("class", "btn btn-sm btn-outline-primary");
     //button.setAttribute("onclick","window.location.href='"+ data.source.url+ "';");
-    button.setAttribute("onclick", "window.location.href='detail.html?name=" + data.name.replace(".zip", "") + "&devices="+ deviceDetails.join(",") +"';");
+    button.setAttribute("onclick", "window.location.href='detail_new.html?name=" + data.name.replace(".zip", "") + "&devices="+ deviceDetails.join(",") +"';");
 
 
     div5.appendChild(button);
@@ -210,6 +210,33 @@ function displayCards(data) {
     };
 }
 
+function stringSimilarity(str1, str2, gramSize = 2) {
+    function getNGrams(s, len) {
+        s = ' '.repeat(len - 1) + s.toLowerCase() + ' '.repeat(len - 1);
+        let v = new Array(s.length - len + 1);
+        for (let i = 0; i < v.length; i++) {
+            v[i] = s.slice(i, i + len);
+        }
+        return v;
+    }
+    if (!(str1 === null || str1 === void 0 ? void 0 : str1.length) || !(str2 === null || str2 === void 0 ? void 0 : str2.length)) {
+        return 0.0;
+    }
+    let s1 = str1.length < str2.length ? str1 : str2;
+    let s2 = str1.length < str2.length ? str2 : str1;
+    let pairs1 = getNGrams(s1, gramSize);
+    let pairs2 = getNGrams(s2, gramSize);
+    let set = new Set(pairs1);
+    let total = pairs2.length;
+    let hits = 0;
+    for (let item of pairs2) {
+        if (set.delete(item)) {
+            hits++;
+        }
+    }
+    return hits / total;
+}
+
 // Function to filter the cards based on the search query
 function filterCards() {
     const searchQuery = document.getElementById('search').value.trim().toLowerCase();
@@ -226,7 +253,12 @@ function filterCards() {
             const fuse = new Fuse(list, options);
             const result = fuse.search(document.getElementById('search').value.trim());
             
-            if (result.length > 0) {
+            var score = stringSimilarity(jsonData[key].attr.title,document.getElementById('search').value.trim());
+            console.log(score);
+            if (score > .2 ) {
+                jsonData[key]["score"] = score;
+            //if (result.length > 0) {
+                // the lower the score , the closer to the name
                 if ( !filteredData.includes(jsonData[key])) {
                     if (readyToRun || filesNeeded) {
                         if (readyToRun) {
@@ -317,7 +349,7 @@ function filterCards() {
                 }
             }
         }
-
+        filteredData.sort((a, b) => a.score > b.score ? -1 : (a.score < b.score) ? 1 : 0);
     }
     else {
         var selected = [];
