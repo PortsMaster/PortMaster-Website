@@ -14,15 +14,15 @@
   </script>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"/>
   <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet"/>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
-   <meta charset="utf-8"/>
-   <meta content="width=device-width, initial-scale=1" name="viewport"/>
-   <meta content="" name="description"/>
-   <title>
-    Games
-   </title>
-   <style>
-    .bd-placeholder-img {
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet"/>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1" name="viewport"/>
+  <meta content="" name="description"/>
+  <title>
+   Games
+  </title>
+  <style>
+   .bd-placeholder-img {
       font-size: 1.125rem;
       text-anchor: middle;
       -webkit-user-select: none;
@@ -110,9 +110,9 @@
       display: block;
       word-wrap: break-word;
     }
-   </style>
-   <!-- Custom styles for this template -->
-   <link href="css/navbars.css" rel="stylesheet"/>
+  </style>
+  <!-- Custom styles for this template -->
+  <link href="css/navbars.css" rel="stylesheet">
   </link>
  </head>
  <body>
@@ -354,7 +354,7 @@
          <div class="dropdown-item">
           <li>
            <label>
-            <input class="form-check-input" id="ready-to-run" onchange="filterCards()" type="checkbox" value=""/>
+            <input checked="" class="form-check-input" id="ready-to-run" onchange="filterCards()" type="checkbox" value=""/>
             Ready to Run
            </label>
           </li>
@@ -362,7 +362,7 @@
          <div class="dropdown-item">
           <li>
            <label>
-            <input class="form-check-input" id="files-needed" onchange="filterCards()" type="checkbox" value=""/>
+            <input checked="" class="form-check-input" id="files-needed" onchange="filterCards()" type="checkbox" value=""/>
             Files Needed
            </label>
           </li>
@@ -377,12 +377,14 @@
     </div>
    </nav>
    <br/>
-   <br/>
    <main>
     <div class="album py-5 bg-body-tertiary">
      <div class="container">
       <h1 id="port-count" style="text-align: center;">
       </h1>
+      <br/>
+      <div aria-label="Button group with nested dropdown" class="btn-group flex-wrap" id="dropdown-buttons" role="group" style="display: flex; flex-direction: row; align-items: center; justify-content: center;">
+      </div>
       <br/>
       <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3" id="cards-container">
       </div>

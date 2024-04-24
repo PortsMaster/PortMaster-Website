@@ -1,8 +1,21 @@
 var jsonData = null;
+var devices = null;
+var deviceCFW = [];
+var manufacturers = [];
 var countsData = null;
 var AZ = true;
 var Newest = false;
 var Downloaded = false;
+
+var deviceMap = {
+    "ALL": "All Firmwares",
+    "jelos": "JELOS",
+    "rocknix": "ROCKNIX",
+    "arkos":  "ArkOS",
+    "emuelec":  "EmuELEC",
+    "amberelec":  "AmberELEC",
+    "arkos (wummle)": "ArkOS (Wummle)"
+}
 
 
 function sortAZ() {
@@ -42,7 +55,6 @@ function sortDownloaded() {
 // Function to create a card element for each JSON object
 // https://discord.gg/JxYBp9HTAY
 function createCard(data) {
-
     const div1 = document.createElement('div');
     div1.setAttribute("class", "col");
 
@@ -92,7 +104,7 @@ function createCard(data) {
 
     const porter = document.createElement('p');
     porter.setAttribute("class", "card-text");
-    porter.setAttribute("style", "padding-top: 10px")
+    porter.setAttribute("style", "padding-top: 10px");
     var porters = data.attr.porter;
     var porterHtml = "Porter: ";
     porters.forEach((porter) => {
@@ -102,6 +114,24 @@ function createCard(data) {
         }
     });
     porter.innerHTML = porterHtml;
+
+    const supported = document.createElement('p');
+    supported.setAttribute("class", "card-text");
+    supported.setAttribute("style", "padding-top: 10px");
+
+    var deviceDetails = [];
+    var supportedtext = "";
+    for (item in data.supported){
+        for(support in data.attr.avail){
+            if(data.attr.avail[support].includes(data.supported[item])){
+                var deviceName = devices[data.attr.avail[support].split(":")[0]]["name"]
+                var cfws = deviceMap[data.attr.avail[support].split(":")[1]]
+                supportedtext = supportedtext + deviceName + ": " + cfws + "<br>"
+                deviceDetails.push(deviceName + ": " + cfws);
+            }
+        }
+    }
+    supported.innerHTML = "Device Support: <br>" + supportedtext;
 
     const dateUpdated = document.createElement('p');
     dateUpdated.setAttribute("class", "card-text text-body-secondary");
@@ -136,7 +166,7 @@ function createCard(data) {
     button.textContent = "Details"
     button.setAttribute("class", "btn btn-sm btn-outline-primary");
     //button.setAttribute("onclick","window.location.href='"+ data.source.url+ "';");
-    button.setAttribute("onclick", "window.location.href='detail.html?name=" + data.name.replace(".zip", "") + "';");
+    button.setAttribute("onclick", "window.location.href='detail.html?name=" + data.name.replace(".zip", "") + "&devices="+ deviceDetails.join(",") +"';");
 
 
     div5.appendChild(button);
@@ -157,6 +187,9 @@ function createCard(data) {
     div3.appendChild(paragraph);
     div3.appendChild(miscValues);
     div3.appendChild(porter);
+    if (data.supported.length > 0){
+        div3.appendChild(supported);
+    }
     div3.appendChild(dateUpdated);
     div3.appendChild(div4);
 
@@ -185,28 +218,102 @@ function filterCards() {
     var filteredData = []
     var queries = searchQuery.split(" ");
     if (searchQuery.length > 0) {
+        var selected = [];
         for (var key of Object.keys(jsonData)) {
+            jsonData[key]["supported"] = [];
             var list = [jsonData[key].attr.title,jsonData[key].attr.porter.join(),jsonData[key].attr.genres.join()];
             const options = { includeScore: true, isCaseSensitive: false, shouldSort: true };
             const fuse = new Fuse(list, options);
             const result = fuse.search(document.getElementById('search').value.trim());
-            console.log(result)
+            
             if (result.length > 0) {
                 // the lower the score , the closer to the name
                 if ((result[0].score < .04) && !filteredData.includes(jsonData[key])) {
                     if (readyToRun || filesNeeded) {
                         if (readyToRun) {
                             if (jsonData[key].attr.rtr) {
-                                filteredData.push(jsonData[key]);
+                                if (jsonData[key].attr.avail.length < 1) {
+                                    if (!filteredData.includes(jsonData[key])) {
+                                        if (!jsonData[key]["supported"].includes("ALL")){
+                                            jsonData[key]["supported"].push("ALL");
+                                        }
+                                        filteredData.push(jsonData[key]);
+                                    }
+                                }
+                                for ( item in jsonData[key].attr.avail) {
+                                    var device = jsonData[key].attr.avail[item].split(":")[0];
+                                    var cfw = jsonData[key].attr.avail[item].split(":")[1]
+                                    var element = document.getElementById(device);
+                                    if (element && element.checked){
+                                        if (!jsonData[key]["supported"].includes(device)){
+                                            jsonData[key]["supported"].push(device);
+                                        }
+                                        if (!selected.includes(device)){
+                                            selected.push(device);
+                                        }
+                                    }
+                                    if (element && element.checked || device == "ALL"){
+                                        if ((element && element.id == device) || device == "ALL" ){
+                                            if (!jsonData[key]["supported"].includes(device)){
+                                                jsonData[key]["supported"].push(device);
+                                            }
+                                            if (!filteredData.includes(jsonData[key])) {
+                                                filteredData.push(jsonData[key]);
+                                            }
+                                        }
+                                       
+                                    }
+                                }
+                                if (selected.length < 1){
+                                    if (!filteredData.includes(jsonData[key])) {
+                                        filteredData.push(jsonData[key]);
+                                    }
+                                }
                             }
                         } if (filesNeeded) {
                             if (!jsonData[key].attr.rtr) {
-                                filteredData.push(jsonData[key]);
+                                if (jsonData[key].attr.avail.length < 1) {
+                                    if (!filteredData.includes(jsonData[key])) {
+                                        if (!jsonData[key]["supported"].includes("ALL")){
+                                            jsonData[key]["supported"].push("ALL");
+                                        }
+                                        filteredData.push(jsonData[key]);
+                                    }
+                                }
+                                for ( item in jsonData[key].attr.avail) {
+                                    var device = jsonData[key].attr.avail[item].split(":")[0];
+                                    var cfw = jsonData[key].attr.avail[item].split(":")[1]
+                                    var element = document.getElementById(device);
+                                    if (element && element.checked){
+                                        if (!jsonData[key]["supported"].includes(device)){
+                                            jsonData[key]["supported"].push(device);
+                                        }
+                                        if (!selected.includes(device)){
+                                            selected.push(device);
+                                        }
+                                    }
+                                    if (element && element.checked || device == "ALL"){
+                                        if ((element && element.id == device) || device == "ALL" ){
+                                            if (!jsonData[key]["supported"].includes(device)){
+                                                jsonData[key]["supported"].push(device);
+                                            }
+                                            if (!filteredData.includes(jsonData[key])) {
+                                                filteredData.push(jsonData[key]);
+                                            }
+                                        }
+                                       
+                                    }
+                                }
+                                if (selected.length < 1){
+                                    if (!filteredData.includes(jsonData[key])) {
+                                        filteredData.push(jsonData[key]);
+                                    }
+                                }
                             }
                         }
                     }
                     else {
-                        filteredData.push(jsonData[key]);
+                   
                     } 
                 }
             }
@@ -214,20 +321,95 @@ function filterCards() {
 
     }
     else {
+        var selected = [];
         for (var key of Object.keys(jsonData)) {
+            jsonData[key]["supported"] = [];
             if (readyToRun || filesNeeded) {
                 if (readyToRun) {
                     if (jsonData[key].attr.rtr) {
-                        filteredData.push(jsonData[key]);
+                        if (jsonData[key].attr.avail.length < 1) {
+                            if (!filteredData.includes(jsonData[key])) {
+                                if (!jsonData[key]["supported"].includes("ALL")){
+                                    jsonData[key]["supported"].push("ALL");
+                                }
+                                filteredData.push(jsonData[key]);
+                            }
+                        }
+                        for ( item in jsonData[key].attr.avail) {
+                            var device = jsonData[key].attr.avail[item].split(":")[0];
+                            var cfw = jsonData[key].attr.avail[item].split(":")[1]
+                            var element = document.getElementById(device);
+                            if (element && element.checked){
+                                if (!jsonData[key]["supported"].includes(device)){
+                                    jsonData[key]["supported"].push(device);
+                                }
+                                if (!selected.includes(device)){
+                                    selected.push(device);
+                                }
+                            }
+                            if (element && element.checked || device == "ALL"){
+                               
+                                if ((element && element.id == device) || device == "ALL" ){
+                                    if (!jsonData[key]["supported"].includes(device)){
+                                        jsonData[key]["supported"].push(device);
+                                    }
+                                    if (!filteredData.includes(jsonData[key])) {
+                                        filteredData.push(jsonData[key]);
+                                    }
+                                }
+                               
+                            }
+                        }
+                        if (selected.length < 1){
+                            if (!filteredData.includes(jsonData[key])) {
+                                filteredData.push(jsonData[key]);
+                            }
+                        }
                     }
                 } if (filesNeeded) {
                     if (!jsonData[key].attr.rtr) {
-                        filteredData.push(jsonData[key]);
+                        if (jsonData[key].attr.avail.length < 1) {
+                            if (!filteredData.includes(jsonData[key])) {
+                                if (!jsonData[key]["supported"].includes("ALL")){
+                                    jsonData[key]["supported"].push("ALL");
+                                }
+                                filteredData.push(jsonData[key]);
+                            }
+                        }
+                        for ( item in jsonData[key].attr.avail) {
+                            var device = jsonData[key].attr.avail[item].split(":")[0];
+                            var cfw = jsonData[key].attr.avail[item].split(":")[1]
+                            var element = document.getElementById(device);
+                            if (element && element.checked){
+                                if (!jsonData[key]["supported"].includes(device)){
+                                    jsonData[key]["supported"].push(device);
+                                }
+                                if (!selected.includes(device)){
+                                    selected.push(device);
+                                }
+                            }
+                            if (element && element.checked || device == "ALL"){
+                                if ((element && element.id == device) || device == "ALL" ){
+                                    if (!jsonData[key]["supported"].includes(device)){
+                                        jsonData[key]["supported"].push(device);
+                                    }
+                                    if (!filteredData.includes(jsonData[key])) {
+                                        filteredData.push(jsonData[key]);
+                                    }
+                                }
+                               
+                            }
+                        }
+                        if (selected.length < 1){
+                            if (!filteredData.includes(jsonData[key])) {
+                                filteredData.push(jsonData[key]);
+                            }
+                        }
                     }
                 }
             }
             else {
-                filteredData.push(jsonData[key]);
+                // don't show any ports if ready to run or files need are not checked
             } 
         }
     }
@@ -252,6 +434,89 @@ function filterCards() {
 function handleCardClick(name) {
     window.location.href = `detail.html?name=${encodeURIComponent(name)}`;
 }
+
+function populateManufacturerDropdown() {
+    var deviceDropdown = document.getElementById("dropdown-buttons");
+    for (manufacturer of manufacturers) {
+        const div = document.createElement('div');
+        div.setAttribute("class", "btn-group flex-wrap");
+        div.setAttribute("role", "group");
+        const button = document.createElement('button');
+        button.setAttribute("class", "btn btn-outline-primary dropdown-toggle");
+        button.setAttribute("data-bs-toggle", "dropdown");  
+        button.setAttribute("aria-expanded", "false");
+        button.textContent = manufacturer
+        const ul = document.createElement('ul');
+        ul.setAttribute("id", manufacturer);
+        ul.setAttribute("class", "dropdown-menu");
+        div.appendChild(button);
+        div.appendChild(ul);
+        deviceDropdown.appendChild(div);
+
+    }
+    populateDeviceDropdown();
+}
+
+function selectDevice(deviceName){
+   // console.log(devices[deviceName]);
+   
+ if (!deviceCFW.includes(deviceName)){
+    deviceCFW.push(deviceName);
+    filterCards();
+ }
+    else {
+        deviceCFW.pop(deviceName);
+        filterCards();
+    }
+    console.log(deviceCFW.length);
+ 
+}
+
+function populateDeviceDropdown() {
+    for (var key of Object.keys(devices)) {
+        var manufacturerDropdown = document.getElementById(devices[key]["manufacturer"]);
+        const li = document.createElement('li');
+        const a = document.createElement('a');
+        //a.textContent = devices[key]["name"]
+        const label = document.createElement('label');
+        label.setAttribute("for", key);
+        const input = document.createElement('input');
+        input.setAttribute("class", "form-check-input");
+        input.setAttribute("type", "checkbox"); 
+        input.setAttribute("style", "margin-right: 10px;");
+        input.setAttribute("onchange", "filterCards()");
+        input.setAttribute("id", key);
+        label.textContent = devices[key]["name"]
+        li.setAttribute("class", "dropdown-item");
+        li.setAttribute("href", "#");
+        li.appendChild(input);
+        li.appendChild(label);
+        manufacturerDropdown.appendChild(li);
+
+    }
+}
+
+async function getDeviceList() {
+    try {
+        var response = await fetch('https://raw.githubusercontent.com/PortsMaster/PortMaster-Info/main/devices.json'); // Replace 'YOUR_JSON_URL_HERE' with the actual URL of your JSON data.
+        if (!response.ok) {
+            throw new Error('Network response was not ok.');
+        }
+        devices = await response.json();
+        for (var key of Object.keys(devices)) {
+            if (! manufacturers.includes(devices[key]["manufacturer"])) {
+                manufacturers.push(devices[key]["manufacturer"]);
+            }
+        }
+
+        populateManufacturerDropdown();
+
+
+} catch (error) {
+    console.error('Error fetching JSON data:', error);
+}
+}
+
 
 // Fetch JSON data from the URL and then display the cards
 async function fetchDataAndDisplayCards() {
@@ -289,6 +554,7 @@ async function fetchDataAndDisplayCards() {
 
 // Call the initial fetchDataAndDisplayCards function when the page is loaded
 window.onload = function () {
+    getDeviceList();
     fetchDataAndDisplayCards();
     // document.getElementById('search-bar').addEventListener('input', filterCards);
 };

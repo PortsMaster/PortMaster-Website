@@ -59,6 +59,22 @@ function displayCardDetails(data) {
     const miscElement = document.getElementById("misc");
     miscElement.innerHTML = taggedMisc;
 
+    const devices = getUrlParameter('devices');
+    if (devices) {
+        const deviceElement = document.getElementById("devices");
+        var devicesHTML = "";
+        const deviceList = devices.split(",")
+        for (device in deviceList){
+            devicesHTML = devicesHTML +  deviceList[device] + "<br>"
+        }
+        deviceElement.innerHTML = devicesHTML
+        document.getElementById("devicesStart").style.display = "block";
+        document.getElementById("deviceIcon").style.display = "block";
+        document.getElementById("deviceDiv").style.display = "block";
+    }   
+
+
+
     var taggedGenres = "";
     data.attr.genres.forEach((genre) => {
         taggedGenres += '<span class="genre-item badge bg-secondary">' + genre + '</span>' + '<br>';
