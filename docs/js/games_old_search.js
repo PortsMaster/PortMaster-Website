@@ -11,9 +11,9 @@ var deviceMap = {
     "ALL": "All Firmwares",
     "jelos": "JELOS",
     "rocknix": "ROCKNIX",
-    "arkos": "ArkOS",
-    "emuelec": "EmuELEC",
-    "amberelec": "AmberELEC",
+    "arkos":  "ArkOS",
+    "emuelec":  "EmuELEC",
+    "amberelec":  "AmberELEC",
     "arkos (wummle)": "ArkOS (Wummle)"
 }
 
@@ -55,7 +55,6 @@ function sortDownloaded() {
 // Function to create a card element for each JSON object
 // https://discord.gg/JxYBp9HTAY
 function createCard(data) {
-    //console.log(data)
     const div1 = document.createElement('div');
     div1.setAttribute("class", "col");
 
@@ -122,9 +121,9 @@ function createCard(data) {
 
     var deviceDetails = [];
     var supportedtext = "";
-    for (item in data.supported) {
-        for (support in data.attr.avail) {
-            if (data.attr.avail[support].includes(data.supported[item])) {
+    for (item in data.supported){
+        for(support in data.attr.avail){
+            if(data.attr.avail[support].includes(data.supported[item])){
                 var deviceName = devices[data.attr.avail[support].split(":")[0]]["name"]
                 var cfws = deviceMap[data.attr.avail[support].split(":")[1]]
                 supportedtext = supportedtext + deviceName + ": " + cfws + "<br>"
@@ -132,7 +131,7 @@ function createCard(data) {
             }
         }
     }
-    supported.innerHTML = "Supported Devices: <br>" + supportedtext;
+    supported.innerHTML = "Device Support: <br>" + supportedtext;
 
     const dateUpdated = document.createElement('p');
     dateUpdated.setAttribute("class", "card-text text-body-secondary");
@@ -163,9 +162,11 @@ function createCard(data) {
 
     const button = document.createElement('button');
     button.setAttribute("type", "button");
+    //button.textContent = "Download"
     button.textContent = "Details"
     button.setAttribute("class", "btn btn-sm btn-outline-primary");
-    button.setAttribute("onclick", "window.location.href='detail.html?name=" + data.name.replace(".zip", "") + "&devices=" + deviceDetails.join(",") + "';");
+    //button.setAttribute("onclick","window.location.href='"+ data.source.url+ "';");
+    button.setAttribute("onclick", "window.location.href='detail_new.html?name=" + data.name.replace(".zip", "") + "&devices="+ deviceDetails.join(",") +"';");
 
 
     div5.appendChild(button);
@@ -186,7 +187,7 @@ function createCard(data) {
     div3.appendChild(paragraph);
     div3.appendChild(miscValues);
     div3.appendChild(porter);
-    if (data.supported.length > 0) {
+    if (data.supported.length > 0){
         div3.appendChild(supported);
     }
     div3.appendChild(dateUpdated);
@@ -242,106 +243,113 @@ function filterCards() {
     const readyToRun = document.getElementById('ready-to-run').checked;
     const filesNeeded = document.getElementById('files-needed').checked;
     var filteredData = []
+    var queries = searchQuery.split(" ");
     if (searchQuery.length > 0) {
-
         var selected = [];
-        const options = { includeScore: true, isCaseSensitive: false, shouldSort: true, keys: ['attr.title'] };
-        const fuse = new Fuse(jsonData, options);
-        const result = fuse.search(document.getElementById('search').value.trim());
-
-        if (result.length > 0) {
-            result.forEach(element => {
-                if (!filteredData.includes(element.item)) {
-                    element.item["supported"] = [];
+        for (var key of Object.keys(jsonData)) {
+            jsonData[key]["supported"] = [];
+            var list = [jsonData[key].attr.title,jsonData[key].attr.porter.join(),jsonData[key].attr.genres.join()];
+            const options = { includeScore: true, isCaseSensitive: false, shouldSort: true };
+            const fuse = new Fuse(list, options);
+            const result = fuse.search(document.getElementById('search').value.trim());
+            
+            var score = stringSimilarity(jsonData[key].attr.title,document.getElementById('search').value.trim());
+            console.log(score);
+            if (score > .2 ) {
+                jsonData[key]["score"] = score;
+            //if (result.length > 0) {
+                // the lower the score , the closer to the name
+                if ( !filteredData.includes(jsonData[key])) {
                     if (readyToRun || filesNeeded) {
                         if (readyToRun) {
-                            if (element.item.attr.rtr) {
-                                if (element.item.attr.avail.length < 1) {
-                                    if (!filteredData.includes(element.item)) {
-                                        if (!element.item["supported"].includes("ALL")) {
-                                            element.item["supported"].push("ALL");
+                            if (jsonData[key].attr.rtr) {
+                                if (jsonData[key].attr.avail.length < 1) {
+                                    if (!filteredData.includes(jsonData[key])) {
+                                        if (!jsonData[key]["supported"].includes("ALL")){
+                                            jsonData[key]["supported"].push("ALL");
                                         }
-                                        filteredData.push(element.item);
+                                        filteredData.push(jsonData[key]);
                                     }
                                 }
-                                for (item in element.item.attr.avail) {
-                                    var device = element.item.attr.avail[item].split(":")[0];
-                                    var cfw = element.item.attr.avail[item].split(":")[1]
-                                    var deviceElement = document.getElementById(device);
-                                    if (deviceElement && deviceElement.checked) {
-                                        if (!element.item["supported"].includes(device)) {
-                                            element.item["supported"].push(device);
+                                for ( item in jsonData[key].attr.avail) {
+                                    var device = jsonData[key].attr.avail[item].split(":")[0];
+                                    var cfw = jsonData[key].attr.avail[item].split(":")[1]
+                                    var element = document.getElementById(device);
+                                    if (element && element.checked){
+                                        if (!jsonData[key]["supported"].includes(device)){
+                                            jsonData[key]["supported"].push(device);
                                         }
-                                        if (!selected.includes(device)) {
+                                        if (!selected.includes(device)){
                                             selected.push(device);
                                         }
                                     }
-                                    if (deviceElement && deviceElement.checked || device == "ALL") {
-                                        if ((deviceElement && deviceElement.id == device) || device == "ALL") {
-                                            if (!element.item["supported"].includes(device)) {
-                                                element.item["supported"].push(device);
+                                    if (element && element.checked || device == "ALL"){
+                                        if ((element && element.id == device) || device == "ALL" ){
+                                            if (!jsonData[key]["supported"].includes(device)){
+                                                jsonData[key]["supported"].push(device);
                                             }
-                                            if (!filteredData.includes(element.item)) {
-                                                filteredData.push(element.item);
+                                            if (!filteredData.includes(jsonData[key])) {
+                                                filteredData.push(jsonData[key]);
                                             }
                                         }
-
+                                       
                                     }
                                 }
-                                if (selected.length < 1) {
-                                    if (!filteredData.includes(element.item)) {
-                                        filteredData.push(element.item);
+                                if (selected.length < 1){
+                                    if (!filteredData.includes(jsonData[key])) {
+                                        filteredData.push(jsonData[key]);
                                     }
                                 }
                             }
                         } if (filesNeeded) {
-                            if (!element.item.attr.rtr) {
-                                if (element.item.attr.avail.length < 1) {
-                                    if (!filteredData.includes(element.item)) {
-                                        if (!element.item["supported"].includes("ALL")) {
-                                            element.item["supported"].push("ALL");
+                            if (!jsonData[key].attr.rtr) {
+                                if (jsonData[key].attr.avail.length < 1) {
+                                    if (!filteredData.includes(jsonData[key])) {
+                                        if (!jsonData[key]["supported"].includes("ALL")){
+                                            jsonData[key]["supported"].push("ALL");
                                         }
-                                        filteredData.push(element.item);
+                                        filteredData.push(jsonData[key]);
                                     }
                                 }
-                                for (item in element.item.attr.avail) {
-                                    var device = element.item.attr.avail[item].split(":")[0];
-                                    var cfw = element.item.attr.avail[item].split(":")[1]
-                                    var deviceElement = document.getElementById(device);
-                                    if (deviceElement && deviceElement.checked) {
-                                        if (!element.item["supported"].includes(device)) {
-                                            element.item["supported"].push(device);
+                                for ( item in jsonData[key].attr.avail) {
+                                    var device = jsonData[key].attr.avail[item].split(":")[0];
+                                    var cfw = jsonData[key].attr.avail[item].split(":")[1]
+                                    var element = document.getElementById(device);
+                                    if (element && element.checked){
+                                        if (!jsonData[key]["supported"].includes(device)){
+                                            jsonData[key]["supported"].push(device);
                                         }
-                                        if (!selected.includes(device)) {
+                                        if (!selected.includes(device)){
                                             selected.push(device);
                                         }
                                     }
-                                    if (deviceElement && deviceElement.checked || device == "ALL") {
-                                        if ((deviceElement && deviceElement.id == device) || device == "ALL") {
-                                            if (!element.item["supported"].includes(device)) {
-                                                element.item["supported"].push(device);
+                                    if (element && element.checked || device == "ALL"){
+                                        if ((element && element.id == device) || device == "ALL" ){
+                                            if (!jsonData[key]["supported"].includes(device)){
+                                                jsonData[key]["supported"].push(device);
                                             }
-                                            if (!filteredData.includes(element.item)) {
-                                                filteredData.push(element.item);
+                                            if (!filteredData.includes(jsonData[key])) {
+                                                filteredData.push(jsonData[key]);
                                             }
                                         }
-
+                                       
                                     }
                                 }
-                                if (selected.length < 1) {
-                                    if (!filteredData.includes(element.item)) {
-                                        filteredData.push(element.item);
+                                if (selected.length < 1){
+                                    if (!filteredData.includes(jsonData[key])) {
+                                        filteredData.push(jsonData[key]);
                                     }
                                 }
                             }
                         }
                     }
                     else {
-                         // don't show any ports if ready to run or files need are not checked
-                    }
+                   
+                    } 
                 }
-            });
+            }
         }
+        filteredData.sort((a, b) => a.score > b.score ? -1 : (a.score < b.score) ? 1 : 0);
     }
     else {
         var selected = [];
@@ -352,38 +360,38 @@ function filterCards() {
                     if (jsonData[key].attr.rtr) {
                         if (jsonData[key].attr.avail.length < 1) {
                             if (!filteredData.includes(jsonData[key])) {
-                                if (!jsonData[key]["supported"].includes("ALL")) {
+                                if (!jsonData[key]["supported"].includes("ALL")){
                                     jsonData[key]["supported"].push("ALL");
                                 }
                                 filteredData.push(jsonData[key]);
                             }
                         }
-                        for (item in jsonData[key].attr.avail) {
+                        for ( item in jsonData[key].attr.avail) {
                             var device = jsonData[key].attr.avail[item].split(":")[0];
                             var cfw = jsonData[key].attr.avail[item].split(":")[1]
                             var element = document.getElementById(device);
-                            if (element && element.checked) {
-                                if (!jsonData[key]["supported"].includes(device)) {
+                            if (element && element.checked){
+                                if (!jsonData[key]["supported"].includes(device)){
                                     jsonData[key]["supported"].push(device);
                                 }
-                                if (!selected.includes(device)) {
+                                if (!selected.includes(device)){
                                     selected.push(device);
                                 }
                             }
-                            if (element && element.checked || device == "ALL") {
-
-                                if ((element && element.id == device) || device == "ALL") {
-                                    if (!jsonData[key]["supported"].includes(device)) {
+                            if (element && element.checked || device == "ALL"){
+                               
+                                if ((element && element.id == device) || device == "ALL" ){
+                                    if (!jsonData[key]["supported"].includes(device)){
                                         jsonData[key]["supported"].push(device);
                                     }
                                     if (!filteredData.includes(jsonData[key])) {
                                         filteredData.push(jsonData[key]);
                                     }
                                 }
-
+                               
                             }
                         }
-                        if (selected.length < 1) {
+                        if (selected.length < 1){
                             if (!filteredData.includes(jsonData[key])) {
                                 filteredData.push(jsonData[key]);
                             }
@@ -393,37 +401,37 @@ function filterCards() {
                     if (!jsonData[key].attr.rtr) {
                         if (jsonData[key].attr.avail.length < 1) {
                             if (!filteredData.includes(jsonData[key])) {
-                                if (!jsonData[key]["supported"].includes("ALL")) {
+                                if (!jsonData[key]["supported"].includes("ALL")){
                                     jsonData[key]["supported"].push("ALL");
                                 }
                                 filteredData.push(jsonData[key]);
                             }
                         }
-                        for (item in jsonData[key].attr.avail) {
+                        for ( item in jsonData[key].attr.avail) {
                             var device = jsonData[key].attr.avail[item].split(":")[0];
                             var cfw = jsonData[key].attr.avail[item].split(":")[1]
                             var element = document.getElementById(device);
-                            if (element && element.checked) {
-                                if (!jsonData[key]["supported"].includes(device)) {
+                            if (element && element.checked){
+                                if (!jsonData[key]["supported"].includes(device)){
                                     jsonData[key]["supported"].push(device);
                                 }
-                                if (!selected.includes(device)) {
+                                if (!selected.includes(device)){
                                     selected.push(device);
                                 }
                             }
-                            if (element && element.checked || device == "ALL") {
-                                if ((element && element.id == device) || device == "ALL") {
-                                    if (!jsonData[key]["supported"].includes(device)) {
+                            if (element && element.checked || device == "ALL"){
+                                if ((element && element.id == device) || device == "ALL" ){
+                                    if (!jsonData[key]["supported"].includes(device)){
                                         jsonData[key]["supported"].push(device);
                                     }
                                     if (!filteredData.includes(jsonData[key])) {
                                         filteredData.push(jsonData[key]);
                                     }
                                 }
-
+                               
                             }
                         }
-                        if (selected.length < 1) {
+                        if (selected.length < 1){
                             if (!filteredData.includes(jsonData[key])) {
                                 filteredData.push(jsonData[key]);
                             }
@@ -433,7 +441,7 @@ function filterCards() {
             }
             else {
                 // don't show any ports if ready to run or files need are not checked
-            }
+            } 
         }
     }
     if (Newest) {
@@ -466,7 +474,7 @@ function populateManufacturerDropdown() {
         div.setAttribute("role", "group");
         const button = document.createElement('button');
         button.setAttribute("class", "btn btn-outline-primary dropdown-toggle");
-        button.setAttribute("data-bs-toggle", "dropdown");
+        button.setAttribute("data-bs-toggle", "dropdown");  
         button.setAttribute("aria-expanded", "false");
         button.textContent = manufacturer
         const ul = document.createElement('ul');
@@ -480,6 +488,21 @@ function populateManufacturerDropdown() {
     populateDeviceDropdown();
 }
 
+function selectDevice(deviceName){
+   // console.log(devices[deviceName]);
+   
+ if (!deviceCFW.includes(deviceName)){
+    deviceCFW.push(deviceName);
+    filterCards();
+ }
+    else {
+        deviceCFW.pop(deviceName);
+        filterCards();
+    }
+    console.log(deviceCFW.length);
+ 
+}
+
 function populateDeviceDropdown() {
     for (var key of Object.keys(devices)) {
         var manufacturerDropdown = document.getElementById(devices[key]["manufacturer"]);
@@ -490,7 +513,7 @@ function populateDeviceDropdown() {
         label.setAttribute("for", key);
         const input = document.createElement('input');
         input.setAttribute("class", "form-check-input");
-        input.setAttribute("type", "checkbox");
+        input.setAttribute("type", "checkbox"); 
         input.setAttribute("style", "margin-right: 10px;");
         input.setAttribute("onchange", "filterCards()");
         input.setAttribute("id", key);
@@ -512,7 +535,7 @@ async function getDeviceList() {
         }
         devices = await response.json();
         for (var key of Object.keys(devices)) {
-            if (!manufacturers.includes(devices[key]["manufacturer"])) {
+            if (! manufacturers.includes(devices[key]["manufacturer"])) {
                 manufacturers.push(devices[key]["manufacturer"]);
             }
         }
@@ -521,9 +544,9 @@ async function getDeviceList() {
         populateManufacturerDropdown();
 
 
-    } catch (error) {
-        console.error('Error fetching JSON data:', error);
-    }
+} catch (error) {
+    console.error('Error fetching JSON data:', error);
+}
 }
 
 
@@ -536,11 +559,7 @@ async function fetchDataAndDisplayCards() {
             throw new Error('Network response was not ok.');
         }
         jsonData = await response.json();
-        var array = [];
-        for (port in jsonData.ports) {
-            array.push(jsonData.ports[port]);
-        }
-        jsonData = array;
+        jsonData = jsonData.ports
     } catch (error) {
         console.error('Error fetching JSON data:', error);
     }
@@ -551,8 +570,8 @@ async function fetchDataAndDisplayCards() {
             throw new Error('Network response was not ok.');
         }
         countsData = await response.json();
-        for (port in jsonData) {
-            jsonData[port]["download_count"] = countsData["ports"][jsonData[port].name];
+        for (var key of Object.keys(jsonData)) {
+            jsonData[key]["download_count"] = countsData["ports"][jsonData[key].name];
         }
 
     } catch (error) {
@@ -564,8 +583,11 @@ async function fetchDataAndDisplayCards() {
     filterCards();
 
 }
+
+// Call the initial fetchDataAndDisplayCards function when the page is loaded
 window.onload = function () {
     getDeviceList();
     fetchDataAndDisplayCards();
+    // document.getElementById('search-bar').addEventListener('input', filterCards);
 };
 
