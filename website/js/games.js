@@ -227,8 +227,7 @@ function filterCards() {
             const result = fuse.search(document.getElementById('search').value.trim());
             
             if (result.length > 0) {
-                // the lower the score , the closer to the name
-                if ((result[0].score < .04) && !filteredData.includes(jsonData[key])) {
+                if ( !filteredData.includes(jsonData[key])) {
                     if (readyToRun || filesNeeded) {
                         if (readyToRun) {
                             if (jsonData[key].attr.rtr) {
