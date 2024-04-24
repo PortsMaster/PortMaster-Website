@@ -247,7 +247,7 @@ else
   source "${controlfolder}/libgl_default.txt"
 fi
 
-# For Ports that use gptokeyb's xbox360 mode we need to make sure /dev/uinput is accessible on non-root cfws
+# For Ports that use gptokeyb's xbox360 mode, interactive input or config-mode we need to make sure /dev/uinput is accessible on non-root cfws
 # For distros running as root, including sudo in scripts can be problematic. The $ESUDO variable dynamically uses sudo based on the OS."
 $ESUDO chmod 666 /dev/uinput
 
@@ -330,7 +330,7 @@ export SDL_GAMECONTROLLERCONFIG="$sdl_controllerconfig"
 #  source "${controlfolder}/libgl_default.txt"
 #fi
 
-# Only for xbox360 mode
+# For Ports that use gptokeyb's xbox360 mode, interactive input or config-mode we need to make sure /dev/uinput is accessible on non-root cfws
 #$ESUDO chmod 666 /dev/uinput
 
 $GPTOKEYB "portexecutable.${DEVICE_ARCH}" -c "./portname.gptk.$ANALOGSTICKS" &
@@ -506,7 +506,7 @@ export LD_LIBRARY_PATH="$GAMEDIR/libs.${DEVICE_ARCH}:$LD_LIBRARY_PATH"
 export SDL_GAMECONTROLLERCONFIG="$sdl_controllerconfig"
 $ESUDO chmod +x "$GAMEDIR/gmloader"
 
-# Only for xbox360 mode
+# For Ports that use gptokeyb's xbox360 mode, interactive input or config-mode we need to make sure /dev/uinput is accessible on non-root cfws
 #$ESUDO chmod 666 /dev/uinput
 
 # if no .gptk file is used use $GPTOKEYB "gmloader" & 
