@@ -508,6 +508,7 @@ async function getDeviceList() {
                 manufacturers.push(devices[key]["manufacturer"]);
             }
         }
+        manufacturers.sort();
 
         populateManufacturerDropdown();
 
