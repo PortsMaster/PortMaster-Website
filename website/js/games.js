@@ -3,9 +3,6 @@ var devices = null;
 var deviceCFW = [];
 var manufacturers = [];
 var countsData = null;
-var AZ = true;
-var Newest = false;
-var Downloaded = false;
 
 var deviceMap = {
     "ALL": "All Firmwares",
@@ -18,44 +15,9 @@ var deviceMap = {
 }
 
 
-function sortAZ() {
-    AZ = true;
-    Newest = false;
-    Downloaded = false;
-    const newestCheck = document.getElementById('sortNewest');
-    const downloadedCheck = document.getElementById('sortDownloaded');
-    downloadedCheck.checked = false;
-    newestCheck.checked = false;
-    filterCards();
-}
-
-function sortNewest() {
-    AZ = false;
-    Downloaded = false;
-    Newest = true;
-    const azCheck = document.getElementById('sortAZ');
-    const downloadedCheck = document.getElementById('sortDownloaded');
-    azCheck.checked = false;
-    downloadedCheck.checked = false;
-    filterCards();
-}
-
-function sortDownloaded() {
-    AZ = false;
-    Newest = false;
-    Downloaded = true;
-    const newestCheck = document.getElementById('sortNewest');
-    const azCheck = document.getElementById('sortAZ');
-    azCheck.checked = false;
-    newestCheck.checked = false;
-    filterCards();
-}
-
-
 // Function to create a card element for each JSON object
 // https://discord.gg/JxYBp9HTAY
 function createCard(data) {
-    //console.log(data)
     const div1 = document.createElement('div');
     div1.setAttribute("class", "col");
 
@@ -68,7 +30,6 @@ function createCard(data) {
 
     if (data.attr.image.screenshot !== null) {
         if (data.source.repo == "main") {
-            /* Hopefully this works. */
             source = ("https://raw.githubusercontent.com/PortsMaster/PortMaster-New/main/ports/" + data.name.replace(".zip", "/") + data.attr.image.screenshot);
         } else if (data.source.repo == "multiverse") {
             source = ("https://raw.githubusercontent.com/PortsMaster-MV/PortMaster-MV-New/main/ports/" + data.name.replace(".zip", "/") + data.attr.image.screenshot);
@@ -241,6 +202,9 @@ function filterCards() {
     const searchQuery = document.getElementById('search').value.trim().toLowerCase();
     const readyToRun = document.getElementById('ready-to-run').checked;
     const filesNeeded = document.getElementById('files-needed').checked;
+    const Newest = document.getElementById('sortNewest').checked;
+    const Downloaded = document.getElementById('sortDownloaded').checked;
+    const AZ = document.getElementById('sortAZ').checked;
     var filteredData = []
     if (searchQuery.length > 0) {
 
