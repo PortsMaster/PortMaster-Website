@@ -321,7 +321,7 @@
          <div class="dropdown-item">
           <li>
            <label>
-            <input checked="" class="form-check-input" id="sortAZ" onchange="sortAZ()" type="checkbox" value=""/>
+            <input class="form-check-input" id="sortAZ" name="sortRadio" onchange="filterCards()" type="radio" value=""/>
             A - Z
            </label>
           </li>
@@ -329,7 +329,7 @@
          <div class="dropdown-item">
           <li>
            <label>
-            <input class="form-check-input" id="sortDownloaded" onchange="sortDownloaded()" type="checkbox" value=""/>
+            <input class="form-check-input" id="sortDownloaded" name="sortRadio" onchange="filterCards()" type="radio" value=""/>
             Most Downloaded
            </label>
           </li>
@@ -337,7 +337,7 @@
          <div class="dropdown-item">
           <li>
            <label>
-            <input class="form-check-input" id="sortNewest" onchange="sortNewest()" type="checkbox" value=""/>
+            <input checked="" class="form-check-input" id="sortNewest" name="sortRadio" onchange="filterCards()" type="radio" value=""/>
             Most Recent
            </label>
           </li>
