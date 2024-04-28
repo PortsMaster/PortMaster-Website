@@ -208,12 +208,12 @@ function filterCards() {
     var filteredData = []
     if (searchQuery.length > 0) {
 
-        var selected = [];
         const options = { includeScore: true, isCaseSensitive: false, shouldSort: true, keys: ['attr.title'] };
         const fuse = new Fuse(jsonData, options);
         const result = fuse.search(document.getElementById('search').value.trim());
 
         if (result.length > 0) {
+            var selected = [];
             result.forEach(element => {
                 if (!filteredData.includes(element.item)) {
                     element.item["supported"] = [];
@@ -233,12 +233,14 @@ function filterCards() {
                                     var cfw = element.item.attr.avail[item].split(":")[1]
                                     var deviceElement = document.getElementById(device);
                                     if (deviceElement && deviceElement.checked) {
+                                        if (deviceElement && deviceElement.id == device) {
                                         if (!element.item["supported"].includes(device)) {
                                             element.item["supported"].push(device);
                                         }
                                         if (!selected.includes(device)) {
                                             selected.push(device);
                                         }
+                                    }
                                     }
                                     if (deviceElement && deviceElement.checked || device == "ALL") {
                                         if ((deviceElement && deviceElement.id == device) || device == "ALL") {
@@ -254,7 +256,7 @@ function filterCards() {
                                 }
                                 if (selected.length < 1) {
                                     if (!filteredData.includes(element.item)) {
-                                        filteredData.push(element.item);
+                                        //filteredData.push(element.item);
                                     }
                                 }
                             }
@@ -273,6 +275,7 @@ function filterCards() {
                                     var cfw = element.item.attr.avail[item].split(":")[1]
                                     var deviceElement = document.getElementById(device);
                                     if (deviceElement && deviceElement.checked) {
+                                        if (deviceElement && deviceElement.id == device) {
                                         if (!element.item["supported"].includes(device)) {
                                             element.item["supported"].push(device);
                                         }
@@ -280,12 +283,14 @@ function filterCards() {
                                             selected.push(device);
                                         }
                                     }
+                                    }
                                     if (deviceElement && deviceElement.checked || device == "ALL") {
                                         if ((deviceElement && deviceElement.id == device) || device == "ALL") {
                                             if (!element.item["supported"].includes(device)) {
                                                 element.item["supported"].push(device);
                                             }
                                             if (!filteredData.includes(element.item)) {
+                                               
                                                 filteredData.push(element.item);
                                             }
                                         }
@@ -294,7 +299,7 @@ function filterCards() {
                                 }
                                 if (selected.length < 1) {
                                     if (!filteredData.includes(element.item)) {
-                                        filteredData.push(element.item);
+                                       //filteredData.push(element.item);
                                     }
                                 }
                             }
@@ -335,7 +340,6 @@ function filterCards() {
                                 }
                             }
                             if (element && element.checked || device == "ALL") {
-
                                 if ((element && element.id == device) || device == "ALL") {
                                     if (!jsonData[key]["supported"].includes(device)) {
                                         jsonData[key]["supported"].push(device);
