@@ -398,17 +398,18 @@ function filterCards() {
                 // don't show any ports if ready to run or files need are not checked
             }
         }
-    }
-    if (Newest) {
-        filteredData.sort((a, b) => Date.parse(a.source.date_added) > Date.parse(b.source.date_added) ? -1 : (Date.parse(a.source.date_added) < Date.parse(b.source.date_added) ? 1 : 0));
-    }
 
-    if (AZ) {
-        filteredData.sort();
-    }
-
-    if (Downloaded) {
-        filteredData.sort((a, b) => a.download_count > b.download_count ? -1 : (a.download_count < b.download_count) ? 1 : 0);
+        if (Newest) {
+            filteredData.sort((a, b) => Date.parse(a.source.date_added) > Date.parse(b.source.date_added) ? -1 : (Date.parse(a.source.date_added) < Date.parse(b.source.date_added) ? 1 : 0));
+        }
+    
+        if (AZ) {
+            filteredData.sort();
+        }
+    
+        if (Downloaded) {
+            filteredData.sort((a, b) => a.download_count > b.download_count ? -1 : (a.download_count < b.download_count) ? 1 : 0);
+        }
     }
 
     var availablePorts = document.getElementById("port-count")
