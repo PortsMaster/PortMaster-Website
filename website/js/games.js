@@ -206,6 +206,12 @@ function filterCards() {
     const Downloaded = document.getElementById('sortDownloaded').checked;
     const AZ = document.getElementById('sortAZ').checked;
     var filteredData = []
+    var selected = [];
+    for (device in devices){
+        if (document.getElementById(device).checked){
+            selected.push(device)
+        }
+    }
     if (searchQuery.length > 0) {
 
         const options = { includeScore: true, isCaseSensitive: false, shouldSort: true, keys: ['attr.title'] };
@@ -213,7 +219,6 @@ function filterCards() {
         const result = fuse.search(document.getElementById('search').value.trim());
 
         if (result.length > 0) {
-            var selected = [];
             result.forEach(element => {
                 if (!filteredData.includes(element.item)) {
                     element.item["supported"] = [];
@@ -231,19 +236,16 @@ function filterCards() {
                                 for (item in element.item.attr.avail) {
                                     var device = element.item.attr.avail[item].split(":")[0];
                                     var cfw = element.item.attr.avail[item].split(":")[1]
-                                    var deviceElement = document.getElementById(device);
-                                    if (deviceElement && deviceElement.checked) {
-                                        if (deviceElement && deviceElement.id == device) {
+                                    if (selected.includes(device)) {
                                         if (!element.item["supported"].includes(device)) {
                                             element.item["supported"].push(device);
                                         }
-                                        if (!selected.includes(device)) {
-                                            selected.push(device);
+                                        if (!filteredData.includes(element.item)) {
+                                            filteredData.push(element.item);
                                         }
                                     }
-                                    }
-                                    if (deviceElement && deviceElement.checked || device == "ALL") {
-                                        if ((deviceElement && deviceElement.id == device) || device == "ALL") {
+                                  
+                                        if (device == "ALL") {
                                             if (!element.item["supported"].includes(device)) {
                                                 element.item["supported"].push(device);
                                             }
@@ -252,11 +254,11 @@ function filterCards() {
                                             }
                                         }
 
-                                    }
+                                    
                                 }
                                 if (selected.length < 1) {
                                     if (!filteredData.includes(element.item)) {
-                                        //filteredData.push(element.item);
+                                        filteredData.push(element.item);
                                     }
                                 }
                             }
@@ -273,33 +275,29 @@ function filterCards() {
                                 for (item in element.item.attr.avail) {
                                     var device = element.item.attr.avail[item].split(":")[0];
                                     var cfw = element.item.attr.avail[item].split(":")[1]
-                                    var deviceElement = document.getElementById(device);
-                                    if (deviceElement && deviceElement.checked) {
-                                        if (deviceElement && deviceElement.id == device) {
+                                    if (selected.includes(device)) {
                                         if (!element.item["supported"].includes(device)) {
                                             element.item["supported"].push(device);
                                         }
-                                        if (!selected.includes(device)) {
-                                            selected.push(device);
+                                        if (!filteredData.includes(element.item)) {
+                                            filteredData.push(element.item);
                                         }
                                     }
-                                    }
-                                    if (deviceElement && deviceElement.checked || device == "ALL") {
-                                        if ((deviceElement && deviceElement.id == device) || device == "ALL") {
+                                  
+                                        if (device == "ALL") {
                                             if (!element.item["supported"].includes(device)) {
                                                 element.item["supported"].push(device);
                                             }
                                             if (!filteredData.includes(element.item)) {
-                                               
                                                 filteredData.push(element.item);
                                             }
                                         }
 
-                                    }
+                                    
                                 }
                                 if (selected.length < 1) {
                                     if (!filteredData.includes(element.item)) {
-                                       //filteredData.push(element.item);
+                                        filteredData.push(element.item);
                                     }
                                 }
                             }
@@ -313,7 +311,6 @@ function filterCards() {
         }
     }
     else {
-        var selected = [];
         for (var key of Object.keys(jsonData)) {
             jsonData[key]["supported"] = [];
             if (readyToRun || filesNeeded) {
@@ -330,17 +327,16 @@ function filterCards() {
                         for (item in jsonData[key].attr.avail) {
                             var device = jsonData[key].attr.avail[item].split(":")[0];
                             var cfw = jsonData[key].attr.avail[item].split(":")[1]
-                            var element = document.getElementById(device);
-                            if (element && element.checked) {
+                            if (selected.includes(device)) {
                                 if (!jsonData[key]["supported"].includes(device)) {
                                     jsonData[key]["supported"].push(device);
                                 }
-                                if (!selected.includes(device)) {
-                                    selected.push(device);
+                                if (!filteredData.includes(jsonData[key])) {
+                                    filteredData.push(jsonData[key]);
                                 }
                             }
-                            if (element && element.checked || device == "ALL") {
-                                if ((element && element.id == device) || device == "ALL") {
+                          
+                                if (device == "ALL") {
                                     if (!jsonData[key]["supported"].includes(device)) {
                                         jsonData[key]["supported"].push(device);
                                     }
@@ -349,7 +345,7 @@ function filterCards() {
                                     }
                                 }
 
-                            }
+                            
                         }
                         if (selected.length < 1) {
                             if (!filteredData.includes(jsonData[key])) {
@@ -370,17 +366,16 @@ function filterCards() {
                         for (item in jsonData[key].attr.avail) {
                             var device = jsonData[key].attr.avail[item].split(":")[0];
                             var cfw = jsonData[key].attr.avail[item].split(":")[1]
-                            var element = document.getElementById(device);
-                            if (element && element.checked) {
+                            if (selected.includes(device)) {
                                 if (!jsonData[key]["supported"].includes(device)) {
                                     jsonData[key]["supported"].push(device);
                                 }
-                                if (!selected.includes(device)) {
-                                    selected.push(device);
+                                if (!filteredData.includes(jsonData[key])) {
+                                    filteredData.push(jsonData[key]);
                                 }
                             }
-                            if (element && element.checked || device == "ALL") {
-                                if ((element && element.id == device) || device == "ALL") {
+                          
+                                if (device == "ALL") {
                                     if (!jsonData[key]["supported"].includes(device)) {
                                         jsonData[key]["supported"].push(device);
                                     }
@@ -389,7 +384,7 @@ function filterCards() {
                                     }
                                 }
 
-                            }
+                            
                         }
                         if (selected.length < 1) {
                             if (!filteredData.includes(jsonData[key])) {
