@@ -98,7 +98,7 @@ function createCard(data) {
     const dateUpdated = document.createElement('p');
     dateUpdated.setAttribute("class", "card-text text-body-secondary");
     dateUpdated.setAttribute("style", "padding-top: 10px")
-    dateUpdated.textContent = "Updated: " + data.source.date_updated;
+    dateUpdated.textContent = "Added: " + data.source.date_added;
 
     var taggedMisc = "";
     if (data.attr.rtr) {
