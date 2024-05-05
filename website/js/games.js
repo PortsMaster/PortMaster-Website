@@ -62,7 +62,12 @@ function createCard(data) {
 
     var converter = new showdown.Converter();
 
-    paragraph.innerHTML = converter.makeHtml(data.attr.desc);
+
+    var desc = data.attr.desc;
+    if (data.attr.desc_md){
+        desc = data.attr.desc_md;
+    }
+    paragraph.innerHTML = converter.makeHtml(desc);
 
     const porter = document.createElement('p');
     porter.setAttribute("class", "card-text");
