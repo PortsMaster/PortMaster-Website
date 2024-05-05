@@ -1,7 +1,7 @@
 
 const portSchema = {
   /* Version number of the port.json format, currently 2 */
-  "version": 2,
+  "version": 3,
   /* Name of the zip file, this uniquely identifies the port */
   "name": "",
   /* Directories and scripts that comes with the port. */
@@ -15,8 +15,12 @@ const portSchema = {
     "porter": "",
     /* Description of the game. */
     "desc": "",
+    /* Description of the game, allowing for markdown */
+    "desc_md": null,
     /* Installation instructions */
     "inst": "",
+    /* Installation instructions, allowing for markdown */
+    "inst_md": null,
     /* Genres */
     "genres": [],
     /* screenshot/title screen of the game */
@@ -33,6 +37,9 @@ const portSchema = {
     "arch": [],
   }
 }
+
+const descriptionMarkdown = new EasyMDE({ element: document.getElementById('description_md') });
+const instructionsMarkdown = new EasyMDE({ element: document.getElementById('instructions_md') });
 
 function getJsonTemplate() {
   var copiedTemplate = { ...portSchema };
@@ -102,7 +109,9 @@ function getFormValues() {
   portJson.attr.genres = Array.from(document.getElementById("genres").selectedOptions).map(o => o.value);
   portJson.attr.porter = Array.from(document.getElementById("porter").selectedOptions).map(o => o.value);
   portJson.attr.desc = document.getElementById("description").value;
+  portJson.attr.desc_md = descriptionMarkdown.value() ? descriptionMarkdown.value() : null;
   portJson.attr.inst = document.getElementById("instructions").value;
+  portJson.attr.inst_md = instructionsMarkdown.value() ? instructionsMarkdown.value() : null;
   portJson.attr.runtime = document.getElementById("runtime").value ? document.getElementById("runtime").value : null;
   portJson.attr.rtr = document.getElementById("readytorun").checked;
   portJson.attr.exp = document.getElementById("experimental").checked;
@@ -169,6 +178,7 @@ function downloadJson() {
     }, 0);
   }
 }
+
 
 
 populatePorterList();
