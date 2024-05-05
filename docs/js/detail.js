@@ -29,12 +29,20 @@ function displayCardDetails(data) {
     //data.attr.desc ? document.getEleme('desc').textContent = data.attr.desc : document.getElementsByClassName('desc').hidden = true;
     descriptionElement = document.getElementById('desc');
     var converter = new showdown.Converter();
-    descriptionElement.innerHTML = converter.makeHtml(data.attr.desc);
+    var desc = data.attr.desc;
+    if (data.attr.desc_md){
+        desc = data.attr.desc_md;
+    }
+    descriptionElement.innerHTML = converter.makeHtml(desc);
     data.attr.porter ? document.getElementById('porter').textContent = data.attr.porter : document.getElementsByClassName('porter').hidden = true;
 
     instructionsElement = document.getElementById('inst');
     var converter = new showdown.Converter();
-    instructionsElement.innerHTML = converter.makeHtml(data.attr.inst);
+    var inst = data.attr.inst;
+    if (data.attr.inst_md){
+        inst = data.attr.inst_md;
+    }
+    instructionsElement.innerHTML = converter.makeHtml(inst);
 
 
     const downloadCountElement = document.getElementById("download_count");
