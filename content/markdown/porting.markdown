@@ -45,7 +45,7 @@ Tools we use:
 - [gptokeyb for keyboard/mouse/joystick mapping using a control file](https://github.com/PortsMaster/gptokeyb)
 - [No Vulkan, No X11, No display manager at all so KMS/DRM or output via SDL2 it is](#)
 - [SDL1.2 through sdl1.2compat](https://github.com/libsdl-org/sdl12-compat)
-- [Gamemaker Games Runner Research](https://github.com/JohnnyonFlame/yyg_fix/blob/master/RESEARCH.md)
+- [Gamemaker Games Runner GMloader](https://github.com/JohnnyonFlame/droidports)
 - [Godot Games via FRT 2](https://github.com/efornara/frt/tree/2.0)
 - [Love2d] Games via Love2d Engine (https://github.com/Cebion/love2d_aarch64)
 
