@@ -4,11 +4,11 @@
 
 We have different types of games we support:
 
-- Open Source Games from Repos like Github where we compile and package the game for PortMaster
-- Open Source Engines made from scratch that work with original game assets
-- Game Engines like GameMaker studio / Godot / Love2d that have compatible runners that need the original gamedata
-- Linux Userspace x86 Emulator (Box86) that translate X86 Linux Games to arm.
-- Linux Userspace x64 Emulators (Box64) that translate x64 Linux games to aarch64
+1. Open Source Games from Repos like Github where we compile and package the game for PortMaster
+2. Open Source Engines made from scratch that work with original game assets
+3. Game Engines like GameMaker studio / Godot / Love2d that have compatible runners that need the original gamedata
+4. Linux Userspace x86 Emulator (Box86) that translate X86 Linux Games to arm.
+5. Linux Userspace x64 Emulators (Box64) that translate x64 Linux games to aarch64
 
 Mind for 3/4/5 a LOT of hacking and tweaking might be needed.
 
