@@ -3,6 +3,7 @@ var devices = null;
 var deviceCFW = [];
 var manufacturers = [];
 var countsData = null;
+var gameGenres = [];
 
 var deviceMap = {
     "ALL": "All Firmwares",
@@ -212,11 +213,19 @@ function filterCards() {
     const AZ = document.getElementById('sortAZ').checked;
     var filteredData = []
     var selected = [];
+    var selectedGenres = [];
     for (device in devices){
         if (document.getElementById(device).checked){
             selected.push(device)
         }
     }
+
+    for (var i = 0; i < gameGenres.length; i++) {
+        if (document.getElementById(gameGenres[i]).checked){
+            selectedGenres.push(gameGenres[i])
+        }
+    }
+
     if (searchQuery.length > 0) {
 
         const options = { includeScore: true, isCaseSensitive: false, shouldSort: true, keys: ['attr.title'] };
@@ -341,14 +350,14 @@ function filterCards() {
                                 }
                             }
                           
-                                if (device == "ALL") {
-                                    if (!jsonData[key]["supported"].includes(device)) {
-                                        jsonData[key]["supported"].push(device);
-                                    }
-                                    if (!filteredData.includes(jsonData[key])) {
-                                        filteredData.push(jsonData[key]);
-                                    }
+                            if (device == "ALL") {
+                                if (!jsonData[key]["supported"].includes(device)) {
+                                    jsonData[key]["supported"].push(device);
                                 }
+                                if (!filteredData.includes(jsonData[key])) {
+                                    filteredData.push(jsonData[key]);
+                                }
+                            }
 
                             
                         }
@@ -395,6 +404,26 @@ function filterCards() {
                             if (!filteredData.includes(jsonData[key])) {
                                 filteredData.push(jsonData[key]);
                             }
+                        }
+                    }
+                }
+                
+                if (selectedGenres.length > 0) {
+                    var genres = jsonData[key].attr.genres;
+                    var match = false;
+                    for (var i = 0; i < genres.length; i++) {
+                        if (selectedGenres.includes(genres[i])) {
+                            match = true;
+                        }
+                    }
+                    if (match) {
+                        if (!filteredData.includes(jsonData[key])) {
+                            filteredData.push(jsonData[key]);
+                        }
+                    } else {
+                        //remove the port if it doesn't match the genre
+                        if (filteredData.includes(jsonData[key])) {
+                            filteredData.splice(filteredData.indexOf(jsonData[key]), 1);
                         }
                     }
                 }
@@ -473,6 +502,60 @@ function populateDeviceDropdown() {
     }
 }
 
+function populateGenreDropdown() {
+    var gamesDropdown = document.getElementById("dropdown-buttons");
+
+    var genresSet = new Set();
+
+    Object.values(jsonData).forEach(game => {
+        game.attr.genres.forEach(genre => {
+            genresSet.add(genre);
+        });
+    });
+
+    genresSet.forEach(genre => {
+        gameGenres.push(genre);
+    });
+
+    const div = document.createElement('div');
+    div.setAttribute("class", "btn-group flex-wrap");
+    div.setAttribute("role", "group");
+
+    const button = document.createElement('button');
+    button.setAttribute("class", "btn btn-outline-primary dropdown-toggle");
+    button.setAttribute("data-bs-toggle", "dropdown");
+    button.setAttribute("aria-expanded", "false");
+    button.textContent = "Genres";
+
+    const ul = document.createElement('ul');
+    ul.setAttribute("class", "dropdown-menu");
+
+    genresSet.forEach(genre => {
+        const li = document.createElement('li');
+        li.setAttribute("class", "dropdown-item");
+
+        const input = document.createElement('input');
+        input.type = "checkbox";
+        input.id = genre;
+        input.name = genre;
+        input.value = genre;
+        input.setAttribute("onchange", "filterCards()");
+
+        const label = document.createElement('label');
+        label.htmlFor = genre;
+        label.textContent = genre;
+        label.style.marginLeft = "5px";
+
+        li.appendChild(input);
+        li.appendChild(label);
+        ul.appendChild(li);
+    });
+
+    div.appendChild(button);
+    div.appendChild(ul);
+    gamesDropdown.appendChild(div);
+}
+
 async function getDeviceList() {
     try {
         var response = await fetch('https://raw.githubusercontent.com/PortsMaster/PortMaster-Info/main/devices.json'); // Replace 'YOUR_JSON_URL_HERE' with the actual URL of your JSON data.
@@ -509,7 +592,7 @@ async function fetchDataAndDisplayCards() {
         for (port in jsonData.ports) {
             array.push(jsonData.ports[port]);
         }
-        jsonData = array;
+        jsonData = array;       
     } catch (error) {
         console.error('Error fetching JSON data:', error);
     }
@@ -528,8 +611,7 @@ async function fetchDataAndDisplayCards() {
         console.error('Error fetching JSON data:', error);
     }
 
-
-
+    populateGenreDropdown();
     filterCards();
 
 }
