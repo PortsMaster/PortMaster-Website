@@ -15,7 +15,7 @@ A guide to install Portmaster can be found [here](https://portmaster.games/insta
 
 ## Do I have to use PortMaster to install ports?
 
-You can simply go to the PortMaster repo, [https://github.com/christianhaitian/PortMaster](https://github.com/christianhaitian/PortMaster), find the `.zip` of the port you want, download it and unzip the contents of it to the `/roms/ports` folder. You'll also need to copy the PortMaster folder to your `/roms/ports` folder. If you don't want the PortMaster folder to show up in your Ports menu in Emulationstation, just delete the PortMaster.sh file as it won't be needed if you don't plan to install or update your ports online via this tool.
+You can simply go to the PortMaster repo, [https://portmaster.games/games.html](https://portmaster.games/games.html), find the title of the port you want, download it and unzip the contents of it to the `/roms/ports` folder. You'll also need to copy the PortMaster folder to your `/roms/ports` folder. If you don't want the PortMaster folder to show up in your Ports menu in Emulationstation, just delete the PortMaster.sh file as it won't be needed if you don't plan to install or update your ports online via this tool.
 
 Keep in mind that some games require Runtimes that can be downloaded from (Runtime Link)
 
