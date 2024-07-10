@@ -1,4 +1,8 @@
 ﻿# PortMaster Developer License & Permission Overview
+ Each PortMaster package has all necessary permission and license files included.
+
+If you have any questions feel free to contact the PortMaster Crew in our discord or via contact@portmaster.games
+ 
 ## Developer Asset Distribution Permissions:
 
 | #  | Developer            | Link                                                      		| Engine                  | Notes                    |
