@@ -1,5 +1,5 @@
-﻿# PORTMASTER DEVS
-## Partner Devs:
+﻿# PortMaster Developer License & Permission Overview
+## Developer Asset Distribution Permissions:
 
 | #  | Developer            | Link                                                      		| Engine                  | Notes                    |
 |----|----------------------|-------------------------------------------------------------------|-------------------------|--------------------------|
@@ -32,7 +32,7 @@
 | 27 | Suitgames            | [suitgames.com](https://www.suitgames.com/)               		| GMS                     |                          |
 | 28 | Fred Wood            | [itch.io](https://thatsmytrunks.itch.io/)                 		| GMS                     |                          |
 
-## Open Source Devs:
+## Open Source Developer Permissions:
 
 | #  | Dev Name             | Link                                                      		| Engine                  | Notes                    |
 |----|----------------------|-------------------------------------------------------------------|-------------------------|--------------------------|
