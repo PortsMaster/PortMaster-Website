@@ -23,7 +23,7 @@ If you have any questions feel free to contact the PortMaster Crew in our discor
 | 14 | Blasin               | [itch.io](https://blasin.itch.io/)                        		| Love2d                  |                          |
 | 15 | LucasMegaStriker     | [itch.io](https://lucasmegastriker.itch.io/)              		| Godot                   |                          |
 | 16 | Vlambeer             | [vlambeer.com](https://www.vlambeer.com/)                 		| GMS                     | Specific games only      |
-| 17 | Aiwi                 | [itch.io](https://alkaliii.itch.io/)                      		| GMS                     |                          |
+| 17 | Aiwi                 | [itch.io](https://alkaliii.itch.io/)                      		| Godot                   | Specific games only      |
 | 18 | Nozomu               | [itch.io](https://nozomu57.itch.io/)                      		| Godot                   |                          |
 | 19 | Bucketfish           | [itch.io](https://bucketfish.itch.io/)                    		| Godot                   |                          |
 | 20 | Aarjvark             | [Steam](https://store.steampowered.com/search/?publisher=Aarjvark)| GMS                     | Specific games only      |
