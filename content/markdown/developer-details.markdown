@@ -30,11 +30,16 @@ If you have any questions feel free to contact the PortMaster Crew in our discor
 | 21 | Nabo                 | [itch.io](https://nabo-games.itch.io/)                   		    | GMS                     |                          |
 | 22 | Evan12811            | [itch.io](https://evan12811.itch.io/)                     		| Godot                   |                          |
 | 23 | Yousfi M Walid       | [itch.io](https://yousfiwalid.itch.io/)                   		| GMS                     |                          |
-| 24 | Steven Miller        | [itch.io](https://steven-miller.itch.io/)                 		|                         |                          |
+| 24 | Steven Miller        | [itch.io](https://steven-miller.itch.io/)                 		| GMS                     |                          |
 | 25 | Pixel Archipel       | [itch.io](https://pixel-boy.itch.io/)                    		    | GMS, Godot              |                          |
 | 26 | Yozoraki             | [itch.io](https://yozoraki.itch.io/nnnnokia)              		| GMS                     |                          |
 | 27 | Suitgames            | [suitgames.com](https://www.suitgames.com/)               		| GMS                     |                          |
 | 28 | Fred Wood            | [itch.io](https://thatsmytrunks.itch.io/)                 		| GMS                     |                          |
+| 29 |Bagelcollie           | [itch.io](https://bagelcollie.itch.io/)	                		| GMS, Godot              |                          |
+| 30 | Red Screen Soft      | [Red Screen Soft](https://redscreensoft.com)                      | GMS                     |                          |		 	 
+| 31 | Case Portman         | [itch.io](https://caseportman.itch.io/)                           | GMS                     |                          |
+| 32 | Sunshine_Error       | [itch.io](https://sunshine-error.itch.io/)                        | GMS                     |                          |
+| 33 | Linky439             | [itch.io](https://linky439.itch.io/)                              | GMS                     |                          |
 
 ## Open Source Developer Permissions:
 
