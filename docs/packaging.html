@@ -446,10 +446,11 @@ Thanks to the [Alien Blaster Team](https://www.schwardtnet.de/alienblaster/) for
 
 ## Compile
 
-```shell
+\`\`\`shell
 wget http://www.schwardtnet.de/alienblaster/archives/alienblaster-1.1.0.tgz
 cd alienblaster-1.1.0
 make
+\`\`\`
 </code></pre>
     <h4>
      Screenshot
@@ -548,7 +549,7 @@ You play an adventurer seeking riches, fighting monsters, and preparing for a fi
     <p>
      Below we pick apart a launchscript  and explain what each function does:
     </p>
-    <pre><code># Below we assign the source of the control folder (which is the PortMaster folder) based on the distro:
+    <pre lang="shell"><code># Below we assign the source of the control folder (which is the PortMaster folder) based on the distro:
 #!/bin/bash
 
 XDG_DATA_HOME=${XDG_DATA_HOME:-$HOME/.local/share}
@@ -893,6 +894,126 @@ printf "\033c" &gt; /dev/tty1
 printf "\033c" &gt; /dev/tty0
 
 </code></pre>
+    <h3>
+     Launchscript functions and error handling
+    </h3>
+    <p>
+     Some games require installation or patches on first run. We can use functions inside shell to keep code organized. Use error handling inside functions to keep the launchscript stable.
+    </p>
+    <p>
+     Example:
+    </p>
+    <pre lang="shell"><code># Functions
+install() {
+    echo "Performing first-run setup..." &gt; $CUR_TTY
+    # Purge unneeded files
+    rm -rf assets/*.exe assets/*.dll assets/.gitkeep
+    # Rename data.win
+    echo "Moving game files..." &gt; $CUR_TTY
+    mv "./assets/data.win" "./game.droid" || return 1
+    mv patch/* ./
+    mv assets/* ./
+    rm -rf "$GAMEDIR/assets"
+    # Do localization fonts and xdelta patch if low ram
+    if [ $DEVICE_RAM -lt 2 ]; then
+        rm -rf "$GAMEDIR/localization_fonts.csv"
+        mv patch/localization_fonts.csv ./
+        find $GAMEDIR -type f -iname "*.ttf" ! -iname "Commodore Rounded v1-1.ttf" ! -iname "small_pixel.ttf" -delete
+        apply_patch &amp;&amp; rm -rf "$GAMEDIR/patch" # Only remove if function is successful
+    fi
+}
+
+apply_patch() {
+    echo "Applying patch..." &gt; $CUR_TTY
+    if [ -f "$controlfolder/xdelta3" ]; then
+        error=$("$controlfolder/xdelta3" -d -s "$GAMEDIR/game.droid" "$GAMEDIR/patch/iosas.xdelta" "$GAMEDIR/game2.droid" 2&gt;&amp;1)
+        if [ $? -eq 0 ]; then
+            rm -rf "$GAMEDIR/game.droid"
+            mv "$GAMEDIR/game2.droid" "$GAMEDIR/game.droid"
+            echo "Patch applied successfully." &gt; $CUR_TTY
+        else
+            echo "Failed to apply patch. Error: $error" &gt; $CUR_TTY
+            rm -f "$GAMEDIR/game2.droid"
+            return 1
+        fi
+    else
+        echo "Error: xdelta3 not found in $controlfolder. Try updating PortMaster." &gt; $CUR_TTY
+        return 1
+    fi
+}
+
+if [ ! -f "$GAMEDIR/game.droid" ] &amp;&amp; [ ! -f "$GAMEDIR/.installed" ]; then
+    install &amp;&amp; touch "$GAMEDIR/.installed" # Only touch if function is successful
+fi
+</code></pre>
+    <p>
+     Several things to note here:
+    </p>
+    <ul>
+     <li>
+      The line for moving the game.droid file immediately returns
+      <code>
+       1
+      </code>
+      if it couldn't do it. This prevents the install function from proceeding if a critical task wasn't completed.
+     </li>
+     <li>
+      The
+      <code>
+       apply_patch
+      </code>
+      function and
+      <code>
+       .csv
+      </code>
+      file are only used if the target device has less than 2GB of RAM, making use of the
+      <code>
+       $DEVICE_RAM
+      </code>
+      variable filled by
+      <code>
+       source device_info.txt
+      </code>
+      .
+     </li>
+     <li>
+      The
+      <code>
+       $GAMEDIR/patch
+      </code>
+      directory is only removed if the
+      <code>
+       apply_patch
+      </code>
+      function is successful, by using
+      <code>
+       &amp;&amp;
+      </code>
+      . This allows the user to correct any mistakes during the install process without having to reinstall the port.
+     </li>
+     <li>
+      The
+      <code>
+       apply_patch
+      </code>
+      function itself is a nest of IF conditionals to assist with error checking. It returns
+      <code>
+       1
+      </code>
+      if it failed.
+     </li>
+     <li>
+      The
+      <code>
+       installed
+      </code>
+      function is only run once if successful. If it was successfully completed, a
+      <code>
+       .installed
+      </code>
+      file is created, preventing future runs of the function.
+     </li>
+    </ul>
     <h3>
      Creating a Pull Request
     </h3>
