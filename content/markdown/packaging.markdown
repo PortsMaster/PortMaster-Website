@@ -576,6 +576,7 @@ fi
 
 Several things to note here:
 
+- The line for moving the game.droid file immediately returns `1` if it couldn't do it. This prevents the install function from proceeding if a critical task wasn't completed.
 - The `apply_patch` function and `.csv` file are only used if the target device has less than 2GB of RAM, making use of the `$DEVICE_RAM` variable filled by `source device_info.txt`.
 - The `$GAMEDIR/patch` directory is only removed if the `apply_patch` function is successful, by using `&&`. This allows the user to correct any mistakes during the install process without having to reinstall the port.
 - The `apply_patch` function itself is a nest of IF conditionals to assist with error checking. It returns `1` if it failed.
