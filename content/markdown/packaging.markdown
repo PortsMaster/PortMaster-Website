@@ -109,11 +109,13 @@ Thanks to the [Alien Blaster Team](https://www.schwardtnet.de/alienblaster/) for
 
 ## Compile
 
-```shell
+\`\`\`shell
 wget http://www.schwardtnet.de/alienblaster/archives/alienblaster-1.1.0.tgz
 cd alienblaster-1.1.0
 make
+\`\`\`
 ```
+
 #### Screenshot
 For use in the PortMaster GUI aswell as for the Wiki we need a screenshot of the gameplay or main function of the Port.
 A title screenshot would not show actual content of the port.
@@ -173,7 +175,7 @@ The script should have capital letters (like `Port Name.sh`) and must end in `.s
 
 Below we pick apart a launchscript  and explain what each function does:
 
-```
+```shell
 # Below we assign the source of the control folder (which is the PortMaster folder) based on the distro:
 #!/bin/bash
 
@@ -520,6 +522,65 @@ printf "\033c" > /dev/tty1
 printf "\033c" > /dev/tty0
 
 ```
+
+### Launchscript functions and error handling
+
+Some games require installation or patches on first run. We can use functions inside shell to keep code organized. Use error handling inside functions to keep the launchscript stable.
+
+Example:
+
+```shell
+# Functions
+install() {
+    echo "Performing first-run setup..." > $CUR_TTY
+    # Purge unneeded files
+    rm -rf assets/*.exe assets/*.dll assets/.gitkeep
+    # Rename data.win
+    echo "Moving game files..." > $CUR_TTY
+    mv "./assets/data.win" "./game.droid" || return 1
+    mv patch/* ./
+    mv assets/* ./
+    rm -rf "$GAMEDIR/assets"
+    # Do localization fonts and xdelta patch if low ram
+    if [ $DEVICE_RAM -lt 2 ]; then
+        rm -rf "$GAMEDIR/localization_fonts.csv"
+        mv patch/localization_fonts.csv ./
+        find $GAMEDIR -type f -iname "*.ttf" ! -iname "Commodore Rounded v1-1.ttf" ! -iname "small_pixel.ttf" -delete
+        apply_patch && rm -rf "$GAMEDIR/patch" # Only remove if function is successful
+    fi
+}
+
+apply_patch() {
+    echo "Applying patch..." > $CUR_TTY
+    if [ -f "$controlfolder/xdelta3" ]; then
+        error=$("$controlfolder/xdelta3" -d -s "$GAMEDIR/game.droid" "$GAMEDIR/patch/iosas.xdelta" "$GAMEDIR/game2.droid" 2>&1)
+        if [ $? -eq 0 ]; then
+            rm -rf "$GAMEDIR/game.droid"
+            mv "$GAMEDIR/game2.droid" "$GAMEDIR/game.droid"
+            echo "Patch applied successfully." > $CUR_TTY
+        else
+            echo "Failed to apply patch. Error: $error" > $CUR_TTY
+            rm -f "$GAMEDIR/game2.droid"
+            return 1
+        fi
+    else
+        echo "Error: xdelta3 not found in $controlfolder. Try updating PortMaster." > $CUR_TTY
+        return 1
+    fi
+}
+
+if [ ! -f "$GAMEDIR/game.droid" ] && [ ! -f "$GAMEDIR/.installed" ]; then
+    install && touch "$GAMEDIR/.installed" # Only touch if function is successful
+fi
+```
+
+Several things to note here:
+
+- The line for moving the game.droid file immediately returns `1` if it couldn't do it. This prevents the install function from proceeding if a critical task wasn't completed.
+- The `apply_patch` function and `.csv` file are only used if the target device has less than 2GB of RAM, making use of the `$DEVICE_RAM` variable filled by `source device_info.txt`.
+- The `$GAMEDIR/patch` directory is only removed if the `apply_patch` function is successful, by using `&&`. This allows the user to correct any mistakes during the install process without having to reinstall the port.
+- The `apply_patch` function itself is a nest of IF conditionals to assist with error checking. It returns `1` if it failed.
+- The `installed` function is only run once if successful. If it was successfully completed, a `.installed` file is created, preventing future runs of the function.
 
 
 ### Creating a Pull Request
