@@ -47,7 +47,7 @@ For more information, visit the [GitHub Repository](https://github.com/Cebion/Po
   sudo apt install build-essential binfmt-support daemonize libarchive-tools qemu-system qemu-user qemu-user-static gcc-aarch64-linux-gnu g++-aarch64-linux-gnu
   ```
 
-- Download 20.04 Focal server-cloudimg-arm64-wsl.rootfs.tar.gz from Ubuntu Cloud image. [Ubuntu Cloud Image](https://cloud-images.ubuntu.com/releases/)
+- Download 20.04 Focal server-cloudimg-arm64-wsl.rootfs.tar.gz from Ubuntu Cloud image. [Ubuntu Cloud Image](https://cloud-images.ubuntu.com/releases/focal/release-20230731/ubuntu-20.04-server-cloudimg-arm64-wsl.rootfs.tar.gz)
 
 - Extract the tarball in a folder:
 
