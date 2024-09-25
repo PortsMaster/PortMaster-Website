@@ -233,9 +233,6 @@ export XDG_DATA_HOME="$CONFDIR"
 $ESUDO rm -rf ~/.portfolder
 ln -sfv /$directory/ports/portname/conf/.portfolder ~/
 
-# Starting with the multiarch support we make sure that older PortMaster versions still revert to the old binary names. 
-export DEVICE_ARCH="${DEVICE_ARCH:-aarch64}"
-
 # Port specific additional libraries should be included within the port's directory in a separate subfolder named libs.aarch64, libs.armhf or libs.x64
 export LD_LIBRARY_PATH="$GAMEDIR/libs.${DEVICE_ARCH}:$LD_LIBRARY_PATH"
 
@@ -320,7 +317,6 @@ cd $GAMEDIR
 #ln -sfv $GAMEDIR/conf/.portfolder ~/
 
 export XDG_DATA_HOME="$CONFDIR"
-export DEVICE_ARCH="${DEVICE_ARCH:-aarch64}"
 export LD_LIBRARY_PATH="$GAMEDIR/libs.${DEVICE_ARCH}:$LD_LIBRARY_PATH"
 export SDL_GAMECONTROLLERCONFIG="$sdl_controllerconfig"
 #export TEXTINPUTINTERACTIVE="Y"
@@ -372,10 +368,10 @@ get_controls
 GAMEDIR=/$directory/ports/portfolder/
 CONFDIR="$GAMEDIR/conf/"
 
+> "$GAMEDIR/log.txt" && exec > >(tee "$GAMEDIR/log.txt") 2>&1
+
 mkdir -p "$GAMEDIR/conf"
 cd $GAMEDIR
-
-> "$GAMEDIR/log.txt" && exec > >(tee "$GAMEDIR/log.txt") 2>&1
 
 #  If XDG Path does not work
 #$ESUDO rm -rf ~/.portfolder
@@ -383,9 +379,8 @@ cd $GAMEDIR
 
 # Set the XDG environment variables for config & savefiles
 export XDG_DATA_HOME="$CONFDIR"
-export DEVICE_ARCH="${DEVICE_ARCH:-aarch64}"
-export LD_LIBRARY_PATH="$GAMEDIR/libs.${DEVICE_ARCH}:$LD_LIBRARY_PATH"
 export SDL_GAMECONTROLLERCONFIG="$sdl_controllerconfig"
+
 
 runtime="frt_3.2.3"
 if [ ! -f "$controlfolder/libs/${runtime}.squashfs" ]; then
@@ -411,7 +406,7 @@ PATH="$godot_dir:$PATH"
 export FRT_NO_EXIT_SHORTCUTS=FRT_NO_EXIT_SHORTCUTS 
 
 $GPTOKEYB "$runtime" -c "./godot.gptk" &
-"$runtime" --main-pack "gamename.pck"
+"$runtime" $GODOT_OPTS --main-pack "gamename.pck"
 
 $ESUDO umount "$godot_dir"
 $ESUDO kill -9 $(pidof gptokeyb)
@@ -459,7 +454,6 @@ cd $GAMEDIR
 # Set the XDG environment variables for config & savefiles
 export XDG_DATA_HOME="$CONFDIR"
 
-export DEVICE_ARCH="${DEVICE_ARCH:-aarch64}"
 export LD_LIBRARY_PATH="$GAMEDIR/libs.${DEVICE_ARCH}:$LD_LIBRARY_PATH"
 export SDL_GAMECONTROLLERCONFIG="$sdl_controllerconfig"
 
@@ -509,7 +503,7 @@ export SDL_GAMECONTROLLERCONFIG="$sdl_controllerconfig"
 $ESUDO chmod +x "$GAMEDIR/gmloader"
 
 # For Ports that use gptokeyb's xbox360 mode, interactive input or config-mode we need to make sure /dev/uinput is accessible on non-root cfws
-#$ESUDO chmod 666 /dev/uinput
+$ESUDO chmod 666 /dev/uinput
 
 # if no .gptk file is used use $GPTOKEYB "gmloader" & 
 $GPTOKEYB "gmloader" -c ./controls.gptk &
