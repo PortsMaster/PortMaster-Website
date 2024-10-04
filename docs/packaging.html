@@ -604,7 +604,7 @@ export XDG_DATA_HOME="$CONFDIR"
 # Use symlinks to reroute that to a location within the ports folder.
 
 $ESUDO rm -rf ~/.portfolder
-ln -sfv /$directory/ports/portname/conf/.portfolder ~/
+ln -sfv $GAMEDIR/conf/.portfolder ~/
 
 # Port specific additional libraries should be included within the port's directory in a separate subfolder named libs.aarch64, libs.armhf or libs.x64
 export LD_LIBRARY_PATH="$GAMEDIR/libs.${DEVICE_ARCH}:$LD_LIBRARY_PATH"
