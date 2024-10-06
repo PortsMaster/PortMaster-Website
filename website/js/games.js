@@ -203,6 +203,27 @@ function stringSimilarity(str1, str2, gramSize = 2) {
     return hits / total;
 }
 
+// Function to load a saved filter state from the session storage
+function loadFilterState() {
+    const savedFilterState = sessionStorage.getItem('filterState');
+
+    if (savedFilterState) {
+        const filterState = JSON.parse(savedFilterState);
+        document.getElementById('ready-to-run').checked = filterState.readyToRun;
+        document.getElementById('files-needed').checked = filterState.filesNeeded;
+        document.getElementById('sortNewest').checked = filterState.Newest;
+        document.getElementById('sortDownloaded').checked = filterState.Downloaded;
+        document.getElementById('sortAZ').checked = filterState.AZ;
+        document.getElementById('search').value = filterState.searchQuery;
+        for (const device in filterState.devices) {
+            document.getElementById(device).checked = filterState.devices[device];
+        }
+        for (const genre in filterState.genres) {
+            document.getElementById(genre).checked = filterState.genres[genre];
+        }
+    }
+}
+
 // Function to filter the cards based on the search query
 function filterCards() {
     const searchQuery = document.getElementById('search').value.trim().toLowerCase();
@@ -211,20 +232,38 @@ function filterCards() {
     const Newest = document.getElementById('sortNewest').checked;
     const Downloaded = document.getElementById('sortDownloaded').checked;
     const AZ = document.getElementById('sortAZ').checked;
+
+    const filterState = {
+        searchQuery: searchQuery ? searchQuery : "",
+        readyToRun,
+        filesNeeded,
+        Newest,
+        Downloaded,
+        AZ,
+        devices: {},
+        genres: {}
+    };
+
     var filteredData = []
     var selected = [];
     var selectedGenres = [];
     for (device in devices){
-        if (document.getElementById(device).checked){
+        const deviceElement = document.getElementById(device);
+        if (deviceElement.checked){
             selected.push(device)
         }
+        filterState.devices[device] = deviceElement.checked;
     }
 
     for (var i = 0; i < gameGenres.length; i++) {
-        if (document.getElementById(gameGenres[i]).checked){
+        const genreElement = document.getElementById(gameGenres[i]);
+        if (genreElement.checked){
             selectedGenres.push(gameGenres[i])
         }
+        filterState.genres[gameGenres[i]] = genreElement.checked;
     }
+
+    sessionStorage.setItem('filterState', JSON.stringify(filterState));
 
     if (searchQuery.length > 0) {
 
@@ -612,6 +651,7 @@ async function fetchDataAndDisplayCards() {
     }
 
     populateGenreDropdown();
+    loadFilterState();
     filterCards();
 
 }
