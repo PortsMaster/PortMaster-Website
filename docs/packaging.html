@@ -599,7 +599,7 @@ export XDG_DATA_HOME="$CONFDIR"
 # OR  
 
 # Use bind_directories to reroute that to a location within the ports folder.
-bind_directories $GAMEDIR/conf/.portfolder ~/
+bind_directories $GAMEDIR/conf/.portfolder ~/portfolder
 
 # Port specific additional libraries should be included within the port's directory in a separate subfolder named libs.aarch64, libs.armhf or libs.x64
 export LD_LIBRARY_PATH="$GAMEDIR/libs.${DEVICE_ARCH}:$LD_LIBRARY_PATH"
