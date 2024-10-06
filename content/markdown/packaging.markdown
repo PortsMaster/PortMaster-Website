@@ -511,9 +511,8 @@ install() {
     # Rename data.win
     echo "Moving game files..." > $CUR_TTY
     mv "./assets/data.win" "./game.droid" || return 1
-    mv patch/* ./
     mv assets/* ./
-    rm -rf "$GAMEDIR/assets"
+    rmdir assets
     # Do localization fonts and xdelta patch if low ram
     if [ $DEVICE_RAM -lt 2 ]; then
         rm -rf "$GAMEDIR/localization_fonts.csv"
