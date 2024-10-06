@@ -194,9 +194,6 @@ fi
 source $controlfolder/control.txt # We source the control.txt file contents here
 # The $ESUDO, $directory, $param_device and necessary sdl configuration controller configurations will be sourced from the control.txt file shown [here]
 
-# With device_info we can get dynamic device information like resolution, cpu, cfw etc.
-source $controlfolder/device_info.txt
-
 # If a Port is built for armhf architecture only (Need for Speed 2 for example) we set this flag so that some environment condition variables are set in the CFWs mod files.
 # Example "https://github.com/PortsMaster/PortMaster-GUI/blob/main/PortMaster/mod_JELOS.txt"
 export PORT_32BIT="Y" # If using a 32 bit port, else comment it out.
@@ -228,10 +225,8 @@ export XDG_DATA_HOME="$CONFDIR"
 
 # OR  
 
-# Use symlinks to reroute that to a location within the ports folder.
-
-$ESUDO rm -rf ~/.portfolder
-ln -sfv $GAMEDIR/conf/.portfolder ~/
+# Use bind_directories to reroute that to a location within the ports folder.
+bind_directories $GAMEDIR/conf/.portfolder ~/
 
 # Port specific additional libraries should be included within the port's directory in a separate subfolder named libs.aarch64, libs.armhf or libs.x64
 export LD_LIBRARY_PATH="$GAMEDIR/libs.${DEVICE_ARCH}:$LD_LIBRARY_PATH"
@@ -246,10 +241,6 @@ else
   source "${controlfolder}/libgl_default.txt"
 fi
 
-# For Ports that use gptokeyb's xbox360 mode, interactive input or config-mode we need to make sure /dev/uinput is accessible on non-root cfws
-# For distros running as root, including sudo in scripts can be problematic. The $ESUDO variable dynamically uses sudo based on the OS."
-$ESUDO chmod 666 /dev/uinput
-
 # We launch gptokeyb using this $GPTOKEYB variable as it will take care of sourcing the executable from the central location,
 # assign the appropriate exit hotkey dependent on the device (ex. select + start for most devices and minus + start for the 
 # rgb10) and assign the appropriate method for killing an executable dependent on the OS the port is run from.
@@ -258,17 +249,14 @@ $ESUDO chmod 666 /dev/uinput
 # For a proper documentation how gptokeyb works: [Link](https://github.com/PortsMaster/gptokeyb)
 $GPTOKEYB "portexecutable.${DEVICE_ARCH}" -c "./portname.gptk.$ANALOGSTICKS" &
 
+# Do some platform specific stuff right before the port is launched but after GPTOKEYB is run.
+pm_platform_helper $GAMEDIR/portexecutable.${DEVICE_ARCH}
+
 # Now we launch the port's executable with multiarch support. Make sure to rename your file according to the architecture you built for. E.g. portexecutable.aarch64
 ./portexecutable.${DEVICE_ARCH} Launch the executable
 
-# Although you can kill most of the ports (if not all of the ports) via a hotkey, the user may choose to exit gracefully.
-# That's fine but let's make sure gptokeyb is killed so we don't get ghost inputs or worse yet, 
-# launch it again and have 2 or more of them running.
-$ESUDO kill -9 $(pidof gptokeyb)
-
-# The line below is helpful for ArkOS, RetroOZ, and TheRA as some of these ports tend to cause the 
-# global hotkeys (like brightness and volume control) to stop working after exiting the port for some reason.
-$ESUDO systemctl restart oga_events &
+# Cleanup any running gptokeyb instances, and any platform specific stuff.
+pm_finish
 
 # Finally we clean up the terminal screen just for neatness sake as some people care about this.
 printf "\033c" > /dev/tty0
@@ -296,7 +284,6 @@ else
 fi
 
 source $controlfolder/control.txt
-source $controlfolder/device_info.txt
 
 #export PORT_32BIT="Y" # If using a 32 bit port
 [ -f "${controlfolder}/mod_${CFW_NAME}.txt" ] && source "${controlfolder}/mod_${CFW_NAME}.txt"
@@ -328,15 +315,12 @@ export SDL_GAMECONTROLLERCONFIG="$sdl_controllerconfig"
 #  source "${controlfolder}/libgl_default.txt"
 #fi
 
-# For Ports that use gptokeyb's xbox360 mode, interactive input or config-mode we need to make sure /dev/uinput is accessible on non-root cfws
-#$ESUDO chmod 666 /dev/uinput
-
 $GPTOKEYB "portexecutable.${DEVICE_ARCH}" -c "./portname.gptk.$ANALOGSTICKS" &
+pm_platform_helper $GAMEDIR/portexecutable.${DEVICE_ARCH}
 ./portexecutable.${DEVICE_ARCH}
 
-$ESUDO kill -9 $(pidof gptokeyb)
-$ESUDO systemctl restart oga_events &
-printf "\033c" > /dev/tty1
+pm_finish
+
 printf "\033c" > /dev/tty0
 ```
 
@@ -359,7 +343,6 @@ else
 fi
 
 source $controlfolder/control.txt
-source $controlfolder/device_info.txt
 
 [ -f "${controlfolder}/mod_${CFW_NAME}.txt" ] && source "${controlfolder}/mod_${CFW_NAME}.txt"
 
@@ -405,14 +388,14 @@ PATH="$godot_dir:$PATH"
 # By default FRT sets Select as a Force Quit Hotkey, with this we disable that.
 export FRT_NO_EXIT_SHORTCUTS=FRT_NO_EXIT_SHORTCUTS 
 
+
 $GPTOKEYB "$runtime" -c "./godot.gptk" &
+pm_platform_helper $runtime
 "$runtime" $GODOT_OPTS --main-pack "gamename.pck"
 
 $ESUDO umount "$godot_dir"
-$ESUDO kill -9 $(pidof gptokeyb)
-$ESUDO systemctl restart oga_events &
+pm_finish
 printf "\033c" > /dev/tty0
-printf "\033c" > /dev/tty1
 ```
 
 ### Love2d Example Launchscript
@@ -433,7 +416,7 @@ else
 fi
 
 source $controlfolder/control.txt
-source $controlfolder/device_info.txt
+source $controlfolder/runtimes/"love_11.5"/love.txt
 
 [ -f "${controlfolder}/mod_${CFW_NAME}.txt" ] && source "${controlfolder}/mod_${CFW_NAME}.txt"
 
@@ -457,13 +440,14 @@ export XDG_DATA_HOME="$CONFDIR"
 export LD_LIBRARY_PATH="$GAMEDIR/libs.${DEVICE_ARCH}:$LD_LIBRARY_PATH"
 export SDL_GAMECONTROLLERCONFIG="$sdl_controllerconfig"
 
-$GPTOKEYB "love.${DEVICE_ARCH}" -c "./love.gptk" &
-./love.${DEVICE_ARCH} gamedata
+# Run the love runtime
+$GPTOKEYB "$LOVE_GPTK" &
+pm_platform_helper "$LOVE_BINARY"
+$LOVE_RUN "$GAMEDIR/lovegame"
 
-$ESUDO kill -9 $(pidof gptokeyb)
-$ESUDO systemctl restart oga_events &
+pm_finish
+
 printf "\033c" > /dev/tty0
-printf "\033c" > /dev/tty1
 ```
 
 ### Gamemaker Studio gmloader Example Launchscript
@@ -484,7 +468,6 @@ else
 fi
 
 source $controlfolder/control.txt
-source $controlfolder/device_info.txt
 
 export PORT_32BIT="Y" # If using a 32 bit port
 [ -f "${controlfolder}/mod_${CFW_NAME}.txt" ] && source "${controlfolder}/mod_${CFW_NAME}.txt"
@@ -502,17 +485,13 @@ export LD_LIBRARY_PATH="$GAMEDIR/libs.${DEVICE_ARCH}:$LD_LIBRARY_PATH"
 export SDL_GAMECONTROLLERCONFIG="$sdl_controllerconfig"
 $ESUDO chmod +x "$GAMEDIR/gmloader"
 
-# For Ports that use gptokeyb's xbox360 mode, interactive input or config-mode we need to make sure /dev/uinput is accessible on non-root cfws
-$ESUDO chmod 666 /dev/uinput
-
 # if no .gptk file is used use $GPTOKEYB "gmloader" & 
 $GPTOKEYB "gmloader" -c ./controls.gptk &
+pm_platform_helper gmloader
 ./gmloader donor.apk
 
+pm_finish
 
-$ESUDO kill -9 $(pidof gptokeyb)
-$ESUDO systemctl restart oga_events &
-printf "\033c" > /dev/tty1
 printf "\033c" > /dev/tty0
 
 ```
@@ -571,7 +550,7 @@ fi
 Several things to note here:
 
 - The line for moving the game.droid file immediately returns `1` if it couldn't do it. This prevents the install function from proceeding if a critical task wasn't completed.
-- The `apply_patch` function and `.csv` file are only used if the target device has less than 2GB of RAM, making use of the `$DEVICE_RAM` variable filled by `source device_info.txt`.
+- The `apply_patch` function and `.csv` file are only used if the target device has less than 2GB of RAM, making use of the `$DEVICE_RAM` variable filled by `control.txt`.
 - The `$GAMEDIR/patch` directory is only removed if the `apply_patch` function is successful, by using `&&`. This allows the user to correct any mistakes during the install process without having to reinstall the port.
 - The `apply_patch` function itself is a nest of IF conditionals to assist with error checking. It returns `1` if it failed.
 - The `installed` function is only run once if successful. If it was successfully completed, a `.installed` file is created, preventing future runs of the function.
