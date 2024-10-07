@@ -299,14 +299,14 @@ cd $GAMEDIR
 
 > "$GAMEDIR/log.txt" && exec > >(tee "$GAMEDIR/log.txt") 2>&1
 
-# if XDG Path does not work
-#$ESUDO rm -rf ~/.portfolder
-#ln -sfv $GAMEDIR/conf/.portfolder ~/
-
 export XDG_DATA_HOME="$CONFDIR"
 export LD_LIBRARY_PATH="$GAMEDIR/libs.${DEVICE_ARCH}:$LD_LIBRARY_PATH"
 export SDL_GAMECONTROLLERCONFIG="$sdl_controllerconfig"
 #export TEXTINPUTINTERACTIVE="Y"
+
+# if XDG Path does not work
+# Use bind_directories to reroute that to a location within the ports folder.
+bind_directories $GAMEDIR/conf/.portfolder ~/.portfolder
 
 # If using gl4es
 #if [ -f "${controlfolder}/libgl_${CFW_NAME}.txt" ]; then 
@@ -356,14 +356,13 @@ CONFDIR="$GAMEDIR/conf/"
 mkdir -p "$GAMEDIR/conf"
 cd $GAMEDIR
 
-#  If XDG Path does not work
-#$ESUDO rm -rf ~/.portfolder
-#ln -sfv $GAMEDIR/conf/.portfolder ~/
-
 # Set the XDG environment variables for config & savefiles
 export XDG_DATA_HOME="$CONFDIR"
 export SDL_GAMECONTROLLERCONFIG="$sdl_controllerconfig"
 
+#  If XDG Path does not work
+# Use bind_directories to reroute that to a location within the ports folder.
+bind_directories $GAMEDIR/conf/.portfolder ~/.portfolder
 
 runtime="frt_3.2.3"
 if [ ! -f "$controlfolder/libs/${runtime}.squashfs" ]; then
@@ -430,12 +429,12 @@ cd $GAMEDIR
 
 > "$GAMEDIR/log.txt" && exec > >(tee "$GAMEDIR/log.txt") 2>&1
 
-#  If XDG Path does not work
-#$ESUDO rm -rf ~/.portfolder
-#ln -sfv $GAMEDIR/conf/.portfolder ~/
-
 # Set the XDG environment variables for config & savefiles
 export XDG_DATA_HOME="$CONFDIR"
+
+#  If XDG Path does not work
+# Use bind_directories to reroute that to a location within the ports folder.
+bind_directories $GAMEDIR/conf/.portfolder ~/.portfolder
 
 export LD_LIBRARY_PATH="$GAMEDIR/libs.${DEVICE_ARCH}:$LD_LIBRARY_PATH"
 export SDL_GAMECONTROLLERCONFIG="$sdl_controllerconfig"
