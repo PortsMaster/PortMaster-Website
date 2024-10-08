@@ -60,7 +60,7 @@ Example from 2048.
     "name": "2048.zip",
     "items": [
         "2048.sh",
-        "2048/"
+        "2048"
     ],
     "items_opt": null,
     "attr": {
