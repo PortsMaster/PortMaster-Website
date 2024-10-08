@@ -258,9 +258,6 @@ pm_platform_helper $GAMEDIR/portexecutable.${DEVICE_ARCH}
 # Cleanup any running gptokeyb instances, and any platform specific stuff.
 pm_finish
 
-# Finally we clean up the terminal screen just for neatness sake as some people care about this.
-printf "\033c" > /dev/tty0
-
 ```
 
 ### Examples: 
@@ -320,8 +317,6 @@ pm_platform_helper $GAMEDIR/portexecutable.${DEVICE_ARCH}
 ./portexecutable.${DEVICE_ARCH}
 
 pm_finish
-
-printf "\033c" > /dev/tty0
 ```
 
 ### Godot Game Example Launchscript
@@ -394,7 +389,6 @@ pm_platform_helper $runtime
 
 $ESUDO umount "$godot_dir"
 pm_finish
-printf "\033c" > /dev/tty0
 ```
 
 ### Love2d Example Launchscript
@@ -445,8 +439,6 @@ pm_platform_helper "$LOVE_BINARY"
 $LOVE_RUN "$GAMEDIR/lovegame"
 
 pm_finish
-
-printf "\033c" > /dev/tty0
 ```
 
 ### Gamemaker Studio gmloader Example Launchscript
@@ -490,9 +482,6 @@ pm_platform_helper gmloader
 ./gmloader donor.apk
 
 pm_finish
-
-printf "\033c" > /dev/tty0
-
 ```
 
 ### Launchscript functions and error handling
