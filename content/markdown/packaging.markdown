@@ -250,7 +250,7 @@ fi
 $GPTOKEYB "portexecutable.${DEVICE_ARCH}" -c "./portname.gptk.$ANALOGSTICKS" &
 
 # Do some platform specific stuff right before the port is launched but after GPTOKEYB is run.
-pm_platform_helper $GAMEDIR/portexecutable.${DEVICE_ARCH}
+pm_platform_helper "$GAMEDIR/portexecutable.${DEVICE_ARCH}"
 
 # Now we launch the port's executable with multiarch support. Make sure to rename your file according to the architecture you built for. E.g. portexecutable.aarch64
 ./portexecutable.${DEVICE_ARCH} Launch the executable
@@ -313,7 +313,7 @@ bind_directories $GAMEDIR/conf/.portfolder ~/.portfolder
 #fi
 
 $GPTOKEYB "portexecutable.${DEVICE_ARCH}" -c "./portname.gptk.$ANALOGSTICKS" &
-pm_platform_helper $GAMEDIR/portexecutable.${DEVICE_ARCH}
+pm_platform_helper "$GAMEDIR/portexecutable.${DEVICE_ARCH}"
 ./portexecutable.${DEVICE_ARCH}
 
 pm_finish
@@ -384,7 +384,7 @@ export FRT_NO_EXIT_SHORTCUTS=FRT_NO_EXIT_SHORTCUTS
 
 
 $GPTOKEYB "$runtime" -c "./godot.gptk" &
-pm_platform_helper $runtime
+pm_platform_helper "$runtime"
 "$runtime" $GODOT_OPTS --main-pack "gamename.pck"
 
 $ESUDO umount "$godot_dir"
@@ -478,7 +478,7 @@ $ESUDO chmod +x "$GAMEDIR/gmloader"
 
 # if no .gptk file is used use $GPTOKEYB "gmloader" & 
 $GPTOKEYB "gmloader" -c ./controls.gptk &
-pm_platform_helper gmloader
+pm_platform_helper "gmloader"
 ./gmloader donor.apk
 
 pm_finish
