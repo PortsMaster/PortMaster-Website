@@ -370,8 +370,8 @@
   - cover.jpg (Optional)
   - Port Name.sh
   - portname/
+    - license/LICENSE Files
     - &lt;portfiles here&gt;
-    - LICENSE Files
 </code></pre>
     <h4>
      port.json
@@ -510,7 +510,7 @@ You play an adventurer seeking riches, fighting monsters, and preparing for a fi
      Licensefile
     </h4>
     <p>
-     Please add licensefiles for all sources and assets you used.
+     Please add licensefiles for all sources, libraries and assets you used into a license subfolder.
     </p>
     <p>
      For example:
@@ -531,7 +531,13 @@ You play an adventurer seeking riches, fighting monsters, and preparing for a fi
      <li>
       box86 / box64 license files
      </li>
+     <li>
+      .so libraries files
+     </li>
     </ul>
+    <p>
+     You often can find the libraries either in the source folder you compiled or in distributions under /usr/share/doc/package/copyright
+    </p>
     <h4>
      The Launchscript .sh
     </h4>
