@@ -43,7 +43,7 @@ A port directory might look like the following:
   - cover.jpg (Optional)
   - Port Name.sh
   - portname/
-    - license/LICENSE Files
+    - licenses/LICENSE Files
     - <portfiles here>
 ```
 
@@ -159,7 +159,7 @@ You play an adventurer seeking riches, fighting monsters, and preparing for a fi
 ```
   
 #### Licensefile 
-Please add licensefiles for all sources, libraries and assets you used into a license subfolder.
+Please add licensefiles for all sources, libraries and assets you used into a licenses subfolder.
 
 For example:
 
