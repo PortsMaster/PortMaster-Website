@@ -43,8 +43,8 @@ A port directory might look like the following:
   - cover.jpg (Optional)
   - Port Name.sh
   - portname/
+    - license/LICENSE Files
     - <portfiles here>
-    - LICENSE Files
 ```
 
 #### port.json
@@ -159,7 +159,7 @@ You play an adventurer seeking riches, fighting monsters, and preparing for a fi
 ```
   
 #### Licensefile 
-Please add licensefiles for all sources and assets you used.
+Please add licensefiles for all sources, libraries and assets you used into a license subfolder.
 
 For example:
 
@@ -168,7 +168,9 @@ For example:
 - sdl1.2 compat license file
 - gl4es license file
 - box86 / box64 license files
+- .so libraries files
 
+You often can find the libraries either in the source folder you compiled or in distributions under /usr/share/doc/package/copyright
 #### The Launchscript .sh
 
 The script should have capital letters (like `Port Name.sh`) and must end in `.sh`, the port directory should be the same as the containing directory. Some legacy ports have different names, new ports won't be accepted unless they follow the new convention.
