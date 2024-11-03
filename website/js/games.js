@@ -25,6 +25,9 @@ function createCard(data) {
     const div2 = document.createElement('div');
     div2.setAttribute("class", "card h-100 shadow-sm");
 
+    const imageLink = document.createElement("a");
+    imageLink.href = getCardUrl(data.name.replace(".zip", ""));
+
     const image = document.createElement("img");
 
     var source = "https://raw.githubusercontent.com/PortsMaster/PortMaster-Website/main/no.image.png";
@@ -40,22 +43,20 @@ function createCard(data) {
     image.src = source;
     image.setAttribute("class", "bd-placeholder-img card-img-top");
     image.setAttribute("loading", "lazy");
-
-    image.addEventListener('click', () => {
-        handleCardClick(data.name.replace(".zip", ""));
-    });
+    imageLink.appendChild(image);
 
     const div3 = document.createElement('div');
     div3.setAttribute("class", "card-body");
+
+    const titleLink = document.createElement("a");
+    titleLink.setAttribute("class", "text-decoration-none");
+    titleLink.href = getCardUrl(data.name.replace(".zip", ""));
 
     const title = document.createElement('h5');
     title.setAttribute("class", "card-title link-body-emphasis");
     title.setAttribute("style", "padding-top: 20px")
     title.textContent = data.attr.title;
-
-    title.addEventListener('click', () => {
-        handleCardClick(data.name.replace(".zip", ""));
-    });
+    titleLink.appendChild(title);
 
     const paragraph = document.createElement('p');
     paragraph.setAttribute("class", "card-text");
@@ -128,14 +129,16 @@ function createCard(data) {
     const div5 = document.createElement('div');
     div5.setAttribute("class", "btn-group");
 
+    const buttonLink = document.createElement("a");
+    buttonLink.href = getCardUrl(data.name.replace(".zip", ""), deviceDetails);
+
     const button = document.createElement('button');
     button.setAttribute("type", "button");
     button.textContent = "Details"
     button.setAttribute("class", "btn btn-sm btn-outline-primary");
-    button.setAttribute("onclick", "window.location.href='detail.html?name=" + data.name.replace(".zip", "") + "&devices=" + deviceDetails.join(",") + "';");
+    buttonLink.appendChild(button);
 
-
-    div5.appendChild(button);
+    div5.appendChild(buttonLink);
 
 
 
@@ -148,8 +151,8 @@ function createCard(data) {
     div4.appendChild(div5);
 
 
-    div3.appendChild(image);
-    div3.appendChild(title);
+    div3.appendChild(imageLink);
+    div3.appendChild(titleLink);
     div3.appendChild(paragraph);
     div3.appendChild(miscValues);
     div3.appendChild(porter);
@@ -493,6 +496,10 @@ function filterCards() {
 // Function to handle the card title click and redirect to the detail page
 function handleCardClick(name) {
     window.location.href = `detail.html?name=${encodeURIComponent(name)}`;
+}
+
+function getCardUrl(name, deviceDetails) {
+  return `detail.html?name=${encodeURIComponent(name)}` + (deviceDetails ? `&devices=${encodeURIComponent(deviceDetails.join(","))}` : "");
 }
 
 function populateManufacturerDropdown() {
