@@ -1,9 +1,6 @@
-var jsonData = null;
-var devices = null;
-var deviceCFW = [];
-var manufacturers = [];
-var countsData = null;
-var gameGenres = [];
+let jsonData = null;
+let devices = null;
+let gameGenres = [];
 
 const firmwareMap = {
     "ALL": "All Firmwares",
@@ -15,11 +12,29 @@ const firmwareMap = {
     "arkos (wummle)": "ArkOS (Wummle)",
 };
 
+window.onload = async function() {
+    devices = await fetchDeviceList();
+    populateManufacturerDropdown();
+
+    jsonData = await fetchData();
+    gameGenres = getGameGenres();
+
+    populateGenreDropdown();
+    loadFilterState();
+    filterCards();
+}
+
 function createElement(tagName, props, children) {
     const element = document.createElement(tagName);
 
     if (props) {
-        Object.assign(element, props);
+        for (const [name, value] of Object.entries(props)) {
+            if (name in element) {
+                element[name] = value;
+            } else {
+                element.setAttribute(name, value);
+            }
+        }
     }
 
     if (children) {
@@ -52,9 +67,9 @@ function getImageUrl(item) {
     const name = item.name.replace('.zip', '');
     const imageName = item.attr.image.screenshot;
     if (imageName !== null) {
-        if (item.source.repo == 'main') {
+        if (item.source.repo === 'main') {
             return `https://raw.githubusercontent.com/PortsMaster/PortMaster-New/main/ports/${encodeURIComponent(name)}/${encodeURIComponent(imageName)}`;
-        } else if (item.source.repo == 'multiverse') {
+        } else if (item.source.repo === 'multiverse') {
             return `https://raw.githubusercontent.com/PortsMaster-MV/PortMaster-MV-New/main/ports/${encodeURIComponent(name)}/${encodeURIComponent(imageName)}`;
         }
     }
@@ -132,7 +147,7 @@ function createCard(item) {
                 }, 'Added: ' + item.source.date_added),
                 createElement('div', { className: 'd-flex justify-content-between align-items-center' }, [
                     createElement('small', { className: 'text-body-secondary' }, [
-                        "Downloads: " + (countsData.ports[item.name] ? countsData.ports[item.name] : "0"),
+                        `Downloads: ${item.download_count || 0}`,
                     ]),
                     createElement('div', { className: 'btn-group' }, [
                         createElement('a', { href: cardUrl }, [
@@ -152,34 +167,7 @@ function displayCards(data) {
     for (const item of data) {
         const card = createCard(item);
         cardsContainer.appendChild(card);
-    };
-}
-
-function stringSimilarity(str1, str2, gramSize = 2) {
-    function getNGrams(s, len) {
-        s = ' '.repeat(len - 1) + s.toLowerCase() + ' '.repeat(len - 1);
-        let v = new Array(s.length - len + 1);
-        for (let i = 0; i < v.length; i++) {
-            v[i] = s.slice(i, i + len);
-        }
-        return v;
     }
-    if (!(str1 === null || str1 === void 0 ? void 0 : str1.length) || !(str2 === null || str2 === void 0 ? void 0 : str2.length)) {
-        return 0.0;
-    }
-    let s1 = str1.length < str2.length ? str1 : str2;
-    let s2 = str1.length < str2.length ? str2 : str1;
-    let pairs1 = getNGrams(s1, gramSize);
-    let pairs2 = getNGrams(s2, gramSize);
-    let set = new Set(pairs1);
-    let total = pairs2.length;
-    let hits = 0;
-    for (let item of pairs2) {
-        if (set.delete(item)) {
-            hits++;
-        }
-    }
-    return hits / total;
 }
 
 // Function to load a saved filter state from the session storage
@@ -195,10 +183,16 @@ function loadFilterState() {
         document.getElementById('sortAZ').checked = filterState.AZ;
         document.getElementById('search').value = filterState.searchQuery;
         for (const device in filterState.devices) {
-            document.getElementById(device).checked = filterState.devices[device];
+            const deviceElement = document.getElementById(device);
+            if (deviceElement) {
+                deviceElement.checked = filterState.devices[device];
+            }
         }
         for (const genre in filterState.genres) {
-            document.getElementById(genre).checked = filterState.genres[genre];
+            const genreElement = document.getElementById(genre);
+            if (genreElement) {
+                genreElement.checked = filterState.genres[genre];
+            }
         }
     }
 }
@@ -226,20 +220,20 @@ function filterCards() {
     var filteredData = []
     var selected = [];
     var selectedGenres = [];
-    for (device in devices){
-        const deviceElement = document.getElementById(device);
-        if (deviceElement.checked){
-            selected.push(device)
+    for (const device in devices){
+        const deviceChecked = document.getElementById(device)?.checked ?? false;
+        if (deviceChecked){
+            selected.push(device);
         }
-        filterState.devices[device] = deviceElement.checked;
+        filterState.devices[device] = deviceChecked;
     }
 
-    for (var i = 0; i < gameGenres.length; i++) {
-        const genreElement = document.getElementById(gameGenres[i]);
-        if (genreElement.checked){
-            selectedGenres.push(gameGenres[i])
+    for (const genre of gameGenres) {
+        const genreChecked = document.getElementById(genre)?.checked ?? false;
+        if (genreChecked) {
+            selectedGenres.push(genre)
         }
-        filterState.genres[gameGenres[i]] = genreElement.checked;
+        filterState.genres[genre] = genreChecked;
     }
 
     sessionStorage.setItem('filterState', JSON.stringify(filterState));
@@ -470,167 +464,124 @@ function filterCards() {
 }
 
 function populateManufacturerDropdown() {
-    var deviceDropdown = document.getElementById("dropdown-buttons");
-    for (manufacturer of manufacturers) {
-        const div = document.createElement('div');
-        div.setAttribute("class", "btn-group flex-wrap");
-        div.setAttribute("role", "group");
-        const button = document.createElement('button');
-        button.setAttribute("class", "btn btn-outline-primary dropdown-toggle");
-        button.setAttribute("data-bs-toggle", "dropdown");
-        button.setAttribute("aria-expanded", "false");
-        button.textContent = manufacturer
-        const ul = document.createElement('ul');
-        ul.setAttribute("id", manufacturer);
-        ul.setAttribute("class", "dropdown-menu");
-        div.appendChild(button);
-        div.appendChild(ul);
-        deviceDropdown.appendChild(div);
-
+    const manufacturers = [];
+    for (const device of Object.values(devices)) {
+        if (!manufacturers.includes(device.manufacturer)) {
+            manufacturers.push(device.manufacturer);
+        }
     }
-    populateDeviceDropdown();
-}
+    manufacturers.sort();
 
-function populateDeviceDropdown() {
-    for (var key of Object.keys(devices)) {
-        var manufacturerDropdown = document.getElementById(devices[key]["manufacturer"]);
-        const li = document.createElement('li');
-        const a = document.createElement('a');
-        //a.textContent = devices[key]["name"]
-        const label = document.createElement('label');
-        label.setAttribute("for", key);
-        const input = document.createElement('input');
-        input.setAttribute("class", "form-check-input");
-        input.setAttribute("type", "checkbox");
-        input.setAttribute("style", "margin-right: 10px;");
-        input.setAttribute("onchange", "filterCards()");
-        input.setAttribute("id", key);
-        label.textContent = devices[key]["name"]
-        li.setAttribute("class", "dropdown-item");
-        li.setAttribute("href", "#");
-        li.appendChild(input);
-        li.appendChild(label);
-        manufacturerDropdown.appendChild(li);
+    const manufacturerDropdownButtons = document.getElementById("dropdown-buttons");
+    for (const manufacturer of manufacturers) {
+        const manufacturerDropdown = createElement('ul', {
+            id: manufacturer,
+            className: "dropdown-menu",
+        })
 
+        manufacturerDropdownButtons.appendChild(createElement('div', {
+            className: 'btn-group flex-wrap',
+            role: 'group',
+        }, [
+            createElement('button', {
+                className: 'btn btn-outline-primary dropdown-toggle',
+                ariaExpanded: 'false',
+                'data-bs-toggle': 'dropdown',
+            }, manufacturer),
+            manufacturerDropdown,
+        ]));
+    }
+
+    for (const [deviceCode, device] of Object.entries(devices)) {
+        const manufacturerDropdown = document.getElementById(device.manufacturer);
+
+        manufacturerDropdown.appendChild(createElement('li', { className: 'dropdown-item' }, [
+            createElement('input', {
+                id: deviceCode,
+                className: 'form-check-input',
+                style: 'margin-right: 10px;',
+                type: 'checkbox',
+                onchange: filterCards,
+            }),
+            createElement('label', { htmlFor: deviceCode }, device.name),
+        ]));
     }
 }
 
 function populateGenreDropdown() {
-    var gamesDropdown = document.getElementById("dropdown-buttons");
+    const genreDropdown = createElement('ul', { className: 'dropdown-menu' });
 
-    var genresSet = new Set();
+    for (const genre of gameGenres) {
+        genreDropdown.appendChild(createElement('li', { className: 'dropdown-item' }, [
+            createElement('input', {
+                type: "checkbox",
+                id: genre,
+                name: genre,
+                value: genre,
+                onchange: filterCards,
+            }),
+            createElement('label', {
+                htmlFor: genre,
+                textContent: genre,
+                style: 'margin-left: 5px',
+            })
+        ]));
+    }
 
+    const gamesDropdown = document.getElementById('dropdown-buttons');
+    gamesDropdown.appendChild(createElement('div', {
+        className: 'btn-group flex-wrap',
+        role: 'group',
+    }, [
+        createElement('button', {
+            className: 'btn btn-outline-primary dropdown-toggle',
+            ariaExpanded: 'false',
+            'data-bs-toggle': 'dropdown',
+        }, 'Genres'),
+        genreDropdown,
+    ]));
+}
+
+async function fetchJson(url) {
+    const portsResponse = await fetch(url);
+    if (!portsResponse.ok) {
+        throw new Error('Network response was not ok.');
+    }
+    return portsResponse.json();
+}
+
+async function fetchDeviceList() {
+    try {
+        return await fetchJson('https://raw.githubusercontent.com/PortsMaster/PortMaster-Info/main/devices.json'); // Replace 'YOUR_JSON_URL_HERE' with the actual URL of your JSON data.
+    } catch (error) {
+        console.error('Error fetching JSON data:', error);
+        return null;
+    }
+}
+
+async function fetchData() {
+    try {
+        const portsData = await fetchJson('https://raw.githubusercontent.com/PortsMaster/PortMaster-Info/main/ports.json'); // Replace 'YOUR_JSON_URL_HERE' with the actual URL of your JSON data.
+        const statsData = await fetchJson('https://raw.githubusercontent.com/PortsMaster/PortMaster-Info/main/port_stats.json'); // Replace 'YOUR_JSON_URL_HERE' with the actual URL of your JSON data.
+
+        const jsonData = Object.values(portsData.ports);
+        for (const port of jsonData) {
+            port.download_count = statsData.ports[port.name];
+        }
+
+        return jsonData;
+    } catch (error) {
+        console.error('Error fetching JSON data:', error);
+        return null;
+    }
+}
+
+function getGameGenres() {
+    const genresSet = new Set();
     Object.values(jsonData).forEach(game => {
         game.attr.genres.forEach(genre => {
             genresSet.add(genre);
         });
     });
-
-    genresSet.forEach(genre => {
-        gameGenres.push(genre);
-    });
-
-    const div = document.createElement('div');
-    div.setAttribute("class", "btn-group flex-wrap");
-    div.setAttribute("role", "group");
-
-    const button = document.createElement('button');
-    button.setAttribute("class", "btn btn-outline-primary dropdown-toggle");
-    button.setAttribute("data-bs-toggle", "dropdown");
-    button.setAttribute("aria-expanded", "false");
-    button.textContent = "Genres";
-
-    const ul = document.createElement('ul');
-    ul.setAttribute("class", "dropdown-menu");
-
-    genresSet.forEach(genre => {
-        const li = document.createElement('li');
-        li.setAttribute("class", "dropdown-item");
-
-        const input = document.createElement('input');
-        input.type = "checkbox";
-        input.id = genre;
-        input.name = genre;
-        input.value = genre;
-        input.setAttribute("onchange", "filterCards()");
-
-        const label = document.createElement('label');
-        label.htmlFor = genre;
-        label.textContent = genre;
-        label.style.marginLeft = "5px";
-
-        li.appendChild(input);
-        li.appendChild(label);
-        ul.appendChild(li);
-    });
-
-    div.appendChild(button);
-    div.appendChild(ul);
-    gamesDropdown.appendChild(div);
+    return [...genresSet];
 }
-
-async function getDeviceList() {
-    try {
-        var response = await fetch('https://raw.githubusercontent.com/PortsMaster/PortMaster-Info/main/devices.json'); // Replace 'YOUR_JSON_URL_HERE' with the actual URL of your JSON data.
-        if (!response.ok) {
-            throw new Error('Network response was not ok.');
-        }
-        devices = await response.json();
-        for (var key of Object.keys(devices)) {
-            if (!manufacturers.includes(devices[key]["manufacturer"])) {
-                manufacturers.push(devices[key]["manufacturer"]);
-            }
-        }
-        manufacturers.sort();
-
-        populateManufacturerDropdown();
-
-
-    } catch (error) {
-        console.error('Error fetching JSON data:', error);
-    }
-}
-
-
-// Fetch JSON data from the URL and then display the cards
-async function fetchDataAndDisplayCards() {
-
-    try {
-        var response = await fetch('https://raw.githubusercontent.com/PortsMaster/PortMaster-Info/main/ports.json'); // Replace 'YOUR_JSON_URL_HERE' with the actual URL of your JSON data.
-        if (!response.ok) {
-            throw new Error('Network response was not ok.');
-        }
-        jsonData = await response.json();
-        var array = [];
-        for (port in jsonData.ports) {
-            array.push(jsonData.ports[port]);
-        }
-        jsonData = array;       
-    } catch (error) {
-        console.error('Error fetching JSON data:', error);
-    }
-
-    try {
-        var response = await fetch('https://raw.githubusercontent.com/PortsMaster/PortMaster-Info/main/port_stats.json'); // Replace 'YOUR_JSON_URL_HERE' with the actual URL of your JSON data.
-        if (!response.ok) {
-            throw new Error('Network response was not ok.');
-        }
-        countsData = await response.json();
-        for (port in jsonData) {
-            jsonData[port]["download_count"] = countsData["ports"][jsonData[port].name];
-        }
-
-    } catch (error) {
-        console.error('Error fetching JSON data:', error);
-    }
-
-    populateGenreDropdown();
-    loadFilterState();
-    filterCards();
-
-}
-window.onload = function () {
-    getDeviceList();
-    fetchDataAndDisplayCards();
-};
-
