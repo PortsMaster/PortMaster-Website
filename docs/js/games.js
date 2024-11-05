@@ -5,176 +5,152 @@ var manufacturers = [];
 var countsData = null;
 var gameGenres = [];
 
-var deviceMap = {
+const firmwareMap = {
     "ALL": "All Firmwares",
     "jelos": "JELOS",
     "rocknix": "ROCKNIX",
     "arkos": "ArkOS",
     "emuelec": "EmuELEC",
     "amberelec": "AmberELEC",
-    "arkos (wummle)": "ArkOS (Wummle)"
+    "arkos (wummle)": "ArkOS (Wummle)",
+};
+
+function createElement(tagName, props, children) {
+    const element = document.createElement(tagName);
+
+    if (props) {
+        Object.assign(element, props);
+    }
+
+    if (children) {
+        if (Array.isArray(children)) {
+            element.append(...children.filter(Boolean));
+        } else {
+            element.append(children);
+        }
+    }
+
+    return element;
 }
 
-
-// Function to create a card element for each JSON object
-// https://discord.gg/JxYBp9HTAY
-function createCard(data) {
-    const div1 = document.createElement('div');
-    div1.setAttribute("class", "col");
-
-    const div2 = document.createElement('div');
-    div2.setAttribute("class", "card h-100 shadow-sm");
-
-    const imageLink = document.createElement("a");
-    imageLink.href = getCardUrl(data.name.replace(".zip", ""));
-
-    const image = document.createElement("img");
-
-    var source = "https://raw.githubusercontent.com/PortsMaster/PortMaster-Website/main/no.image.png";
-
-    if (data.attr.image.screenshot !== null) {
-        if (data.source.repo == "main") {
-            source = ("https://raw.githubusercontent.com/PortsMaster/PortMaster-New/main/ports/" + data.name.replace(".zip", "/") + data.attr.image.screenshot);
-        } else if (data.source.repo == "multiverse") {
-            source = ("https://raw.githubusercontent.com/PortsMaster-MV/PortMaster-MV-New/main/ports/" + data.name.replace(".zip", "/") + data.attr.image.screenshot);
-        }
-    }
-
-    image.src = source;
-    image.setAttribute("class", "bd-placeholder-img card-img-top");
-    image.setAttribute("loading", "lazy");
-    imageLink.appendChild(image);
-
-    const div3 = document.createElement('div');
-    div3.setAttribute("class", "card-body");
-
-    const titleLink = document.createElement("a");
-    titleLink.setAttribute("class", "text-decoration-none");
-    titleLink.href = getCardUrl(data.name.replace(".zip", ""));
-
-    const title = document.createElement('h5');
-    title.setAttribute("class", "card-title link-body-emphasis");
-    title.setAttribute("style", "padding-top: 20px")
-    title.textContent = data.attr.title;
-    titleLink.appendChild(title);
-
-    const paragraph = document.createElement('p');
-    paragraph.setAttribute("class", "card-text");
-    paragraph.setAttribute("style", "padding-top: 10px")
-
-    var converter = new showdown.Converter();
-
-
-    var desc = data.attr.desc;
-    if (data.attr.desc_md){
-        desc = data.attr.desc_md;
-    }
-    paragraph.innerHTML = converter.makeHtml(desc);
-
-    const porter = document.createElement('p');
-    porter.setAttribute("class", "card-text");
-    porter.setAttribute("style", "padding-top: 10px");
-    var porters = data.attr.porter;
-    var porterHtml = "Porter: ";
-    porters.forEach((porter) => {
-        porterHtml += '<a href="profile.html?porter=' + porter + '">' + porter + '</a>';
-        if (porters.length > 1) {
-            porterHtml += " ";
-        }
-    });
-    porter.innerHTML = porterHtml;
-
-    const supported = document.createElement('p');
-    supported.setAttribute("class", "card-text");
-    supported.setAttribute("style", "padding-top: 10px");
-
-    var deviceDetails = [];
-    var supportedtext = "";
-    for (item in data.supported) {
-        for (support in data.attr.avail) {
-            if (data.attr.avail[support].includes(data.supported[item])) {
-                var deviceName = devices[data.attr.avail[support].split(":")[0]]["name"]
-                var cfws = deviceMap[data.attr.avail[support].split(":")[1]]
-                supportedtext = supportedtext + deviceName + ": " + cfws + "<br>"
-                deviceDetails.push(deviceName + ": " + cfws);
+function getDeviceDetails(item) {
+    const deviceDetails = [];
+    for (const code of item.supported) {
+        for (const support of item.attr.avail) {
+            const [deviceCode, firmwareCode] = support.split(':');
+            if (deviceCode === code) {
+                const deviceName = devices[deviceCode].name;
+                const firmwareName = firmwareMap[firmwareCode];
+                deviceDetails.push(deviceName + ': ' + firmwareName);
             }
         }
     }
-    supported.innerHTML = "Supported Devices: <br>" + supportedtext;
+    return deviceDetails;
+}
 
-    const dateUpdated = document.createElement('p');
-    dateUpdated.setAttribute("class", "card-text text-body-secondary");
-    dateUpdated.setAttribute("style", "padding-top: 10px")
-    dateUpdated.textContent = "Added: " + data.source.date_added;
-
-    var taggedMisc = "";
-    if (data.attr.rtr) {
-        taggedMisc += '<span class="misc-item badge bg-secondary">Ready to Run</span> ';
+function getImageUrl(item) {
+    const name = item.name.replace('.zip', '');
+    const imageName = item.attr.image.screenshot;
+    if (imageName !== null) {
+        if (item.source.repo == 'main') {
+            return `https://raw.githubusercontent.com/PortsMaster/PortMaster-New/main/ports/${encodeURIComponent(name)}/${encodeURIComponent(imageName)}`;
+        } else if (item.source.repo == 'multiverse') {
+            return `https://raw.githubusercontent.com/PortsMaster-MV/PortMaster-MV-New/main/ports/${encodeURIComponent(name)}/${encodeURIComponent(imageName)}`;
+        }
     }
 
-    if (data.attr.exp) {
-        taggedMisc += '<span class="misc-item badge bg-secondary">Experimental</span> ';
-    }
+    return 'https://raw.githubusercontent.com/PortsMaster/PortMaster-Website/main/no.image.png';
+}
 
-    if (data.source.repo == "multiverse") {
-        taggedMisc += '<span class="misc-item badge bg-secondary">Multiverse</span> ';
-    }
+function getCardUrl(name, deviceDetails) {
+    return `detail.html?name=${encodeURIComponent(name)}` + (deviceDetails ? `&devices=${encodeURIComponent(deviceDetails.join(","))}` : "");
+}
 
-    const miscValues = document.createElement('p');
-    miscValues.innerHTML = taggedMisc;
+function getPorterUrl(porter) {
+    return `profile.html?porter=${encodeURIComponent(porter)}`;
+}
 
-    const div4 = document.createElement('div');
-    div4.setAttribute("class", "d-flex justify-content-between align-items-center");
+// Function to create a card element for each JSON object
+// https://discord.gg/JxYBp9HTAY
+function createCard(item) {
+    const deviceDetails = getDeviceDetails(item);
+    const cardUrl = getCardUrl(item.name.replace('.zip', ''), deviceDetails);
+    const imageUrl = getImageUrl(item);
+    const desc = item.attr.desc_md || item.attr.desc;
 
-    const div5 = document.createElement('div');
-    div5.setAttribute("class", "btn-group");
-
-    const buttonLink = document.createElement("a");
-    buttonLink.href = getCardUrl(data.name.replace(".zip", ""), deviceDetails);
-
-    const button = document.createElement('button');
-    button.setAttribute("type", "button");
-    button.textContent = "Details"
-    button.setAttribute("class", "btn btn-sm btn-outline-primary");
-    buttonLink.appendChild(button);
-
-    div5.appendChild(buttonLink);
-
-
-
-    const small = document.createElement('small');
-    small.setAttribute("class", "text-body-secondary");
-    small.textContent = "Downloads: " + (countsData["ports"][data.name] ? countsData["ports"][data.name] : "0");
-
-
-    div4.appendChild(small);
-    div4.appendChild(div5);
-
-
-    div3.appendChild(imageLink);
-    div3.appendChild(titleLink);
-    div3.appendChild(paragraph);
-    div3.appendChild(miscValues);
-    div3.appendChild(porter);
-    if (data.supported.length > 0) {
-        div3.appendChild(supported);
-    }
-    div3.appendChild(dateUpdated);
-    div3.appendChild(div4);
-
-    div2.appendChild(div3)
-    div1.appendChild(div2)
-
-
-    return div1;
+    return createElement('div', { className: 'col' }, [
+        createElement('div', { className: 'card h-100 shadow-sm' }, [
+            createElement('div', { className: 'card-body' }, [
+                createElement('a', { href: cardUrl }, [
+                    createElement('img', {
+                        src: imageUrl,
+                        className: 'bd-placeholder-img card-img-top',
+                        loading: 'lazy',
+                    }),
+                ]),
+                createElement('a', { href: cardUrl, className: 'text-decoration-none' }, [
+                    createElement('h5', {
+                        className: 'card-title link-body-emphasis',
+                        style: 'padding-top: 20px',
+                    }, item.attr.title),
+                ]),
+                createElement('p', {
+                    className: 'card-text',
+                    style: 'padding-top: 10px',
+                    innerHTML: new showdown.Converter().makeHtml(desc),
+                }),
+                createElement('p', null, [
+                    item.attr.rtr && createElement('span', { className: 'misc-item badge bg-secondary' }, 'Ready to Run'),
+                    ' ',
+                    item.attr.exp && createElement('span', { className: 'misc-item badge bg-secondary' }, 'Experimental'),
+                    ' ',
+                    item.source.repo == "multiverse" && createElement('span', { className: 'misc-item badge bg-secondary' }, 'Multiverse'),
+                ]),
+                createElement('p', {
+                    className: 'card-text',
+                    style: 'padding-top: 10px',
+                }, [
+                    'Porter: ',
+                    ...item.attr.porter.reduce((children, porter, i) => {
+                        if (i > 0) {
+                            children.push(', ');
+                        }
+                        children.push(createElement('a', { href: getPorterUrl(porter) }, porter));
+                        return children;
+                    }, []),
+                ]),
+                deviceDetails.length > 0 && createElement('p', {
+                    className: 'card-text',
+                    style: 'padding-top: 10px',
+                }, [
+                    'Supported Devices: ',
+                    ...deviceDetails.map((deviceDetail) => createElement('div', null, deviceDetail)),
+                ]),
+                createElement('p', {
+                    className: 'card-text text-body-secondary',
+                    style: 'padding-top: 10px'
+                }, 'Added: ' + item.source.date_added),
+                createElement('div', { className: 'd-flex justify-content-between align-items-center' }, [
+                    createElement('small', { className: 'text-body-secondary' }, [
+                        "Downloads: " + (countsData.ports[item.name] ? countsData.ports[item.name] : "0"),
+                    ]),
+                    createElement('div', { className: 'btn-group' }, [
+                        createElement('a', { href: cardUrl }, [
+                            createElement('button', { type: 'button', className: 'btn btn-sm btn-outline-primary' }, 'Details'),
+                        ]),
+                    ]),
+                ]),
+            ]),
+        ]),
+    ]);
 }
 
 // Function to iterate over the JSON data and display cards
 function displayCards(data) {
     const cardsContainer = document.getElementById('cards-container');
     cardsContainer.innerHTML = ''; // Clear previous cards
-    for (var key of Object.keys(data)) {
-        const card = createCard(data[key]);
+    for (const item of data) {
+        const card = createCard(item);
         cardsContainer.appendChild(card);
     };
 }
@@ -491,15 +467,6 @@ function filterCards() {
     var availablePorts = document.getElementById("port-count")
     availablePorts.textContent = filteredData.length + " Ports Available"
     displayCards(filteredData);
-}
-
-// Function to handle the card title click and redirect to the detail page
-function handleCardClick(name) {
-    window.location.href = `detail.html?name=${encodeURIComponent(name)}`;
-}
-
-function getCardUrl(name, deviceDetails) {
-  return `detail.html?name=${encodeURIComponent(name)}` + (deviceDetails ? `&devices=${encodeURIComponent(deviceDetails.join(","))}` : "");
 }
 
 function populateManufacturerDropdown() {
