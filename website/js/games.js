@@ -162,6 +162,9 @@ function createCard(item) {
 
 // Function to iterate over the JSON data and display cards
 function displayCards(data) {
+    const availablePorts = document.getElementById('port-count')
+    availablePorts.textContent = `${data.length} Ports Available`;
+
     const cardsContainer = document.getElementById('cards-container');
     cardsContainer.innerHTML = ''; // Clear previous cards
     for (const item of data) {
@@ -197,8 +200,7 @@ function loadFilterState() {
     }
 }
 
-// Function to filter the cards based on the search query
-function filterCards() {
+function getFilterState() {
     const searchQuery = document.getElementById('search').value.trim().toLowerCase();
     const readyToRun = document.getElementById('ready-to-run').checked;
     const filesNeeded = document.getElementById('files-needed').checked;
@@ -207,7 +209,7 @@ function filterCards() {
     const AZ = document.getElementById('sortAZ').checked;
 
     const filterState = {
-        searchQuery: searchQuery ? searchQuery : "",
+        searchQuery,
         readyToRun,
         filesNeeded,
         Newest,
@@ -217,249 +219,132 @@ function filterCards() {
         genres: {}
     };
 
-    var filteredData = []
-    var selected = [];
-    var selectedGenres = [];
     for (const device in devices){
-        const deviceChecked = document.getElementById(device)?.checked ?? false;
-        if (deviceChecked){
-            selected.push(device);
-        }
-        filterState.devices[device] = deviceChecked;
+        filterState.devices[device] = document.getElementById(device)?.checked ?? false;
     }
 
     for (const genre of gameGenres) {
-        const genreChecked = document.getElementById(genre)?.checked ?? false;
-        if (genreChecked) {
-            selectedGenres.push(genre)
-        }
-        filterState.genres[genre] = genreChecked;
+        filterState.genres[genre] = document.getElementById(genre)?.checked ?? false;
     }
+
+    return filterState;
+}
+
+// Function to filter the cards based on the search query
+function filterCards() {
+    const filterState = getFilterState();
 
     sessionStorage.setItem('filterState', JSON.stringify(filterState));
 
-    if (searchQuery.length > 0) {
+    const selectedDevices = Object.entries(filterState.devices).filter(([_, checked]) => checked).map(([value]) => value);
+    const selectedGenres = Object.entries(filterState.genres).filter(([_, checked]) => checked).map(([value]) => value);
 
-        const options = { includeScore: true, isCaseSensitive: false, shouldSort: true, keys: ['attr.title'] };
-        const fuse = new Fuse(jsonData, options);
-        const result = fuse.search(document.getElementById('search').value.trim());
+    const filteredData = []
 
-        if (result.length > 0) {
-            result.forEach(element => {
-                if (!filteredData.includes(element.item)) {
-                    element.item["supported"] = [];
-                    if (readyToRun || filesNeeded) {
-                        if (readyToRun) {
-                            if (element.item.attr.rtr) {
-                                if (element.item.attr.avail.length < 1) {
-                                    if (!filteredData.includes(element.item)) {
-                                        if (!element.item["supported"].includes("ALL")) {
-                                            element.item["supported"].push("ALL");
-                                        }
-                                        filteredData.push(element.item);
-                                    }
-                                }
-                                for (item in element.item.attr.avail) {
-                                    var device = element.item.attr.avail[item].split(":")[0];
-                                    var cfw = element.item.attr.avail[item].split(":")[1]
-                                    if (selected.includes(device)) {
-                                        if (!element.item["supported"].includes(device)) {
-                                            element.item["supported"].push(device);
-                                        }
-                                        if (!filteredData.includes(element.item)) {
-                                            filteredData.push(element.item);
-                                        }
-                                    }
-                                  
-                                        if (device == "ALL") {
-                                            if (!element.item["supported"].includes(device)) {
-                                                element.item["supported"].push(device);
-                                            }
-                                            if (!filteredData.includes(element.item)) {
-                                                filteredData.push(element.item);
-                                            }
-                                        }
-
-                                    
-                                }
-                                if (selected.length < 1) {
-                                    if (!filteredData.includes(element.item)) {
-                                        filteredData.push(element.item);
-                                    }
-                                }
-                            }
-                        } if (filesNeeded) {
-                            if (!element.item.attr.rtr) {
-                                if (element.item.attr.avail.length < 1) {
-                                    if (!filteredData.includes(element.item)) {
-                                        if (!element.item["supported"].includes("ALL")) {
-                                            element.item["supported"].push("ALL");
-                                        }
-                                        filteredData.push(element.item);
-                                    }
-                                }
-                                for (item in element.item.attr.avail) {
-                                    var device = element.item.attr.avail[item].split(":")[0];
-                                    var cfw = element.item.attr.avail[item].split(":")[1]
-                                    if (selected.includes(device)) {
-                                        if (!element.item["supported"].includes(device)) {
-                                            element.item["supported"].push(device);
-                                        }
-                                        if (!filteredData.includes(element.item)) {
-                                            filteredData.push(element.item);
-                                        }
-                                    }
-                                  
-                                        if (device == "ALL") {
-                                            if (!element.item["supported"].includes(device)) {
-                                                element.item["supported"].push(device);
-                                            }
-                                            if (!filteredData.includes(element.item)) {
-                                                filteredData.push(element.item);
-                                            }
-                                        }
-
-                                    
-                                }
-                                if (selected.length < 1) {
-                                    if (!filteredData.includes(element.item)) {
-                                        filteredData.push(element.item);
-                                    }
-                                }
-                            }
-                        }
-                    }
-                    else {
-                         // don't show any ports if ready to run or files need are not checked
-                    }
+    function checkElementItem(elementItem) {
+        if (elementItem.attr.avail.length < 1) {
+            if (!filteredData.includes(elementItem)) {
+                if (!elementItem.supported.includes('ALL')) {
+                    elementItem.supported.push('ALL');
                 }
-            });
-        }
-    }
-    else {
-        for (var key of Object.keys(jsonData)) {
-            jsonData[key]["supported"] = [];
-            if (readyToRun || filesNeeded) {
-                if (readyToRun) {
-                    if (jsonData[key].attr.rtr) {
-                        if (jsonData[key].attr.avail.length < 1) {
-                            if (!filteredData.includes(jsonData[key])) {
-                                if (!jsonData[key]["supported"].includes("ALL")) {
-                                    jsonData[key]["supported"].push("ALL");
-                                }
-                                filteredData.push(jsonData[key]);
-                            }
-                        }
-                        for (item in jsonData[key].attr.avail) {
-                            var device = jsonData[key].attr.avail[item].split(":")[0];
-                            var cfw = jsonData[key].attr.avail[item].split(":")[1]
-                            if (selected.includes(device)) {
-                                if (!jsonData[key]["supported"].includes(device)) {
-                                    jsonData[key]["supported"].push(device);
-                                }
-                                if (!filteredData.includes(jsonData[key])) {
-                                    filteredData.push(jsonData[key]);
-                                }
-                            }
-                          
-                            if (device == "ALL") {
-                                if (!jsonData[key]["supported"].includes(device)) {
-                                    jsonData[key]["supported"].push(device);
-                                }
-                                if (!filteredData.includes(jsonData[key])) {
-                                    filteredData.push(jsonData[key]);
-                                }
-                            }
-
-                            
-                        }
-                        if (selected.length < 1) {
-                            if (!filteredData.includes(jsonData[key])) {
-                                filteredData.push(jsonData[key]);
-                            }
-                        }
-                    }
-                } if (filesNeeded) {
-                    if (!jsonData[key].attr.rtr) {
-                        if (jsonData[key].attr.avail.length < 1) {
-                            if (!filteredData.includes(jsonData[key])) {
-                                if (!jsonData[key]["supported"].includes("ALL")) {
-                                    jsonData[key]["supported"].push("ALL");
-                                }
-                                filteredData.push(jsonData[key]);
-                            }
-                        }
-                        for (item in jsonData[key].attr.avail) {
-                            var device = jsonData[key].attr.avail[item].split(":")[0];
-                            var cfw = jsonData[key].attr.avail[item].split(":")[1]
-                            if (selected.includes(device)) {
-                                if (!jsonData[key]["supported"].includes(device)) {
-                                    jsonData[key]["supported"].push(device);
-                                }
-                                if (!filteredData.includes(jsonData[key])) {
-                                    filteredData.push(jsonData[key]);
-                                }
-                            }
-                          
-                                if (device == "ALL") {
-                                    if (!jsonData[key]["supported"].includes(device)) {
-                                        jsonData[key]["supported"].push(device);
-                                    }
-                                    if (!filteredData.includes(jsonData[key])) {
-                                        filteredData.push(jsonData[key]);
-                                    }
-                                }
-
-                            
-                        }
-                        if (selected.length < 1) {
-                            if (!filteredData.includes(jsonData[key])) {
-                                filteredData.push(jsonData[key]);
-                            }
-                        }
-                    }
-                }
-                
-                if (selectedGenres.length > 0) {
-                    var genres = jsonData[key].attr.genres;
-                    var match = false;
-                    for (var i = 0; i < genres.length; i++) {
-                        if (selectedGenres.includes(genres[i])) {
-                            match = true;
-                        }
-                    }
-                    if (match) {
-                        if (!filteredData.includes(jsonData[key])) {
-                            filteredData.push(jsonData[key]);
-                        }
-                    } else {
-                        //remove the port if it doesn't match the genre
-                        if (filteredData.includes(jsonData[key])) {
-                            filteredData.splice(filteredData.indexOf(jsonData[key]), 1);
-                        }
-                    }
-                }
-            }
-            else {
-                // don't show any ports if ready to run or files need are not checked
+                filteredData.push(elementItem);
             }
         }
 
-        if (Newest) {
-            filteredData.sort((a, b) => Date.parse(a.source.date_added) > Date.parse(b.source.date_added) ? -1 : (Date.parse(a.source.date_added) < Date.parse(b.source.date_added) ? 1 : 0));
+        for (const item of elementItem.attr.avail) {
+            const deviceCode = item.split(':')[0];
+            if (selectedDevices.includes(deviceCode)) {
+                if (!elementItem.supported.includes(deviceCode)) {
+                    elementItem.supported.push(deviceCode);
+                }
+                if (!filteredData.includes(elementItem)) {
+                    filteredData.push(elementItem);
+                }
+            }
+
+            if (deviceCode === 'ALL') {
+                if (!elementItem.supported.includes(deviceCode)) {
+                    elementItem.supported.push(deviceCode);
+                }
+                if (!filteredData.includes(elementItem)) {
+                    filteredData.push(elementItem);
+                }
+            }
         }
-    
-        if (AZ) {
-            filteredData.sort();
-        }
-    
-        if (Downloaded) {
-            filteredData.sort((a, b) => a.download_count > b.download_count ? -1 : (a.download_count < b.download_count) ? 1 : 0);
+
+        if (selectedDevices.length < 1) {
+            if (!filteredData.includes(elementItem)) {
+                filteredData.push(elementItem);
+            }
         }
     }
 
-    var availablePorts = document.getElementById("port-count")
-    availablePorts.textContent = filteredData.length + " Ports Available"
+    function processElementItem(elementItem) {
+        if (filteredData.includes(elementItem)) {
+            return;
+        }
+
+        elementItem.supported = [];
+        if (filterState.readyToRun || filterState.filesNeeded) {
+            if (filterState.readyToRun && elementItem.attr.rtr) {
+                checkElementItem(elementItem);
+            }
+
+            if (filterState.filesNeeded && !elementItem.attr.rtr) {
+                checkElementItem(elementItem);
+            }
+
+            if (selectedGenres.length > 0) {
+                const genres = elementItem.attr.genres;
+                let match = false;
+                for (let i = 0; i < genres.length; i++) {
+                    if (selectedGenres.includes(genres[i])) {
+                        match = true;
+                    }
+                }
+                if (match) {
+                    if (!filteredData.includes(elementItem)) {
+                        filteredData.push(elementItem);
+                    }
+                } else {
+                    //remove the port if it doesn't match the genre
+                    if (filteredData.includes(elementItem)) {
+                        filteredData.splice(filteredData.indexOf(elementItem), 1);
+                    }
+                }
+            }
+        }
+    }
+
+    if (filterState.searchQuery) {
+        const fuse = new Fuse(jsonData, {
+            includeScore: true,
+            isCaseSensitive: false,
+            shouldSort: true,
+            keys: ['attr.title'],
+        });
+        const result = fuse.search(filterState.searchQuery);
+        for (const element of result) {
+            processElementItem(element.item);
+        }
+    } else {
+        for (const elementItem of jsonData) {
+            processElementItem(elementItem);
+        }
+
+        if (filterState.Newest) {
+            filteredData.sort((a, b) => Date.parse(b.source.date_added) - Date.parse(a.source.date_added));
+        }
+
+        if (filterState.AZ) {
+            filteredData.sort((a, b) => a.attr.title.localeCompare(b.attr.title));
+        }
+
+        if (filterState.Downloaded) {
+            filteredData.sort((a, b) => b.download_count - a.download_count);
+        }
+    }
+
     displayCards(filteredData);
 }
 
