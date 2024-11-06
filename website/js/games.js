@@ -1,6 +1,6 @@
-let jsonData = null;
-let devices = null;
-let gameGenres = [];
+let allGames = [];
+let allDevices = {};
+let allGenres = [];
 
 const firmwareMap = {
     "ALL": "All Firmwares",
@@ -13,13 +13,13 @@ const firmwareMap = {
 };
 
 window.onload = async function() {
-    devices = await fetchDeviceList();
-    populateManufacturerDropdown();
+    allDevices = await fetchDevices();
+    allGames = await fetchGames();
+    allGenres = getGenres(allGames);
 
-    jsonData = await fetchData();
-    gameGenres = getGameGenres();
+    populateManufacturerDropdown(allDevices);
+    populateGenreDropdown(allGenres);
 
-    populateGenreDropdown();
     loadFilterState();
     filterCards();
 }
@@ -48,13 +48,13 @@ function createElement(tagName, props, children) {
     return element;
 }
 
-function getDeviceDetails(item) {
+function getDeviceDetails(game) {
     const deviceDetails = [];
-    for (const code of item.supported) {
-        for (const support of item.attr.avail) {
+    for (const code of game.supported) {
+        for (const support of game.attr.avail) {
             const [deviceCode, firmwareCode] = support.split(':');
             if (deviceCode === code) {
-                const deviceName = devices[deviceCode].name;
+                const deviceName = allDevices[deviceCode].name;
                 const firmwareName = firmwareMap[firmwareCode];
                 deviceDetails.push(deviceName + ': ' + firmwareName);
             }
@@ -63,13 +63,13 @@ function getDeviceDetails(item) {
     return deviceDetails;
 }
 
-function getImageUrl(item) {
-    const name = item.name.replace('.zip', '');
-    const imageName = item.attr.image.screenshot;
+function getImageUrl(game) {
+    const name = game.name.replace('.zip', '');
+    const imageName = game.attr.image.screenshot;
     if (imageName !== null) {
-        if (item.source.repo === 'main') {
+        if (game.source.repo === 'main') {
             return `https://raw.githubusercontent.com/PortsMaster/PortMaster-New/main/ports/${encodeURIComponent(name)}/${encodeURIComponent(imageName)}`;
-        } else if (item.source.repo === 'multiverse') {
+        } else if (game.source.repo === 'multiverse') {
             return `https://raw.githubusercontent.com/PortsMaster-MV/PortMaster-MV-New/main/ports/${encodeURIComponent(name)}/${encodeURIComponent(imageName)}`;
         }
     }
@@ -87,11 +87,11 @@ function getPorterUrl(porter) {
 
 // Function to create a card element for each JSON object
 // https://discord.gg/JxYBp9HTAY
-function createCard(item) {
-    const deviceDetails = getDeviceDetails(item);
-    const cardUrl = getCardUrl(item.name.replace('.zip', ''), deviceDetails);
-    const imageUrl = getImageUrl(item);
-    const desc = item.attr.desc_md || item.attr.desc;
+function createCard(game) {
+    const deviceDetails = getDeviceDetails(game);
+    const cardUrl = getCardUrl(game.name.replace('.zip', ''), deviceDetails);
+    const imageUrl = getImageUrl(game);
+    const desc = game.attr.desc_md || game.attr.desc;
 
     return createElement('div', { className: 'col' }, [
         createElement('div', { className: 'card h-100 shadow-sm' }, [
@@ -107,7 +107,7 @@ function createCard(item) {
                     createElement('h5', {
                         className: 'card-title link-body-emphasis',
                         style: 'padding-top: 20px',
-                    }, item.attr.title),
+                    }, game.attr.title),
                 ]),
                 createElement('p', {
                     className: 'card-text',
@@ -115,18 +115,18 @@ function createCard(item) {
                     innerHTML: new showdown.Converter().makeHtml(desc),
                 }),
                 createElement('p', null, [
-                    item.attr.rtr && createElement('span', { className: 'misc-item badge bg-secondary' }, 'Ready to Run'),
+                    game.attr.rtr && createElement('span', { className: 'misc-item badge bg-secondary' }, 'Ready to Run'),
                     ' ',
-                    item.attr.exp && createElement('span', { className: 'misc-item badge bg-secondary' }, 'Experimental'),
+                    game.attr.exp && createElement('span', { className: 'misc-item badge bg-secondary' }, 'Experimental'),
                     ' ',
-                    item.source.repo === "multiverse" && createElement('span', { className: 'misc-item badge bg-secondary' }, 'Multiverse'),
+                    game.source.repo === "multiverse" && createElement('span', { className: 'misc-item badge bg-secondary' }, 'Multiverse'),
                 ]),
                 createElement('p', {
                     className: 'card-text',
                     style: 'padding-top: 10px',
                 }, [
                     'Porter: ',
-                    ...item.attr.porter.reduce((children, porter, i) => {
+                    ...game.attr.porter.reduce((children, porter, i) => {
                         if (i > 0) {
                             children.push(', ');
                         }
@@ -144,10 +144,10 @@ function createCard(item) {
                 createElement('p', {
                     className: 'card-text text-body-secondary',
                     style: 'padding-top: 10px'
-                }, 'Added: ' + item.source.date_added),
+                }, 'Added: ' + game.source.date_added),
                 createElement('div', { className: 'd-flex justify-content-between align-items-center' }, [
                     createElement('small', { className: 'text-body-secondary' }, [
-                        `Downloads: ${item.download_count || 0}`,
+                        `Downloads: ${game.download_count || 0}`,
                     ]),
                     createElement('div', { className: 'btn-group' }, [
                         createElement('a', { href: cardUrl }, [
@@ -161,14 +161,14 @@ function createCard(item) {
 }
 
 // Function to iterate over the JSON data and display cards
-function displayCards(data) {
+function displayCards(games) {
     const availablePorts = document.getElementById('port-count')
-    availablePorts.textContent = `${data.length} Ports Available`;
+    availablePorts.textContent = `${games.length} Ports Available`;
 
     const cardsContainer = document.getElementById('cards-container');
     cardsContainer.innerHTML = ''; // Clear previous cards
-    for (const item of data) {
-        const card = createCard(item);
+    for (const game of games) {
+        const card = createCard(game);
         cardsContainer.appendChild(card);
     }
 }
@@ -207,11 +207,11 @@ function getFilterState() {
         genres: {}
     };
 
-    for (const device in devices){
-        filterState.devices[device] = document.getElementById(device)?.checked ?? false;
+    for (const deviceCode in allDevices){
+        filterState.devices[deviceCode] = document.getElementById(deviceCode)?.checked ?? false;
     }
 
-    for (const genre of gameGenres) {
+    for (const genre of allGenres) {
         filterState.genres[genre] = document.getElementById(genre)?.checked ?? false;
     }
 
@@ -239,7 +239,7 @@ function setFilterState(filterState) {
     }
 }
 
-function getFilteredData() {
+function getFilteredData(games) {
     const filterState = storeFilterState();
 
     const selectedDevices = Object.entries(filterState.devices).filter(([_, checked]) => checked).map(([value]) => value);
@@ -275,22 +275,22 @@ function getFilteredData() {
         return true;
     }
 
-    function sortData(data) {
+    function sortGames(games) {
         if (filterState.AZ) {
-            return [...data].sort((a, b) => a.attr.title.localeCompare(b.attr.title));
+            return [...games].sort((a, b) => a.attr.title.localeCompare(b.attr.title));
         } else if (filterState.Downloaded) {
-            return [...data].sort((a, b) => b.download_count - a.download_count);
+            return [...games].sort((a, b) => b.download_count - a.download_count);
         } else if (filterState.Newest) {
-            return [...data].sort((a, b) => Date.parse(b.source.date_added) - Date.parse(a.source.date_added));
+            return [...games].sort((a, b) => Date.parse(b.source.date_added) - Date.parse(a.source.date_added));
         } else {
-            return data;
+            return games;
         }
     }
 
-    const matchedData = jsonData.filter(matchFilter);
+    const filteredGames = games.filter(matchFilter);
 
     if (filterState.searchQuery) {
-        const fuse = new Fuse(matchedData, {
+        const fuse = new Fuse(filteredGames, {
             includeScore: true,
             isCaseSensitive: false,
             shouldSort: true,
@@ -299,30 +299,34 @@ function getFilteredData() {
         const results = fuse.search(filterState.searchQuery);
         return results.map(result => result.item);
     } else {
-        return sortData(matchedData);
+        return sortGames(filteredGames);
     }
 }
 
 // Function to filter the cards based on the search query
 function filterCards() {
-    displayCards(getFilteredData());
+    displayCards(getFilteredData(allGames));
 }
 
-function populateManufacturerDropdown() {
-    const manufacturers = [];
-    for (const device of Object.values(devices)) {
-        if (!manufacturers.includes(device.manufacturer)) {
-            manufacturers.push(device.manufacturer);
-        }
+function populateManufacturerDropdown(devices) {
+    const manufacturers = getManufacturers(devices);
+
+    function createDeviceItem(device) {
+        return createElement('li', { className: 'dropdown-item' }, [
+            createElement('input', {
+                id: device.device,
+                className: 'form-check-input',
+                style: 'margin-right: 10px;',
+                type: 'checkbox',
+                onchange: filterCards,
+            }),
+            createElement('label', { htmlFor: device.device }, device.name),
+        ])
     }
-    manufacturers.sort();
 
     const manufacturerDropdownButtons = document.getElementById("dropdown-buttons");
     for (const manufacturer of manufacturers) {
-        const manufacturerDropdown = createElement('ul', {
-            id: manufacturer,
-            className: "dropdown-menu",
-        })
+        const manufacturerDevices = Object.values(devices).filter(device => device.manufacturer === manufacturer);
 
         manufacturerDropdownButtons.appendChild(createElement('div', {
             className: 'btn-group flex-wrap',
@@ -333,30 +337,18 @@ function populateManufacturerDropdown() {
                 ariaExpanded: 'false',
                 'data-bs-toggle': 'dropdown',
             }, manufacturer),
-            manufacturerDropdown,
-        ]));
-    }
-
-    for (const [deviceCode, device] of Object.entries(devices)) {
-        const manufacturerDropdown = document.getElementById(device.manufacturer);
-
-        manufacturerDropdown.appendChild(createElement('li', { className: 'dropdown-item' }, [
-            createElement('input', {
-                id: deviceCode,
-                className: 'form-check-input',
-                style: 'margin-right: 10px;',
-                type: 'checkbox',
-                onchange: filterCards,
-            }),
-            createElement('label', { htmlFor: deviceCode }, device.name),
+            createElement('ul', {
+                id: manufacturer,
+                className: "dropdown-menu",
+            }, manufacturerDevices.map(createDeviceItem)),
         ]));
     }
 }
 
-function populateGenreDropdown() {
+function populateGenreDropdown(genres) {
     const genreDropdown = createElement('ul', { className: 'dropdown-menu' });
 
-    for (const genre of gameGenres) {
+    for (const genre of genres) {
         genreDropdown.appendChild(createElement('li', { className: 'dropdown-item' }, [
             createElement('input', {
                 type: "checkbox",
@@ -395,38 +387,48 @@ async function fetchJson(url) {
     return portsResponse.json();
 }
 
-async function fetchDeviceList() {
+async function fetchDevices() {
     try {
         return await fetchJson('https://raw.githubusercontent.com/PortsMaster/PortMaster-Info/main/devices.json'); // Replace 'YOUR_JSON_URL_HERE' with the actual URL of your JSON data.
     } catch (error) {
         console.error('Error fetching JSON data:', error);
-        return null;
+        return {};
     }
 }
 
-async function fetchData() {
+async function fetchGames() {
     try {
-        const portsData = await fetchJson('https://raw.githubusercontent.com/PortsMaster/PortMaster-Info/main/ports.json'); // Replace 'YOUR_JSON_URL_HERE' with the actual URL of your JSON data.
-        const statsData = await fetchJson('https://raw.githubusercontent.com/PortsMaster/PortMaster-Info/main/port_stats.json'); // Replace 'YOUR_JSON_URL_HERE' with the actual URL of your JSON data.
+        const [portsData, statsData] = await Promise.all([
+            fetchJson('https://raw.githubusercontent.com/PortsMaster/PortMaster-Info/main/ports.json'), // Replace 'YOUR_JSON_URL_HERE' with the actual URL of your JSON data.
+            fetchJson('https://raw.githubusercontent.com/PortsMaster/PortMaster-Info/main/port_stats.json'), // Replace 'YOUR_JSON_URL_HERE' with the actual URL of your JSON data.
+        ]);
 
-        const jsonData = Object.values(portsData.ports);
-        for (const port of jsonData) {
-            port.download_count = statsData.ports[port.name];
+        const games = Object.values(portsData.ports);
+        for (const game of games) {
+            game.download_count = statsData.ports[game.name];
         }
 
-        return jsonData;
+        return games;
     } catch (error) {
         console.error('Error fetching JSON data:', error);
-        return null;
+        return [];
     }
 }
 
-function getGameGenres() {
+function getManufacturers(devices) {
+    const manufacturersSet = new Set();
+    for (const device of Object.values(devices)) {
+        manufacturersSet.add(device.manufacturer);
+    }
+    return [...manufacturersSet].sort();
+}
+
+function getGenres(games) {
     const genresSet = new Set();
-    Object.values(jsonData).forEach(game => {
-        game.attr.genres.forEach(genre => {
+    for (const game of games) {
+        for (const genre of game.attr.genres) {
             genresSet.add(genre);
-        });
-    });
-    return [...genresSet];
+        }
+    }
+    return [...genresSet].sort();
 }
