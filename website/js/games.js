@@ -119,7 +119,7 @@ function createCard(item) {
                     ' ',
                     item.attr.exp && createElement('span', { className: 'misc-item badge bg-secondary' }, 'Experimental'),
                     ' ',
-                    item.source.repo == "multiverse" && createElement('span', { className: 'misc-item badge bg-secondary' }, 'Multiverse'),
+                    item.source.repo === "multiverse" && createElement('span', { className: 'misc-item badge bg-secondary' }, 'Multiverse'),
                 ]),
                 createElement('p', {
                     className: 'card-text',
@@ -176,28 +176,16 @@ function displayCards(data) {
 // Function to load a saved filter state from the session storage
 function loadFilterState() {
     const savedFilterState = sessionStorage.getItem('filterState');
-
     if (savedFilterState) {
         const filterState = JSON.parse(savedFilterState);
-        document.getElementById('ready-to-run').checked = filterState.readyToRun;
-        document.getElementById('files-needed').checked = filterState.filesNeeded;
-        document.getElementById('sortNewest').checked = filterState.Newest;
-        document.getElementById('sortDownloaded').checked = filterState.Downloaded;
-        document.getElementById('sortAZ').checked = filterState.AZ;
-        document.getElementById('search').value = filterState.searchQuery;
-        for (const device in filterState.devices) {
-            const deviceElement = document.getElementById(device);
-            if (deviceElement) {
-                deviceElement.checked = filterState.devices[device];
-            }
-        }
-        for (const genre in filterState.genres) {
-            const genreElement = document.getElementById(genre);
-            if (genreElement) {
-                genreElement.checked = filterState.genres[genre];
-            }
-        }
+        setFilterState(filterState);
     }
+}
+
+function storeFilterState() {
+    const filterState = getFilterState();
+    sessionStorage.setItem('filterState', JSON.stringify(filterState));
+    return filterState;
 }
 
 function getFilterState() {
@@ -230,122 +218,94 @@ function getFilterState() {
     return filterState;
 }
 
-// Function to filter the cards based on the search query
-function filterCards() {
-    const filterState = getFilterState();
+function setFilterState(filterState) {
+    document.getElementById('ready-to-run').checked = filterState.readyToRun;
+    document.getElementById('files-needed').checked = filterState.filesNeeded;
+    document.getElementById('sortNewest').checked = filterState.Newest;
+    document.getElementById('sortDownloaded').checked = filterState.Downloaded;
+    document.getElementById('sortAZ').checked = filterState.AZ;
+    document.getElementById('search').value = filterState.searchQuery;
+    for (const device in filterState.devices) {
+        const deviceElement = document.getElementById(device);
+        if (deviceElement) {
+            deviceElement.checked = filterState.devices[device];
+        }
+    }
+    for (const genre in filterState.genres) {
+        const genreElement = document.getElementById(genre);
+        if (genreElement) {
+            genreElement.checked = filterState.genres[genre];
+        }
+    }
+}
 
-    sessionStorage.setItem('filterState', JSON.stringify(filterState));
+function getFilteredData() {
+    const filterState = storeFilterState();
 
     const selectedDevices = Object.entries(filterState.devices).filter(([_, checked]) => checked).map(([value]) => value);
     const selectedGenres = Object.entries(filterState.genres).filter(([_, checked]) => checked).map(([value]) => value);
 
-    const filteredData = []
-
-    function checkElementItem(elementItem) {
-        if (elementItem.attr.avail.length < 1) {
-            if (!filteredData.includes(elementItem)) {
-                if (!elementItem.supported.includes('ALL')) {
-                    elementItem.supported.push('ALL');
-                }
-                filteredData.push(elementItem);
+    function matchFilter(game) {
+        if (game.attr.rtr) {
+            if (!filterState.readyToRun) {
+                return false;
+            }
+        } else {
+            if (!filterState.filesNeeded) {
+                return false;
             }
         }
 
-        for (const item of elementItem.attr.avail) {
-            const deviceCode = item.split(':')[0];
-            if (selectedDevices.includes(deviceCode)) {
-                if (!elementItem.supported.includes(deviceCode)) {
-                    elementItem.supported.push(deviceCode);
-                }
-                if (!filteredData.includes(elementItem)) {
-                    filteredData.push(elementItem);
-                }
-            }
-
-            if (deviceCode === 'ALL') {
-                if (!elementItem.supported.includes(deviceCode)) {
-                    elementItem.supported.push(deviceCode);
-                }
-                if (!filteredData.includes(elementItem)) {
-                    filteredData.push(elementItem);
-                }
+        if (selectedGenres.length > 0) {
+            if (!game.attr.genres.some(genre => selectedGenres.includes(genre))) {
+                return false;
             }
         }
 
-        if (selectedDevices.length < 1) {
-            if (!filteredData.includes(elementItem)) {
-                filteredData.push(elementItem);
+        game.supported = [];
+
+        if (game.attr.avail.length !== 0 && selectedDevices.length !== 0) {
+            const deviceCodes = game.attr.avail.map(item => item.split(':')[0]);
+            game.supported = deviceCodes.filter(deviceCode => selectedDevices.includes(deviceCode));
+            if (game.supported.length === 0) {
+                return false;
             }
+        }
+
+        return true;
+    }
+
+    function sortData(data) {
+        if (filterState.AZ) {
+            return [...data].sort((a, b) => a.attr.title.localeCompare(b.attr.title));
+        } else if (filterState.Downloaded) {
+            return [...data].sort((a, b) => b.download_count - a.download_count);
+        } else if (filterState.Newest) {
+            return [...data].sort((a, b) => Date.parse(b.source.date_added) - Date.parse(a.source.date_added));
+        } else {
+            return data;
         }
     }
 
-    function processElementItem(elementItem) {
-        if (filteredData.includes(elementItem)) {
-            return;
-        }
-
-        elementItem.supported = [];
-        if (filterState.readyToRun || filterState.filesNeeded) {
-            if (filterState.readyToRun && elementItem.attr.rtr) {
-                checkElementItem(elementItem);
-            }
-
-            if (filterState.filesNeeded && !elementItem.attr.rtr) {
-                checkElementItem(elementItem);
-            }
-
-            if (selectedGenres.length > 0) {
-                const genres = elementItem.attr.genres;
-                let match = false;
-                for (let i = 0; i < genres.length; i++) {
-                    if (selectedGenres.includes(genres[i])) {
-                        match = true;
-                    }
-                }
-                if (match) {
-                    if (!filteredData.includes(elementItem)) {
-                        filteredData.push(elementItem);
-                    }
-                } else {
-                    //remove the port if it doesn't match the genre
-                    if (filteredData.includes(elementItem)) {
-                        filteredData.splice(filteredData.indexOf(elementItem), 1);
-                    }
-                }
-            }
-        }
-    }
+    const matchedData = jsonData.filter(matchFilter);
 
     if (filterState.searchQuery) {
-        const fuse = new Fuse(jsonData, {
+        const fuse = new Fuse(matchedData, {
             includeScore: true,
             isCaseSensitive: false,
             shouldSort: true,
             keys: ['attr.title'],
         });
-        const result = fuse.search(filterState.searchQuery);
-        for (const element of result) {
-            processElementItem(element.item);
-        }
+        const results = fuse.search(filterState.searchQuery);
+        return results.map(result => result.item);
     } else {
-        for (const elementItem of jsonData) {
-            processElementItem(elementItem);
-        }
-
-        if (filterState.Newest) {
-            filteredData.sort((a, b) => Date.parse(b.source.date_added) - Date.parse(a.source.date_added));
-        }
-
-        if (filterState.AZ) {
-            filteredData.sort((a, b) => a.attr.title.localeCompare(b.attr.title));
-        }
-
-        if (filterState.Downloaded) {
-            filteredData.sort((a, b) => b.download_count - a.download_count);
-        }
+        return sortData(matchedData);
     }
+}
 
-    displayCards(filteredData);
+// Function to filter the cards based on the search query
+function filterCards() {
+    displayCards(getFilteredData());
 }
 
 function populateManufacturerDropdown() {
