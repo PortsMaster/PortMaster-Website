@@ -1,6 +1,4 @@
-let allPorts = [];
 let allDevices = {};
-let filterForm = null;
 
 const firmwareMap = {
     "ALL": "All Firmwares",
@@ -14,9 +12,9 @@ const firmwareMap = {
 
 window.onload = async function() {
     allDevices = await fetchDevices();
-    allPorts = await fetchPorts();
+    const ports = await fetchPorts();
 
-    const genres = getGenres(allPorts);
+    const genres = getGenres(ports);
 
     displayDropdowns({
         devices: allDevices,
@@ -24,11 +22,17 @@ window.onload = async function() {
         onchange: filterCards,
     });
 
-    filterForm = new FilterForm(allDevices, genres);
+    const filterForm = new FilterForm(allDevices, genres);
     filterForm.loadStorage();
-    console.log(filterForm.getState());
 
+    function filterCards() {
+        const filterState = filterForm.saveStorage();
+        displayCards(getFilteredData(ports, filterState));
+    }
     filterCards();
+
+    // Export global for static html filters
+    window.filterCards = filterCards;
 }
 
 function createElement(tagName, props, children) {
@@ -322,12 +326,6 @@ function getFilteredData(ports, filterState) {
     } else {
         return sortPorts(filteredPorts);
     }
-}
-
-// Function to filter the cards based on the search query
-function filterCards() {
-    const filterState = filterForm.saveStorage();
-    displayCards(getFilteredData(allPorts, filterState));
 }
 
 function createManufacturerButton({ manufacturer, manufacturerDevices, onchange }) {
