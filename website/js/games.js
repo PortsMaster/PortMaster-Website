@@ -1,4 +1,4 @@
-let allGames = [];
+let allPorts = [];
 let allDevices = {};
 let allGenres = [];
 
@@ -14,8 +14,8 @@ const firmwareMap = {
 
 window.onload = async function() {
     allDevices = await fetchDevices();
-    allGames = await fetchGames();
-    allGenres = getGenres(allGames);
+    allPorts = await fetchPorts();
+    allGenres = getGenres(allPorts);
 
     displayDropdowns({
         devices: allDevices,
@@ -51,10 +51,10 @@ function createElement(tagName, props, children) {
     return element;
 }
 
-function getDeviceDetails(game) {
+function getDeviceDetails(port) {
     const deviceDetails = [];
-    for (const code of game.supported) {
-        for (const support of game.attr.avail) {
+    for (const code of port.supported) {
+        for (const support of port.attr.avail) {
             const [deviceCode, firmwareCode] = support.split(':');
             if (deviceCode === code) {
                 const deviceName = allDevices[deviceCode].name;
@@ -66,13 +66,13 @@ function getDeviceDetails(game) {
     return deviceDetails;
 }
 
-function getImageUrl(game) {
-    const name = game.name.replace('.zip', '');
-    const imageName = game.attr.image.screenshot;
+function getImageUrl(port) {
+    const name = port.name.replace('.zip', '');
+    const imageName = port.attr.image.screenshot;
     if (imageName !== null) {
-        if (game.source.repo === 'main') {
+        if (port.source.repo === 'main') {
             return `https://raw.githubusercontent.com/PortsMaster/PortMaster-New/main/ports/${encodeURIComponent(name)}/${encodeURIComponent(imageName)}`;
-        } else if (game.source.repo === 'multiverse') {
+        } else if (port.source.repo === 'multiverse') {
             return `https://raw.githubusercontent.com/PortsMaster-MV/PortMaster-MV-New/main/ports/${encodeURIComponent(name)}/${encodeURIComponent(imageName)}`;
         }
     }
@@ -90,11 +90,11 @@ function getPorterUrl(porter) {
 
 // Function to create a card element for each JSON object
 // https://discord.gg/JxYBp9HTAY
-function createCard(game) {
-    const deviceDetails = getDeviceDetails(game);
-    const cardUrl = getCardUrl(game.name.replace('.zip', ''), deviceDetails);
-    const imageUrl = getImageUrl(game);
-    const desc = game.attr.desc_md || game.attr.desc;
+function createCard(port) {
+    const deviceDetails = getDeviceDetails(port);
+    const cardUrl = getCardUrl(port.name.replace('.zip', ''), deviceDetails);
+    const imageUrl = getImageUrl(port);
+    const desc = port.attr.desc_md || port.attr.desc;
 
     const card = createElement('div', { className: 'col' }, [
         createElement('div', { className: 'card h-100 shadow-sm' }, [
@@ -110,24 +110,24 @@ function createCard(game) {
                     createElement('h5', {
                         className: 'card-title link-body-emphasis mt-3',
                         style: 'margin-top: 1rem',
-                    }, game.attr.title),
+                    }, port.attr.title),
                 ]),
                 createElement('p', {
                     className: 'card-text mt-3',
                     innerHTML: new showdown.Converter().makeHtml(desc),
                 }),
                 createElement('p', null, [
-                    game.attr.rtr && createElement('span', { className: 'misc-item badge bg-secondary' }, 'Ready to Run'),
+                    port.attr.rtr && createElement('span', { className: 'misc-item badge bg-secondary' }, 'Ready to Run'),
                     ' ',
-                    game.attr.exp && createElement('span', { className: 'misc-item badge bg-secondary' }, 'Experimental'),
+                    port.attr.exp && createElement('span', { className: 'misc-item badge bg-secondary' }, 'Experimental'),
                     ' ',
-                    game.source.repo === "multiverse" && createElement('span', { className: 'misc-item badge bg-secondary' }, 'Multiverse'),
+                    port.source.repo === "multiverse" && createElement('span', { className: 'misc-item badge bg-secondary' }, 'Multiverse'),
                 ]),
                 createElement('p', {
                     className: 'card-text mt-3',
                 }, [
                     'Porter: ',
-                    ...game.attr.porter.reduce((children, porter, i) => {
+                    ...port.attr.porter.reduce((children, porter, i) => {
                         if (i > 0) {
                             children.push(', ');
                         }
@@ -138,10 +138,10 @@ function createCard(game) {
                 createElement('p', { className: 'card-text mt-3 supported' }),
                 createElement('p', {
                     className: 'card-text text-body-secondary mt-3',
-                }, 'Added: ' + game.source.date_added),
+                }, 'Added: ' + port.source.date_added),
                 createElement('div', { className: 'd-flex justify-content-between align-items-center' }, [
                     createElement('small', { className: 'text-body-secondary' }, [
-                        `Downloads: ${game.download_count || 0}`,
+                        `Downloads: ${port.download_count || 0}`,
                     ]),
                     createElement('div', { className: 'btn-group' }, [
                         createElement('a', { href: cardUrl }, [
@@ -153,13 +153,13 @@ function createCard(game) {
         ]),
     ]);
 
-    updateCard(card, game);
+    updateCard(card, port);
 
     return card;
 }
 
-function updateCard(card, game) {
-    const deviceDetails = getDeviceDetails(game);
+function updateCard(card, port) {
+    const deviceDetails = getDeviceDetails(port);
 
     const supported = card.querySelector('.supported');
     if (deviceDetails.length > 0) {
@@ -172,28 +172,28 @@ function updateCard(card, game) {
     }
 }
 
-const cardsMap = new Map();
-function renderCard(game) {
-    if (cardsMap.has(game.name)) {
-        const card = cardsMap.get(game.name);
-        updateCard(card, game);
+const portCardsMap = new Map();
+function renderCard(port) {
+    if (portCardsMap.has(port.name)) {
+        const card = portCardsMap.get(port.name);
+        updateCard(card, port);
         return card;
     } else {
-        const card = createCard(game);
-        cardsMap.set(game.name, card);
+        const card = createCard(port);
+        portCardsMap.set(port.name, card);
         return card;
     }
 }
 
 // Function to iterate over the JSON data and display cards
-function displayCards(games) {
+function displayCards(ports) {
     const availablePorts = document.getElementById('port-count')
-    availablePorts.textContent = `${games.length} Ports Available`;
+    availablePorts.textContent = `${ports.length} Ports Available`;
 
     const cardsContainer = document.getElementById('cards-container');
     cardsContainer.replaceChildren();
-    for (const game of games) {
-        cardsContainer.appendChild(renderCard(game));
+    for (const port of ports) {
+        cardsContainer.appendChild(renderCard(port));
     }
 }
 
@@ -263,14 +263,14 @@ function setFilterState(filterState) {
     }
 }
 
-function getFilteredData(games) {
+function getFilteredData(ports) {
     const filterState = storeFilterState();
 
     const isSelectedGenres = Object.values(filterState.genres).some(Boolean);
     const isSelectedDevices = Object.values(filterState.devices).some(Boolean);
 
-    function matchFilter(game) {
-        if (game.attr.rtr) {
+    function matchFilter(port) {
+        if (port.attr.rtr) {
             if (!filterState.readyToRun) {
                 return false;
             }
@@ -281,17 +281,17 @@ function getFilteredData(games) {
         }
 
         if (isSelectedGenres) {
-            if (!game.attr.genres.some(genre => filterState.genres[genre])) {
+            if (!port.attr.genres.some(genre => filterState.genres[genre])) {
                 return false;
             }
         }
 
-        game.supported = [];
+        port.supported = [];
 
-        if (game.attr.avail.length !== 0 && isSelectedDevices) {
-            const deviceCodes = game.attr.avail.map(item => item.split(':')[0]);
-            game.supported = deviceCodes.filter(deviceCode => filterState.devices[deviceCode]);
-            if (game.supported.length === 0) {
+        if (port.attr.avail.length !== 0 && isSelectedDevices) {
+            const deviceCodes = port.attr.avail.map(item => item.split(':')[0]);
+            port.supported = deviceCodes.filter(deviceCode => filterState.devices[deviceCode]);
+            if (port.supported.length === 0) {
                 return false;
             }
         }
@@ -299,22 +299,22 @@ function getFilteredData(games) {
         return true;
     }
 
-    function sortGames(games) {
+    function sortPorts(ports) {
         if (filterState.AZ) {
-            return [...games].sort((a, b) => a.attr.title.localeCompare(b.attr.title));
+            return [...ports].sort((a, b) => a.attr.title.localeCompare(b.attr.title));
         } else if (filterState.Downloaded) {
-            return [...games].sort((a, b) => b.download_count - a.download_count);
+            return [...ports].sort((a, b) => b.download_count - a.download_count);
         } else if (filterState.Newest) {
-            return [...games].sort((a, b) => Date.parse(b.source.date_added) - Date.parse(a.source.date_added));
+            return [...ports].sort((a, b) => Date.parse(b.source.date_added) - Date.parse(a.source.date_added));
         } else {
-            return games;
+            return ports;
         }
     }
 
-    const filteredGames = games.filter(matchFilter);
+    const filteredPorts = ports.filter(matchFilter);
 
     if (filterState.searchQuery) {
-        const fuse = new Fuse(filteredGames, {
+        const fuse = new Fuse(filteredPorts, {
             threshold: 0.2,
             ignoreLocation: true,
             keys: [
@@ -325,13 +325,13 @@ function getFilteredData(games) {
         const results = fuse.search(filterState.searchQuery);
         return results.map(result => result.item);
     } else {
-        return sortGames(filteredGames);
+        return sortPorts(filteredPorts);
     }
 }
 
 // Function to filter the cards based on the search query
 function filterCards() {
-    displayCards(getFilteredData(allGames));
+    displayCards(getFilteredData(allPorts));
 }
 
 function createManufacturerButton({ manufacturer, manufacturerDevices, onchange }) {
@@ -353,7 +353,7 @@ function createManufacturerButton({ manufacturer, manufacturerDevices, onchange 
                 className: 'form-check-input',
                 style: 'margin-right: 10px;',
                 type: 'checkbox',
-                onchange: filterCards,
+                onchange,
             }),
             createElement('label', { htmlFor: device.device }, device.name),
         ]))),
@@ -418,19 +418,19 @@ async function fetchDevices() {
     }
 }
 
-async function fetchGames() {
+async function fetchPorts() {
     try {
         const [portsData, statsData] = await Promise.all([
             fetchJson('https://raw.githubusercontent.com/PortsMaster/PortMaster-Info/main/ports.json'), // Replace 'YOUR_JSON_URL_HERE' with the actual URL of your JSON data.
             fetchJson('https://raw.githubusercontent.com/PortsMaster/PortMaster-Info/main/port_stats.json'), // Replace 'YOUR_JSON_URL_HERE' with the actual URL of your JSON data.
         ]);
 
-        const games = Object.values(portsData.ports);
-        for (const game of games) {
-            game.download_count = statsData.ports[game.name];
+        const ports = Object.values(portsData.ports);
+        for (const port of ports) {
+            port.download_count = statsData.ports[port.name];
         }
 
-        return games;
+        return ports;
     } catch (error) {
         console.error('Error fetching JSON data:', error);
         return [];
@@ -445,10 +445,10 @@ function getManufacturers(devices) {
     return [...manufacturersSet].sort();
 }
 
-function getGenres(games) {
+function getGenres(ports) {
     const genresSet = new Set();
-    for (const game of games) {
-        for (const genre of game.attr.genres) {
+    for (const port of ports) {
+        for (const genre of port.attr.genres) {
             genresSet.add(genre);
         }
     }
