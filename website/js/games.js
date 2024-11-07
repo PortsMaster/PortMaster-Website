@@ -1,5 +1,3 @@
-let allDevices = {};
-
 const firmwareMap = {
     "ALL": "All Firmwares",
     "jelos": "JELOS",
@@ -11,28 +9,25 @@ const firmwareMap = {
 };
 
 window.onload = async function() {
-    allDevices = await fetchDevices();
+    const devices = await fetchDevices();
     const ports = await fetchPorts();
 
     const genres = getGenres(ports);
 
-    displayDropdowns({
-        devices: allDevices,
-        genres,
-        onchange: filterCards,
-    });
+    displayDropdowns({ devices, genres, onchange });
 
-    const filterForm = new FilterForm(allDevices, genres);
+    const filterForm = new FilterForm(devices, genres);
     filterForm.loadStorage();
 
-    function filterCards() {
+    function onchange() {
         const filterState = filterForm.saveStorage();
-        displayCards(getFilteredData(ports, filterState));
+        const selectedDevices = getSelectedDevices(devices, filterState);
+        displayCards(getFilteredData(ports, filterState), selectedDevices);
     }
-    filterCards();
+    onchange();
 
     // Export global for static html filters
-    window.filterCards = filterCards;
+    window.filterCards = onchange;
 }
 
 function createElement(tagName, props, children) {
@@ -57,21 +52,6 @@ function createElement(tagName, props, children) {
     }
 
     return element;
-}
-
-function getDeviceDetails(port) {
-    const deviceDetails = [];
-    for (const code of port.supported) {
-        for (const support of port.attr.avail) {
-            const [deviceCode, firmwareCode] = support.split(':');
-            if (deviceCode === code) {
-                const deviceName = allDevices[deviceCode].name;
-                const firmwareName = firmwareMap[firmwareCode];
-                deviceDetails.push(deviceName + ': ' + firmwareName);
-            }
-        }
-    }
-    return deviceDetails;
 }
 
 function getImageUrl(port) {
@@ -99,22 +79,21 @@ function getPorterUrl(porter) {
 // Function to create a card element for each JSON object
 // https://discord.gg/JxYBp9HTAY
 function createCard(port) {
-    const deviceDetails = getDeviceDetails(port);
-    const cardUrl = getCardUrl(port.name.replace('.zip', ''), deviceDetails);
+    const cardUrl = getCardUrl(port.name.replace('.zip', ''));
     const imageUrl = getImageUrl(port);
     const desc = port.attr.desc_md || port.attr.desc;
 
-    const card = createElement('div', { className: 'col' }, [
+    return createElement('div', { className: 'col' }, [
         createElement('div', { className: 'card h-100 shadow-sm' }, [
             createElement('div', { className: 'card-body' }, [
-                createElement('a', { href: cardUrl }, [
+                createElement('a', { href: cardUrl, className: 'card-link' }, [
                     createElement('img', {
                         src: imageUrl,
                         className: 'bd-placeholder-img card-img-top',
                         loading: 'lazy',
                     }),
                 ]),
-                createElement('a', { href: cardUrl, className: 'text-decoration-none' }, [
+                createElement('a', { href: cardUrl, className: 'card-link text-decoration-none' }, [
                     createElement('h5', {
                         className: 'card-title link-body-emphasis mt-3',
                         style: 'margin-top: 1rem',
@@ -152,7 +131,7 @@ function createCard(port) {
                         `Downloads: ${port.download_count || 0}`,
                     ]),
                     createElement('div', { className: 'btn-group' }, [
-                        createElement('a', { href: cardUrl }, [
+                        createElement('a', { href: cardUrl, className: 'card-link' }, [
                             createElement('button', { type: 'button', className: 'btn btn-sm btn-outline-primary' }, 'Details'),
                         ]),
                     ]),
@@ -160,14 +139,21 @@ function createCard(port) {
             ]),
         ]),
     ]);
-
-    updateCard(card, port);
-
-    return card;
 }
 
-function updateCard(card, port) {
-    const deviceDetails = getDeviceDetails(port);
+function updateCard(card, port, selectedDevices) {
+    const deviceDetails = port.attr.avail.map(support => {
+        const [deviceCode, firmwareCode] = support.split(':');
+        const device = selectedDevices[deviceCode];
+        if (device) {
+            return `${device.name}: ${firmwareMap[firmwareCode]}`;
+        }
+    }).filter(Boolean);
+
+    const cardUrl = getCardUrl(port.name.replace('.zip', ''), deviceDetails);
+    for (const cardLink of card.querySelectorAll('.card-link')) {
+        cardLink.href = cardUrl;
+    }
 
     const supported = card.querySelector('.supported');
     if (deviceDetails.length > 0) {
@@ -183,9 +169,7 @@ function updateCard(card, port) {
 const portCardsMap = new Map();
 function renderCard(port) {
     if (portCardsMap.has(port.name)) {
-        const card = portCardsMap.get(port.name);
-        updateCard(card, port);
-        return card;
+        return portCardsMap.get(port.name);
     } else {
         const card = createCard(port);
         portCardsMap.set(port.name, card);
@@ -194,14 +178,16 @@ function renderCard(port) {
 }
 
 // Function to iterate over the JSON data and display cards
-function displayCards(ports) {
+function displayCards(ports, selectedDevices) {
     const availablePorts = document.getElementById('port-count')
     availablePorts.textContent = `${ports.length} Ports Available`;
 
     const cardsContainer = document.getElementById('cards-container');
     cardsContainer.replaceChildren();
     for (const port of ports) {
-        cardsContainer.appendChild(renderCard(port));
+        const card = renderCard(port);
+        updateCard(card, port, selectedDevices);
+        cardsContainer.appendChild(card);
     }
 }
 
@@ -219,7 +205,7 @@ class FilterForm {
         };
     }
 
-    getState() {
+    getElementsState() {
         return {
             searchQuery: this.elements.searchQuery.value.trim(),
             readyToRun: this.elements.readyToRun.checked,
@@ -232,36 +218,48 @@ class FilterForm {
         };
     }
 
-    setState(filterState) {
-        this.elements.searchQuery.value = filterState.searchQuery;
-        this.elements.readyToRun.checked = filterState.readyToRun;
-        this.elements.filesNeeded.checked = filterState.filesNeeded;
-        this.elements.Newest.checked = filterState.Newest;
-        this.elements.Downloaded.checked = filterState.Downloaded;
-        this.elements.AZ.checked = filterState.AZ;
+    setElementsState(state) {
+        this.elements.searchQuery.value = state.searchQuery;
+        this.elements.readyToRun.checked = state.readyToRun;
+        this.elements.filesNeeded.checked = state.filesNeeded;
+        this.elements.Newest.checked = state.Newest;
+        this.elements.Downloaded.checked = state.Downloaded;
+        this.elements.AZ.checked = state.AZ;
 
         for (const [device, element] of this.elements.devices) {
-            element.checked = filterState.devices[device] ?? false;
+            element.checked = state.devices[device] ?? false;
         }
 
         for (const [genre, element] of this.elements.genres) {
-            element.checked = filterState.genres[genre] ?? false;
+            element.checked = state.genres[genre] ?? false;
         }
     }
 
     loadStorage() {
         const jsonState = sessionStorage.getItem('filterState');
         if (jsonState) {
-            const filterState = JSON.parse(jsonState);
-            this.setState(filterState);
+            const state = JSON.parse(jsonState);
+            this.setElementsState(state);
         }
     }
 
     saveStorage() {
-        const state = this.getState();
+        const state = this.getElementsState();
         sessionStorage.setItem('filterState', JSON.stringify(state));
         return state;
     }
+}
+
+function getSelectedDevices(devices, filterState) {
+    const selectedDevices = {};
+
+    for (const [deviceCode, checked] of Object.entries(filterState.devices)) {
+        if (checked) {
+            selectedDevices[deviceCode] = devices[deviceCode];
+        }
+    }
+
+    return selectedDevices;
 }
 
 function getFilteredData(ports, filterState) {
