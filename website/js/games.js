@@ -93,7 +93,7 @@ function createCard(game) {
     const imageUrl = getImageUrl(game);
     const desc = game.attr.desc_md || game.attr.desc;
 
-    return createElement('div', { className: 'col' }, [
+    const card = createElement('div', { className: 'col' }, [
         createElement('div', { className: 'card h-100 shadow-sm' }, [
             createElement('div', { className: 'card-body' }, [
                 createElement('a', { href: cardUrl }, [
@@ -105,13 +105,12 @@ function createCard(game) {
                 ]),
                 createElement('a', { href: cardUrl, className: 'text-decoration-none' }, [
                     createElement('h5', {
-                        className: 'card-title link-body-emphasis',
-                        style: 'padding-top: 20px',
+                        className: 'card-title link-body-emphasis mt-3',
+                        style: 'margin-top: 1rem',
                     }, game.attr.title),
                 ]),
                 createElement('p', {
-                    className: 'card-text',
-                    style: 'padding-top: 10px',
+                    className: 'card-text mt-3',
                     innerHTML: new showdown.Converter().makeHtml(desc),
                 }),
                 createElement('p', null, [
@@ -122,8 +121,7 @@ function createCard(game) {
                     game.source.repo === "multiverse" && createElement('span', { className: 'misc-item badge bg-secondary' }, 'Multiverse'),
                 ]),
                 createElement('p', {
-                    className: 'card-text',
-                    style: 'padding-top: 10px',
+                    className: 'card-text mt-3',
                 }, [
                     'Porter: ',
                     ...game.attr.porter.reduce((children, porter, i) => {
@@ -134,16 +132,9 @@ function createCard(game) {
                         return children;
                     }, []),
                 ]),
-                deviceDetails.length > 0 && createElement('p', {
-                    className: 'card-text',
-                    style: 'padding-top: 10px',
-                }, [
-                    'Supported Devices: ',
-                    ...deviceDetails.map((deviceDetail) => createElement('div', null, deviceDetail)),
-                ]),
+                createElement('p', { className: 'card-text mt-3 supported' }),
                 createElement('p', {
-                    className: 'card-text text-body-secondary',
-                    style: 'padding-top: 10px'
+                    className: 'card-text text-body-secondary mt-3',
                 }, 'Added: ' + game.source.date_added),
                 createElement('div', { className: 'd-flex justify-content-between align-items-center' }, [
                     createElement('small', { className: 'text-body-secondary' }, [
@@ -158,6 +149,37 @@ function createCard(game) {
             ]),
         ]),
     ]);
+
+    updateCard(card, game);
+
+    return card;
+}
+
+function updateCard(card, game) {
+    const deviceDetails = getDeviceDetails(game);
+
+    const supported = card.querySelector('.supported');
+    if (deviceDetails.length > 0) {
+        supported.replaceChildren(
+            'Supported Devices: ',
+            ...deviceDetails.map((deviceDetail) => createElement('div', null, deviceDetail)),
+        );
+    } else {
+        supported.replaceChildren();
+    }
+}
+
+const cardsMap = new Map();
+function renderCard(game) {
+    if (cardsMap.has(game.name)) {
+        const card = cardsMap.get(game.name);
+        updateCard(card, game);
+        return card;
+    } else {
+        const card = createCard(game);
+        cardsMap.set(game.name, card);
+        return card;
+    }
 }
 
 // Function to iterate over the JSON data and display cards
@@ -166,10 +188,9 @@ function displayCards(games) {
     availablePorts.textContent = `${games.length} Ports Available`;
 
     const cardsContainer = document.getElementById('cards-container');
-    cardsContainer.innerHTML = ''; // Clear previous cards
+    cardsContainer.replaceChildren();
     for (const game of games) {
-        const card = createCard(game);
-        cardsContainer.appendChild(card);
+        cardsContainer.appendChild(renderCard(game));
     }
 }
 
