@@ -11,12 +11,10 @@ const firmwareMap = {
 window.onload = async function() {
     const devices = await fetchDevices();
     const ports = await fetchPorts();
-
     const genres = getGenres(ports);
 
-    displayDropdowns({ devices, genres, onchange });
-
-    const filterForm = new FilterForm(devices, genres);
+    const elements = displayDropdowns({ devices, genres, onchange });
+    const filterForm = new FilterForm(elements);
     filterForm.loadStorage();
 
     function onchange() {
@@ -122,7 +120,7 @@ function createCard(port) {
                         return children;
                     }, []),
                 ]),
-                createElement('p', { className: 'card-text mt-3 supported' }),
+                createElement('p', { className: 'card-text mt-3 card-supported' }),
                 createElement('p', {
                     className: 'card-text text-body-secondary mt-3',
                 }, 'Added: ' + port.source.date_added),
@@ -155,19 +153,19 @@ function updateCard(card, port, selectedDevices) {
         cardLink.href = cardUrl;
     }
 
-    const supported = card.querySelector('.supported');
+    const cardSupported = card.querySelector('.card-supported');
     if (deviceDetails.length > 0) {
-        supported.replaceChildren(
+        cardSupported.replaceChildren(
             'Supported Devices: ',
             ...deviceDetails.map((deviceDetail) => createElement('div', null, deviceDetail)),
         );
     } else {
-        supported.replaceChildren();
+        cardSupported.replaceChildren();
     }
 }
 
 const portCardsMap = new Map();
-function renderCard(port) {
+function getCard(port) {
     if (portCardsMap.has(port.name)) {
         return portCardsMap.get(port.name);
     } else {
@@ -185,14 +183,14 @@ function displayCards(ports, selectedDevices) {
     const cardsContainer = document.getElementById('cards-container');
     cardsContainer.replaceChildren();
     for (const port of ports) {
-        const card = renderCard(port);
+        const card = getCard(port);
         updateCard(card, port, selectedDevices);
         cardsContainer.appendChild(card);
     }
 }
 
 class FilterForm {
-    constructor(devices, genres) {
+    constructor({ deviceCheckboxes, genreCheckboxes }) {
         this.elements = {
             searchQuery: document.getElementById('search'),
             readyToRun: document.getElementById('ready-to-run'),
@@ -200,8 +198,8 @@ class FilterForm {
             Newest: document.getElementById('sortNewest'),
             Downloaded: document.getElementById('sortDownloaded'),
             AZ: document.getElementById('sortAZ'),
-            devices: Object.keys(devices).map(device => [device, document.getElementById(device)]),
-            genres: Object.values(genres).map(genre => [genre, document.getElementById(genre)]),
+            devices: Object.entries(deviceCheckboxes),
+            genres: Object.entries(genreCheckboxes),
         };
     }
 
@@ -283,12 +281,10 @@ function getFilteredData(ports, filterState) {
             }
         }
 
-        port.supported = [];
-
         if (port.attr.avail.length !== 0 && isSelectedDevices) {
             const deviceCodes = port.attr.avail.map(item => item.split(':')[0]);
-            port.supported = deviceCodes.filter(deviceCode => filterState.devices[deviceCode]);
-            if (port.supported.length === 0) {
+            const supported = deviceCodes.filter(deviceCode => filterState.devices[deviceCode]);
+            if (supported.length === 0) {
                 return false;
             }
         }
@@ -391,6 +387,11 @@ function displayDropdowns({ devices, genres, onchange }) {
 
     const dropdownButtons = document.getElementById('dropdown-buttons');
     dropdownButtons.replaceChildren(...manufacturerButtons, genresButton);
+
+    return {
+        deviceCheckboxes: Object.fromEntries(Object.keys(devices).map(device => [device, document.getElementById(device)])),
+        genreCheckboxes: Object.fromEntries(Object.values(genres).map(genre => [genre, document.getElementById(genre)])),
+    }
 }
 
 async function fetchJson(url) {
