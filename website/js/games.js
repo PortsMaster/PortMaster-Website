@@ -1,6 +1,6 @@
 let allPorts = [];
 let allDevices = {};
-let allGenres = [];
+let filterForm = null;
 
 const firmwareMap = {
     "ALL": "All Firmwares",
@@ -15,15 +15,19 @@ const firmwareMap = {
 window.onload = async function() {
     allDevices = await fetchDevices();
     allPorts = await fetchPorts();
-    allGenres = getGenres(allPorts);
+
+    const genres = getGenres(allPorts);
 
     displayDropdowns({
         devices: allDevices,
-        genres: allGenres,
+        genres,
         onchange: filterCards,
     });
 
-    loadFilterState();
+    filterForm = new FilterForm(allDevices, genres);
+    filterForm.loadStorage();
+    console.log(filterForm.getState());
+
     filterCards();
 }
 
@@ -197,75 +201,66 @@ function displayCards(ports) {
     }
 }
 
-// Function to load a saved filter state from the session storage
-function loadFilterState() {
-    const savedFilterState = sessionStorage.getItem('filterState');
-    if (savedFilterState) {
-        const filterState = JSON.parse(savedFilterState);
-        setFilterState(filterState);
-    }
-}
-
-function storeFilterState() {
-    const filterState = getFilterState();
-    sessionStorage.setItem('filterState', JSON.stringify(filterState));
-    return filterState;
-}
-
-function getFilterState() {
-    const searchQuery = document.getElementById('search').value.trim().toLowerCase();
-    const readyToRun = document.getElementById('ready-to-run').checked;
-    const filesNeeded = document.getElementById('files-needed').checked;
-    const Newest = document.getElementById('sortNewest').checked;
-    const Downloaded = document.getElementById('sortDownloaded').checked;
-    const AZ = document.getElementById('sortAZ').checked;
-
-    const filterState = {
-        searchQuery,
-        readyToRun,
-        filesNeeded,
-        Newest,
-        Downloaded,
-        AZ,
-        devices: {},
-        genres: {}
-    };
-
-    for (const deviceCode in allDevices){
-        filterState.devices[deviceCode] = document.getElementById(deviceCode)?.checked ?? false;
+class FilterForm {
+    constructor(devices, genres) {
+        this.elements = {
+            searchQuery: document.getElementById('search'),
+            readyToRun: document.getElementById('ready-to-run'),
+            filesNeeded: document.getElementById('files-needed'),
+            Newest: document.getElementById('sortNewest'),
+            Downloaded: document.getElementById('sortDownloaded'),
+            AZ: document.getElementById('sortAZ'),
+            devices: Object.keys(devices).map(device => [device, document.getElementById(device)]),
+            genres: Object.values(genres).map(genre => [genre, document.getElementById(genre)]),
+        };
     }
 
-    for (const genre of allGenres) {
-        filterState.genres[genre] = document.getElementById(genre)?.checked ?? false;
+    getState() {
+        return {
+            searchQuery: this.elements.searchQuery.value.trim(),
+            readyToRun: this.elements.readyToRun.checked,
+            filesNeeded: this.elements.filesNeeded.checked,
+            Newest: this.elements.Newest.checked,
+            Downloaded: this.elements.Downloaded.checked,
+            AZ: this.elements.AZ.checked,
+            devices: Object.fromEntries(this.elements.devices.map(([device, element]) => [device, element.checked])),
+            genres: Object.fromEntries(this.elements.genres.map(([genre, element]) => [genre, element.checked])),
+        };
     }
 
-    return filterState;
-}
+    setState(filterState) {
+        this.elements.searchQuery.value = filterState.searchQuery;
+        this.elements.readyToRun.checked = filterState.readyToRun;
+        this.elements.filesNeeded.checked = filterState.filesNeeded;
+        this.elements.Newest.checked = filterState.Newest;
+        this.elements.Downloaded.checked = filterState.Downloaded;
+        this.elements.AZ.checked = filterState.AZ;
 
-function setFilterState(filterState) {
-    document.getElementById('ready-to-run').checked = filterState.readyToRun;
-    document.getElementById('files-needed').checked = filterState.filesNeeded;
-    document.getElementById('sortNewest').checked = filterState.Newest;
-    document.getElementById('sortDownloaded').checked = filterState.Downloaded;
-    document.getElementById('sortAZ').checked = filterState.AZ;
-    document.getElementById('search').value = filterState.searchQuery;
-    for (const device in filterState.devices) {
-        const deviceElement = document.getElementById(device);
-        if (deviceElement) {
-            deviceElement.checked = filterState.devices[device];
+        for (const [device, element] of this.elements.devices) {
+            element.checked = filterState.devices[device] ?? false;
+        }
+
+        for (const [genre, element] of this.elements.genres) {
+            element.checked = filterState.genres[genre] ?? false;
         }
     }
-    for (const genre in filterState.genres) {
-        const genreElement = document.getElementById(genre);
-        if (genreElement) {
-            genreElement.checked = filterState.genres[genre];
+
+    loadStorage() {
+        const jsonState = sessionStorage.getItem('filterState');
+        if (jsonState) {
+            const filterState = JSON.parse(jsonState);
+            this.setState(filterState);
         }
+    }
+
+    saveStorage() {
+        const state = this.getState();
+        sessionStorage.setItem('filterState', JSON.stringify(state));
+        return state;
     }
 }
 
-function getFilteredData(ports) {
-    const filterState = storeFilterState();
-
+function getFilteredData(ports, filterState) {
     const isSelectedGenres = Object.values(filterState.genres).some(Boolean);
     const isSelectedDevices = Object.values(filterState.devices).some(Boolean);
 
@@ -331,7 +326,8 @@ function getFilteredData(ports) {
 
 // Function to filter the cards based on the search query
 function filterCards() {
-    displayCards(getFilteredData(allPorts));
+    const filterState = filterForm.saveStorage();
+    displayCards(getFilteredData(allPorts, filterState));
 }
 
 function createManufacturerButton({ manufacturer, manufacturerDevices, onchange }) {
