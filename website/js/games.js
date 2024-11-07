@@ -84,14 +84,14 @@ function createCard(port) {
     return createElement('div', { className: 'col' }, [
         createElement('div', { className: 'card h-100 shadow-sm' }, [
             createElement('div', { className: 'card-body' }, [
-                createElement('a', { href: cardUrl, className: 'card-link' }, [
+                createElement('a', { href: cardUrl, className: 'card-anchor' }, [
                     createElement('img', {
                         src: imageUrl,
                         className: 'bd-placeholder-img card-img-top',
                         loading: 'lazy',
                     }),
                 ]),
-                createElement('a', { href: cardUrl, className: 'card-link text-decoration-none' }, [
+                createElement('a', { href: cardUrl, className: 'card-anchor text-decoration-none' }, [
                     createElement('h5', {
                         className: 'card-title link-body-emphasis mt-3',
                         style: 'margin-top: 1rem',
@@ -129,7 +129,7 @@ function createCard(port) {
                         `Downloads: ${port.download_count || 0}`,
                     ]),
                     createElement('div', { className: 'btn-group' }, [
-                        createElement('a', { href: cardUrl, className: 'card-link' }, [
+                        createElement('a', { href: cardUrl, className: 'card-anchor' }, [
                             createElement('button', { type: 'button', className: 'btn btn-sm btn-outline-primary' }, 'Details'),
                         ]),
                     ]),
@@ -149,8 +149,8 @@ function updateCard(card, port, selectedDevices) {
     }).filter(Boolean);
 
     const cardUrl = getCardUrl(port.name.replace('.zip', ''), deviceDetails);
-    for (const cardLink of card.querySelectorAll('.card-link')) {
-        cardLink.href = cardUrl;
+    for (const cardAnchor of card.querySelectorAll('.card-anchor')) {
+        cardAnchor.href = cardUrl;
     }
 
     const cardSupported = card.querySelector('.card-supported');
