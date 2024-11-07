@@ -263,8 +263,8 @@ function setFilterState(filterState) {
 function getFilteredData(games) {
     const filterState = storeFilterState();
 
-    const selectedDevices = Object.entries(filterState.devices).filter(([_, checked]) => checked).map(([value]) => value);
-    const selectedGenres = Object.entries(filterState.genres).filter(([_, checked]) => checked).map(([value]) => value);
+    const isSelectedGenres = Object.values(filterState.genres).some(Boolean);
+    const isSelectedDevices = Object.values(filterState.devices).some(Boolean);
 
     function matchFilter(game) {
         if (game.attr.rtr) {
@@ -277,17 +277,17 @@ function getFilteredData(games) {
             }
         }
 
-        if (selectedGenres.length > 0) {
-            if (!game.attr.genres.some(genre => selectedGenres.includes(genre))) {
+        if (isSelectedGenres) {
+            if (!game.attr.genres.some(genre => filterState.genres[genre])) {
                 return false;
             }
         }
 
         game.supported = [];
 
-        if (game.attr.avail.length !== 0 && selectedDevices.length !== 0) {
+        if (game.attr.avail.length !== 0 && isSelectedDevices) {
             const deviceCodes = game.attr.avail.map(item => item.split(':')[0]);
-            game.supported = deviceCodes.filter(deviceCode => selectedDevices.includes(deviceCode));
+            game.supported = deviceCodes.filter(deviceCode => filterState.devices[deviceCode]);
             if (game.supported.length === 0) {
                 return false;
             }
