@@ -291,10 +291,12 @@ function getFilteredData(games) {
 
     if (filterState.searchQuery) {
         const fuse = new Fuse(filteredGames, {
-            includeScore: true,
-            isCaseSensitive: false,
-            shouldSort: true,
-            keys: ['attr.title'],
+            threshold: 0.2,
+            ignoreLocation: true,
+            keys: [
+                { name: 'attr.title', weight: 2 },
+                { name: 'attr.desc', weight: 1 },
+            ],
         });
         const results = fuse.search(filterState.searchQuery);
         return results.map(result => result.item);
