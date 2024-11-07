@@ -17,8 +17,11 @@ window.onload = async function() {
     allGames = await fetchGames();
     allGenres = getGenres(allGames);
 
-    populateManufacturerDropdown(allDevices);
-    populateGenreDropdown(allGenres);
+    displayDropdowns({
+        devices: allDevices,
+        genres: allGenres,
+        onchange: filterCards,
+    });
 
     loadFilterState();
     filterCards();
@@ -331,11 +334,20 @@ function filterCards() {
     displayCards(getFilteredData(allGames));
 }
 
-function populateManufacturerDropdown(devices) {
-    const manufacturers = getManufacturers(devices);
-
-    function createDeviceItem(device) {
-        return createElement('li', { className: 'dropdown-item' }, [
+function createManufacturerButton({ manufacturer, manufacturerDevices, onchange }) {
+    return createElement('div', {
+        className: 'btn-group flex-wrap',
+        role: 'group',
+    }, [
+        createElement('button', {
+            className: 'btn btn-outline-primary dropdown-toggle',
+            ariaExpanded: 'false',
+            'data-bs-toggle': 'dropdown',
+        }, manufacturer),
+        createElement('ul', {
+            id: manufacturer,
+            className: "dropdown-menu",
+        }, manufacturerDevices.map(device => createElement('li', { className: 'dropdown-item' }, [
             createElement('input', {
                 id: device.device,
                 className: 'form-check-input',
@@ -344,52 +356,12 @@ function populateManufacturerDropdown(devices) {
                 onchange: filterCards,
             }),
             createElement('label', { htmlFor: device.device }, device.name),
-        ])
-    }
-
-    const manufacturerDropdownButtons = document.getElementById("dropdown-buttons");
-    for (const manufacturer of manufacturers) {
-        const manufacturerDevices = Object.values(devices).filter(device => device.manufacturer === manufacturer);
-
-        manufacturerDropdownButtons.appendChild(createElement('div', {
-            className: 'btn-group flex-wrap',
-            role: 'group',
-        }, [
-            createElement('button', {
-                className: 'btn btn-outline-primary dropdown-toggle',
-                ariaExpanded: 'false',
-                'data-bs-toggle': 'dropdown',
-            }, manufacturer),
-            createElement('ul', {
-                id: manufacturer,
-                className: "dropdown-menu",
-            }, manufacturerDevices.map(createDeviceItem)),
-        ]));
-    }
+        ]))),
+    ]);
 }
 
-function populateGenreDropdown(genres) {
-    const genreDropdown = createElement('ul', { className: 'dropdown-menu' });
-
-    for (const genre of genres) {
-        genreDropdown.appendChild(createElement('li', { className: 'dropdown-item' }, [
-            createElement('input', {
-                type: "checkbox",
-                id: genre,
-                name: genre,
-                value: genre,
-                onchange: filterCards,
-            }),
-            createElement('label', {
-                htmlFor: genre,
-                textContent: genre,
-                style: 'margin-left: 5px',
-            })
-        ]));
-    }
-
-    const gamesDropdown = document.getElementById('dropdown-buttons');
-    gamesDropdown.appendChild(createElement('div', {
+function createGenresButton({ genres, onchange }) {
+    return createElement('div', {
         className: 'btn-group flex-wrap',
         role: 'group',
     }, [
@@ -398,8 +370,35 @@ function populateGenreDropdown(genres) {
             ariaExpanded: 'false',
             'data-bs-toggle': 'dropdown',
         }, 'Genres'),
-        genreDropdown,
-    ]));
+        createElement('ul', { className: 'dropdown-menu' }, genres.map(genre => createElement('li', { className: 'dropdown-item' }, [
+            createElement('input', {
+                type: "checkbox",
+                id: genre,
+                name: genre,
+                value: genre,
+                onchange,
+            }),
+            createElement('label', {
+                htmlFor: genre,
+                textContent: genre,
+                style: 'margin-left: 5px',
+            })
+        ]))),
+    ]);
+}
+
+function displayDropdowns({ devices, genres, onchange }) {
+    const manufacturers = getManufacturers(devices);
+
+    const manufacturerButtons = manufacturers.map(manufacturer => {
+        const manufacturerDevices = Object.values(devices).filter(device => device.manufacturer === manufacturer);
+        return createManufacturerButton({ manufacturer, manufacturerDevices, onchange });
+    });
+
+    const genresButton = createGenresButton({ genres, onchange });
+
+    const dropdownButtons = document.getElementById('dropdown-buttons');
+    dropdownButtons.replaceChildren(...manufacturerButtons, genresButton);
 }
 
 async function fetchJson(url) {
