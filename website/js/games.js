@@ -373,21 +373,23 @@ function createCard(port) {
                     createElement('a', { href: cardUrl, className: 'update-anchor' }, 'Details'),
                 ]),
             ]),
-            createElement('div', { className: 'card-footer' }, [
-                createElement('div', { className: 'row' }, [
-                    createElement('div', { className: 'col-6' }, [
+            createElement('div', { className: 'card-footer d-flex gap-2 text-nowrap' }, [
+                createElement('div', null, [
+                    createElement('div', null, [
                         createElement('span', { className: 'text-muted' }, 'Downloads: '),
                         port.download_count || 0,
                     ]),
-                    createElement('div', { className: 'col-6' }, [
+                    createElement('div', { className: 'd-inline-flex gap-1' }, [
+                        createElement('span', { className: 'text-muted' }, `Porter${porters.length > 1 ? 's' : ''}: `),
+                        createElement('span', { className: 'text-wrap' }, porters),
+                    ]),
+                ]),
+                createElement('div', { className: 'ms-auto text-end' }, [
+                    createElement('div', null, [
                         createElement('span', { className: 'text-muted' }, 'Added: '),
                         port.source.date_added,
                     ]),
-                    createElement('div', { className: 'col-6 d-inline-flex gap-1' }, [
-                        createElement('span', { className: 'text-muted' }, 'Porter: '),
-                        createElement('span', null, porters),
-                    ]),
-                    createElement('div', { className: 'col-6' }, [
+                    createElement('div', null, [
                         createElement('span', { className: 'text-muted' }, 'Updated: '),
                         port.source.date_updated,
                     ]),
