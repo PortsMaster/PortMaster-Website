@@ -322,7 +322,7 @@ function getFilteredData(ports, filterState) {
     }
 }
 
-function createManufacturerButton({ manufacturer, manufacturerDevices, onchange }) {
+function createDropdownButton(title, items) {
     return createElement('div', {
         className: 'btn-group flex-wrap',
         role: 'group',
@@ -331,48 +331,35 @@ function createManufacturerButton({ manufacturer, manufacturerDevices, onchange 
             className: 'btn btn-outline-primary dropdown-toggle',
             ariaExpanded: 'false',
             'data-bs-toggle': 'dropdown',
-        }, manufacturer),
-        createElement('ul', {
-            id: manufacturer,
-            className: "dropdown-menu",
-        }, manufacturerDevices.map(device => createElement('li', { className: 'dropdown-item' }, [
-            createElement('input', {
-                id: device.device,
-                className: 'form-check-input',
-                style: 'margin-right: 10px;',
-                type: 'checkbox',
-                onchange,
-            }),
-            createElement('label', { htmlFor: device.device }, device.name),
-        ]))),
+        }, title),
+        createElement('ul', { className: "dropdown-menu" }, items),
     ]);
 }
 
-function createGenresButton({ genres, onchange }) {
-    return createElement('div', {
-        className: 'btn-group flex-wrap',
-        role: 'group',
-    }, [
-        createElement('button', {
-            className: 'btn btn-outline-primary dropdown-toggle',
-            ariaExpanded: 'false',
-            'data-bs-toggle': 'dropdown',
-        }, 'Genres'),
-        createElement('ul', { className: 'dropdown-menu' }, genres.map(genre => createElement('li', { className: 'dropdown-item' }, [
-            createElement('input', {
-                type: "checkbox",
-                id: genre,
-                name: genre,
-                value: genre,
-                onchange,
-            }),
-            createElement('label', {
-                htmlFor: genre,
-                textContent: genre,
-                style: 'margin-left: 5px',
-            })
-        ]))),
+function createDropdownItem(label, checkbox) {
+    return createElement('li', { className: 'dropdown-item' }, [
+        createElement('label', { className: 'd-flex gap-2' }, [checkbox, label]),
     ]);
+}
+
+function createDropdownCheckbox(name, onchange) {
+    return createElement('input', {
+        name,
+        id: name,
+        className: 'form-check-input',
+        type: 'checkbox',
+        onchange,
+    });
+}
+
+function createManufacturerButton({ manufacturer, manufacturerDevices, onchange }) {
+    const items = manufacturerDevices.map(device => createDropdownItem(device.name, createDropdownCheckbox(device.device, onchange)));
+    return createDropdownButton(manufacturer, items);
+}
+
+function createGenresButton({ genres, onchange }) {
+    const items = genres.map(genre => createDropdownItem(genre, createDropdownCheckbox(genre, onchange)));
+    return createDropdownButton('Genres', items);
 }
 
 function displayDropdowns({ devices, genres, onchange }) {
