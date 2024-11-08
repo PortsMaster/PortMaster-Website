@@ -345,40 +345,37 @@ function createDropdownItem(label, checkbox) {
 function createDropdownCheckbox(name, onchange) {
     return createElement('input', {
         name,
-        id: name,
         className: 'form-check-input',
         type: 'checkbox',
         onchange,
     });
 }
 
-function createManufacturerButton({ manufacturer, manufacturerDevices, onchange }) {
-    const items = manufacturerDevices.map(device => createDropdownItem(device.name, createDropdownCheckbox(device.device, onchange)));
-    return createDropdownButton(manufacturer, items);
-}
-
-function createGenresButton({ genres, onchange }) {
-    const items = genres.map(genre => createDropdownItem(genre, createDropdownCheckbox(genre, onchange)));
-    return createDropdownButton('Genres', items);
-}
-
 function displayDropdowns({ devices, genres, onchange }) {
+    const deviceCheckboxes = {};
+    const genreCheckboxes = {};
+
     const manufacturers = getManufacturers(devices);
 
     const manufacturerButtons = manufacturers.map(manufacturer => {
         const manufacturerDevices = Object.values(devices).filter(device => device.manufacturer === manufacturer);
-        return createManufacturerButton({ manufacturer, manufacturerDevices, onchange });
+        return createDropdownButton(manufacturer, manufacturerDevices.map(device => {
+            const checkbox = createDropdownCheckbox(device.device, onchange);
+            deviceCheckboxes[device.device] = checkbox;
+            return createDropdownItem(device.name, checkbox);
+        }));
     });
 
-    const genresButton = createGenresButton({ genres, onchange });
+    const genresButton = createDropdownButton('Genres', genres.map(genre => {
+        const checkbox = createDropdownCheckbox(genre, onchange);
+        genreCheckboxes[genre] = checkbox;
+        return createDropdownItem(genre, checkbox);
+    }));
 
     const dropdownButtons = document.getElementById('dropdown-buttons');
     dropdownButtons.replaceChildren(...manufacturerButtons, genresButton);
 
-    return {
-        deviceCheckboxes: Object.fromEntries(Object.keys(devices).map(device => [device, document.getElementById(device)])),
-        genreCheckboxes: Object.fromEntries(Object.values(genres).map(genre => [genre, document.getElementById(genre)])),
-    }
+    return { deviceCheckboxes, genreCheckboxes };
 }
 
 async function fetchJson(url) {
