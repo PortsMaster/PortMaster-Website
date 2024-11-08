@@ -353,21 +353,14 @@ function displayDropdowns({ devices, genres, onchange }) {
     const deviceCheckboxes = {};
     const genreCheckboxes = {};
 
-    const manufacturers = getManufacturers(devices);
-
-    const manufacturerButtons = manufacturers.map(manufacturer => {
-        const manufacturerDevices = Object.values(devices).filter(device => device.manufacturer === manufacturer);
+    const manufacturerButtons = getDevicesByManufacturer(devices).map(([manufacturer, manufacturerDevices]) => {
         return createDropdownButton(manufacturer, manufacturerDevices.map(device => {
-            const checkbox = createDropdownCheckbox(device.device, onchange);
-            deviceCheckboxes[device.device] = checkbox;
-            return createDropdownItem(device.name, checkbox);
+            return createDropdownItem(device.name, deviceCheckboxes[device.device] = createDropdownCheckbox(device.device, onchange));
         }));
     });
 
     const genresButton = createDropdownButton('Genres', genres.map(genre => {
-        const checkbox = createDropdownCheckbox(genre, onchange);
-        genreCheckboxes[genre] = checkbox;
-        return createDropdownItem(genre, checkbox);
+        return createDropdownItem(genre, genreCheckboxes[genre] = createDropdownCheckbox(genre, onchange));
     }));
 
     const dropdownButtons = document.getElementById('dropdown-buttons');
@@ -412,12 +405,16 @@ async function fetchPorts() {
     }
 }
 
-function getManufacturers(devices) {
-    const manufacturersSet = new Set();
+function getDevicesByManufacturer(devices) {
+    const manufacturers = {};
+
     for (const device of Object.values(devices)) {
-        manufacturersSet.add(device.manufacturer);
+        if (manufacturers[device.manufacturer]?.push(device) == null) {
+            manufacturers[device.manufacturer] = [device];
+        }
     }
-    return [...manufacturersSet].sort();
+
+    return Object.entries(manufacturers).sort((a, b) => a[0].localeCompare(b[0]));
 }
 
 function getGenres(ports) {
