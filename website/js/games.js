@@ -50,6 +50,10 @@ function createElement(tagName, props, children) {
 
     return element;
 }
+
+function ucFirst(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+}
 //#endregion
 
 //#region Fetch and process data
@@ -179,7 +183,7 @@ function displayDropdowns({ devices, genres, onchange }) {
     });
 
     const genresButton = createDropdownButton('Genres', genres.map(genre => {
-        return createDropdownItem(genre, genreCheckboxes[genre] = createDropdownCheckbox(genre, onchange));
+        return createDropdownItem(ucFirst(genre), genreCheckboxes[genre] = createDropdownCheckbox(genre, onchange));
     }));
 
     const dropdownButtons = document.getElementById('dropdown-buttons');
@@ -328,57 +332,66 @@ function createCard(port) {
     const imageUrl = getImageUrl(port);
     const desc = port.attr.desc_md || port.attr.desc;
 
+    const badges = [
+        port.attr.rtr && createElement('span', { className: 'badge bg-success' }, 'Ready to Run'),
+        port.attr.exp && createElement('span', { className: 'badge bg-warning' }, 'Experimental'),
+        port.source.repo === 'multiverse' && createElement('span', { className: 'badge bg-info' }, 'Multiverse'),
+        ...port.attr.genres.map(genre => createElement('span', { className: 'badge bg-secondary' }, ucFirst(genre))),
+    ];
+
+    const porters = port.attr.porter.reduce((children, porter, i) => {
+        if (i > 0) {
+            children.push(', ');
+        }
+        children.push(createElement('a', { href: getPorterUrl(porter) }, porter));
+        return children;
+    }, []);
+
     return createElement('div', { className: 'col' }, [
         createElement('div', { className: 'card h-100 shadow-sm' }, [
-            createElement('div', { className: 'card-body' }, [
-                createElement('a', { href: cardUrl, className: 'update-anchor' }, [
-                    createElement('img', {
-                        src: imageUrl,
-                        className: 'bd-placeholder-img card-img-top',
-                        loading: 'lazy',
-                    }),
-                ]),
-                createElement('a', { href: cardUrl, className: 'update-anchor text-decoration-none' }, [
-                    createElement('h5', {
-                        className: 'card-title link-body-emphasis mt-3',
-                        style: 'margin-top: 1rem',
+            createElement('a', { href: cardUrl, className: 'update-anchor' }, [
+                createElement('img', {
+                    src: imageUrl,
+                    className: 'bd-placeholder-img card-img-top',
+                    loading: 'lazy',
+                }),
+            ]),
+            createElement('div', { className: 'card-body d-flex flex-column' }, [
+                createElement('h5', { className: 'card-title' }, [
+                    createElement('a', {
+                        href: cardUrl,
+                        className: 'update-anchor text-decoration-none link-body-emphasis'
                     }, port.attr.title),
                 ]),
-                createElement('p', {
-                    className: 'card-text mt-3',
+                createElement('div', {
+                    className: 'card-text mb-auto',
                     innerHTML: new showdown.Converter().makeHtml(desc),
                 }),
-                createElement('p', null, [
-                    port.attr.rtr && createElement('span', { className: 'misc-item badge bg-secondary' }, 'Ready to Run'),
-                    ' ',
-                    port.attr.exp && createElement('span', { className: 'misc-item badge bg-secondary' }, 'Experimental'),
-                    ' ',
-                    port.source.repo === "multiverse" && createElement('span', { className: 'misc-item badge bg-secondary' }, 'Multiverse'),
+                createElement('p', { className: 'card-text update-supported', hidden: true }),
+                createElement('div', { className: 'd-flex justify-content-between' }, [
+                    createElement('div', { className: 'd-flex flex-wrap gap-2' }, badges),
+                    createElement('a', { href: cardUrl, className: 'update-anchor' }, 'Details'),
                 ]),
-                createElement('p', {
-                    className: 'card-text mt-3',
-                }, [
-                    'Porter: ',
-                    ...port.attr.porter.reduce((children, porter, i) => {
-                        if (i > 0) {
-                            children.push(', ');
-                        }
-                        children.push(createElement('a', { href: getPorterUrl(porter) }, porter));
-                        return children;
-                    }, []),
-                ]),
-                createElement('p', { className: 'card-text mt-3 update-supported' }),
-                createElement('p', {
-                    className: 'card-text text-body-secondary mt-3',
-                }, 'Added: ' + port.source.date_added),
-                createElement('div', { className: 'd-flex justify-content-between align-items-center' }, [
-                    createElement('small', { className: 'text-body-secondary' }, [
-                        `Downloads: ${port.download_count || 0}`,
+            ]),
+            createElement('div', { className: 'card-footer d-flex gap-2 text-nowrap' }, [
+                createElement('div', null, [
+                    createElement('div', null, [
+                        createElement('span', { className: 'text-muted' }, 'Downloads: '),
+                        port.download_count || 0,
                     ]),
-                    createElement('div', { className: 'btn-group' }, [
-                        createElement('a', { href: cardUrl, className: 'update-anchor' }, [
-                            createElement('button', { type: 'button', className: 'btn btn-sm btn-outline-primary' }, 'Details'),
-                        ]),
+                    createElement('div', { className: 'd-inline-flex gap-1' }, [
+                        createElement('span', { className: 'text-muted' }, `Porter${porters.length > 1 ? 's' : ''}: `),
+                        createElement('span', { className: 'text-wrap' }, porters),
+                    ]),
+                ]),
+                createElement('div', { className: 'ms-auto text-end' }, [
+                    createElement('div', null, [
+                        createElement('span', { className: 'text-muted' }, 'Added: '),
+                        port.source.date_added,
+                    ]),
+                    createElement('div', null, [
+                        createElement('span', { className: 'text-muted' }, 'Updated: '),
+                        port.source.date_updated,
                     ]),
                 ]),
             ]),
@@ -403,11 +416,12 @@ function updateCard(card, port, selectedDevices, firmwareNames) {
     const cardSupported = card.querySelector('.update-supported');
     if (deviceDetails.length > 0) {
         cardSupported.replaceChildren(
-            'Supported Devices: ',
+            createElement('span', { className: 'text-muted' }, 'Supported Devices: '),
             ...deviceDetails.map((deviceDetail) => createElement('div', null, deviceDetail)),
         );
+        cardSupported.hidden = false;
     } else {
-        cardSupported.replaceChildren();
+        cardSupported.hidden = true;
     }
 }
 
