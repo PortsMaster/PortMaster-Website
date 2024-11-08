@@ -332,6 +332,21 @@ function createCard(port) {
     const imageUrl = getImageUrl(port);
     const desc = port.attr.desc_md || port.attr.desc;
 
+    const badges = [
+        port.attr.rtr && createElement('span', { className: 'badge bg-success' }, 'Ready to Run'),
+        port.attr.exp && createElement('span', { className: 'badge bg-warning' }, 'Experimental'),
+        port.source.repo === 'multiverse' && createElement('span', { className: 'badge bg-info' }, 'Multiverse'),
+        ...port.attr.genres.map(genre => createElement('span', { className: 'badge bg-secondary' }, ucFirst(genre))),
+    ];
+
+    const porters = port.attr.porter.reduce((children, porter, i) => {
+        if (i > 0) {
+            children.push(', ');
+        }
+        children.push(createElement('a', { href: getPorterUrl(porter) }, porter));
+        return children;
+    }, []);
+
     return createElement('div', { className: 'col' }, [
         createElement('div', { className: 'card h-100 shadow-sm' }, [
             createElement('a', { href: cardUrl, className: 'update-anchor' }, [
@@ -353,13 +368,8 @@ function createCard(port) {
                     innerHTML: new showdown.Converter().makeHtml(desc),
                 }),
                 createElement('p', { className: 'card-text update-supported', hidden: true }),
-                createElement('div', { className: 'd-flex justify-content-between align-items-center' }, [
-                    createElement('div', { className: 'd-flex gap-2' }, [
-                        port.attr.rtr && createElement('span', { className: 'badge bg-success' }, 'Ready to Run'),
-                        port.attr.exp && createElement('span', { className: 'badge bg-warning' }, 'Experimental'),
-                        port.source.repo === 'multiverse' && createElement('span', { className: 'badge bg-info' }, 'Multiverse'),
-                        ...port.attr.genres.map(genre => createElement('span', { className: 'badge bg-secondary' }, ucFirst(genre))),
-                    ]),
+                createElement('div', { className: 'd-flex justify-content-between' }, [
+                    createElement('div', { className: 'd-flex flex-wrap gap-2' }, badges),
                     createElement('a', { href: cardUrl, className: 'update-anchor' }, 'Details'),
                 ]),
             ]),
@@ -373,15 +383,9 @@ function createCard(port) {
                         createElement('span', { className: 'text-muted' }, 'Added: '),
                         port.source.date_added,
                     ]),
-                    createElement('div', { className: 'col-6' }, [
+                    createElement('div', { className: 'col-6 d-inline-flex gap-1' }, [
                         createElement('span', { className: 'text-muted' }, 'Porter: '),
-                        ...port.attr.porter.reduce((children, porter, i) => {
-                            if (i > 0) {
-                                children.push(', ');
-                            }
-                            children.push(createElement('a', { href: getPorterUrl(porter) }, porter));
-                            return children;
-                        }, []),
+                        createElement('span', null, porters),
                     ]),
                     createElement('div', { className: 'col-6' }, [
                         createElement('span', { className: 'text-muted' }, 'Updated: '),
