@@ -275,16 +275,14 @@ function getFilteredData(ports, filterState) {
             }
         }
 
-        if (isSelectedGenres) {
+        if (port.attr.genres.length !== 0 && isSelectedGenres) {
             if (!port.attr.genres.some(genre => filterState.genres[genre])) {
                 return false;
             }
         }
 
         if (port.attr.avail.length !== 0 && isSelectedDevices) {
-            const deviceCodes = port.attr.avail.map(item => item.split(':')[0]);
-            const supported = deviceCodes.filter(deviceCode => filterState.devices[deviceCode]);
-            if (supported.length === 0) {
+            if (!port.attr.avail.some(item => filterState.devices[item.split(':')[0]])) {
                 return false;
             }
         }
