@@ -1,17 +1,8 @@
-const firmwareMap = {
-    "ALL": "All Firmwares",
-    "jelos": "JELOS",
-    "rocknix": "ROCKNIX",
-    "arkos": "ArkOS",
-    "emuelec": "EmuELEC",
-    "amberelec": "AmberELEC",
-    "arkos (wummle)": "ArkOS (Wummle)",
-};
-
 window.onload = async function() {
     const devices = await fetchDevices();
     const ports = await fetchPorts();
     const genres = getGenres(ports);
+    const firmwareNames = getFirmwareNames();
 
     const elements = displayDropdowns({ devices, genres, onchange });
     const filterForm = new FilterForm(elements);
@@ -19,7 +10,7 @@ window.onload = async function() {
 
     function onchange() {
         const filterState = filterForm.saveStorage();
-        displayCards(getFilteredData(ports, filterState), getSelectedDevices(devices, filterState));
+        displayCards(getFilteredData(ports, filterState), getSelectedDevices(devices, filterState), firmwareNames);
     }
     onchange();
 
@@ -62,6 +53,18 @@ function createElement(tagName, props, children) {
 //#endregion
 
 //#region Fetch and process data
+function getFirmwareNames() {
+    return {
+        'ALL': 'All Firmwares',
+        'jelos': 'JELOS',
+        'rocknix': 'ROCKNIX',
+        'arkos': 'ArkOS',
+        'emuelec': 'EmuELEC',
+        'amberelec': 'AmberELEC',
+        'arkos (wummle)': 'ArkOS (Wummle)',
+    };
+}
+
 async function fetchDevices() {
     try {
         return await fetchJson('https://raw.githubusercontent.com/PortsMaster/PortMaster-Info/main/devices.json'); // Replace 'YOUR_JSON_URL_HERE' with the actual URL of your JSON data.
@@ -112,8 +115,8 @@ function getDevicesByManufacturer(devices) {
     return Object.entries(manufacturers).sort((a, b) => a[0].localeCompare(b[0]));
 }
 
-function getCardUrl(name, deviceDetails) {
-    return `detail.html?name=${encodeURIComponent(name)}` + (deviceDetails ? `&devices=${encodeURIComponent(deviceDetails.join(","))}` : "");
+function getCardUrl(port, deviceDetails) {
+    return `detail.html?name=${encodeURIComponent(port.name.replace('.zip', ''))}` + (deviceDetails ? `&devices=${encodeURIComponent(deviceDetails.join(','))}` : '');
 }
 
 function getImageUrl(port) {
@@ -321,7 +324,7 @@ function getSelectedDevices(devices, filterState) {
 
 //#region Create and update cards
 function createCard(port) {
-    const cardUrl = getCardUrl(port.name.replace('.zip', ''));
+    const cardUrl = getCardUrl(port);
     const imageUrl = getImageUrl(port);
     const desc = port.attr.desc_md || port.attr.desc;
 
@@ -383,16 +386,16 @@ function createCard(port) {
     ]);
 }
 
-function updateCard(card, port, selectedDevices) {
+function updateCard(card, port, selectedDevices, firmwareNames) {
     const deviceDetails = port.attr.avail.map(support => {
         const [deviceCode, firmwareCode] = support.split(':');
         const device = selectedDevices[deviceCode];
         if (device) {
-            return `${device.name}: ${firmwareMap[firmwareCode]}`;
+            return `${device.name}: ${firmwareNames[firmwareCode]}`;
         }
     }).filter(Boolean);
 
-    const cardUrl = getCardUrl(port.name.replace('.zip', ''), deviceDetails);
+    const cardUrl = getCardUrl(port, deviceDetails);
     for (const cardAnchor of card.querySelectorAll('.update-anchor')) {
         cardAnchor.href = cardUrl;
     }
@@ -419,7 +422,7 @@ function getCard(port) {
     }
 }
 
-function displayCards(ports, selectedDevices) {
+function displayCards(ports, selectedDevices, firmwareNames) {
     const availablePorts = document.getElementById('port-count')
     availablePorts.textContent = `${ports.length} Ports Available`;
 
@@ -427,7 +430,7 @@ function displayCards(ports, selectedDevices) {
     cardsContainer.replaceChildren();
     for (const port of ports) {
         const card = getCard(port);
-        updateCard(card, port, selectedDevices);
+        updateCard(card, port, selectedDevices, firmwareNames);
         cardsContainer.appendChild(card);
     }
 }
