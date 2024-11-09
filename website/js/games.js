@@ -368,13 +368,13 @@ function createCard(port) {
                     innerHTML: new showdown.Converter().makeHtml(desc),
                 }),
                 createElement('p', { className: 'card-text update-supported', hidden: true }),
-                createElement('div', { className: 'd-flex justify-content-between' }, [
+                createElement('div', { className: 'd-flex justify-content-between align-items-start' }, [
                     createElement('div', { className: 'd-flex flex-wrap gap-2' }, badges),
                     createElement('a', { href: cardUrl, className: 'update-anchor' }, 'Details'),
                 ]),
             ]),
-            createElement('div', { className: 'card-footer d-flex gap-2 text-nowrap' }, [
-                createElement('div', null, [
+            createElement('div', { className: 'card-footer d-flex flex-wrap gap-2' }, [
+                createElement('div', { className: 'flex-fill w-50' }, [
                     createElement('div', null, [
                         createElement('span', { className: 'text-muted' }, 'Downloads: '),
                         port.download_count || 0,
@@ -384,7 +384,7 @@ function createCard(port) {
                         createElement('span', { className: 'text-wrap' }, porters),
                     ]),
                 ]),
-                createElement('div', { className: 'ms-auto text-end' }, [
+                createElement('div', { className: 'text-end' }, [
                     createElement('div', null, [
                         createElement('span', { className: 'text-muted' }, 'Added: '),
                         port.source.date_added,
