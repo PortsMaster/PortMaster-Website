@@ -167,12 +167,18 @@ function createDropdownGroup(title, items) {
     ]);
 }
 
+function createDropdownHeader(title) {
+    return createElement('li', null, [
+        createElement('h6', { className: 'dropdown-header' }, title),
+    ]);
+}
+
 function createDropdownItem(checkbox, label, count) {
     return createElement('li', { className: 'dropdown-item' }, [
         createElement('label', { className: 'd-flex gap-2' }, [
             checkbox,
             label,
-            count && createElement('span', { className: 'ms-auto badge bg-secondary' }, count),
+            count && createElement('span', { className: 'ms-auto text-muted' }, count),
         ]),
     ]);
 }
@@ -190,21 +196,24 @@ function displayDropdowns({ devices, genres, onchange }) {
     const deviceCheckboxes = {};
     const genreCheckboxes = {};
 
-    const manufacturerGroups = getDevicesByManufacturer(devices).map(([manufacturer, manufacturerDevices]) => {
-        return createDropdownGroup(manufacturer, manufacturerDevices.map(device => {
-            return createDropdownItem(deviceCheckboxes[device.device] = createDropdownCheckbox(device.device, onchange), device.name);
-        }));
-    });
+    const devicesGroup = createDropdownGroup('Devices', getDevicesByManufacturer(devices).flatMap(([manufacturer, manufacturerDevices]) => {
+        return [
+            createDropdownHeader(manufacturer),
+            ...manufacturerDevices.map(device => {
+                return createDropdownItem(deviceCheckboxes[device.device] = createDropdownCheckbox(device.device, onchange), device.name);
+            }),
+        ];
+    }));
 
     const genresGroup = createDropdownGroup('Genres', genres.map(genre => {
         return createDropdownItem(genreCheckboxes[genre.name] = createDropdownCheckbox(genre.name, onchange), ucFirst(genre.name), genre.count);
     }));
 
     const dropdownButtons = document.getElementById('dropdown-buttons');
-    dropdownButtons.replaceChildren(...manufacturerGroups, genresGroup);
+    dropdownButtons.replaceChildren(genresGroup, devicesGroup);
 
     function updateDropdowns() {
-        const groups = [...manufacturerGroups, genresGroup];
+        const groups = [genresGroup, devicesGroup];
         for (const group of groups) {
             const button = group.querySelector('button');
             const hasChecked = Boolean(group.querySelector(':checked'));
