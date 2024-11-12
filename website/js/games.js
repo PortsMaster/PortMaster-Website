@@ -1,22 +1,23 @@
-window.onload = async function() {
+window.addEventListener('DOMContentLoaded', async function() {
     const devices = await fetchDevices();
     const ports = await fetchPorts();
     const genres = getGenres(ports);
     const firmwareNames = getFirmwareNames();
 
-    const elements = displayDropdowns({ devices, genres, onchange });
-    const filterForm = new FilterForm(elements);
+    const dropdowns = displayDropdowns({ devices, genres, onchange });
+    const filterForm = new FilterForm(dropdowns);
     filterForm.loadStorage();
 
     function onchange() {
         const filterState = filterForm.saveStorage();
+        dropdowns.updateDropdowns();
         displayCards(getFilteredData(ports, filterState), getSelectedDevices(devices, filterState), firmwareNames);
     }
     onchange();
 
     // Export global for static html filters
     window.filterCards = onchange;
-}
+});
 
 //#region Helper functions
 async function fetchJson(url) {
@@ -49,6 +50,10 @@ function createElement(tagName, props, children) {
     }
 
     return element;
+}
+
+function devided(divider, array) {
+    return array.reduce((acc, cur) => acc ? [...acc, divider, cur] : [cur], null);
 }
 
 function ucFirst(string) {
@@ -120,7 +125,7 @@ function getDevicesByManufacturer(devices) {
 }
 
 function getCardUrl(port, deviceDetails) {
-    return `detail.html?name=${encodeURIComponent(port.name.replace('.zip', ''))}` + (deviceDetails ? `&devices=${encodeURIComponent(deviceDetails.join(','))}` : '');
+    return `detail.html?name=${encodeURIComponent(port.name.replace('.zip', ''))}` + (deviceDetails?.length ? `&devices=${encodeURIComponent(deviceDetails.join(','))}` : '');
 }
 
 function getImageUrl(port) {
@@ -143,7 +148,7 @@ function getPorterUrl(porter) {
 //#endregion
 
 //#region Create filter dropdowns
-function createDropdownButton(title, items) {
+function createDropdownGroup(title, items) {
     return createElement('div', {
         className: 'btn-group flex-wrap',
         role: 'group',
@@ -176,20 +181,30 @@ function displayDropdowns({ devices, genres, onchange }) {
     const deviceCheckboxes = {};
     const genreCheckboxes = {};
 
-    const manufacturerButtons = getDevicesByManufacturer(devices).map(([manufacturer, manufacturerDevices]) => {
-        return createDropdownButton(manufacturer, manufacturerDevices.map(device => {
+    const manufacturerGroups = getDevicesByManufacturer(devices).map(([manufacturer, manufacturerDevices]) => {
+        return createDropdownGroup(manufacturer, manufacturerDevices.map(device => {
             return createDropdownItem(device.name, deviceCheckboxes[device.device] = createDropdownCheckbox(device.device, onchange));
         }));
     });
 
-    const genresButton = createDropdownButton('Genres', genres.map(genre => {
+    const genresGroup = createDropdownGroup('Genres', genres.map(genre => {
         return createDropdownItem(ucFirst(genre), genreCheckboxes[genre] = createDropdownCheckbox(genre, onchange));
     }));
 
     const dropdownButtons = document.getElementById('dropdown-buttons');
-    dropdownButtons.replaceChildren(...manufacturerButtons, genresButton);
+    dropdownButtons.replaceChildren(...manufacturerGroups, genresGroup);
 
-    return { deviceCheckboxes, genreCheckboxes };
+    function updateDropdowns() {
+        const groups = [...manufacturerGroups, genresGroup];
+        for (const group of groups) {
+            const button = group.querySelector('button');
+            const hasChecked = Boolean(group.querySelector(':checked'));
+            button.classList.toggle('btn-outline-primary', !hasChecked);
+            button.classList.toggle('btn-primary', hasChecked);
+        }
+    }
+
+    return { deviceCheckboxes, genreCheckboxes, updateDropdowns };
 }
 //#endregion
 
@@ -339,13 +354,7 @@ function createCard(port) {
         ...port.attr.genres.map(genre => createElement('span', { className: 'badge bg-secondary' }, ucFirst(genre))),
     ];
 
-    const porters = port.attr.porter.reduce((children, porter, i) => {
-        if (i > 0) {
-            children.push(', ');
-        }
-        children.push(createElement('a', { href: getPorterUrl(porter) }, porter));
-        return children;
-    }, []);
+    const porters = devided(', ', port.attr.porter.map(porter => createElement('a', { href: getPorterUrl(porter) }, porter)));
 
     return createElement('div', { className: 'col' }, [
         createElement('div', { className: 'card h-100 shadow-sm' }, [
