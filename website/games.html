@@ -317,83 +317,13 @@
         </ul>
        </li>
       </ul>
-      <ul class="navbar-nav">
-       <li class="nav-item dropdown">
-        <a aria-expanded="false" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#">
-         Sort
-        </a>
-        <ul class="dropdown-menu">
-         <div class="dropdown-item">
-          <li>
-           <label>
-            <input checked="" class="form-check-input" id="sortAZ" name="sortRadio" onchange="filterCards()" type="radio" value=""/>
-            A - Z
-           </label>
-          </li>
-         </div>
-         <div class="dropdown-item">
-          <li>
-           <label>
-            <input class="form-check-input" id="sortDownloaded" name="sortRadio" onchange="filterCards()" type="radio" value=""/>
-            Most Downloaded
-           </label>
-          </li>
-         </div>
-         <div class="dropdown-item">
-          <li>
-           <label>
-            <input class="form-check-input" id="sortNewest" name="sortRadio" onchange="filterCards()" type="radio" value=""/>
-            Most Recent
-           </label>
-          </li>
-         </div>
-        </ul>
-       </li>
-      </ul>
-      <ul class="navbar-nav">
-       <li class="nav-item dropdown">
-        <a aria-expanded="false" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#">
-         Filters
-        </a>
-        <ul class="dropdown-menu">
-         <div class="dropdown-item">
-          <li>
-           <label>
-            <input checked class="form-check-input" id="ready-to-run" onchange="filterCards()" type="checkbox" value=""/>
-            Ready to Run
-           </label>
-          </li>
-         </div>
-         <div class="dropdown-item">
-          <li>
-           <label>
-            <input checked class="form-check-input" id="files-needed" onchange="filterCards()" type="checkbox" value=""/>
-            Files Needed
-           </label>
-          </li>
-         </div>
-        </ul>
-       </li>
-      </ul>
-      <form onkeydown="return event.key != 'Enter';" role="search">
-       <input aria-label="Search" class="form-control" id="search" oninput="filterCards()" placeholder="Search" type="search"/>
-      </form>
      </div>
     </div>
    </nav>
    <br/>
    <main>
     <div class="album py-5 bg-body-tertiary">
-     <div class="container">
-      <h1 id="port-count" style="text-align: center;"></h1>
-      <br>
-      <div style="display: flex; flex-direction: row; align-items: center; justify-content: center;" id="dropdown-buttons" class="btn-group flex-wrap" role="group" aria-label="Button group with nested dropdown">
-      
-      </div>
-      <br>
-      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3" id="cards-container">
-      </div>
-     </div>
+     <div id="app"></div>
     </div>
    </main>
   </main>

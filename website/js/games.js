@@ -1,22 +1,25 @@
-window.onload = async function() {
+window.addEventListener('DOMContentLoaded', async function() {
+    displayContainer();
+
     const devices = await fetchDevices();
     const ports = await fetchPorts();
     const genres = getGenres(ports);
     const firmwareNames = getFirmwareNames();
 
-    const elements = displayDropdowns({ devices, genres, onchange });
-    const filterForm = new FilterForm(elements);
+    const dropdowns = displayDropdowns({ devices, genres, onchange });
+    const filterForm = new FilterForm(dropdowns);
     filterForm.loadStorage();
 
     function onchange() {
         const filterState = filterForm.saveStorage();
+        dropdowns.updateDropdowns();
         displayCards(getFilteredData(ports, filterState), getSelectedDevices(devices, filterState), firmwareNames);
     }
     onchange();
 
     // Export global for static html filters
     window.filterCards = onchange;
-}
+});
 
 //#region Helper functions
 async function fetchJson(url) {
@@ -32,6 +35,11 @@ function createElement(tagName, props, children) {
 
     if (props) {
         for (const [name, value] of Object.entries(props)) {
+            if (name === 'ref') {
+                value(element);
+                continue;
+            }
+
             if (name in element) {
                 element[name] = value;
             } else {
@@ -49,6 +57,10 @@ function createElement(tagName, props, children) {
     }
 
     return element;
+}
+
+function devided(divider, array) {
+    return array.reduce((acc, cur) => acc ? [...acc, divider, cur] : [cur], null);
 }
 
 function ucFirst(string) {
@@ -98,13 +110,18 @@ async function fetchPorts() {
 }
 
 function getGenres(ports) {
-    const genresSet = new Set();
+    const genres = {};
+
     for (const port of ports) {
         for (const genre of port.attr.genres) {
-            genresSet.add(genre);
+            genres[genre] = genres[genre] ? genres[genre] + 1 : 1;
         }
     }
-    return [...genresSet].sort();
+
+    return Object.entries(genres).map(([name, count]) => ({
+        name,
+        count,
+    })).sort((a, b) => a.name.localeCompare(b.name));
 }
 
 function getDevicesByManufacturer(devices) {
@@ -120,7 +137,7 @@ function getDevicesByManufacturer(devices) {
 }
 
 function getCardUrl(port, deviceDetails) {
-    return `detail.html?name=${encodeURIComponent(port.name.replace('.zip', ''))}` + (deviceDetails ? `&devices=${encodeURIComponent(deviceDetails.join(','))}` : '');
+    return `detail.html?name=${encodeURIComponent(port.name.replace('.zip', ''))}` + (deviceDetails?.length ? `&devices=${encodeURIComponent(deviceDetails.join(','))}` : '');
 }
 
 function getImageUrl(port) {
@@ -142,8 +159,55 @@ function getPorterUrl(porter) {
 }
 //#endregion
 
+//#region Create container
+function createContainer() {
+    const filterCards = () => window.filterCards();
+
+    return createElement('div', { className: 'container' }, [
+        createElement('div', { className: 'my-2 d-flex flex-wrap gap-2' }, [
+            createElement('div', {
+                id: 'dropdown-buttons',
+                className: 'btn-group flex-wrap',
+                style: 'display: flex; flex-direction: row; align-items: center; justify-content: center;',
+                role: 'group',
+                'aria-label': 'Button group with nested dropdown',
+            }),
+            createElement('input', {
+                type: 'search',
+                id: 'search',
+                className: 'form-control w-25 flex-grow-1',
+                placeholder: 'Search',
+                'aria-label': 'Search',
+                oninput: filterCards,
+            }),
+            createElement('div', {
+                className: 'btn-group',
+                role: 'group',
+                'aria-label': 'Basic radio toggle button group',
+            }, [
+                createElement('input', { id: 'sortAZ', className: 'btn-check', type: 'radio', name: 'sortRadio', autocomplete: 'off', checked: true, onchange: filterCards }),
+                createElement('label', { htmlFor: 'sortAZ', className: 'btn btn-outline-primary' }, 'A - Z'),
+                createElement('input', { id: 'sortDownloaded', className: 'btn-check', type: 'radio', name: 'sortRadio', autocomplete: 'off', checked: false, onchange: filterCards }),
+                createElement('label', { htmlFor: 'sortDownloaded', className: 'btn btn-outline-primary' }, 'Most Downloaded'),
+                createElement('input', { id: 'sortNewest', className: 'btn-check', type: 'radio', name: 'sortRadio', autocomplete: 'off', checked: false, onchange: filterCards }),
+                createElement('label', { htmlFor: 'sortNewest', className: 'btn btn-outline-primary' }, 'Most Recent'),
+            ]),
+        ]),
+        createElement('h2', { id: 'port-count', className: 'my-4 text-center' }),
+        createElement('div', {
+            id: 'cards-container',
+            className: 'row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3',
+        }),
+    ]);
+}
+
+function displayContainer() {
+    document.getElementById('app').append(createContainer());
+}
+//#endregion
+
 //#region Create filter dropdowns
-function createDropdownButton(title, items) {
+function createDropdownGroup(title, items) {
     return createElement('div', {
         className: 'btn-group flex-wrap',
         role: 'group',
@@ -153,13 +217,26 @@ function createDropdownButton(title, items) {
             ariaExpanded: 'false',
             'data-bs-toggle': 'dropdown',
         }, title),
-        createElement('ul', { className: "dropdown-menu" }, items),
+        createElement('ul', {
+            className: 'dropdown-menu overflow-y-auto',
+            style: 'max-height: calc(100vh - 220px)'
+        }, items),
     ]);
 }
 
-function createDropdownItem(label, checkbox) {
+function createDropdownHeader(title) {
+    return createElement('li', null, [
+        createElement('h6', { className: 'dropdown-header' }, title),
+    ]);
+}
+
+function createDropdownItem(checkbox, label, count) {
     return createElement('li', { className: 'dropdown-item' }, [
-        createElement('label', { className: 'd-flex gap-2' }, [checkbox, label]),
+        createElement('label', { className: 'd-flex gap-2' }, [
+            checkbox,
+            label,
+            count && createElement('span', { className: 'ms-auto text-muted' }, count),
+        ]),
     ]);
 }
 
@@ -173,33 +250,51 @@ function createDropdownCheckbox(name, onchange) {
 }
 
 function displayDropdowns({ devices, genres, onchange }) {
+    const attributeCheckboxes = {};
     const deviceCheckboxes = {};
     const genreCheckboxes = {};
 
-    const manufacturerButtons = getDevicesByManufacturer(devices).map(([manufacturer, manufacturerDevices]) => {
-        return createDropdownButton(manufacturer, manufacturerDevices.map(device => {
-            return createDropdownItem(device.name, deviceCheckboxes[device.device] = createDropdownCheckbox(device.device, onchange));
-        }));
-    });
+    const attributesGroup = createDropdownGroup('Filters', [
+        createDropdownItem(attributeCheckboxes['readyToRun'] = createDropdownCheckbox('readyToRun', onchange), 'Ready to Run'),
+        createDropdownItem(attributeCheckboxes['filesNeeded'] = createDropdownCheckbox('filesNeeded', onchange), 'Files Needed'),
+    ]);
 
-    const genresButton = createDropdownButton('Genres', genres.map(genre => {
-        return createDropdownItem(ucFirst(genre), genreCheckboxes[genre] = createDropdownCheckbox(genre, onchange));
+    const devicesGroup = createDropdownGroup('Devices', getDevicesByManufacturer(devices).flatMap(([manufacturer, manufacturerDevices]) => {
+        return [
+            createDropdownHeader(manufacturer),
+            ...manufacturerDevices.map(device => {
+                return createDropdownItem(deviceCheckboxes[device.device] = createDropdownCheckbox(device.device, onchange), device.name);
+            }),
+        ];
     }));
 
-    const dropdownButtons = document.getElementById('dropdown-buttons');
-    dropdownButtons.replaceChildren(...manufacturerButtons, genresButton);
+    const genresGroup = createDropdownGroup('Genres', genres.map(genre => {
+        return createDropdownItem(genreCheckboxes[genre.name] = createDropdownCheckbox(genre.name, onchange), ucFirst(genre.name), genre.count);
+    }));
 
-    return { deviceCheckboxes, genreCheckboxes };
+    const groups = [attributesGroup, genresGroup, devicesGroup];
+    document.getElementById('dropdown-buttons').replaceChildren(...groups);
+
+    function updateDropdowns() {
+        for (const group of groups) {
+            const button = group.querySelector('button');
+            const hasChecked = Boolean(group.querySelector(':checked'));
+            button.classList.toggle('btn-outline-primary', !hasChecked);
+            button.classList.toggle('btn-primary', hasChecked);
+        }
+    }
+
+    return { attributeCheckboxes, deviceCheckboxes, genreCheckboxes, updateDropdowns };
 }
 //#endregion
 
 //#region Filter cards
 class FilterForm {
-    constructor({ deviceCheckboxes, genreCheckboxes }) {
+    constructor({ attributeCheckboxes, deviceCheckboxes, genreCheckboxes }) {
         this.elements = {
             searchQuery: document.getElementById('search'),
-            readyToRun: document.getElementById('ready-to-run'),
-            filesNeeded: document.getElementById('files-needed'),
+            readyToRun: attributeCheckboxes.readyToRun,
+            filesNeeded: attributeCheckboxes.filesNeeded,
             Newest: document.getElementById('sortNewest'),
             Downloaded: document.getElementById('sortDownloaded'),
             AZ: document.getElementById('sortAZ'),
@@ -230,8 +325,8 @@ class FilterForm {
             Newest: this.elements.Newest.checked,
             Downloaded: this.elements.Downloaded.checked,
             AZ: this.elements.AZ.checked,
-            devices: Object.fromEntries(this.elements.devices.map(([device, element]) => [device, element.checked])),
-            genres: Object.fromEntries(this.elements.genres.map(([genre, element]) => [genre, element.checked])),
+            devices: Object.fromEntries(this.elements.devices.map(([name, element]) => [name, element.checked])),
+            genres: Object.fromEntries(this.elements.genres.map(([name, element]) => [name, element.checked])),
         };
     }
 
@@ -258,13 +353,15 @@ function getFilteredData(ports, filterState) {
     const isSelectedDevices = Object.values(filterState.devices).some(Boolean);
 
     function matchFilter(port) {
-        if (port.attr.rtr) {
-            if (!filterState.readyToRun) {
-                return false;
-            }
-        } else {
-            if (!filterState.filesNeeded) {
-                return false;
+        if (filterState.readyToRun || filterState.filesNeeded) {
+            if (port.attr.rtr) {
+                if (!filterState.readyToRun) {
+                    return false;
+                }
+            } else {
+                if (!filterState.filesNeeded) {
+                    return false;
+                }
             }
         }
 
@@ -339,13 +436,7 @@ function createCard(port) {
         ...port.attr.genres.map(genre => createElement('span', { className: 'badge bg-secondary' }, ucFirst(genre))),
     ];
 
-    const porters = port.attr.porter.reduce((children, porter, i) => {
-        if (i > 0) {
-            children.push(', ');
-        }
-        children.push(createElement('a', { href: getPorterUrl(porter) }, porter));
-        return children;
-    }, []);
+    const porters = devided(', ', port.attr.porter.map(porter => createElement('a', { href: getPorterUrl(porter) }, porter)));
 
     return createElement('div', { className: 'col' }, [
         createElement('div', { className: 'card h-100 shadow-sm' }, [
