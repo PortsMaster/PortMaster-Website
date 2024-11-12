@@ -163,7 +163,10 @@ function createDropdownGroup(title, items) {
             ariaExpanded: 'false',
             'data-bs-toggle': 'dropdown',
         }, title),
-        createElement('ul', { className: "dropdown-menu" }, items),
+        createElement('ul', {
+            className: 'dropdown-menu overflow-y-auto',
+            style: 'max-height: calc(100vh - 220px)'
+        }, items),
     ]);
 }
 
