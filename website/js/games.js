@@ -103,13 +103,18 @@ async function fetchPorts() {
 }
 
 function getGenres(ports) {
-    const genresSet = new Set();
+    const genres = {};
+
     for (const port of ports) {
         for (const genre of port.attr.genres) {
-            genresSet.add(genre);
+            genres[genre] = genres[genre] ? genres[genre] + 1 : 1;
         }
     }
-    return [...genresSet].sort();
+
+    return Object.entries(genres).map(([name, count]) => ({
+        name,
+        count,
+    })).sort((a, b) => a.name.localeCompare(b.name));
 }
 
 function getDevicesByManufacturer(devices) {
@@ -162,9 +167,13 @@ function createDropdownGroup(title, items) {
     ]);
 }
 
-function createDropdownItem(label, checkbox) {
+function createDropdownItem(checkbox, label, count) {
     return createElement('li', { className: 'dropdown-item' }, [
-        createElement('label', { className: 'd-flex gap-2' }, [checkbox, label]),
+        createElement('label', { className: 'd-flex gap-2' }, [
+            checkbox,
+            label,
+            count && createElement('span', { className: 'ms-auto badge bg-secondary' }, count),
+        ]),
     ]);
 }
 
@@ -183,12 +192,12 @@ function displayDropdowns({ devices, genres, onchange }) {
 
     const manufacturerGroups = getDevicesByManufacturer(devices).map(([manufacturer, manufacturerDevices]) => {
         return createDropdownGroup(manufacturer, manufacturerDevices.map(device => {
-            return createDropdownItem(device.name, deviceCheckboxes[device.device] = createDropdownCheckbox(device.device, onchange));
+            return createDropdownItem(deviceCheckboxes[device.device] = createDropdownCheckbox(device.device, onchange), device.name);
         }));
     });
 
     const genresGroup = createDropdownGroup('Genres', genres.map(genre => {
-        return createDropdownItem(ucFirst(genre), genreCheckboxes[genre] = createDropdownCheckbox(genre, onchange));
+        return createDropdownItem(genreCheckboxes[genre.name] = createDropdownCheckbox(genre.name, onchange), ucFirst(genre.name), genre.count);
     }));
 
     const dropdownButtons = document.getElementById('dropdown-buttons');
