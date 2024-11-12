@@ -1,4 +1,6 @@
 window.addEventListener('DOMContentLoaded', async function() {
+    displayContainer();
+
     const devices = await fetchDevices();
     const ports = await fetchPorts();
     const genres = getGenres(ports);
@@ -149,6 +151,31 @@ function getImageUrl(port) {
 
 function getPorterUrl(porter) {
     return `profile.html?porter=${encodeURIComponent(porter)}`;
+}
+//#endregion
+
+//#region Create container
+function createContainer() {
+    return createElement('div', { className: 'container' }, [
+        createElement('h1', { id: 'port-count', className: 'text-center' }),
+        createElement('br'),
+        createElement('div', {
+            id: 'dropdown-buttons',
+            className: 'btn-group flex-wrap',
+            style: 'display: flex; flex-direction: row; align-items: center; justify-content: center;',
+            role: 'group',
+            'aria-label': 'Button group with nested dropdown',
+        }),
+        createElement('br'),
+        createElement('div', {
+            id: 'cards-container',
+            className: 'row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3',
+        }),
+    ]);
+}
+
+function displayContainer() {
+    document.getElementById('app').append(createContainer());
 }
 //#endregion
 
