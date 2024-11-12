@@ -1,11 +1,12 @@
 window.addEventListener('DOMContentLoaded', async function() {
-    displayContainer();
+    displayContainerLoading();
 
     const devices = await fetchDevices();
     const ports = await fetchPorts();
     const genres = getGenres(ports);
     const firmwareNames = getFirmwareNames();
 
+    displayContainer(onchange);
     const dropdowns = displayDropdowns({ devices, genres, onchange });
     const filterForm = new FilterForm(dropdowns);
     filterForm.loadStorage();
@@ -16,9 +17,6 @@ window.addEventListener('DOMContentLoaded', async function() {
         displayCards(getFilteredData(ports, filterState), getSelectedDevices(devices, filterState), firmwareNames);
     }
     onchange();
-
-    // Export global for static html filters
-    window.filterCards = onchange;
 });
 
 //#region Helper functions
@@ -160,9 +158,7 @@ function getPorterUrl(porter) {
 //#endregion
 
 //#region Create container
-function createContainer() {
-    const filterCards = () => window.filterCards();
-
+function createContainer(onchange) {
     return createElement('div', { className: 'container' }, [
         createElement('div', { className: 'my-2 d-flex flex-wrap gap-2' }, [
             createElement('div', {
@@ -178,18 +174,18 @@ function createContainer() {
                 className: 'form-control w-25 flex-grow-1',
                 placeholder: 'Search',
                 'aria-label': 'Search',
-                oninput: filterCards,
+                oninput: onchange,
             }),
             createElement('div', {
                 className: 'btn-group',
                 role: 'group',
                 'aria-label': 'Basic radio toggle button group',
             }, [
-                createElement('input', { id: 'sortAZ', className: 'btn-check', type: 'radio', name: 'sortRadio', autocomplete: 'off', checked: true, onchange: filterCards }),
+                createElement('input', { id: 'sortAZ', className: 'btn-check', type: 'radio', name: 'sortRadio', autocomplete: 'off', checked: true, onchange }),
                 createElement('label', { htmlFor: 'sortAZ', className: 'btn btn-outline-primary' }, 'A - Z'),
-                createElement('input', { id: 'sortDownloaded', className: 'btn-check', type: 'radio', name: 'sortRadio', autocomplete: 'off', checked: false, onchange: filterCards }),
+                createElement('input', { id: 'sortDownloaded', className: 'btn-check', type: 'radio', name: 'sortRadio', autocomplete: 'off', checked: false, onchange }),
                 createElement('label', { htmlFor: 'sortDownloaded', className: 'btn btn-outline-primary' }, 'Most Downloaded'),
-                createElement('input', { id: 'sortNewest', className: 'btn-check', type: 'radio', name: 'sortRadio', autocomplete: 'off', checked: false, onchange: filterCards }),
+                createElement('input', { id: 'sortNewest', className: 'btn-check', type: 'radio', name: 'sortRadio', autocomplete: 'off', checked: false, onchange }),
                 createElement('label', { htmlFor: 'sortNewest', className: 'btn btn-outline-primary' }, 'Most Recent'),
             ]),
         ]),
@@ -201,8 +197,17 @@ function createContainer() {
     ]);
 }
 
-function displayContainer() {
-    document.getElementById('app').append(createContainer());
+function displayContainerLoading() {
+    document.getElementById('app').replaceChildren(createElement('div', { className: 'container' }, [
+        createElement('h2', { id: 'port-count', className: 'my-2 text-center text-muted' }, [
+            createElement('div', { className: 'me-3 spinner-border' }),
+            'Loading...',
+        ]),
+    ]));
+}
+
+function displayContainer(onchange) {
+    document.getElementById('app').replaceChildren(createContainer(onchange));
 }
 //#endregion
 
