@@ -350,31 +350,6 @@
         </ul>
        </li>
       </ul>
-      <ul class="navbar-nav">
-       <li class="nav-item dropdown">
-        <a aria-expanded="false" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#">
-         Filters
-        </a>
-        <ul class="dropdown-menu">
-         <div class="dropdown-item">
-          <li>
-           <label>
-            <input checked class="form-check-input" id="ready-to-run" onchange="filterCards()" type="checkbox" value=""/>
-            Ready to Run
-           </label>
-          </li>
-         </div>
-         <div class="dropdown-item">
-          <li>
-           <label>
-            <input checked class="form-check-input" id="files-needed" onchange="filterCards()" type="checkbox" value=""/>
-            Files Needed
-           </label>
-          </li>
-         </div>
-        </ul>
-       </li>
-      </ul>
       <form onkeydown="return event.key != 'Enter';" role="search">
        <input aria-label="Search" class="form-control" id="search" oninput="filterCards()" placeholder="Search" type="search"/>
       </form>

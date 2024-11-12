@@ -193,8 +193,14 @@ function createDropdownCheckbox(name, onchange) {
 }
 
 function displayDropdowns({ devices, genres, onchange }) {
+    const attributeCheckboxes = {};
     const deviceCheckboxes = {};
     const genreCheckboxes = {};
+
+    const attributesGroup = createDropdownGroup('Filters', [
+        createDropdownItem(attributeCheckboxes['readyToRun'] = createDropdownCheckbox('readyToRun', onchange), 'Ready to Run'),
+        createDropdownItem(attributeCheckboxes['filesNeeded'] = createDropdownCheckbox('filesNeeded', onchange), 'Files Needed'),
+    ]);
 
     const devicesGroup = createDropdownGroup('Devices', getDevicesByManufacturer(devices).flatMap(([manufacturer, manufacturerDevices]) => {
         return [
@@ -209,11 +215,10 @@ function displayDropdowns({ devices, genres, onchange }) {
         return createDropdownItem(genreCheckboxes[genre.name] = createDropdownCheckbox(genre.name, onchange), ucFirst(genre.name), genre.count);
     }));
 
-    const dropdownButtons = document.getElementById('dropdown-buttons');
-    dropdownButtons.replaceChildren(genresGroup, devicesGroup);
+    const groups = [attributesGroup, genresGroup, devicesGroup];
+    document.getElementById('dropdown-buttons').replaceChildren(...groups);
 
     function updateDropdowns() {
-        const groups = [genresGroup, devicesGroup];
         for (const group of groups) {
             const button = group.querySelector('button');
             const hasChecked = Boolean(group.querySelector(':checked'));
@@ -222,17 +227,17 @@ function displayDropdowns({ devices, genres, onchange }) {
         }
     }
 
-    return { deviceCheckboxes, genreCheckboxes, updateDropdowns };
+    return { attributeCheckboxes, deviceCheckboxes, genreCheckboxes, updateDropdowns };
 }
 //#endregion
 
 //#region Filter cards
 class FilterForm {
-    constructor({ deviceCheckboxes, genreCheckboxes }) {
+    constructor({ attributeCheckboxes, deviceCheckboxes, genreCheckboxes }) {
         this.elements = {
             searchQuery: document.getElementById('search'),
-            readyToRun: document.getElementById('ready-to-run'),
-            filesNeeded: document.getElementById('files-needed'),
+            readyToRun: attributeCheckboxes.readyToRun,
+            filesNeeded: attributeCheckboxes.filesNeeded,
             Newest: document.getElementById('sortNewest'),
             Downloaded: document.getElementById('sortDownloaded'),
             AZ: document.getElementById('sortAZ'),
@@ -263,8 +268,8 @@ class FilterForm {
             Newest: this.elements.Newest.checked,
             Downloaded: this.elements.Downloaded.checked,
             AZ: this.elements.AZ.checked,
-            devices: Object.fromEntries(this.elements.devices.map(([device, element]) => [device, element.checked])),
-            genres: Object.fromEntries(this.elements.genres.map(([genre, element]) => [genre, element.checked])),
+            devices: Object.fromEntries(this.elements.devices.map(([name, element]) => [name, element.checked])),
+            genres: Object.fromEntries(this.elements.genres.map(([name, element]) => [name, element.checked])),
         };
     }
 
@@ -291,13 +296,15 @@ function getFilteredData(ports, filterState) {
     const isSelectedDevices = Object.values(filterState.devices).some(Boolean);
 
     function matchFilter(port) {
-        if (port.attr.rtr) {
-            if (!filterState.readyToRun) {
-                return false;
-            }
-        } else {
-            if (!filterState.filesNeeded) {
-                return false;
+        if (filterState.readyToRun || filterState.filesNeeded) {
+            if (port.attr.rtr) {
+                if (!filterState.readyToRun) {
+                    return false;
+                }
+            } else {
+                if (!filterState.filesNeeded) {
+                    return false;
+                }
             }
         }
 
