@@ -35,6 +35,11 @@ function createElement(tagName, props, children) {
 
     if (props) {
         for (const [name, value] of Object.entries(props)) {
+            if (name === 'ref') {
+                value(element);
+                continue;
+            }
+
             if (name in element) {
                 element[name] = value;
             } else {
@@ -156,17 +161,39 @@ function getPorterUrl(porter) {
 
 //#region Create container
 function createContainer() {
+    const filterCards = () => window.filterCards();
+
     return createElement('div', { className: 'container' }, [
-        createElement('h1', { id: 'port-count', className: 'text-center' }),
-        createElement('br'),
-        createElement('div', {
-            id: 'dropdown-buttons',
-            className: 'btn-group flex-wrap',
-            style: 'display: flex; flex-direction: row; align-items: center; justify-content: center;',
-            role: 'group',
-            'aria-label': 'Button group with nested dropdown',
-        }),
-        createElement('br'),
+        createElement('div', { className: 'my-2 d-flex flex-wrap gap-2' }, [
+            createElement('div', {
+                id: 'dropdown-buttons',
+                className: 'btn-group flex-wrap',
+                style: 'display: flex; flex-direction: row; align-items: center; justify-content: center;',
+                role: 'group',
+                'aria-label': 'Button group with nested dropdown',
+            }),
+            createElement('input', {
+                type: 'search',
+                id: 'search',
+                className: 'form-control w-25 flex-grow-1',
+                placeholder: 'Search',
+                'aria-label': 'Search',
+                oninput: filterCards,
+            }),
+            createElement('div', {
+                className: 'btn-group',
+                role: 'group',
+                'aria-label': 'Basic radio toggle button group',
+            }, [
+                createElement('input', { id: 'sortAZ', className: 'btn-check', type: 'radio', name: 'sortRadio', autocomplete: 'off', checked: true, onchange: filterCards }),
+                createElement('label', { htmlFor: 'sortAZ', className: 'btn btn-outline-primary' }, 'A - Z'),
+                createElement('input', { id: 'sortDownloaded', className: 'btn-check', type: 'radio', name: 'sortRadio', autocomplete: 'off', checked: false, onchange: filterCards }),
+                createElement('label', { htmlFor: 'sortDownloaded', className: 'btn btn-outline-primary' }, 'Most Downloaded'),
+                createElement('input', { id: 'sortNewest', className: 'btn-check', type: 'radio', name: 'sortRadio', autocomplete: 'off', checked: false, onchange: filterCards }),
+                createElement('label', { htmlFor: 'sortNewest', className: 'btn btn-outline-primary' }, 'Most Recent'),
+            ]),
+        ]),
+        createElement('h2', { id: 'port-count', className: 'my-4 text-center' }),
         createElement('div', {
             id: 'cards-container',
             className: 'row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3',
