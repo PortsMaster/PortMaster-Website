@@ -227,7 +227,7 @@ function createDropdownGroup(title, items) {
             'data-bs-toggle': 'dropdown',
         }, title),
         createElement('div', {
-            className: 'dropdown-menu overflow-y-auto',
+            className: 'dropdown-menu overflow-x-hidden overflow-y-auto',
             style: 'max-height: calc(100vh - 140px)'
         }, items),
     ]);
