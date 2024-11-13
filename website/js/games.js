@@ -437,7 +437,6 @@ function createCard(port) {
     const badges = [
         port.attr.rtr && createElement('span', { className: 'badge bg-success' }, 'Ready to Run'),
         port.attr.exp && createElement('span', { className: 'badge bg-warning' }, 'Experimental'),
-        port.source.repo === 'multiverse' && createElement('span', { className: 'badge bg-info' }, 'Multiverse'),
         ...port.attr.genres.map(genre => createElement('span', { className: 'badge bg-secondary' }, ucFirst(genre))),
     ];
 
