@@ -222,26 +222,22 @@ function createDropdownGroup(title, items) {
             ariaExpanded: 'false',
             'data-bs-toggle': 'dropdown',
         }, title),
-        createElement('ul', {
+        createElement('div', {
             className: 'dropdown-menu overflow-y-auto',
-            style: 'max-height: calc(100vh - 220px)'
+            style: 'max-height: calc(100vh - 140px)'
         }, items),
     ]);
 }
 
 function createDropdownHeader(title) {
-    return createElement('li', null, [
-        createElement('h6', { className: 'dropdown-header' }, title),
-    ]);
+    return createElement('h6', { className: 'dropdown-header' }, title);
 }
 
 function createDropdownItem(checkbox, label, count) {
-    return createElement('li', { className: 'dropdown-item' }, [
-        createElement('label', { className: 'd-flex gap-2' }, [
-            checkbox,
-            label,
-            count && createElement('span', { className: 'ms-auto text-muted' }, count),
-        ]),
+    return createElement('label', { className: 'dropdown-item d-flex gap-2' }, [
+        checkbox,
+        label,
+        count && createElement('span', { className: 'ms-auto text-muted' }, count),
     ]);
 }
 
