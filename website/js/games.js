@@ -160,26 +160,20 @@ function getPorterUrl(porter) {
 //#region Create container
 function createContainer(onchange) {
     return createElement('div', { className: 'container' }, [
-        createElement('div', { className: 'my-2 d-flex flex-wrap gap-2' }, [
+        createElement('div', { className: 'my-2 gap-2 d-flex flex-wrap justify-content-center' }, [
             createElement('div', {
                 id: 'dropdown-buttons',
                 className: 'btn-group flex-wrap',
-                style: 'display: flex; flex-direction: row; align-items: center; justify-content: center;',
-                role: 'group',
-                'aria-label': 'Button group with nested dropdown',
             }),
             createElement('input', {
                 type: 'search',
                 id: 'search',
                 className: 'form-control w-25 flex-grow-1',
                 placeholder: 'Search',
-                'aria-label': 'Search',
                 oninput: onchange,
             }),
             createElement('div', {
                 className: 'btn-group',
-                role: 'group',
-                'aria-label': 'Basic radio toggle button group',
             }, [
                 createElement('input', { id: 'sortAZ', className: 'btn-check', type: 'radio', name: 'sortRadio', autocomplete: 'off', checked: true, onchange }),
                 createElement('label', { htmlFor: 'sortAZ', className: 'btn btn-outline-primary' }, 'A - Z'),
