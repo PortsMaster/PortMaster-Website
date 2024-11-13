@@ -445,10 +445,10 @@ function createCard(port) {
 
     return createElement('div', { className: 'col' }, [
         createElement('div', { className: 'card h-100 shadow-sm' }, [
-            createElement('a', { href: cardUrl, className: 'update-anchor' }, [
+            createElement('a', { href: cardUrl, className: 'ratio ratio-4x3 update-anchor' }, [
                 createElement('img', {
                     src: imageUrl,
-                    className: 'bd-placeholder-img card-img-top',
+                    className: 'bd-placeholder-img card-img-top object-fit-contain',
                     loading: 'lazy',
                 }),
             ]),
