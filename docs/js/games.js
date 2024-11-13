@@ -1,11 +1,12 @@
 window.addEventListener('DOMContentLoaded', async function() {
-    displayContainer();
+    displayContainerLoading();
 
     const devices = await fetchDevices();
     const ports = await fetchPorts();
     const genres = getGenres(ports);
     const firmwareNames = getFirmwareNames();
 
+    displayContainer(onchange);
     const dropdowns = displayDropdowns({ devices, genres, onchange });
     const filterForm = new FilterForm(dropdowns);
     filterForm.loadStorage();
@@ -16,9 +17,6 @@ window.addEventListener('DOMContentLoaded', async function() {
         displayCards(getFilteredData(ports, filterState), getSelectedDevices(devices, filterState), firmwareNames);
     }
     onchange();
-
-    // Export global for static html filters
-    window.filterCards = onchange;
 });
 
 //#region Helper functions
@@ -57,6 +55,16 @@ function createElement(tagName, props, children) {
     }
 
     return element;
+}
+
+async function batchReplaceChildren(batchSize, container, children) {
+    container.replaceChildren();
+    for (const [i, child] of children.entries()) {
+        if ((i + 1) % batchSize === 0) {
+            await new Promise(resolve => setTimeout(resolve));
+        }
+        container.appendChild(child);
+    }
 }
 
 function devided(divider, array) {
@@ -99,7 +107,7 @@ async function fetchPorts() {
 
         const ports = Object.values(portsData.ports);
         for (const port of ports) {
-            port.download_count = statsData.ports[port.name];
+            port.download_count = statsData.ports[port.name] ?? 0;
         }
 
         return ports;
@@ -160,36 +168,28 @@ function getPorterUrl(porter) {
 //#endregion
 
 //#region Create container
-function createContainer() {
-    const filterCards = () => window.filterCards();
-
+function createContainer(onchange) {
     return createElement('div', { className: 'container' }, [
-        createElement('div', { className: 'my-2 d-flex flex-wrap gap-2' }, [
+        createElement('div', { className: 'my-2 gap-2 d-flex flex-wrap justify-content-center' }, [
             createElement('div', {
                 id: 'dropdown-buttons',
                 className: 'btn-group flex-wrap',
-                style: 'display: flex; flex-direction: row; align-items: center; justify-content: center;',
-                role: 'group',
-                'aria-label': 'Button group with nested dropdown',
             }),
             createElement('input', {
                 type: 'search',
                 id: 'search',
                 className: 'form-control w-25 flex-grow-1',
                 placeholder: 'Search',
-                'aria-label': 'Search',
-                oninput: filterCards,
+                oninput: onchange,
             }),
             createElement('div', {
                 className: 'btn-group',
-                role: 'group',
-                'aria-label': 'Basic radio toggle button group',
             }, [
-                createElement('input', { id: 'sortAZ', className: 'btn-check', type: 'radio', name: 'sortRadio', autocomplete: 'off', checked: true, onchange: filterCards }),
+                createElement('input', { id: 'sortAZ', className: 'btn-check', type: 'radio', name: 'sortRadio', autocomplete: 'off', checked: true, onchange }),
                 createElement('label', { htmlFor: 'sortAZ', className: 'btn btn-outline-primary' }, 'A - Z'),
-                createElement('input', { id: 'sortDownloaded', className: 'btn-check', type: 'radio', name: 'sortRadio', autocomplete: 'off', checked: false, onchange: filterCards }),
+                createElement('input', { id: 'sortDownloaded', className: 'btn-check', type: 'radio', name: 'sortRadio', autocomplete: 'off', checked: false, onchange }),
                 createElement('label', { htmlFor: 'sortDownloaded', className: 'btn btn-outline-primary' }, 'Most Downloaded'),
-                createElement('input', { id: 'sortNewest', className: 'btn-check', type: 'radio', name: 'sortRadio', autocomplete: 'off', checked: false, onchange: filterCards }),
+                createElement('input', { id: 'sortNewest', className: 'btn-check', type: 'radio', name: 'sortRadio', autocomplete: 'off', checked: false, onchange }),
                 createElement('label', { htmlFor: 'sortNewest', className: 'btn btn-outline-primary' }, 'Most Recent'),
             ]),
         ]),
@@ -201,8 +201,17 @@ function createContainer() {
     ]);
 }
 
-function displayContainer() {
-    document.getElementById('app').append(createContainer());
+function displayContainerLoading() {
+    document.getElementById('app').replaceChildren(createElement('div', { className: 'container' }, [
+        createElement('h2', { id: 'port-count', className: 'my-2 text-center text-muted' }, [
+            createElement('div', { className: 'me-3 spinner-border' }),
+            'Loading...',
+        ]),
+    ]));
+}
+
+function displayContainer(onchange) {
+    document.getElementById('app').replaceChildren(createContainer(onchange));
 }
 //#endregion
 
@@ -217,26 +226,22 @@ function createDropdownGroup(title, items) {
             ariaExpanded: 'false',
             'data-bs-toggle': 'dropdown',
         }, title),
-        createElement('ul', {
-            className: 'dropdown-menu overflow-y-auto',
-            style: 'max-height: calc(100vh - 220px)'
+        createElement('div', {
+            className: 'dropdown-menu overflow-x-hidden overflow-y-auto',
+            style: 'max-height: calc(100vh - 140px)'
         }, items),
     ]);
 }
 
 function createDropdownHeader(title) {
-    return createElement('li', null, [
-        createElement('h6', { className: 'dropdown-header' }, title),
-    ]);
+    return createElement('h6', { className: 'dropdown-header' }, title);
 }
 
 function createDropdownItem(checkbox, label, count) {
-    return createElement('li', { className: 'dropdown-item' }, [
-        createElement('label', { className: 'd-flex gap-2' }, [
-            checkbox,
-            label,
-            count && createElement('span', { className: 'ms-auto text-muted' }, count),
-        ]),
+    return createElement('label', { className: 'dropdown-item d-flex gap-2' }, [
+        checkbox,
+        label,
+        count && createElement('span', { className: 'ms-auto text-muted' }, count),
     ]);
 }
 
@@ -432,7 +437,6 @@ function createCard(port) {
     const badges = [
         port.attr.rtr && createElement('span', { className: 'badge bg-success' }, 'Ready to Run'),
         port.attr.exp && createElement('span', { className: 'badge bg-warning' }, 'Experimental'),
-        port.source.repo === 'multiverse' && createElement('span', { className: 'badge bg-info' }, 'Multiverse'),
         ...port.attr.genres.map(genre => createElement('span', { className: 'badge bg-secondary' }, ucFirst(genre))),
     ];
 
@@ -440,10 +444,10 @@ function createCard(port) {
 
     return createElement('div', { className: 'col' }, [
         createElement('div', { className: 'card h-100 shadow-sm' }, [
-            createElement('a', { href: cardUrl, className: 'update-anchor' }, [
+            createElement('a', { href: cardUrl, className: 'ratio ratio-4x3 update-anchor' }, [
                 createElement('img', {
                     src: imageUrl,
-                    className: 'bd-placeholder-img card-img-top',
+                    className: 'bd-placeholder-img card-img-top object-fit-contain',
                     loading: 'lazy',
                 }),
             ]),
@@ -468,7 +472,7 @@ function createCard(port) {
                 createElement('div', { className: 'flex-fill w-50' }, [
                     createElement('div', null, [
                         createElement('span', { className: 'text-muted' }, 'Downloads: '),
-                        port.download_count || 0,
+                        `${port.download_count}`,
                     ]),
                     createElement('div', { className: 'd-inline-flex gap-1' }, [
                         createElement('span', { className: 'text-muted' }, `Porter${porters.length > 1 ? 's' : ''}: `),
@@ -514,6 +518,8 @@ function updateCard(card, port, selectedDevices, firmwareNames) {
     } else {
         cardSupported.hidden = true;
     }
+
+    return card;
 }
 
 const portCardsMap = new Map();
@@ -532,11 +538,8 @@ function displayCards(ports, selectedDevices, firmwareNames) {
     availablePorts.textContent = `${ports.length} Ports Available`;
 
     const cardsContainer = document.getElementById('cards-container');
-    cardsContainer.replaceChildren();
-    for (const port of ports) {
-        const card = getCard(port);
-        updateCard(card, port, selectedDevices, firmwareNames);
-        cardsContainer.appendChild(card);
-    }
+    batchReplaceChildren(200, cardsContainer, ports.map(port => {
+        return updateCard(getCard(port), port, selectedDevices, firmwareNames)
+    }));
 }
 //#endregion
