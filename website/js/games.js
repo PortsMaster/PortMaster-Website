@@ -107,7 +107,7 @@ async function fetchPorts() {
 
         const ports = Object.values(portsData.ports);
         for (const port of ports) {
-            port.download_count = statsData.ports[port.name];
+            port.download_count = statsData.ports[port.name] ?? 0;
         }
 
         return ports;
@@ -473,7 +473,7 @@ function createCard(port) {
                 createElement('div', { className: 'flex-fill w-50' }, [
                     createElement('div', null, [
                         createElement('span', { className: 'text-muted' }, 'Downloads: '),
-                        port.download_count || 0,
+                        `${port.download_count}`,
                     ]),
                     createElement('div', { className: 'd-inline-flex gap-1' }, [
                         createElement('span', { className: 'text-muted' }, `Porter${porters.length > 1 ? 's' : ''}: `),
