@@ -57,6 +57,16 @@ function createElement(tagName, props, children) {
     return element;
 }
 
+async function batchReplaceChildren(batchSize, container, children) {
+    container.replaceChildren();
+    for (const [i, child] of children.entries()) {
+        if ((i + 1) % batchSize === 0) {
+            await new Promise(resolve => setTimeout(resolve));
+        }
+        container.appendChild(child);
+    }
+}
+
 function devided(divider, array) {
     return array.reduce((acc, cur) => acc ? [...acc, divider, cur] : [cur], null);
 }
@@ -509,6 +519,8 @@ function updateCard(card, port, selectedDevices, firmwareNames) {
     } else {
         cardSupported.hidden = true;
     }
+
+    return card;
 }
 
 const portCardsMap = new Map();
@@ -527,11 +539,8 @@ function displayCards(ports, selectedDevices, firmwareNames) {
     availablePorts.textContent = `${ports.length} Ports Available`;
 
     const cardsContainer = document.getElementById('cards-container');
-    cardsContainer.replaceChildren();
-    for (const port of ports) {
-        const card = getCard(port);
-        updateCard(card, port, selectedDevices, firmwareNames);
-        cardsContainer.appendChild(card);
-    }
+    batchReplaceChildren(200, cardsContainer, ports.map(port => {
+        return updateCard(getCard(port), port, selectedDevices, firmwareNames)
+    }));
 }
 //#endregion
