@@ -274,51 +274,58 @@
    </footer>
   </div>
   <script>
-   var devices = []
+   function populateTable(devices) {
+      const tbody = document.getElementById('tbody');
 
-    function populateTable() {
-      var tbody = document.getElementById("tbody");
+      for (const device of devices) {
+        const tr = document.createElement('tr');
 
-      for (item in devices) {
-        var tr = document.createElement("tr");
-
-        var device = document.createElement("td")
-        device.innerHTML = devices[item].device;
-        var manufacturer = document.createElement("td")
-        manufacturer.innerHTML = devices[item].manufacturer;
-        var resolution = document.createElement("td")
-        resolution.innerHTML = devices[item].resolution;
-        var firmware = document.createElement("td")
-        firmware.innerHTML = devices[item].firmware;
-        var notes = document.createElement("td")
-        notes.innerHTML = devices[item].notes;
-
-        tr.appendChild(device);
-        tr.appendChild(manufacturer);
-        tr.appendChild(resolution);
-        tr.appendChild(firmware);
-        tr.appendChild(notes);
+        tr.appendChild(document.createElement('td')).textContent = device.device;
+        tr.appendChild(document.createElement('td')).textContent = device.manufacturer;
+        tr.appendChild(document.createElement('td')).textContent = device.resolution;
+        tr.appendChild(document.createElement('td')).textContent = device.firmware;
+        tr.appendChild(document.createElement('td')).textContent = device.notes;
 
         tbody.appendChild(tr);
       }
     }
 
-    async function getDevices() {
+    async function fetchDeviceInfo() {
       try {
-        var response = await fetch('https://raw.githubusercontent.com/PortsMaster/PortMaster-Website/main/devices.json'); // Replace 'YOUR_JSON_URL_HERE' with the actual URL of your JSON data.
+        var response = await fetch('https://raw.githubusercontent.com/PortsMaster/PortMaster-Info/main/device_info.json'); // Replace 'YOUR_JSON_URL_HERE' with the actual URL of your JSON data.
         if (!response.ok) {
           throw new Error('Network response was not ok.');
         }
-        devices = await response.json();
-        populateTable();
-        $('#devices').DataTable({ responsive: true })
+        return await response.json();
       } catch (error) {
         console.error('Error fetching JSON data:', error);
       }
     }
 
-    $(document).ready(function () {
-      getDevices();
+    function deviceInfoToDevices(deviceInfo) {
+      const devices = [];
+
+      for (const [deviceName, firmwares] of Object.entries(deviceInfo)) {
+        const firmware = Object.values(firmwares)[0];
+        const resolution = firmware.resolution.join('x');
+        const device = {
+          device: deviceName,
+          manufacturer: firmware.manufacturer,
+          resolution,
+          firmware: Object.keys(firmwares).sort().join(', '),
+          notes: ['640x480', '1280x720'].includes(resolution) ? '' : 'Some ports may have issues with this aspect ratio. Results will vary from port to port.',
+        };
+        devices.push(device);
+      }
+
+      return devices;
+    }
+
+    $(document).ready(() => {
+      fetchDeviceInfo().then(deviceInfo => {
+        populateTable(deviceInfoToDevices(deviceInfo));
+        $('#devices').DataTable({ responsive: true });
+      });
     });
   </script>
  </body>
