@@ -1,7 +1,7 @@
 window.addEventListener('DOMContentLoaded', async function() {
     displayContainerLoading();
 
-    const devices = await fetchDevices();
+    const devices = deviceInfoToDevices(await fetchDeviceInfo());
     const ports = await fetchPorts();
     const genres = getGenres(ports);
     const firmwareNames = getFirmwareNames();
@@ -89,13 +89,34 @@ function getFirmwareNames() {
     };
 }
 
-async function fetchDevices() {
+async function fetchDeviceInfo() {
     try {
-        return await fetchJson('https://raw.githubusercontent.com/PortsMaster/PortMaster-Info/main/devices.json'); // Replace 'YOUR_JSON_URL_HERE' with the actual URL of your JSON data.
+        return await fetchJson('https://raw.githubusercontent.com/PortsMaster/PortMaster-Info/main/device_info.json'); // Replace 'YOUR_JSON_URL_HERE' with the actual URL of your JSON data.
     } catch (error) {
         console.error('Error fetching JSON data:', error);
         return {};
     }
+}
+
+function deviceInfoToDevices(deviceInfo) {
+    const devices = {};
+
+    for (const [deviceName, firmwares] of Object.entries(deviceInfo)) {
+        const device = {
+            name: deviceName,
+            device: '',
+            manufacturer: '',
+            cfw: {},
+        };
+        for (const [firmwareName, firmware] of Object.entries(firmwares)) {
+            device.device = firmware.device;
+            device.manufacturer = firmware.manufacturer;
+            device.cfw[firmware.name] = { name: firmwareName };
+        }
+        devices[device.device] = device;
+    }
+
+    return devices;
 }
 
 async function fetchPorts() {
