@@ -8,12 +8,14 @@ window.addEventListener('DOMContentLoaded', async function() {
     const firmwareNames = getFirmwareNames();
 
     const { containerElement, updateContainer, filterControls } = createContainer({ devices, genres, onchange });
-    const filterForm = new FilterForm(filterControls);
-    filterForm.loadStorage();
+    const filterState = JSON.parse(sessionStorage.getItem('filterState'));
+    setFilterState(filterControls, filterState);
     appElement.replaceChildren(containerElement);
 
     function onchange() {
-        const filterState = filterForm.saveStorage();
+        const filterState = getFilterState(filterControls);
+        sessionStorage.setItem('filterState', JSON.stringify(filterState));
+
         const selectedDevices = getSelectedDevices(devices, filterState);
         updateContainer({
             cards: getFilteredData(ports, filterState).map(port => {
@@ -70,6 +72,10 @@ async function batchReplaceChildren(batchSize, container, children) {
         }
         container.appendChild(child);
     }
+}
+
+function getCheckedValues(elements) {
+    return Object.fromEntries(Object.entries(elements).map(([name, element]) => [name, element.checked]));
 }
 
 function devided(divider, array) {
@@ -340,62 +346,34 @@ function createDropdowns({ devices, genres, onchange }) {
 //#endregion
 
 //#region Filter cards
-class FilterForm {
-    constructor({ checkboxes, searchInput, sortRadio }) {
-        this.elements = {
-            searchQuery: searchInput,
-            readyToRun: checkboxes.attribute.readyToRun,
-            filesNeeded: checkboxes.attribute.filesNeeded,
-            Newest: sortRadio.date_added,
-            Downloaded: sortRadio.download_count,
-            AZ: sortRadio.title,
-            devices: Object.entries(checkboxes.device),
-            genres: Object.entries(checkboxes.genre),
-        };
+function getFilterState({ searchInput, sortRadio, checkboxes }) {
+    return {
+        searchQuery: searchInput.value.trim(),
+
+        Newest: sortRadio.date_added.checked,
+        Downloaded: sortRadio.download_count.checked,
+        AZ: sortRadio.title.checked,
+
+        devices: getCheckedValues(checkboxes.device),
+        genres: getCheckedValues(checkboxes.genre),
+    };
+}
+
+function setFilterState({ searchInput, sortRadio, checkboxes }, filterState) {
+    if (!filterState) return;
+
+    searchInput.value = filterState.searchQuery;
+
+    sortRadio.date_added.checked = filterState.Newest;
+    sortRadio.download_count.checked = filterState.Downloaded;
+    sortRadio.title.checked = filterState.AZ;
+
+    for (const [value, element] of Object.entries(checkboxes.device)) {
+        element.checked = filterState.devices[value] ?? false;
     }
 
-    loadStorage() {
-        const jsonState = sessionStorage.getItem('filterState');
-        if (jsonState) {
-            const state = JSON.parse(jsonState);
-            this.setElementsState(state);
-        }
-    }
-
-    saveStorage() {
-        const state = this.getElementsState();
-        sessionStorage.setItem('filterState', JSON.stringify(state));
-        return state;
-    }
-
-    getElementsState() {
-        return {
-            searchQuery: this.elements.searchQuery.value.trim(),
-            readyToRun: this.elements.readyToRun.checked,
-            filesNeeded: this.elements.filesNeeded.checked,
-            Newest: this.elements.Newest.checked,
-            Downloaded: this.elements.Downloaded.checked,
-            AZ: this.elements.AZ.checked,
-            devices: Object.fromEntries(this.elements.devices.map(([name, element]) => [name, element.checked])),
-            genres: Object.fromEntries(this.elements.genres.map(([name, element]) => [name, element.checked])),
-        };
-    }
-
-    setElementsState(state) {
-        this.elements.searchQuery.value = state.searchQuery;
-        this.elements.readyToRun.checked = state.readyToRun;
-        this.elements.filesNeeded.checked = state.filesNeeded;
-        this.elements.Newest.checked = state.Newest;
-        this.elements.Downloaded.checked = state.Downloaded;
-        this.elements.AZ.checked = state.AZ;
-
-        for (const [device, element] of this.elements.devices) {
-            element.checked = state.devices[device] ?? false;
-        }
-
-        for (const [genre, element] of this.elements.genres) {
-            element.checked = state.genres[genre] ?? false;
-        }
+    for (const [value, element] of Object.entries(checkboxes.genre)) {
+        element.checked = filterState.genres[value] ?? false;
     }
 }
 
