@@ -8,9 +8,11 @@ window.addEventListener('DOMContentLoaded', async function() {
     const firmwareNames = getFirmwareNames();
 
     const { containerElement, updateContainer, filterControls } = createContainer({ devices, genres, onchange });
-    const filterState = JSON.parse(sessionStorage.getItem('filterState'));
+    const filterState = JSON.parse(sessionStorage.getItem('filterState')) ?? defaultFilterState();
     setFilterState(filterControls, filterState);
     appElement.replaceChildren(containerElement);
+
+    const getCard = memoize(createCard, port => port.name);
 
     function onchange() {
         const filterState = getFilterState(filterControls);
@@ -72,6 +74,24 @@ async function batchReplaceChildren(batchSize, container, children) {
         }
         container.appendChild(child);
     }
+}
+
+function memoize(func, resolver) {
+    function memoized(...args) {
+        const key = resolver ? resolver.apply(this, args) : args[0];
+
+        if (memoized.cache.has(key)) {
+            return memoized.cache.get(key);
+        }
+        
+        const result = func.apply(this, args);
+        memoized.cache.set(key, result);
+        return result;
+    };
+
+    memoized.cache = new Map();
+
+    return memoized;
 }
 
 function getCheckedValues(elements) {
@@ -215,7 +235,7 @@ function createSort({ onchange }) {
     const sortElement = createElement('div', {
         className: 'btn-group',
     }, [
-        createElement('input', { ref: el => sortRadio.date_added = el, id: 'sortNewest', className: 'btn-check', type: 'radio', name: 'sortRadio', autocomplete: 'off', checked: true, onchange }),
+        createElement('input', { ref: el => sortRadio.date_added = el, id: 'sortNewest', className: 'btn-check', type: 'radio', name: 'sortRadio', autocomplete: 'off', checked: false, onchange }),
         createElement('label', { htmlFor: 'sortNewest', className: 'btn btn-outline-primary' }, 'Most Recent'),
         createElement('input', { ref: el => sortRadio.download_count = el, id: 'sortDownloaded', className: 'btn-check', type: 'radio', name: 'sortRadio', autocomplete: 'off', checked: false, onchange }),
         createElement('label', { htmlFor: 'sortDownloaded', className: 'btn btn-outline-primary' }, 'Most Downloaded'),
@@ -346,6 +366,21 @@ function createDropdowns({ devices, genres, onchange }) {
 //#endregion
 
 //#region Filter cards
+function defaultFilterState() {
+    const searchParams = new URLSearchParams(location.search);
+
+    return {
+        searchQuery: searchParams.get('search') ?? '',
+
+        Newest: true,
+        Downloaded: false,
+        AZ: false,
+
+        devices: {},
+        genres: {},
+    };
+}
+
 function getFilterState({ searchInput, sortRadio, checkboxes }) {
     return {
         searchQuery: searchInput.value.trim(),
@@ -544,16 +579,5 @@ function updateCard(card, port, selectedDevices, firmwareNames) {
     }
 
     return card;
-}
-
-const portCardsMap = new Map();
-function getCard(port) {
-    if (portCardsMap.has(port.name)) {
-        return portCardsMap.get(port.name);
-    } else {
-        const card = createCard(port);
-        portCardsMap.set(port.name, card);
-        return card;
-    }
 }
 //#endregion
