@@ -8,7 +8,7 @@ window.addEventListener('DOMContentLoaded', async function() {
     const firmwareNames = getFirmwareNames();
 
     const { containerElement, updateContainer, filterControls } = createContainer({ devices, genres, onchange });
-    const filterState = JSON.parse(sessionStorage.getItem('filterState')) ?? defaultFilterState();
+    const filterState = defaultFilterState(JSON.parse(sessionStorage.getItem('filterState')));
     setFilterState(filterControls, filterState);
     appElement.replaceChildren(containerElement);
 
@@ -366,18 +366,18 @@ function createDropdowns({ devices, genres, onchange }) {
 //#endregion
 
 //#region Filter cards
-function defaultFilterState() {
+function defaultFilterState(filterState) {
     const searchParams = new URLSearchParams(location.search);
 
     return {
-        searchQuery: searchParams.get('search') ?? '',
+        searchQuery: searchParams.get('search') ?? filterState?.searchQuery ?? '',
 
-        Newest: true,
-        Downloaded: false,
-        AZ: false,
+        Newest: filterState?.Newest ?? true,
+        Downloaded: filterState?.Downloaded ?? false,
+        AZ: filterState?.AZ ?? false,
 
-        devices: {},
-        genres: {},
+        devices: filterState?.devices ?? {},
+        genres: filterState?.genres ?? {},
     };
 }
 
@@ -395,8 +395,6 @@ function getFilterState({ searchInput, sortRadio, checkboxes }) {
 }
 
 function setFilterState({ searchInput, sortRadio, checkboxes }, filterState) {
-    if (!filterState) return;
-
     searchInput.value = filterState.searchQuery;
 
     sortRadio.date_added.checked = filterState.Newest;
