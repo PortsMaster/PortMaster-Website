@@ -370,49 +370,49 @@ function defaultFilterState(filterState) {
     const searchParams = new URLSearchParams(location.search);
 
     return {
-        searchQuery: searchParams.get('search') ?? filterState?.searchQuery ?? '',
-
-        Newest: filterState?.Newest ?? true,
-        Downloaded: filterState?.Downloaded ?? false,
-        AZ: filterState?.AZ ?? false,
-
-        devices: filterState?.devices ?? {},
-        genres: filterState?.genres ?? {},
+        search: searchParams.get('search') ?? filterState?.search ?? '',
+        sort: {
+            date_added: true,
+            download_count: false,
+            title: false,
+            ...filterState?.sort,
+        },
+        values: {
+            device: {},
+            genre: {},
+            ...filterState?.values,
+        },
     };
 }
 
 function getFilterState({ searchInput, sortRadio, checkboxes }) {
     return {
-        searchQuery: searchInput.value.trim(),
-
-        Newest: sortRadio.date_added.checked,
-        Downloaded: sortRadio.download_count.checked,
-        AZ: sortRadio.title.checked,
-
-        devices: getCheckedValues(checkboxes.device),
-        genres: getCheckedValues(checkboxes.genre),
+        search: searchInput.value.trim(),
+        sort: getCheckedValues(sortRadio),
+        values: {
+            device: getCheckedValues(checkboxes.device),
+            genre: getCheckedValues(checkboxes.genre),
+        },
     };
 }
 
 function setFilterState({ searchInput, sortRadio, checkboxes }, filterState) {
-    searchInput.value = filterState.searchQuery;
+    searchInput.value = filterState.search;
 
-    sortRadio.date_added.checked = filterState.Newest;
-    sortRadio.download_count.checked = filterState.Downloaded;
-    sortRadio.title.checked = filterState.AZ;
-
-    for (const [value, element] of Object.entries(checkboxes.device)) {
-        element.checked = filterState.devices[value] ?? false;
+    for (const [value, element] of Object.entries(sortRadio)) {
+        element.checked = filterState.sort[value] ?? false;
     }
 
-    for (const [value, element] of Object.entries(checkboxes.genre)) {
-        element.checked = filterState.genres[value] ?? false;
+    for (const [name, items] of Object.entries(checkboxes)) {
+        for (const [value, element] of Object.entries(items)) {
+            element.checked = filterState.values[name]?.[value] ?? false;
+        }
     }
 }
 
 function getFilteredData(ports, filterState) {
-    const isSelectedGenres = Object.values(filterState.genres).some(Boolean);
-    const isSelectedDevices = Object.values(filterState.devices).some(Boolean);
+    const isSelectedGenres = Object.values(filterState.values.genre).some(Boolean);
+    const isSelectedDevices = Object.values(filterState.values.device).some(Boolean);
 
     function matchFilter(port) {
         if (filterState.readyToRun || filterState.filesNeeded) {
@@ -428,13 +428,13 @@ function getFilteredData(ports, filterState) {
         }
 
         if (port.attr.genres.length !== 0 && isSelectedGenres) {
-            if (!port.attr.genres.some(genre => filterState.genres[genre])) {
+            if (!port.attr.genres.some(genre => filterState.values.genre[genre])) {
                 return false;
             }
         }
 
         if (port.attr.avail.length !== 0 && isSelectedDevices) {
-            if (!port.attr.avail.some(item => filterState.devices[item.split(':')[0]])) {
+            if (!port.attr.avail.some(item => filterState.values.device[item.split(':')[0]])) {
                 return false;
             }
         }
@@ -443,11 +443,11 @@ function getFilteredData(ports, filterState) {
     }
 
     function sortPorts(ports) {
-        if (filterState.AZ) {
+        if (filterState.sort.title) {
             return [...ports].sort((a, b) => a.attr.title.localeCompare(b.attr.title));
-        } else if (filterState.Downloaded) {
+        } else if (filterState.sort.download_count) {
             return [...ports].sort((a, b) => b.download_count - a.download_count);
-        } else if (filterState.Newest) {
+        } else if (filterState.sort.date_added) {
             return [...ports].sort((a, b) => Date.parse(b.source.date_added) - Date.parse(a.source.date_added));
         } else {
             return ports;
@@ -456,7 +456,7 @@ function getFilteredData(ports, filterState) {
 
     const filteredPorts = ports.filter(matchFilter);
 
-    if (filterState.searchQuery) {
+    if (filterState.search) {
         const fuse = new Fuse(filteredPorts, {
             threshold: 0.2,
             ignoreLocation: true,
@@ -465,7 +465,7 @@ function getFilteredData(ports, filterState) {
                 { name: 'attr.desc', weight: 1 },
             ],
         });
-        const results = fuse.search(filterState.searchQuery);
+        const results = fuse.search(filterState.search);
         return results.map(result => result.item);
     } else {
         return sortPorts(filteredPorts);
@@ -475,7 +475,7 @@ function getFilteredData(ports, filterState) {
 function getSelectedDevices(devices, filterState) {
     const selectedDevices = {};
 
-    for (const [deviceCode, checked] of Object.entries(filterState.devices)) {
+    for (const [deviceCode, checked] of Object.entries(filterState.values.device)) {
         if (checked) {
             selectedDevices[deviceCode] = devices[deviceCode];
         }
