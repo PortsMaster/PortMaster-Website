@@ -7,13 +7,12 @@ window.addEventListener('DOMContentLoaded', async function() {
     const genres = getGenres(ports);
     const firmwareNames = getFirmwareNames();
 
+    const getCard = memoize(createCard, port => port.name);
     const { containerElement, updateContainer, filterControls } = createContainer({ devices, genres, onchange });
     const filterState = defaultFilterState(JSON.parse(sessionStorage.getItem('filterState')));
     setFilterState(filterControls, filterState);
     updateResult(filterState);
     appElement.replaceChildren(containerElement);
-
-    const getCard = memoize(createCard, port => port.name);
 
     function updateResult(filterState) {
         const selectedDevices = getSelectedDevices(devices, filterState);
