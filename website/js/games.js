@@ -380,6 +380,7 @@ function defaultFilterState(filterState) {
             ...filterState?.sort,
         },
         values: {
+            attribute: {},
             device: {},
             genre: {},
             ...filterState?.values,
@@ -392,6 +393,7 @@ function getFilterState({ searchInput, sortRadio, checkboxes }) {
         search: searchInput.value.trim(),
         sort: getCheckedValues(sortRadio),
         values: {
+            attribute: getCheckedValues(checkboxes.attribute),
             device: getCheckedValues(checkboxes.device),
             genre: getCheckedValues(checkboxes.genre),
         },
@@ -413,17 +415,18 @@ function setFilterState({ searchInput, sortRadio, checkboxes }, filterState) {
 }
 
 function getFilteredData(ports, filterState) {
+    const { readyToRun, filesNeeded } = filterState.values.attribute;
     const isSelectedGenres = Object.values(filterState.values.genre).some(Boolean);
     const isSelectedDevices = Object.values(filterState.values.device).some(Boolean);
 
     function matchFilter(port) {
-        if (filterState.readyToRun || filterState.filesNeeded) {
+        if (readyToRun || filesNeeded) {
             if (port.attr.rtr) {
-                if (!filterState.readyToRun) {
+                if (!readyToRun) {
                     return false;
                 }
             } else {
-                if (!filterState.filesNeeded) {
+                if (!filesNeeded) {
                     return false;
                 }
             }
