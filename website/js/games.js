@@ -10,22 +10,25 @@ window.addEventListener('DOMContentLoaded', async function() {
     const { containerElement, updateContainer, filterControls } = createContainer({ devices, genres, onchange });
     const filterState = defaultFilterState(JSON.parse(sessionStorage.getItem('filterState')));
     setFilterState(filterControls, filterState);
+    updateResult(filterState);
     appElement.replaceChildren(containerElement);
 
     const getCard = memoize(createCard, port => port.name);
 
-    function onchange() {
-        const filterState = getFilterState(filterControls);
-        sessionStorage.setItem('filterState', JSON.stringify(filterState));
-
+    function updateResult(filterState) {
         const selectedDevices = getSelectedDevices(devices, filterState);
         updateContainer({
             cards: getFilteredData(ports, filterState).map(port => {
-                return updateCard(getCard(port), port, selectedDevices, firmwareNames)
+                return updateCard(getCard(port), port, selectedDevices, firmwareNames);
             }),
         });
     }
-    onchange();
+
+    function onchange() {
+        const filterState = getFilterState(filterControls);
+        sessionStorage.setItem('filterState', JSON.stringify(filterState));
+        updateResult(filterState);
+    }
 });
 
 //#region Helper functions
@@ -69,7 +72,7 @@ function createElement(tagName, props, children) {
 async function batchReplaceChildren(batchSize, container, children) {
     container.replaceChildren();
     for (const [i, child] of children.entries()) {
-        if ((i + 1) % batchSize === 0) {
+        if (i !== 0 && i % batchSize === 0) {
             await new Promise(resolve => setTimeout(resolve));
         }
         container.appendChild(child);
