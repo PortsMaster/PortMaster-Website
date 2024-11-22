@@ -1,22 +1,33 @@
 window.addEventListener('DOMContentLoaded', async function() {
-    displayContainerLoading();
+    const appElement = document.getElementById('app');
+    appElement.replaceChildren(createContainerLoading());
 
     const devices = deviceInfoToDevices(await fetchDeviceInfo());
     const ports = await fetchPorts();
     const genres = getGenres(ports);
     const firmwareNames = getFirmwareNames();
 
-    displayContainer(onchange);
-    const dropdowns = displayDropdowns({ devices, genres, onchange });
-    const filterForm = new FilterForm(dropdowns);
-    filterForm.loadStorage();
+    const getCard = memoize(createCard, port => port.name);
+    const { containerElement, updateContainer, filterControls } = createContainer({ devices, genres, onchange });
+    const filterState = defaultFilterState(JSON.parse(sessionStorage.getItem('filterState')));
+    setFilterState(filterControls, filterState);
+    updateResult(filterState);
+    appElement.replaceChildren(containerElement);
+
+    function updateResult(filterState) {
+        const selectedDevices = getSelectedDevices(devices, filterState);
+        updateContainer({
+            cards: getFilteredData(ports, filterState).map(port => {
+                return updateCard(getCard(port), port, selectedDevices, firmwareNames);
+            }),
+        });
+    }
 
     function onchange() {
-        const filterState = filterForm.saveStorage();
-        dropdowns.updateDropdowns();
-        displayCards(getFilteredData(ports, filterState), getSelectedDevices(devices, filterState), firmwareNames);
+        const filterState = getFilterState(filterControls);
+        sessionStorage.setItem('filterState', JSON.stringify(filterState));
+        updateResult(filterState);
     }
-    onchange();
 });
 
 //#region Helper functions
@@ -60,11 +71,33 @@ function createElement(tagName, props, children) {
 async function batchReplaceChildren(batchSize, container, children) {
     container.replaceChildren();
     for (const [i, child] of children.entries()) {
-        if ((i + 1) % batchSize === 0) {
+        if (i !== 0 && i % batchSize === 0) {
             await new Promise(resolve => setTimeout(resolve));
         }
         container.appendChild(child);
     }
+}
+
+function memoize(func, resolver) {
+    function memoized(...args) {
+        const key = resolver ? resolver.apply(this, args) : args[0];
+
+        if (memoized.cache.has(key)) {
+            return memoized.cache.get(key);
+        }
+        
+        const result = func.apply(this, args);
+        memoized.cache.set(key, result);
+        return result;
+    };
+
+    memoized.cache = new Map();
+
+    return memoized;
+}
+
+function getCheckedValues(elements) {
+    return Object.fromEntries(Object.entries(elements).map(([name, element]) => [name, element.checked]));
 }
 
 function devided(divider, array) {
@@ -189,50 +222,67 @@ function getPorterUrl(porter) {
 //#endregion
 
 //#region Create container
-function createContainer(onchange) {
-    return createElement('div', { className: 'container' }, [
-        createElement('div', { className: 'my-2 gap-2 d-flex flex-wrap justify-content-center' }, [
-            createElement('div', {
-                id: 'dropdown-buttons',
-                className: 'btn-group flex-wrap',
-            }),
-            createElement('input', {
-                type: 'search',
-                id: 'search',
-                className: 'form-control w-25 flex-grow-1',
-                placeholder: 'Search',
-                oninput: onchange,
-            }),
-            createElement('div', {
-                className: 'btn-group',
-            }, [
-                createElement('input', { id: 'sortAZ', className: 'btn-check', type: 'radio', name: 'sortRadio', autocomplete: 'off', checked: true, onchange }),
-                createElement('label', { htmlFor: 'sortAZ', className: 'btn btn-outline-primary' }, 'A - Z'),
-                createElement('input', { id: 'sortDownloaded', className: 'btn-check', type: 'radio', name: 'sortRadio', autocomplete: 'off', checked: false, onchange }),
-                createElement('label', { htmlFor: 'sortDownloaded', className: 'btn btn-outline-primary' }, 'Most Downloaded'),
-                createElement('input', { id: 'sortNewest', className: 'btn-check', type: 'radio', name: 'sortRadio', autocomplete: 'off', checked: false, onchange }),
-                createElement('label', { htmlFor: 'sortNewest', className: 'btn btn-outline-primary' }, 'Most Recent'),
-            ]),
-        ]),
-        createElement('h2', { id: 'port-count', className: 'my-4 text-center' }),
-        createElement('div', {
-            id: 'cards-container',
-            className: 'row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3',
-        }),
-    ]);
+function createSearchInput({ oninput }) {
+    return createElement('input', {
+        type: 'search',
+        className: 'form-control w-25 flex-grow-1',
+        placeholder: 'Search',
+        oninput,
+    });
 }
 
-function displayContainerLoading() {
-    document.getElementById('app').replaceChildren(createElement('div', { className: 'container' }, [
-        createElement('h2', { id: 'port-count', className: 'my-2 text-center text-muted' }, [
+function createSort({ onchange }) {
+    const sortRadio = {};
+
+    const sortElement = createElement('div', {
+        className: 'btn-group',
+    }, [
+        createElement('input', { ref: el => sortRadio.date_added = el, id: 'sortNewest', className: 'btn-check', type: 'radio', name: 'sortRadio', autocomplete: 'off', checked: false, onchange }),
+        createElement('label', { htmlFor: 'sortNewest', className: 'btn btn-outline-primary' }, 'Most Recent'),
+        createElement('input', { ref: el => sortRadio.download_count = el, id: 'sortDownloaded', className: 'btn-check', type: 'radio', name: 'sortRadio', autocomplete: 'off', checked: false, onchange }),
+        createElement('label', { htmlFor: 'sortDownloaded', className: 'btn btn-outline-primary' }, 'Most Downloaded'),
+        createElement('input', { ref: el => sortRadio.title = el, id: 'sortAZ', className: 'btn-check', type: 'radio', name: 'sortRadio', autocomplete: 'off', checked: false, onchange }),
+        createElement('label', { htmlFor: 'sortAZ', className: 'btn btn-outline-primary' }, 'A - Z'),
+    ]);
+
+    return { sortElement, sortRadio };
+}
+
+function createContainer({ devices, genres, onchange }) {
+    const { dropdownButtons, checkboxes, updateDropdowns } = createDropdowns({ devices, genres, onchange });
+    const searchInput = createSearchInput({ oninput: onchange });
+    const { sortElement, sortRadio } = createSort({ onchange });
+
+    const filterControls = { checkboxes, searchInput, sortRadio };
+
+    const containerRefs = {};
+    const containerElement = createElement('div', { className: 'container' }, [
+        createElement('div', { className: 'my-2 gap-2 d-flex flex-wrap justify-content-center' }, [dropdownButtons, searchInput, sortElement]),
+        createElement('h2', { ref: el => containerRefs.title = el, className: 'my-4 text-center' }),
+        createElement('div', { ref: el => containerRefs.list = el, className: 'row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3' }),
+    ]);
+
+    function updateContainer({ cards }) {
+        updateDropdowns();
+
+        containerRefs.title.textContent = `${cards.length} Ports Available`;
+        batchReplaceChildren(200, containerRefs.list, cards);
+    }
+
+    return {
+        containerElement,
+        updateContainer,
+        filterControls,
+    };
+}
+
+function createContainerLoading() {
+    return createElement('div', { className: 'container' }, [
+        createElement('h2', { className: 'my-2 text-center text-muted' }, [
             createElement('div', { className: 'me-3 spinner-border' }),
             'Loading...',
         ]),
-    ]));
-}
-
-function displayContainer(onchange) {
-    document.getElementById('app').replaceChildren(createContainer(onchange));
+    ]);
 }
 //#endregion
 
@@ -275,34 +325,37 @@ function createDropdownCheckbox(name, onchange) {
     });
 }
 
-function displayDropdowns({ devices, genres, onchange }) {
-    const attributeCheckboxes = {};
-    const deviceCheckboxes = {};
-    const genreCheckboxes = {};
+function createDropdowns({ devices, genres, onchange }) {
+    const checkboxes = {
+        attribute: {},
+        device: {},
+        genre: {},
+    };
 
     const attributesGroup = createDropdownGroup('Filters', [
-        createDropdownItem(attributeCheckboxes['readyToRun'] = createDropdownCheckbox('readyToRun', onchange), 'Ready to Run'),
-        createDropdownItem(attributeCheckboxes['filesNeeded'] = createDropdownCheckbox('filesNeeded', onchange), 'Files Needed'),
+        createDropdownItem(checkboxes.attribute['readyToRun'] = createDropdownCheckbox('readyToRun', onchange), 'Ready to Run'),
+        createDropdownItem(checkboxes.attribute['filesNeeded'] = createDropdownCheckbox('filesNeeded', onchange), 'Files Needed'),
     ]);
 
     const devicesGroup = createDropdownGroup('Devices', getDevicesByManufacturer(devices).flatMap(([manufacturer, manufacturerDevices]) => {
         return [
             createDropdownHeader(manufacturer),
             ...manufacturerDevices.map(device => {
-                return createDropdownItem(deviceCheckboxes[device.device] = createDropdownCheckbox(device.device, onchange), device.name);
+                return createDropdownItem(checkboxes.device[device.device] = createDropdownCheckbox(device.device, onchange), device.name);
             }),
         ];
     }));
 
     const genresGroup = createDropdownGroup('Genres', genres.map(genre => {
-        return createDropdownItem(genreCheckboxes[genre.name] = createDropdownCheckbox(genre.name, onchange), ucFirst(genre.name), genre.count);
+        return createDropdownItem(checkboxes.genre[genre.name] = createDropdownCheckbox(genre.name, onchange), ucFirst(genre.name), genre.count);
     }));
 
-    const groups = [attributesGroup, genresGroup, devicesGroup];
-    document.getElementById('dropdown-buttons').replaceChildren(...groups);
+    const dropdownGroups = [attributesGroup, genresGroup, devicesGroup];
+
+    const dropdownButtons = createElement('div', { className: 'btn-group flex-wrap' }, dropdownGroups);
 
     function updateDropdowns() {
-        for (const group of groups) {
+        for (const group of dropdownGroups) {
             const button = group.querySelector('button');
             const hasChecked = Boolean(group.querySelector(':checked'));
             button.classList.toggle('btn-outline-primary', !hasChecked);
@@ -310,95 +363,83 @@ function displayDropdowns({ devices, genres, onchange }) {
         }
     }
 
-    return { attributeCheckboxes, deviceCheckboxes, genreCheckboxes, updateDropdowns };
+    return { dropdownButtons, checkboxes, updateDropdowns };
 }
 //#endregion
 
 //#region Filter cards
-class FilterForm {
-    constructor({ attributeCheckboxes, deviceCheckboxes, genreCheckboxes }) {
-        this.elements = {
-            searchQuery: document.getElementById('search'),
-            readyToRun: attributeCheckboxes.readyToRun,
-            filesNeeded: attributeCheckboxes.filesNeeded,
-            Newest: document.getElementById('sortNewest'),
-            Downloaded: document.getElementById('sortDownloaded'),
-            AZ: document.getElementById('sortAZ'),
-            devices: Object.entries(deviceCheckboxes),
-            genres: Object.entries(genreCheckboxes),
-        };
+function defaultFilterState(filterState) {
+    const searchParams = new URLSearchParams(location.search);
+
+    return {
+        search: searchParams.get('search') ?? filterState?.search ?? '',
+        sort: {
+            date_added: true,
+            download_count: false,
+            title: false,
+            ...filterState?.sort,
+        },
+        values: {
+            attribute: {},
+            device: {},
+            genre: {},
+            ...filterState?.values,
+        },
+    };
+}
+
+function getFilterState({ searchInput, sortRadio, checkboxes }) {
+    return {
+        search: searchInput.value.trim(),
+        sort: getCheckedValues(sortRadio),
+        values: {
+            attribute: getCheckedValues(checkboxes.attribute),
+            device: getCheckedValues(checkboxes.device),
+            genre: getCheckedValues(checkboxes.genre),
+        },
+    };
+}
+
+function setFilterState({ searchInput, sortRadio, checkboxes }, filterState) {
+    searchInput.value = filterState.search;
+
+    for (const [value, element] of Object.entries(sortRadio)) {
+        element.checked = filterState.sort[value] ?? false;
     }
 
-    loadStorage() {
-        const jsonState = sessionStorage.getItem('filterState');
-        if (jsonState) {
-            const state = JSON.parse(jsonState);
-            this.setElementsState(state);
-        }
-    }
-
-    saveStorage() {
-        const state = this.getElementsState();
-        sessionStorage.setItem('filterState', JSON.stringify(state));
-        return state;
-    }
-
-    getElementsState() {
-        return {
-            searchQuery: this.elements.searchQuery.value.trim(),
-            readyToRun: this.elements.readyToRun.checked,
-            filesNeeded: this.elements.filesNeeded.checked,
-            Newest: this.elements.Newest.checked,
-            Downloaded: this.elements.Downloaded.checked,
-            AZ: this.elements.AZ.checked,
-            devices: Object.fromEntries(this.elements.devices.map(([name, element]) => [name, element.checked])),
-            genres: Object.fromEntries(this.elements.genres.map(([name, element]) => [name, element.checked])),
-        };
-    }
-
-    setElementsState(state) {
-        this.elements.searchQuery.value = state.searchQuery;
-        this.elements.readyToRun.checked = state.readyToRun;
-        this.elements.filesNeeded.checked = state.filesNeeded;
-        this.elements.Newest.checked = state.Newest;
-        this.elements.Downloaded.checked = state.Downloaded;
-        this.elements.AZ.checked = state.AZ;
-
-        for (const [device, element] of this.elements.devices) {
-            element.checked = state.devices[device] ?? false;
-        }
-
-        for (const [genre, element] of this.elements.genres) {
-            element.checked = state.genres[genre] ?? false;
+    for (const [name, items] of Object.entries(checkboxes)) {
+        for (const [value, element] of Object.entries(items)) {
+            element.checked = filterState.values[name]?.[value] ?? false;
         }
     }
 }
 
 function getFilteredData(ports, filterState) {
-    const isSelectedGenres = Object.values(filterState.genres).some(Boolean);
-    const isSelectedDevices = Object.values(filterState.devices).some(Boolean);
+    const { readyToRun, filesNeeded } = filterState.values.attribute;
+    const isSelectedGenres = Object.values(filterState.values.genre).some(Boolean);
+    const isSelectedDevices = Object.values(filterState.values.device).some(Boolean);
 
     function matchFilter(port) {
-        if (filterState.readyToRun || filterState.filesNeeded) {
+        if (readyToRun || filesNeeded) {
             if (port.attr.rtr) {
-                if (!filterState.readyToRun) {
+                if (!readyToRun) {
                     return false;
                 }
             } else {
-                if (!filterState.filesNeeded) {
+                if (!filesNeeded) {
                     return false;
                 }
             }
         }
 
         if (port.attr.genres.length !== 0 && isSelectedGenres) {
-            if (!port.attr.genres.some(genre => filterState.genres[genre])) {
+            if (!port.attr.genres.some(genre => filterState.values.genre[genre])) {
                 return false;
             }
         }
 
         if (port.attr.avail.length !== 0 && isSelectedDevices) {
-            if (!port.attr.avail.some(item => filterState.devices[item.split(':')[0]])) {
+            if (!port.attr.avail.some(item => filterState.values.device[item.split(':')[0]])) {
                 return false;
             }
         }
@@ -407,11 +448,11 @@ function getFilteredData(ports, filterState) {
     }
 
     function sortPorts(ports) {
-        if (filterState.AZ) {
+        if (filterState.sort.title) {
             return [...ports].sort((a, b) => a.attr.title.localeCompare(b.attr.title));
-        } else if (filterState.Downloaded) {
+        } else if (filterState.sort.download_count) {
             return [...ports].sort((a, b) => b.download_count - a.download_count);
-        } else if (filterState.Newest) {
+        } else if (filterState.sort.date_added) {
             return [...ports].sort((a, b) => Date.parse(b.source.date_added) - Date.parse(a.source.date_added));
         } else {
             return ports;
@@ -420,7 +461,7 @@ function getFilteredData(ports, filterState) {
 
     const filteredPorts = ports.filter(matchFilter);
 
-    if (filterState.searchQuery) {
+    if (filterState.search) {
         const fuse = new Fuse(filteredPorts, {
             threshold: 0.2,
             ignoreLocation: true,
@@ -429,7 +470,7 @@ function getFilteredData(ports, filterState) {
                 { name: 'attr.desc', weight: 1 },
             ],
         });
-        const results = fuse.search(filterState.searchQuery);
+        const results = fuse.search(filterState.search);
         return results.map(result => result.item);
     } else {
         return sortPorts(filteredPorts);
@@ -439,7 +480,7 @@ function getFilteredData(ports, filterState) {
 function getSelectedDevices(devices, filterState) {
     const selectedDevices = {};
 
-    for (const [deviceCode, checked] of Object.entries(filterState.devices)) {
+    for (const [deviceCode, checked] of Object.entries(filterState.values.device)) {
         if (checked) {
             selectedDevices[deviceCode] = devices[deviceCode];
         }
@@ -541,26 +582,5 @@ function updateCard(card, port, selectedDevices, firmwareNames) {
     }
 
     return card;
-}
-
-const portCardsMap = new Map();
-function getCard(port) {
-    if (portCardsMap.has(port.name)) {
-        return portCardsMap.get(port.name);
-    } else {
-        const card = createCard(port);
-        portCardsMap.set(port.name, card);
-        return card;
-    }
-}
-
-function displayCards(ports, selectedDevices, firmwareNames) {
-    const availablePorts = document.getElementById('port-count')
-    availablePorts.textContent = `${ports.length} Ports Available`;
-
-    const cardsContainer = document.getElementById('cards-container');
-    batchReplaceChildren(200, cardsContainer, ports.map(port => {
-        return updateCard(getCard(port), port, selectedDevices, firmwareNames)
-    }));
 }
 //#endregion
