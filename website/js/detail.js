@@ -1,5 +1,6 @@
 window.addEventListener('DOMContentLoaded', async function() {
     const appElement = document.getElementById('app');
+    appElement.replaceChildren(createContainerLoading());
 
     const devices = getSearchParam('devices');
     const name = getSearchParam('name');
@@ -13,7 +14,7 @@ window.addEventListener('DOMContentLoaded', async function() {
         const containerElement = createCardDetails({ port, readme, devices });
         appElement.replaceChildren(containerElement);
     } else {
-        appElement.textContent = 'Port Not Found';
+        appElement.replaceChildren(createContainerError('404 Not Found'));
     }
 });
 

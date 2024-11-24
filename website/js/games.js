@@ -84,15 +84,6 @@ function createContainer({ devices, genres, onchange }) {
         filterControls,
     };
 }
-
-function createContainerLoading() {
-    return createElement('div', { className: 'container' }, [
-        createElement('h2', { className: 'my-2 text-center text-muted' }, [
-            createElement('div', { className: 'me-3 spinner-border' }),
-            'Loading...',
-        ]),
-    ]);
-}
 //#endregion
 
 //#region Create filter dropdowns

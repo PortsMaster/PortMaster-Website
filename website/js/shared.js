@@ -225,6 +225,23 @@ function getImageUrl(port) {
 function getPorterUrl(porter) {
     return `profile.html?porter=${encodeURIComponent(porter)}`;
 }
+
+function createContainerLoading() {
+    return createElement('div', { className: 'container' }, [
+        createElement('h2', { className: 'my-2 text-center text-muted' }, [
+            createElement('div', { className: 'me-3 spinner-border' }),
+            'Loading...',
+        ]),
+    ]);
+}
+
+function createContainerError(message) {
+    return createElement('div', { className: 'container' }, [
+        createElement('h2', { className: 'my-2 text-center' }, [
+            message || 'Oops! Something went wrong',
+        ]),
+    ]);
+}
 //#endregion
 
 //#region Create and update cards
