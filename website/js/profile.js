@@ -1,12 +1,13 @@
 window.addEventListener('DOMContentLoaded', async function() {
     const porterName = new URLSearchParams(window.location.search).get('porter');
 
-    const porters = await fetchPorters();
-    const porter = porters[porterName];
-    displayPorter(porter);
+    fetchPorters().then(porters => {
+        displayPorter(porters[porterName]);
+    });
 
-    const ports = await fetchPorts();
-    displayPorts(ports.filter(port => port.attr.porter.includes(porter.name)));
+    fetchPorts().then(ports => {
+        displayPorts(ports.filter(port => port.attr.porter.includes(porterName)));
+    });
 });
 
 function displayPorter(porter) {
@@ -24,6 +25,6 @@ function displayPorter(porter) {
 }
 
 function displayPorts(ports) {
-    document.getElementById('port-count').textContent = `${Object.keys(ports).length} Ports Available`;
+    document.getElementById('port-count').textContent = `${ports.length} Ports Available`;
     batchReplaceChildren(200, document.getElementById('cards-container'), ports.map(createCard));
 }
