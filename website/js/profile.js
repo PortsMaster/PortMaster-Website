@@ -14,9 +14,9 @@ function displayPorter(porter) {
     document.getElementById('name').textContent = porter.name;
     document.getElementById('bio').textContent = porter.bio || '';
 
-    document.getElementById('social').setAttribute('href', porter.social);
-    document.getElementById('webpage').setAttribute('href', porter.webpage);
-    document.getElementById('support').setAttribute('href', porter.support);
+    document.getElementById('social').href = porter.social;
+    document.getElementById('webpage').href = porter.webpage;
+    document.getElementById('support').href = porter.support;
     
     const avatar = document.getElementById('avatar');
     avatar.src = porter.image || 'https://raw.githubusercontent.com/PortsMaster/PortMaster-Website/main/default.jpg';
