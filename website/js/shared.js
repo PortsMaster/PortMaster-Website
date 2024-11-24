@@ -7,9 +7,7 @@ async function fetchJson(url) {
     return portsResponse.json();
 }
 
-function createElement(tagName, props, children) {
-    const element = document.createElement(tagName);
-
+function updateElement(element, props, children) {
     if (props) {
         for (const [name, value] of Object.entries(props)) {
             if (name === 'ref') {
@@ -27,13 +25,17 @@ function createElement(tagName, props, children) {
 
     if (children) {
         if (Array.isArray(children)) {
-            element.append(...children.filter(Boolean));
+            batchReplaceChildren(200, element, children.filter(Boolean));
         } else {
-            element.append(children);
+            element.replaceChildren(children);
         }
     }
 
     return element;
+}
+
+function createElement(tagName, props, children) {
+    return updateElement(document.createElement(tagName), props, children);
 }
 
 async function batchReplaceChildren(batchSize, container, children) {
@@ -66,6 +68,10 @@ function memoize(func, resolver) {
 
 function getCheckedValues(elements) {
     return Object.fromEntries(Object.entries(elements).map(([name, element]) => [name, element.checked]));
+}
+
+function getSearchParam(name) {
+    return new URLSearchParams(window.location.search).get(name);
 }
 
 function devided(divider, array) {

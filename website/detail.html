@@ -19,7 +19,7 @@
   <script src="js/shared.js"></script>
   <script src="js/detail.js"></script>
  </head>
- <body>
+ <body class="bg-body-tertiary">
   <svg class="d-none" xmlns="http://www.w3.org/2000/svg">
    <symbol id="check2" viewbox="0 0 16 16">
     <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z">
@@ -172,144 +172,8 @@
   
   <br/>
   <br/>
-  <main class="bg-body-tertiary">
-   <div class="container">
-    <div class="px-2 pt-4 text-center">
-     <!-- Title -->
-     <h1 class="display-4 fw-bold text-body-emphasis mb-4" id="title">
-     </h1>
-     <!-- Screenshot -->
-     <div class="overflow-hidden" style="max-height: 60vh;">
-      <div class="container px-0 screenshot">
-       <img alt="Example image" class="img-fluid border rounded-3 p3 mb-5shadow-lg" height="auto" id="screenshot" loading="lazy" src="" width="auto"/>
-      </div>
-     </div>
-     <!-- HEADER -->
-     <div class="col-lg-8 mx-auto">
-      <!-- Description -->
-      <div class="desc">
-       <p class="lead mb-4 mt-4" id="desc">
-       </p>
-      </div>
-      <div class="d-grid gap-2 d-sm-flex justify-content-sm-center mb-5">
-       <!--TODO: details link-->
-       <button class="btn btn-primary btn-lg px-4 me-sm-3" id="download" type="button">
-        Download
-       </button>
-      </div>
-     </div>
-    </div>
-    <div class="px-4 py-5 pt-0" id="icon-grid">
-     <h2 class="pb-2 border-bottom">
-      Port Details
-     </h2>
-     <!-- Feature grid -->
-     <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4 py-5">
-      <div class="col d-flex align-items-start">
-       <i class="ft-s bi bi-dpad me-3">
-       </i>
-       <!-- Genres -->
-       <div class="genres">
-        <h3 class="fw-bold mb-0 fs-4 text-body-emphasis">
-         Genres
-        </h3>
-        <div class="d-flex gap-2 mb-3">
-         <p id="genres">
-         </p>
-        </div>
-       </div>
-      </div>
-      <div class="col d-flex align-items-start">
-       <i class="ft-s bi bi-card-checklist me-3">
-       </i>
-       <!-- Requirements -->
-       <div class="requirements">
-        <h3 class="fw-bold mb-0 fs-4 text-body-emphasis">
-         Requirements
-        </h3>
-        <div class="d-flex gap-2 mb-3">
-         <p id="requirements">
-         </p>
-        </div>
-       </div>
-      </div>
-      <div class="col d-flex align-items-start">
-       <i class="ft-s bi bi-person-workspace me-3">
-       </i>
-       <!-- Porter-->
-       <div class="porter">
-        <h3 class="fw-bold mb-0 fs-4 text-body-emphasis">
-         Porter
-        </h3>
-        <p id="porter">
-        </p>
-       </div>
-      </div>
-      <div class="col d-flex align-items-start">
-       <i class="ft-s bi bi-download me-3">
-       </i>
-       <!-- download Count-->
-       <div class="download_count">
-        <h3 class="fw-bold mb-0 fs-4 text-body-emphasis">
-         Downloads
-        </h3>
-        <p id="download_count">
-        </p>
-       </div>
-      </div>
-      <div class="col d-flex align-items-start">
-       <i class="ft-s bi bi-calendar me-3">
-       </i>
-       <!-- Last Updated-->
-       <div class="last_updated">
-        <h3 class="fw-bold mb-0 fs-4 text-body-emphasis">
-         Last Updated
-        </h3>
-        <p id="last_updated">
-        </p>
-       </div>
-      </div>
-      <div class="col d-flex align-items-start">
-       <i class="ft-s bi bi-boxes me-3">
-       </i>
-       <!-- Miscellaneous-->
-       <div class="last_updated">
-        <h3 class="fw-bold mb-0 fs-4 text-body-emphasis">
-         Miscellaneous
-        </h3>
-        <p id="misc">
-        </p>
-       </div>
-      </div>
-      <div id="devicesStart" style="display: none;" class="col d-flex align-items-start">
-        <i id="deviceIcon" style="display: none;"  class="ft-s bi bi-controller me-3">
-        </i>
-        <!-- Miscellaneous-->
-        <div id="deviceDiv" style="display: none;" class="devices">
-         <h3  class="fw-bold mb-0 fs-4 text-body-emphasis">
-          Supported Devices
-         </h3>
-         <p id="devices">
-         </p>
-        </div>
-       </div>
-     </div>
-     <h2 class="pb-2 border-bottom">
-      Instructions
-     </h2>
-     <div class="inst">
-      <p class="lead mb-4 mt-4" id="inst" style="word-wrap: break-word;">
-      </p>
-     </div>
-    </div>
-    <div class="markdown px-4 py-5 pt-0 hidden" id="additional-information">
-     <h2 class="pb-2 border-bottom">
-      Additional Information
-     </h2>
-     <div id="markdown" style="word-wrap: break-word;">
-     </div>
-    </div>
-   </div>
+  <main>
+   <div id="app"><div>
   </main>
  </body>
 </html>
