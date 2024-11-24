@@ -52,7 +52,7 @@ async function batchReplaceChildren(batchSize, container, children) {
         if (i !== 0 && i % batchSize === 0) {
             await new Promise(resolve => setTimeout(resolve));
         }
-        container.appendChild(child);
+        container.append(child);
     }
 }
 
