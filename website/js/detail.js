@@ -6,17 +6,18 @@ window.addEventListener('DOMContentLoaded', async function() {
 
     const ports = await fetchPorts();
     const port = ports.find(port => port.name === filename);
+    const readme = await fetchReadme(port);
 
     if (port) {
-        const containerElement = createContainer(port);
+        const containerElement = createCardDetails(port, readme);
         appElement.replaceChildren(containerElement);
-        displayCardDetails(port);
+        displayCardDetails(port, readme);
     } else {
         document.getElementById('title').textContent = 'Port Not Found';
     }
 });
 
-function createContainer(port) {
+function createCardDetails(port, readme) {
     return createElement('div', { className: 'container' }, [
         createElement('div', { className: 'px-2 pt-4 text-center' }, [
             createElement('h1', { id: 'title', className: 'display-4 fw-bold text-body-emphasis mb-4' }),
@@ -118,109 +119,48 @@ function createContainer(port) {
     ]);
 }
 
-function displayCardDetails(port) {
+function displayCardDetails(port, readme) {
     document.getElementById('title').textContent = port.attr.title || '';
     document.getElementById('screenshot').src = getImageUrl(port);
+    document.getElementById('desc').innerHTML = new showdown.Converter().makeHtml(port.attr.desc_md || port.attr.desc);
+    document.getElementById('porter').textContent = port.attr.porter || '';
+    document.getElementById('inst').innerHTML = new showdown.Converter().makeHtml(port.attr.inst_md || port.attr.inst);
+    document.getElementById('download_count').textContent = port.download_count;
+    document.getElementById('last_updated').textContent = port.source.date_updated;
 
-    //data.attr.desc ? document.getEleme('desc').textContent = data.attr.desc : document.getElementsByClassName('desc').hidden = true;
-    descriptionElement = document.getElementById('desc');
-    var converter = new showdown.Converter();
-    var desc = port.attr.desc;
-    if (port.attr.desc_md){
-        desc = port.attr.desc_md;
-    }
-    descriptionElement.innerHTML = converter.makeHtml(desc);
-    port.attr.porter ? document.getElementById('porter').textContent = port.attr.porter : document.getElementsByClassName('porter').hidden = true;
-
-    instructionsElement = document.getElementById('inst');
-    var converter = new showdown.Converter();
-    var inst = port.attr.inst;
-    if (port.attr.inst_md){
-        inst = port.attr.inst_md;
-    }
-    instructionsElement.innerHTML = converter.makeHtml(inst);
-
-    const downloadCountElement = document.getElementById("download_count");
-    downloadCountElement.textContent = port.download_count;
-
-    const lastUpdatedElement = document.getElementById("last_updated");
-    lastUpdatedElement.textContent = port.source.date_updated;
-
-    var taggedMisc = "";
-    if (port.attr.rtr){
-        taggedMisc += '<span class="misc-item badge bg-secondary">Ready to Run</span><br>';
-    }
-
-    if (port.attr.exp){
-        taggedMisc += '<span class="misc-item badge bg-secondary">Experimental</span><br>';
-    }
-
-    if (port.source.repo == "multiverse"){
-        taggedMisc += '<span class="misc-item badge bg-secondary">Multiverse</span><br>';
-    }
-
-    const miscElement = document.getElementById("misc");
-    miscElement.innerHTML = taggedMisc;
+    document.getElementById('misc').innerHTML = [
+        port.attr.rtr && '<span class="misc-item badge bg-secondary">Ready to Run</span>',
+        port.attr.exp && '<span class="misc-item badge bg-secondary">Experimental</span>',
+        port.source.repo == "multiverse" && '<span class="misc-item badge bg-secondary">Multiverse</span>',
+    ].filter(Boolean).join('<br>');
 
     const devices = getSearchParam('devices');
     if (devices) {
-        const deviceElement = document.getElementById("devices");
-        var devicesHTML = "";
-        const deviceList = devices.split(",")
-        for (device in deviceList){
-            devicesHTML = devicesHTML +  deviceList[device] + "<br>"
-        }
-        deviceElement.innerHTML = devicesHTML
-        document.getElementById("devicesStart").hidden = false;
-    }   
-
-    var taggedGenres = "";
-    port.attr.genres.forEach((genre) => {
-        taggedGenres += '<span class="genre-item badge bg-secondary">' + genre + '</span>' + '<br>';
-    });
-    taggedGenres ? document.getElementById("genres").innerHTML = taggedGenres : true;
-
-    var taggedRequirements = "";
-    port.attr.reqs.forEach((req) => {
-        taggedRequirements += '<span class="requirement-item badge bg-secondary">' + req + '</span>' + '<br>';
-    });
-    taggedRequirements ? document.getElementById("requirements").innerHTML = taggedRequirements : true;
-
-    var porters = port.attr.porter;
-    var porterHtml = "";
-    porters.forEach((porter) => {
-        porterHtml += '<a href="profile.html?porter=' + porter + '">' + porter + '</a>';
-        if (porters.length > 1) {
-            porterHtml += "<br>";
-        }
-    });
-    port.attr.porter ? document.getElementById('porter').innerHTML = porterHtml : document.getElementsByClassName('porter').hidden = true;
-
-    const downloadElement = document.getElementById("download");
-    downloadElement.setAttribute("onclick", "window.location.href='" + port.source.url + "';");
-
-    async function getmarkdown() {
-        try {
-            var response = null;
-            var repo = "https://raw.githubusercontent.com/PortsMaster/PortMaster-New/main/ports/";
-            if (port.source.repo == "multiverse") {
-                repo = "https://raw.githubusercontent.com/PortsMaster-MV/PortMaster-MV-New/main/ports/";
-                response = await fetch(repo + port.name.replace(".zip", "") + "/README.md");
-            }
-            else
-            {
-                response = await fetch(repo + port.name.replace(".zip", "") + "/README.md");
-            }
-            
-            if (!response.ok) {
-                throw new Error('Network response was not ok.');
-            }
-            markdown = await response.text();
-            const markdownElement = document.getElementById("markdown");
-            markdownElement.innerHTML = CmarkGFM.convert(markdown.replaceAll("<br/>", "")).replaceAll("<table>", '<table class="table table-bordered">').replaceAll('<h2>', '<h2 style="margin-top: 1em;margin-bottom: 1em;">');
-        } catch (error) {
-            console.error('Error fetching JSON data:', error);
-        }
+        document.getElementById('devicesStart').hidden = false;
+        document.getElementById('devices').innerHTML = devices.replaceAll(',', '<br>');
     }
-    getmarkdown();
+
+    document.getElementById('genres').innerHTML = port.attr.genres.map(genre => {
+        return `<span class="genre-item badge bg-secondary">${genre}</span>`;
+    }).join('<br>');
+
+    document.getElementById('requirements').innerHTML = port.attr.reqs.map(req => {
+        return `<span class="requirement-item badge bg-secondary">${req}</span>`;
+    }).join('<br>');
+
+    document.getElementById('porter').innerHTML = port.attr.porter.map(porter => {
+        return `<a href="profile.html?porter=${porter}">${porter}</a>`;
+    }).filter(Boolean);
+
+    document.getElementById('download').onclick = function() {
+        window.location.href = port.source.url;
+    };
+
+    document.getElementById('markdown').innerHTML = markdownToHtml(readme);
+}
+
+function markdownToHtml(markdown) {
+    return CmarkGFM.convert(markdown.replaceAll('<br/>', ''))
+        .replaceAll('<table>', '<table class="table table-bordered">')
+        .replaceAll('<h2>', '<h2 style="margin-top: 1em; margin-bottom: 1em;">');
 }

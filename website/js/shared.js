@@ -7,6 +7,14 @@ async function fetchJson(url) {
     return portsResponse.json();
 }
 
+async function fetchText(url) {
+    const portsResponse = await fetch(url);
+    if (!portsResponse.ok) {
+        throw new Error('Network response was not ok.');
+    }
+    return portsResponse.text();
+}
+
 function updateElement(element, props, children) {
     if (props) {
         for (const [name, value] of Object.entries(props)) {
@@ -75,7 +83,7 @@ function getSearchParam(name) {
 }
 
 function devided(divider, array) {
-    return array.reduce((acc, cur) => acc ? [...acc, divider, cur] : [cur], null);
+    return array.reduce((acc, cur, index) => acc ? [...acc, divider(index), cur] : [cur], null);
 }
 
 function ucFirst(string) {
@@ -154,6 +162,21 @@ async function fetchPorts() {
     }
 }
 
+function fetchReadme(port) {
+    try {
+        const name = port.name.replace('.zip', '');
+        
+        if (port.source.repo === 'multiverse') {
+            return fetchText(`https://raw.githubusercontent.com/PortsMaster-MV/PortMaster-MV-New/main/ports/${encodeURIComponent(name)}/README.md`);
+        }
+        
+        return fetchText(`https://raw.githubusercontent.com/PortsMaster/PortMaster-New/main/ports/${encodeURIComponent(name)}/README.md`);
+    } catch (error) {
+        console.error('Error fetching JSON data:', error);
+        return '';
+    }
+}
+
 function getGenres(ports) {
     const genres = {};
 
@@ -216,7 +239,7 @@ function createCard(port) {
         ...port.attr.genres.map(genre => createElement('span', { className: 'badge bg-secondary' }, ucFirst(genre))),
     ];
 
-    const porters = devided(', ', port.attr.porter.map(porter => createElement('a', { href: getPorterUrl(porter) }, porter)));
+    const porters = devided(() => ', ', port.attr.porter.map(porter => createElement('a', { href: getPorterUrl(porter) }, porter)));
 
     return createElement('div', { className: 'col' }, [
         createElement('div', { className: 'card h-100 shadow-sm' }, [
