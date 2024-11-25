@@ -35,6 +35,8 @@ const portSchema = {
     "reqs": [],
      /* Architecture aarch64,armhf, x86_64, x86  */
     "arch": [],
+    /* glibc version */
+    "min_glibc": ""
   }
 }
 
