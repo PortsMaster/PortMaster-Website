@@ -476,7 +476,7 @@ function createCardDetails({ port, readme, deviceDetails }) {
                         ]),
                     ]),
                 ]),
-                deviceDetails && createElement('div', { className: 'col d-flex align-items-start' }, [
+                deviceDetails?.length && createElement('div', { className: 'col d-flex align-items-start' }, [
                     createElement('i', { className: 'ft-s bi bi-controller' }),
                     createElement('div', { className: 'ms-3' }, [
                         createElement('h3', { className: 'fw-bold mb-0 fs-4 text-body-emphasis' }, 'Supported Devices'),
