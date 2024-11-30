@@ -294,14 +294,9 @@ function createCard(port) {
 
     const porters = devided(() => ', ', port.attr.porter.map(porter => createElement('a', { href: getPorterUrl(porter) }, porter)));
 
-    function handleDetails(e) {
-        e.preventDefault();
-        showDetailsModal(port);
-    }
-
     return createElement('div', { className: 'col' }, [
         createElement('div', { className: 'card h-100 shadow-sm' }, [
-            createElement('a', { onclick: handleDetails, href: cardUrl, className: 'ratio ratio-4x3 update-anchor' }, [
+            createElement('a', { href: cardUrl, className: 'ratio ratio-4x3 update-anchor' }, [
                 createElement('img', {
                     src: imageUrl,
                     className: 'bd-placeholder-img card-img-top object-fit-contain',
@@ -311,7 +306,6 @@ function createCard(port) {
             createElement('div', { className: 'card-body d-flex flex-column' }, [
                 createElement('h5', { className: 'card-title' }, [
                     createElement('a', {
-                        onclick: handleDetails,
                         href: cardUrl,
                         className: 'update-anchor text-decoration-none link-body-emphasis'
                     }, port.attr.title),
@@ -323,7 +317,7 @@ function createCard(port) {
                 createElement('p', { className: 'card-text update-supported', hidden: true }),
                 createElement('div', { className: 'd-flex justify-content-between align-items-start' }, [
                     createElement('div', { className: 'd-flex flex-wrap gap-2' }, badges),
-                    createElement('a', { onclick: handleDetails, href: cardUrl, className: 'update-anchor' }, 'Details'),
+                    createElement('a', { href: cardUrl, className: 'update-anchor' }, 'Details'),
                 ]),
             ]),
             createElement('div', { className: 'card-footer d-flex flex-wrap gap-2' }, [
@@ -361,9 +355,15 @@ function updateCard(card, port, selectedDevices, firmwareNames) {
         }
     }).filter(Boolean);
 
+    function handleDetails(e) {
+        e.preventDefault();
+        showDetailsModal(port, deviceDetails);
+    }
+
     const cardUrl = getCardUrl(port, deviceDetails);
     for (const cardAnchor of card.querySelectorAll('.update-anchor')) {
         cardAnchor.href = cardUrl;
+        cardAnchor.onclick = handleDetails;
     }
 
     const cardSupported = card.querySelector('.update-supported');
@@ -382,7 +382,7 @@ function updateCard(card, port, selectedDevices, firmwareNames) {
 //#endregion
 
 //#region Create card details
-function createCardDetails({ port, readme, devices }) {
+function createCardDetails({ port, readme, deviceDetails }) {
     const br = () => createElement('br');
 
     function markdownToHtml(markdown) {
@@ -476,11 +476,11 @@ function createCardDetails({ port, readme, devices }) {
                         ]),
                     ]),
                 ]),
-                devices && createElement('div', { className: 'col d-flex align-items-start' }, [
+                deviceDetails && createElement('div', { className: 'col d-flex align-items-start' }, [
                     createElement('i', { className: 'ft-s bi bi-controller' }),
                     createElement('div', { className: 'ms-3' }, [
                         createElement('h3', { className: 'fw-bold mb-0 fs-4 text-body-emphasis' }, 'Supported Devices'),
-                        createElement('p', null, devided(br, devices.split(','))),
+                        createElement('p', null, devided(br, deviceDetails)),
                     ]),
                 ]),
             ]),
@@ -500,12 +500,12 @@ function createCardDetails({ port, readme, devices }) {
     ]);
 }
 
-async function showDetailsModal(port) {
+async function showDetailsModal(port, deviceDetails) {
     const readme = await fetchReadme(port);
 
     showModal({
         title: 'Port Details',
-        content: createCardDetails({ port, readme }),
+        content: createCardDetails({ port, readme, deviceDetails }),
     });
 }
 //#endregion
