@@ -91,6 +91,42 @@ function ucFirst(string) {
 }
 //#endregion
 
+//#region Modal
+function createModal({ title, content }) {
+    return createElement('div', { className: 'modal modal-xl fade', tabindex: -1 }, [
+        createElement('div', { className: 'modal-dialog' }, [
+            createElement('div', { className: 'modal-content' }, [
+                createElement('div', { className: 'modal-header' }, [
+                    createElement('h5', { className: 'modal-title' }, title),
+                    createElement('button', {
+                        type: 'button',
+                        className: 'btn-close',
+                        'data-bs-dismiss': 'modal',
+                        'aria-label': 'Close',
+                    }),
+                ]),
+                createElement('div', { className: 'modal-body' }, content),
+            ]),
+        ]),
+    ]);
+}
+
+function showModal({ title, content }) {
+    return new Promise(resolve => {
+        const modal = createModal({ title, content });
+        document.body.append(modal);
+        
+        modal.addEventListener('hidden.bs.modal', () => {
+            resolve();
+            document.body.removeChild(modal);
+        });
+        
+        const bsModal = new bootstrap.Modal(modal);
+        bsModal.show();
+    });
+}
+//#endregion
+
 //#region Fetch and process data
 function getFirmwareNames() {
     return {
@@ -258,9 +294,14 @@ function createCard(port) {
 
     const porters = devided(() => ', ', port.attr.porter.map(porter => createElement('a', { href: getPorterUrl(porter) }, porter)));
 
+    function handleDetails(e) {
+        e.preventDefault();
+        showDetailsModal(port);
+    }
+
     return createElement('div', { className: 'col' }, [
         createElement('div', { className: 'card h-100 shadow-sm' }, [
-            createElement('a', { href: cardUrl, className: 'ratio ratio-4x3 update-anchor' }, [
+            createElement('a', { onclick: handleDetails, href: cardUrl, className: 'ratio ratio-4x3 update-anchor' }, [
                 createElement('img', {
                     src: imageUrl,
                     className: 'bd-placeholder-img card-img-top object-fit-contain',
@@ -270,6 +311,7 @@ function createCard(port) {
             createElement('div', { className: 'card-body d-flex flex-column' }, [
                 createElement('h5', { className: 'card-title' }, [
                     createElement('a', {
+                        onclick: handleDetails,
                         href: cardUrl,
                         className: 'update-anchor text-decoration-none link-body-emphasis'
                     }, port.attr.title),
@@ -281,7 +323,7 @@ function createCard(port) {
                 createElement('p', { className: 'card-text update-supported', hidden: true }),
                 createElement('div', { className: 'd-flex justify-content-between align-items-start' }, [
                     createElement('div', { className: 'd-flex flex-wrap gap-2' }, badges),
-                    createElement('a', { href: cardUrl, className: 'update-anchor' }, 'Details'),
+                    createElement('a', { onclick: handleDetails, href: cardUrl, className: 'update-anchor' }, 'Details'),
                 ]),
             ]),
             createElement('div', { className: 'card-footer d-flex flex-wrap gap-2' }, [
@@ -382,7 +424,7 @@ function createCardDetails({ port, readme, devices }) {
         ]),
         createElement('div', { className: 'px-4 py-5 pt-0' }, [
             createElement('h2', { className: 'pb-2 border-bottom' }, 'Port Details'),
-            createElement('div', { className: 'row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4 py-5' }, [
+            createElement('div', { className: 'row row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 g-4 py-5' }, [
                 createElement('div', { className: 'col d-flex align-items-start' }, [
                     createElement('i', { className: 'ft-s bi bi-dpad' }),
                     createElement('div', { className: 'ms-3' }, [
@@ -451,10 +493,19 @@ function createCardDetails({ port, readme, devices }) {
                 }),
             ]),
         ]),
-        createElement('div', { className: 'markdown px-4 py-5 pt-0 hidden' }, [
+        readme && createElement('div', { className: 'markdown px-4 py-5 pt-0 hidden' }, [
             createElement('h2', { className: 'pb-2 border-bottom' }, 'Additional Information'),
             createElement('div', { style: 'word-wrap: break-word', innerHTML: markdownToHtml(readme) }),
         ]),
     ]);
+}
+
+async function showDetailsModal(port) {
+    const readme = await fetchReadme(port);
+
+    showModal({
+        title: 'Port Details',
+        content: createCardDetails({ port, readme }),
+    });
 }
 //#endregion
