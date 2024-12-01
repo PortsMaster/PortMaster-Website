@@ -8,10 +8,10 @@ window.addEventListener('DOMContentLoaded', async function() {
 
     const ports = await fetchPorts();
     const port = ports.find(port => port.name === filename);
-    const readme = await fetchReadme(port);
 
     if (port) {
-        const containerElement = createCardDetails({ port, readme, deviceDetails });
+        const additionalInformation = createAdditionalInformation(port);
+        const containerElement = createCardDetails({ port, deviceDetails, additionalInformation });
         appElement.replaceChildren(containerElement);
     } else {
         appElement.replaceChildren(createContainerError('404 Not Found'));
