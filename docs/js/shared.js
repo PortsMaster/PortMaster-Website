@@ -91,6 +91,42 @@ function ucFirst(string) {
 }
 //#endregion
 
+//#region Modal
+function createModal({ title, content }) {
+    return createElement('div', { className: 'modal modal-xl fade', tabindex: -1 }, [
+        createElement('div', { className: 'modal-dialog' }, [
+            createElement('div', { className: 'modal-content' }, [
+                createElement('div', { className: 'modal-header' }, [
+                    createElement('h5', { className: 'modal-title' }, title),
+                    createElement('button', {
+                        type: 'button',
+                        className: 'btn-close',
+                        'data-bs-dismiss': 'modal',
+                        'aria-label': 'Close',
+                    }),
+                ]),
+                createElement('div', { className: 'modal-body' }, content),
+            ]),
+        ]),
+    ]);
+}
+
+function showModal({ title, content }) {
+    return new Promise(resolve => {
+        const modal = createModal({ title, content });
+        document.body.append(modal);
+        
+        modal.addEventListener('hidden.bs.modal', () => {
+            resolve();
+            document.body.removeChild(modal);
+        });
+        
+        const bsModal = new bootstrap.Modal(modal);
+        bsModal.show();
+    });
+}
+//#endregion
+
 //#region Fetch and process data
 function getFirmwareNames() {
     return {
@@ -319,9 +355,15 @@ function updateCard(card, port, selectedDevices, firmwareNames) {
         }
     }).filter(Boolean);
 
+    function handleDetails(e) {
+        e.preventDefault();
+        showDetailsModal(port, deviceDetails);
+    }
+
     const cardUrl = getCardUrl(port, deviceDetails);
     for (const cardAnchor of card.querySelectorAll('.update-anchor')) {
         cardAnchor.href = cardUrl;
+        cardAnchor.onclick = handleDetails;
     }
 
     const cardSupported = card.querySelector('.update-supported');
@@ -340,7 +382,7 @@ function updateCard(card, port, selectedDevices, firmwareNames) {
 //#endregion
 
 //#region Create card details
-function createCardDetails({ port, readme, devices }) {
+function createCardDetails({ port, readme, deviceDetails }) {
     const br = () => createElement('br');
 
     function markdownToHtml(markdown) {
@@ -382,7 +424,7 @@ function createCardDetails({ port, readme, devices }) {
         ]),
         createElement('div', { className: 'px-4 py-5 pt-0' }, [
             createElement('h2', { className: 'pb-2 border-bottom' }, 'Port Details'),
-            createElement('div', { className: 'row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4 py-5' }, [
+            createElement('div', { className: 'row row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 g-4 py-5' }, [
                 createElement('div', { className: 'col d-flex align-items-start' }, [
                     createElement('i', { className: 'ft-s bi bi-dpad' }),
                     createElement('div', { className: 'ms-3' }, [
@@ -434,11 +476,11 @@ function createCardDetails({ port, readme, devices }) {
                         ]),
                     ]),
                 ]),
-                devices && createElement('div', { className: 'col d-flex align-items-start' }, [
+                deviceDetails?.length && createElement('div', { className: 'col d-flex align-items-start' }, [
                     createElement('i', { className: 'ft-s bi bi-controller' }),
                     createElement('div', { className: 'ms-3' }, [
                         createElement('h3', { className: 'fw-bold mb-0 fs-4 text-body-emphasis' }, 'Supported Devices'),
-                        createElement('p', null, devided(br, devices.split(','))),
+                        createElement('p', null, devided(br, deviceDetails)),
                     ]),
                 ]),
             ]),
@@ -451,10 +493,19 @@ function createCardDetails({ port, readme, devices }) {
                 }),
             ]),
         ]),
-        createElement('div', { className: 'markdown px-4 py-5 pt-0 hidden' }, [
+        readme && createElement('div', { className: 'markdown px-4 py-5 pt-0 hidden' }, [
             createElement('h2', { className: 'pb-2 border-bottom' }, 'Additional Information'),
             createElement('div', { style: 'word-wrap: break-word', innerHTML: markdownToHtml(readme) }),
         ]),
     ]);
+}
+
+async function showDetailsModal(port, deviceDetails) {
+    const readme = await fetchReadme(port);
+
+    showModal({
+        title: 'Port Details',
+        content: createCardDetails({ port, readme, deviceDetails }),
+    });
 }
 //#endregion

@@ -2,7 +2,7 @@ window.addEventListener('DOMContentLoaded', async function() {
     const appElement = document.getElementById('app');
     appElement.replaceChildren(createContainerLoading());
 
-    const devices = getSearchParam('devices');
+    const deviceDetails = getSearchParam('devices')?.split(',');
     const name = getSearchParam('name');
     const filename = `${name}.zip`;
 
@@ -11,7 +11,7 @@ window.addEventListener('DOMContentLoaded', async function() {
     const readme = await fetchReadme(port);
 
     if (port) {
-        const containerElement = createCardDetails({ port, readme, devices });
+        const containerElement = createCardDetails({ port, readme, deviceDetails });
         appElement.replaceChildren(containerElement);
     } else {
         appElement.replaceChildren(createContainerError('404 Not Found'));
