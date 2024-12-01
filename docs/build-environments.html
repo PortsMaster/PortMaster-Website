@@ -457,7 +457,7 @@ make install
      5. Cross-Compiling Tools for AARCH64
     </h3>
     <p>
-     With the arm64 SDL2 library, etc.
+     Instead of setting up an ARM64 chroot and using qemu to emulate the target architecture in order to compile games, it is also possible to use cross-compilation techniques. They allow compiling to a different architecture than the one the host uses, without emulation. Using cross-compilation leads to much faster builds, because the compiler runs natively on your machine, but can be less intuitive and convinient to use. <a href="https://lgt2x.github.io/posts/cross-comp/">This article</a> explains how you can cross-compile programs from a Debian host.
     </p>
     <script>
      anchors.options.visible = 'always';
