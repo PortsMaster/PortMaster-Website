@@ -149,7 +149,7 @@ async function fetchDeviceInfo() {
     }
 }
 
-function deviceInfoToDevices(deviceInfo) {
+function deviceInfoToDevices(deviceInfo, deviceCounts) {
     const devices = {};
 
     for (const [deviceName, firmwares] of Object.entries(deviceInfo)) {
@@ -158,11 +158,13 @@ function deviceInfoToDevices(deviceInfo) {
             device: '',
             manufacturer: '',
             cfw: {},
+            count: 0,
         };
         for (const [firmwareName, firmware] of Object.entries(firmwares)) {
             device.device = firmware.device;
             device.manufacturer = firmware.manufacturer;
             device.cfw[firmware.name] = { name: firmwareName };
+            device.count = deviceCounts[firmware.device] ?? 0;
         }
         devices[device.device] = device;
     }
@@ -235,6 +237,28 @@ function getGenres(ports) {
         name,
         count,
     })).sort((a, b) => a.name.localeCompare(b.name));
+}
+
+function getDeviceCounts(ports) {
+    const deviceCounts = {};
+    let nonAvail = 0;
+
+    for (const port of ports) {
+        if (port.attr.avail.length !== 0) {
+            const devices = [...new Set(port.attr.avail.map(support => support.split(':')[0]))];
+            for (const device of devices) {
+                deviceCounts[device] = deviceCounts[device] ? deviceCounts[device] + 1 : 1;
+            }
+        } else {
+            nonAvail++;
+        }
+    }
+
+    for (const device in deviceCounts) {
+        deviceCounts[device] += nonAvail;
+    }
+
+    return deviceCounts;
 }
 
 function getDevicesByManufacturer(devices) {

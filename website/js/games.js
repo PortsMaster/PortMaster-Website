@@ -2,10 +2,12 @@ window.addEventListener('DOMContentLoaded', async function() {
     const appElement = document.getElementById('app');
     appElement.replaceChildren(createContainerLoading());
 
-    const devices = deviceInfoToDevices(await fetchDeviceInfo());
     const ports = await fetchPorts();
+    const deviceInfo = await fetchDeviceInfo();
     const attributes = getAttributes(ports);
     const genres = getGenres(ports);
+    const deviceCounts = getDeviceCounts(ports);
+    const devices = deviceInfoToDevices(deviceInfo, deviceCounts);
     const firmwareNames = getFirmwareNames();
 
     const getCard = memoize(createCard, port => port.name);
@@ -147,7 +149,7 @@ function createDropdowns({ attributes, devices, genres, onchange }) {
     items.device = getDevicesByManufacturer(devices).flatMap(manufacturer => [
         createDropdownHeader(manufacturer.name),
         ...manufacturer.devices.map(device => {
-            return createDropdownItem(createDropdownCheckbox(checkboxes.device, device.device, onchange), device.name);
+            return createDropdownItem(createDropdownCheckbox(checkboxes.device, device.device, onchange), device.name, device.count);
         }),
     ]);
 
