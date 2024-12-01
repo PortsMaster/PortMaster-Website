@@ -4,11 +4,12 @@ window.addEventListener('DOMContentLoaded', async function() {
 
     const devices = deviceInfoToDevices(await fetchDeviceInfo());
     const ports = await fetchPorts();
+    const attributes = getAttributes(ports);
     const genres = getGenres(ports);
     const firmwareNames = getFirmwareNames();
 
     const getCard = memoize(createCard, port => port.name);
-    const { containerElement, updateContainer, filterControls } = createContainer({ devices, genres, onchange });
+    const { containerElement, updateContainer, filterControls } = createContainer({ attributes, devices, genres, onchange });
     const filterState = defaultFilterState(JSON.parse(sessionStorage.getItem('filterState')));
     setFilterState(filterControls, filterState);
     updateResult(filterState);
@@ -57,8 +58,8 @@ function createSort({ onchange }) {
     return { sortElement, sortRadio };
 }
 
-function createContainer({ devices, genres, onchange }) {
-    const { dropdownButtons, checkboxes, updateDropdowns } = createDropdowns({ devices, genres, onchange });
+function createContainer({ attributes, devices, genres, onchange }) {
+    const { dropdownButtons, checkboxes, updateDropdowns } = createDropdowns({ attributes, devices, genres, onchange });
     const searchInput = createSearchInput({ oninput: onchange });
     const { sortElement, sortRadio } = createSort({ onchange });
 
@@ -116,8 +117,9 @@ function createDropdownItem(checkbox, label, count) {
     ]);
 }
 
-function createDropdownCheckbox(name, onchange) {
+function createDropdownCheckbox(refs, name, onchange) {
     return createElement('input', {
+        ref: el => refs[name] = el,
         name,
         className: 'form-check-input',
         type: 'checkbox',
@@ -125,32 +127,39 @@ function createDropdownCheckbox(name, onchange) {
     });
 }
 
-function createDropdowns({ devices, genres, onchange }) {
+function createDropdowns({ attributes, devices, genres, onchange }) {
     const checkboxes = {
         attribute: {},
         device: {},
         genre: {},
     };
 
-    const attributesGroup = createDropdownGroup('Filters', [
-        createDropdownItem(checkboxes.attribute['readyToRun'] = createDropdownCheckbox('readyToRun', onchange), 'Ready to Run'),
-        createDropdownItem(checkboxes.attribute['filesNeeded'] = createDropdownCheckbox('filesNeeded', onchange), 'Files Needed'),
+    const items = {
+        attribute: [],
+        device: [],
+        genre: [],
+    };
+
+    items.attribute = attributes.map(({ value, label, count }) => {
+        return createDropdownItem(createDropdownCheckbox(checkboxes.attribute, value, onchange), label, count);
+    });
+
+    items.device = getDevicesByManufacturer(devices).flatMap(manufacturer => [
+        createDropdownHeader(manufacturer.name),
+        ...manufacturer.devices.map(device => {
+            return createDropdownItem(createDropdownCheckbox(checkboxes.device, device.device, onchange), device.name);
+        }),
     ]);
 
-    const devicesGroup = createDropdownGroup('Devices', getDevicesByManufacturer(devices).flatMap(([manufacturer, manufacturerDevices]) => {
-        return [
-            createDropdownHeader(manufacturer),
-            ...manufacturerDevices.map(device => {
-                return createDropdownItem(checkboxes.device[device.device] = createDropdownCheckbox(device.device, onchange), device.name);
-            }),
-        ];
-    }));
+    items.genre = genres.map(genre => {
+        return createDropdownItem(createDropdownCheckbox(checkboxes.genre, genre.name, onchange), ucFirst(genre.name), genre.count);
+    });
 
-    const genresGroup = createDropdownGroup('Genres', genres.map(genre => {
-        return createDropdownItem(checkboxes.genre[genre.name] = createDropdownCheckbox(genre.name, onchange), ucFirst(genre.name), genre.count);
-    }));
-
-    const dropdownGroups = [attributesGroup, genresGroup, devicesGroup];
+    const dropdownGroups = [
+        createDropdownGroup('Filters', items.attribute),
+        createDropdownGroup('Genres', items.genre),
+        createDropdownGroup('Devices', items.device),
+    ];
 
     const dropdownButtons = createElement('div', { className: 'btn-group flex-wrap' }, dropdownGroups);
 

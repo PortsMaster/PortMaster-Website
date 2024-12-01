@@ -213,6 +213,15 @@ function fetchReadme(port) {
     }
 }
 
+function getAttributes(ports) {
+    const rtrCount = ports.filter(port => port.attr.rtr).length;
+
+    return [
+        { value: 'readyToRun', label: 'Ready to Run', count: rtrCount },
+        { value: 'filesNeeded', label: 'Files Needed', count: ports.length - rtrCount },
+    ];
+}
+
 function getGenres(ports) {
     const genres = {};
 
@@ -232,12 +241,15 @@ function getDevicesByManufacturer(devices) {
     const manufacturers = {};
 
     for (const device of Object.values(devices)) {
-        if (manufacturers[device.manufacturer]?.push(device) == null) {
-            manufacturers[device.manufacturer] = [device];
+        if (manufacturers[device.manufacturer]?.devices.push(device) == null) {
+            manufacturers[device.manufacturer] = {
+                name: device.manufacturer,
+                devices: [device],
+            };
         }
     }
 
-    return Object.entries(manufacturers).sort((a, b) => a[0].localeCompare(b[0]));
+    return Object.values(manufacturers).sort((a, b) => a.name.localeCompare(b.name));
 }
 
 function getCardUrl(port, deviceDetails) {
