@@ -149,7 +149,7 @@ async function fetchDeviceInfo() {
     }
 }
 
-function deviceInfoToDevices(deviceInfo) {
+function deviceInfoToDevices(deviceInfo, deviceCounts) {
     const devices = {};
 
     for (const [deviceName, firmwares] of Object.entries(deviceInfo)) {
@@ -158,11 +158,13 @@ function deviceInfoToDevices(deviceInfo) {
             device: '',
             manufacturer: '',
             cfw: {},
+            count: 0,
         };
         for (const [firmwareName, firmware] of Object.entries(firmwares)) {
             device.device = firmware.device;
             device.manufacturer = firmware.manufacturer;
             device.cfw[firmware.name] = { name: firmwareName };
+            device.count = deviceCounts[firmware.device] ?? 0;
         }
         devices[device.device] = device;
     }
@@ -213,6 +215,15 @@ function fetchReadme(port) {
     }
 }
 
+function getAttributes(ports) {
+    const rtrCount = ports.filter(port => port.attr.rtr).length;
+
+    return [
+        { value: 'readyToRun', label: 'Ready to Run', count: rtrCount },
+        { value: 'filesNeeded', label: 'Files Needed', count: ports.length - rtrCount },
+    ];
+}
+
 function getGenres(ports) {
     const genres = {};
 
@@ -228,16 +239,41 @@ function getGenres(ports) {
     })).sort((a, b) => a.name.localeCompare(b.name));
 }
 
+function getDeviceCounts(ports) {
+    const deviceCounts = {};
+    let nonAvail = 0;
+
+    for (const port of ports) {
+        if (port.attr.avail.length !== 0) {
+            const devices = [...new Set(port.attr.avail.map(support => support.split(':')[0]))];
+            for (const device of devices) {
+                deviceCounts[device] = deviceCounts[device] ? deviceCounts[device] + 1 : 1;
+            }
+        } else {
+            nonAvail++;
+        }
+    }
+
+    for (const device in deviceCounts) {
+        deviceCounts[device] += nonAvail;
+    }
+
+    return deviceCounts;
+}
+
 function getDevicesByManufacturer(devices) {
     const manufacturers = {};
 
     for (const device of Object.values(devices)) {
-        if (manufacturers[device.manufacturer]?.push(device) == null) {
-            manufacturers[device.manufacturer] = [device];
+        if (manufacturers[device.manufacturer]?.devices.push(device) == null) {
+            manufacturers[device.manufacturer] = {
+                name: device.manufacturer,
+                devices: [device],
+            };
         }
     }
 
-    return Object.entries(manufacturers).sort((a, b) => a[0].localeCompare(b[0]));
+    return Object.values(manufacturers).sort((a, b) => a.name.localeCompare(b.name));
 }
 
 function getCardUrl(port, deviceDetails) {
@@ -382,14 +418,24 @@ function updateCard(card, port, selectedDevices, firmwareNames) {
 //#endregion
 
 //#region Create card details
-function createCardDetails({ port, readme, deviceDetails }) {
-    const br = () => createElement('br');
+function createAdditionalInformation(port) {
+    const additionalInformation = createElement('div', { style: 'word-wrap: break-word' }, 'Loading...');
 
     function markdownToHtml(markdown) {
         return CmarkGFM.convert(markdown.replaceAll('<br/>', ''))
             .replaceAll('<table>', '<table class="table table-bordered">')
             .replaceAll('<h2>', '<h2 style="margin-top: 1em; margin-bottom: 1em;">');
     }
+
+    fetchReadme(port).then(readme => {
+        additionalInformation.innerHTML = markdownToHtml(readme);
+    });
+
+    return additionalInformation;
+}
+
+function createCardDetails({ port, deviceDetails, additionalInformation }) {
+    const br = () => createElement('br');
 
     return createElement('div', { className: 'container' }, [
         createElement('div', { className: 'px-2 pt-4 text-center' }, [
@@ -493,19 +539,19 @@ function createCardDetails({ port, readme, deviceDetails }) {
                 }),
             ]),
         ]),
-        readme && createElement('div', { className: 'markdown px-4 py-5 pt-0 hidden' }, [
+        createElement('div', { className: 'markdown px-4 py-5 pt-0' }, [
             createElement('h2', { className: 'pb-2 border-bottom' }, 'Additional Information'),
-            createElement('div', { style: 'word-wrap: break-word', innerHTML: markdownToHtml(readme) }),
+            additionalInformation,
         ]),
     ]);
 }
 
 async function showDetailsModal(port, deviceDetails) {
-    const readme = await fetchReadme(port);
+    const additionalInformation = createAdditionalInformation(port);
 
     showModal({
         title: 'Port Details',
-        content: createCardDetails({ port, readme, deviceDetails }),
+        content: createCardDetails({ port, deviceDetails, additionalInformation }),
     });
 }
 //#endregion
