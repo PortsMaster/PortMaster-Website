@@ -3,8 +3,8 @@
 ## Index
 - [Portname Requirements](#portname-requirements)
 - [New Port Structure](#new-port-structure)
-  - [port.json](#portjson)
-  - [README.md](#readmemd)
+  - [port.json](#port-json)
+  - [README.md](#readme-md)
   - [Screenshot](#screenshot)
   - [Gameinfo.xml & Cover](#gameinfo-xml-cover)
   - [License File](#licensefile)
