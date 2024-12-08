@@ -365,7 +365,7 @@ runtime="frt_3.2.3"
 if [ ! -f "$controlfolder/libs/${runtime}.squashfs" ]; then
   # Check for runtime if not downloaded via PM
   if [ ! -f "$controlfolder/harbourmaster" ]; then
-    echo "This port requires the latest PortMaster to run, please go to https://portmaster.games/ for more info." > /dev/tty0
+    pm_message "This port requires the latest PortMaster to run, please go to https://portmaster.games/ for more info."
     sleep 5
     exit 1
   fi
@@ -495,11 +495,11 @@ Example:
 ```shell
 # Functions
 install() {
-    echo "Performing first-run setup..." > $CUR_TTY
+    pm_message "Performing first-run setup..." 
     # Purge unneeded files
     rm -rf assets/*.exe assets/*.dll assets/.gitkeep
     # Rename data.win
-    echo "Moving game files..." > $CUR_TTY
+    pm_message "Moving game files..." 
     mv "./assets/data.win" "./game.droid" || return 1
     mv assets/* ./
     rmdir assets
@@ -513,20 +513,20 @@ install() {
 }
 
 apply_patch() {
-    echo "Applying patch..." > $CUR_TTY
+    pm_message "Applying patch..." 
     if [ -f "$controlfolder/xdelta3" ]; then
         error=$("$controlfolder/xdelta3" -d -s "$GAMEDIR/game.droid" "$GAMEDIR/patch/iosas.xdelta" "$GAMEDIR/game2.droid" 2>&1)
         if [ $? -eq 0 ]; then
             rm -rf "$GAMEDIR/game.droid"
             mv "$GAMEDIR/game2.droid" "$GAMEDIR/game.droid"
-            echo "Patch applied successfully." > $CUR_TTY
+            pm_message "Patch applied successfully." 
         else
-            echo "Failed to apply patch. Error: $error" > $CUR_TTY
+            pm_message "Failed to apply patch. Error: $error" 
             rm -f "$GAMEDIR/game2.droid"
             return 1
         fi
     else
-        echo "Error: xdelta3 not found in $controlfolder. Try updating PortMaster." > $CUR_TTY
+        pm_message "Error: xdelta3 not found in $controlfolder. Try updating PortMaster." 
         return 1
     fi
 }
