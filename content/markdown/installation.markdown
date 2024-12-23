@@ -9,12 +9,12 @@
 
 To install PortMaster via a simple Installation Script download either the Install.PortMaster.sh or Install.Full.PortMaster.sh (with all Runtimes already included) from the link above and place it in the appropriate folder for your CFW. After that simply execute the .sh from your Ports folder.
 
-| CFW          | Location                      |
-|--------------|-------------------------------|
-| AmberElec    | /roms/ports/                  |
-| ArkOS        | /roms/tools/ or /roms2/tools/ |
-| JELOS        | /roms/ports/                  |
-| UnofficialOS | /roms/ports/                  |
+| CFW          | Location     |
+|--------------|--------------|
+| AmberElec    | /roms/ports/ |
+| ArkOS        | /roms/tools/ |
+| JELOS        | /roms/ports/ |
+| UnofficialOS | /roms/ports/ |
 
 If your CFW is not listed above, it will most likely be in one of the above locations.
 
@@ -22,13 +22,13 @@ If your CFW is not listed above, it will most likely be in one of the above loca
 
 To install PortMaster download the PortMaster.zip from the link above, unzip it and place it in the appropriate folder for your CFW.
 
-| CFW          | Location                      |
-|--------------|-------------------------------|
-| AmberElec    | /storage/roms/ports/          |
-| ArkOS        | /roms/tools/ or /roms2/tools/ |
-| JELOS        | /storage/roms/ports/          |
-| TheRA        | /opt/tools/                   |
-| UnofficialOS | /storage/roms/ports/          |
+| CFW          | Location             |
+|--------------|----------------------|
+| AmberElec    | /storage/roms/ports/ |
+| ArkOS        | /roms/tools/         |
+| JELOS        | /storage/roms/ports/ |
+| TheRA        | /opt/tools/          |
+| UnofficialOS | /storage/roms/ports/ |
 
 If your CFW is not listed above, it will most likely be in one of the above locations.
 
