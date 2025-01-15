@@ -624,9 +624,9 @@ fi
 # assign the appropriate exit hotkey dependent on the device (ex. select + start for most devices and minus + start for the 
 # rgb10) and assign the appropriate method for killing an executable dependent on the OS the port is run from.
 # With -c we assign a custom mapping file else gptokeyb will only run as a tool to kill the process.
-# For $ANALOGSTICKS we have the ability to supply multiple gptk files to support 1 and 2 analogue stick devices in different ways.
+# For $ANALOG_STICKS we have the ability to supply multiple gptk files to support 1 and 2 analogue stick devices in different ways.
 # For a proper documentation how gptokeyb works: [Link](https://github.com/PortsMaster/gptokeyb)
-$GPTOKEYB "portexecutable.${DEVICE_ARCH}" -c "./portname.gptk.$ANALOGSTICKS" &amp;
+$GPTOKEYB "portexecutable.${DEVICE_ARCH}" -c "./portname.gptk.$ANALOG_STICKS" &amp;
 
 # Do some platform specific stuff right before the port is launched but after GPTOKEYB is run.
 pm_platform_helper "$GAMEDIR/portexecutable.${DEVICE_ARCH}"
