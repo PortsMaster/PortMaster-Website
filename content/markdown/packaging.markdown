@@ -411,7 +411,6 @@ else
 fi
 
 source $controlfolder/control.txt
-source $controlfolder/runtimes/"love_11.5"/love.txt
 
 [ -f "${controlfolder}/mod_${CFW_NAME}.txt" ] && source "${controlfolder}/mod_${CFW_NAME}.txt"
 
@@ -434,6 +433,8 @@ bind_directories ~/.portfolder $GAMEDIR/conf/.portfolder
 
 export LD_LIBRARY_PATH="$GAMEDIR/libs.${DEVICE_ARCH}:$LD_LIBRARY_PATH"
 export SDL_GAMECONTROLLERCONFIG="$sdl_controllerconfig"
+
+source $controlfolder/runtimes/"love_11.5"/love.txt
 
 # Run the love runtime
 $GPTOKEYB "$LOVE_GPTK" &
