@@ -628,6 +628,28 @@ Several things to note here:
 - The `apply_patch` function itself is a nest of IF conditionals to assist with error checking. It returns `1` if it failed.
 - The `installed` function is only run once if successful. If it was successfully completed, a `.installed` file is created, preventing future runs of the function.
 
+## Testing Requirements
+
+Before submitting a PR, your port must be thoroughly tested.
+
+### Required Testing Process
+1. Create a testing thread in our [#testing-n-dev Discord channel](https://discord.com/channels/1122861252088172575/1122885073507733625)
+   
+2. Test your port on all major CFWs and Standard Resolutions:
+   - AmberELEC
+   - ArkOS
+   - ROCKNIX Panfrost / Malai
+   - muOS
+   - Knulli (Optional)
+  
+   - 480x320 (Optional)
+   - 640x480 
+   - 720x720 (Optional)
+   - Higher resolutions (e.g., 1280x720)
+  
+3. Address any feedback from the community testing
+
+**Note:** Pull Requests submitted without documented testing in the #testing-n-dev channel will not be accepted. This ensures quality and compatibility across our supported devices.
 
 ### Creating a Pull Request
 
