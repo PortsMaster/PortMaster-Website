@@ -353,14 +353,6 @@ CONFDIR="$GAMEDIR/conf/"
 mkdir -p "$GAMEDIR/conf"
 cd $GAMEDIR
 
-# Set the XDG environment variables for config & savefiles
-export XDG_DATA_HOME="$CONFDIR"
-export SDL_GAMECONTROLLERCONFIG="$sdl_controllerconfig"
-
-#  If XDG Path does not work
-# Use _directories to reroute that to a location within the ports folder.
-bind_directories ~/.portfolder $GAMEDIR/conf/.portfolder 
-
 runtime="frt_3.2.3"
 if [ ! -f "$controlfolder/libs/${runtime}.squashfs" ]; then
   # Check for runtime if not downloaded via PM
@@ -372,6 +364,14 @@ if [ ! -f "$controlfolder/libs/${runtime}.squashfs" ]; then
 
   $ESUDO $controlfolder/harbourmaster --quiet --no-check runtime_check "${runtime}.squashfs"
 fi
+
+# Set the XDG environment variables for config & savefiles
+export XDG_DATA_HOME="$CONFDIR"
+export SDL_GAMECONTROLLERCONFIG="$sdl_controllerconfig"
+
+#  If XDG Path does not work
+# Use _directories to reroute that to a location within the ports folder.
+bind_directories ~/.portfolder $GAMEDIR/conf/.portfolder 
 
 # Setup Godot
 godot_dir="$HOME/godot"
