@@ -386,11 +386,14 @@ export FRT_NO_EXIT_SHORTCUTS=FRT_NO_EXIT_SHORTCUTS
 
 
 $GPTOKEYB "$runtime" -c "./godot.gptk" &
-pm_platform_helper "$runtime"
+pm_platform_helper "$godot_dir/$runtime"
 "$runtime" $GODOT_OPTS --main-pack "gamename.pck"
 
-$ESUDO umount "$godot_dir"
+if [[ "$PM_CAN_MOUNT" != "N" ]]; then
+    $ESUDO umount "$godot_dir"
+fi
 pm_finish
+
 ```
 
 ### Love2d Example Launchscript
