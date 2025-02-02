@@ -403,6 +403,12 @@ strip gptokeyb
       killall &lt;application name&gt;
      </code>
     </p>
+    <p>
+     <code>
+      -v
+     </code>
+     enables verbose log output which provides more details in logfiles
+    </p>
     <h3>
      Keyboard Mapping Options
     </h3>
@@ -798,10 +804,11 @@ left_analog_right = repeat
     <p>
      Text entry options are enabled by environment variable settings
     </p>
-    <pre><code>export TEXTINPUTPRESET="My Name"         # defines preset text to insert
-export TEXTINPUTINTERACTIVE="Y"        # enables interactive text input mode
-export TEXTINPUTNOAUTOCAPITALS="Y"     # disables automatic capitalisation of first letter of words in interactive text input mode
-export TEXTINPUTADDEXTRASYMBOLS="Y"    # enables additional symbols for interactive text input
+    <pre><code>export TEXTINPUTPRESET="My Name"        # defines preset text to insert
+export TEXTINPUTINTERACTIVE="Y"         # enables interactive text input mode
+export TEXTINPUTNOAUTOCAPITALS="Y"      # disables automatic capitalisation of first letter of words in interactive text input mode
+export TEXTINPUTADDEXTRASYMBOLS="Y"     # enables additional symbols for interactive text input
+export TEXTINPUTNUMBERSONLY="Y"         # only scrolls integers 0 - 9 in interactive text input mode
 </code></pre>
     <p>
      Interactive input mode is also enabled by command line option
@@ -940,6 +947,16 @@ START = confirm and exit mode (also sends ENTER key)
       TEXTINPUTADDEXTRASYMBOLS="Y"
      </code>
      .
+    </p>
+    <h5>
+     Numbers
+    </h5>
+    <p>
+     Numbers Only mode limits the characters to
+     <code>
+      0 - 9
+     </code>
+     whole numbers and does not include mathematical symbols.
     </p>
     <h5>
      Exiting mode
