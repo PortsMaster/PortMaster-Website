@@ -1,7 +1,7 @@
 
 const portSchema = {
   /* Version number of the port.json format, currently 2 */
-  "version": 3,
+  "version": 4,
   /* Name of the zip file, this uniquely identifies the port */
   "name": "",
   /* Directories and scripts that comes with the port. */
@@ -30,7 +30,7 @@ const portSchema = {
     /* experimental port flag */
     "exp": false,
     /* What runtime do we require? */
-    "runtime": null,
+    "runtime": [],
     /* Any hardware/software requirements: opengl, power, 4:3, 3:2, 16:9, lowres, hires */
     "reqs": [],
      /* Architecture aarch64,armhf, x86_64, x86  */
@@ -114,7 +114,7 @@ function getFormValues() {
   portJson.attr.desc_md = descriptionMarkdown.value() ? descriptionMarkdown.value() : null;
   portJson.attr.inst = document.getElementById("instructions").value;
   portJson.attr.inst_md = instructionsMarkdown.value() ? instructionsMarkdown.value() : null;
-  portJson.attr.runtime = document.getElementById("runtime").value ? document.getElementById("runtime").value : null;
+  portJson.attr.runtime = Array.from(document.getElementById("runtime").selectedOptions).map(o => o.value);
   portJson.attr.rtr = document.getElementById("readytorun").checked;
   portJson.attr.exp = document.getElementById("experimental").checked;
   portJson.attr.reqs = [];
