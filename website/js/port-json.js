@@ -68,7 +68,25 @@ function getJsonTemplate() {
   })
 })()
 
+function deleteRow(btn) {
+  var row = btn.parentNode.parentNode;
+  row.parentNode.removeChild(row);
+}
 
+function addStoreLink() {
+  var table = document.getElementById("store");
+  var row = table.insertRow(-1);
+
+  // Insert new cells (<td> elements) at the 1st and 2nd position of the "new" <tr> element:
+  var cell1 = row.insertCell(0);
+  var cell2 = row.insertCell(1);
+  var cell3 = row.insertCell(2);
+
+  // Add some text to the new cells:
+  cell1.innerHTML = '<div><input></div>';
+  cell2.innerHTML = '<div><input></div>';
+  cell3.innerHTML = '<input type="button" class="btn btn-danger" value="Delete" onclick="deleteRow(this)"/>';
+}
 
 async function populatePorterList() {
   var porters = {};
@@ -149,6 +167,18 @@ function getFormValues() {
   if (document.getElementById("power").checked){
     portJson.attr.reqs.push("power");
   }
+
+  var table = document.getElementById("store");
+  var storeLinks = [];
+  for (var i = 1, row; row = table.rows[i]; i++) {
+    var store = {};
+    var name = row.cells[0].getElementsByTagName('input')[0].value;
+    var url = row.cells[1].getElementsByTagName('input')[0].value;
+    store["name"] = name;
+    store["url"] = url;
+    storeLinks.push(store);
+  }
+  portJson.store = storeLinks;
 
   return portJson;
 }
