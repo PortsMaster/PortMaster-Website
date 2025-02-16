@@ -184,6 +184,19 @@
           <div class="col-md-7 col-lg-8">
             <form id="form" class="needs-validation" novalidate>
               <div class="row g-3">
+
+                <div class="col-12">
+                  <label for="notes" class="form-label">Steam Instructions</label>
+                </div>
+                <div class="col-12">
+                  <label for="command" class="form-label"><a href="https://steamdb.info" target="_blank">SteamDB</a> Command</label>
+                  <input id="command" class="form-control" >
+                </div>
+                <div class="col-12">
+                  <button type="button" onclick="addSteamInstructions()" class="w-100 btn btn-primary btn-lg" type="button">Add Steam Instructions</button>
+                </div>
+
+
                 <div class="col-12">
                   <label for="notes" class="form-label">Notes</label>
                   <textarea class="form-control" id="notes" oninput="renderMarkdown()" rows="3"></textarea>
@@ -260,6 +273,20 @@
       cell1.innerHTML = '<div><input oninput="renderMarkdown()"></div>';
       cell2.innerHTML = '<div><input oninput="renderMarkdown()"></div>';
       cell3.innerHTML = '<input type="button" class="btn btn-danger" value="Delete" onclick="deleteRow(this)"/>';
+    }
+
+    function addSteamInstructions() {
+      markdown = ""
+      var notes = notesMarkdown.value();
+      
+      var steamCommand = document.getElementById("command").value;
+
+      var instructions = "### Steam Instructions\n" + '* [Open Steam console](steam://open/console)\n' + "* Copy and paste command: " + steamCommand;
+
+      notes = notes + "\n\n" + instructions;
+
+      notesMarkdown.value(notes);
+
     }
 
     function renderMarkdown() {
