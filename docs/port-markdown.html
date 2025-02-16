@@ -335,6 +335,25 @@
         <div class="row g-3">
          <div class="col-12">
           <label class="form-label" for="notes">
+           Steam Instructions
+          </label>
+         </div>
+         <div class="col-12">
+          <label class="form-label" for="command">
+           <a href="https://steamdb.info" target="_blank">
+            SteamDB
+           </a>
+           Command
+          </label>
+          <input class="form-control" id="command"/>
+         </div>
+         <div class="col-12">
+          <button class="w-100 btn btn-primary btn-lg" onclick="addSteamInstructions()" type="button">
+           Add Steam Instructions
+          </button>
+         </div>
+         <div class="col-12">
+          <label class="form-label" for="notes">
            Notes
           </label>
           <textarea class="form-control" id="notes" oninput="renderMarkdown()" rows="3"></textarea>
@@ -425,6 +444,20 @@
       cell1.innerHTML = '<div><input oninput="renderMarkdown()"></div>';
       cell2.innerHTML = '<div><input oninput="renderMarkdown()"></div>';
       cell3.innerHTML = '<input type="button" class="btn btn-danger" value="Delete" onclick="deleteRow(this)"/>';
+    }
+
+    function addSteamInstructions() {
+      markdown = ""
+      var notes = notesMarkdown.value();
+      
+      var steamCommand = document.getElementById("command").value;
+
+      var instructions = "### Steam Instructions\n" + '* [Open Steam console](steam://open/console)\n' + "* Copy and paste command: " + steamCommand;
+
+      notes = notes + "\n\n" + instructions;
+
+      notesMarkdown.value(notes);
+
     }
 
     function renderMarkdown() {
