@@ -33,8 +33,8 @@ const portSchema = {
     "runtime": [],
     /* Links to store wher yo can buy */
     "store": [], 
-    /* Is this a free game? */
-    "free": false,
+    /* */
+    "availability": "",
     /* Any hardware/software requirements: opengl, power, 4:3, 3:2, 16:9, lowres, hires */
     "reqs": [],
      /* Architecture aarch64,armhf, x86_64, x86  */
@@ -137,8 +137,8 @@ function getFormValues() {
   portJson.attr.inst = document.getElementById("instructions").value;
   portJson.attr.inst_md = instructionsMarkdown.value() ? instructionsMarkdown.value() : null;
   portJson.attr.runtime = Array.from(document.getElementById("runtime").selectedOptions).map(o => o.value);
+  portJson.attr.availability = document.getElementById("availability").value;
   portJson.attr.rtr = document.getElementById("readytorun").checked;
-  portJson.attr.free = document.getElementById("free").checked;
   portJson.attr.exp = document.getElementById("experimental").checked;
   portJson.attr.reqs = [];
 
