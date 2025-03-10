@@ -3,7 +3,7 @@
 [Download](https://github.com/PortsMaster/PortMaster-GUI/releases) the latest version of PortMaster.
 
 - Install.PortMaster.sh - The base install of PortMaster.
-- Install.Full.PortMaster.sh - The base install + all runtimes.
+- Install.Full.PortMaster.sh - The base install + all runtimes. (Recommended for offline devices)
 
 ### Via Script
 
@@ -13,24 +13,12 @@ To install PortMaster via a simple Installation Script download either the Insta
 |--------------|------------------------|
 | AmberElec    | /roms/ports/           |
 | ArkOS        | /roms(or roms2)/ports/ |
+| ROCKNIX      | /roms/ports/           |
+| muOS         | /mnt/mmc/ROMS/Ports/   |
+| Knulli       | /userdata/roms/ports   |
 | JELOS        | /roms/ports/           |
 | UnofficialOS | /roms/ports/           |
 
-If your CFW is not listed above, it will most likely be in one of the above locations.
-
-### Via Zip
-
-To install PortMaster download the PortMaster.zip from the link above, unzip it and place it in the appropriate folder for your CFW.
-
-| CFW          | Location               |
-|--------------|------------------------|
-| AmberElec    | /storage/roms/ports/   |
-| ArkOS        | /roms(or roms2)/tools/ |
-| JELOS        | /storage/roms/ports/   |
-| TheRA        | /opt/tools/            |
-| UnofficialOS | /storage/roms/ports/   |
-
-If your CFW is not listed above, it will most likely be in one of the above locations.
 
 ## Other CFW
 
@@ -38,6 +26,3 @@ For the other CFW it is as simple as:
 
 - Unzip PortMaster.zip and copy `PortMaster/` directory and all its contents into directory listed above.
 - **If you're using ArkOS**, you will need to move the `/roms(or roms2)/tools/PortMaster/PortMaster.sh` up one directory to `/roms(or roms2)/tools/PortMaster.sh`
-
-
-
