@@ -278,9 +278,21 @@ For testing you can stop Emulationstation to not clash with your Ports
      <code>
       systemctl stop emustation
      </code>
-     ArkOS				 :
+     ArkOS:
      <code>
       systemctl stop emulationstation
+     </code>
+     muOS:
+     <code>
+      killall -q frontend.sh muxlaunch
+     </code>
+     Knulli:
+     <code>
+      /etc/init.d/S31emulationstation stop
+     </code>
+     Rocknix:
+     <code>
+      systemctl stop essway.service
      </code>
     </p>
     <p>
