@@ -32,6 +32,7 @@ The Chipsets we're working with unfortunately have some restrictions in terms of
 So we can't just use any game, compile it and run it.
 
 Most CFWs that support PortMaster don't have full OpenGL or Display Drivers: So no openGL and no x11 / weston.
+With the new WestonPack Runtime from Binary [WestonPack Wiki](https://github.com/binarycounter/Westonpack/wiki/) a lot of these may work now.
 
 Generally speaking Anbernic devices running a Rockchip SoC for example use the old 3.x Linux kernel with proprietary ARM drivers for Mali and not Panfrost. So only OpenGL ES is available for Linux.
 
@@ -48,6 +49,7 @@ Tools we use:
 - [Gamemaker Games Runner GMloader](https://github.com/JohnnyonFlame/droidports)
 - [Godot Games via FRT 2](https://github.com/efornara/frt/tree/2.0)
 - [Love2d] Games via Love2d Engine (https://github.com/Cebion/love2d_aarch64)
+- [Westonpack Runtime] x11, Godot4, Java, LibGDX, SFML, SDL3, Allegro [WestonPack](https://github.com/binarycounter/Westonpack/wiki/)
 
 ## How to Package
 
@@ -264,6 +266,10 @@ For that import the project and reimport the file in the correct format.
 For example sometimes a png file imported as a Texture causes problems and needs to be imported as an image.
 
 Godot Editor -> Import Tab -> Filter for file in Filesystem -> Reimport As:
+
+## Godot 4
+
+See the [WestonPack Wiki](https://github.com/binarycounter/Westonpack/wiki/) 
 
 
 ## LÖVE (Love2D)
