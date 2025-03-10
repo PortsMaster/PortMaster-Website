@@ -21,7 +21,10 @@ Once you have your software compiled it is recommeded you test your game directl
 For testing you can stop Emulationstation to not clash with your Ports
 
 AmberELEC, uOS, Jelos:  `systemctl stop emustation`
-ArkOS				 :  `systemctl stop emulationstation`
+ArkOS:                  `systemctl stop emulationstation`
+muOS:                   `killall -q frontend.sh muxlaunch`
+Knulli:                 `/etc/init.d/S31emulationstation stop `
+Rocknix: 		`systemctl stop essway.service`
 
 For packaging use the Packaging Guide https://portmaster.games/packaging.html and of course other Ports as a reference.
 
