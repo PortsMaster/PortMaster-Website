@@ -321,7 +321,7 @@ pm_platform_helper "$GAMEDIR/portexecutable.${DEVICE_ARCH}"
 pm_finish
 ```
 
-### Godot Game Example Launchscript
+### Godot3 Game Example Launchscript
 
 ```
 
