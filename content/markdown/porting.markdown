@@ -20,11 +20,11 @@ Various Instructions for Build Environments can be found here: https://portmaste
 Once you have your software compiled it is recommeded you test your game directly on your device via ssh.
 For testing you can stop Emulationstation to not clash with your Ports
 
-AmberELEC, uOS, Jelos:  `systemctl stop emustation`
-ArkOS:                  `systemctl stop emulationstation`
-muOS:                   `killall -q frontend.sh muxlaunch`
-Knulli:                 `/etc/init.d/S31emulationstation stop `
-Rocknix: 		`systemctl stop essway.service`
+- AmberELEC, uOS, Jelos:  `systemctl stop emustation`
+- ArkOS:                  `systemctl stop emulationstation`
+- muOS:                   `killall -q frontend.sh muxlaunch`
+- Knulli:                 `/etc/init.d/S31emulationstation stop `
+- Rocknix: 		`systemctl stop essway.service`
 
 For packaging use the Packaging Guide https://portmaster.games/packaging.html and of course other Ports as a reference.
 
