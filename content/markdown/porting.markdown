@@ -52,7 +52,7 @@ Tools we use:
 - [Gamemaker Games Runner GMloader](https://github.com/JohnnyonFlame/droidports)
 - [Godot Games via FRT 2](https://github.com/efornara/frt/tree/2.0)
 - [Love2d] Games via Love2d Engine (https://github.com/Cebion/love2d_aarch64)
-- [Westonpack Runtime] x11, Godot4, Java, LibGDX, SFML, SDL3, Allegro [WestonPack](https://github.com/binarycounter/Westonpack/wiki/)
+- [Westonpack Runtime](https://github.com/binarycounter/Westonpack) x11, Godot4, Java, LibGDX, SFML, SDL3, Allegro [WestonPack](https://github.com/binarycounter/Westonpack/wiki/)
 
 ## How to Package
 
