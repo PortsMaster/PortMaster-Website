@@ -112,30 +112,30 @@
 
                             <div class="col-12">
                                 <label for="name" class="form-label">Name</label>
-                                <input oninput="populateXML()" type="text" class="form-control" id="name"
+                                <input oninput="populateXML()" type="text" class="form-control" id="name" required
                                     placeholder="">
                             </div>
 
                             <div class="col-6">
                                 <label for="path" class="form-label">Script Path</label>
-                                <input oninput="populateXML()" type="text" placeholder="./portname.sh"
+                                <input oninput="populateXML()" type="text" placeholder="./portname.sh" required
                                     class="form-control" id="path">
                             </div>
 
                             <div class="col-6">
                                 <label for="image" class="form-label">Image Path</label>
-                                <input oninput="populateXML()" type="text" placeholder="./portname/cover.png"
+                                <input oninput="populateXML()" type="text" placeholder="./portname/cover.png" required
                                     class="form-control" id="image">
                             </div>
 
                             <div class="col-6">
                                 <label for="developer" class="form-label">Developer</label>
-                                <input oninput="populateXML()" type="text" class="form-control" id="developer"
+                                <input oninput="populateXML()" type="text" class="form-control" id="developer" required
                                     placeholder="">
                             </div>
                             <div class="col-6">
                                 <label for="publisher" class="form-label">Publisher</label>
-                                <input oninput="populateXML()" type="text" class="form-control" id="publisher"
+                                <input oninput="populateXML()" type="text" class="form-control" id="publisher" required
                                     placeholder="">
                             </div>
 
@@ -149,13 +149,13 @@
 
                             <div class="col-6">
                                 <label for="genre" class="form-label">Genre</label>
-                                <input oninput="populateXML()" type="text" class="form-control" id="genre"
+                                <input oninput="populateXML()" type="text" class="form-control" id="genre" required
                                     placeholder="">
                             </div>
 
                             <div class="col-12">
                                 <label for="description" class="form-label">Description</label>
-                                <textarea oninput="populateXML()" class="form-control" id="description"
+                                <textarea oninput="populateXML()" class="form-control" id="description" required
                                     rows="5"></textarea>
                             </div>
                             <div class="col-12">
@@ -200,10 +200,16 @@
     <script>
 
         function copyXML() {
-            var copyText = document.getElementById("xml");
-            copyText.select();
-            copyText.setSelectionRange(0, 99999);
-            navigator.clipboard.writeText(copyText.value);
+            form = document.getElementById("form");
+            if (form.checkValidity()) {
+                var copyText = document.getElementById("xml");
+                copyText.select();
+                copyText.setSelectionRange(0, 99999);
+                navigator.clipboard.writeText(copyText.value);
+            }
+
+            form.classList.add('was-validated')
+
         }
 
         async function populateForm(port) {
@@ -245,8 +251,16 @@
         }
 
         function download() {
-            xml = getFormValues();
-            downloadXML(xml);
+
+            form = document.getElementById("form");
+            if (form.checkValidity()) {
+                xml = getFormValues();
+                downloadXML(xml);
+            }
+
+            form.classList.add('was-validated')
+
+
         }
 
         function downloadXML(xml) {
