@@ -252,31 +252,31 @@
          <label class="form-label" for="name">
           Name
          </label>
-         <input class="form-control" id="name" oninput="populateXML()" placeholder="" type="text"/>
+         <input class="form-control" id="name" oninput="populateXML()" placeholder="" required="" type="text"/>
         </div>
         <div class="col-6">
          <label class="form-label" for="path">
           Script Path
          </label>
-         <input class="form-control" id="path" oninput="populateXML()" placeholder="./portname.sh" type="text"/>
+         <input class="form-control" id="path" oninput="populateXML()" placeholder="./portname.sh" required="" type="text"/>
         </div>
         <div class="col-6">
          <label class="form-label" for="image">
           Image Path
          </label>
-         <input class="form-control" id="image" oninput="populateXML()" placeholder="./portname/cover.png" type="text"/>
+         <input class="form-control" id="image" oninput="populateXML()" placeholder="./portname/cover.png" required="" type="text"/>
         </div>
         <div class="col-6">
          <label class="form-label" for="developer">
           Developer
          </label>
-         <input class="form-control" id="developer" oninput="populateXML()" placeholder="" type="text"/>
+         <input class="form-control" id="developer" oninput="populateXML()" placeholder="" required="" type="text"/>
         </div>
         <div class="col-6">
          <label class="form-label" for="publisher">
           Publisher
          </label>
-         <input class="form-control" id="publisher" oninput="populateXML()" placeholder="" type="text"/>
+         <input class="form-control" id="publisher" oninput="populateXML()" placeholder="" required="" type="text"/>
         </div>
         <div class="col-6">
          <label class="form-label" for="date">
@@ -292,13 +292,13 @@
          <label class="form-label" for="genre">
           Genre
          </label>
-         <input class="form-control" id="genre" oninput="populateXML()" placeholder="" type="text"/>
+         <input class="form-control" id="genre" oninput="populateXML()" placeholder="" required="" type="text"/>
         </div>
         <div class="col-12">
          <label class="form-label" for="description">
           Description
          </label>
-         <textarea class="form-control" id="description" oninput="populateXML()" rows="5"></textarea>
+         <textarea class="form-control" id="description" oninput="populateXML()" required="" rows="5"></textarea>
         </div>
         <div class="col-12">
          <label class="form-label" for="xml">
@@ -347,10 +347,16 @@
   </div>
   <script>
    function copyXML() {
-            var copyText = document.getElementById("xml");
-            copyText.select();
-            copyText.setSelectionRange(0, 99999);
-            navigator.clipboard.writeText(copyText.value);
+            form = document.getElementById("form");
+            if (form.checkValidity()) {
+                var copyText = document.getElementById("xml");
+                copyText.select();
+                copyText.setSelectionRange(0, 99999);
+                navigator.clipboard.writeText(copyText.value);
+            }
+
+            form.classList.add('was-validated')
+
         }
 
         async function populateForm(port) {
@@ -392,8 +398,16 @@
         }
 
         function download() {
-            xml = getFormValues();
-            downloadXML(xml);
+
+            form = document.getElementById("form");
+            if (form.checkValidity()) {
+                xml = getFormValues();
+                downloadXML(xml);
+            }
+
+            form.classList.add('was-validated')
+
+
         }
 
         function downloadXML(xml) {
