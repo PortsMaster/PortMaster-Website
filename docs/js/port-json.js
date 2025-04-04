@@ -1,7 +1,7 @@
 
 const portSchema = {
-  /* Version number of the port.json format, currently 2 */
-  "version": 4,
+  /* Version number of the port.json format, currently 5 */
+  "version": 5,
   /* Name of the zip file, this uniquely identifies the port */
   "name": "",
   /* Directories and scripts that comes with the port. */
@@ -40,7 +40,13 @@ const portSchema = {
      /* Architecture aarch64,armhf, x86_64, x86  */
     "arch": [],
     /* glibc version */
-    "min_glibc": ""
+    "min_glibc": "",
+    /* the itch.io url for this game (if present) */
+    "itchio_url": null,
+    /* the steam id number for this game (if present) */
+    "steam_id": null,
+    /* the IGDB id number for this game (if present) */
+    "igdb_id": null
   }
 }
 
@@ -141,6 +147,16 @@ function getFormValues() {
   portJson.attr.rtr = document.getElementById("readytorun").checked;
   portJson.attr.exp = document.getElementById("experimental").checked;
   portJson.attr.reqs = [];
+
+  // Process the new fields
+  var steamId = document.getElementById("steam_id").value;
+  portJson.attr.steam_id = steamId ? parseInt(steamId) : null;
+  
+  var igdbId = document.getElementById("igdb_id").value;
+  portJson.attr.igdb_id = igdbId ? parseInt(igdbId) : null;
+  
+  var itchioUrl = document.getElementById("itchio_url").value;
+  portJson.attr.itchio_url = itchioUrl ? itchioUrl : null;
 
   portJson.attr.arch = [];
   if (document.getElementById("arch").value != ""){
