@@ -485,7 +485,7 @@ function createCardDetails({ port, deviceDetails, additionalInformation }) {
                         onclick() {
                             window.location.href = port.source.url;
                         },
-                    }, 'Download',
+                    }, 'Download'),
                 ]),
             ]),
         ]),
@@ -537,7 +537,7 @@ function createCardDetails({ port, deviceDetails, additionalInformation }) {
                     createElement('i', { className: 'ft-s bi bi-graph-up' }),
                     createElement('div', { className: 'ms-3' }, [
                         createElement('h3', { className: 'fw-bold mb-0 fs-4 text-body-emphasis' }, 'Rating'),
-                        createElement('p', null, getPortRating(port)),
+                        createElement('p', null,getPortRating(port)),
                     ]),
                 ]),
                 createElement('div', { className: 'col d-flex align-items-start' }, [
