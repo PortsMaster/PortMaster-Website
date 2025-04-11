@@ -307,6 +307,10 @@ function getPortRating(port) {
     }
 }
 
+function getPortRatingLink(port){
+    return createElement('a', { href: `https://suggestions.portmaster.games/rate-port?port=${encodeURIComponent(port.name.replace('.zip', ''))}` }, "Rate Port");
+}
+
 function createContainerLoading() {
     return createElement('div', { className: 'container' }, [
         createElement('h2', { className: 'my-2 text-center text-muted' }, [
@@ -338,7 +342,7 @@ function createCard(port) {
     ];
 
     const porters = devided(() => ', ', port.attr.porter.map(porter => createElement('a', { href: getPorterUrl(porter) }, porter)));
-    const rateLink = createElement('a', { href: `https://suggestions.portmaster.games/rate-port?port=${encodeURIComponent(port.name.replace('.zip', ''))}` }, "Rate Port")
+    
 
     return createElement('div', { className: 'col' }, [
         createElement('div', { className: 'card h-100 shadow-sm' }, [
@@ -377,7 +381,7 @@ function createCard(port) {
                         createElement('span', { className: 'text-wrap' }, porters),
                     ]),
                     createElement('div', { className: 'd-inline-flex gap-1' }, [
-                        createElement('span', { className: 'text-wrap' }, rateLink),
+                        createElement('span', { className: 'text-wrap' }, getPortRatingLink(port)),
                     ]),
                 ]),
                 createElement('div', { className: 'text-end' }, [
@@ -481,7 +485,7 @@ function createCardDetails({ port, deviceDetails, additionalInformation }) {
                         onclick() {
                             window.location.href = port.source.url;
                         },
-                    }, 'Download'),
+                    }, 'Download',
                 ]),
             ]),
         ]),
@@ -527,6 +531,13 @@ function createCardDetails({ port, deviceDetails, additionalInformation }) {
                     createElement('div', { className: 'ms-3' }, [
                         createElement('h3', { className: 'fw-bold mb-0 fs-4 text-body-emphasis' }, 'Last Updated'),
                         createElement('p', null, port.source.date_updated),
+                    ]),
+                ]),
+                createElement('div', { className: 'col d-flex align-items-start' }, [
+                    createElement('i', { className: 'ft-s bi bi-graph-up' }),
+                    createElement('div', { className: 'ms-3' }, [
+                        createElement('h3', { className: 'fw-bold mb-0 fs-4 text-body-emphasis' }, 'Rating'),
+                        createElement('p', null, getPortRating(port)),
                     ]),
                 ]),
                 createElement('div', { className: 'col d-flex align-items-start' }, [
