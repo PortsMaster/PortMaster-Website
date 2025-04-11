@@ -298,6 +298,15 @@ function getPorterUrl(porter) {
     return `profile.html?porter=${encodeURIComponent(porter)}`;
 }
 
+function getPortRating(port) {
+    if (port.rating) {
+        return port.rating;
+    }
+    else {
+        return "None";
+    }
+}
+
 function createContainerLoading() {
     return createElement('div', { className: 'container' }, [
         createElement('h2', { className: 'my-2 text-center text-muted' }, [
@@ -329,6 +338,7 @@ function createCard(port) {
     ];
 
     const porters = devided(() => ', ', port.attr.porter.map(porter => createElement('a', { href: getPorterUrl(porter) }, porter)));
+    const rateLink = createElement('a', { href: `https://suggestions.portmaster.games/rate-port?port=${encodeURIComponent(port.name.replace('.zip', ''))}` }, "Rate Port")
 
     return createElement('div', { className: 'col' }, [
         createElement('div', { className: 'card h-100 shadow-sm' }, [
@@ -362,9 +372,12 @@ function createCard(port) {
                         createElement('span', { className: 'text-muted' }, 'Downloads: '),
                         `${port.download_count}`,
                     ]),
-                    createElement('div', { className: 'd-inline-flex gap-1' }, [
+                    createElement('div',null, [
                         createElement('span', { className: 'text-muted' }, `Porter${porters.length > 1 ? 's' : ''}: `),
                         createElement('span', { className: 'text-wrap' }, porters),
+                    ]),
+                    createElement('div', { className: 'd-inline-flex gap-1' }, [
+                        createElement('span', { className: 'text-wrap' }, rateLink),
                     ]),
                 ]),
                 createElement('div', { className: 'text-end' }, [
@@ -375,6 +388,10 @@ function createCard(port) {
                     createElement('div', null, [
                         createElement('span', { className: 'text-muted' }, 'Updated: '),
                         port.source.date_updated,
+                    ]),
+                    createElement('div', null, [
+                        createElement('span', { className: 'text-muted' }, 'Rating: '),
+                        getPortRating(port),
                     ]),
                 ]),
             ]),
