@@ -300,7 +300,7 @@ function getPorterUrl(porter) {
 
 function getPortRating(port) {
     if (port.rating) {
-        return port.rating;
+        return `${port.rating}/5`;
     }
     else {
         return "None";
