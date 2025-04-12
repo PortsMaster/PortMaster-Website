@@ -191,6 +191,7 @@ async function fetchPorts() {
         const ports = Object.values(portsData.ports);
         for (const port of ports) {
             port.download_count = statsData.ports[port.name] ?? 0;
+            port.max_rating_range = portsData.ratings.max_range;
         }
 
         return ports;
@@ -300,7 +301,7 @@ function getPorterUrl(porter) {
 
 function getPortRating(port) {
     if (port.rating) {
-        return `${port.rating}/5`;
+        return `${port.rating.average_rating}/${port.max_rating_range}, Ratings: ${port.rating.total_ratings}`;
     }
     else {
         return "None";
