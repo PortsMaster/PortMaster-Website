@@ -664,7 +664,8 @@ https://github.com/PortsMaster/PortMaster-New
 
 After forking the repo, go into the settings for the fork and disable github actions for your fork.
 
-Afterwards you can clone the repo, and you should run the newly made `tools/prepare_repo.sh` from the root of repo. This will download the latest files from the release system.
+Afterwards you can clone the repo, it's quite big though, so you'll might want to use git sparse checkout, [here is a great guide made by JeodC to help you with that](https://gist.github.com/JeodC/7a51211ad94ad6084d14042d80a62549)
+Once you have it cloned you should run the newly made `tools/prepare_repo.sh` from the root of repo. This will download the latest files from the release system.
 
 ```bash
 tools/prepare_repo.sh
