@@ -23,14 +23,14 @@ If you have a device without wifi you can simply go to the PortMaster repo, [htt
 Here are the locations for the autoinstall folder for the 
 
 - **AmberELEC, ROCKNIX, uOS, Jelos** ```/roms/ports/PortMaster/autoinstall/```
-- **muOS** ```/mnt/mmc/MUOS/PortMaster/```
+- **muOS** ```/mmc/MUOS/PortMaster/autoinstall/```
 - **ArkOS** ```/roms/tools/PortMaster/autoinstall/```
 - **Knulli** ```/userdata/system/.local/share/PortMaster/autoinstall```
 
 If that does not work you can also unzip the contents of the port into the ports folders of each cfw, note that this may break the port and ports may no longer start.
 
 - **AmberELEC, ROCKNIX, uOS, Jelos** ```/roms/ports/```
-- **muOS** ```/mnt/mmc/MUOS/ports/ for the folders and /mnt/mmc/ROMS/Ports/ for the .sh files```
+- **muOS** ```/mmc/ports/ for the folders and /mnt/mmc/ROMS/Ports/ for the .sh files```
 - **ArkOS** ```/roms/tools/PortMaster/autoinstall/```
 - **Knulli** ```/userdata/system/.local/share/PortMaster/autoinstall```
 
