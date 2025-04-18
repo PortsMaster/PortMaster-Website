@@ -193,6 +193,8 @@ else
   controlfolder="/roms/ports/PortMaster"
 fi
 
+export controlfolder # Export the controlfolder so sourced scripts can access it
+
 source $controlfolder/control.txt # We source the control.txt file contents here
 # The $ESUDO, $directory, $param_device and necessary sdl configuration controller configurations will be sourced from the control.txt file shown [here]
 
