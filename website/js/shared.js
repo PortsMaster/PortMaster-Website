@@ -309,7 +309,7 @@ function getPortRating(port) {
 }
 
 function getPortRatingLink(port){
-    return createElement('a', { href: `https://suggestions.portmaster.games/rate-port?port=${encodeURIComponent(port.name.replace('.zip', ''))}` }, "Rate Port");
+    return createElement('a', { href: `/rate-port?port=${encodeURIComponent(port.name.replace('.zip', ''))}` }, "Rate Port");
 }
 
 function createContainerLoading() {
