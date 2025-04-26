@@ -58,13 +58,13 @@ submitBtn.addEventListener("click", () => {
 
     if (userRating > 0) {
         var xhr = new XMLHttpRequest();
-        xhr.open("POST", "/rate-port", true);
+        xhr.open("POST", "https://suggestions.portmaster.games/rate-port", true);
         xhr.setRequestHeader('Content-Type', 'application/json');
         xhr.setRequestHeader('Authorization', `Bearer ${accessToken}`);
 
         xhr.onreadystatechange = function () {
             if (xhr.readyState === XMLHttpRequest.DONE) {
-                location.href = '/games.html';
+                location.href = '/games';
             }
         };
 
