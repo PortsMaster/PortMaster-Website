@@ -5,8 +5,8 @@ window.addEventListener("DOMContentLoaded", () => {
 
   if (!hasSession) {
     document.getElementById("_login").onclick = function() { redirectToIDP();}
-    document.getElementById("_signup").onclick = function() { signupToIDP()();}
-    document.getElementById("signup").style.display = 'block';
+    //document.getElementById("_signup").onclick = function() { signupToIDP()();}
+    //document.getElementById("signup").style.display = 'block';
     document.getElementById("login").style.display = 'block';
     return;
   }
