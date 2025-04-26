@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script>
+        (function () {
+            const hash = window.location.hash.substring(1);
+            const params = new URLSearchParams(hash);
+            const token = params.get('access_token');
+            const id_token = params.get('id_token');
+            const expiresIn = parseInt(params.get('expires_in'), 10);
+            const state = params.get('state');
+            const sessionid = crypto.randomUUID();
+
+            const date = new Date();
+            date.setTime(date.getTime() + 30 * 24 * 60 * 60 * 1000);
+            const expires = `expires=${date.toUTCString()}`;
+
+            if (token && expiresIn) {
+                const expTime = Math.floor(Date.now() / 1000) + expiresIn;
+                //document.cookie = `access_token=${token}; path=/; Secure; SameSite=Strict`;
+                //document.cookie = `access_token_exp=${expTime}; path=/; Secure; SameSite=Strict`;
+                sessionStorage.setItem('access_token', token);
+                sessionStorage.setItem('access_token_exp', expTime);
+                //sessionStorage.setItem('id_token', id_token);
+                document.cookie = `sessionid=${sessionid}; ${expires}; path=/; Secure; SameSite=Strict`;
+                window.location.href = atob(state) || '/';
+            } else {
+                console.error('Failed to get access_token from URL fragment');
+            }
+        })();
+    </script>
+</head>
+<body>
+</body>
+</html>

@@ -13,10 +13,10 @@
   </script>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"/>
   <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet"/>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
-   <script src="https://cdn.jsdelivr.net/npm/anchor-js/anchor.min.js">
-   </script>
-   <link href="css/documentation.css" rel="stylesheet"/>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet"/>
+  <script src="https://cdn.jsdelivr.net/npm/anchor-js/anchor.min.js">
+  </script>
+  <link href="css/documentation.css" rel="stylesheet">
    <title>
     Packaging
    </title>
@@ -95,6 +95,8 @@
     </li>
    </ul>
   </div>
+  <script src="/js/navbar.js" type="module">
+  </script>
   <nav aria-label="Fourth navbar example" class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
    <div class="container-fluid">
     <a class="navbar-brand" href="index.html">
@@ -223,6 +225,23 @@
        </ul>
       </li>
      </ul>
+     <ul class="navbar-nav" style="margin-right: 30px;">
+      <li class="nav-item" id="logout" style="display: none;">
+       <a aria-current="page" class="nav-link active" href="#" id="_logout">
+        Log Out
+       </a>
+      </li>
+      <li class="nav-item" id="signup" style="display: none;">
+       <a aria-current="page" class="nav-link active" href="#" id="_signup">
+        Sign Up
+       </a>
+      </li>
+      <li class="nav-item" id="login" style="display: none;">
+       <a aria-current="page" class="nav-link active" href="#" id="_login">
+        Log In
+       </a>
+      </li>
+     </ul>
     </div>
    </div>
   </nav>
@@ -338,10 +357,6 @@
      ,
      <code>
       README.md
-     </code>
-     ,
-     <code>
-      gameinfo.xml
      </code>
      , a port script and a port directory. It may optionally include a
      <code>
@@ -844,8 +859,6 @@ else
   controlfolder="/roms/ports/PortMaster"
 fi
 
-export controlfolder
-
 source $controlfolder/control.txt
 
 export PORT_32BIT="Y" # If using a 32 bit port
@@ -1180,11 +1193,7 @@ fi
      After forking the repo, go into the settings for the fork and disable github actions for your fork.
     </p>
     <p>
-     Afterwards you can clone the repo, it's quite big though, so you'll might want to use git sparse checkout,
-     <a href="https://gist.github.com/JeodC/7a51211ad94ad6084d14042d80a62549">
-      here is a great guide made by JeodC to help you with that
-     </a>
-     Once you have it cloned you should run the newly made
+     Afterwards you can clone the repo, and you should run the newly made
      <code>
       tools/prepare_repo.sh
      </code>
