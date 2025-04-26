@@ -26,7 +26,7 @@ This name must not clash with any other existing ports.
 
 ### New Port Structure:
 
-Ports are now contained within the `port` top level directory, each port has its own sub-directory named after the port itself. Each port must adhere to the `portname` rules stated above. Each port must have a `port.json`, `screenshot.{jpg,png}`, `README.md`, a port script and a port directory. It may optionally include a `cover.{jpg,png}`.
+Ports are now contained within the `port` top level directory, each port has its own sub-directory named after the port itself. Each port must adhere to the `portname` rules stated above. Each port must have a `port.json`, `screenshot.{jpg,png}`, `README.md`, `gameinfo.xml`, a port script and a port directory. It may optionally include a `cover.{jpg,png}`.
 
 The script should have capital letters (like `Port Name.sh`) and must end in `.sh`, the port directory should be the same as the containing directory. Some legacy ports have different names, new ports won't be accepted unless they follow the new convention.
 
@@ -464,6 +464,8 @@ else
   controlfolder="/roms/ports/PortMaster"
 fi
 
+export controlfolder
+
 source $controlfolder/control.txt
 
 export PORT_32BIT="Y" # If using a 32 bit port
@@ -664,7 +666,8 @@ https://github.com/PortsMaster/PortMaster-New
 
 After forking the repo, go into the settings for the fork and disable github actions for your fork.
 
-Afterwards you can clone the repo, and you should run the newly made `tools/prepare_repo.sh` from the root of repo. This will download the latest files from the release system.
+Afterwards you can clone the repo, it's quite big though, so you'll might want to use git sparse checkout, [here is a great guide made by JeodC to help you with that](https://gist.github.com/JeodC/7a51211ad94ad6084d14042d80a62549)
+Once you have it cloned you should run the newly made `tools/prepare_repo.sh` from the root of repo. This will download the latest files from the release system.
 
 ```bash
 tools/prepare_repo.sh
