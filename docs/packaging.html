@@ -358,6 +358,10 @@
      <code>
       README.md
      </code>
+     ,
+     <code>
+      gameinfo.xml
+     </code>
      , a port script and a port directory. It may optionally include a
      <code>
       cover.{jpg,png}
@@ -859,6 +863,8 @@ else
   controlfolder="/roms/ports/PortMaster"
 fi
 
+export controlfolder
+
 source $controlfolder/control.txt
 
 export PORT_32BIT="Y" # If using a 32 bit port
@@ -1193,7 +1199,11 @@ fi
      After forking the repo, go into the settings for the fork and disable github actions for your fork.
     </p>
     <p>
-     Afterwards you can clone the repo, and you should run the newly made
+     Afterwards you can clone the repo, it's quite big though, so you'll might want to use git sparse checkout,
+     <a href="https://gist.github.com/JeodC/7a51211ad94ad6084d14042d80a62549">
+      here is a great guide made by JeodC to help you with that
+     </a>
+     Once you have it cloned you should run the newly made
      <code>
       tools/prepare_repo.sh
      </code>
