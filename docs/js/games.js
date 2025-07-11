@@ -17,9 +17,9 @@ window.addEventListener('DOMContentLoaded', async function() {
     updateResult(filterState);
     appElement.replaceChildren(containerElement);
 
-    async function updateResult(filterState) {
+    function updateResult(filterState) {
         const selectedDevices = getSelectedDevices(devices, filterState);
-        await updateContainer({
+        updateContainer({
             cards: getFilteredData(ports, filterState).map(port => {
                 return updateCard(getCard(port), port, selectedDevices, firmwareNames);
             }),
@@ -74,20 +74,11 @@ function createContainer({ attributes, devices, genres, onchange }) {
         createElement('div', { ref: el => containerRefs.list = el, className: 'row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3' }),
     ]);
 
-    async function updateContainer({ cards }) {
+    function updateContainer({ cards }) {
         updateDropdowns();
+
         containerRefs.title.textContent = `${cards.length} Ports Available`;
-        containerRefs.list.classList.add('aos-suppress');
-        await batchReplaceChildren(200, containerRefs.list, cards);
-
-        // Wait for all images to load
-        await Promise.all(Array.from(containerRefs.list.querySelectorAll('img')).map(img => {
-            if (img.complete) return Promise.resolve();
-            return new Promise(resolve => { img.onload = img.onerror = resolve; });
-        }));
-
-        containerRefs.list.classList.remove('aos-suppress');
-        if (window.AOS) AOS.refresh();
+        batchReplaceChildren(200, containerRefs.list, cards);
     }
 
     return {
