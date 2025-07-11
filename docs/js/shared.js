@@ -584,3 +584,15 @@ async function showDetailsModal(port, deviceDetails) {
     });
 }
 //#endregion
+
+//#region AOS Initialization
+function initializeAOS() {
+    if (typeof AOS !== 'undefined') {
+        AOS.init({
+            duration: 400,
+            offest: 120,
+            once: true,
+        });
+    }
+}
+//#endregion
