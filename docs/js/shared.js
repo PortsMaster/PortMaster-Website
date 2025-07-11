@@ -345,7 +345,7 @@ function createCard(port) {
     const porters = devided(() => ', ', port.attr.porter.map(porter => createElement('a', { href: getPorterUrl(porter) }, porter)));
     
 
-    return createElement('div', { className: 'col' }, [
+    return createElement('div', { className: 'col', 'data-aos': 'fade-up', 'data-aos-anchor-placement': 'top-bottom' }, [
         createElement('div', { className: 'card h-100 shadow-sm' }, [
             createElement('a', { href: cardUrl, className: 'ratio ratio-4x3 update-anchor' }, [
                 createElement('img', {
