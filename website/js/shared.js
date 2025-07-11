@@ -346,7 +346,7 @@ function createCard(port) {
     
 
     return createElement('div', { className: 'col' }, [
-        createElement('div', { className: 'card h-100 shadow-sm', 'data-aos': 'fade-up' }, [
+        createElement('div', { className: 'card h-100 shadow-sm' }, [
             createElement('a', { href: cardUrl, className: 'ratio ratio-4x3 update-anchor' }, [
                 createElement('img', {
                     src: imageUrl,

@@ -58,10 +58,8 @@ function createCard(data) {
     //console.log(data)
     const div1 = document.createElement('div');
     div1.setAttribute("class", "col");
-    div1.setAttribute("data-aos", "fade-up");
     const div2 = document.createElement('div');
-    div2.setAttribute("class", "card h-100 shadow-sm fade-up");
-    div2.setAttribute("data-aos", "fade-up");
+    div2.setAttribute("class", "card h-100 shadow-sm");
 
     const image = document.createElement("img");
 
