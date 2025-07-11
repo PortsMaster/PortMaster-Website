@@ -86,3 +86,9 @@ pre {
     display: block;
     word-wrap: break-word;
 }
+
+.aos-suppress [data-aos] {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+}
