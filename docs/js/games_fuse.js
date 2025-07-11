@@ -58,6 +58,7 @@ function createCard(data) {
     //console.log(data)
     const div1 = document.createElement('div');
     div1.setAttribute("class", "col");
+    
     const div2 = document.createElement('div');
     div2.setAttribute("class", "card h-100 shadow-sm");
 
