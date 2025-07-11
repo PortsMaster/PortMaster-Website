@@ -14,31 +14,17 @@ window.addEventListener('DOMContentLoaded', async function() {
     const { containerElement, updateContainer, filterControls } = createContainer({ attributes, devices, genres, onchange });
     const filterState = defaultFilterState(JSON.parse(sessionStorage.getItem('filterState')));
     setFilterState(filterControls, filterState);
+    updateResult(filterState);
+    appElement.replaceChildren(containerElement);
 
-    // Use getCachedCards here to cache and retrieve cards
-    let cachedCards = await getCachedCards(ports, getCard);
-
-    // updateResult now uses cachedCards instead of regenerating
     async function updateResult(filterState) {
         const selectedDevices = getSelectedDevices(devices, filterState);
         await updateContainer({
             cards: getFilteredData(ports, filterState).map(port => {
-                // Use cached card if available, otherwise generate
-                const card = cachedCards.find(c => c.dataset && c.dataset.portName === port.name) || getCard(port);
-                return updateCard(card, port, selectedDevices, firmwareNames);
+                return updateCard(getCard(port), port, selectedDevices, firmwareNames);
             }),
         });
     }
-
-    // Optionally, add a data attribute to each cached card for lookup
-    cachedCards.forEach(card => {
-        if (card && card.dataset) {
-            card.dataset.portName = card.port?.name || card.getAttribute('data-port-name') || '';
-        }
-    });
-
-    updateResult(filterState);
-    appElement.replaceChildren(containerElement);
 
     function onchange() {
         const filterState = getFilterState(filterControls);
@@ -323,44 +309,3 @@ function getSelectedDevices(devices, filterState) {
     return selectedDevices;
 }
 //#endregion
-
-// Utility: Simple hash function for JSON data
-function hashString(str) {
-    let hash = 0, i, chr;
-    if (str.length === 0) return hash;
-    for (i = 0; i < str.length; i++) {
-        chr   = str.charCodeAt(i);
-        hash  = ((hash << 5) - hash) + chr;
-        hash |= 0;
-    }
-    return hash;
-}
-
-// In your main logic, after fetching ports and stats:
-async function getCachedCards(ports, createCard) {
-    const jsonString = JSON.stringify(ports);
-    const hash = hashString(jsonString);
-    const cacheKey = 'cardCache';
-    const hashKey = 'cardCacheHash';
-
-    // Try to get from sessionStorage
-    const cachedHash = sessionStorage.getItem(hashKey);
-    const cachedCards = sessionStorage.getItem(cacheKey);
-
-    if (cachedHash && cachedCards && cachedHash === String(hash)) {
-        // Parse and revive DOM nodes if needed (not possible directly, so store minimal data)
-        // For now, just skip regeneration if hash matches
-        return JSON.parse(cachedCards).map(cardData => createCard(cardData));
-    } else {
-        // Generate cards and cache
-        const cards = ports.map(port => createCard(port));
-        sessionStorage.setItem(cacheKey, JSON.stringify(ports)); // Store ports, not DOM nodes
-        sessionStorage.setItem(hashKey, String(hash));
-        return cards;
-    }
-}
-
-// Usage in your DOMContentLoaded handler:
-const ports = await fetchPorts();
-const cards = await getCachedCards(ports, createCard);
-// Now use cards as usual
