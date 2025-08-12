@@ -105,10 +105,29 @@
       return devices;
     }
 
+    function resolutionToNumber(str) {
+      return str.split('x').map(Number).reduce((w, h) => w * h);
+    }
+
+    $.extend($.fn.dataTable.ext.type.order, {
+      "resolution-asc": function (val_1, val_2) {
+        return resolutionToNumber(val_1) > resolutionToNumber(val_2);
+      }
+    });
+
+    $.extend($.fn.dataTable.ext.type.order, {
+      "resolution-desc": function (val_1, val_2) {
+        return resolutionToNumber(val_1) < resolutionToNumber(val_2);
+      }
+    });
+
     $(document).ready(() => {
       fetchDeviceInfo().then(deviceInfo => {
         populateTable(deviceInfoToDevices(deviceInfo));
-        $('#devices').DataTable({ responsive: true });
+        $('#devices').DataTable({ 
+            responsive: true,
+            columnDefs: [{ type: 'resolution', targets: 2 }],
+        });
       });
     });
   </script>
