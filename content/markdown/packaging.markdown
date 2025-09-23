@@ -381,10 +381,11 @@ You can view the markdown before submitting it here: https://portmaster.games/po
 [Example](https://raw.githubusercontent.com/PortsMaster/PortMaster-Website/main/content/markdown/example.md)
 
 ## Screenshot
-For use in the PortMaster GUI aswell as for the Wiki we need a screenshot of the gameplay or main function of the Port.
-A title screenshot would not show actual content of the port.
-The screenshot has to be at least 640x480 in dimensions and format can either be .jpg or .png
-For naming its portname.screenshot.png
+For each port, we include a screeshot for use in the PortMaster GUI and the online catalogue page. This must:
+* Show gameplay or the main function of the port -- not just the title screen.
+* Use a 4:3 aspect ratio with minimum resolution of 640×480.
+* Capture letterboxing or pillarboxing if that is how the game displays on a 4:3 handheld screen.
+Save this file as `screenshot.png`
 
 After putting all these files in one place please zip these files using regular zip.
 
