@@ -381,9 +381,9 @@ function createCard(port) {
                         createElement('span', { className: 'text-muted' }, `Porter${porters.length > 1 ? 's' : ''}: `),
                         createElement('span', { className: 'text-wrap' }, porters),
                     ]),
-                    createElement('div', { className: 'd-inline-flex gap-1' }, [
-                        createElement('span', { className: 'text-wrap' }, getPortRatingLink(port)),
-                    ]),
+                    //createElement('div', { className: 'd-inline-flex gap-1' }, [
+                    //    createElement('span', { className: 'text-wrap' }, getPortRatingLink(port)),
+                    //]),
                 ]),
                 createElement('div', { className: 'text-end' }, [
                     createElement('div', null, [
@@ -394,10 +394,10 @@ function createCard(port) {
                         createElement('span', { className: 'text-muted' }, 'Updated: '),
                         port.source.date_updated,
                     ]),
-                    createElement('div', null, [
-                        createElement('span', { className: 'text-muted' }, 'Rating: '),
-                        getPortRating(port),
-                    ]),
+                   // createElement('div', null, [
+                   //     createElement('span', { className: 'text-muted' }, 'Rating: '),
+                   //     getPortRating(port),
+                   // ]),
                 ]),
             ]),
         ]),
@@ -584,3 +584,4 @@ async function showDetailsModal(port, deviceDetails) {
     });
 }
 //#endregion
+
