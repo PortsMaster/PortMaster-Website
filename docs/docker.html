@@ -259,39 +259,30 @@
      <a href="https://portmaster.games/build-environments.html">
       PM Build Guide
      </a>
+     The image contains all the recommended tools and libararies in the build environment guide.
     </p>
     <h2>
      How to use the image
     </h2>
     <h3>
-     32-bit ARM
-    </h3>
-    <p>
-     Download the prebuilt image and run the Docker container using:
-    </p>
-    <pre lang="bash"><code>docker pull monkeyx/retro_builder:arm32
-docker run --rm --privileged multiarch/qemu-user-static --reset -p yes
-docker run --privileged -it --platform=linux/armhf --name builder32 monkeyx/retro_builder:arm32 bash
-</code></pre>
-    <h3>
      64-bit ARM
     </h3>
     <p>
-     Download the prebuilt image and run the Docker container using:
+     Download the prebuilt image and run the Docker container:
     </p>
-    <pre lang="bash"><code>docker pull monkeyx/retro_builder:arm64
+    <pre lang="bash"><code>docker pull --platform=linux/arm64 ghcr.io/monkeyx-net/portmaster-build-templates/portmaster-builder:aarch64-latest
 docker run --rm --privileged multiarch/qemu-user-static --reset -p yes
-docker run --privileged -it --platform=linux/arm64 --name builder64 monkeyx/retro_builder:arm64 bash
+docker run -it --name builder_aarch64  -v "$(pwd)":/workspace --platform=linux/arm64 ghcr.io/monkeyx-net/portmaster-build-templates/portmaster-builder:aarch64-latest
 </code></pre>
     <h3>
      64-bit X86_64
     </h3>
     <p>
-     Download the prebuilt image and run the Docker container using:
+     Download the prebuilt image and run the Docker container:
     </p>
-    <pre lang="bash"><code>docker pull monkeyx/retro_builder:x86_64
+    <pre lang="bash"><code>docker pull --platform=linux/arm64 ghcr.io/monkeyx-net/portmaster-build-templates/portmaster-builder:x86_64-latest
 docker run --rm --privileged multiarch/qemu-user-static --reset -p yes
-docker run --privileged -it --platform=linux/amd64 --name builderx86_64 monkeyx/retro_builder:x86_64 bash
+docker run -it --name builder_aarch64  -v "$(pwd)":/workspace --platform=linux/arm64 ghcr.io/monkeyx-net/portmaster-build-templates/portmaster-builder:x86_64-latest
 </code></pre>
     <h2>
      Copy files from Container to Host
@@ -304,54 +295,8 @@ docker container start builder64
 docker container start builderx86_64
 </code></pre>
     <p>
-     Copy the files
+     The -v argument opens the Docker workspace folder in the folder you run docker from. Which means that workspace folder is on the host machine.
     </p>
-    <p>
-     docker cp
-     <!-- raw HTML omitted -->
-     :/file/path/within/container /host/path/target
-docker cp
-     <!-- raw HTML omitted -->
-     :/file/path/within/container /host/path/target
-    </p>
-    <p>
-     Example
-    </p>
-    <pre lang="bash"><code>docker cp builder32:/root/file .
-</code></pre>
-    <h2>
-     How to build the image
-    </h2>
-    <h3>
-     32-bit ARM
-    </h3>
-    <p>
-     Execute the following on your machine:
-    </p>
-    <pre lang="bash"><code>git clone https://github.com/monkeyx-net/retro_builder_docker.git
-cd retro_builder_docker
-docker build . --platform linux/arm/v7 -t monkeyx/retro_builder:arm32
-</code></pre>
-    <h3>
-     64-bit ARM
-    </h3>
-    <p>
-     Execute the following on your machine:
-    </p>
-    <pre lang="bash"><code>git clone https://github.com/monkeyx-net/retro_builder_docker.git
-cd retro_builder_docker
-docker build . --platform linux/arm64 -t monkeyx/retro_builder:arm64
-</code></pre>
-    <h3>
-     64-bit x86_64
-    </h3>
-    <p>
-     Execute the following on your machine:
-    </p>
-    <pre lang="bash"><code>git clone https://github.com/monkeyx-net/retro_builder_docker.git
-cd retro_builder_docker
-docker build . --platform linux/amd64 -t monkeyx/retro_builder:x86_64
-</code></pre>
     <script>
      anchors.options.visible = 'always';
         anchors.add();
