@@ -1,7 +1,7 @@
 
 const portSchema = {
   /* Version number of the port.json format, currently 2 */
-  "version": 3,
+  "version": 4,
   /* Name of the zip file, this uniquely identifies the port */
   "name": "",
   /* Directories and scripts that comes with the port. */
@@ -30,7 +30,11 @@ const portSchema = {
     /* experimental port flag */
     "exp": false,
     /* What runtime do we require? */
-    "runtime": null,
+    "runtime": [],
+    /* Links to store wher yo can buy */
+    "store": [], 
+    /* */
+    "availability": "",
     /* Any hardware/software requirements: opengl, power, 4:3, 3:2, 16:9, lowres, hires */
     "reqs": [],
      /* Architecture aarch64,armhf, x86_64, x86  */
@@ -68,7 +72,27 @@ function getJsonTemplate() {
   })
 })()
 
+function deleteRow(btn) {
+  var row = btn.parentNode.parentNode;
+  row.parentNode.removeChild(row);
+}
 
+function addStoreLink() {
+  var table = document.getElementById("store");
+  var row = table.insertRow(-1);
+
+  // Insert new cells (<td> elements) at the 1st and 2nd position of the "new" <tr> element:
+  var cell1 = row.insertCell(0);
+  var cell2 = row.insertCell(1);
+  var cell3 = row.insertCell(2);
+  var cell4 = row.insertCell(3);
+
+  // Add some text to the new cells:
+  cell1.innerHTML = '<div><input></div>';
+  cell2.innerHTML = '<div><input></div>';
+  cell3.innerHTML = '<div><input></div>';
+  cell4.innerHTML = '<input type="button" class="btn btn-danger" value="Delete" onclick="deleteRow(this)"/>';
+}
 
 async function populatePorterList() {
   var porters = {};
@@ -114,7 +138,8 @@ function getFormValues() {
   portJson.attr.desc_md = descriptionMarkdown.value() ? descriptionMarkdown.value() : null;
   portJson.attr.inst = document.getElementById("instructions").value;
   portJson.attr.inst_md = instructionsMarkdown.value() ? instructionsMarkdown.value() : null;
-  portJson.attr.runtime = document.getElementById("runtime").value ? document.getElementById("runtime").value : null;
+  portJson.attr.runtime = Array.from(document.getElementById("runtime").selectedOptions).map(o => o.value);
+  portJson.attr.availability = document.getElementById("availability").value;
   portJson.attr.rtr = document.getElementById("readytorun").checked;
   portJson.attr.exp = document.getElementById("experimental").checked;
   portJson.attr.reqs = [];
@@ -149,6 +174,20 @@ function getFormValues() {
   if (document.getElementById("power").checked){
     portJson.attr.reqs.push("power");
   }
+
+  var table = document.getElementById("store");
+  var storeLinks = [];
+  for (var i = 1, row; row = table.rows[i]; i++) {
+    var store = {};
+    var name = row.cells[0].getElementsByTagName('input')[0].value;
+    var gameurl = row.cells[1].getElementsByTagName('input')[0].value;
+    var developerurl = row.cells[2].getElementsByTagName('input')[0].value;
+    store["name"] = name;
+    store["gameurl"] = gameurl;
+    store["developerurl"] = developerurl;
+    storeLinks.push(store);
+  }
+  portJson.attr.store = storeLinks;
 
   return portJson;
 }

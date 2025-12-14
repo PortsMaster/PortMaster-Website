@@ -15,8 +15,8 @@
   <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet"/>
   <script src="https://cdn.jsdelivr.net/npm/anchor-js/anchor.min.js">
   </script>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
-   <link href="css/documentation.css" rel="stylesheet"/>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet"/>
+  <link href="css/documentation.css" rel="stylesheet">
    <title>
     Gptokeyb Documentation
    </title>
@@ -95,6 +95,8 @@
     </li>
    </ul>
   </div>
+  <script src="/js/navbar.js" type="module">
+  </script>
   <nav aria-label="Fourth navbar example" class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
    <div class="container-fluid">
     <a class="navbar-brand" href="index.html">
@@ -223,6 +225,25 @@
        </ul>
       </li>
      </ul>
+     <ul class="navbar-nav" style="margin-right: 30px;">
+      <li class="nav-item" id="logout" style="display: none;">
+       <a aria-current="page" class="nav-link active" href="#" id="_logout">
+        Log Out
+       </a>
+      </li>
+      <!--
+            <li style="display: none;" id="signup" class="nav-item">
+              <a aria-current="page" id="_signup" class="nav-link active" href="#">
+                Sign Up
+              </a>
+            </li>
+            -->
+      <li class="nav-item" id="login" style="display: none;">
+       <a aria-current="page" class="nav-link active" href="#" id="_login">
+        Log In
+       </a>
+      </li>
+     </ul>
     </div>
    </div>
   </nav>
@@ -246,24 +267,23 @@
      <a href="https://github.com/Emanem/js2xbox">
       https://github.com/Emanem/js2xbox
      </a>
-     <br>
-      Modified to use SDL2 by:
-      <a href="https://github.com/lethal-guitar">
-       Nikolai Wuttke
-      </a>
-      &amp;
-      <a href="https://github.com/shantigilbert">
-       Shanti Gilbert
-      </a>
-      for
-      <a href="https://github.com/EmuELEC/EmuELEC">
-       https://github.com/EmuELEC/EmuELEC
-      </a>
-      Interactive text entry added by
-      <a href="https://github.com/romadu">
-       Robin Duxfield
-      </a>
-     </br>
+     <br/>
+     Modified to use SDL2 by:
+     <a href="https://github.com/lethal-guitar">
+      Nikolai Wuttke
+     </a>
+     &amp;
+     <a href="https://github.com/shantigilbert">
+      Shanti Gilbert
+     </a>
+     for
+     <a href="https://github.com/EmuELEC/EmuELEC">
+      https://github.com/EmuELEC/EmuELEC
+     </a>
+     Interactive text entry added by
+     <a href="https://github.com/romadu">
+      Robin Duxfield
+     </a>
     </p>
     <p>
      List of keycode values start here:
@@ -402,6 +422,12 @@ strip gptokeyb
      <code>
       killall &lt;application name&gt;
      </code>
+    </p>
+    <p>
+     <code>
+      -v
+     </code>
+     enables verbose log output which provides more details in logfiles
     </p>
     <h3>
      Keyboard Mapping Options
@@ -798,10 +824,11 @@ left_analog_right = repeat
     <p>
      Text entry options are enabled by environment variable settings
     </p>
-    <pre><code>export TEXTINPUTPRESET="My Name"         # defines preset text to insert
-export TEXTINPUTINTERACTIVE="Y"        # enables interactive text input mode
-export TEXTINPUTNOAUTOCAPITALS="Y"     # disables automatic capitalisation of first letter of words in interactive text input mode
-export TEXTINPUTADDEXTRASYMBOLS="Y"    # enables additional symbols for interactive text input
+    <pre><code>export TEXTINPUTPRESET="My Name"        # defines preset text to insert
+export TEXTINPUTINTERACTIVE="Y"         # enables interactive text input mode
+export TEXTINPUTNOAUTOCAPITALS="Y"      # disables automatic capitalisation of first letter of words in interactive text input mode
+export TEXTINPUTADDEXTRASYMBOLS="Y"     # enables additional symbols for interactive text input
+export TEXTINPUTNUMBERSONLY="Y"         # only scrolls integers 0 - 9 in interactive text input mode
 </code></pre>
     <p>
      Interactive input mode is also enabled by command line option
@@ -940,6 +967,16 @@ START = confirm and exit mode (also sends ENTER key)
       TEXTINPUTADDEXTRASYMBOLS="Y"
      </code>
      .
+    </p>
+    <h5>
+     Numbers
+    </h5>
+    <p>
+     Numbers Only mode limits the characters to
+     <code>
+      0 - 9
+     </code>
+     whole numbers and does not include mathematical symbols.
     </p>
     <h5>
      Exiting mode

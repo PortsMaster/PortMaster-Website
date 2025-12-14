@@ -8,6 +8,7 @@ Through the volunteer contributions of the mighty **Port Navigators**, most of t
 
 ## What Devices are supported? ## 
 
+(Currently Outdated)
 The full list of supported devices can be found [here](https://portmaster.games/supported-devices.html)
 
 ## How can I install PortMaster? 
@@ -15,11 +16,24 @@ A guide to install Portmaster can be found [here](https://portmaster.games/insta
 
 ## Do I have to use PortMaster to install ports?
 
-You can simply go to the PortMaster repo, [https://portmaster.games/games.html](https://portmaster.games/games.html), find the title of the port you want, download it and unzip the contents of it to the `/roms/ports` folder. You'll also need to copy the PortMaster folder to your `/roms/ports` folder. If you don't want the PortMaster folder to show up in your Ports menu in Emulationstation, just delete the PortMaster.sh file as it won't be needed if you don't plan to install or update your ports online via this tool.
+For the best experience you should download and install the Port trough the PortMaster Application. This ensures that the installed Port has the correct permissions aswell as the correct metadata. 
 
-Keep in mind that some games require Runtimes that can be downloaded from (Runtime Link)
+If you have a device without wifi you can simply go to the PortMaster repo, [https://portmaster.games/games.html](https://portmaster.games/games.html), find the title of the port you want, download it and copy the zip file into the PortMaster Autoinstall folder. Then you just run the PortMaster Application and PortMaster will install the Port for you.
 
-For ArkOS on the RG351V & 353V/S/RG353P/S or RG351MP, if SD2 is being used for roms, unzip the port to the `/roms2/ports` folder instead and copy the PortMaster folder to the `/roms2/tools` location. A few additional ports are available on the large releases repo [https://github.com/PortsMaster/PortMaster-Releases/releases](https://github.com/PortsMaster/PortMaster-Releases/releases) due to their size (ex. SuperTux, Ur Quan Masters, and FreedroidRPG).
+Here are the locations for the autoinstall folder for the 
+
+- **AmberELEC, ROCKNIX, uOS, Jelos** ```/roms/ports/PortMaster/autoinstall/```
+- **muOS** ```/mmc/MUOS/PortMaster/autoinstall/```
+- **ArkOS** ```/roms/tools/PortMaster/autoinstall/```
+- **Knulli** ```/userdata/system/.local/share/PortMaster/autoinstall```
+
+If that does not work you can also unzip the contents of the port into the ports folders of each cfw, note that this may break the port and ports may no longer start.
+
+- **AmberELEC, ROCKNIX, uOS, Jelos** ```/roms/ports/```
+- **muOS** ```/mmc/ports/ for the folders and /mnt/mmc/ROMS/Ports/ for the .sh files```
+- **ArkOS** ```/roms/tools/PortMaster/autoinstall/```
+- **Knulli** ```/userdata/system/.local/share/PortMaster/autoinstall```
+
 
 ## How do I get more info about the ports in PortMaster like the sources used and additional asset needs if applicable?
 

@@ -44,6 +44,8 @@ gptokeyb provides a kill switch for an application and mapping of gamepad button
 
 `-sudokill` indicates that `sudo kill -9 <application name>` will be used to close the application instead of `killall <application name>`
 
+` -v` enables verbose log output which provides more details in logfiles
+
 ### Keyboard Mapping Options
 The config file that specifies button mapping for keyboard and mouse functions takes the form of `%s = %s` which is `gamepad button` = `keyboard key`. Any comment lines beginning with `#` are ignored. Deadzone values are used for analog sticks and triggers, and may be device specific. `mouse_scale` affects the speed of mouse movement, with a larger value causing slower movement. `mouse_scale = 8192` generally works well for RK3326 devices. `gamepad button = \"` can be used to unassign a button.
 
@@ -211,10 +213,11 @@ Text entry is possible, either by sending a preset (e.g. to enter your name to b
 
 Text entry options are enabled by environment variable settings
 ```
-export TEXTINPUTPRESET="My Name"         # defines preset text to insert
-export TEXTINPUTINTERACTIVE="Y"        # enables interactive text input mode
-export TEXTINPUTNOAUTOCAPITALS="Y"     # disables automatic capitalisation of first letter of words in interactive text input mode
-export TEXTINPUTADDEXTRASYMBOLS="Y"    # enables additional symbols for interactive text input
+export TEXTINPUTPRESET="My Name"        # defines preset text to insert
+export TEXTINPUTINTERACTIVE="Y"         # enables interactive text input mode
+export TEXTINPUTNOAUTOCAPITALS="Y"      # disables automatic capitalisation of first letter of words in interactive text input mode
+export TEXTINPUTADDEXTRASYMBOLS="Y"     # enables additional symbols for interactive text input
+export TEXTINPUTNUMBERSONLY="Y"         # only scrolls integers 0 - 9 in interactive text input mode
 ```
 
 Interactive input mode is also enabled by command line option `"textinput"`
@@ -251,6 +254,9 @@ By default Interactive Text Entry mode will start with `A` as the first letter a
 
 ##### Symbols
 By default Interactive Text Entry mode includes only a limited number of symbols "[space] . , - _ ( )", and a full set of symbols is included with environment variable `TEXTINPUTADDEXTRASYMBOLS="Y"`.
+
+##### Numbers
+Numbers Only mode limits the characters to `0 - 9` whole numbers and does not include mathematical symbols.
 
 ##### Exiting mode
 Interactive Text Entry relies on the game providing a text prompt and sends key strokes to add and change characters, so it is only useful in these situations. Interactive Text Entry is automatically exited when either `SELECT`, `HOTKEY`, `START` or `A` are pressed, to minimise issues by accidentally triggering this mode.

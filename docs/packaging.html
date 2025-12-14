@@ -13,10 +13,10 @@
   </script>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"/>
   <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet"/>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
-   <script src="https://cdn.jsdelivr.net/npm/anchor-js/anchor.min.js">
-   </script>
-   <link href="css/documentation.css" rel="stylesheet"/>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet"/>
+  <script src="https://cdn.jsdelivr.net/npm/anchor-js/anchor.min.js">
+  </script>
+  <link href="css/documentation.css" rel="stylesheet">
    <title>
     Packaging
    </title>
@@ -95,6 +95,8 @@
     </li>
    </ul>
   </div>
+  <script src="/js/navbar.js" type="module">
+  </script>
   <nav aria-label="Fourth navbar example" class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
    <div class="container-fluid">
     <a class="navbar-brand" href="index.html">
@@ -223,6 +225,25 @@
        </ul>
       </li>
      </ul>
+     <ul class="navbar-nav" style="margin-right: 30px;">
+      <li class="nav-item" id="logout" style="display: none;">
+       <a aria-current="page" class="nav-link active" href="#" id="_logout">
+        Log Out
+       </a>
+      </li>
+      <!--
+            <li style="display: none;" id="signup" class="nav-item">
+              <a aria-current="page" id="_signup" class="nav-link active" href="#">
+                Sign Up
+              </a>
+            </li>
+            -->
+      <li class="nav-item" id="login" style="display: none;">
+       <a aria-current="page" class="nav-link active" href="#" id="_login">
+        Log In
+       </a>
+      </li>
+     </ul>
     </div>
    </div>
   </nav>
@@ -249,12 +270,12 @@
       </a>
       <ul>
        <li>
-        <a href="#portjson">
+        <a href="#port-json">
          port.json
         </a>
        </li>
        <li>
-        <a href="#readmemd">
+        <a href="#readme-md">
          README.md
         </a>
        </li>
@@ -338,6 +359,10 @@
      ,
      <code>
       README.md
+     </code>
+     ,
+     <code>
+      gameinfo.xml
      </code>
      , a port script and a port directory. It may optionally include a
      <code>
@@ -456,11 +481,23 @@ make
      Screenshot
     </h4>
     <p>
-     For use in the PortMaster GUI aswell as for the Wiki we need a screenshot of the gameplay or main function of the Port.
-A title screenshot would not show actual content of the port.
-The screenshot has to be at least 640x480 in dimensions and format can either be .jpg or .png
-For naming its screenshot.png
+     For each port, we include a screeshot for use in the PortMaster GUI and the online catalogue page. This must:
     </p>
+    <ul>
+     <li>
+      Show gameplay or the main function of the port -- not just the title screen.
+     </li>
+     <li>
+      Use a 4:3 aspect ratio with minimum resolution of 640×480.
+     </li>
+     <li>
+      Capture letterboxing or pillarboxing if that is how the game displays on a 4:3 handheld screen.
+Save this file as
+      <code>
+       screenshot.png
+      </code>
+     </li>
+    </ul>
     <p>
      For convinient use we also have a screenshot tool for making screenshots on your device.
      <a href="https://github.com/Cebion/Portmaster_builds/releases/download/1.0/screenshot.rar">
@@ -624,9 +661,9 @@ fi
 # assign the appropriate exit hotkey dependent on the device (ex. select + start for most devices and minus + start for the 
 # rgb10) and assign the appropriate method for killing an executable dependent on the OS the port is run from.
 # With -c we assign a custom mapping file else gptokeyb will only run as a tool to kill the process.
-# For $ANALOGSTICKS we have the ability to supply multiple gptk files to support 1 and 2 analogue stick devices in different ways.
+# For $ANALOG_STICKS we have the ability to supply multiple gptk files to support 1 and 2 analogue stick devices in different ways.
 # For a proper documentation how gptokeyb works: [Link](https://github.com/PortsMaster/gptokeyb)
-$GPTOKEYB "portexecutable.${DEVICE_ARCH}" -c "./portname.gptk.$ANALOGSTICKS" &amp;
+$GPTOKEYB "portexecutable.${DEVICE_ARCH}" -c "./portname.gptk.$ANALOG_STICKS" &amp;
 
 # Do some platform specific stuff right before the port is launched but after GPTOKEYB is run.
 pm_platform_helper "$GAMEDIR/portexecutable.${DEVICE_ARCH}"
@@ -700,7 +737,7 @@ pm_platform_helper "$GAMEDIR/portexecutable.${DEVICE_ARCH}"
 pm_finish
 </code></pre>
     <h3>
-     Godot Game Example Launchscript
+     Godot3 Game Example Launchscript
     </h3>
     <pre><code>
 #!/bin/bash
@@ -731,14 +768,6 @@ CONFDIR="$GAMEDIR/conf/"
 mkdir -p "$GAMEDIR/conf"
 cd $GAMEDIR
 
-# Set the XDG environment variables for config &amp; savefiles
-export XDG_DATA_HOME="$CONFDIR"
-export SDL_GAMECONTROLLERCONFIG="$sdl_controllerconfig"
-
-#  If XDG Path does not work
-# Use _directories to reroute that to a location within the ports folder.
-bind_directories ~/.portfolder $GAMEDIR/conf/.portfolder 
-
 runtime="frt_3.2.3"
 if [ ! -f "$controlfolder/libs/${runtime}.squashfs" ]; then
   # Check for runtime if not downloaded via PM
@@ -750,6 +779,14 @@ if [ ! -f "$controlfolder/libs/${runtime}.squashfs" ]; then
 
   $ESUDO $controlfolder/harbourmaster --quiet --no-check runtime_check "${runtime}.squashfs"
 fi
+
+# Set the XDG environment variables for config &amp; savefiles
+export XDG_DATA_HOME="$CONFDIR"
+export SDL_GAMECONTROLLERCONFIG="$sdl_controllerconfig"
+
+#  If XDG Path does not work
+# Use _directories to reroute that to a location within the ports folder.
+bind_directories ~/.portfolder $GAMEDIR/conf/.portfolder 
 
 # Setup Godot
 godot_dir="$HOME/godot"
@@ -764,11 +801,14 @@ export FRT_NO_EXIT_SHORTCUTS=FRT_NO_EXIT_SHORTCUTS
 
 
 $GPTOKEYB "$runtime" -c "./godot.gptk" &amp;
-pm_platform_helper "$runtime"
+pm_platform_helper "$godot_dir/$runtime"
 "$runtime" $GODOT_OPTS --main-pack "gamename.pck"
 
-$ESUDO umount "$godot_dir"
+if [[ "$PM_CAN_MOUNT" != "N" ]]; then
+    $ESUDO umount "$godot_dir"
+fi
 pm_finish
+
 </code></pre>
     <h3>
      Love2d Example Launchscript
@@ -788,7 +828,6 @@ else
 fi
 
 source $controlfolder/control.txt
-source $controlfolder/runtimes/"love_11.5"/love.txt
 
 [ -f "${controlfolder}/mod_${CFW_NAME}.txt" ] &amp;&amp; source "${controlfolder}/mod_${CFW_NAME}.txt"
 
@@ -811,6 +850,8 @@ bind_directories ~/.portfolder $GAMEDIR/conf/.portfolder
 
 export LD_LIBRARY_PATH="$GAMEDIR/libs.${DEVICE_ARCH}:$LD_LIBRARY_PATH"
 export SDL_GAMECONTROLLERCONFIG="$sdl_controllerconfig"
+
+source $controlfolder/runtimes/"love_11.5"/love.txt
 
 # Run the love runtime
 $GPTOKEYB "$LOVE_GPTK" &amp;
@@ -836,6 +877,8 @@ else
   controlfolder="/roms/ports/PortMaster"
 fi
 
+export controlfolder
+
 source $controlfolder/control.txt
 
 export PORT_32BIT="Y" # If using a 32 bit port
@@ -844,13 +887,14 @@ export PORT_32BIT="Y" # If using a 32 bit port
 get_controls
 
 GAMEDIR=/$directory/ports/portfolder/
-CONFDIR="$GAMEDIR/conf/"
-mkdir -p "$GAMEDIR/conf"
 
 cd $GAMEDIR
 &gt; "$GAMEDIR/log.txt" &amp;&amp; exec &gt; &gt;(tee "$GAMEDIR/log.txt") 2&gt;&amp;1
 
 export LD_LIBRARY_PATH="$GAMEDIR/libs.${DEVICE_ARCH}:$LD_LIBRARY_PATH"
+export GMLOADER_DEPTH_DISABLE=1
+export GMLOADER_SAVEDIR="$GAMEDIR/gamedata/"
+export GMLOADER_PLATFORM="os_linux"
 export SDL_GAMECONTROLLERCONFIG="$sdl_controllerconfig"
 $ESUDO chmod +x "$GAMEDIR/gmloader"
 
@@ -881,6 +925,8 @@ fi
 source $controlfolder/control.txt
 
 [ -f "${controlfolder}/mod_${CFW_NAME}.txt" ] &amp;&amp; source "${controlfolder}/mod_${CFW_NAME}.txt"
+
+get_controls
 
 GAMEDIR=/$directory/ports/portfolder/
 CONFDIR="$GAMEDIR/conf"
@@ -1069,6 +1115,88 @@ fi
       file is created, preventing future runs of the function.
      </li>
     </ul>
+    <h2>
+     Testing Requirements
+    </h2>
+    <p>
+     Before submitting a PR, your port must be thoroughly tested.
+    </p>
+    <h3>
+     Required Testing Process
+    </h3>
+    <ol>
+     <li>
+      <p>
+       Create a testing thread in our
+       <a href="https://discord.com/channels/1122861252088172575/1122885073507733625">
+        #testing-n-dev Discord channel
+       </a>
+      </p>
+     </li>
+     <li>
+      <p>
+       Test your port on all major CFWs and Standard Resolutions:
+      </p>
+      <ul>
+       <li>
+        <p>
+         AmberELEC
+        </p>
+       </li>
+       <li>
+        <p>
+         ArkOS
+        </p>
+       </li>
+       <li>
+        <p>
+         ROCKNIX Panfrost / Malai
+        </p>
+       </li>
+       <li>
+        <p>
+         muOS
+        </p>
+       </li>
+       <li>
+        <p>
+         Knulli (Optional)
+        </p>
+       </li>
+       <li>
+        <p>
+         480x320 (Optional)
+        </p>
+       </li>
+       <li>
+        <p>
+         640x480
+        </p>
+       </li>
+       <li>
+        <p>
+         720x720 (Optional)
+        </p>
+       </li>
+       <li>
+        <p>
+         Higher resolutions (e.g., 1280x720)
+        </p>
+       </li>
+      </ul>
+     </li>
+     <li>
+      <p>
+       Address any feedback from the community testing
+      </p>
+     </li>
+    </ol>
+    <p>
+     <strong>
+      Note:
+     </strong>
+     Pull Requests submitted without documented testing in the #testing-n-dev channel will not be accepted. This ensures quality and compatibility across our supported devices.
+    </p>
     <h3>
      Creating a Pull Request
     </h3>
@@ -1085,7 +1213,11 @@ fi
      After forking the repo, go into the settings for the fork and disable github actions for your fork.
     </p>
     <p>
-     Afterwards you can clone the repo, and you should run the newly made
+     Afterwards you can clone the repo, it's quite big though, so you'll might want to use git sparse checkout,
+     <a href="https://gist.github.com/JeodC/7a51211ad94ad6084d14042d80a62549">
+      here is a great guide made by JeodC to help you with that
+     </a>
+     Once you have it cloned you should run the newly made
      <code>
       tools/prepare_repo.sh
      </code>

@@ -14,8 +14,8 @@
   <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet"/>
   <script src="https://cdn.jsdelivr.net/npm/anchor-js/anchor.min.js">
   </script>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
-   <link href="css/shared.css" rel="stylesheet"/>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet"/>
+  <link href="css/shared.css" rel="stylesheet">
    <link href="css/documentation.css" rel="stylesheet"/>
    <title>
     FAQ
@@ -95,6 +95,8 @@
     </li>
    </ul>
   </div>
+  <script src="/js/navbar.js" type="module">
+  </script>
   <nav aria-label="Fourth navbar example" class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
    <div class="container-fluid">
     <a class="navbar-brand" href="index.html">
@@ -223,6 +225,25 @@
        </ul>
       </li>
      </ul>
+     <ul class="navbar-nav" style="margin-right: 30px;">
+      <li class="nav-item" id="logout" style="display: none;">
+       <a aria-current="page" class="nav-link active" href="#" id="_logout">
+        Log Out
+       </a>
+      </li>
+      <!--
+            <li style="display: none;" id="signup" class="nav-item">
+              <a aria-current="page" id="_signup" class="nav-link active" href="#">
+                Sign Up
+              </a>
+            </li>
+            -->
+      <li class="nav-item" id="login" style="display: none;">
+       <a aria-current="page" class="nav-link active" href="#" id="_login">
+        Log In
+       </a>
+      </li>
+     </ul>
     </div>
    </div>
   </nav>
@@ -254,7 +275,8 @@
      What Devices are supported?
     </h2>
     <p>
-     The full list of supported devices can be found
+     (Currently Outdated)
+The full list of supported devices can be found
      <a href="https://portmaster.games/supported-devices.html">
       here
      </a>
@@ -272,38 +294,89 @@
      Do I have to use PortMaster to install ports?
     </h2>
     <p>
-     You can simply go to the PortMaster repo,
+     For the best experience you should download and install the Port trough the PortMaster Application. This ensures that the installed Port has the correct permissions aswell as the correct metadata.
+    </p>
+    <p>
+     If you have a device without wifi you can simply go to the PortMaster repo,
      <a href="https://portmaster.games/games.html">
       https://portmaster.games/games.html
      </a>
-     , find the title of the port you want, download it and unzip the contents of it to the
-     <code>
-      /roms/ports
-     </code>
-     folder. You'll also need to copy the PortMaster folder to your
-     <code>
-      /roms/ports
-     </code>
-     folder. If you don't want the PortMaster folder to show up in your Ports menu in Emulationstation, just delete the PortMaster.sh file as it won't be needed if you don't plan to install or update your ports online via this tool.
+     , find the title of the port you want, download it and copy the zip file into the PortMaster Autoinstall folder. Then you just run the PortMaster Application and PortMaster will install the Port for you.
     </p>
     <p>
-     Keep in mind that some games require Runtimes that can be downloaded from (Runtime Link)
+     Here are the locations for the autoinstall folder for the
     </p>
+    <ul>
+     <li>
+      <strong>
+       AmberELEC, ROCKNIX, uOS, Jelos
+      </strong>
+      <code>
+       /roms/ports/PortMaster/autoinstall/
+      </code>
+     </li>
+     <li>
+      <strong>
+       muOS
+      </strong>
+      <code>
+       /mmc/MUOS/PortMaster/autoinstall/
+      </code>
+     </li>
+     <li>
+      <strong>
+       ArkOS
+      </strong>
+      <code>
+       /roms/tools/PortMaster/autoinstall/
+      </code>
+     </li>
+     <li>
+      <strong>
+       Knulli
+      </strong>
+      <code>
+       /userdata/system/.local/share/PortMaster/autoinstall
+      </code>
+     </li>
+    </ul>
     <p>
-     For ArkOS on the RG351V &amp; 353V/S/RG353P/S or RG351MP, if SD2 is being used for roms, unzip the port to the
-     <code>
-      /roms2/ports
-     </code>
-     folder instead and copy the PortMaster folder to the
-     <code>
-      /roms2/tools
-     </code>
-     location. A few additional ports are available on the large releases repo
-     <a href="https://github.com/PortsMaster/PortMaster-Releases/releases">
-      https://github.com/PortsMaster/PortMaster-Releases/releases
-     </a>
-     due to their size (ex. SuperTux, Ur Quan Masters, and FreedroidRPG).
+     If that does not work you can also unzip the contents of the port into the ports folders of each cfw, note that this may break the port and ports may no longer start.
     </p>
+    <ul>
+     <li>
+      <strong>
+       AmberELEC, ROCKNIX, uOS, Jelos
+      </strong>
+      <code>
+       /roms/ports/
+      </code>
+     </li>
+     <li>
+      <strong>
+       muOS
+      </strong>
+      <code>
+       /mmc/ports/ for the folders and /mnt/mmc/ROMS/Ports/ for the .sh files
+      </code>
+     </li>
+     <li>
+      <strong>
+       ArkOS
+      </strong>
+      <code>
+       /roms/tools/PortMaster/autoinstall/
+      </code>
+     </li>
+     <li>
+      <strong>
+       Knulli
+      </strong>
+      <code>
+       /userdata/system/.local/share/PortMaster/autoinstall
+      </code>
+     </li>
+    </ul>
     <h2>
      How do I get more info about the ports in PortMaster like the sources used and additional asset needs if applicable?
     </h2>

@@ -15,8 +15,8 @@
   <script src="https://cdn.jsdelivr.net/npm/easymde/dist/easymde.min.js">
   </script>
   <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet"/>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
-   <link href="css/shared.css" rel="stylesheet"/>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet"/>
+  <link href="css/shared.css" rel="stylesheet">
    <title>
     Port JSON Generator
    </title>
@@ -95,6 +95,8 @@
     </li>
    </ul>
   </div>
+  <script src="/js/navbar.js" type="module">
+  </script>
   <nav aria-label="Fourth navbar example" class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
    <div class="container-fluid">
     <a class="navbar-brand" href="index.html">
@@ -221,6 +223,25 @@
          </a>
         </li>
        </ul>
+      </li>
+     </ul>
+     <ul class="navbar-nav" style="margin-right: 30px;">
+      <li class="nav-item" id="logout" style="display: none;">
+       <a aria-current="page" class="nav-link active" href="#" id="_logout">
+        Log Out
+       </a>
+      </li>
+      <!--
+            <li style="display: none;" id="signup" class="nav-item">
+              <a aria-current="page" id="_signup" class="nav-link active" href="#">
+                Sign Up
+              </a>
+            </li>
+            -->
+      <li class="nav-item" id="login" style="display: none;">
+       <a aria-current="page" class="nav-link active" href="#" id="_login">
+        Log In
+       </a>
       </li>
      </ul>
     </div>
@@ -388,15 +409,30 @@
         </div>
         <div class="col-12">
          <label class="form-label" for="runtime">
-          Runtime
+          Runtime (Optional)
          </label>
-         <select class="form-select" id="runtime">
-          <option value="">
-           None (the usual option)
-          </option>
-          <optgroup label="Mono">
+         <select class="form-select" id="runtime" multiple="">
+          <optgroup label="Misc">
+           <option value="mesa_pkg_0.1.squashfs">
+            Mesapack 0.1
+           </option>
            <option value="mono-6.12.0.122-aarch64.squashfs">
             Mono (6.12.0.112)
+           </option>
+           <option value="pyxel_2.2.8_python_3.11.squashfs">
+            Pyxel 2.2.8
+           </option>
+           <option value="renpy_8.3.4.squashfs">
+            RenPY 8.3.4
+           </option>
+           <option value="rlvm.squashfs">
+            Real Live VM
+           </option>
+           <option value="solarus-1.6.5.squashfs">
+            Solarus 1.6.5
+           </option>
+           <option value="weston_pkg_0.2.squashfs">
+            Westonpack 0.2
            </option>
           </optgroup>
           <optgroup label="GoDot / FRT">
@@ -420,6 +456,26 @@
            </option>
            <option value="frt_3.5.2.squashfs">
             GoDot / FRT 3.5.2
+           </option>
+           <option value="frt_3.6.squashfs">
+            Godot / FRT 3.6
+           </option>
+           <option value="frt_4.0.4.squashfs">
+            Godot / FRT 4.0.4
+           </option>
+           <option value="frt_4.1.3.squashfs">
+            Godot / FRT 4.1.3
+           </option>
+          </optgroup>
+          <optgroup label="Java">
+           <option value="zulu11.48.21-ca-jdk11.0.11-linux.aarch64.squashfs">
+            Java jdk11.0.11
+           </option>
+           <option value="zulu17.48.15-ca-jdk17.0.10-linux.aarch64.squashfs">
+            Java jdk17.0.10
+           </option>
+           <option value="zulu17.54.21-ca-jre17.0.13-linux.squashfs">
+            Java jre17.0.13
            </option>
           </optgroup>
          </select>
@@ -469,6 +525,48 @@
           This port is experimental and should not be visible unless the feature is enabled in PortMaster.
          </label>
         </div>
+        <hr class="my-4"/>
+        <label class="form-label">
+         Availability
+        </label>
+        <div class="col-12">
+         <select class="form-select" id="availability">
+          <option value="full">
+           Free game, all files included
+          </option>
+          <option value="demo">
+           Demo files included
+          </option>
+          <option value="free">
+           Free external assets needed
+          </option>
+          <option value="paid">
+           Paid external assets needed
+          </option>
+         </select>
+        </div>
+        <hr class="my-4"/>
+        <label class="form-label">
+         Store Links
+        </label>
+        <table class="table table-bordered" id="store">
+         <tr>
+          <th>
+           Store Name
+          </th>
+          <th>
+           Game URL
+          </th>
+          <th>
+           Developer URL
+          </th>
+          <th>
+           <button class="w-100 btn btn-primary" onclick="addStoreLink()" type="button">
+            Add Link
+           </button>
+          </th>
+         </tr>
+        </table>
         <hr class="my-4"/>
         <label class="form-label">
          Requirements

@@ -15,12 +15,12 @@
   </script>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"/>
   <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet"/>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
-   <title>
-    PortMaster
-   </title>
-   <style>
-    .bd-placeholder-img {
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet"/>
+  <title>
+   PortMaster
+  </title>
+  <style>
+   .bd-placeholder-img {
       font-size: 1.125rem;
       text-anchor: middle;
       -webkit-user-select: none;
@@ -164,8 +164,7 @@
       word-wrap: break-word;
 
     }
-   </style>
-  </link>
+  </style>
  </head>
  <body class="bg-body-tertiary">
   <svg class="d-none" xmlns="http://www.w3.org/2000/svg">
@@ -240,6 +239,8 @@
     </li>
    </ul>
   </div>
+  <script src="/js/navbar.js" type="module">
+  </script>
   <nav aria-label="Fourth navbar example" class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
    <div class="container-fluid">
     <a class="navbar-brand" href="index.html">
@@ -366,6 +367,25 @@
          </a>
         </li>
        </ul>
+      </li>
+     </ul>
+     <ul class="navbar-nav" style="margin-right: 30px;">
+      <li class="nav-item" id="logout" style="display: none;">
+       <a aria-current="page" class="nav-link active" href="#" id="_logout">
+        Log Out
+       </a>
+      </li>
+      <!--
+            <li style="display: none;" id="signup" class="nav-item">
+              <a aria-current="page" id="_signup" class="nav-link active" href="#">
+                Sign Up
+              </a>
+            </li>
+            -->
+      <li class="nav-item" id="login" style="display: none;">
+       <a aria-current="page" class="nav-link active" href="#" id="_login">
+        Log In
+       </a>
       </li>
      </ul>
     </div>

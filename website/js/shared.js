@@ -191,6 +191,7 @@ async function fetchPorts() {
         const ports = Object.values(portsData.ports);
         for (const port of ports) {
             port.download_count = statsData.ports[port.name] ?? 0;
+            port.max_rating_range = portsData.ratings.max_range;
         }
 
         return ports;
@@ -298,6 +299,19 @@ function getPorterUrl(porter) {
     return `profile.html?porter=${encodeURIComponent(porter)}`;
 }
 
+function getPortRating(port) {
+    if (port.rating) {
+        return `${port.rating.average_rating}/${port.max_rating_range}, Ratings: ${port.rating.total_ratings}`;
+    }
+    else {
+        return "None";
+    }
+}
+
+function getPortRatingLink(port){
+    return createElement('a', { href: `/rate-port?port=${encodeURIComponent(port.name.replace('.zip', ''))}` }, "Rate Port");
+}
+
 function createContainerLoading() {
     return createElement('div', { className: 'container' }, [
         createElement('h2', { className: 'my-2 text-center text-muted' }, [
@@ -329,6 +343,7 @@ function createCard(port) {
     ];
 
     const porters = devided(() => ', ', port.attr.porter.map(porter => createElement('a', { href: getPorterUrl(porter) }, porter)));
+    
 
     return createElement('div', { className: 'col' }, [
         createElement('div', { className: 'card h-100 shadow-sm' }, [
@@ -362,10 +377,13 @@ function createCard(port) {
                         createElement('span', { className: 'text-muted' }, 'Downloads: '),
                         `${port.download_count}`,
                     ]),
-                    createElement('div', { className: 'd-inline-flex gap-1' }, [
+                    createElement('div',null, [
                         createElement('span', { className: 'text-muted' }, `Porter${porters.length > 1 ? 's' : ''}: `),
                         createElement('span', { className: 'text-wrap' }, porters),
                     ]),
+                    //createElement('div', { className: 'd-inline-flex gap-1' }, [
+                    //    createElement('span', { className: 'text-wrap' }, getPortRatingLink(port)),
+                    //]),
                 ]),
                 createElement('div', { className: 'text-end' }, [
                     createElement('div', null, [
@@ -376,6 +394,10 @@ function createCard(port) {
                         createElement('span', { className: 'text-muted' }, 'Updated: '),
                         port.source.date_updated,
                     ]),
+                   // createElement('div', null, [
+                   //     createElement('span', { className: 'text-muted' }, 'Rating: '),
+                   //     getPortRating(port),
+                   // ]),
                 ]),
             ]),
         ]),
@@ -513,6 +535,13 @@ function createCardDetails({ port, deviceDetails, additionalInformation }) {
                     ]),
                 ]),
                 createElement('div', { className: 'col d-flex align-items-start' }, [
+                    createElement('i', { className: 'ft-s bi bi-graph-up' }),
+                    createElement('div', { className: 'ms-3' }, [
+                        createElement('h3', { className: 'fw-bold mb-0 fs-4 text-body-emphasis' }, 'Rating'),
+                        createElement('p', null,getPortRating(port)),
+                    ]),
+                ]),
+                createElement('div', { className: 'col d-flex align-items-start' }, [
                     createElement('i', { className: 'ft-s bi bi-boxes' }),
                     createElement('div', { className: 'ms-3' }, [
                         createElement('h3', { className: 'fw-bold mb-0 fs-4 text-body-emphasis' }, 'Miscellaneous'),
@@ -555,3 +584,4 @@ async function showDetailsModal(port, deviceDetails) {
     });
 }
 //#endregion
+

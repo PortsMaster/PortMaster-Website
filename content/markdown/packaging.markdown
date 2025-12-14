@@ -3,8 +3,8 @@
 ## Index
 - [Portname Requirements](#portname-requirements)
 - [New Port Structure](#new-port-structure)
-  - [port.json](#portjson)
-  - [README.md](#readmemd)
+  - [port.json](#port-json)
+  - [README.md](#readme-md)
   - [Screenshot](#screenshot)
   - [Gameinfo.xml & Cover](#gameinfo-xml-cover)
   - [License File](#licensefile)
@@ -26,7 +26,7 @@ This name must not clash with any other existing ports.
 
 ### New Port Structure:
 
-Ports are now contained within the `port` top level directory, each port has its own sub-directory named after the port itself. Each port must adhere to the `portname` rules stated above. Each port must have a `port.json`, `screenshot.{jpg,png}`, `README.md`, a port script and a port directory. It may optionally include a `cover.{jpg,png}`.
+Ports are now contained within the `port` top level directory, each port has its own sub-directory named after the port itself. Each port must adhere to the `portname` rules stated above. Each port must have a `port.json`, `screenshot.{jpg,png}`, `README.md`, `gameinfo.xml`, a port script and a port directory. It may optionally include a `cover.{jpg,png}`.
 
 The script should have capital letters (like `Port Name.sh`) and must end in `.sh`, the port directory should be the same as the containing directory. Some legacy ports have different names, new ports won't be accepted unless they follow the new convention.
 
@@ -117,10 +117,11 @@ make
 ```
 
 #### Screenshot
-For use in the PortMaster GUI aswell as for the Wiki we need a screenshot of the gameplay or main function of the Port.
-A title screenshot would not show actual content of the port.
-The screenshot has to be at least 640x480 in dimensions and format can either be .jpg or .png
-For naming its screenshot.png
+For each port, we include a screeshot for use in the PortMaster GUI and the online catalogue page. This must:
+* Show gameplay or the main function of the port -- not just the title screen.
+* Use a 4:3 aspect ratio with minimum resolution of 640×480.
+* Capture letterboxing or pillarboxing if that is how the game displays on a 4:3 handheld screen.
+Save this file as `screenshot.png`
 
 For convinient use we also have a screenshot tool for making screenshots on your device.
 https://github.com/Cebion/Portmaster_builds/releases/download/1.0/screenshot.rar
@@ -247,9 +248,9 @@ fi
 # assign the appropriate exit hotkey dependent on the device (ex. select + start for most devices and minus + start for the 
 # rgb10) and assign the appropriate method for killing an executable dependent on the OS the port is run from.
 # With -c we assign a custom mapping file else gptokeyb will only run as a tool to kill the process.
-# For $ANALOGSTICKS we have the ability to supply multiple gptk files to support 1 and 2 analogue stick devices in different ways.
+# For $ANALOG_STICKS we have the ability to supply multiple gptk files to support 1 and 2 analogue stick devices in different ways.
 # For a proper documentation how gptokeyb works: [Link](https://github.com/PortsMaster/gptokeyb)
-$GPTOKEYB "portexecutable.${DEVICE_ARCH}" -c "./portname.gptk.$ANALOGSTICKS" &
+$GPTOKEYB "portexecutable.${DEVICE_ARCH}" -c "./portname.gptk.$ANALOG_STICKS" &
 
 # Do some platform specific stuff right before the port is launched but after GPTOKEYB is run.
 pm_platform_helper "$GAMEDIR/portexecutable.${DEVICE_ARCH}"
@@ -321,7 +322,7 @@ pm_platform_helper "$GAMEDIR/portexecutable.${DEVICE_ARCH}"
 pm_finish
 ```
 
-### Godot Game Example Launchscript
+### Godot3 Game Example Launchscript
 
 ```
 
@@ -353,14 +354,6 @@ CONFDIR="$GAMEDIR/conf/"
 mkdir -p "$GAMEDIR/conf"
 cd $GAMEDIR
 
-# Set the XDG environment variables for config & savefiles
-export XDG_DATA_HOME="$CONFDIR"
-export SDL_GAMECONTROLLERCONFIG="$sdl_controllerconfig"
-
-#  If XDG Path does not work
-# Use _directories to reroute that to a location within the ports folder.
-bind_directories ~/.portfolder $GAMEDIR/conf/.portfolder 
-
 runtime="frt_3.2.3"
 if [ ! -f "$controlfolder/libs/${runtime}.squashfs" ]; then
   # Check for runtime if not downloaded via PM
@@ -372,6 +365,14 @@ if [ ! -f "$controlfolder/libs/${runtime}.squashfs" ]; then
 
   $ESUDO $controlfolder/harbourmaster --quiet --no-check runtime_check "${runtime}.squashfs"
 fi
+
+# Set the XDG environment variables for config & savefiles
+export XDG_DATA_HOME="$CONFDIR"
+export SDL_GAMECONTROLLERCONFIG="$sdl_controllerconfig"
+
+#  If XDG Path does not work
+# Use _directories to reroute that to a location within the ports folder.
+bind_directories ~/.portfolder $GAMEDIR/conf/.portfolder 
 
 # Setup Godot
 godot_dir="$HOME/godot"
@@ -386,11 +387,14 @@ export FRT_NO_EXIT_SHORTCUTS=FRT_NO_EXIT_SHORTCUTS
 
 
 $GPTOKEYB "$runtime" -c "./godot.gptk" &
-pm_platform_helper "$runtime"
+pm_platform_helper "$godot_dir/$runtime"
 "$runtime" $GODOT_OPTS --main-pack "gamename.pck"
 
-$ESUDO umount "$godot_dir"
+if [[ "$PM_CAN_MOUNT" != "N" ]]; then
+    $ESUDO umount "$godot_dir"
+fi
 pm_finish
+
 ```
 
 ### Love2d Example Launchscript
@@ -411,7 +415,6 @@ else
 fi
 
 source $controlfolder/control.txt
-source $controlfolder/runtimes/"love_11.5"/love.txt
 
 [ -f "${controlfolder}/mod_${CFW_NAME}.txt" ] && source "${controlfolder}/mod_${CFW_NAME}.txt"
 
@@ -434,6 +437,8 @@ bind_directories ~/.portfolder $GAMEDIR/conf/.portfolder
 
 export LD_LIBRARY_PATH="$GAMEDIR/libs.${DEVICE_ARCH}:$LD_LIBRARY_PATH"
 export SDL_GAMECONTROLLERCONFIG="$sdl_controllerconfig"
+
+source $controlfolder/runtimes/"love_11.5"/love.txt
 
 # Run the love runtime
 $GPTOKEYB "$LOVE_GPTK" &
@@ -460,6 +465,8 @@ else
   controlfolder="/roms/ports/PortMaster"
 fi
 
+export controlfolder
+
 source $controlfolder/control.txt
 
 export PORT_32BIT="Y" # If using a 32 bit port
@@ -468,13 +475,14 @@ export PORT_32BIT="Y" # If using a 32 bit port
 get_controls
 
 GAMEDIR=/$directory/ports/portfolder/
-CONFDIR="$GAMEDIR/conf/"
-mkdir -p "$GAMEDIR/conf"
 
 cd $GAMEDIR
 > "$GAMEDIR/log.txt" && exec > >(tee "$GAMEDIR/log.txt") 2>&1
 
 export LD_LIBRARY_PATH="$GAMEDIR/libs.${DEVICE_ARCH}:$LD_LIBRARY_PATH"
+export GMLOADER_DEPTH_DISABLE=1
+export GMLOADER_SAVEDIR="$GAMEDIR/gamedata/"
+export GMLOADER_PLATFORM="os_linux"
 export SDL_GAMECONTROLLERCONFIG="$sdl_controllerconfig"
 $ESUDO chmod +x "$GAMEDIR/gmloader"
 
@@ -506,6 +514,8 @@ fi
 source $controlfolder/control.txt
 
 [ -f "${controlfolder}/mod_${CFW_NAME}.txt" ] && source "${controlfolder}/mod_${CFW_NAME}.txt"
+
+get_controls
 
 GAMEDIR=/$directory/ports/portfolder/
 CONFDIR="$GAMEDIR/conf"
@@ -625,6 +635,28 @@ Several things to note here:
 - The `apply_patch` function itself is a nest of IF conditionals to assist with error checking. It returns `1` if it failed.
 - The `installed` function is only run once if successful. If it was successfully completed, a `.installed` file is created, preventing future runs of the function.
 
+## Testing Requirements
+
+Before submitting a PR, your port must be thoroughly tested.
+
+### Required Testing Process
+1. Create a testing thread in our [#testing-n-dev Discord channel](https://discord.com/channels/1122861252088172575/1122885073507733625)
+   
+2. Test your port on all major CFWs and Standard Resolutions:
+   - AmberELEC
+   - ArkOS
+   - ROCKNIX Panfrost / Malai
+   - muOS
+   - Knulli (Optional)
+  
+   - 480x320 (Optional)
+   - 640x480 
+   - 720x720 (Optional)
+   - Higher resolutions (e.g., 1280x720)
+  
+3. Address any feedback from the community testing
+
+**Note:** Pull Requests submitted without documented testing in the #testing-n-dev channel will not be accepted. This ensures quality and compatibility across our supported devices.
 
 ### Creating a Pull Request
 
@@ -635,7 +667,8 @@ https://github.com/PortsMaster/PortMaster-New
 
 After forking the repo, go into the settings for the fork and disable github actions for your fork.
 
-Afterwards you can clone the repo, and you should run the newly made `tools/prepare_repo.sh` from the root of repo. This will download the latest files from the release system.
+Afterwards you can clone the repo, it's quite big though, so you'll might want to use git sparse checkout, [here is a great guide made by JeodC to help you with that](https://gist.github.com/JeodC/7a51211ad94ad6084d14042d80a62549)
+Once you have it cloned you should run the newly made `tools/prepare_repo.sh` from the root of repo. This will download the latest files from the release system.
 
 ```bash
 tools/prepare_repo.sh

@@ -94,6 +94,8 @@
     </li>
    </ul>
   </div>
+  <script src="/js/navbar.js" type="module">
+  </script>
   <nav aria-label="Fourth navbar example" class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
    <div class="container-fluid">
     <a class="navbar-brand" href="index.html">
@@ -222,6 +224,25 @@
        </ul>
       </li>
      </ul>
+     <ul class="navbar-nav" style="margin-right: 30px;">
+      <li class="nav-item" id="logout" style="display: none;">
+       <a aria-current="page" class="nav-link active" href="#" id="_logout">
+        Log Out
+       </a>
+      </li>
+      <!--
+            <li style="display: none;" id="signup" class="nav-item">
+              <a aria-current="page" id="_signup" class="nav-link active" href="#">
+                Sign Up
+              </a>
+            </li>
+            -->
+      <li class="nav-item" id="login" style="display: none;">
+       <a aria-current="page" class="nav-link active" href="#" id="_login">
+        Log In
+       </a>
+      </li>
+     </ul>
     </div>
    </div>
   </nav>
@@ -273,16 +294,38 @@ Various Instructions for Build Environments can be found here:
      Once you have your software compiled it is recommeded you test your game directly on your device via ssh.
 For testing you can stop Emulationstation to not clash with your Ports
     </p>
-    <p>
-     AmberELEC, uOS, Jelos:
-     <code>
-      systemctl stop emustation
-     </code>
-     ArkOS				 :
-     <code>
-      systemctl stop emulationstation
-     </code>
-    </p>
+    <ul>
+     <li>
+      AmberELEC, uOS, Jelos:
+      <code>
+       systemctl stop emustation
+      </code>
+     </li>
+     <li>
+      ArkOS:
+      <code>
+       systemctl stop emulationstation
+      </code>
+     </li>
+     <li>
+      muOS:
+      <code>
+       killall -q frontend.sh muxlaunch
+      </code>
+     </li>
+     <li>
+      Knulli:
+      <code>
+       /etc/init.d/S31emulationstation stop
+      </code>
+     </li>
+     <li>
+      Rocknix:
+      <code>
+       systemctl stop essway.service
+      </code>
+     </li>
+    </ul>
     <p>
      For packaging use the Packaging Guide
      <a href="https://portmaster.games/packaging.html">
@@ -299,6 +342,11 @@ So we can't just use any game, compile it and run it.
     </p>
     <p>
      Most CFWs that support PortMaster don't have full OpenGL or Display Drivers: So no openGL and no x11 / weston.
+With the new WestonPack Runtime from Binary
+     <a href="https://github.com/binarycounter/Westonpack/wiki/">
+      WestonPack Wiki
+     </a>
+     a lot of these may work now.
     </p>
     <p>
      Generally speaking Anbernic devices running a Rockchip SoC for example use the old 3.x Linux kernel with proprietary ARM drivers for Mali and not Panfrost. So only OpenGL ES is available for Linux.
@@ -361,6 +409,15 @@ So we can't just use any game, compile it and run it.
        https://github.com/Cebion/love2d_aarch64
       </a>
       )
+     </li>
+     <li>
+      <a href="https://github.com/binarycounter/Westonpack">
+       Westonpack Runtime
+      </a>
+      x11, Godot4, Java, LibGDX, SFML, SDL3, Allegro
+      <a href="https://github.com/binarycounter/Westonpack/wiki/">
+       WestonPack
+      </a>
      </li>
     </ul>
     <h2>
@@ -687,6 +744,15 @@ For example sometimes a png file imported as a Texture causes problems and needs
     </p>
     <p>
      Godot Editor -&gt; Import Tab -&gt; Filter for file in Filesystem -&gt; Reimport As:
+    </p>
+    <h2>
+     Godot 4
+    </h2>
+    <p>
+     See the
+     <a href="https://github.com/binarycounter/Westonpack/wiki/">
+      WestonPack Wiki
+     </a>
     </p>
     <h2>
      LÖVE (Love2D)

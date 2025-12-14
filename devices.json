@@ -74,7 +74,7 @@
     "manufacturer": "Powkiddy",
     "resolution": "1280*720",
     "aspect ratio": "16:9",
-    "firmware": "JELOS",
+    "firmware": "JELOS,ROCKNIX",
     "notes": ""
   }
 ]
