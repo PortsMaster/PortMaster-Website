@@ -299,7 +299,7 @@
         ArkOS
        </td>
        <td>
-        /roms(or roms2)/ports/
+        /roms/tools/
        </td>
       </tr>
       <tr>
@@ -372,6 +372,53 @@
       </code>
      </li>
     </ul>
+    <h2>
+     Upgrading PortMaster
+    </h2>
+    <p>
+     There are 2 options on how-to upgrade:
+    </p>
+    <h3>
+     Via Application
+    </h3>
+    <ol>
+     <li>
+      Open PortMaster application on your device.
+     </li>
+     <li>
+      Click Options
+     </li>
+     <li>
+      Update PortMaster
+     </li>
+    </ol>
+    <h3>
+     Via File copy
+    </h3>
+    <ol>
+     <li>
+      Use SSH or insert mSD card into your PC.
+     </li>
+     <li>
+      <a href="https://github.com/PortsMaster/PortMaster-GUI/releases">
+       Download PortMaster.zip
+      </a>
+     </li>
+     <li>
+      (See locations in previous section) Remove previous
+      <code>
+       PortMaster
+      </code>
+      folder and unzip contents of downloaded archive to that location.
+     </li>
+     <li>
+      Start PortMaster. Verify that it is runnning new version - the
+      <code>
+       PM &lt;version&gt;
+      </code>
+      in the bottom would correspond to the version on the Release Download page.
+     </li>
+    </ol>
     <script>
      anchors.options.visible = 'always';
         anchors.add();
