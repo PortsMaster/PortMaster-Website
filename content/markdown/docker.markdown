@@ -19,18 +19,22 @@ docker run -it --name builder_aarch64  -v "$(pwd)":/workspace --platform=linux/a
 Download the prebuilt image and run the Docker container:
 
 ```bash
-docker pull --platform=linux/arm64 ghcr.io/monkeyx-net/portmaster-build-templates/portmaster-builder:x86_64-latest
+docker pull --platform=linux/x86_64 ghcr.io/monkeyx-net/portmaster-build-templates/portmaster-builder:x86_64-latest
 docker run --rm --privileged multiarch/qemu-user-static --reset -p yes
-docker run -it --name builder_aarch64  -v "$(pwd)":/workspace --platform=linux/arm64 ghcr.io/monkeyx-net/portmaster-build-templates/portmaster-builder:x86_64-latest
+docker run -it --name builder_x86_64  -v "$(pwd)":/workspace --platform=linux/x86_64 ghcr.io/monkeyx-net/portmaster-build-templates/portmaster-builder:x86_64-latest
 ```
 
 ## Copy files from Container to Host
 
-Ensure the relevant docker container is running 
+The -v argument opens the Docker workspace folder in the folder you run docker from. Which means that workspace folder is on the host machine.
+
+
+## Start the docker containers again.
+
 
 ```bash
-docker container start builder32
-docker container start builder64
-docker container start builderx86_64
+docker container start builder_aarch64
+docker container start builder_x86_64
 ```
-The -v argument opens the Docker workspace folder in the folder you run docker from. Which means that workspace folder is on the host machine.
+
+The following tool can be useful for managing container. [Arcane](https://github.com/getarcaneapp/arcane)
