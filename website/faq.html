@@ -27,7 +27,81 @@
     <br>
     <div class="container">
         <main>
-          {markdown}
+          <ul class="nav nav-tabs mb-4" id="faqTabs" role="tablist">
+            <li class="nav-item" role="presentation">
+              <button class="nav-link active" id="faq-tab" data-bs-toggle="tab" data-bs-target="#faq-content" type="button" role="tab" aria-controls="faq-content" aria-selected="true">
+                FAQ
+              </button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="firmware-tab" data-bs-toggle="tab" data-bs-target="#firmware-content" type="button" role="tab" aria-controls="firmware-content" aria-selected="false">
+                Supported &amp; Unsupported Firmwares
+              </button>
+            </li>
+          </ul>
+          <div class="tab-content" id="faqTabsContent">
+            <div class="tab-pane fade show active" id="faq-content" role="tabpanel" aria-labelledby="faq-tab">
+              {markdown}
+            </div>
+            <div class="tab-pane fade" id="firmware-content" role="tabpanel" aria-labelledby="firmware-tab">
+              <h2>Supported Firmwares</h2>
+              <p>These custom firmwares (CFWs) are actively supported by PortMaster:</p>
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th>Firmware</th>
+                    <th>Notes</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>ArkOS</strong></td>
+                    <td>Fully supported. Install script goes in <code>/roms/tools/</code>.</td>
+                  </tr>
+                  <tr>
+                    <td><strong>AmberELEC</strong></td>
+                    <td>Fully supported.</td>
+                  </tr>
+                  <tr>
+                    <td><strong>ROCKNIX</strong></td>
+                    <td>Fully supported. The spiritual successor to AmberELEC.</td>
+                  </tr>
+                  <tr>
+                    <td><strong>muOS</strong></td>
+                    <td>Fully supported.</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Knulli</strong></td>
+                    <td>Fully supported.</td>
+                  </tr>
+                  <tr>
+                    <td><strong>uOS</strong></td>
+                    <td>Fully supported.</td>
+                  </tr>
+                  <tr>
+                    <td><strong>UnofficialOS</strong></td>
+                    <td>Fully supported.</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h2>Unsupported Firmwares</h2>
+              <p>These firmwares are <strong>no longer supported</strong> by PortMaster. They may have worked in the past but are discontinued or no longer maintained:</p>
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th>Firmware</th>
+                    <th>Reason</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>JELOS</strong></td>
+                    <td>Discontinued. The project is no longer maintained. Users are encouraged to migrate to <a href="https://rocknix.org">ROCKNIX</a>, which is the active continuation of JELOS.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
           <script>
             anchors.options.visible = 'always';
             anchors.add();

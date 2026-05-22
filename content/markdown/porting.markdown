@@ -17,10 +17,10 @@ Mind for 3/4/5 a LOT of hacking and tweaking might be needed.
 Since PortMaster is platform independent and delivers their own dependencies we don't rely on the build mechanism of the CFWs out there.
 Various Instructions for Build Environments can be found here: https://portmaster.games/build-environments.html
 
-Once you have your software compiled it is recommeded you test your game directly on your device via ssh.
+Once you have your software compiled it is recommended you test your game directly on your device via ssh.
 For testing you can stop Emulationstation to not clash with your Ports
 
-- AmberELEC, uOS, Jelos:  `systemctl stop emustation`
+- AmberELEC, uOS:  `systemctl stop emustation`
 - ArkOS:                  `systemctl stop emulationstation`
 - muOS:                   `killall -q frontend.sh muxlaunch`
 - Knulli:                 `/etc/init.d/S31emulationstation stop `
