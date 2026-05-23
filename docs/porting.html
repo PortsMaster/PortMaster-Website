@@ -627,12 +627,21 @@ For this you call
      Java
     </h2>
     <p>
-     AmberELEC / uOS has JDK support already built in once you start a j2me game for the first time.
-You can supply this also via Portmaster Runtimes
-Note you also need a display backend for your java application. So just running a jar file without anything won't work.
+     Java ports are supported via the <a href="https://github.com/binarycounter/Westonpack/wiki/">WestonPack Runtime</a>. WestonPack provides both a JDK and a display backend (Wayland/Weston), which Java applications need to run on handheld devices.
     </p>
     <p>
-     As of yet we have no Port that uses these but in theory this could be interesting for LIBGDX
+     We have several working Java ports, including:
+    </p>
+    <ul>
+     <li><strong>Minecraft</strong> (via launchers that use the JDK)</li>
+     <li><strong>Unciv</strong> (open-source Civilization clone)</li>
+     <li><strong>Mindustry</strong> (factory/tower-defense game)</li>
+    </ul>
+    <p>
+     Note you also need a display backend for your Java application — just running a jar file without one won't work. WestonPack handles this for you.
+    </p>
+    <p>
+     You can also supply a JDK via PortMaster Runtimes manually if needed.
     </p>
     <p>
      <strong>

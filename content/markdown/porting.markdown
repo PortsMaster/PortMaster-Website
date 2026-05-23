@@ -170,11 +170,16 @@ For the full GPTOKEYB Documentation https://portmaster.games/gptokeyb-documentat
 
 ## Java
 
-AmberELEC / uOS / Jelos has JDK support already built in once you start a j2me game for the first time.
-You can supply this also via Portmaster Runtimes
-Note you also need a display backend for your java application. So just running a jar file without anything won't work.
+Java ports are supported via the [WestonPack Runtime](https://github.com/binarycounter/Westonpack/wiki/). WestonPack provides both a JDK and a display backend (Wayland/Weston), which Java applications need to run on handheld devices.
 
-As of yet we have no Port that uses these but in theory this could be interesting for LIBGDX
+We have several working Java ports, including:
+- **Minecraft** (via launchers that use the JDK)
+- **Unciv** (open-source Civilization clone)
+- **Mindustry** (factory/tower-defense game)
+
+Note you also need a display backend for your Java application — just running a jar file without one won't work. WestonPack handles this for you.
+
+You can also supply a JDK via PortMaster Runtimes manually if needed.
 
 **Example**:
 
