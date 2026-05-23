@@ -16,20 +16,20 @@ A guide to install Portmaster can be found [here](https://portmaster.games/insta
 
 ## Do I have to use PortMaster to install ports?
 
-For the best experience you should download and install the Port trough the PortMaster Application. This ensures that the installed Port has the correct permissions aswell as the correct metadata. 
+For the best experience you should download and install the Port through the PortMaster Application. This ensures that the installed Port has the correct permissions as well as the correct metadata.
 
 If you have a device without wifi you can simply go to the PortMaster repo, [https://portmaster.games/games.html](https://portmaster.games/games.html), find the title of the port you want, download it and copy the zip file into the PortMaster Autoinstall folder. Then you just run the PortMaster Application and PortMaster will install the Port for you.
 
 Here are the locations for the autoinstall folder for the 
 
-- **AmberELEC, ROCKNIX, uOS, Jelos** ```/roms/ports/PortMaster/autoinstall/```
+- **AmberELEC, ROCKNIX, uOS** ```/roms/ports/PortMaster/autoinstall/```
 - **muOS** ```/mmc/MUOS/PortMaster/autoinstall/```
 - **ArkOS** ```/roms/tools/PortMaster/autoinstall/```
 - **Knulli** ```/userdata/system/.local/share/PortMaster/autoinstall```
 
 If that does not work you can also unzip the contents of the port into the ports folders of each cfw, note that this may break the port and ports may no longer start.
 
-- **AmberELEC, ROCKNIX, uOS, Jelos** ```/roms/ports/```
+- **AmberELEC, ROCKNIX, uOS** ```/roms/ports/```
 - **muOS** ```/mmc/ports/ for the folders and /mnt/mmc/ROMS/Ports/ for the .sh files```
 - **ArkOS** ```/roms/tools/PortMaster/autoinstall/```
 - **Knulli** ```/userdata/system/.local/share/PortMaster/autoinstall```
@@ -59,8 +59,7 @@ https://the.earth.li/~sgtatham/putty/latest/w64/putty.exe
 - Enter your ssh credentials
 
 -- Amberelec: root / amberelec
---  ArkOS    : ark / ark 
---  Jelos    : root / check under system settings
+--  ArkOS    : ark / ark
 - enter:
 ```
 cd /roms/ports/

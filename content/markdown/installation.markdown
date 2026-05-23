@@ -16,7 +16,6 @@ To install PortMaster via a simple Installation Script download either the Insta
 | ROCKNIX      | /roms/ports/           |
 | muOS         | /mnt/mmc/ROMS/Ports/   |
 | Knulli       | /userdata/roms/ports   |
-| JELOS        | /roms/ports/           |
 | UnofficialOS | /roms/ports/           |
 
 
@@ -39,4 +38,4 @@ There are 2 options on how-to upgrade:
 1. Use SSH or insert mSD card into your PC.
 2. [Download PortMaster.zip](https://github.com/PortsMaster/PortMaster-GUI/releases)
 3. (See locations in previous section) Remove previous `PortMaster` folder and unzip contents of downloaded archive to that location.
-4. Start PortMaster. Verify that it is runnning new version - the `PM <version>` in the bottom would correspond to the version on the Release Download page.
+4. Start PortMaster. Verify that it is running new version - the `PM <version>` in the bottom would correspond to the version on the Release Download page.

@@ -17,10 +17,10 @@ Mind for 3/4/5 a LOT of hacking and tweaking might be needed.
 Since PortMaster is platform independent and delivers their own dependencies we don't rely on the build mechanism of the CFWs out there.
 Various Instructions for Build Environments can be found here: https://portmaster.games/build-environments.html
 
-Once you have your software compiled it is recommeded you test your game directly on your device via ssh.
+Once you have your software compiled it is recommended you test your game directly on your device via ssh.
 For testing you can stop Emulationstation to not clash with your Ports
 
-- AmberELEC, uOS, Jelos:  `systemctl stop emustation`
+- AmberELEC, uOS:  `systemctl stop emustation`
 - ArkOS:                  `systemctl stop emulationstation`
 - muOS:                   `killall -q frontend.sh muxlaunch`
 - Knulli:                 `/etc/init.d/S31emulationstation stop `
@@ -170,11 +170,16 @@ For the full GPTOKEYB Documentation https://portmaster.games/gptokeyb-documentat
 
 ## Java
 
-AmberELEC / uOS / Jelos has JDK support already built in once you start a j2me game for the first time.
-You can supply this also via Portmaster Runtimes
-Note you also need a display backend for your java application. So just running a jar file without anything won't work.
+Java ports are supported via the [WestonPack Runtime](https://github.com/binarycounter/Westonpack/wiki/). WestonPack provides both a JDK and a display backend (Wayland/Weston), which Java applications need to run on handheld devices.
 
-As of yet we have no Port that uses these but in theory this could be interesting for LIBGDX
+We have several working Java ports, including:
+- **Minecraft** (via launchers that use the JDK)
+- **Unciv** (open-source Civilization clone)
+- **Mindustry** (factory/tower-defense game)
+
+Note you also need a display backend for your Java application — just running a jar file without one won't work. WestonPack handles this for you.
+
+You can also supply a JDK via PortMaster Runtimes manually if needed.
 
 **Example**:
 
