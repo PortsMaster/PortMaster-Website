@@ -265,252 +265,329 @@
     </ul>
     <div class="tab-content" id="faqTabsContent">
      <div aria-labelledby="faq-tab" class="tab-pane fade show active" id="faq-content" role="tabpanel">
-    <h2>
-     What is PortMaster?
-    </h2>
-    <p>
-     <strong>
-      PortMaster
-     </strong>
-     is a simple GUI tool designed to facilitate the downloading and installation of game ports for linux handheld devices.
-    </p>
-    <p>
-     One of the goals of PortMaster is to not install or upgrade any existing OS libraries for any ports. Any of the ports that need a particular non-standard library are maintained within the ports' folder and made available specifically to that port during execution.
-    </p>
-    <p>
-     Through the volunteer contributions of the mighty
-     <strong>
-      Port Navigators
-     </strong>
-     , most of the ports available through PortMaster have been configured to launch with proper controls for the various devices that are supported.
-    </p>
-    <h2>
-     What Devices are supported?
-    </h2>
-    <p>
-     The full list of supported devices can be found
-     <a href="https://portmaster.games/supported-devices.html">
-      here
-     </a>
-    </p>
-    <h2>
-     How can I install PortMaster?
-    </h2>
-    <p>
-     A guide to install PortMaster can be found
-     <a href="https://portmaster.games/installation.html">
-      here
-     </a>
-    </p>
-    <h2>
-     Do I have to use PortMaster to install ports?
-    </h2>
-    <p>
-     For the best experience you should download and install the Port through the PortMaster Application. This ensures that the installed Port has the correct permissions as well as the correct metadata.
-    </p>
-    <p>
-     If you have a device without wifi you can simply go to the PortMaster repo,
-     <a href="https://portmaster.games/games.html">
-      https://portmaster.games/games.html
-     </a>
-     , find the title of the port you want, download it and copy the zip file into the PortMaster Autoinstall folder. Then you just run the PortMaster Application and PortMaster will install the Port for you.
-    </p>
-    <p>
-     Here are the locations for the autoinstall folder:
-    </p>
-    <ul>
-     <li>
-      <strong>
-       AmberELEC, ROCKNIX, uOS
-      </strong>
-      <code>
-       /roms/ports/PortMaster/autoinstall/
-      </code>
-     </li>
-     <li>
-      <strong>
-       muOS
-      </strong>
-      <code>
-       /mmc/MUOS/PortMaster/autoinstall/
-      </code>
-     </li>
-     <li>
-      <strong>
-       ArkOS
-      </strong>
-      <code>
-       /roms/tools/PortMaster/autoinstall/
-      </code>
-     </li>
-     <li>
-      <strong>
-       Knulli
-      </strong>
-      <code>
-       /userdata/system/.local/share/PortMaster/autoinstall
-      </code>
-     </li>
-    </ul>
-    <p>
-     If that does not work you can also unzip the contents of the port into the ports folders of each CFW, note that this may break the port and ports may no longer start.
-    </p>
-    <ul>
-     <li>
-      <strong>
-       AmberELEC, ROCKNIX, uOS
-      </strong>
-      <code>
-       /roms/ports/
-      </code>
-     </li>
-     <li>
-      <strong>
-       muOS
-      </strong>
-      <code>
-       /mmc/ports/ for the folders and /mnt/mmc/ROMS/Ports/ for the .sh files
-      </code>
-     </li>
-     <li>
-      <strong>
-       ArkOS
-      </strong>
-      <code>
-       /roms/tools/PortMaster/autoinstall/
-      </code>
-     </li>
-     <li>
-      <strong>
-       Knulli
-      </strong>
-      <code>
-       /userdata/system/.local/share/PortMaster/autoinstall
-      </code>
-     </li>
-    </ul>
-    <h2>
-     How do I get more info about the ports in PortMaster like the sources used and additional asset needs if applicable?
-    </h2>
-    <p>
-     You can find all Ports with included instructions on the
-     <a href="https://portmaster.games/games.html">
-      PortMaster Games page
-     </a>
-    </p>
-    <h2>
-     If there are updates to Ports, how will that work?
-    </h2>
-    <p>
-     Just run PortMaster and reinstall the port. You can also unzip the associated
-     <code>
-      .zip
-     </code>
-     for the port you want and unzip the contents of it to the ports folder. This should install the latest port related files if they've been updated in PortMaster. In most cases, it should not impact any existing game data you had to provide or existing saves unless the updated port made changes to the port backend that impacts previous saves.
-    </p>
-    <h2>
-     How can I help add ports to PortMaster?
-    </h2>
-    <p>
-     See our Contribute section on
-     <a href="https://portmaster.games/">
-      https://portmaster.games/
-     </a>
-     If you have any questions about the process not detailed in the documentation feel free to reach out on our Discord Server.
-    </p>
-    <h2>
-     How can I run my Port via ssh to troubleshoot any starting issues?
-    </h2>
-    <p>
-     Download Putty:
-     <a href="https://the.earth.li/~sgtatham/putty/latest/w64/putty.exe">
-      https://the.earth.li/~sgtatham/putty/latest/w64/putty.exe
-     </a>
-    </p>
-    <ul>
-     <li>
-      Start Putty
-     </li>
-     <li>
-      Enter your Device IP
-     </li>
-     <li>
-      Open
-     </li>
-     <li>
-      Enter your ssh credentials
-     </li>
-    </ul>
-    <p>
-     -- AmberELEC: root / amberelec<br/>
-     -- ArkOS: ark / ark
-    </p>
-    <ul>
-     <li>
-      enter:
-     </li>
-    </ul>
-    <pre><code>cd /roms/ports/
+      <h2>
+       What is PortMaster?
+      </h2>
+      <p>
+       <strong>
+        PortMaster
+       </strong>
+       is a simple GUI tool designed to facilitate the downloading and installation of game ports for linux handheld devices.
+      </p>
+      <p>
+       One of the goals of PortMaster is to not install or upgrade any existing OS libraries for any ports. Any of the ports that need a particular non-standard library are maintained within the ports' folder and made available specifically to that port during execution.
+      </p>
+      <p>
+       Through the volunteer contributions of the mighty
+       <strong>
+        Port Navigators
+       </strong>
+       , most of the the ports available through PortMaster have been configured to launch with proper controls for the various devices that are supported.
+      </p>
+      <h2>
+       What Devices are supported?
+      </h2>
+      <p>
+       (Currently Outdated)
+The full list of supported devices can be found
+       <a href="https://portmaster.games/supported-devices.html">
+        here
+       </a>
+      </p>
+      <h2>
+       How can I install PortMaster?
+      </h2>
+      <p>
+       A guide to install Portmaster can be found
+       <a href="https://portmaster.games/installation.html">
+        here
+       </a>
+      </p>
+      <h2>
+       Do I have to use PortMaster to install ports?
+      </h2>
+      <p>
+       For the best experience you should download and install the Port through the PortMaster Application. This ensures that the installed Port has the correct permissions as well as the correct metadata.
+      </p>
+      <p>
+       If you have a device without wifi you can simply go to the PortMaster repo,
+       <a href="https://portmaster.games/games.html">
+        https://portmaster.games/games.html
+       </a>
+       , find the title of the port you want, download it and copy the zip file into the PortMaster Autoinstall folder. Then you just run the PortMaster Application and PortMaster will install the Port for you.
+      </p>
+      <p>
+       Here are the locations for the autoinstall folder for the
+      </p>
+      <ul>
+       <li>
+        <strong>
+         AmberELEC, ROCKNIX, uOS
+        </strong>
+        <code>
+         /roms/ports/PortMaster/autoinstall/
+        </code>
+       </li>
+       <li>
+        <strong>
+         muOS
+        </strong>
+        <code>
+         /mmc/MUOS/PortMaster/autoinstall/
+        </code>
+       </li>
+       <li>
+        <strong>
+         ArkOS
+        </strong>
+        <code>
+         /roms/tools/PortMaster/autoinstall/
+        </code>
+       </li>
+       <li>
+        <strong>
+         Knulli
+        </strong>
+        <code>
+         /userdata/system/.local/share/PortMaster/autoinstall
+        </code>
+       </li>
+      </ul>
+      <p>
+       If that does not work you can also unzip the contents of the port into the ports folders of each cfw, note that this may break the port and ports may no longer start.
+      </p>
+      <ul>
+       <li>
+        <strong>
+         AmberELEC, ROCKNIX, uOS
+        </strong>
+        <code>
+         /roms/ports/
+        </code>
+       </li>
+       <li>
+        <strong>
+         muOS
+        </strong>
+        <code>
+         /mmc/ports/ for the folders and /mnt/mmc/ROMS/Ports/ for the .sh files
+        </code>
+       </li>
+       <li>
+        <strong>
+         ArkOS
+        </strong>
+        <code>
+         /roms/tools/PortMaster/autoinstall/
+        </code>
+       </li>
+       <li>
+        <strong>
+         Knulli
+        </strong>
+        <code>
+         /userdata/system/.local/share/PortMaster/autoinstall
+        </code>
+       </li>
+      </ul>
+      <h2>
+       How do I get more info about the ports in PortMaster like the sources used and additional asset needs if applicable?
+      </h2>
+      <p>
+       You can find all Ports with included instructions on the
+       <a href="https://portmaster.games/games.html">
+        PortMaster Wiki
+       </a>
+      </p>
+      <h2>
+       If there are updates to Ports, how will that work?
+      </h2>
+      <p>
+       Just run PortMaster and reinstall the port. You can also unzip the associated
+       <code>
+        .zip
+       </code>
+       for the port you want and unzip the contents of it to the ports folder. This should install the latest port related files if they've been updated in PortMaster. In most cases, it should not impact any existing game data you had to provide or existing saves unless the updated port made changes to the port backend that impacts previous saves.
+      </p>
+      <h2>
+       How can I help add ports to PortMaster?
+      </h2>
+      <p>
+       See our Contribute section on
+       <a href="https://portmaster.games/">
+        https://portmaster.games/
+       </a>
+       If you have any questions about the process not detailed in the documentation feel free to reach out on our Discord Server.
+      </p>
+      <h2>
+       How can I run my Port via ssh to troubleshoot any starting issues?
+      </h2>
+      <p>
+       Download Putty:
+       <a href="https://the.earth.li/~sgtatham/putty/latest/w64/putty.exe">
+        https://the.earth.li/~sgtatham/putty/latest/w64/putty.exe
+       </a>
+      </p>
+      <ul>
+       <li>
+        Start Putty
+       </li>
+       <li>
+        Enter your Device IP
+       </li>
+       <li>
+        Open
+       </li>
+       <li>
+        Enter your ssh credentials
+       </li>
+      </ul>
+      <p>
+       -- Amberelec: root / amberelec
+--  ArkOS    : ark / ark
+      </p>
+      <ul>
+       <li>
+        enter:
+       </li>
+      </ul>
+      <pre><code>cd /roms/ports/
 ./WhateveryourgameIsCalled.sh
 </code></pre>
-    <p>
-     You can then mark the output with your mouse and with ctrl + c / ctrl + v paste it into the ports-help channel on discord.
-    </p>
+      <p>
+       You can then mark the output with your mouse and with ctrl + c / ctrl + v paste it into the ports-help channel on discord.
+      </p>
      </div>
      <div aria-labelledby="firmware-tab" class="tab-pane fade" id="firmware-content" role="tabpanel">
-      <h2>Supported Firmwares</h2>
-      <p>These custom firmwares (CFWs) are actively supported by PortMaster:</p>
+      <h2>
+       Supported Firmwares
+      </h2>
+      <p>
+       These custom firmwares (CFWs) are actively supported by PortMaster:
+      </p>
       <table class="table table-striped">
        <thead>
         <tr>
-         <th>Firmware</th>
-         <th>Notes</th>
+         <th>
+          Firmware
+         </th>
+         <th>
+          Notes
+         </th>
         </tr>
        </thead>
        <tbody>
         <tr>
-         <td><strong>ArkOS</strong></td>
-         <td>Fully supported. Install script goes in <code>/roms/tools/</code>.</td>
+         <td>
+          <strong>
+           ArkOS
+          </strong>
+         </td>
+         <td>
+          Fully supported. Install script goes in
+          <code>
+           /roms/tools/
+          </code>
+          .
+         </td>
         </tr>
         <tr>
-         <td><strong>AmberELEC</strong></td>
-         <td>Fully supported.</td>
+         <td>
+          <strong>
+           AmberELEC
+          </strong>
+         </td>
+         <td>
+          Fully supported.
+         </td>
         </tr>
         <tr>
-         <td><strong>ROCKNIX</strong></td>
-         <td>Fully supported. The spiritual successor to AmberELEC.</td>
+         <td>
+          <strong>
+           ROCKNIX
+          </strong>
+         </td>
+         <td>
+          Fully supported. The spiritual successor to AmberELEC.
+         </td>
         </tr>
         <tr>
-         <td><strong>muOS</strong></td>
-         <td>Fully supported.</td>
+         <td>
+          <strong>
+           muOS
+          </strong>
+         </td>
+         <td>
+          Fully supported.
+         </td>
         </tr>
         <tr>
-         <td><strong>Knulli</strong></td>
-         <td>Fully supported.</td>
+         <td>
+          <strong>
+           Knulli
+          </strong>
+         </td>
+         <td>
+          Fully supported.
+         </td>
         </tr>
         <tr>
-         <td><strong>uOS / UnofficialOS</strong></td>
-         <td>Partially supported.</td>
+         <td>
+          <strong>
+           uOS / UnofficialOS
+          </strong>
+         </td>
+         <td>
+          Partially supported.
+         </td>
         </tr>
         <tr>
-         <td><strong>dArkOS</strong></td>
-         <td>Fully supported.</td>
+         <td>
+          <strong>
+           dArkOS
+          </strong>
+         </td>
+         <td>
+          Fully supported.
+         </td>
         </tr>
        </tbody>
       </table>
-      <h2>Unsupported Firmwares</h2>
-      <p>These firmwares are <strong>no longer supported</strong> by PortMaster. They may have worked in the past but are discontinued or no longer maintained:</p>
+      <h2>
+       Unsupported Firmwares
+      </h2>
+      <p>
+       These firmwares are
+       <strong>
+        no longer supported
+       </strong>
+       by PortMaster. They may have worked in the past but are discontinued or no longer maintained:
+      </p>
       <table class="table table-striped">
        <thead>
         <tr>
-         <th>Firmware</th>
-         <th>Reason</th>
+         <th>
+          Firmware
+         </th>
+         <th>
+          Reason
+         </th>
         </tr>
        </thead>
        <tbody>
         <tr>
-         <td><strong>JELOS</strong></td>
-         <td>Discontinued. The project is no longer maintained. Users are encouraged to migrate to <a href="https://rocknix.org">ROCKNIX</a>, which is the active continuation of JELOS.</td>
+         <td>
+          <strong>
+           JELOS
+          </strong>
+         </td>
+         <td>
+          Discontinued. The project is no longer maintained. Users are encouraged to migrate to
+          <a href="https://rocknix.org">
+           ROCKNIX
+          </a>
+          , which is the active continuation of JELOS.
+         </td>
         </tr>
        </tbody>
       </table>
