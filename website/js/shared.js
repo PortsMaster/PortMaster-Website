@@ -385,6 +385,9 @@ function createCard(port) {
                     src: imageUrl,
                     className: 'bd-placeholder-img card-img-top object-fit-contain',
                     loading: 'lazy',
+                    // Screenshots are unoptimised repo PNGs; keep them from
+                    // competing with ports.json and the stylesheets.
+                    fetchPriority: 'low',
                 }),
             ]),
             createElement('div', { className: 'card-body d-flex flex-column' }, [
