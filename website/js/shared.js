@@ -56,6 +56,30 @@ async function batchReplaceChildren(batchSize, container, children) {
     }
 }
 
+// cmark-gfm is half a megabyte of asm.js and only the details view renders a
+// README with it, so pages fetch it on first use instead of on every load.
+// Pages that convert markdown immediately still include it with a script tag.
+const CMARK_GFM_SRC = 'js/cmark-gfm.js';
+
+let cmarkGfmLoad;
+
+function loadCmarkGfm() {
+    if (window.CmarkGFM) {
+        return Promise.resolve(window.CmarkGFM);
+    }
+
+    cmarkGfmLoad ??= new Promise((resolve, reject) => {
+        const script = createElement('script', {
+            src: CMARK_GFM_SRC,
+            onload: () => resolve(window.CmarkGFM),
+            onerror: () => reject(new Error(`Failed to load ${CMARK_GFM_SRC}`)),
+        });
+        document.head.append(script);
+    });
+
+    return cmarkGfmLoad;
+}
+
 function memoize(func, resolver) {
     function memoized(...args) {
         const key = resolver ? resolver.apply(this, args) : args[0];
@@ -443,14 +467,14 @@ function updateCard(card, port, selectedDevices, firmwareNames) {
 function createAdditionalInformation(port) {
     const additionalInformation = createElement('div', { style: 'word-wrap: break-word' }, 'Loading...');
 
-    function markdownToHtml(markdown) {
-        return CmarkGFM.convert(markdown.replaceAll('<br/>', ''))
+    function markdownToHtml(cmarkGfm, markdown) {
+        return cmarkGfm.convert(markdown.replaceAll('<br/>', ''))
             .replaceAll('<table>', '<table class="table table-bordered">')
             .replaceAll('<h2>', '<h2 style="margin-top: 1em; margin-bottom: 1em;">');
     }
 
-    fetchReadme(port).then(readme => {
-        additionalInformation.innerHTML = markdownToHtml(readme);
+    Promise.all([fetchReadme(port), loadCmarkGfm()]).then(([readme, cmarkGfm]) => {
+        additionalInformation.innerHTML = markdownToHtml(cmarkGfm, readme);
     });
 
     return additionalInformation;
