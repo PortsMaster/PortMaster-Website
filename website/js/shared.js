@@ -80,6 +80,15 @@ function loadCmarkGfm() {
     return cmarkGfmLoad;
 }
 
+// Constructing a Converter rebuilds showdown's option and extension tables, so
+// the one instance is shared across every card and detail view.
+let showdownConverter;
+
+function getShowdownConverter() {
+    showdownConverter ??= new showdown.Converter();
+    return showdownConverter;
+}
+
 function memoize(func, resolver) {
     function memoized(...args) {
         const key = resolver ? resolver.apply(this, args) : args[0];
@@ -387,7 +396,7 @@ function createCard(port) {
                 ]),
                 createElement('div', {
                     className: 'card-text mb-auto',
-                    innerHTML: new showdown.Converter().makeHtml(desc),
+                    innerHTML: getShowdownConverter().makeHtml(desc),
                 }),
                 createElement('p', { className: 'card-text update-supported', hidden: true }),
                 createElement('div', { className: 'd-flex justify-content-between align-items-start' }, [
@@ -500,7 +509,7 @@ function createCardDetails({ port, deviceDetails, additionalInformation }) {
                 createElement('div', { className: 'desc' }, [
                     createElement('p', {
                         className: 'lead mb-4 mt-4',
-                        innerHTML: new showdown.Converter().makeHtml(port.attr.desc_md || port.attr.desc),
+                        innerHTML: getShowdownConverter().makeHtml(port.attr.desc_md || port.attr.desc),
                     }),
                 ]),
                 createElement('div', { className: 'd-grid gap-2 d-sm-flex justify-content-sm-center mb-5' }, [
@@ -588,7 +597,7 @@ function createCardDetails({ port, deviceDetails, additionalInformation }) {
                 createElement('p', {
                     className: 'lead mb-4 mt-4',
                     style: 'word-wrap: break-word',
-                    innerHTML: new showdown.Converter().makeHtml(port.attr.inst_md || port.attr.inst),
+                    innerHTML: getShowdownConverter().makeHtml(port.attr.inst_md || port.attr.inst),
                 }),
             ]),
         ]),
