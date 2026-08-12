@@ -1,6 +1,17 @@
+// Typing "mario" would otherwise rebuild the whole list five times over.
+const SEARCH_DEBOUNCE_MS = 200;
+
 const WINDOW_SIZE = 60;
 // Extend a screen ahead so scrolling never waits on the next window.
 const WINDOW_ROOT_MARGIN = '800px';
+
+function debounce(func, wait) {
+    let timer;
+    return function (...args) {
+        clearTimeout(timer);
+        timer = setTimeout(() => func.apply(this, args), wait);
+    };
+}
 
 window.addEventListener('DOMContentLoaded', async function() {
     const appElement = document.getElementById('app');
@@ -14,7 +25,10 @@ window.addEventListener('DOMContentLoaded', async function() {
     const firmwareNames = getFirmwareNames();
 
     const getCard = memoize(createCard, port => port.name);
-    const { containerElement, updateContainer, filterControls } = createContainer({ attributes, devices, genres, onchange });
+    const { containerElement, updateContainer, filterControls } = createContainer({
+        attributes, devices, genres, onchange,
+        oninput: debounce(onchange, SEARCH_DEBOUNCE_MS),
+    });
     const filterState = defaultFilterState(JSON.parse(sessionStorage.getItem('filterState')));
     setFilterState(filterControls, filterState);
     updateResult(filterState);
@@ -64,9 +78,9 @@ function createSort({ onchange }) {
     return { sortElement, sortRadio };
 }
 
-function createContainer({ attributes, devices, genres, onchange }) {
+function createContainer({ attributes, devices, genres, onchange, oninput }) {
     const { dropdownButtons, checkboxes, updateDropdowns } = createDropdowns({ attributes, devices, genres, onchange });
-    const searchInput = createSearchInput({ oninput: onchange });
+    const searchInput = createSearchInput({ oninput });
     const { sortElement, sortRadio } = createSort({ onchange });
 
     const filterControls = { checkboxes, searchInput, sortRadio };
