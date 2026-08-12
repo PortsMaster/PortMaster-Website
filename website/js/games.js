@@ -1,3 +1,7 @@
+const WINDOW_SIZE = 60;
+// Extend a screen ahead so scrolling never waits on the next window.
+const WINDOW_ROOT_MARGIN = '800px';
+
 window.addEventListener('DOMContentLoaded', async function() {
     const appElement = document.getElementById('app');
     appElement.replaceChildren(createContainerLoading());
@@ -19,7 +23,8 @@ window.addEventListener('DOMContentLoaded', async function() {
     function updateResult(filterState) {
         const selectedDevices = getSelectedDevices(devices, filterState);
         updateContainer({
-            cards: getFilteredData(ports, filterState).map(port => {
+            // Deferred: only the cards a window actually mounts get built.
+            cards: getFilteredData(ports, filterState).map(port => () => {
                 return updateCard(getCard(port), port, selectedDevices, firmwareNames);
             }),
         });
@@ -71,19 +76,55 @@ function createContainer({ attributes, devices, genres, onchange }) {
         createElement('div', { className: 'my-2 gap-2 d-flex flex-wrap justify-content-center' }, [dropdownButtons, searchInput, sortElement]),
         createElement('h2', { ref: el => containerRefs.title = el, className: 'my-4 text-center' }),
         createElement('div', { ref: el => containerRefs.list = el, className: 'row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3' }),
+        createElement('div', { ref: el => containerRefs.sentinel = el }),
     ]);
+
+    const showCards = createWindowedList(containerRefs.list, containerRefs.sentinel);
 
     function updateContainer({ cards }) {
         updateDropdowns();
 
         containerRefs.title.textContent = `${cards.length} Ports Available`;
-        batchReplaceChildren(200, containerRefs.list, cards);
+        showCards(cards);
     }
 
     return {
         containerElement,
         updateContainer,
         filterControls,
+    };
+}
+
+/**
+ * Mounts cards a window at a time, extending as the sentinel below the list
+ * scrolls into view. Keeps the DOM proportional to what has been scrolled past
+ * rather than to the full catalogue.
+ */
+function createWindowedList(listElement, sentinelElement) {
+    let queue = [];
+
+    const observer = new IntersectionObserver(entries => {
+        if (entries.some(entry => entry.isIntersecting)) {
+            appendWindow();
+        }
+    }, { rootMargin: WINDOW_ROOT_MARGIN });
+
+    function appendWindow() {
+        listElement.append(...queue.splice(0, WINDOW_SIZE).map(buildCard => buildCard()));
+
+        observer.unobserve(sentinelElement);
+
+        // Re-observing is what keeps this going: IntersectionObserver reports only
+        // changes in state, so a sentinel that stays in view never fires again.
+        if (queue.length !== 0) {
+            observer.observe(sentinelElement);
+        }
+    }
+
+    return function showCards(cards) {
+        queue = [...cards];
+        listElement.replaceChildren();
+        appendWindow();
     };
 }
 //#endregion
