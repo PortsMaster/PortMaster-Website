@@ -2,8 +2,7 @@ window.addEventListener('DOMContentLoaded', async function() {
     const appElement = document.getElementById('app');
     appElement.replaceChildren(createContainerLoading());
 
-    const ports = await fetchPorts();
-    const deviceInfo = await fetchDeviceInfo();
+    const [ports, deviceInfo] = await Promise.all([fetchPorts(), fetchDeviceInfo()]);
     const attributes = getAttributes(ports);
     const genres = getGenres(ports);
     const deviceCounts = getDeviceCounts(ports);
