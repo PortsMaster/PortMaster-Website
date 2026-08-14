@@ -93,6 +93,10 @@
   </div>
   <script src="/js/navbar.js" type="module">
   </script>
+  <style>
+   /* bootstrap-icons already shifts .bi::before; don't double it on the element */
+  .navbar i.bi { vertical-align: baseline; }
+  </style>
   <nav aria-label="Fourth navbar example" class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
    <div class="container-fluid">
     <a class="navbar-brand" href="index.html">
