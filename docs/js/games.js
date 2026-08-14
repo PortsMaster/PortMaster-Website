@@ -1,9 +1,23 @@
+// Typing "mario" would otherwise rebuild the whole list five times over.
+const SEARCH_DEBOUNCE_MS = 200;
+
+const WINDOW_SIZE = 60;
+// Extend a screen ahead so scrolling never waits on the next window.
+const WINDOW_ROOT_MARGIN = '800px';
+
+function debounce(func, wait) {
+    let timer;
+    return function (...args) {
+        clearTimeout(timer);
+        timer = setTimeout(() => func.apply(this, args), wait);
+    };
+}
+
 window.addEventListener('DOMContentLoaded', async function() {
     const appElement = document.getElementById('app');
     appElement.replaceChildren(createContainerLoading());
 
-    const ports = await fetchPorts();
-    const deviceInfo = await fetchDeviceInfo();
+    const [ports, deviceInfo] = await Promise.all([fetchPorts(), fetchDeviceInfo()]);
     const attributes = getAttributes(ports);
     const genres = getGenres(ports);
     const deviceCounts = getDeviceCounts(ports);
@@ -11,7 +25,10 @@ window.addEventListener('DOMContentLoaded', async function() {
     const firmwareNames = getFirmwareNames();
 
     const getCard = memoize(createCard, port => port.name);
-    const { containerElement, updateContainer, filterControls } = createContainer({ attributes, devices, genres, onchange });
+    const { containerElement, updateContainer, filterControls } = createContainer({
+        attributes, devices, genres, onchange,
+        oninput: debounce(onchange, SEARCH_DEBOUNCE_MS),
+    });
     const filterState = defaultFilterState(JSON.parse(sessionStorage.getItem('filterState')));
     setFilterState(filterControls, filterState);
     updateResult(filterState);
@@ -20,7 +37,8 @@ window.addEventListener('DOMContentLoaded', async function() {
     function updateResult(filterState) {
         const selectedDevices = getSelectedDevices(devices, filterState);
         updateContainer({
-            cards: getFilteredData(ports, filterState).map(port => {
+            // Deferred: only the cards a window actually mounts get built.
+            cards: getFilteredData(ports, filterState).map(port => () => {
                 return updateCard(getCard(port), port, selectedDevices, firmwareNames);
             }),
         });
@@ -60,9 +78,9 @@ function createSort({ onchange }) {
     return { sortElement, sortRadio };
 }
 
-function createContainer({ attributes, devices, genres, onchange }) {
+function createContainer({ attributes, devices, genres, onchange, oninput }) {
     const { dropdownButtons, checkboxes, updateDropdowns } = createDropdowns({ attributes, devices, genres, onchange });
-    const searchInput = createSearchInput({ oninput: onchange });
+    const searchInput = createSearchInput({ oninput });
     const { sortElement, sortRadio } = createSort({ onchange });
 
     const filterControls = { checkboxes, searchInput, sortRadio };
@@ -72,19 +90,55 @@ function createContainer({ attributes, devices, genres, onchange }) {
         createElement('div', { className: 'my-2 gap-2 d-flex flex-wrap justify-content-center' }, [dropdownButtons, searchInput, sortElement]),
         createElement('h2', { ref: el => containerRefs.title = el, className: 'my-4 text-center' }),
         createElement('div', { ref: el => containerRefs.list = el, className: 'row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3' }),
+        createElement('div', { ref: el => containerRefs.sentinel = el }),
     ]);
+
+    const showCards = createWindowedList(containerRefs.list, containerRefs.sentinel);
 
     function updateContainer({ cards }) {
         updateDropdowns();
 
         containerRefs.title.textContent = `${cards.length} Ports Available`;
-        batchReplaceChildren(200, containerRefs.list, cards);
+        showCards(cards);
     }
 
     return {
         containerElement,
         updateContainer,
         filterControls,
+    };
+}
+
+/**
+ * Mounts cards a window at a time, extending as the sentinel below the list
+ * scrolls into view. Keeps the DOM proportional to what has been scrolled past
+ * rather than to the full catalogue.
+ */
+function createWindowedList(listElement, sentinelElement) {
+    let queue = [];
+
+    const observer = new IntersectionObserver(entries => {
+        if (entries.some(entry => entry.isIntersecting)) {
+            appendWindow();
+        }
+    }, { rootMargin: WINDOW_ROOT_MARGIN });
+
+    function appendWindow() {
+        listElement.append(...queue.splice(0, WINDOW_SIZE).map(buildCard => buildCard()));
+
+        observer.unobserve(sentinelElement);
+
+        // Re-observing is what keeps this going: IntersectionObserver reports only
+        // changes in state, so a sentinel that stays in view never fires again.
+        if (queue.length !== 0) {
+            observer.observe(sentinelElement);
+        }
+    }
+
+    return function showCards(cards) {
+        queue = [...cards];
+        listElement.replaceChildren();
+        appendWindow();
     };
 }
 //#endregion

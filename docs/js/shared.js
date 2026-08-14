@@ -56,6 +56,39 @@ async function batchReplaceChildren(batchSize, container, children) {
     }
 }
 
+// cmark-gfm is half a megabyte of asm.js and only the details view renders a
+// README with it, so pages fetch it on first use instead of on every load.
+// Pages that convert markdown immediately still include it with a script tag.
+const CMARK_GFM_SRC = 'js/cmark-gfm.js';
+
+let cmarkGfmLoad;
+
+function loadCmarkGfm() {
+    if (window.CmarkGFM) {
+        return Promise.resolve(window.CmarkGFM);
+    }
+
+    cmarkGfmLoad ??= new Promise((resolve, reject) => {
+        const script = createElement('script', {
+            src: CMARK_GFM_SRC,
+            onload: () => resolve(window.CmarkGFM),
+            onerror: () => reject(new Error(`Failed to load ${CMARK_GFM_SRC}`)),
+        });
+        document.head.append(script);
+    });
+
+    return cmarkGfmLoad;
+}
+
+// Constructing a Converter rebuilds showdown's option and extension tables, so
+// the one instance is shared across every card and detail view.
+let showdownConverter;
+
+function getShowdownConverter() {
+    showdownConverter ??= new showdown.Converter();
+    return showdownConverter;
+}
+
 function memoize(func, resolver) {
     function memoized(...args) {
         const key = resolver ? resolver.apply(this, args) : args[0];
@@ -352,6 +385,9 @@ function createCard(port) {
                     src: imageUrl,
                     className: 'bd-placeholder-img card-img-top object-fit-contain',
                     loading: 'lazy',
+                    // Screenshots are unoptimised repo PNGs; keep them from
+                    // competing with ports.json and the stylesheets.
+                    fetchPriority: 'low',
                 }),
             ]),
             createElement('div', { className: 'card-body d-flex flex-column' }, [
@@ -363,7 +399,7 @@ function createCard(port) {
                 ]),
                 createElement('div', {
                     className: 'card-text mb-auto',
-                    innerHTML: new showdown.Converter().makeHtml(desc),
+                    innerHTML: getShowdownConverter().makeHtml(desc),
                 }),
                 createElement('p', { className: 'card-text update-supported', hidden: true }),
                 createElement('div', { className: 'd-flex justify-content-between align-items-start' }, [
@@ -443,14 +479,14 @@ function updateCard(card, port, selectedDevices, firmwareNames) {
 function createAdditionalInformation(port) {
     const additionalInformation = createElement('div', { style: 'word-wrap: break-word' }, 'Loading...');
 
-    function markdownToHtml(markdown) {
-        return CmarkGFM.convert(markdown.replaceAll('<br/>', ''))
+    function markdownToHtml(cmarkGfm, markdown) {
+        return cmarkGfm.convert(markdown.replaceAll('<br/>', ''))
             .replaceAll('<table>', '<table class="table table-bordered">')
             .replaceAll('<h2>', '<h2 style="margin-top: 1em; margin-bottom: 1em;">');
     }
 
-    fetchReadme(port).then(readme => {
-        additionalInformation.innerHTML = markdownToHtml(readme);
+    Promise.all([fetchReadme(port), loadCmarkGfm()]).then(([readme, cmarkGfm]) => {
+        additionalInformation.innerHTML = markdownToHtml(cmarkGfm, readme);
     });
 
     return additionalInformation;
@@ -476,7 +512,7 @@ function createCardDetails({ port, deviceDetails, additionalInformation }) {
                 createElement('div', { className: 'desc' }, [
                     createElement('p', {
                         className: 'lead mb-4 mt-4',
-                        innerHTML: new showdown.Converter().makeHtml(port.attr.desc_md || port.attr.desc),
+                        innerHTML: getShowdownConverter().makeHtml(port.attr.desc_md || port.attr.desc),
                     }),
                 ]),
                 createElement('div', { className: 'd-grid gap-2 d-sm-flex justify-content-sm-center mb-5' }, [
@@ -564,7 +600,7 @@ function createCardDetails({ port, deviceDetails, additionalInformation }) {
                 createElement('p', {
                     className: 'lead mb-4 mt-4',
                     style: 'word-wrap: break-word',
-                    innerHTML: new showdown.Converter().makeHtml(port.attr.inst_md || port.attr.inst),
+                    innerHTML: getShowdownConverter().makeHtml(port.attr.inst_md || port.attr.inst),
                 }),
             ]),
         ]),
