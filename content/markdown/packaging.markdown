@@ -52,36 +52,41 @@ A port directory might look like the following:
 This is used by portmaster, this should include all the pertinent info for the port, [we have a handy port.json generator here](http://portmaster.games/port-json.html).
 Make sure to select the correct architecture. If the game is using a runtime e.g. Godot/Mono/Java no arch needs to be entered.
 
-Example from 2048.
+Example from Defblade.
 
 ```json
 {
-    "version": 2,
-    "name": "2048.zip",
-    "items": [
-        "2048.sh",
-        "2048"
+  "version": 4,
+  "name": "defblade.zip",
+  "items": [
+    "Defblade.sh",
+    "defblade"
+  ],
+  "items_opt": [],
+  "attr": {
+    "title": "Defblade",
+    "porter": [
+      "Cebion"
     ],
-    "items_opt": null,
-    "attr": {
-        "title": "2048",
-        "desc": "The 2048 puzzle game",
-        "inst": "Ready to run.",
-        "genres": [
-            "puzzle"
-        ],
-        "porter": [
-            "Christian_Haitian"
-        ],
-        "image": {},
-        "rtr": true,
-        "runtime": null,
-        "reqs": [],
-        "arch": [
-            "aarch64",
-            "armhf"
-        ]
-    }
+    "desc": "A precision pixel-art platformer with sword combat. Parkour across tricky obstacles and fight enemies to earn coins - lose them all and it's game over.",
+    "desc_md": null,
+    "inst": "Ready to run out of the box, no additional files needed.",
+    "inst_md": null,
+    "genres": [
+      "platformer"
+    ],
+    "image": null,
+    "rtr": true,
+    "exp": false,
+    "runtime": [],
+    "store": [],
+    "availability": "full",
+    "reqs": [],
+    "arch": [
+      "aarch64"
+    ],
+    "min_glibc": ""
+  }
 }
 ```
 
@@ -94,26 +99,27 @@ Example:
 
 ```markdown
 ## Notes
-Thanks to the [Alien Blaster Team](https://www.schwardtnet.de/alienblaster/) for creating this game and making it available for free!
- 
+
+Thanks to [snej55](https://github.com/snej55) for making Defblade, a precision pixel-art platformer with tight parkour and sword-combat challenges.
+
 ## Controls
 
 | Button | Action |
-|--|--| 
-|A| Special Weapon|
-|B| Main Weapon|
-|X| Swap Weapon|
-|Y| Spwap Special Weapon |
-|R1| Key "1" |
- 
+|--|--|
+| D-Pad Up / A | Jump |
+| D-Pad Down | Down |
+| D-Pad Left | Left |
+| D-Pad Right | Right |
+| B | Attack |
+| Start | Confirm |
 
 ## Compile
 
-\`\`\`shell
-wget http://www.schwardtnet.de/alienblaster/archives/alienblaster-1.1.0.tgz
-cd alienblaster-1.1.0
-make
-\`\`\`
+git clone https://github.com/snej55/paper-world.git
+cd paper-world
+cmake -S . -B build -G Ninja -DPORTMASTER_BUILD=ON -DCMAKE_BUILD_TYPE=Release
+cmake --build build
+
 ```
 
 #### Screenshot
@@ -145,16 +151,14 @@ Here is the structure of a filled out gameinfo.xml
 <?xml version="1.0" encoding="utf-8"?>
 <gameList>
   <game>
-    <path>./Angband.sh</path>
-    <name>Angband</name>
-    <desc>Angband is a free, single-player dungeon exploration game.
-
-You play an adventurer seeking riches, fighting monsters, and preparing for a final battle with Morgoth, the Lord of Darkness.</desc>
-    <releasedate>20230819T000000</releasedate>
-    <developer>Angband Development Team</developer>
-    <publisher>Angband Development Team</publisher>
-    <genre>RPG</genre>
-    <image>./angband/cover.png</image>
+    <path>./Defblade.sh</path>
+    <name>Defblade</name>
+    <desc>A precision pixel-art platformer with sword combat. Parkour across tricky obstacles and fight enemies to earn coins - lose them all and it's game over.</desc>
+    <releasedate>20241124T000000</releasedate>
+    <developer>snej55</developer>
+    <publisher>Open Source</publisher>
+    <genre>Platformer</genre>
+    <image>./defblade/screenshot.png</image>
   </game>
 </gameList>
 ```
