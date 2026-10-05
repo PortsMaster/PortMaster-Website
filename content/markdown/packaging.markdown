@@ -647,16 +647,23 @@ Before submitting a PR, your port must be thoroughly tested.
 1. Create a testing thread in our [#testing-n-dev Discord channel](https://discord.com/channels/1122861252088172575/1122885073507733625)
    
 2. Test your port on all major CFWs and Standard Resolutions:
-   - AmberELEC
-   - ArkOS
-   - ROCKNIX Panfrost / Malai
-   - muOS
-   - Knulli (Optional)
-  
-   - 480x320 (Optional)
-   - 640x480 
-   - 720x720 (Optional)
-   - Higher resolutions (e.g., 1280x720)
+   
+CFW Tests:
+[] AmberELEC
+[] dArkOS
+[ ] MuOS
+ROCKNIX
+-> [] Libmali
+-> [] Panfrost
+-> [] Adreno (Optional)
+[] Knulli
+
+Resolutions:
+[ ] 480x320 (Optional)
+[] 640x480
+[] 720x720 (RGB30) (Optional)
+[] Higher resolutions (e.g., 1280) 
+
   
 3. Address any feedback from the community testing
 
@@ -664,34 +671,145 @@ Before submitting a PR, your port must be thoroughly tested.
 
 ### Creating a Pull Request
 
-With this you can now go ahead to make a Pull Request on our main Portmaster Repo (if you tested the Port for all major cfws / devices of course) 
+Once your port is tested on all major CFWs and devices, you can submit it to the main PortMaster repo. There are two ways to prepare your PR: the sparse checkout script (recommended) or a full clone.
 
-To submit your game to PortMaster you need to create a fork of the current main PortMaster Repo 
-https://github.com/PortsMaster/PortMaster-New
+#### Option 1: Sparse checkout with `pmsetup.sh` (recommended)
 
-After forking the repo, go into the settings for the fork and disable github actions for your fork.
+The main repo is huge, so this method clones only what your port needs.
 
-Afterwards you can clone the repo, it's quite big though, so you'll might want to use git sparse checkout, [here is a great guide made by JeodC to help you with that](https://gist.github.com/JeodC/7a51211ad94ad6084d14042d80a62549)
-Once you have it cloned you should run the newly made `tools/prepare_repo.sh` from the root of repo. This will download the latest files from the release system.
-
-```bash
-tools/prepare_repo.sh
-```
-From there you can create a new directory in `ports/` for your new port, be sure to check the below `New Port Structure` section to make sure your port has all the required files.
-
-After your port has been added and you are ready to submit it, you can run the `build_release.py` script to check if your port adheres to the port standards.
+1. Fork the main repo: https://github.com/PortsMaster/PortMaster-New. If your port is Nintendo, Capcom, etc. related, or a decomp for example, fork https://github.com/PortsMaster-MV/PortMaster-MV-New instead.
+2. Get the `pmsetup.sh` script and edit the `REPO` variable near the top to point at **your own fork**, not the upstream repo:
 
 ```bash
-python3 tools/build_release.py --do-check
+   REPO="git@github.com:YOUR_USERNAME/PortMaster-New.git"
 ```
-This will check your port to make sure it has all the required files, and will warn of any issues.
 
-If you add a file that is larger than 90+ MB, you will have to run the script `tools/build_data.py`. It will split the file into 50mb chunks suitable for committing to github. If you edit the large-file just rerun the above script and it will update the chunks. This also adds the file to `.gitginore` in the ports directory so that the large file will not be committed to the repo.
-
-From there you can do a PR and it will be checked again, portmaster crew members will double check it once again.
-
-You can use the build_release.py to build the zips of any ports that have changed.
+3. Run the script with your port's branch name, a local folder to work in, and the paths you need:
 
 ```bash
-python3 tools/build_release.py
+   ./pmsetup.sh yourportname yourportname_repo ports/yourportname/
 ```
+
+   If your port also needs a runtime squashfs (Godot, Weston, etc.), add it as an extra argument, same as the osmos example.
+
+   What this does:
+   * Clones only `ports/yourportname/` (creating it if it doesn't exist yet), plus `tools/`, `SOURCE_SETUP.txt`, and `README.md`.
+   * Checks out a new local branch with the name you gave it.
+   * Leaves you with a normal git working directory, just without the other 40,000+ files you don't need.
+
+4. Add your port files inside `yourportname_repo/ports/yourportname/`. Follow the structure of an existing merged port: the `.sh` script, `port.json`, `gameinfo.xml`, README, cover/screenshot, and the game subfolder with binaries and libs.
+5. Commit and push to your fork:
+
+```bash
+   git add .
+   git commit -m "Add yourportname port"
+   git push origin yourportname
+```
+
+6. Open the PR on GitHub from your fork's branch against the upstream PortMaster-New repo, same as before. Your branch now contains a validated, correctly structured port folder instead of a raw clone with scripts run against it.
+
+<details>
+<summary>pmsetup.sh</summary>
+
+```bash
+#!/bin/bash
+
+# Parameters
+BRANCH="$1"
+LOCAL_PATH="$2"
+shift 2
+CHECKOUT_PATHS=("$@")
+
+# Repo Tools
+CHECKOUT_PATHS=("tools/" "SOURCE_SETUP.txt" "README.md" ".gitignore" "${CHECKOUT_PATHS[@]}")
+
+# Git repo
+REPO="git@github.com:binarycounter/PortMaster-New.git"
+
+# Ensure at least one checkout path
+if [ -z "$BRANCH" ] || [ -z "$LOCAL_PATH" ] || [ ${#CHECKOUT_PATHS[@]} -eq 0 ]; then
+    echo "Usage: $0 <branch-name> <local-dir> <paths...>"
+    exit 1
+fi
+
+# Clone with partial checkout
+git clone --filter=blob:none --no-checkout "$REPO" "$LOCAL_PATH"
+cd "$LOCAL_PATH"
+
+# Enable sparse checkout WITHOUT cone mode for better file handling
+git sparse-checkout init
+
+# Set branch if it exists remotely
+if git ls-remote --heads origin "$BRANCH" | grep -q "$BRANCH"; then
+    git checkout "$BRANCH"
+else
+    # Create new branch locally
+    git checkout -b "$BRANCH"
+fi
+
+# Create any missing folder structure locally
+for path in "${CHECKOUT_PATHS[@]}"; do
+    # Remove leading slash if present to avoid double slashes
+    clean_path="${path#/}"
+
+    # If it's a directory, ensure it ends with a slash
+    if [[ "$clean_path" == */ ]]; then
+        mkdir -p "$clean_path"
+    else
+        mkdir -p "$(dirname "$clean_path")"
+    fi
+done
+
+# Write sparse-checkout patterns directly to the file
+{
+    for path in "${CHECKOUT_PATHS[@]}"; do
+        # Remove leading slash if present to avoid double slashes
+        clean_path="${path#/}"
+
+        # Anchor the pattern to the repository root with a leading slash
+        echo "/$clean_path"
+    done
+} > .git/info/sparse-checkout
+
+# Checkout files
+git checkout
+
+echo "Sparse checkout complete for branch '$BRANCH' in directory '$LOCAL_PATH'"
+```
+
+</details>
+
+#### Option 2: Full clone (Cebion's way)
+
+If you work on lots of ports all the time, a full clone can be more convenient. This is the manual workflow Cebion uses on WSL2:
+
+1. Fork the PortMaster repo.
+2. Open WSL2 and clone your fork:
+
+```bash
+   git clone git@github.com:YOUR_USERNAME/PortMaster-New.git
+   cd PortMaster-New
+```
+
+3. Create a branch for your port:
+
+```bash
+   git checkout -b yourportname
+```
+
+4. Add your port files in `ports/yourportname/`.
+5. Commit and push:
+
+```bash
+   git add .
+   git commit
+   git push
+```
+
+#### Large files
+
+If you add a file that is larger than 90 MB, you will have to run the script `tools/build_data.py`. It will split the file into 50 MB chunks suitable for committing to GitHub. If you edit the large file, just rerun the script and it will update the chunks. This also adds the file to the `.gitignore` in the port's directory, so the large file itself will not be committed to the repo.
+
+#### After you open the PR
+
+Your port will be checked automatically, and PortMaster crew members will review it again by hand.
